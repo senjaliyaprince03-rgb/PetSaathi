@@ -1,0 +1,457 @@
+
+<div className="noise-bg fixed inset-0 z-0"></div>
+
+<header className="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl transition-all duration-300 shadow-[0_10px_40px_rgba(74,46,31,0.08)]">
+<div className="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto">
+<div className="flex items-center gap-8">
+<a className="font-headline-md text-headline-md font-bold text-secondary" href="#">PetSaathi</a>
+<nav className="hidden md:flex items-center gap-6 font-body-md text-body-md">
+<a className="text-secondary font-bold border-b-2 border-secondary" href="#">Our Sitters</a>
+<a className="text-on-surface-variant hover:text-secondary transition-all" href="#">Services</a>
+<a className="text-on-surface-variant hover:text-secondary transition-all" href="#">Safety</a>
+<a className="text-on-surface-variant hover:text-secondary transition-all" href="#">Concierge</a>
+</nav>
+</div>
+<div className="flex items-center gap-4">
+<button className="hidden lg:block font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-all active:scale-95">Become a Sitter</button>
+<button className="bg-secondary text-white px-6 py-3 rounded-full font-label-md text-label-md hover:opacity-90 transition-all duration-300 active:scale-95 shadow-lg">Book Pet Care</button>
+</div>
+</div>
+</header>
+<main className="relative z-10 pt-24">
+
+<section className="min-h-screen flex items-center px-margin-mobile md:px-margin-desktop py-stack-lg max-w-container-max mx-auto">
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-gutter items-center">
+<div className="flex flex-col gap-8 order-2 lg:order-1">
+<div className="flex flex-col gap-4">
+<span className="font-label-sm text-label-sm text-secondary tracking-widest uppercase">Verified Care in Ahmedabad</span>
+<h1 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-background leading-tight">
+                            Premium pet care, <br/><span className="italic text-secondary">trusted by families</span> near you.
+                        </h1>
+<p className="font-body-lg text-body-lg text-on-surface-variant max-w-lg">
+                            Book verified dog walkers, pet sitters, and safe boarding with report cards, service updates, and reliable support.
+                        </p>
+</div>
+<div className="flex flex-wrap gap-4">
+<button className="bg-secondary text-white px-8 py-4 rounded-full font-label-md text-label-md hover:opacity-90 transition-all shadow-xl active:scale-95">Book Pet Care Now</button>
+<button className="border-2 border-secondary text-secondary px-8 py-4 rounded-full font-label-md text-label-md hover:bg-secondary/5 transition-all active:scale-95">Become a Sitter</button>
+</div>
+
+<div className="hidden md:grid grid-cols-2 gap-4 mt-8">
+<div className="bg-white p-4 rounded-xl ambient-shadow flex items-center gap-3 animate-float" style={{animationDelay: '0s'}}>
+<div className="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center">
+<span className="material-symbols-outlined text-on-secondary-container">verified</span>
+</div>
+<div>
+<p className="font-label-sm text-label-sm text-on-surface">Verified Sitter</p>
+<p className="text-xs text-on-surface-variant">4.8 Rating ★★★★★</p>
+</div>
+</div>
+<div className="bg-white p-4 rounded-xl ambient-shadow flex items-center gap-3 animate-float" style={{animationDelay: '1s'}}>
+<div className="w-10 h-10 rounded-full bg-tertiary-container flex items-center justify-center">
+<span className="material-symbols-outlined text-tertiary">location_on</span>
+</div>
+<div>
+<p className="font-label-sm text-label-sm text-on-surface">Near Bopal</p>
+<p className="text-xs text-on-surface-variant">12 sitters available</p>
+</div>
+</div>
+</div>
+</div>
+<div className="relative order-1 lg:order-2">
+<div className="aspect-[4/5] rounded-[2rem] overflow-hidden ambient-shadow relative group">
+<img alt="Happy couple relaxing with their pet" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtaf-dKKa2YRvdzX9KHf4RIpmP7_7lnYdEFbFqYGNTAXfBcimufAoPar5ZipKxm1BZ30YMZk0qsy81yljqbBEg1lCFPvctIqO-3DR4u6rSXBtF2w-Rovc53MgTDLIIiTirKJ4Bnb5iG6wevhutetsxKcGg9b7Rq8cb3lTIaPeMR0khWRQBsIHTcBLBVjcVlXsSszYpPn9VhoFt0fYxPqY9gSTPLvZlOlcNVTvDpN0ecHs2mY_tpVL0_01-K4rCBX3IM88kxxBclUI"/>
+
+<div className="absolute top-8 right-8 bg-white/40 backdrop-blur-md p-4 rounded-2xl border border-white/30 ambient-shadow animate-float">
+<div className="flex items-center gap-2">
+<span className="material-symbols-outlined text-secondary" style={{fontVariationSettings: ''FILL' 1'}}>favorite</span>
+<span className="font-label-md text-label-md">Safety First</span>
+</div>
+</div>
+<div className="absolute bottom-8 left-8 bg-white/40 backdrop-blur-md p-5 rounded-2xl border border-white/30 ambient-shadow">
+<div className="flex items-center gap-3">
+<div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center text-white">
+<span className="material-symbols-outlined text-sm">directions_walk</span>
+</div>
+<div>
+<p className="font-label-sm text-label-sm">Bruno's Walk</p>
+<p className="text-[10px] text-on-surface-variant">30 min completed • Today</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section className="bg-surface-container-low py-12 px-margin-mobile md:px-margin-desktop">
+<div className="max-w-container-max mx-auto flex flex-wrap justify-center md:justify-between items-center gap-8 md:gap-4 opacity-70">
+<div className="flex items-center gap-3">
+<span className="material-symbols-outlined text-secondary">verified_user</span>
+<span className="font-label-sm text-label-sm">Verified Sitters</span>
+</div>
+<div className="flex items-center gap-3">
+<span className="material-symbols-outlined text-secondary">assignment</span>
+<span className="font-label-sm text-label-sm">Report Cards</span>
+</div>
+<div className="flex items-center gap-3">
+<span className="material-symbols-outlined text-secondary">lock</span>
+<span className="font-label-sm text-label-sm">Secure Booking</span>
+</div>
+<div className="flex items-center gap-3">
+<span className="material-symbols-outlined text-secondary">join_inner</span>
+<span className="font-label-sm text-label-sm">Smart Matching</span>
+</div>
+<div className="flex items-center gap-3">
+<span className="material-symbols-outlined text-secondary">support_agent</span>
+<span className="font-label-sm text-label-sm">Reliable Support</span>
+</div>
+</div>
+</section>
+
+<section className="px-margin-mobile md:px-margin-desktop py-stack-lg max-w-container-max mx-auto">
+<div className="flex flex-col gap-4 mb-stack-md text-center max-w-2xl mx-auto">
+<h2 className="font-headline-lg text-headline-lg">Luxury Pet Services</h2>
+<p className="text-on-surface-variant">Every service is tailored to your pet's personality and your peace of mind.</p>
+</div>
+<div className="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<div className="md:col-span-7 group bg-white rounded-[2rem] overflow-hidden ambient-shadow flex flex-col md:flex-row reveal-up">
+<div className="w-full md:w-1/2 p-8 flex flex-col justify-between">
+<div>
+<span className="inline-block px-3 py-1 bg-surface-container-high rounded-full text-[10px] font-bold text-secondary uppercase tracking-widest mb-4">Daily Care</span>
+<h3 className="font-headline-md text-headline-md mb-2">Dog Walking</h3>
+<p className="text-on-surface-variant font-body-md mb-6">GPS-tracked walks with personalized routes and exercise goals.</p>
+</div>
+<a className="flex items-center gap-2 text-secondary font-bold group-hover:gap-4 transition-all" href="#">Learn more <span className="material-symbols-outlined">arrow_forward</span></a>
+</div>
+<div className="w-full md:w-1/2 relative min-h-[300px]">
+<img alt="Dog walking service outdoors" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoXQCpbn-fYQguFYsxK9pdEMtHDeWZZpApM-E07zXjL-KWRFMpMcpLwkcFAR1iivHXCA08aMiEMb4GdbZTWocnFLqPOLBZFdk_5fjhZ44uzZoPFIEbnbgilMzaLGIGbkoHubNMiyTBE1eNkC9j0g_gBs1s_LyvIboQHZo2kdoEQfYuRFhfWwn6RYrtXPP6xbTsAxE2Yn-w98zPYzIi-1U_kCqv6Xv4PyUJc3nWhRAr6bqNuOWTzOq6ii_QGH6ynDAC6rFVgDKhsXE"/>
+</div>
+</div>
+<div className="md:col-span-5 group bg-white rounded-[2rem] overflow-hidden ambient-shadow flex flex-col reveal-up" style={{transitionDelay: '0.1s'}}>
+<div className="relative h-64 overflow-hidden">
+<img alt="Pet sitting service at home" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiSpnNGQcYkQHhuM5aDit0NwvgnMt4b_vGzMi2T6khUdbKp2s47gO6exvKjxTsk1ZxVG1D4XYUwttzHtFAgh94nYIM7YC-Cp78DA0sftOCUvTOSUFuNGK7OcCyEaYYw47Wk7TeD8ciMaeeQqdNeCRqb7YbWBn6PM3bHnO1dfhYdet4AI_Vp2zq6GsuP57MtXRFsWZuYctV3GaWLTDpM1_Y2gP0GdpG3aGpcDB1eD6i-b8FIa-hOMGCmpyBOVd-imPYmpynZ3eSpfE"/>
+</div>
+<div className="p-8">
+<h3 className="font-headline-md text-headline-md mb-2">Pet Sitting</h3>
+<p className="text-on-surface-variant font-body-md mb-6">In-home care that keeps your pets in their comfort zone.</p>
+<a className="flex items-center gap-2 text-secondary font-bold group-hover:gap-4 transition-all" href="#">View Sitters <span className="material-symbols-outlined">arrow_forward</span></a>
+</div>
+</div>
+<div className="md:col-span-12 group bg-white rounded-[2rem] overflow-hidden ambient-shadow flex flex-col md:flex-row reveal-up" style={{transitionDelay: '0.2s'}}>
+<div className="w-full md:w-3/5 relative min-h-[400px]">
+<img alt="Luxury pet boarding suite" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVTQZSuJEB-yS4RCTJV93MAqp6rCkBtK63fa6jfPpXBbMJl0Eykdeb6hw6SaO2VSf42zkEynlATbjAMDesoTmn4N_lgLH_PQJG4IUiAQZkMwdRUCt9lXGbq2XFH_suB_LReskNihaAqpgjP3foDmi4zdyFiGwvzfos26zINhJGSSN_v9pheeu7P7-iXn1xT6GVjlJtyAlHm5_iqA1Iw9-8DtzJlKhlTZc3n2jQ1hXCQP5DePRyEU7oW7O214b1HOi4TNlRrX4-apQ"/>
+</div>
+<div className="w-full md:w-2/5 p-12 flex flex-col justify-center bg-primary-container">
+<div className="mb-4">
+<span className="inline-block px-3 py-1 bg-secondary text-white rounded-full text-[10px] font-bold uppercase tracking-widest">New Beta</span>
+</div>
+<h3 className="font-display-lg-mobile text-headline-lg mb-4">Boarding</h3>
+<p className="text-on-surface-variant font-body-md mb-8">Premium suites with 24/7 supervision and luxury amenities for extended stays.</p>
+<button className="bg-secondary text-white px-8 py-4 rounded-full font-label-md text-label-md hover:opacity-90 self-start shadow-lg">Reserve a Spot</button>
+</div>
+</div>
+</div>
+</section>
+
+<section className="bg-white py-stack-lg overflow-hidden relative">
+<div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
+<div className="flex flex-col gap-12">
+<div className="flex flex-col gap-4">
+<h2 className="font-headline-lg text-headline-lg">Simple, seamless care</h2>
+<p className="text-on-surface-variant">We've refined the process to ensure your pet is always in good hands.</p>
+</div>
+<div className="space-y-12">
+<div className="flex gap-6 items-start group">
+<div className="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-secondary text-xl group-hover:bg-secondary group-hover:text-white transition-all shrink-0">1</div>
+<div>
+<h4 className="font-headline-md text-headline-md text-on-surface">Add your pet</h4>
+<p className="text-on-surface-variant mt-2">Create a profile with medical history, habits, and preferences.</p>
+</div>
+</div>
+<div className="flex gap-6 items-start group">
+<div className="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-secondary text-xl group-hover:bg-secondary group-hover:text-white transition-all shrink-0">2</div>
+<div>
+<h4 className="font-headline-md text-headline-md text-on-surface">Choose service</h4>
+<p className="text-on-surface-variant mt-2">Select walking, sitting, or boarding based on your schedule.</p>
+</div>
+</div>
+<div className="flex gap-6 items-start group">
+<div className="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-secondary text-xl group-hover:bg-secondary group-hover:text-white transition-all shrink-0">3</div>
+<div>
+<h4 className="font-headline-md text-headline-md text-on-surface">Assign sitter</h4>
+<p className="text-on-surface-variant mt-2">Browse verified profiles and pick the perfect match for your pet.</p>
+</div>
+</div>
+<div className="flex gap-6 items-start group">
+<div className="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-secondary text-xl group-hover:bg-secondary group-hover:text-white transition-all shrink-0">4</div>
+<div>
+<h4 className="font-headline-md text-headline-md text-on-surface">Get updates</h4>
+<p className="text-on-surface-variant mt-2">Receive real-time photos, videos, and status report cards.</p>
+</div>
+</div>
+</div>
+</div>
+<div className="relative bg-surface-container-low rounded-[3rem] p-8 ambient-shadow flex items-center justify-center min-h-[600px] overflow-hidden">
+<div className="absolute inset-0 opacity-10">
+
+</div>
+
+<div className="w-[300px] bg-white rounded-[2.5rem] p-6 ambient-shadow relative z-10 border-[8px] border-on-background translate-y-12 animate-float">
+<div className="flex flex-col gap-4">
+<div className="flex justify-between items-center">
+<span className="material-symbols-outlined">menu</span>
+<span className="font-bold">Report Card</span>
+<span className="w-8"></span>
+</div>
+<div className="rounded-2xl overflow-hidden aspect-square">
+<img className="w-full h-full object-cover" data-alt="A joyful golden retriever sitting in a sunny park with its tongue out, high-quality pet portraiture with soft bokeh background and warm afternoon lighting, editorial lifestyle aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCC3sh8CVUBV43OQGTYV6_ZhMkLvjDLpmI9dCrFp9KAnxhM0sGkpGBaVvO_CWklsrMnQMPVRG5CMTpFH6nEW6IuttAOOOEj19fDUC5UjPyqdktz0Mup0GjQmY_RI9AN4hf3pkDhjaNapERMK6Fplfu-a0U32uTBkUYqtkKJLCX3BiagT-vRv5H8PAq-gFU4JAntJSrm9IWWPQht4MR1hg86EyIM-lxBZu7Y-6H96qCyuDYRoQlXOTt5fHm0Re8Fum9sJO3VPOXfK7k"/>
+</div>
+<div>
+<h5 className="font-bold text-lg">Bruno's Afternoon Walk</h5>
+<p className="text-xs text-on-surface-variant">Completed at 4:30 PM</p>
+</div>
+<div className="grid grid-cols-2 gap-2">
+<div className="bg-surface-container p-3 rounded-xl flex flex-col items-center">
+<span className="material-symbols-outlined text-secondary" style={{fontVariationSettings: ''FILL' 1'}}>timer</span>
+<span className="text-xs font-bold">45 min</span>
+</div>
+<div className="bg-surface-container p-3 rounded-xl flex flex-col items-center">
+<span className="material-symbols-outlined text-secondary" style={{fontVariationSettings: ''FILL' 1'}}>mood</span>
+<span className="text-xs font-bold">Happy</span>
+</div>
+</div>
+<button className="bg-secondary text-white w-full py-3 rounded-xl text-sm font-bold">Message Sitter</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section className="bg-inverse-surface text-white py-stack-lg relative overflow-hidden">
+<div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10">
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-gutter items-center">
+<div className="flex flex-col gap-8">
+<div className="flex flex-col gap-4">
+<h2 className="font-display-lg-mobile md:text-headline-lg text-headline-lg-mobile md:font-headline-lg text-white">Uncompromising Safety Standards</h2>
+<p className="text-outline-variant font-body-lg">We treat your pets as if they were our own. Our safety framework is built on trust and complete transparency.</p>
+</div>
+<div className="space-y-6">
+<div className="flex items-center gap-4 bg-white/5 p-6 rounded-2xl border border-white/10">
+<div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center shrink-0">
+<span className="material-symbols-outlined text-white" style={{fontVariationSettings: ''FILL' 1'}}>verified</span>
+</div>
+<div>
+<h5 className="font-bold text-lg">Identity Verification</h5>
+<p className="text-sm text-outline-variant">Mandatory government ID and background checks for every professional.</p>
+</div>
+</div>
+<div className="flex items-center gap-4 bg-white/5 p-6 rounded-2xl border border-white/10">
+<div className="w-12 h-12 rounded-full bg-tertiary flex items-center justify-center shrink-0">
+<span className="material-symbols-outlined text-white" style={{fontVariationSettings: ''FILL' 1'}}>school</span>
+</div>
+<div>
+<h5 className="font-bold text-lg">Specialized Training</h5>
+<p className="text-sm text-outline-variant">Sitters are certified in pet CPR and behavioral first-aid techniques.</p>
+</div>
+</div>
+</div>
+</div>
+<div className="relative group">
+<div className="absolute -inset-4 bg-secondary/20 blur-[100px] rounded-full group-hover:bg-secondary/30 transition-all"></div>
+<div className="relative rounded-[2rem] overflow-hidden aspect-video ambient-shadow border border-white/10">
+<img className="w-full h-full object-cover" data-alt="Close up of a person's hand showing a digital security badge on a smartphone, with a blurred pet in the background, luxurious warm lighting, gold accents, ultra-high-end tech aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrqWLyPsUpQodUCvnHgWvvmGg2uMQ6gyz8PpU0zDQPeU2tLZcfKdN_G6RFdYJD4AgdBUzFlSAnYWmINQfLOzqPyHixy0JlfKWrzTrJZ36jD9QXRLU9FkI6SfggowNq8RbuBTrYri8X2mHAmzDy2hA4aBjW5F_7aOi6-2YTsXWS773oawoFYH0avY10PhRJ4BeXvOMo7PAEcYrwl5uUHgZcsr-b2sr9eYw2UKprLaRUnmizhxYUO83_pziLacfwD4vYGT-HHPOi-8w"/>
+<div className="absolute inset-0 bg-gradient-to-t from-inverse-surface via-transparent to-transparent"></div>
+<div className="absolute bottom-8 left-8">
+<span className="bg-tertiary text-white px-4 py-2 rounded-full text-xs font-bold tracking-widest uppercase mb-2 inline-block">Certification</span>
+<h4 className="text-2xl font-bold">Gold Standard Protection</h4>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section className="px-margin-mobile md:px-margin-desktop py-stack-lg max-w-container-max mx-auto">
+<div className="flex flex-col md:flex-row gap-gutter items-center">
+<div className="w-full md:w-1/3 flex flex-col gap-6">
+<h2 className="font-headline-lg text-headline-lg">Serving Ahmedabad</h2>
+<p className="text-on-surface-variant">Available in your favorite neighborhoods. From Bopal to Satellite, our sitters are right around the corner.</p>
+<ul className="space-y-3 font-bold">
+<li className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-secondary"></span> South Bopal</li>
+<li className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-secondary"></span> Prahlad Nagar</li>
+<li className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-secondary"></span> Bodakdev</li>
+<li className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-secondary"></span> Satellite</li>
+</ul>
+</div>
+<div className="w-full md:w-2/3 h-[500px] rounded-[2rem] overflow-hidden ambient-shadow relative group">
+<img className="w-full h-full object-cover grayscale brightness-90 contrast-125 group-hover:scale-105 transition-transform duration-1000" data-location="Ahmedabad" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsYsNrDCwgaSBiTiwOWEktovEWwCTv9qZaex-MyYv85j1Yrf5mxk-2Yp4Pey5tdnOxapEHnCOrIhDPhxvDmzPyECDhbB3oQgRXXjO4Pez7A0_rfY3aR-AKNq1sobmDSaBK5eN3tRKQolivx5sNolTcpEXOXeD6uqhtGtSuvhgvLyHcYAtMFq0ydMwYVo47HjIeTtnV1S-yl1HYBovGcfegpCV1adYpATCHMIZWP0ZrHs9iPOsXKmrIAXkapVl6Dy8Yf-PXSTsMCOA"/>
+<div className="absolute inset-0 bg-secondary/5 mix-blend-overlay"></div>
+
+<div className="absolute top-1/3 left-1/4 animate-bounce">
+<span className="material-symbols-outlined text-secondary text-4xl" style={{fontVariationSettings: ''FILL' 1'}}>location_on</span>
+</div>
+<div className="absolute top-1/2 left-2/3 animate-bounce" style={{animationDelay: '0.5s'}}>
+<span className="material-symbols-outlined text-secondary text-4xl" style={{fontVariationSettings: ''FILL' 1'}}>location_on</span>
+</div>
+<div className="absolute bottom-1/4 left-1/2 animate-bounce" style={{animationDelay: '1.2s'}}>
+<span className="material-symbols-outlined text-secondary text-4xl" style={{fontVariationSettings: ''FILL' 1'}}>location_on</span>
+</div>
+</div>
+</div>
+</section>
+
+<section className="bg-surface-container-lowest py-stack-lg">
+<div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div className="flex justify-between items-end mb-stack-md">
+<div>
+<h2 className="font-headline-lg text-headline-lg">Top-rated Sitters</h2>
+<p className="text-on-surface-variant">Professionals with 100+ happy bookings.</p>
+</div>
+<a className="hidden md:flex items-center gap-2 text-secondary font-bold" href="#">View all professionals <span className="material-symbols-outlined">chevron_right</span></a>
+</div>
+<div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+<div className="bg-white rounded-3xl p-6 ambient-shadow group hover:-translate-y-2 transition-all duration-300">
+<div className="relative w-24 h-24 rounded-full overflow-hidden mx-auto mb-4 border-4 border-surface-container-high">
+<img className="w-full h-full object-cover" data-alt="Portrait of a smiling young professional woman in a clean minimalist environment, warm soft lighting, approachable and friendly expression, high-end editorial headshot." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjk3U4bN8a2IBXgZ_phwVC_QJvHvrkG2L0WUYV-bKSghkk2_DnMagR6i3ChKm2il2wcYpH6HmQN1C9b63RPhqKk8Q2VsarNMvhugL3yeMnRk0Q1UQMOnuWG27qqx2KKGooivyqhXKYRynNFsGZiciC8KCO4VANzWAZEBMXsoi_qV5IYKUnPS7SmLeA1-s-rZ0YHAJA8qJeAvzm6bzppqnFZx3xHOCS9WIrxzf2SiC_bHwQv-qgra6ae_MhvvBVTuWhJNgIfDuPPG4"/>
+</div>
+<div className="text-center">
+<h4 className="font-bold text-lg">Priya S.</h4>
+<p className="text-xs text-on-surface-variant mb-4">Satellite, Ahmedabad</p>
+<div className="flex justify-center gap-1 text-secondary mb-4">
+<span className="material-symbols-outlined text-sm" style={{fontVariationSettings: ''FILL' 1'}}>star</span>
+<span className="material-symbols-outlined text-sm" style={{fontVariationSettings: ''FILL' 1'}}>star</span>
+<span className="material-symbols-outlined text-sm" style={{fontVariationSettings: ''FILL' 1'}}>star</span>
+<span className="material-symbols-outlined text-sm" style={{fontVariationSettings: ''FILL' 1'}}>star</span>
+<span className="material-symbols-outlined text-sm" style={{fontVariationSettings: ''FILL' 1'}}>star</span>
+</div>
+<div className="flex flex-wrap justify-center gap-2 mb-6">
+<span className="px-3 py-1 bg-surface-container-low rounded-full text-[10px] font-bold text-secondary uppercase">Dogs</span>
+<span className="px-3 py-1 bg-surface-container-low rounded-full text-[10px] font-bold text-secondary uppercase">Cats</span>
+</div>
+<button className="w-full py-3 border border-outline-variant rounded-xl font-bold text-sm group-hover:bg-secondary group-hover:text-white transition-all">View Profile</button>
+</div>
+</div>
+
+<div className="bg-white rounded-3xl p-6 ambient-shadow group hover:-translate-y-2 transition-all duration-300">
+<div className="relative w-24 h-24 rounded-full overflow-hidden mx-auto mb-4 border-4 border-surface-container-high">
+<img className="w-full h-full object-cover" data-alt="Portrait of a confident young man in a modern neutral-colored studio, smiling warmly, holding a small leash, professional pet sitter aesthetic, high-end editorial style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9E8kJfddxrXC5Fm26J2JLKI_khdvYt6lqwKY5S1hozK-Z9dACPMOXTG8j589Mv64ZfBuG19v4W_1G0rmnDN1xoybe_fftHVNWKVWbGdWPWoZ-48qJoXyzq7CNhOerkRIMwU6cKRnoO856y5Arps1oESQoyVYswHNUzp1BEXU4M8x2srQShJo9WSpVnwz5aONTSOSbNgexEO9-2Os1FwIOaOzUD58gZj-9bMqziaOARp3ntvnemwlX7v8a71AbGbOOKWSTFhhl7sk"/>
+</div>
+<div className="text-center">
+<h4 className="font-bold text-lg">Rahul M.</h4>
+<p className="text-xs text-on-surface-variant mb-4">South Bopal</p>
+<div className="flex justify-center gap-1 text-secondary mb-4">
+<span className="material-symbols-outlined text-sm" style={{fontVariationSettings: ''FILL' 1'}}>star</span>
+<span className="material-symbols-outlined text-sm" style={{fontVariationSettings: ''FILL' 1'}}>star</span>
+<span className="material-symbols-outlined text-sm" style={{fontVariationSettings: ''FILL' 1'}}>star</span>
+<span className="material-symbols-outlined text-sm" style={{fontVariationSettings: ''FILL' 1'}}>star</span>
+<span className="material-symbols-outlined text-sm" style={{fontVariationSettings: ''FILL' 1'}}>star</span>
+</div>
+<div className="flex flex-wrap justify-center gap-2 mb-6">
+<span className="px-3 py-1 bg-surface-container-low rounded-full text-[10px] font-bold text-secondary uppercase">Training</span>
+<span className="px-3 py-1 bg-surface-container-low rounded-full text-[10px] font-bold text-secondary uppercase">Walks</span>
+</div>
+<button className="w-full py-3 border border-outline-variant rounded-xl font-bold text-sm group-hover:bg-secondary group-hover:text-white transition-all">View Profile</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section className="px-margin-mobile md:px-margin-desktop py-24 max-w-container-max mx-auto text-center">
+<div className="bg-surface-container-high rounded-[3rem] py-20 px-8 flex flex-col items-center gap-8 ambient-shadow relative overflow-hidden">
+<div className="absolute inset-0 opacity-5 pointer-events-none">
+
+</div>
+<h2 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg max-w-3xl leading-tight relative z-10">
+                    Your pet deserves <span className="italic text-secondary">trusted care</span>.
+                </h2>
+<div className="flex flex-col md:flex-row gap-4 relative z-10">
+<button className="bg-secondary text-white px-12 py-5 rounded-full font-bold text-lg hover:opacity-90 shadow-2xl active:scale-95 transition-all">Get Started Today</button>
+</div>
+<p className="text-on-surface-variant font-label-md tracking-widest uppercase mt-4">Safe • Secure • Reliable</p>
+</div>
+</section>
+</main>
+
+<footer className="bg-surface-container-lowest py-stack-lg border-t border-surface-container">
+<div className="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop py-stack-lg max-w-container-max mx-auto">
+<div className="flex flex-col gap-6">
+<h2 className="font-headline-lg text-headline-lg text-secondary">PetSaathi</h2>
+<p className="text-on-surface-variant text-sm">Elevating the standard of pet care in India. Trusted by thousands of happy pets and parents.</p>
+</div>
+<div className="flex flex-col gap-4">
+<h4 className="font-bold uppercase text-[10px] tracking-widest text-secondary">Company</h4>
+<a className="text-on-surface-variant hover:text-secondary transition-colors" href="#">Our Sitters</a>
+<a className="text-on-surface-variant hover:text-secondary transition-colors" href="#">Safety Standards</a>
+<a className="text-on-surface-variant hover:text-secondary transition-colors" href="#">Luxury Standards</a>
+</div>
+<div className="flex flex-col gap-4">
+<h4 className="font-bold uppercase text-[10px] tracking-widest text-secondary">Support</h4>
+<a className="text-on-surface-variant hover:text-secondary transition-colors" href="#">Contact Concierge</a>
+<a className="text-on-surface-variant hover:text-secondary transition-colors" href="#">Trust &amp; Safety</a>
+<a className="text-on-surface-variant hover:text-secondary transition-colors" href="#">Privacy Policy</a>
+</div>
+<div className="flex flex-col gap-4">
+<h4 className="font-bold uppercase text-[10px] tracking-widest text-secondary">Community</h4>
+<a className="text-on-surface-variant hover:text-secondary transition-colors" href="#">Terms of Service</a>
+<a className="text-on-surface-variant hover:text-secondary transition-colors" href="#">Become a Partner</a>
+<div className="flex gap-4 mt-4">
+<span className="material-symbols-outlined text-secondary opacity-60 cursor-pointer hover:opacity-100">face_nod</span>
+<span className="material-symbols-outlined text-secondary opacity-60 cursor-pointer hover:opacity-100">camera</span>
+<span className="material-symbols-outlined text-secondary opacity-60 cursor-pointer hover:opacity-100">share</span>
+</div>
+</div>
+</div>
+<div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-8 text-center text-[10px] text-on-surface-variant border-t border-surface-container/50">
+            © 2024 PetSaathi Luxury Care. All rights reserved.
+        </div>
+</footer>
+
+<nav className="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-4 pt-2 md:hidden bg-surface/90 backdrop-blur-2xl shadow-[0_-5px_30px_rgba(74,46,31,0.05)]">
+<a className="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full p-2 w-16 h-16 transition-transform active:scale-90" href="#">
+<span className="material-symbols-outlined">search</span>
+<span className="font-label-sm text-[10px]">Explore</span>
+</a>
+<a className="flex flex-col items-center justify-center text-on-surface-variant p-2 w-16 h-16 active:scale-90 transition-transform" href="#">
+<span className="material-symbols-outlined">calendar_today</span>
+<span className="font-label-sm text-[10px]">Bookings</span>
+</a>
+<a className="flex flex-col items-center justify-center text-on-surface-variant p-2 w-16 h-16 active:scale-90 transition-transform" href="#">
+<span className="material-symbols-outlined">chat_bubble</span>
+<span className="font-label-sm text-[10px]">Inbox</span>
+</a>
+<a className="flex flex-col items-center justify-center text-on-surface-variant p-2 w-16 h-16 active:scale-90 transition-transform" href="#">
+<span className="material-symbols-outlined">person</span>
+<span className="font-label-sm text-[10px]">Profile</span>
+</a>
+</nav>
+<script>
+        // Reveal animations on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
+
+        // Header transparency on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('py-2', 'bg-surface/95');
+                header.classList.remove('py-4', 'bg-surface/80');
+            } else {
+                header.classList.add('py-4', 'bg-surface/80');
+                header.classList.remove('py-2', 'bg-surface/95');
+            }
+        });
+    </script>

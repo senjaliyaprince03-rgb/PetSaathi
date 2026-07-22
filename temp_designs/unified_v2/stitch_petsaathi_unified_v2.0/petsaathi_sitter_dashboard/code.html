@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PawsPremium | Sitter Dashboard</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;family=Clash+Display:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "surface-container-lowest": "#ffffff",
+                "background": "#fff7ff",
+                "surface-dim": "#dfd7e1",
+                "error": "#ba1a1a",
+                "inverse-surface": "#332f36",
+                "on-primary": "#ffffff",
+                "surface-tint": "#7448ab",
+                "tertiary-container": "#004842",
+                "inverse-primary": "#d9b9ff",
+                "surface-bright": "#fff7ff",
+                "on-tertiary-container": "#115e59",
+                "on-secondary-fixed": "#370e00",
+                "inverse-on-surface": "#f6eef8",
+                "tertiary-fixed": "#89f5e7",
+                "surface-variant": "#e8e0e9",
+                "outline": "#7c7482",
+                "surface-container-low": "#f9f1fa",
+                "on-surface": "#1e1a21",
+                "on-secondary-container": "#7c2d12",
+                "secondary-fixed-dim": "#ffb599",
+                "surface-container-high": "#eee6ef",
+                "surface-container-highest": "#e8e0e9",
+                "primary": "#3c0372",
+                "on-secondary-fixed-variant": "#7f2b00",
+                "tertiary-fixed-dim": "#6bd8cb",
+                "secondary": "#a73a00",
+                "on-tertiary-fixed": "#00201d",
+                "on-background": "#1e1a21",
+                "outline-variant": "#cdc3d3",
+                "surface": "#fff7ff",
+                "on-tertiary": "#ffffff",
+                "on-surface-variant": "#4b4451",
+                "on-primary-container": "#c495ff",
+                "on-error": "#ffffff",
+                "on-tertiary-fixed-variant": "#005049",
+                "on-primary-fixed-variant": "#5b2e91",
+                "surface-container": "#f3ebf5",
+                "on-primary-fixed": "#2a0054",
+                "secondary-container": "#fd651e",
+                "primary-fixed-dim": "#d9b9ff",
+                "on-error-container": "#93000a",
+                "tertiary": "#00302b",
+                "on-secondary": "#ffffff",
+                "primary-container": "#532589",
+                "error-container": "#ffdad6",
+                "primary-fixed": "#eedbff",
+                "secondary-fixed": "#ffdbce"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "stack-sm": "16px",
+                "margin-mobile": "20px",
+                "gutter": "32px",
+                "container-max": "1440px",
+                "margin-desktop": "80px",
+                "stack-xl": "120px",
+                "stack-lg": "64px",
+                "stack-md": "32px"
+            },
+            "fontFamily": {
+                "display-hero-mobile": ["Clash Display"],
+                "headline-md": ["Clash Display"],
+                "display-hero": ["Clash Display"],
+                "body-md": ["Plus Jakarta Sans"],
+                "body-lg": ["Plus Jakarta Sans"],
+                "headline-lg": ["Clash Display"],
+                "ui-label-sm": ["Plus Jakarta Sans"],
+                "ui-label-bold": ["Plus Jakarta Sans"],
+                "headline-lg-mobile": ["Clash Display"]
+            },
+            "fontSize": {
+                "display-hero-mobile": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                "display-hero": ["72px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                "headline-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                "ui-label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                "ui-label-bold": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                "headline-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #fff7ff;
+            color: #1e1a21;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(205, 195, 211, 0.3);
+        }
+        .ambient-shadow {
+            box-shadow: 0 10px 40px -10px rgba(60, 3, 114, 0.08);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md antialiased overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 bg-surface/70 backdrop-blur-md border-b border-outline-variant/30 shadow-sm max-w-container-max mx-auto left-1/2 -translate-x-1/2">
+<div class="flex items-center gap-8">
+<span class="font-headline-md text-headline-md font-bold text-primary">PawsPremium</span>
+<nav class="hidden md:flex gap-6">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Jobs</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Schedule</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Earnings</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-body-md text-body-md" href="#">Profile</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant p-2 rounded-full hover:bg-surface-container-high/50 transition-all">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant p-2 rounded-full hover:bg-surface-container-high/50 transition-all">chat_bubble</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/20">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a friendly pet sitter in a bright, modern studio. The lighting is soft and high-key, emphasizing a warm and premium hospitality aesthetic. The background is a clean off-white with subtle violet accents, aligning with the PawsPremium brand colors. The sitter has a confident, welcoming smile." src="https://lh3.googleusercontent.com/aida-public/AB6AXuALCKc9g3Z7WZvlGZxjnOBKtUlk4RDhGLKKbHMijw0Ql3mTtzs737Yfex0kNCzHvoLneawrArfElwSLoODwrK4GiKrxY_vWUImdfWh9m-ou-xXniKLmCGNuXt_MGXXWjguNmZsOwHJGM30gwDdNRoxHa_qN1g48DOUo8ngkNDgqVQgNwSCLICGSK_vxzTKV6JdhRy6_X7fEL3Hu5FXvzJrDXt5_obRc0WgB8NS5D1k1f2tEj_kupDpwC2MQYc2ZDi8Vliu5ZtK9YY4"/>
+</div>
+<button class="hidden md:block bg-primary text-on-primary px-6 py-2 rounded-full font-ui-label-bold hover:opacity-90 active:scale-95 transition-all">Find Work</button>
+</div>
+</header>
+<main class="mt-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto pb-stack-xl">
+<!-- Hero Greeting -->
+<section class="mb-stack-lg animate-fade-in">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-primary mb-2">Welcome back, Sarah!</h1>
+<p class="text-on-surface-variant font-body-lg">You have <span class="text-secondary font-bold">3 active walks</span> and 2 upcoming sittings today.</p>
+</div>
+<div class="flex items-center gap-3 bg-surface-container px-4 py-2 rounded-full">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-ui-label-bold text-on-surface">Available for Instant Book</span>
+</div>
+</div>
+</section>
+<!-- Main Dashboard Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Column: Active Jobs & Map -->
+<div class="lg:col-span-8 space-y-stack-md">
+<!-- Active Jobs Section -->
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-stack-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">labs</span> Active Sessions
+                    </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Card 1 -->
+<div class="glass-card ambient-shadow rounded-xl p-6 flex flex-col transition-transform hover:scale-[1.02] duration-300">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-16 h-16 rounded-lg overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A high-quality close-up portrait of a happy Golden Retriever sitting in a sun-drenched minimalist living room. The lighting is bright and warm, creating a high-end luxury lifestyle feel. The image uses a shallow depth of field to keep the focus on the dog's expressive face, with soft white and beige tones in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAb0Wq5wtkcBrwM7r36Wa32JvzRdTR-UuZWsibNkt1GsvB0J-Ad6_xr0OLrLNBtIz5zqjZmhfsC-OXlqn7L5ADD4a03W5jXHeTX40cT21v1jc920c8pWFDRrcx2tzYUuzEROlJbame3qpzO7L9qmbT8kMsTc_5jYSRgRunwaYwbQ91Jogo5JKz29yPDWO35PdpDnyZIm8nxMMsF4cCy9FVWnAbDGcS7bF2Q96nlz5f5M_Xc6fMIJu32Enl_NGlZbrzwguRLrqEnuVk"/>
+</div>
+<div>
+<h3 class="font-ui-label-bold text-lg text-primary">Simba</h3>
+<p class="text-on-surface-variant text-sm">1hr Urban Walk</p>
+</div>
+<div class="ml-auto flex flex-col items-end">
+<span class="text-secondary font-bold text-xl">18:42</span>
+<span class="text-ui-label-sm uppercase tracking-wider text-on-surface-variant">Remaining</span>
+</div>
+</div>
+<div class="flex items-center justify-between mt-auto">
+<span class="bg-primary-container text-on-primary-container px-3 py-1 rounded-full text-ui-label-sm font-bold uppercase">In Progress</span>
+<button class="text-primary font-ui-label-bold flex items-center gap-1 hover:underline">
+                                    View Details <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="glass-card ambient-shadow rounded-xl p-6 flex flex-col transition-transform hover:scale-[1.02] duration-300">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-16 h-16 rounded-lg overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A beautiful Siamese cat with piercing blue eyes lounging on a plush cream-colored sofa. The setting is a luxurious, ultra-bright modern apartment with floor-to-ceiling windows letting in soft, diffused daylight. The aesthetic is clean and airy, emphasizing a premium pet care environment with subtle violet and white hues." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiUlw_tWeAOTKR4i29wBgCQ9ztDVs3YvqT6bBRH4L1Y3I9oatEe6-zcbPhqZ1v2V1Ee9cfm6iVewPoMtV7x-99BCxH1vPwoZT-9UABEqlotzCu9q4j4ADwus_akmFzQcBIVdKmvIv6UJbvIkMtVbcFfLuTzOakN6YR49DVFojofp7u4xVCXtfbm86GwftYO7wjl0zZymHnoUY2JJu-OpvSRHXXGQ3JXxq0bcTQOOgsL7c3j416yzskU5OoljB2kH69eYvA9QXchew"/>
+</div>
+<div>
+<h3 class="font-ui-label-bold text-lg text-primary">Luna</h3>
+<p class="text-on-surface-variant text-sm">Afternoon Sitting</p>
+</div>
+<div class="ml-auto flex flex-col items-end">
+<span class="text-on-surface-variant font-bold text-xl">Starts 2pm</span>
+<span class="text-ui-label-sm uppercase tracking-wider text-on-surface-variant">Upcoming</span>
+</div>
+</div>
+<div class="flex items-center justify-between mt-auto">
+<span class="bg-surface-container-highest text-on-surface-variant px-3 py-1 rounded-full text-ui-label-sm font-bold uppercase">Scheduled</span>
+<button class="text-primary font-ui-label-bold flex items-center gap-1 hover:underline">
+                                    View Details <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Walk Tracking Map -->
+<div class="relative w-full h-[400px] rounded-xl overflow-hidden ambient-shadow border border-outline-variant/30">
+<div class="absolute top-4 left-4 z-10 glass-card p-4 rounded-lg flex items-center gap-4">
+<div class="p-2 bg-primary/10 rounded-full">
+<span class="material-symbols-outlined text-primary">route</span>
+</div>
+<div>
+<p class="text-ui-label-sm text-on-surface-variant uppercase font-bold">Current Route</p>
+<p class="font-ui-label-bold text-primary">Central Park West Loop</p>
+</div>
+</div>
+<!-- Map Placeholder -->
+<div class="w-full h-full bg-cover bg-center" data-location="Manhattan Central Park" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBOTn6DSUpbNwI0Ug0shyi44Ztfxt41V7HLme73cjqzoObxobyJT4NgFAQRFxJ9_vCgTliwuIM25qMT-6XhezELAWDBQEmoPCfTORAHewZHh0pTHe9icH3JKrt09YjgHMnIx-O1ZRvwrtFpHakMgBU8SbjmGUB4wV0-xyfAoHvoMtHAJ8-S9xv7nXfV5507nzED5Pnx_Z9NYWlPUGq7b09s6PCkjmlsLF-2d2cW8oOTP8ct_qPwI_ejqat3n7jRXZ9vRvU7chocEtI')"></div>
+<!-- Overlay Effects -->
+<div class="absolute inset-0 bg-primary/5 pointer-events-none"></div>
+</div>
+</div>
+<!-- Right Column: Sidebar -->
+<div class="lg:col-span-4 space-y-stack-md">
+<!-- Earnings Summary -->
+<div class="bg-surface-container-lowest ambient-shadow rounded-xl p-8 border border-outline-variant/20">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h2 class="text-on-surface-variant font-ui-label-bold uppercase tracking-widest text-xs mb-1">Earnings this Week</h2>
+<p class="text-4xl font-headline-md text-primary">$1,248.50</p>
+</div>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed px-2 py-1 rounded text-xs font-bold">+12%</span>
+</div>
+<!-- Simple Sparkline Placeholder -->
+<div class="h-20 w-full flex items-end gap-1 mb-6">
+<div class="flex-1 bg-primary/10 h-1/2 rounded-t hover:bg-primary/30 transition-all cursor-pointer"></div>
+<div class="flex-1 bg-primary/10 h-3/4 rounded-t hover:bg-primary/30 transition-all cursor-pointer"></div>
+<div class="flex-1 bg-primary/10 h-2/3 rounded-t hover:bg-primary/30 transition-all cursor-pointer"></div>
+<div class="flex-1 bg-primary/10 h-4/5 rounded-t hover:bg-primary/30 transition-all cursor-pointer"></div>
+<div class="flex-1 bg-primary h-full rounded-t"></div>
+<div class="flex-1 bg-primary/10 h-2/3 rounded-t hover:bg-primary/30 transition-all cursor-pointer"></div>
+<div class="flex-1 bg-primary/10 h-1/2 rounded-t hover:bg-primary/30 transition-all cursor-pointer"></div>
+</div>
+<button class="w-full py-3 border-2 border-primary text-primary rounded-full font-ui-label-bold hover:bg-primary hover:text-on-primary transition-all">Withdraw Earnings</button>
+</div>
+<!-- Upcoming Schedule -->
+<div class="bg-surface-container-lowest ambient-shadow rounded-xl p-8 border border-outline-variant/20">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-6">Next Up</h2>
+<div class="space-y-6">
+<!-- Schedule Item 1 -->
+<div class="flex items-center gap-4 group cursor-pointer">
+<div class="flex flex-col items-center justify-center min-w-[50px] py-2 bg-surface-container rounded-lg group-hover:bg-primary/10 transition-colors">
+<span class="text-xs font-bold uppercase text-on-surface-variant">Oct</span>
+<span class="text-xl font-headline-md text-primary">24</span>
+</div>
+<div class="flex-1">
+<p class="font-ui-label-bold text-on-surface">Milo &amp; Otis</p>
+<p class="text-sm text-on-surface-variant">2hr Playdate • 09:00 AM</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+<!-- Schedule Item 2 -->
+<div class="flex items-center gap-4 group cursor-pointer">
+<div class="flex flex-col items-center justify-center min-w-[50px] py-2 bg-surface-container rounded-lg group-hover:bg-primary/10 transition-colors">
+<span class="text-xs font-bold uppercase text-on-surface-variant">Oct</span>
+<span class="text-xl font-headline-md text-primary">24</span>
+</div>
+<div class="flex-1">
+<p class="font-ui-label-bold text-on-surface">Bella</p>
+<p class="text-sm text-on-surface-variant">Overnight Sitting • 06:00 PM</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+<!-- Schedule Item 3 -->
+<div class="flex items-center gap-4 group cursor-pointer">
+<div class="flex flex-col items-center justify-center min-w-[50px] py-2 bg-surface-container rounded-lg group-hover:bg-primary/10 transition-colors">
+<span class="text-xs font-bold uppercase text-on-surface-variant">Oct</span>
+<span class="text-xl font-headline-md text-primary">25</span>
+</div>
+<div class="flex-1">
+<p class="font-ui-label-bold text-on-surface">Cooper</p>
+<p class="text-sm text-on-surface-variant">30m Quick Walk • 08:30 AM</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+</div>
+<a class="block text-center mt-8 text-primary font-ui-label-bold text-sm hover:underline" href="#">View Full Calendar</a>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-stack-md px-margin-desktop bg-surface-container-lowest border-t border-outline-variant max-w-container-max mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex flex-col items-center md:items-start">
+<span class="font-headline-md text-headline-md text-on-surface mb-2">PawsPremium</span>
+<p class="font-ui-label-sm text-ui-label-sm text-on-surface-variant">© 2024 PawsPremium Luxury Pet Care. All rights reserved.</p>
+</div>
+<div class="flex gap-8">
+<a class="font-ui-label-sm text-ui-label-sm text-on-surface-variant hover:text-primary transition-all hover:underline" href="#">Terms of Service</a>
+<a class="font-ui-label-sm text-ui-label-sm text-on-surface-variant hover:text-primary transition-all hover:underline" href="#">Privacy Policy</a>
+<a class="font-ui-label-sm text-ui-label-sm text-on-surface-variant hover:text-primary transition-all hover:underline" href="#">Support</a>
+<a class="font-ui-label-sm text-ui-label-sm text-on-surface-variant hover:text-primary transition-all hover:underline" href="#">Trust &amp; Safety</a>
+</div>
+</div>
+</footer>
+<!-- Interactive Effects -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Subtle entrance animations
+            const cards = document.querySelectorAll('.glass-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1)';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100 * index);
+            });
+
+            // Tracking progress micro-interaction
+            const progressValue = document.querySelector('.text-secondary.text-xl');
+            if (progressValue) {
+                let seconds = 42;
+                let minutes = 18;
+                setInterval(() => {
+                    seconds--;
+                    if (seconds < 0) {
+                        seconds = 59;
+                        minutes--;
+                    }
+                    progressValue.innerText = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+                }, 1000);
+            }
+        });
+    </script>
+</body></html>

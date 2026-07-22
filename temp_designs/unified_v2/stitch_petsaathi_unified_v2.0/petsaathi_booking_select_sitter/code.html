@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PetSaathi | Select Your Luxury Sitter</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Clash+Display:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-container": "#7c2d12",
+                    "tertiary-fixed": "#89f5e7",
+                    "on-tertiary-fixed": "#00201d",
+                    "primary-container": "#532589",
+                    "on-background": "#1e1a21",
+                    "outline": "#7c7482",
+                    "surface-container": "#f3ebf5",
+                    "background": "#fff7ff",
+                    "on-primary-container": "#3b0764",
+                    "secondary-fixed": "#ffdbce",
+                    "on-tertiary-container": "#115e59",
+                    "on-surface": "#1e1a21",
+                    "primary-fixed": "#eedbff",
+                    "surface": "#fff7ff",
+                    "on-surface-variant": "#4b4451",
+                    "outline-variant": "#cdc3d3",
+                    "inverse-surface": "#332f36",
+                    "inverse-primary": "#d9b9ff",
+                    "surface-container-low": "#f9f1fa",
+                    "inverse-on-surface": "#f6eef8",
+                    "secondary-fixed-dim": "#ffb599",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed-variant": "#7f2b00",
+                    "on-secondary": "#ffffff",
+                    "tertiary-container": "#004842",
+                    "surface-bright": "#fff7ff",
+                    "surface-dim": "#dfd7e1",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed-variant": "#5b2e91",
+                    "primary": "#3c0372",
+                    "on-secondary-fixed": "#370e00",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed-variant": "#005049",
+                    "surface-tint": "#7448ab",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#6bd8cb",
+                    "on-primary-fixed": "#2a0054",
+                    "error-container": "#ffdad6",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-highest": "#e8e0e9",
+                    "surface-container-high": "#e5e7eb",
+                    "secondary-container": "#fd651e",
+                    "on-error-container": "#93000a",
+                    "primary-fixed-dim": "#d9b9ff",
+                    "surface-variant": "#e8e0e9",
+                    "secondary": "#a73a00",
+                    "tertiary": "#00302b"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-xl": "120px",
+                    "stack-lg": "64px",
+                    "container-max": "1440px",
+                    "stack-sm": "16px",
+                    "margin-desktop": "80px",
+                    "margin-mobile": "20px",
+                    "stack-md": "32px",
+                    "gutter": "32px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Clash Display"],
+                    "body-md": ["Plus Jakarta Sans"],
+                    "ui-label-sm": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Clash Display"],
+                    "display-hero-mobile": ["Clash Display"],
+                    "headline-md": ["Clash Display"],
+                    "display-hero": ["Clash Display"],
+                    "ui-label-bold": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "ui-label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-hero-mobile": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-hero": ["72px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "ui-label-bold": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 247, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(205, 195, 211, 0.3);
+        }
+        .step-completed {
+            @apply text-primary-fixed-dim;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            background: radial-gradient(circle at top right, #eedbff 0%, #fff7ff 40%, #fff7ff 100%);
+        }
+    </style>
+</head>
+<body class="text-on-background font-body-md overflow-x-hidden min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-md dark:bg-surface-dim/70 border-b border-outline-variant/30 shadow-sm">
+<div class="flex justify-between items-center h-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed cursor-pointer active:opacity-80">
+                PetSaathi
+            </div>
+<div class="hidden md:flex gap-8 items-center">
+<nav class="flex gap-6">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200" href="#">Concierge</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1" href="#">Booking</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200" href="#">Experiences</a>
+</nav>
+<div class="flex items-center gap-4 text-primary dark:text-primary-fixed">
+<span class="material-symbols-outlined cursor-pointer hover:text-secondary transition-colors" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-secondary transition-colors" data-icon="account_circle">account_circle</span>
+</div>
+</div>
+<div class="md:hidden">
+<span class="material-symbols-outlined text-primary" data-icon="menu">menu</span>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow pt-32 pb-stack-xl">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<!-- Progress Wizard -->
+<div class="mb-stack-lg">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+<div class="flex-1">
+<h1 class="font-headline-lg text-headline-lg text-primary mb-2">Select Your Sitter</h1>
+<p class="text-on-surface-variant font-body-lg">Find the perfect luxury companion for your pet's stay.</p>
+</div>
+<!-- Stepper -->
+<div class="flex items-center gap-4 md:gap-8 overflow-x-auto pb-4 md:pb-0 scrollbar-hide">
+<div class="flex items-center gap-2 shrink-0">
+<span class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-ui-label-bold">
+<span class="material-symbols-outlined text-[18px]" data-icon="check">check</span>
+</span>
+<span class="font-ui-label-bold text-on-surface-variant">Dates</span>
+</div>
+<div class="w-8 h-[1px] bg-outline-variant hidden md:block"></div>
+<div class="flex items-center gap-2 shrink-0">
+<span class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-ui-label-bold">
+<span class="material-symbols-outlined text-[18px]" data-icon="check">check</span>
+</span>
+<span class="font-ui-label-bold text-on-surface-variant">Pet Profile</span>
+</div>
+<div class="w-8 h-[1px] bg-primary hidden md:block"></div>
+<div class="flex items-center gap-2 shrink-0">
+<span class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-ui-label-bold">3</span>
+<span class="font-ui-label-bold text-primary">Select Sitter</span>
+</div>
+<div class="w-8 h-[1px] bg-outline-variant hidden md:block"></div>
+<div class="flex items-center gap-2 shrink-0 opacity-50">
+<span class="w-8 h-8 rounded-full border-2 border-outline-variant text-on-surface-variant flex items-center justify-center font-ui-label-bold">4</span>
+<span class="font-ui-label-bold text-on-surface-variant">Payment</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Bento Layout for Filters & Sitter List -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Sidebar Filters (Luxury Style) -->
+<aside class="lg:col-span-3 space-y-stack-sm">
+<div class="glass-card rounded-xl p-6 shadow-sm">
+<h3 class="font-ui-label-bold text-primary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]" data-icon="tune">tune</span> Filters
+                        </h3>
+<div class="space-y-6">
+<div>
+<label class="text-ui-label-sm uppercase tracking-wider text-on-surface-variant mb-2 block">Price Range</label>
+<input class="w-full accent-primary" type="range"/>
+<div class="flex justify-between text-ui-label-sm text-on-surface-variant mt-1">
+<span>₹500</span>
+<span>₹5,000+</span>
+</div>
+</div>
+<div>
+<label class="text-ui-label-sm uppercase tracking-wider text-on-surface-variant mb-3 block">Special Skills</label>
+<div class="space-y-2">
+<label class="flex items-center gap-3 cursor-pointer">
+<input class="rounded text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-body-md">Senior Care</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer">
+<input checked="" class="rounded text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-body-md">Medication Admin</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer">
+<input class="rounded text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-body-md">Training</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-primary-container rounded-xl p-6 text-on-primary-container relative overflow-hidden">
+
+<div class="relative z-10">
+<p class="font-ui-label-bold mb-2">Concierge Tip</p>
+<p class="text-ui-label-sm">Premium sitters with a 5-star rating are booked 40% faster. Secure your favorite early!</p>
+</div>
+</div>
+</aside>
+<!-- Sitter List Content -->
+<div class="lg:col-span-9 space-y-stack-sm">
+<!-- Sitter Card 1 -->
+<div class="glass-card rounded-xl p-6 md:p-8 flex flex-col md:flex-row gap-6 items-start transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+<div class="w-24 h-24 md:w-32 md:h-32 shrink-0 rounded-xl overflow-hidden shadow-md">
+<img class="w-full h-full object-cover" data-alt="A professional, friendly-looking male pet sitter in his late 20s, wearing a clean, high-end casual outfit, smiling warmly in a bright, modern living room with natural light. The atmosphere is upscale and trustworthy, matching a luxury pet care brand with soft lavender and white tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUWK6f7fH9e0jmeKwRiuvnqNuGhQf4QvX_3LzxFl4xifVIII3WHbxFdfS8484MrOZrmtlzh8a33b_HPTrEsjz03nqSNUHuhrnky-A2cKMBXQ51Z_hL5b0WmskzQ34XUUIerMne9ZempcnEK7yR12MbaFVIEMn91nK1BCtSbKCCI_XS7Q6TTsF_myWDvwB5kwfzayV5utyKV0S5V4SSK9FWZfqv5mQRf1ENpz1n4xy28CnY3nu-8JTxaE61aHZJhkXP7U1NuL1k8Mk"/>
+</div>
+<div class="flex-1 space-y-3">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-2">
+<div>
+<h3 class="font-headline-md text-headline-md text-primary">Aarav Mehta</h3>
+<div class="flex items-center gap-2 mt-1">
+<div class="flex items-center text-secondary">
+<span class="material-symbols-outlined text-[18px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-ui-label-bold ml-1">4.9/5</span>
+</div>
+<span class="text-outline text-sm">•</span>
+<span class="text-on-surface-variant font-ui-label-bold">8 Years Experience</span>
+</div>
+</div>
+<div class="text-right">
+<p class="text-headline-md font-bold text-primary">₹1,500<span class="text-body-md font-normal text-on-surface-variant">/night</span></p>
+</div>
+</div>
+<p class="text-on-surface-variant leading-relaxed">
+                                Specializes in senior golden retrievers and high-energy breeds. I provide personalized care routines that include lakeside walks and nutritional monitoring to ensure your pet feels at home.
+                            </p>
+<div class="flex flex-wrap gap-2 pt-2">
+<span class="px-3 py-1 bg-primary-container text-on-primary-container text-ui-label-sm rounded-full">First Aid Certified</span>
+<span class="px-3 py-1 bg-primary-container text-on-primary-container text-ui-label-sm rounded-full">Grooming Basics</span>
+<span class="px-3 py-1 bg-primary-container text-on-primary-container text-ui-label-sm rounded-full">House Sitting</span>
+</div>
+</div>
+<div class="w-full md:w-auto md:self-center">
+<button class="w-full md:w-auto px-10 py-4 bg-primary text-on-primary rounded-full font-ui-label-bold hover:bg-primary-container transition-all active:scale-95 shadow-md">
+                                Select
+                            </button>
+</div>
+</div>
+<!-- Sitter Card 2 -->
+<div class="glass-card rounded-xl p-6 md:p-8 flex flex-col md:flex-row gap-6 items-start transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-primary/20">
+<div class="w-24 h-24 md:w-32 md:h-32 shrink-0 rounded-xl overflow-hidden shadow-md">
+<img class="w-full h-full object-cover" data-alt="A professional and caring female pet sitter in her 30s, exuding a high-end hospitality vibe. She is kneeling in a beautifully designed bright garden with soft-focus foliage in the background. The lighting is ethereal and premium, consistent with a high-end service brand palette of purples and clean whites." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAl-qMQlbk2H2ODEk1BBP8FUUSloL9t2UoujAp07q9B-6rRpwHFbAnXI24eVut8H9C-v-9wJNBpX84WWN7fuRrG2x5Hd8iIoFsFISe8d0G7DiybH0zK6XWe0LiiykF7TpDg-r8QCnVy6desPzJtkBSBscnpRWrVVrjH7JaskghOQ9ikLhGc3KdU6k6T5xbyUQ2WIkxyiCnCiC8tIKyE_mIo8M5V3iG_MBF923-LBva6UtfXdBW9Tq-cE48FI9UyA_QAB-bKK4OeqrE"/>
+</div>
+<div class="flex-1 space-y-3">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-2">
+<div>
+<h3 class="font-headline-md text-headline-md text-primary">Priya Singh</h3>
+<div class="flex items-center gap-2 mt-1">
+<div class="flex items-center text-secondary">
+<span class="material-symbols-outlined text-[18px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-ui-label-bold ml-1">5.0/5</span>
+</div>
+<span class="text-outline text-sm">•</span>
+<span class="text-on-surface-variant font-ui-label-bold">5 Years Experience</span>
+</div>
+</div>
+<div class="text-right">
+<p class="text-headline-md font-bold text-primary">₹2,200<span class="text-body-md font-normal text-on-surface-variant">/night</span></p>
+</div>
+</div>
+<p class="text-on-surface-variant leading-relaxed">
+                                Expert in luxury small breed care and feline companionship. My service focuses on stress-free environments and behavioral enrichment for pets who appreciate the finer things.
+                            </p>
+<div class="flex flex-wrap gap-2 pt-2">
+<span class="px-3 py-1 bg-primary-container text-on-primary-container text-ui-label-sm rounded-full">Cat Expert</span>
+<span class="px-3 py-1 bg-primary-container text-on-primary-container text-ui-label-sm rounded-full">Behaviorist</span>
+<span class="px-3 py-1 bg-primary-container text-on-primary-container text-ui-label-sm rounded-full">Puppy Care</span>
+</div>
+</div>
+<div class="w-full md:w-auto md:self-center">
+<button class="w-full md:w-auto px-10 py-4 bg-primary text-on-primary rounded-full font-ui-label-bold hover:bg-primary-container transition-all active:scale-95 shadow-md">
+                                Select
+                            </button>
+</div>
+</div>
+<!-- Sitter Card 3 -->
+<div class="glass-card rounded-xl p-6 md:p-8 flex flex-col md:flex-row gap-6 items-start transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+<div class="w-24 h-24 md:w-32 md:h-32 shrink-0 rounded-xl overflow-hidden shadow-md">
+<img class="w-full h-full object-cover" data-alt="A mature, distinguished male pet sitter with a calm and wise presence, standing in a sophisticated minimalist hallway with clean white walls and a large window. He is dressed in premium casual wear. The aesthetic is extremely bright, airy, and professional, focused on luxury pet boarding and care services." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLmjgW1CVFaQldZ1F1A8hvVoG3urUPO7rLw5uMrGtYteWCmwd4ZoLmTLsU9xDcrlMayk4fWu3OOE5g7d2XHKZoK-x8KSncy472ZOI5FDYkIdbL9krRjBf9Y9CGqrjJNMeMbTq4zVMTHLUc0p_aMtMaAn4aRa2Sf_K2Wzbq4w45HUMJvu67sI4_0Tlc8srLxQkgv1EILPLs5xvIzsK3QfCQ68RRmwFpf5kybkeClSgi-jVH_vhr2qhtg6NrU-sfSNWll36VLlijp-g"/>
+</div>
+<div class="flex-1 space-y-3">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-2">
+<div>
+<h3 class="font-headline-md text-headline-md text-primary">Vikram Khanna</h3>
+<div class="flex items-center gap-2 mt-1">
+<div class="flex items-center text-secondary">
+<span class="material-symbols-outlined text-[18px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-ui-label-bold ml-1">4.8/5</span>
+</div>
+<span class="text-outline text-sm">•</span>
+<span class="text-on-surface-variant font-ui-label-bold">12 Years Experience</span>
+</div>
+</div>
+<div class="text-right">
+<p class="text-headline-md font-bold text-primary">₹1,850<span class="text-body-md font-normal text-on-surface-variant">/night</span></p>
+</div>
+</div>
+<p class="text-on-surface-variant leading-relaxed">
+                                Veteran caregiver for large breeds and rescue pets. I specialize in building trust with shy animals and maintaining rigorous health protocols for all residents.
+                            </p>
+<div class="flex flex-wrap gap-2 pt-2">
+<span class="px-3 py-1 bg-primary-container text-on-primary-container text-ui-label-sm rounded-full">Rescue Experience</span>
+<span class="px-3 py-1 bg-primary-container text-on-primary-container text-ui-label-sm rounded-full">Medication</span>
+<span class="px-3 py-1 bg-primary-container text-on-primary-container text-ui-label-sm rounded-full">Large Breeds</span>
+</div>
+</div>
+<div class="w-full md:w-auto md:self-center">
+<button class="w-full md:w-auto px-10 py-4 bg-primary text-on-primary rounded-full font-ui-label-bold hover:bg-primary-container transition-all active:scale-95 shadow-md">
+                                Select
+                            </button>
+</div>
+</div>
+<!-- Pagination / Load More -->
+<div class="flex justify-center pt-8">
+<button class="flex items-center gap-2 px-8 py-3 border border-primary text-primary rounded-full font-ui-label-bold hover:bg-primary hover:text-on-primary transition-all">
+                            Load More Sitters
+                            <span class="material-symbols-outlined text-[18px]" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container dark:bg-surface-dim border-t border-outline-variant w-full py-stack-lg mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto gap-8">
+<div class="flex flex-col items-center md:items-start gap-2">
+<div class="font-headline-md text-headline-md text-primary font-bold">PetSaathi</div>
+<p class="text-on-surface-variant text-body-md opacity-90">Luxury Pet Care &amp; Boutique Boarding</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md" href="#">Support</a>
+</div>
+<div class="text-on-surface-variant text-body-md text-center md:text-right">
+                © 2024 PetSaathi Luxury Care. All rights reserved.
+            </div>
+</div>
+</footer>
+<script>
+        // Micro-interactions for selection
+        document.querySelectorAll('button').forEach(btn => {
+            if (btn.innerText.trim() === 'Select') {
+                btn.addEventListener('click', function() {
+                    // Logic for selecting a card
+                    document.querySelectorAll('.glass-card').forEach(c => c.classList.remove('border-primary', 'border-2', 'ring-2', 'ring-primary/20'));
+                    const card = this.closest('.glass-card');
+                    card.classList.add('border-primary', 'border-2', 'ring-2', 'ring-primary/20');
+                    
+                    // Shake animation for fun
+                    btn.innerText = 'Selected';
+                    btn.classList.replace('bg-primary', 'bg-secondary-container');
+                    btn.classList.replace('text-on-primary', 'text-on-secondary-container');
+                });
+            }
+        });
+
+        // Simple scroll reveal for cards
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.classList.add('opacity-0', 'translate-y-4', 'transition-all', 'duration-700');
+            observer.observe(card);
+        });
+    </script>
+</body></html>

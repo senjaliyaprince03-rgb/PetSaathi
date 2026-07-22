@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PetSaathi | Luxury Pet Concierge</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline": "#747878",
+                    "primary": "#000000",
+                    "secondary-container": "#e5e2dd",
+                    "surface-container": "#f6ece3",
+                    "surface-bright": "#fff8f3",
+                    "on-primary-fixed": "#1c1b1b",
+                    "surface-tint": "#5f5e5e",
+                    "on-primary-fixed-variant": "#474746",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed-variant": "#474743",
+                    "on-tertiary-fixed-variant": "#78310c",
+                    "on-background": "#1f1b15",
+                    "surface-container-low": "#fcf2e8",
+                    "on-tertiary-container": "#c56c43",
+                    "surface-dim": "#e2d9cf",
+                    "on-surface": "#1f1b15",
+                    "background": "#fff8f3",
+                    "on-primary": "#ffffff",
+                    "outline-variant": "#c4c7c7",
+                    "primary-fixed": "#e5e2e1",
+                    "surface-variant": "#eae1d8",
+                    "tertiary-container": "#360f00",
+                    "on-secondary-container": "#656461",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "secondary": "#5f5e5b",
+                    "tertiary": "#000000",
+                    "on-secondary-fixed": "#1c1c19",
+                    "primary-container": "#1c1b1b",
+                    "surface-container-high": "#f0e7dd",
+                    "inverse-surface": "#343029",
+                    "tertiary-fixed": "#ffdbcd",
+                    "tertiary-fixed-dim": "#ffb597",
+                    "on-tertiary-fixed": "#360f00",
+                    "surface": "#fff8f3",
+                    "inverse-on-surface": "#f9efe6",
+                    "on-surface-variant": "#444748",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#c9c6c2",
+                    "on-primary-container": "#858383",
+                    "inverse-primary": "#c8c6c5",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed": "#e5e2dd",
+                    "surface-container-highest": "#eae1d8",
+                    "error-container": "#ffdad6",
+                    "primary-fixed-dim": "#c8c6c5",
+                    "on-error": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "section-gap": "120px",
+                    "base-unit": "8px",
+                    "gutter": "24px",
+                    "margin-mobile": "20px",
+                    "container-max": "1280px",
+                    "margin-desktop": "64px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Playfair Display"],
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Playfair Display"],
+                    "body-lg": ["Inter"],
+                    "display-lg-mobile": ["Playfair Display"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #fff8f3; color: #1f1b15; overflow-x: hidden; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(32px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
+        }
+        .hero-title { line-height: 0.95; }
+        .ambient-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 20px 60px -10px rgba(0, 0, 0, 0.1);
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .scroll-reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .scroll-reveal.visible { opacity: 1; transform: translateY(0); }
+        
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee { animation: marquee 40s linear infinite; }
+
+        .sitter-mask {
+            clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md">
+<!-- Top Navigation -->
+<nav class="fixed top-0 w-full z-50 bg-white/10 backdrop-blur-xl border-b border-white/10 shadow-sm">
+<div class="flex justify-between items-center px-6 md:px-16 py-4 max-w-container-max mx-auto w-full">
+<div class="font-display-lg text-[24px] md:text-display-lg tracking-tighter text-primary">PetSaathi</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-body-md" href="#">Concierge</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-body-md" href="#">Suites</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-body-md" href="#">Wellness</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-body-md" href="#">Journal</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden md:flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-bold hover:scale-105 transition-transform">
+                    Book Now
+                </button>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+<!-- STITCH_SHADER_START:ANIMATION_4 class="absolute inset-0 w-full h-full" -->
+<div class="absolute inset-0 w-full h-full" style="display:block;">
+<canvas id="shader-canvas-ANIMATION_4" style="display:block;width:100%;height:100%"></canvas>
+<script>
+(function() {
+  const canvas = document.getElementById('shader-canvas-ANIMATION_4');
+
+  // Sync the WebGL drawing-buffer size with the CSS-driven layout size.
+  // This fires on initial layout and whenever the element is resized.
+  function syncSize() {
+    const w = canvas.clientWidth  || 1280;
+    const h = canvas.clientHeight || 720;
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width  = w;
+      canvas.height = h;
+    }
+  }
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(syncSize).observe(canvas);
+  }
+  syncSize();
+
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+  const vs = `attribute vec2 a_position;
+varying vec2 v_texCoord;
+void main() {
+  v_texCoord = a_position * 0.5 + 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
+  const fs = `precision highp float;
+uniform float u_time;
+uniform vec2 u_resolution;
+varying vec2 v_texCoord;
+
+void main() {
+    vec2 uv = v_texCoord;
+    float t = u_time * 0.2;
+    
+    // Create a luxury fluid motion
+    float noise = sin(uv.x * 3.0 + t) * cos(uv.y * 2.0 - t);
+    vec3 color1 = vec3(0.1, 0.08, 0.07); // Deep Charcoal
+    vec3 color2 = vec3(0.98, 0.95, 0.92); // Warm Sand
+    vec3 color3 = vec3(0.8, 0.4, 0.3); // Terracotta
+    
+    vec3 finalColor = mix(color1, color2, uv.y + noise * 0.1);
+    finalColor = mix(finalColor, color3, clamp(sin(t + noise) * 0.05, 0.0, 1.0));
+    
+    gl_FragColor = vec4(finalColor, 1.0);
+}`;
+  function cs(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+  gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  const pos = gl.getAttribLocation(prog, 'a_position');
+  gl.enableVertexAttribArray(pos);
+  gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+  const uTime = gl.getUniformLocation(prog, 'u_time');
+  const uRes = gl.getUniformLocation(prog, 'u_resolution');
+  const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+  // u_mouse is in pixel coordinates matching u_resolution (ShaderToy convention).
+  // Shaders that need normalized coords should use: u_mouse / u_resolution.
+  let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+  window.addEventListener('mousemove', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width && rect.height) {
+      const nx = (event.clientX - rect.left) / rect.width;
+      const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+      mouse.x = nx * canvas.width;
+      mouse.y = ny * canvas.height;
+    }
+  });
+
+  function render(t) {
+    if (typeof ResizeObserver === 'undefined') syncSize();
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    if (uTime) gl.uniform1f(uTime, t * 0.001);
+    if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+    if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(render);
+  }
+  render(0);
+})();
+</script>
+</div>
+<!-- STITCH_SHADER_END:ANIMATION_4 -->
+<div class="relative z-10 w-full max-w-container-max mx-auto px-6 md:px-16 flex flex-col md:flex-row items-center gap-12">
+<div class="flex-1 space-y-8">
+<div class="inline-flex items-center gap-2 bg-white/40 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/20">
+<span class="w-2 h-2 rounded-full bg-on-tertiary-fixed-variant animate-pulse"></span>
+<span class="text-[12px] font-bold tracking-widest uppercase">Exclusively for India</span>
+</div>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg hero-title text-primary max-w-2xl">
+                    PetSaathi: The Art of Companionship.
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">
+                    Luxury Pet Concierge for India's Elite. Every detail curated for your pet's comfort and your peace of mind.
+                </p>
+<div class="flex flex-wrap gap-4 pt-4">
+<button class="bg-primary text-on-primary px-10 py-5 rounded-full font-bold text-lg hover:shadow-xl transition-all">Explore Services</button>
+<button class="border border-outline px-10 py-5 rounded-full font-bold text-lg hover:bg-white/10 transition-all">Watch Film</button>
+</div>
+</div>
+<div class="flex-1 w-full relative">
+<div class="relative group">
+<div class="absolute -inset-4 bg-gradient-to-tr from-white/20 to-transparent blur-2xl opacity-50 group-hover:opacity-80 transition-opacity"></div>
+<div class="relative glass-panel p-4 rounded-[40px] rotate-3 group-hover:rotate-0 transition-transform duration-700">
+<img class="w-full h-[500px] object-cover rounded-[32px] shadow-2xl" data-alt="A cinematic, high-end editorial photograph of a joyful woman and her golden retriever in a sun-drenched, luxury high-rise apartment in Mumbai during the golden hour. The setting is modern and minimalist with premium wood textures and large floor-to-ceiling windows overlooking a hazy cityscape. The lighting is warm and ethereal, creating a soft glow that emphasizes a quiet luxury and deep emotional bond." src="https://lh3.googleusercontent.com/aida-public/AB6AXuATKMHLbImkB6uf3odb4p1qYuXenW5aAcXM5bTClkTCdpJNosCbBbS0rkEcTRwoxUHFRY36ECtmBTYBMlHM67_NRGihU6E4f4tDbCQu2EJQ5W76BnPPohruwYipNhksGEqktJod41T-kVUk_7mCgUma9l5Gis-1kzcb56HcGcnmbACzTm1NYbit3KVLShUGWddwXAJYo7TCRKKEBcsdmJzWOPl8KjgDEQ05IB3Kt_2OH-jtD7WL5cCWQRKjYz0tpVzNtfdW6kaBpg"/>
+<div class="absolute -bottom-10 -left-10 glass-panel p-6 rounded-3xl max-w-xs animate-bounce shadow-2xl">
+<div class="flex items-center gap-4 mb-3">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">verified</span>
+</div>
+<div>
+<div class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Status</div>
+<div class="font-bold">Fully Certified Care</div>
+</div>
+</div>
+<div class="text-sm opacity-80">Our sitters pass a rigorous 14-point background and emotional intelligence check.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Trust Strip -->
+<section class="py-12 bg-surface-container-low/50 overflow-hidden">
+<div class="flex items-center space-x-12 animate-marquee whitespace-nowrap">
+<!-- Repeated logos for marquee -->
+<span class="text-on-surface-variant/40 font-display-lg text-4xl px-8">VOGUE INDIA</span>
+<span class="text-on-surface-variant/40 font-display-lg text-4xl px-8">FORBES ADVISOR</span>
+<span class="text-on-surface-variant/40 font-display-lg text-4xl px-8">ARCHITECTURAL DIGEST</span>
+<span class="text-on-surface-variant/40 font-display-lg text-4xl px-8">TAJ HOTELS</span>
+<span class="text-on-surface-variant/40 font-display-lg text-4xl px-8">GQ PETS</span>
+<!-- Second set for seamless loop -->
+<span class="text-on-surface-variant/40 font-display-lg text-4xl px-8">VOGUE INDIA</span>
+<span class="text-on-surface-variant/40 font-display-lg text-4xl px-8">FORBES ADVISOR</span>
+<span class="text-on-surface-variant/40 font-display-lg text-4xl px-8">ARCHITECTURAL DIGEST</span>
+<span class="text-on-surface-variant/40 font-display-lg text-4xl px-8">TAJ HOTELS</span>
+<span class="text-on-surface-variant/40 font-display-lg text-4xl px-8">GQ PETS</span>
+</div>
+</section>
+<!-- Premium Services -->
+<section class="py-section-gap max-w-container-max mx-auto px-6 md:px-16">
+<div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+<div class="max-w-2xl">
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-6">Redefining Excellence in Pet Care</h2>
+<p class="text-body-lg text-on-surface-variant">Bespoke services tailored to the refined lifestyles of modern caretakers.</p>
+</div>
+<button class="group flex items-center gap-3 font-bold text-lg">
+                View All Services
+                <span class="material-symbols-outlined group-hover:translate-x-2 transition-transform">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+<!-- Suites -->
+<div class="group relative bg-white rounded-[48px] p-10 overflow-hidden ambient-shadow hover:-translate-y-2 transition-all duration-500">
+<div class="relative z-10 h-full flex flex-col">
+<div class="w-16 h-16 rounded-3xl bg-surface-container flex items-center justify-center mb-10 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl">home_max</span>
+</div>
+<h3 class="font-display-lg text-4xl mb-4">Luxury Suites</h3>
+<p class="text-on-surface-variant mb-12 flex-grow">Climate-controlled private retreats with memory foam beds and personal concierge attention.</p>
+<div class="flex items-center gap-2 text-primary font-bold">
+                        Explore Availability <span class="material-symbols-outlined">north_east</span>
+</div>
+</div>
+<div class="absolute top-0 right-0 w-48 h-48 bg-surface-container-low rounded-full -mr-20 -mt-20 group-hover:scale-150 transition-transform duration-700"></div>
+</div>
+<!-- Wellness -->
+<div class="group relative bg-white rounded-[48px] p-10 overflow-hidden ambient-shadow hover:-translate-y-2 transition-all duration-500 border-2 border-primary">
+<div class="relative z-10 h-full flex flex-col">
+<div class="w-16 h-16 rounded-3xl bg-primary text-white flex items-center justify-center mb-10">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">spa</span>
+</div>
+<h3 class="font-display-lg text-4xl mb-4">Holistic Wellness</h3>
+<p class="text-on-surface-variant mb-12 flex-grow">Gourmet nutritionist-curated meals, low-impact exercise, and premium grooming sessions.</p>
+<div class="flex items-center gap-2 text-primary font-bold">
+                        Wellness Journey <span class="material-symbols-outlined">north_east</span>
+</div>
+</div>
+</div>
+<!-- Journaling -->
+<div class="group relative bg-white rounded-[48px] p-10 overflow-hidden ambient-shadow hover:-translate-y-2 transition-all duration-500">
+<div class="relative z-10 h-full flex flex-col">
+<div class="w-16 h-16 rounded-3xl bg-surface-container flex items-center justify-center mb-10 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl">auto_stories</span>
+</div>
+<h3 class="font-display-lg text-4xl mb-4">The Journal</h3>
+<p class="text-on-surface-variant mb-12 flex-grow">A daily high-definition visual diary of your pet's experiences, delivered to your inbox.</p>
+<div class="flex items-center gap-2 text-primary font-bold">
+                        View Sample Journal <span class="material-symbols-outlined">north_east</span>
+</div>
+</div>
+<div class="absolute bottom-0 right-0 w-48 h-48 bg-surface-container-low rounded-full -mr-20 -mb-20 group-hover:scale-150 transition-transform duration-700"></div>
+</div>
+</div>
+</section>
+<!-- How It Works: Interactive Horizontal Scroll -->
+<section class="py-section-gap bg-primary text-on-primary overflow-hidden">
+<div class="max-w-container-max mx-auto px-6 md:px-16 mb-20">
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg">The PetSaathi Experience</h2>
+</div>
+<div class="flex gap-10 overflow-x-auto no-scrollbar pb-20 px-6 md:px-16 snap-x snap-mandatory">
+<div class="min-w-[85vw] md:min-w-[400px] snap-center">
+<div class="text-8xl font-display-lg opacity-20 mb-6">01</div>
+<h4 class="text-3xl font-bold mb-4">Discovery Call</h4>
+<p class="text-on-primary-container text-lg leading-relaxed">A brief session to understand your pet's unique personality, dietary needs, and behavioral patterns.</p>
+</div>
+<div class="min-w-[85vw] md:min-w-[400px] snap-center">
+<div class="text-8xl font-display-lg opacity-20 mb-6">02</div>
+<h4 class="text-3xl font-bold mb-4">Matchmaking</h4>
+<p class="text-on-primary-container text-lg leading-relaxed">We pair you with a certified companion who matches your lifestyle and your pet's temperament.</p>
+</div>
+<div class="min-w-[85vw] md:min-w-[400px] snap-center">
+<div class="text-8xl font-display-lg opacity-20 mb-6">03</div>
+<h4 class="text-3xl font-bold mb-4">Seamless Care</h4>
+<p class="text-on-primary-container text-lg leading-relaxed">Watch in real-time as your pet enjoys curated walks, gourmet meals, and professional grooming.</p>
+</div>
+<div class="min-w-[85vw] md:min-w-[400px] snap-center">
+<div class="text-8xl font-display-lg opacity-20 mb-6">04</div>
+<h4 class="text-3xl font-bold mb-4">Daily Report</h4>
+<p class="text-on-primary-container text-lg leading-relaxed">Receive an elegant digital journal detailing everything from mood levels to biological markers.</p>
+</div>
+</div>
+</section>
+<!-- Live GPS & Report Card Mockups -->
+<section class="py-section-gap max-w-container-max mx-auto px-6 md:px-16 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<!-- GPS Interface -->
+<div class="relative scroll-reveal">
+<div class="absolute -top-10 -right-10 w-64 h-64 bg-surface-container-high rounded-full blur-[100px] opacity-30"></div>
+<div class="bg-white p-8 rounded-[40px] shadow-2xl relative z-10">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h4 class="text-2xl font-bold">Live Tracking</h4>
+<p class="text-on-surface-variant text-sm">Bruno is enjoying his evening walk</p>
+</div>
+<div class="bg-primary/5 px-4 py-2 rounded-full text-xs font-bold text-primary animate-pulse">ACTIVE NOW</div>
+</div>
+<div class="w-full aspect-square bg-surface-container rounded-3xl overflow-hidden relative border-4 border-white shadow-inner">
+<img class="w-full h-full object-cover grayscale opacity-60" data-location="Mumbai, India" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBscrvyQ83ZkXYCUaHdCPKg5Q_I2nFOtXY70u48y5Hq73D2gZ8d1X8ZPj3ZshJLxjG-hKZSgF6d9HQqMcOpthOil8qtbgR0qwatSlXMtoRnWbU9AUuafPCuJSTN7kXrokUUsBlWsGyA7yR5fXNPmksFGFzeJAUCXQL8n5IG_LUtlMq597pdNDihKsKsrwN5oUNOT0bzKEzqyHtmrUA1Q7XCQDm5XZ_6LnUR9DeP79tZaQEs9tRs7bEgYaEA_BSKN6Gm0ZnAXe0qlw"/>
+<!-- GPS Indicator -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+<div class="relative">
+<div class="w-16 h-16 bg-primary/20 rounded-full animate-ping absolute -inset-0"></div>
+<div class="w-12 h-12 rounded-full border-4 border-white overflow-hidden shadow-lg relative z-10">
+<img class="w-full h-full object-cover" data-alt="A portrait-style close up of a happy golden retriever, with a warm sunlit highlight on its fur, wearing a premium leather collar. The background is a soft bokeh blur of a manicured green lawn in an upscale neighborhood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1KRi18A-dPf0ILr07XPKj5PuwRXBaqe8KfvyFLA0N9hsdulrAlfjAvWuTUd6t-H-Aw761ifxg-Imb-QybRLVzDdNpcfGbRJYwQ649Y-_6ZvFf7m8xbWLt3zAoy21GChDdWZwC1ZHSuYwgpd8L5n4g01nDRQuBZyaruv9_CDw8x4z71WD474RzDAZ7QfxNv2AEuTZbKEkR5nRxuaGgvalyCGiqCgH531YxT2wMZ3pc4_MtAgiTmUHaAeQnrw61TLfTTrgMkfYFyQ"/>
+</div>
+</div>
+</div>
+<!-- Stats Overlay -->
+<div class="absolute bottom-4 left-4 right-4 flex gap-2">
+<div class="flex-1 glass-panel p-3 rounded-2xl flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">speed</span>
+<div class="text-[10px] font-bold">3.2 km/h</div>
+</div>
+<div class="flex-1 glass-panel p-3 rounded-2xl flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">favorite</span>
+<div class="text-[10px] font-bold">88 bpm</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Report Card -->
+<div class="space-y-8 scroll-reveal">
+<h2 class="font-display-lg text-display-lg-mobile md:text-4xl lg:text-5xl">Insights that matter.</h2>
+<p class="text-body-lg text-on-surface-variant leading-relaxed">
+                Our Wellness Report Card provides more than just updates; it offers medical-grade observation of your pet's health, mood, and social interactions during their stay.
+            </p>
+<div class="bg-surface-container-low p-10 rounded-[40px] space-y-6">
+<div class="flex items-center justify-between border-b border-outline/10 pb-4">
+<span class="text-on-surface-variant font-medium">Hydration Levels</span>
+<span class="text-primary font-bold">Optimal (1.2L)</span>
+</div>
+<div class="flex items-center justify-between border-b border-outline/10 pb-4">
+<span class="text-on-surface-variant font-medium">Activity Duration</span>
+<span class="text-primary font-bold">124 Minutes</span>
+</div>
+<div class="flex items-center justify-between border-b border-outline/10 pb-4">
+<span class="text-on-surface-variant font-medium">Social Index</span>
+<span class="text-primary font-bold">9/10 - High Interaction</span>
+</div>
+<div class="pt-4">
+<div class="text-sm font-bold text-on-surface-variant mb-2">Sitter's Note:</div>
+<p class="italic text-on-surface">"Bruno was exceptionally vibrant today. He showed great curiosity at the park and responded well to new enrichment toys."</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Sitter Spotlight -->
+<section class="py-section-gap bg-surface-container-lowest overflow-hidden">
+<div class="max-w-container-max mx-auto px-6 md:px-16 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<div class="lg:col-span-7 relative">
+<div class="sitter-mask bg-surface-variant w-full h-[600px] overflow-hidden relative shadow-2xl">
+<img class="w-full h-full object-cover" data-alt="A sophisticated editorial portrait of a professional female pet concierge, around 30 years old, walking two elegant dogs (a golden retriever and a saluki) through a high-end residential complex in Ahmedabad during sunrise. She is dressed in smart-casual luxury attire—a tailored linen blazer and scarf. The morning light is soft and golden, catching the glass of the modern skyscraper buildings in the background. The atmosphere is calm, safe, and professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOZKRQP8udeuFosU76RFAsHp_vLkltZwJpGyRuWyy4LnfBvQ-QhKtrrnXdGbkW5V0JY-j_JYUKcV6Nl3B-1gGqvglL-0Nwv-GVurJt70gFTgGfYk7P7vf5qKkRW8aQq4VxDyyESZ5GgNMwvvT9lsmiI24uCvz-BVZkYrqVQFMCo5SxLoK7xkSsC_g1NBN1pZ8vlcImgXxHiQxFFz0QOyyquzfu42aYLf4iVCa0lmRN1WYGejypTGCBHRpaNzWXCi3OWhYLLNGmeg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+<div class="absolute bottom-10 left-10 text-white">
+<div class="text-sm font-bold tracking-widest uppercase mb-2">Concierge of the Month</div>
+<h3 class="text-4xl font-display-lg">Ananya Sharma</h3>
+<p class="opacity-80">Certified Behaviorist | Ahmedabad Hub</p>
+</div>
+</div>
+</div>
+<div class="lg:col-span-5 space-y-8 lg:pl-12">
+<div class="w-20 h-1 bg-primary"></div>
+<h2 class="font-display-lg text-4xl leading-tight">Human-Centric Care in Ahmedabad</h2>
+<p class="text-body-lg text-on-surface-variant">
+                    We've expanded our concierge services to Ahmedabad, bringing the same elite standard of pet care to the heritage city. From the tranquil walks at Riverfront to the premium residences of Prahladnagar, our sitters are ready.
+                </p>
+<ul class="space-y-4">
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-tertiary-container">check_circle</span>
+<span class="font-bold">Locally Vetted Sitters</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-tertiary-container">check_circle</span>
+<span class="font-bold">24/7 Veterinary Support access</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-tertiary-container">check_circle</span>
+<span class="font-bold">Exclusive Suite Partner Network</span>
+</li>
+</ul>
+<button class="bg-primary text-on-primary px-8 py-4 rounded-full font-bold hover:scale-105 transition-transform">Book in Ahmedabad</button>
+</div>
+</div>
+</section>
+<!-- Mobile App Preview -->
+<section class="py-section-gap relative">
+<div class="absolute inset-0 -z-10 bg-gradient-to-b from-white to-surface-container-low"></div>
+<div class="max-w-container-max mx-auto px-6 md:px-16 flex flex-col md:flex-row items-center justify-between gap-16">
+<div class="md:w-1/2 space-y-8">
+<h2 class="font-display-lg text-display-lg-mobile md:text-5xl leading-tight">The World of PetSaathi in Your Pocket.</h2>
+<p class="text-body-lg text-on-surface-variant">Manage bookings, view live streams, and chat with your concierge through our encrypted mobile application.</p>
+<div class="flex gap-4">
+<div class="flex items-center gap-3 bg-black text-white px-6 py-3 rounded-2xl cursor-pointer hover:bg-neutral-800 transition-colors">
+<span class="material-symbols-outlined text-3xl">play_books</span>
+<div class="text-left leading-tight">
+<div class="text-[10px] opacity-60">GET IT ON</div>
+<div class="text-sm font-bold">Google Play</div>
+</div>
+</div>
+<div class="flex items-center gap-3 bg-black text-white px-6 py-3 rounded-2xl cursor-pointer hover:bg-neutral-800 transition-colors">
+<span class="material-symbols-outlined text-3xl">amp_stories</span>
+<div class="text-left leading-tight">
+<div class="text-[10px] opacity-60">DOWNLOAD ON THE</div>
+<div class="text-sm font-bold">App Store</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md:w-1/2 flex justify-center">
+<div class="relative">
+<!-- Phone Frame -->
+<div class="w-[300px] h-[600px] border-[12px] border-primary-container rounded-[50px] shadow-2xl relative overflow-hidden bg-white">
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-primary-container rounded-b-2xl z-20"></div>
+<div class="p-6 pt-12 space-y-6">
+<div class="flex justify-between items-center">
+<h5 class="font-bold text-xl">Hello, Aarti</h5>
+<div class="w-10 h-10 rounded-full bg-surface-container"></div>
+</div>
+<div class="bg-surface-container-high rounded-3xl p-4 aspect-video flex items-center justify-center relative">
+<span class="material-symbols-outlined text-4xl text-primary/20">videocam_off</span>
+<div class="absolute bottom-2 left-2 text-[10px] font-bold opacity-40 uppercase tracking-tighter">Live Suite 04</div>
+</div>
+<div class="space-y-3">
+<div class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Today's Schedule</div>
+<div class="flex gap-3 items-center bg-white border border-outline/10 p-3 rounded-2xl">
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">directions_walk</span>
+</div>
+<div class="flex-grow">
+<div class="text-sm font-bold">Evening Walk</div>
+<div class="text-[10px] opacity-60">05:30 PM • 45 mins</div>
+</div>
+<span class="material-symbols-outlined text-sm text-on-tertiary-container">check_circle</span>
+</div>
+<div class="flex gap-3 items-center bg-white border border-outline/10 p-3 rounded-2xl">
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">restaurant</span>
+</div>
+<div class="flex-grow">
+<div class="text-sm font-bold">Nutrition Plan</div>
+<div class="text-[10px] opacity-60">07:00 PM • Organic Salmon</div>
+</div>
+<span class="material-symbols-outlined text-sm text-outline">pending</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Decor -->
+<div class="absolute -bottom-10 -right-20 w-40 h-40 bg-on-tertiary-fixed-variant rounded-full blur-[80px] opacity-20"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- FAQ & Newsletter -->
+<section class="py-section-gap max-w-4xl mx-auto px-6">
+<h2 class="font-display-lg text-display-lg-mobile md:text-4xl text-center mb-16">Frequently Asked</h2>
+<div class="space-y-4">
+<details class="group bg-white rounded-3xl overflow-hidden shadow-sm border border-outline/10" open="">
+<summary class="flex justify-between items-center p-8 cursor-pointer list-none">
+<span class="text-xl font-bold">What makes PetSaathi luxury?</span>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="px-8 pb-8 text-on-surface-variant leading-relaxed">
+                    Unlike standard boarding, PetSaathi provides 1:1 concierge attention, medical-grade monitoring, bespoke nutrition plans, and high-definition visual updates. We treat your pet as royalty, ensuring their mental and physical well-being is prioritized.
+                </div>
+</details>
+<details class="group bg-white rounded-3xl overflow-hidden shadow-sm border border-outline/10">
+<summary class="flex justify-between items-center p-8 cursor-pointer list-none">
+<span class="text-xl font-bold">Are the sitters medically trained?</span>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="px-8 pb-8 text-on-surface-variant">
+                    Yes, all PetSaathi concierges undergo mandatory first-aid and CPR training specifically for animals, alongside behavioral assessment training to handle diverse temperaments.
+                </div>
+</details>
+</div>
+<div class="mt-32 bg-primary text-on-primary rounded-[60px] p-12 md:p-20 text-center relative overflow-hidden">
+<div class="relative z-10">
+<h3 class="text-4xl md:text-6xl font-display-lg mb-6">Stay informed.</h3>
+<p class="text-lg opacity-70 mb-10 max-w-md mx-auto">Join our private circle for seasonal updates and concierge-level tips on pet longevity.</p>
+<form class="flex flex-col md:flex-row gap-4 max-w-lg mx-auto">
+<input class="flex-grow bg-white/10 border border-white/20 rounded-full px-8 py-5 focus:bg-white focus:text-primary outline-none transition-all placeholder:text-white/40" placeholder="Your private email" type="email"/>
+<button class="bg-white text-primary px-10 py-5 rounded-full font-bold hover:scale-105 transition-transform">Join Now</button>
+</form>
+</div>
+<div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32"></div>
+<div class="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full -ml-24 -mb-24"></div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest py-section-gap">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1">
+<div class="font-display-lg text-display-lg text-primary mb-6">PetSaathi</div>
+<p class="text-on-surface-variant mb-8 max-w-xs">Elevating the standard of companionship across India's premier metropolitan hubs.</p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">public</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">camera</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">alternate_email</span>
+</div>
+</div>
+<div class="space-y-4">
+<h6 class="font-bold uppercase tracking-widest text-xs text-primary">Discover</h6>
+<nav class="flex flex-col gap-3">
+<a class="text-on-surface-variant hover:underline transition-all" href="#">Our Story</a>
+<a class="text-on-surface-variant hover:underline transition-all" href="#">Suites &amp; Wellness</a>
+<a class="text-on-surface-variant hover:underline transition-all" href="#">Journaling</a>
+<a class="text-on-surface-variant hover:underline transition-all" href="#">Concierge Network</a>
+</nav>
+</div>
+<div class="space-y-4">
+<h6 class="font-bold uppercase tracking-widest text-xs text-primary">Legal</h6>
+<nav class="flex flex-col gap-3">
+<a class="text-on-surface-variant hover:underline transition-all" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:underline transition-all" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:underline transition-all" href="#">Partner Program</a>
+<a class="text-on-surface-variant hover:underline transition-all" href="#">Safety Standards</a>
+</nav>
+</div>
+<div class="space-y-4">
+<h6 class="font-bold uppercase tracking-widest text-xs text-primary">Locations</h6>
+<nav class="flex flex-col gap-3">
+<a class="text-on-surface-variant hover:underline transition-all" href="#">Mumbai</a>
+<a class="text-on-surface-variant hover:underline transition-all" href="#">Ahmedabad</a>
+<a class="text-on-surface-variant hover:underline transition-all" href="#">Bangalore</a>
+<a class="text-on-surface-variant hover:underline transition-all" href="#">Delhi NCR</a>
+</nav>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-desktop mt-20 pt-10 border-t border-outline/10 text-on-surface-variant text-sm flex flex-col md:flex-row justify-between items-center gap-4">
+<div>© 2024 PetSaathi Luxury Care. All rights reserved.</div>
+<div class="flex gap-8">
+<span>CIN: U88110MH2024PTC123456</span>
+<span>Crafted in India</span>
+</div>
+</div>
+</footer>
+<script>
+        // Intersection Observer for scroll reveal animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+
+        // Smooth parallax for hero image
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroImage = document.querySelector('.hero-title').parentElement.nextElementSibling;
+            if(heroImage) {
+                heroImage.style.transform = `translateY(${scrolled * 0.1}px)`;
+            }
+        });
+    </script>
+</body></html>

@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PetSaathi | Executive Operations Dashboard</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-background": "#2d1508",
+                      "secondary-fixed-dim": "#ffb688",
+                      "outline-variant": "#ccc6bc",
+                      "surface-container": "#ffeae0",
+                      "tertiary": "#7c5800",
+                      "on-secondary-fixed": "#311300",
+                      "on-tertiary": "#ffffff",
+                      "surface-bright": "#fff8f6",
+                      "secondary": "#974800",
+                      "surface-variant": "#ffdbca",
+                      "on-primary-fixed": "#1e1b14",
+                      "on-secondary-fixed-variant": "#733500",
+                      "on-error": "#ffffff",
+                      "surface": "#fff8f6",
+                      "on-primary": "#ffffff",
+                      "primary-fixed-dim": "#cdc6ba",
+                      "inverse-surface": "#452a1b",
+                      "secondary-fixed": "#ffdbc7",
+                      "surface-tint": "#635e54",
+                      "tertiary-fixed-dim": "#f1bf62",
+                      "on-tertiary-container": "#936b13",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary-fixed-variant": "#5e4200",
+                      "error-container": "#ffdad6",
+                      "on-secondary": "#ffffff",
+                      "primary": "#635e54",
+                      "on-surface": "#2d1508",
+                      "tertiary-container": "#fff7f0",
+                      "on-primary-fixed-variant": "#4a463d",
+                      "background": "#fff8f6",
+                      "surface-container-low": "#fff1eb",
+                      "primary-container": "#fff7ea",
+                      "on-secondary-container": "#6e3300",
+                      "outline": "#7b766e",
+                      "surface-container-highest": "#ffdbca",
+                      "on-error-container": "#93000a",
+                      "error": "#ba1a1a",
+                      "tertiary-fixed": "#ffdea8",
+                      "inverse-primary": "#cdc6ba",
+                      "inverse-on-surface": "#ffede6",
+                      "on-primary-container": "#767167",
+                      "on-tertiary-fixed": "#271900",
+                      "surface-dim": "#fed1ba",
+                      "secondary-container": "#ff964d",
+                      "on-surface-variant": "#4a463f",
+                      "primary-fixed": "#e9e2d5",
+                      "surface-container-high": "#ffe2d5"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "margin-mobile": "20px",
+                      "stack-lg": "48px",
+                      "unit": "8px",
+                      "margin-desktop": "64px",
+                      "stack-sm": "12px",
+                      "stack-md": "24px",
+                      "container-max": "1280px"
+              },
+              "fontFamily": {
+                      "body-lg": ["Manrope"],
+                      "label-md": ["Manrope"],
+                      "label-sm": ["Manrope"],
+                      "headline-md": ["Playfair Display"],
+                      "body-md": ["Manrope"],
+                      "headline-lg": ["Playfair Display"],
+                      "display-lg": ["Playfair Display"],
+                      "display-lg-mobile": ["Playfair Display"]
+              },
+              "fontSize": {
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                      "display-lg": ["56px", {"lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "display-lg-mobile": ["40px", {"lineHeight": "48px", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .noise-bg {
+            background-image: url("https://www.transparenttextures.com/patterns/felt.png");
+            opacity: 0.03;
+            pointer-events: none;
+        }
+        .luxury-shadow {
+            box-shadow: 0 10px 40px rgba(74, 46, 31, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+<!-- Noise Texture Overlay -->
+<div class="fixed inset-0 noise-bg z-[100]"></div>
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-[0_10px_40px_rgba(74,46,31,0.08)]">
+<div class="flex justify-between items-center px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="flex items-center gap-8">
+<span class="font-headline-md text-headline-md font-bold text-secondary">PetSaathi</span>
+<nav class="hidden md:flex gap-6 items-center">
+<a class="font-label-md text-secondary font-bold border-b-2 border-secondary" href="#">Operations</a>
+<a class="font-label-md text-on-surface-variant hover:text-secondary transition-all" href="#">Sitter Network</a>
+<a class="font-label-md text-on-surface-variant hover:text-secondary transition-all" href="#">Safety Hub</a>
+<a class="font-label-md text-on-surface-variant hover:text-secondary transition-all" href="#">Financials</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="flex items-center gap-3 pl-4 border-l border-outline-variant">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-bold">JD</div>
+<span class="hidden md:block font-label-md">James D. <br/><span class="text-xs font-normal text-on-surface-variant">Admin Executive</span></span>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-32 pb-stack-lg px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto space-y-stack-md">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-stack-md">
+<div>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-background">Executive Dashboard</h1>
+<p class="text-on-surface-variant font-body-lg">Real-time luxury care operations and concierge intelligence.</p>
+</div>
+<div class="flex gap-3">
+<button class="bg-surface-container-low text-secondary px-6 py-3 rounded-xl font-label-md flex items-center gap-2 hover:bg-surface-container-high transition-all active:scale-95">
+<span class="material-symbols-outlined">download</span> Export Reports
+                </button>
+<button class="bg-secondary text-on-secondary px-6 py-3 rounded-xl font-label-md flex items-center gap-2 luxury-shadow hover:opacity-90 transition-all active:scale-95">
+<span class="material-symbols-outlined">add</span> New Concierge Match
+                </button>
+</div>
+</div>
+<!-- Key Metrics: Bento Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Revenue -->
+<div class="bg-surface-container-lowest p-stack-md rounded-[2rem] luxury-shadow border border-surface-container flex flex-col justify-between h-48 group">
+<div class="flex justify-between items-start">
+<span class="p-3 bg-secondary-container rounded-2xl text-on-secondary-container">
+<span class="material-symbols-outlined">payments</span>
+</span>
+<span class="text-secondary font-bold text-label-sm">+12.4%</span>
+</div>
+<div>
+<p class="text-on-surface-variant font-label-sm">Total Revenue (MTD)</p>
+<h3 class="font-headline-lg text-headline-lg">₹4,82,500</h3>
+</div>
+</div>
+<!-- Booking Growth -->
+<div class="bg-surface-container-lowest p-stack-md rounded-[2rem] luxury-shadow border border-surface-container flex flex-col justify-between h-48">
+<div class="flex justify-between items-start">
+<span class="p-3 bg-primary-container rounded-2xl text-on-primary-container">
+<span class="material-symbols-outlined">trending_up</span>
+</span>
+<span class="text-secondary font-bold text-label-sm">+8.2%</span>
+</div>
+<div>
+<p class="text-on-surface-variant font-label-sm">Booking Growth</p>
+<h3 class="font-headline-lg text-headline-lg">1,248</h3>
+</div>
+</div>
+<!-- Sitter Retention -->
+<div class="bg-surface-container-lowest p-stack-md rounded-[2rem] luxury-shadow border border-surface-container flex flex-col justify-between h-48">
+<div class="flex justify-between items-start">
+<span class="p-3 bg-tertiary-container rounded-2xl text-on-tertiary-container">
+<span class="material-symbols-outlined">verified_user</span>
+</span>
+<span class="text-secondary font-bold text-label-sm">Stable</span>
+</div>
+<div>
+<p class="text-on-surface-variant font-label-sm">Sitter Retention</p>
+<h3 class="font-headline-lg text-headline-lg">98.4%</h3>
+</div>
+</div>
+<!-- Incident Rate -->
+<div class="bg-error-container/20 p-stack-md rounded-[2rem] luxury-shadow border border-error-container flex flex-col justify-between h-48">
+<div class="flex justify-between items-start">
+<span class="p-3 bg-error text-on-error rounded-2xl shadow-lg">
+<span class="material-symbols-outlined">priority_high</span>
+</span>
+<span class="text-error font-bold text-label-sm">-2% Improved</span>
+</div>
+<div>
+<p class="text-on-surface-variant font-label-sm">Incident Rate</p>
+<h3 class="font-headline-lg text-headline-lg">0.02%</h3>
+</div>
+</div>
+</div>
+<!-- Main Operational Section -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Left Column: Booking Queue & Payouts (2/3 width) -->
+<div class="lg:col-span-2 space-y-gutter">
+<!-- Critical Alerts Banner (Incident Management) -->
+<div class="bg-on-background text-on-secondary p-6 rounded-3xl flex items-center justify-between luxury-shadow overflow-hidden relative">
+<div class="flex items-center gap-4 relative z-10">
+<span class="material-symbols-outlined text-secondary-container scale-125 animate-pulse">emergency</span>
+<div>
+<h4 class="font-label-md">2 Critical Incidents Requiring Concierge Intervention</h4>
+<p class="text-outline-variant font-body-md">New Delhi (Pet Health) &amp; Mumbai (Late Handover)</p>
+</div>
+</div>
+<button class="bg-secondary text-on-secondary px-4 py-2 rounded-lg font-label-md z-10 hover:opacity-90 transition-all">Resolve Now</button>
+<!-- Background Visual Decor -->
+<div class="absolute right-0 top-0 h-full w-1/3 bg-gradient-to-l from-secondary/20 to-transparent"></div>
+</div>
+<!-- Booking Queue -->
+<section class="bg-surface-container-lowest p-stack-md rounded-[2.5rem] border border-surface-container luxury-shadow">
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-headline-md text-headline-md">Pending Assignments</h2>
+<span class="font-label-sm text-secondary bg-secondary-container/30 px-3 py-1 rounded-full">12 Matches Needed</span>
+</div>
+<div class="space-y-4">
+<!-- Queue Item 1 -->
+<div class="flex items-center justify-between p-4 hover:bg-surface-container-low transition-colors rounded-2xl group cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 rounded-2xl overflow-hidden bg-surface-variant relative">
+<img class="w-full h-full object-cover" data-alt="Close up high-quality portrait of a Golden Retriever looking curious in a modern warm sun-drenched minimalist living room. Professional lighting, premium lifestyle pet photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMuYhI83pl3at7LK_h2L4l25FrEJXfX4ZrPc-93YzwJc-enMpGL19pxpSsZi_d7nIQVbyVHxcJP-ZcK6WoqtvnP_LXfvdK27hLmNCSWhQuE6toGrj8hjucj-gHlrO8TwvmcYitwpi7ZtiOJ7irkWW_30ddXP1Jw9T_ruiQQImpoXJSb0AqYGNfV5w7cKxd25OAgkMVqn0P288l5DogFc3gxKRwhrVW9kde0AtnI0wmwyiCcLV67L4KmQXsAW62mEpEcLrtvluwMJ0"/>
+</div>
+<div>
+<h4 class="font-label-md">Whiskey &amp; Soda (Labradors)</h4>
+<p class="text-on-surface-variant text-label-sm">Indiranagar, BLR • 5-Day Stay</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:block text-right">
+<p class="font-label-md">Budget: ₹12k</p>
+<p class="text-on-surface-variant text-xs">Premium Tier Requested</p>
+</div>
+<button class="border-2 border-secondary text-secondary px-4 py-2 rounded-xl font-label-md hover:bg-secondary hover:text-on-secondary transition-all active:scale-95">Match Sitter</button>
+</div>
+</div>
+<!-- Queue Item 2 -->
+<div class="flex items-center justify-between p-4 hover:bg-surface-container-low transition-colors rounded-2xl group cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 rounded-2xl overflow-hidden bg-surface-variant">
+<img class="w-full h-full object-cover" data-alt="Detailed photography of a sleek Siamese cat sitting on a designer velvet armchair in an editorial home interior with soft natural lighting and neutral warm colors. Minimalist aesthetic, luxury pet care vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsWhtBV2Wmct-DAXjwH4RF2vVzU7g-ha6MxtPTdn_Q-ZWnvauqFwDii2eA7RdUBxRfvzMD730edEz8P9-laMX8MPprGoZ4Sq0yMeVi2cb40-gqQTn7P8wx0bdLc_2qK6LW4Eav7dYFlCVk8rM34HtJVSevhqqRvGEAApwR0-UgyTdpVJWoSJV_KgkdLiwCZQ4KP5TCHM4I1FUq2rq9ZO9vIsswWsfJUewiBfFxEwef9B02snbgByLCi1R1brwwIc4bsKrikWMh7Kg"/>
+</div>
+<div>
+<h4 class="font-label-md">Luna (Siamese)</h4>
+<p class="text-on-surface-variant text-label-sm">Bandra, MUM • 2-Hour Visit</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:block text-right">
+<p class="font-label-md">Budget: ₹1.5k</p>
+<p class="text-on-surface-variant text-xs">Standard Tier</p>
+</div>
+<button class="border-2 border-secondary text-secondary px-4 py-2 rounded-xl font-label-md hover:bg-secondary hover:text-on-secondary transition-all active:scale-95">Match Sitter</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Payout Status Table -->
+<section class="bg-surface-container-lowest p-stack-md rounded-[2.5rem] border border-surface-container luxury-shadow">
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-headline-md text-headline-md">Payout Logistics</h2>
+<a class="text-secondary font-label-sm underline" href="#">View All Payouts</a>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="text-on-surface-variant font-label-sm border-b border-surface-container">
+<th class="pb-4 font-normal">Recipient</th>
+<th class="pb-4 font-normal">Amount</th>
+<th class="pb-4 font-normal">Job Completion</th>
+<th class="pb-4 font-normal">Status</th>
+<th class="pb-4 font-normal">Action</th>
+</tr>
+</thead>
+<tbody class="text-label-md">
+<tr class="border-b border-surface-container/50">
+<td class="py-4 font-bold">Arjun Sharma</td>
+<td class="py-4">₹8,450</td>
+<td class="py-4 text-on-surface-variant">Aug 24, 2024</td>
+<td class="py-4"><span class="px-2 py-1 bg-surface-container-high text-secondary rounded text-xs uppercase font-bold tracking-wider">Processing</span></td>
+<td class="py-4"><button class="text-secondary-fixed-dim bg-secondary p-1 rounded hover:opacity-80 transition-all"><span class="material-symbols-outlined text-sm">visibility</span></button></td>
+</tr>
+<tr class="border-b border-surface-container/50">
+<td class="py-4 font-bold">Priya Kapoor</td>
+<td class="py-4">₹14,200</td>
+<td class="py-4 text-on-surface-variant">Aug 22, 2024</td>
+<td class="py-4"><span class="px-2 py-1 bg-primary-container text-primary font-bold rounded text-xs uppercase tracking-wider">Completed</span></td>
+<td class="py-4"><button class="text-secondary-fixed-dim bg-secondary p-1 rounded hover:opacity-80 transition-all"><span class="material-symbols-outlined text-sm">visibility</span></button></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+<!-- Right Column: Sitter Reliability & Retention (1/3 width) -->
+<div class="space-y-gutter">
+<!-- Sitter Reliability Leaderboard -->
+<section class="bg-surface-container-lowest p-stack-md rounded-[2.5rem] border border-surface-container luxury-shadow">
+<h2 class="font-headline-md text-headline-md mb-6">Sitter Reliability</h2>
+<div class="space-y-6">
+<!-- Top Sitter -->
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-primary-container">
+<img class="w-full h-full object-cover" data-alt="Professional headshot of a friendly young Indian woman pet sitter smiling warmly, soft studio lighting, neutral background, high-end hospitality style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsfr0vK4bFaovJ5fq_TzZk9qdkmoFqWDaejhSu2qm22jZJvt0ogP19XYYTcDfiHpkKBQsc8P41SGzggR4k_RKWyx6njezW9biQEiUouAvCXC7qHxov8qix6MVFTOAyVGXz45qJjpgRC3bjddf3nZNfNVjhLPrk9mH8tcHse16zdFi-ejS3q3836Av-wO3BRiwcp0aYMHj_Mbvg89PxOuCWW0bTKlSSnmP75tBHkIna7370hGRiW1qhd2FZZkbS-HyNHBmlojQ-_y0"/>
+</div>
+<span class="absolute -bottom-1 -right-1 bg-tertiary text-on-tertiary rounded-full p-1 text-[10px] luxury-shadow">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">stars</span>
+</span>
+</div>
+<div class="flex-1">
+<h4 class="font-label-md">Ananya Verma</h4>
+<div class="w-full bg-surface-container h-1.5 rounded-full mt-1">
+<div class="bg-secondary h-full rounded-full w-[98%]"></div>
+</div>
+</div>
+<span class="font-bold text-secondary">9.9</span>
+</div>
+<!-- Alert Sitter -->
+<div class="flex items-center gap-4 group cursor-help" title="Reliability dropped below threshold">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-error-container relative">
+<img class="w-full h-full object-cover grayscale opacity-50" data-alt="Professional headshot of a young man, serious expression, warm natural indoor lighting, minimalist background. Pet care professional aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEqUL-vh7-oAL08-CjpV4IlKXAY7-E66dYdiAiJHJJzLTbMBpZysS1n-WZS-Z35LFHDUUX1ygar0fNjQ3o3eQoPXvto7j5Xnn-AeeIhOhHN284D3Lua7g-H-S0TxDg0YUrMmE9FTeUdrBQ0WiMwE8ayHLt2GgOOzZZOOZrjusrmFcmgW7920KL-0gQRz6SF4jZf03xRHHOUoSvTMab-iMKwU3A5ivcurjxOFbAkSSK25KALOEQ_s5vk1nb7IWyEDW7oudUo0Ox9hA"/>
+<div class="absolute inset-0 bg-error/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-error scale-75">warning</span>
+</div>
+</div>
+<div class="flex-1">
+<h4 class="font-label-md text-on-surface-variant">Rahul S.</h4>
+<div class="w-full bg-surface-container h-1.5 rounded-full mt-1">
+<div class="bg-error h-full rounded-full w-[62%]"></div>
+</div>
+</div>
+<span class="font-bold text-error">6.2</span>
+</div>
+</div>
+<!-- Sitter Alerts Section -->
+<div class="mt-8 pt-8 border-t border-surface-container">
+<p class="font-label-sm text-on-surface-variant uppercase tracking-widest mb-4">Urgent Sitter Alerts</p>
+<div class="bg-primary-container/30 p-4 rounded-2xl border border-primary-container">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary">psychology</span>
+<div>
+<p class="font-label-md text-on-primary-fixed">Low Availability Warning</p>
+<p class="text-xs text-on-primary-fixed-variant">Gurgaon Sector 45 is at 12% capacity for weekend stays.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Retention Strategy Widget -->
+<div class="bg-secondary-container p-stack-md rounded-[2.5rem] text-on-secondary-container luxury-shadow flex flex-col justify-between h-64 overflow-hidden relative">
+<div class="relative z-10">
+<h3 class="font-headline-md text-headline-md mb-2">Retention Boost</h3>
+<p class="font-body-md opacity-90">Send loyalty bonuses to sitters with 50+ successful luxury matches.</p>
+</div>
+<button class="bg-on-secondary-container text-on-secondary w-full py-3 rounded-xl font-label-md relative z-10 hover:opacity-90 active:scale-95 transition-all">Launch Campaign</button>
+<!-- Abstract Background Shape -->
+<div class="absolute -bottom-10 -right-10 w-40 h-40 bg-secondary rounded-full blur-3xl opacity-30"></div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Nav (Mobile) -->
+<nav class="fixed bottom-0 w-full z-50 md:hidden bg-surface/90 backdrop-blur-2xl px-4 pb-4 pt-2 flex justify-around items-center shadow-[0_-5px_30px_rgba(74,46,31,0.05)]">
+<div class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full p-2 h-14 w-14">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-bold">Admin</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2">
+<span class="material-symbols-outlined">pets</span>
+<span class="text-[10px]">Sitters</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="text-[10px]">Support</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px]">Setup</span>
+</div>
+</nav>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest w-full mt-stack-lg border-t border-surface-container">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-stack-lg max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1">
+<span class="font-headline-lg text-headline-lg text-secondary">PetSaathi</span>
+<p class="mt-4 text-on-surface-variant font-body-md">Redefining luxury pet hospitality through technology and heart.</p>
+</div>
+<div class="flex flex-col gap-3">
+<span class="font-label-md text-on-background">Operations</span>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Trust &amp; Safety</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Incident Hub</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Concierge Logs</a>
+</div>
+<div class="flex flex-col gap-3">
+<span class="font-label-md text-on-background">Resources</span>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Sitter Training</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Payout Policy</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Luxury Standards</a>
+</div>
+<div class="flex flex-col gap-3">
+<span class="font-label-md text-on-background">System</span>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Admin Console</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Privacy Settings</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors text-secondary font-semibold" href="#">Status: All Systems Operational</a>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-desktop py-6 border-t border-surface-container flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-on-surface-variant text-label-sm">© 2024 PetSaathi Luxury Care. All rights reserved.</p>
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-secondary hover:opacity-70 cursor-pointer">share</span>
+<span class="material-symbols-outlined text-secondary hover:opacity-70 cursor-pointer">public</span>
+<span class="material-symbols-outlined text-secondary hover:opacity-70 cursor-pointer">verified</span>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interaction: Chart/Bar hover effect
+        document.querySelectorAll('.group').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                // Future expansion for GSAP/Charts
+            });
+        });
+
+        // Simple Payout Row Interaction
+        document.querySelectorAll('tr').forEach(row => {
+            row.addEventListener('click', () => {
+                row.classList.toggle('bg-surface-container-low');
+            });
+        });
+    </script>
+</body></html>

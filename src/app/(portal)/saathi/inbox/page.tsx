@@ -1,0 +1,14 @@
+import { Clock3, Inbox, PawPrint } from "lucide-react";
+import { redirect } from "next/navigation";
+
+import { PortalShell } from "@/components/portal/portal-shell";
+import { prisma } from "@/lib/db";
+import { getCurrentIdentity } from "@/modules/auth/session";
+
+export default async function SaathiInboxPage() {
+  const identity = await getCurrentIdentity();
+  if (!identity?.roles.includes("SITTER")) redirect("/login?returnTo=/saathi/inbox");
+  const sitter = await prisma.sitterProfile.findUnique({ where: { userId: identity.id }, select: { id: true } });
+  const offers = sitter ? await prisma.bookingAssignment.findMany({ where: { sitterId: sitter.id, status: "OFFERED" }, orderBy: { offeredAt: "desc" }, include: { booking: { select: { reference: true, scheduledStart: true, serviceType: { select: { name: true } }, pet: { select: { name: true, species: true } }, address: { select: { locality: true, city: true } } } } } }) : [];
+  return <PortalShell mode="saathi" displayName={identity.displayName} metrics={[`${offers.length} new offer${offers.length === 1 ? "" : "s"}`, "Private by stage", "Human-reviewed matching"]}><section className="mt-5 rounded-4xl border border-indigo/10 bg-paper p-6 shadow-lifted"><p className="eyebrow">Protocol inbox</p><h2 className="mt-3 font-display text-4xl font-semibold tracking-[-0.04em]">Offers that need your attention.</h2><p className="mt-3 max-w-2xl text-sm leading-6 text-ink/50">Only decision-safe context is shown before customer approval. Exact addresses and private instructions stay protected.</p><div className="mt-6 grid gap-3">{offers.length ? offers.map((offer) => <article key={offer.id} className="rounded-3xl border border-indigo/10 bg-cream/45 p-5"><div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start"><div><p className="text-xs font-bold uppercase tracking-[0.14em] text-coral">New care offer · {offer.booking.reference}</p><h3 className="mt-2 font-display text-3xl font-semibold">{offer.booking.serviceType.name} with {offer.booking.pet.name}</h3><p className="mt-3 flex items-center gap-2 text-sm text-ink/52"><PawPrint className="h-4 w-4 text-leaf" />{offer.booking.pet.species.toLowerCase()} · {offer.booking.address.locality}, {offer.booking.address.city}</p></div><div className="rounded-2xl bg-paper px-4 py-3 text-sm font-bold"><Clock3 className="mr-2 inline h-4 w-4 text-indigo" />{offer.booking.scheduledStart.toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" })}</div></div></article>) : <div className="rounded-4xl border border-dashed border-indigo/15 p-10 text-center"><Inbox className="mx-auto h-10 w-10 text-indigo/35" /><h3 className="mt-4 font-display text-3xl font-semibold">Your inbox is calm.</h3><p className="mt-2 text-sm text-ink/48">Eligible, reviewed offers will appear here.</p></div>}</div></section></PortalShell>;
+}

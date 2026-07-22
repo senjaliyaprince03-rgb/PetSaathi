@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PetSaathi | Luxury Pet Care Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#fcf9f4",
+                    "primary": "#321f14",
+                    "primary-fixed-dim": "#e1c0af",
+                    "surface-container-high": "#ebe8e3",
+                    "error": "#ba1a1a",
+                    "surface": "#fcf9f4",
+                    "inverse-on-surface": "#f3f0eb",
+                    "inverse-primary": "#e1c0af",
+                    "secondary-fixed": "#ffdbc8",
+                    "surface-dim": "#dcdad5",
+                    "tertiary": "#001e5b",
+                    "on-secondary-fixed-variant": "#753400",
+                    "outline-variant": "#d3c3bc",
+                    "on-primary-container": "#bb9c8c",
+                    "tertiary-container": "#003189",
+                    "tertiary-fixed": "#dbe1ff",
+                    "surface-container-low": "#f6f3ee",
+                    "on-tertiary-fixed-variant": "#003ea8",
+                    "on-primary-fixed": "#29170d",
+                    "on-surface": "#1c1c19",
+                    "secondary": "#994700",
+                    "error-container": "#ffdad6",
+                    "on-secondary": "#ffffff",
+                    "secondary-container": "#fb7800",
+                    "on-tertiary-fixed": "#00174b",
+                    "on-background": "#1c1c19",
+                    "outline": "#81746f",
+                    "surface-tint": "#73594b",
+                    "on-secondary-fixed": "#321200",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-secondary-container": "#592600",
+                    "surface-container": "#f0ede9",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed-dim": "#ffb68b",
+                    "surface-variant": "#e5e2dd",
+                    "on-tertiary-container": "#7e9eff",
+                    "primary-container": "#4a3428",
+                    "surface-container-highest": "#e5e2dd",
+                    "inverse-surface": "#31302d",
+                    "surface-bright": "#fcf9f4",
+                    "on-surface-variant": "#4f453f",
+                    "tertiary-fixed-dim": "#b4c5ff",
+                    "on-primary-fixed-variant": "#594235",
+                    "on-error": "#ffffff",
+                    "primary-fixed": "#ffdbca"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-sm": "8px",
+                    "stack-md": "16px",
+                    "stack-lg": "32px",
+                    "container-max": "1440px",
+                    "margin-mobile": "20px",
+                    "margin-tablet": "40px",
+                    "gutter": "32px",
+                    "stack-xl": "64px",
+                    "margin-desktop": "80px"
+            },
+            "fontFamily": {
+                    "body-md": ["Manrope"],
+                    "headline-lg": ["Fraunces"],
+                    "headline-lg-mobile": ["Fraunces"],
+                    "label-sm": ["Manrope"],
+                    "headline-md": ["Fraunces"],
+                    "label-md": ["Manrope"],
+                    "display-lg": ["Fraunces"],
+                    "display-md": ["Fraunces"],
+                    "body-lg": ["Manrope"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["48px", {"lineHeight": "56px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "700"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "500"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "display-lg": ["84px", {"lineHeight": "92px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "display-md": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #fcf9f4;
+            color: #1c1c19;
+            -webkit-font-smoothing: antialiased;
+        }
+        .glass-card {
+            background: rgba(255, 253, 251, 0.7);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(74, 52, 40, 0.05);
+            box-shadow: 0 20px 40px rgba(74, 52, 40, 0.08);
+            transition: all 0.4s cubic-bezier(0.2, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 30px 60px rgba(74, 52, 40, 0.12);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .sidebar-item-active {
+            color: #994700;
+            font-weight: 700;
+            border-bottom: 2px solid #994700;
+            padding-bottom: 4px;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #dcdad5; border-radius: 10px; }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<!-- TopNavBar Mapping -->
+<nav class="fixed top-0 w-full z-50 bg-surface/60 backdrop-blur-3xl border-b border-primary/5 shadow-2xl shadow-primary/5">
+<div class="flex justify-between items-center w-full px-margin-desktop py-stack-md max-w-container-max mx-auto">
+<div class="font-headline-lg text-headline-lg tracking-tight text-primary">PAW &amp; PURR</div>
+<!-- Desktop Nav Links -->
+<div class="hidden md:flex items-center gap-stack-lg">
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-all duration-300" href="#">Marketplace</a>
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-all duration-300" href="#">Services</a>
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-all duration-300" href="#">Stories</a>
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-all duration-300" href="#">Boutique</a>
+</div>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-stack-md">
+<div class="hidden md:flex items-center bg-surface-container px-stack-md py-2 rounded-full">
+<span class="material-symbols-outlined text-outline">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-label-md px-2 w-48" placeholder="Search curated services..." type="text"/>
+</div>
+<button class="bg-secondary text-on-secondary px-6 py-2 rounded-full font-label-md hover:scale-95 duration-200 transition-transform">Join Club</button>
+<div class="flex gap-stack-sm ml-4">
+<span class="material-symbols-outlined cursor-pointer text-primary p-2 rounded-full hover:bg-surface-container-high transition-colors">shopping_bag</span>
+<span class="material-symbols-outlined cursor-pointer text-secondary-container p-2 rounded-full bg-secondary-fixed/30 transition-colors" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="pt-32 pb-stack-xl px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<!-- Dashboard Header -->
+<header class="mb-stack-xl flex flex-col md:flex-row justify-between items-end gap-stack-md">
+<div>
+<h1 class="font-display-md text-display-md text-primary mb-2">Welcome, Isabella.</h1>
+<p class="font-body-lg text-on-surface-variant opacity-80 max-w-xl">Curating the finest moments for Winston &amp; Luna. Your concierge dashboard is ready.</p>
+</div>
+<div class="flex gap-4">
+<div class="flex items-center gap-2 glass-card px-stack-md py-2 rounded-full">
+<span class="w-3 h-3 rounded-full bg-green-500 animate-pulse"></span>
+<span class="font-label-sm uppercase tracking-widest text-primary">Live Tracking Active</span>
+</div>
+</div>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Primary Live Tracking Widget -->
+<div class="md:col-span-8 glass-card rounded-[40px] overflow-hidden p-stack-md h-[480px] relative group">
+<div class="absolute inset-0 bg-gray-200">
+<div class="w-full h-full bg-cover bg-center filter grayscale-[0.3] contrast-[1.1]" data-location="Paris" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA8i8xOQpeKbBDgZZQshq8520sXAAJ-ccAbPutzmvpM16QfQXS9RlTYA7aVskTBqCloJHqPCB5PGm221AXW-m9UWk1RI6tLRK49a6NCWIzqYNcmCcEp4taVOatDPSIgOpIkZQgCEBqUvU9yx9smW2ZIEvRwyk_CofeuKsttsOdAHCbHDS-eC3BWsZpqmvvcQUCr4fVHEvbcvtr0Z5eGer6KW8MSoZQndNm__0ihmOiXhVB4PavA9wbKVpxeMnyObXmqk7wYMdqW3A')"></div>
+</div>
+<div class="absolute top-8 left-8 z-10 flex flex-col gap-3">
+<div class="bg-white/90 backdrop-blur-md px-4 py-3 rounded-2xl border border-primary/5 flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-secondary">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a majestic golden retriever with a glossy coat and kind eyes, set against a warm minimalist beige background, reflecting high-end luxury pet photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJ-uKErX_K9_mAbYMFNan-DTxwGOAYt56UMgDdW06gyOOMR2V8hdMP2zVzyi1YWjZzFUWlYAElAuaz-9igZ6CKGtVlxfDRA9jJ00pkpHaZyAV7e4M206aD1S7z7UoLEQYFXDMgQSpP8byU3AIYP8327-2bRl3CCH2WfIYIdkuyPlLP4BJRq1DBr96urdSB_05DCWHv1OM6p-Qou74kSFc0rOgi83Jrf90UCAQUjRUtr6AtyrBMTwS4BpiISsozfUqp36JUg9Sh2w"/>
+</div>
+<div>
+<p class="font-label-sm text-secondary-container uppercase tracking-widest">Winston is on a walk</p>
+<p class="font-headline-md text-headline-md-mobile text-primary">Le Jardin du Luxembourg</p>
+</div>
+</div>
+</div>
+<!-- Mini Map Stats Overlay -->
+<div class="absolute bottom-8 right-8 z-10 flex gap-4">
+<div class="glass-card bg-primary text-on-primary px-6 py-4 rounded-3xl flex flex-col">
+<span class="font-label-sm opacity-60">Speed</span>
+<span class="font-headline-md">4.2<span class="text-sm">km/h</span></span>
+</div>
+<div class="glass-card bg-white px-6 py-4 rounded-3xl flex flex-col">
+<span class="font-label-sm text-on-surface-variant">Heart Rate</span>
+<span class="font-headline-md text-primary">82<span class="text-sm">bpm</span></span>
+</div>
+</div>
+</div>
+<!-- Pet Health Profiles -->
+<div class="md:col-span-4 flex flex-col gap-gutter">
+<div class="glass-card rounded-[40px] p-stack-lg flex-1 border-l-4 border-secondary">
+<div class="flex justify-between items-start mb-6">
+<h3 class="font-headline-md text-primary">Winston</h3>
+<span class="bg-primary/5 px-3 py-1 rounded-full font-label-sm text-primary">Golden Retriever</span>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-center py-2 border-b border-primary/5">
+<span class="text-on-surface-variant font-label-md">Weight</span>
+<span class="text-primary font-bold">32.4 kg</span>
+</div>
+<div class="flex justify-between items-center py-2 border-b border-primary/5">
+<span class="text-on-surface-variant font-label-md">Activity Score</span>
+<span class="text-secondary font-bold">Optimal</span>
+</div>
+<div class="flex justify-between items-center py-2">
+<span class="text-on-surface-variant font-label-md">Next Vaccine</span>
+<span class="text-primary font-bold">12 Oct</span>
+</div>
+</div>
+<button class="w-full mt-8 py-3 rounded-full border border-primary/10 font-label-md hover:bg-primary hover:text-white transition-all">View Health Records</button>
+</div>
+<!-- Wallet / Rewards Quick View -->
+<div class="glass-card rounded-[40px] p-stack-lg bg-primary-container text-on-primary">
+<div class="flex items-center gap-4 mb-4">
+<span class="material-symbols-outlined text-secondary-fixed-dim scale-125">account_balance_wallet</span>
+<p class="font-label-sm uppercase tracking-widest text-primary-fixed-dim">PetSaathi Credits</p>
+</div>
+<h2 class="text-[40px] font-headline-lg leading-none mb-2">1,240 <span class="text-lg opacity-60">PTS</span></h2>
+<p class="text-sm opacity-70 mb-6">Equivalent to €124.00 for your next booking.</p>
+<div class="flex gap-2">
+<button class="bg-secondary text-on-secondary px-4 py-2 rounded-full text-xs font-bold">Redeem</button>
+<button class="bg-white/10 text-white px-4 py-2 rounded-full text-xs font-bold">Add Funds</button>
+</div>
+</div>
+</div>
+<!-- Upcoming Booking Card -->
+<div class="md:col-span-5 glass-card rounded-[40px] p-stack-lg overflow-hidden relative">
+<div class="flex flex-col h-full">
+<div class="mb-8">
+<span class="bg-secondary-fixed text-on-secondary-fixed px-3 py-1 rounded-full text-xs font-bold mb-4 inline-block uppercase">Upcoming Service</span>
+<h3 class="font-headline-lg text-headline-lg-mobile text-primary leading-tight">Luxury Spa &amp; Grooming session for Luna</h3>
+</div>
+<div class="mt-auto space-y-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">calendar_today</span>
+</div>
+<div>
+<p class="text-xs font-label-sm text-on-surface-variant uppercase">Date &amp; Time</p>
+<p class="font-body-md font-bold">Saturday, Sep 14 · 14:00</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">person_pin</span>
+</div>
+<div>
+<p class="text-xs font-label-sm text-on-surface-variant uppercase">Specialist</p>
+<p class="font-body-md font-bold">Marc-Antoine D.</p>
+</div>
+</div>
+</div>
+<!-- Decorative Element -->
+<div class="absolute -right-10 -bottom-10 opacity-5 pointer-events-none">
+<span class="material-symbols-outlined text-[200px]">pets</span>
+</div>
+</div>
+</div>
+<!-- Digital Report Gallery -->
+<div class="md:col-span-7 glass-card rounded-[40px] p-stack-lg">
+<div class="flex justify-between items-center mb-8">
+<h3 class="font-headline-md text-primary">Recent Experiences</h3>
+<a class="text-secondary font-label-md flex items-center gap-1 hover:gap-2 transition-all" href="#">View Gallery <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+<div class="group relative aspect-[4/5] rounded-3xl overflow-hidden cursor-pointer">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A high-quality lifestyle photograph of a playful Siamese cat sitting on a velvet teal cushion in a sun-drenched minimalist apartment. Soft morning light creates gentle shadows, highlighting the cat's elegant silhouette and deep blue eyes." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkfaPs2Z9__1hvEl0RqZeY0zjNghMIHhgaEfj-KxL5pgGkQWikzLs8qcacWVwAiQrwfVKk_o_bQr1smBtOvB9XvRU5h1Pzq2WA_rouHwDfeq7KwwJO0rKJBfADUQZuVlRgZAjbOBL8Vu30cUjpEu9Ojot78miCcLmNFLZ4bcglMKcd1e5tNLOTR-pk6SxdUmAxdUJbUbeKBh0c0DJKcdRGdP4rFrPUsCmkBpforHcVtkkw4is9cHTAmPdNuBUeJzDQa5ABGlPofA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+<p class="text-white text-xs font-label-sm uppercase">Morning Playtime</p>
+</div>
+</div>
+<div class="group relative aspect-[4/5] rounded-3xl overflow-hidden cursor-pointer">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A cinematic outdoor shot of a border collie running through a meadow of wildflowers at sunset. The golden hour lighting casts a warm, ethereal glow over the scene, emphasizing the movement and joy of the pet in a luxury editorial photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2LvX0Vx4Nd3aGVT0TFuCZ_iuWFlv7xNcwsnO33F8KK_bk2IBQaoSJp9oL6fuxQ1cG6y3As-QtWuR8dLVNh7J2tP021RX0hA-GtaRuzH__1pcv7fij0y8G-Y9YGZZpO3yzFpKQaCyNGBFpj5AXb2tAeTyIp5JbBWN5RVwlcLPFu840pIVUV1_QCJd_B9dZ4N2EZ3pfwcCAo2t3bm188W5c9udbh49GVRUQ_HFr6AKbsjG9ZsODqTEmozWJS3fSRsWMzu8v8tzrGQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+<p class="text-white text-xs font-label-sm uppercase">Park Adventure</p>
+</div>
+</div>
+<div class="group relative aspect-[4/5] rounded-3xl overflow-hidden cursor-pointer hidden md:block">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A serene close-up of a fluffy white Persian cat napping on a high-end linen throw. The background is a blurred, sophisticated interior with neutral tones and soft textures, evoking a sense of calm and premium comfort." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkkRSNvvR_kDpIf5fkHLdQGr8f24YAWAmhbkNwK_9oMgR-A_8RpISqVaNBdy2nB96rx6tWA_CBAQLhhO5IZW7u21Jh0GzD6KSUehdFydpT5D0Tu5v5wjTRokd1juyuXyEVq6PIXpJA4GeIB9xZ7Iipg-QBvlCYXC6MIEMxmvlHQ7uj_1JaNj5dMZahi5rhR8IfuCtVJ7Tjwr5qxIRAtaYPCdloH0lFYcUPUsZf9f3Ly_3PcR8qRiU5lz5GSCKypBjmj8X1pi3zJg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+<p class="text-white text-xs font-label-sm uppercase">Afternoon Rest</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Booking History List -->
+<div class="md:col-span-12 glass-card rounded-[40px] p-stack-lg">
+<div class="flex items-center justify-between mb-8">
+<h3 class="font-headline-md text-primary">Service Concierge History</h3>
+<div class="flex gap-4">
+<span class="material-symbols-outlined cursor-pointer hover:text-secondary">tune</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-secondary">download</span>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="border-b border-primary/10">
+<th class="py-4 font-label-sm text-on-surface-variant uppercase tracking-widest">Service</th>
+<th class="py-4 font-label-sm text-on-surface-variant uppercase tracking-widest">Pet</th>
+<th class="py-4 font-label-sm text-on-surface-variant uppercase tracking-widest">Date</th>
+<th class="py-4 font-label-sm text-on-surface-variant uppercase tracking-widest">Status</th>
+<th class="py-4 font-label-sm text-on-surface-variant uppercase tracking-widest text-right">Amount</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-primary/5">
+<tr class="hover:bg-primary/5 transition-colors cursor-pointer group">
+<td class="py-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">medical_services</span>
+</div>
+<span class="font-body-md font-bold group-hover:text-secondary transition-colors">Vet Wellness Visit</span>
+</div>
+</td>
+<td class="py-6 font-body-md text-on-surface-variant">Winston</td>
+<td class="py-6 font-body-md text-on-surface-variant">Aug 28, 2024</td>
+<td class="py-6">
+<span class="px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-800">Completed</span>
+</td>
+<td class="py-6 font-body-md font-bold text-right">€85.00</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors cursor-pointer group">
+<td class="py-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">directions_walk</span>
+</div>
+<span class="font-body-md font-bold group-hover:text-secondary transition-colors">Private Walking (1hr)</span>
+</div>
+</td>
+<td class="py-6 font-body-md text-on-surface-variant">Luna</td>
+<td class="py-6 font-body-md text-on-surface-variant">Aug 24, 2024</td>
+<td class="py-6">
+<span class="px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-800">Completed</span>
+</td>
+<td class="py-6 font-body-md font-bold text-right">€45.00</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors cursor-pointer group">
+<td class="py-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">hotel</span>
+</div>
+<span class="font-body-md font-bold group-hover:text-secondary transition-colors">Overnight Boutique Boarding</span>
+</div>
+</td>
+<td class="py-6 font-body-md text-on-surface-variant">Winston</td>
+<td class="py-6 font-body-md text-on-surface-variant">Aug 15-18, 2024</td>
+<td class="py-6">
+<span class="px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-800">Completed</span>
+</td>
+<td class="py-6 font-body-md font-bold text-right">€320.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Mapping -->
+<footer class="bg-primary text-on-primary w-full rounded-t-[40px] mt-stack-xl">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-stack-xl max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1">
+<div class="font-headline-lg text-headline-lg text-primary-fixed-dim mb-4">PAW &amp; PURR</div>
+<p class="font-body-md opacity-70">Elevating the life of your most loyal companions through curated care and luxury experiences.</p>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-sm uppercase tracking-widest text-primary-fixed-dim">Explore</h4>
+<a class="text-on-primary/70 font-label-sm hover:text-primary-fixed-dim hover:translate-x-1 duration-300 transition-all uppercase tracking-widest" href="#">Heritage</a>
+<a class="text-on-primary/70 font-label-sm hover:text-primary-fixed-dim hover:translate-x-1 duration-300 transition-all uppercase tracking-widest" href="#">Sustainability</a>
+<a class="text-on-primary/70 font-label-sm hover:text-primary-fixed-dim hover:translate-x-1 duration-300 transition-all uppercase tracking-widest" href="#">Global Concierge</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-sm uppercase tracking-widest text-primary-fixed-dim">Legal</h4>
+<a class="text-on-primary/70 font-label-sm hover:text-primary-fixed-dim hover:translate-x-1 duration-300 transition-all uppercase tracking-widest" href="#">Terms of Service</a>
+<a class="text-on-primary/70 font-label-sm hover:text-primary-fixed-dim hover:translate-x-1 duration-300 transition-all uppercase tracking-widest" href="#">Privacy Policy</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-sm uppercase tracking-widest text-primary-fixed-dim">Connect</h4>
+<div class="flex gap-4">
+<span class="material-symbols-outlined cursor-pointer hover:text-primary-fixed-dim transition-colors">share</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary-fixed-dim transition-colors">mail</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary-fixed-dim transition-colors">phone_in_talk</span>
+</div>
+</div>
+</div>
+<div class="px-margin-desktop py-8 border-t border-white/10 max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-label-sm uppercase tracking-widest text-on-primary/50">© 2024 PAW &amp; PURR LUXURY CO. ALL RIGHTS RESERVED.</p>
+<div class="flex gap-8">
+<span class="font-label-sm uppercase tracking-widest text-primary-fixed-dim">Paris</span>
+<span class="font-label-sm uppercase tracking-widest text-primary-fixed-dim">London</span>
+<span class="font-label-sm uppercase tracking-widest text-primary-fixed-dim">New York</span>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interaction for cards
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mousedown', () => {
+                card.style.transform = 'scale(0.98) translateY(0)';
+            });
+            card.addEventListener('mouseup', () => {
+                card.style.transform = 'translateY(-4px) scale(1.01)';
+            });
+        });
+
+        // Search bar focus effect
+        const searchInput = document.querySelector('input[type="text"]');
+        if(searchInput) {
+            searchInput.addEventListener('focus', () => {
+                searchInput.parentElement.classList.add('ring-2', 'ring-secondary/20');
+            });
+            searchInput.addEventListener('blur', () => {
+                searchInput.parentElement.classList.remove('ring-2', 'ring-secondary/20');
+            });
+        }
+    </script>
+</body></html>

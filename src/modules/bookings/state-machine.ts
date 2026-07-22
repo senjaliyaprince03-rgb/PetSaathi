@@ -1,0 +1,57 @@
+export const bookingStatuses = [
+  "DRAFT",
+  "REQUESTED",
+  "RISK_REVIEW",
+  "MATCHING",
+  "SITTER_PROPOSED",
+  "CUSTOMER_APPROVAL_PENDING",
+  "PAYMENT_PENDING",
+  "CONFIRMED",
+  "SITTER_EN_ROUTE",
+  "IN_PROGRESS",
+  "REPORT_PENDING",
+  "COMPLETED",
+  "CLOSED",
+  "DECLINED",
+  "CUSTOMER_CANCELLED",
+  "SITTER_CANCELLED",
+  "REPLACEMENT_REQUIRED",
+  "NO_SHOW",
+  "INCIDENT_HOLD"
+] as const;
+
+export type BookingStatus = (typeof bookingStatuses)[number];
+
+const terminalStatuses = new Set<BookingStatus>(["CLOSED", "DECLINED", "CUSTOMER_CANCELLED"]);
+
+export const bookingTransitions: Record<BookingStatus, readonly BookingStatus[]> = {
+  DRAFT: ["REQUESTED", "CUSTOMER_CANCELLED"],
+  REQUESTED: ["RISK_REVIEW", "MATCHING", "DECLINED", "CUSTOMER_CANCELLED"],
+  RISK_REVIEW: ["MATCHING", "DECLINED", "CUSTOMER_CANCELLED"],
+  MATCHING: ["SITTER_PROPOSED", "DECLINED", "CUSTOMER_CANCELLED"],
+  SITTER_PROPOSED: ["CUSTOMER_APPROVAL_PENDING", "MATCHING", "SITTER_CANCELLED", "REPLACEMENT_REQUIRED", "CUSTOMER_CANCELLED"],
+  CUSTOMER_APPROVAL_PENDING: ["PAYMENT_PENDING", "CONFIRMED", "MATCHING", "CUSTOMER_CANCELLED"],
+  PAYMENT_PENDING: ["CONFIRMED", "CUSTOMER_CANCELLED", "MATCHING"],
+  CONFIRMED: ["SITTER_EN_ROUTE", "SITTER_CANCELLED", "CUSTOMER_CANCELLED", "REPLACEMENT_REQUIRED", "NO_SHOW", "INCIDENT_HOLD"],
+  SITTER_EN_ROUTE: ["IN_PROGRESS", "NO_SHOW", "REPLACEMENT_REQUIRED", "INCIDENT_HOLD"],
+  IN_PROGRESS: ["REPORT_PENDING", "INCIDENT_HOLD"],
+  REPORT_PENDING: ["COMPLETED", "INCIDENT_HOLD"],
+  COMPLETED: ["CLOSED", "INCIDENT_HOLD"],
+  CLOSED: [],
+  DECLINED: [],
+  CUSTOMER_CANCELLED: [],
+  SITTER_CANCELLED: ["REPLACEMENT_REQUIRED", "CLOSED"],
+  REPLACEMENT_REQUIRED: ["SITTER_PROPOSED", "DECLINED", "CUSTOMER_CANCELLED"],
+  NO_SHOW: ["REPLACEMENT_REQUIRED", "INCIDENT_HOLD", "CLOSED"],
+  INCIDENT_HOLD: ["CONFIRMED", "IN_PROGRESS", "REPORT_PENDING", "COMPLETED", "REPLACEMENT_REQUIRED"]
+};
+
+export function canTransitionBooking(from: BookingStatus, to: BookingStatus) {
+  return !terminalStatuses.has(from) && bookingTransitions[from].includes(to);
+}
+
+export function assertBookingTransition(from: BookingStatus, to: BookingStatus) {
+  if (!canTransitionBooking(from, to)) {
+    throw new Error(`Invalid booking transition: ${from} -> ${to}`);
+  }
+}

@@ -1,0 +1,83 @@
+
+> petsaathi@0.1.0 dev
+> next dev --hostname 127.0.0.1 --port 3010
+
+   ▲ Next.js 15.5.20
+   - Local:        http://127.0.0.1:3010
+   - Network:      http://127.0.0.1:3010
+
+ ✓ Starting...
+ ✓ Ready in 6.6s
+ ○ Compiling / ...
+ ✓ Compiled / in 19.7s (2635 modules)
+ GET / 200 in 20725ms
+ ○ Compiling /book ...
+ ✓ Compiled /book in 2.9s (2691 modules)
+ GET / 200 in 771ms
+ GET /book 200 in 3801ms
+ ✓ Compiled in 2.2s (2691 modules)
+ GET /book 200 in 351ms
+ ○ Compiling /manifest.webmanifest ...
+ ✓ Compiled /manifest.webmanifest in 804ms (2699 modules)
+ GET /manifest.webmanifest 200 in 1092ms
+ ✓ Compiled in 1110ms (1254 modules)
+ ✓ Compiled in 793ms (1254 modules)
+ GET /book 200 in 786ms
+ ✓ Compiled in 670ms (1254 modules)
+ GET /book 200 in 638ms
+ GET /book 200 in 201ms
+ ✓ Compiled in 606ms (1254 modules)
+ GET /manifest.webmanifest 200 in 120ms
+ GET /book 200 in 165ms
+ GET /manifest.webmanifest 200 in 49ms
+ ✓ Compiled in 487ms (1254 modules)
+ GET /book 200 in 110ms
+ GET /manifest.webmanifest 200 in 42ms
+ ✓ Compiled in 507ms (1254 modules)
+ GET /book 200 in 114ms
+ GET /manifest.webmanifest 200 in 28ms
+ ✓ Compiled in 479ms (1254 modules)
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 6.2s (2718 modules)
+ GET /book 404 in 6742ms
+ ○ Compiling /_not-found ...
+ GET /book 200 in 893ms
+ ✓ Compiled /_not-found in 1918ms (2718 modules)
+ ✓ Compiled in 570ms (1258 modules)
+ ✓ Compiled in 1263ms (2718 modules)
+ ✓ Compiled in 532ms (1258 modules)
+ ✓ Compiled in 1734ms (2718 modules)
+ ✓ Compiled in 1528ms (2718 modules)
+ ✓ Compiled in 813ms (1254 modules)
+ ✓ Compiled in 600ms (1254 modules)
+ ○ Compiling /middleware ...
+ ✓ Compiled /middleware in 2s (212 modules)
+ ○ Compiling /api/health ...
+ ✓ Compiled /api/health in 2.2s (2699 modules)
+ GET /api/health 200 in 2655ms
+ GET / 200 in 619ms
+ GET /book 200 in 304ms
+ ✓ Compiled in 3.5s (2692 modules)
+ GET /book 200 in 349ms
+ ✓ Compiled /manifest.webmanifest in 348ms (1459 modules)
+ GET /manifest.webmanifest 200 in 586ms
+ GET /book 200 in 398ms
+ GET / 200 in 400ms
+ ✓ Compiled in 3.5s (2725 modules)
+ ✓ Compiled in 991ms (1270 modules)
+ ✓ Compiled in 1398ms (1270 modules)
+ ✓ Compiled in 793ms (1270 modules)
+ ✓ Compiled in 697ms (1270 modules)
+ ✓ Compiled in 615ms (1270 modules)
+ ✓ Compiled in 693ms (1270 modules)
+ ✓ Compiled in 410ms (1270 modules)
+ ✓ Compiled in 347ms (1270 modules)
+ ✓ Compiled in 362ms (1270 modules)
+ ✓ Compiled in 443ms (1270 modules)
+ ✓ Compiled in 2.6s (2937 modules)
+ ✓ Compiled in 394ms (1270 modules)
+ ✓ Compiled in 352ms (1270 modules)
+ ✓ Compiled in 381ms (1270 modules)
+ ✓ Compiled in 725ms (1270 modules)
+ ✓ Compiled in 862ms (1270 modules)
+[?25h

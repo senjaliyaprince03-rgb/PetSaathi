@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PetSaathi | Luxury Pet Care Redefined</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Clash Display via external CDN for premium look -->
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 10px 30px rgba(83, 37, 137, 0.05);
+        }
+        .text-glow {
+            text-shadow: 0 0 20px rgba(60, 3, 114, 0.1);
+        }
+        .hero-gradient {
+            background: linear-gradient(180deg, rgba(249, 249, 255, 0) 0%, rgba(249, 249, 255, 1) 100%);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "orange-soft": "#FFEDD5",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-container": "#4cbcaf",
+                        "on-primary": "#ffffff",
+                        "surface-glass": "rgba(255, 255, 255, 0.7)",
+                        "on-secondary-container": "#571a00",
+                        "surface-variant": "#dce2f7",
+                        "surface-dim": "#d3daef",
+                        "on-tertiary-fixed-variant": "#005049",
+                        "surface-container": "#e9edff",
+                        "secondary": "#a73a00",
+                        "surface-bright": "#f9f9ff",
+                        "background": "#f9f9ff",
+                        "surface": "#f9f9ff",
+                        "secondary-fixed": "#ffdbce",
+                        "inverse-surface": "#293040",
+                        "primary": "#3c0372",
+                        "tertiary-fixed-dim": "#6bd8cb",
+                        "tertiary-fixed": "#89f5e7",
+                        "outline": "#7c7482",
+                        "tertiary": "#00302b",
+                        "on-primary-fixed-variant": "#5b2e91",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed": "#00201d",
+                        "inverse-primary": "#d9b9ff",
+                        "surface-container-high": "#e1e8fd",
+                        "on-background": "#141b2b",
+                        "on-surface": "#141b2b",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#d9b9ff",
+                        "violet-soft": "#F3E8FF",
+                        "on-secondary-fixed-variant": "#7f2b00",
+                        "surface-tint": "#7448ab",
+                        "on-secondary-fixed": "#370e00",
+                        "glass-border": "rgba(255, 255, 255, 0.4)",
+                        "primary-fixed": "#eedbff",
+                        "on-primary-container": "#c495ff",
+                        "tertiary-container": "#004842",
+                        "inverse-on-surface": "#edf0ff",
+                        "secondary-fixed-dim": "#ffb599",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#4b4451",
+                        "on-primary-fixed": "#2a0054",
+                        "surface-container-highest": "#dce2f7",
+                        "outline-variant": "#cdc3d3",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "primary-container": "#532589",
+                        "surface-container-low": "#f1f3ff",
+                        "on-tertiary": "#ffffff",
+                        "secondary-container": "#fd651e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-xl": "120px",
+                        "stack-md": "32px",
+                        "stack-sm": "16px",
+                        "margin-desktop": "80px",
+                        "stack-xs": "8px",
+                        "gutter": "32px",
+                        "margin-mobile": "20px",
+                        "container-max": "1440px",
+                        "stack-lg": "64px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "display-hero-mobile": ["Clash Display"],
+                        "headline-lg": ["Clash Display"],
+                        "headline-lg-mobile": ["Clash Display"],
+                        "headline-md": ["Clash Display"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "label-bold": ["Plus Jakarta Sans"],
+                        "label-sm": ["Plus Jakarta Sans"],
+                        "display-hero": ["Clash Display"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "display-hero-mobile": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "0em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "label-bold": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "display-hero": ["72px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="w-full sticky top-0 z-50 backdrop-blur-xl bg-surface-glass border-b border-glass-border shadow-sm">
+<div class="flex justify-between items-center px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md font-bold text-primary">PetSaathi</div>
+<div class="hidden md:flex items-center gap-stack-md">
+<a class="font-body-md text-body-md text-primary font-bold border-b-2 border-primary transition-colors duration-300" href="#">Find Care</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Become a Sitter</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Services</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Support</a>
+</div>
+<div class="flex items-center gap-stack-sm">
+<button class="font-label-bold text-label-bold text-on-surface-variant hover:text-primary transition-transform duration-200 hover:scale-105">Sign In</button>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-bold text-label-bold transition-transform duration-200 hover:scale-105 shadow-sm">Join Now</button>
+</div>
+</div>
+</nav>
+<main>
+<!-- Hero Section -->
+<section class="relative min-h-[90vh] flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLsF_JBTzENh8NCNKpw1rccXiGKzelN3uTViYZIr4dgIel_pseP2Wy5NUIo-CM-OgLQ1MwgewqRDXwk0E2tBMWbEhI6nNrHBFkMsol04ztHYbYSjzIDtGiXBV-1BNxm_LIvI9PyDMiBUBqnu0DXma29ihwK5_JtnKqdL4q5g8nMd1saRkBUZ4mftf4o1veiYwo_TpjQy962-ZXXEm9yhDBbxholmNbkxUzwpuWewIdrEKr-KJzCoaGCKpbo"/>
+<div class="absolute inset-0 hero-gradient"></div>
+</div>
+<div class="relative z-10 max-w-container-max mx-auto px-margin-desktop w-full grid grid-cols-12 gap-gutter items-center">
+<div class="col-span-12 md:col-span-7">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-violet-soft text-primary-fixed-dim font-label-bold text-label-sm mb-stack-sm">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+                        INDIA'S MOST TRUSTED CARE
+                    </div>
+<h1 class="font-display-hero text-display-hero text-primary leading-none mb-stack-sm text-glow">
+                        India's Premier<br/>Luxury Pet Care
+                    </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mb-stack-lg leading-relaxed">
+                        Providing a sanctuary of comfort and professional care for your beloved companions while you're away. Experience the gold standard of pet wellness.
+                    </p>
+<div class="flex flex-wrap gap-stack-sm">
+<button class="bg-primary-container text-on-primary px-10 py-4 rounded-full font-headline-md text-body-md shadow-lg hover:scale-105 transition-transform">Book Now</button>
+<button class="bg-surface-glass border border-primary text-primary px-10 py-4 rounded-full font-headline-md text-body-md backdrop-blur-md hover:bg-violet-soft transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined">play_circle</span>
+                            Take a Tour
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats/Social Proof Minimalist Row -->
+<section class="max-w-container-max mx-auto px-margin-desktop -mt-16 relative z-20">
+<div class="glass-card rounded-[32px] p-stack-md grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+<div>
+<div class="font-headline-lg text-primary">50k+</div>
+<div class="font-label-sm text-on-surface-variant">Happy Pets</div>
+</div>
+<div>
+<div class="font-headline-lg text-primary">4.9/5</div>
+<div class="font-label-sm text-on-surface-variant">Parent Rating</div>
+</div>
+<div>
+<div class="font-headline-lg text-primary">24/7</div>
+<div class="font-label-sm text-on-surface-variant">Vet Support</div>
+</div>
+<div>
+<div class="font-headline-lg text-primary">12+</div>
+<div class="font-label-sm text-on-surface-variant">Major Cities</div>
+</div>
+</div>
+</section>
+<!-- Services Section: World-Class Care -->
+<section class="py-stack-xl max-w-container-max mx-auto px-margin-desktop">
+<div class="text-center mb-stack-lg">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-stack-xs">World-Class Care</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Tailored experiences designed for the modern pet's lifestyle</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Elite Walking -->
+<div class="glass-card p-10 rounded-[40px] group transition-all duration-500 hover:-translate-y-4">
+<div class="w-16 h-16 bg-violet-soft rounded-2xl flex items-center justify-center text-primary mb-8 group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[32px]" data-weight="fill">directions_walk</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-4">Elite Walking</h3>
+<ul class="space-y-4 mb-8">
+<li class="flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary-fixed-dim text-[20px]">check_circle</span>
+                            GPS Tracked Routes
+                        </li>
+<li class="flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary-fixed-dim text-[20px]">check_circle</span>
+                            Personalized Pace
+                        </li>
+<li class="flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary-fixed-dim text-[20px]">check_circle</span>
+                            Live Photo Updates
+                        </li>
+</ul>
+<a class="inline-flex items-center gap-2 font-label-bold text-primary group-hover:translate-x-2 transition-transform" href="#">
+                        Learn more <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+<!-- Luxury Sitting -->
+<div class="glass-card p-10 rounded-[40px] border-secondary/20 group transition-all duration-500 hover:-translate-y-4 relative overflow-hidden">
+<div class="absolute top-4 right-4 bg-secondary-container text-white text-[10px] px-3 py-1 rounded-full font-bold uppercase tracking-wider">Most Popular</div>
+<div class="w-16 h-16 bg-orange-soft rounded-2xl flex items-center justify-center text-secondary mb-8 group-hover:bg-secondary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[32px]" data-weight="fill">home_pin</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-4">Luxury Sitting</h3>
+<ul class="space-y-4 mb-8">
+<li class="flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary-fixed-dim text-[20px]">check_circle</span>
+                            In-Home Overnight Stays
+                        </li>
+<li class="flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary-fixed-dim text-[20px]">check_circle</span>
+                            Premium Meal Preparation
+                        </li>
+<li class="flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary-fixed-dim text-[20px]">check_circle</span>
+                            Medicine Administration
+                        </li>
+</ul>
+<a class="inline-flex items-center gap-2 font-label-bold text-primary group-hover:translate-x-2 transition-transform" href="#">
+                        Learn more <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+<!-- Premium Grooming -->
+<div class="glass-card p-10 rounded-[40px] group transition-all duration-500 hover:-translate-y-4">
+<div class="w-16 h-16 bg-violet-soft rounded-2xl flex items-center justify-center text-primary mb-8 group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[32px]" data-weight="fill">content_cut</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-4">Premium Grooming</h3>
+<ul class="space-y-4 mb-8">
+<li class="flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary-fixed-dim text-[20px]">check_circle</span>
+                            Spa-Level Treatments
+                        </li>
+<li class="flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary-fixed-dim text-[20px]">check_circle</span>
+                            Organic Aromatherapy
+                        </li>
+<li class="flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary-fixed-dim text-[20px]">check_circle</span>
+                            Full Pedicure Service
+                        </li>
+</ul>
+<a class="inline-flex items-center gap-2 font-label-bold text-primary group-hover:translate-x-2 transition-transform" href="#">
+                        Learn more <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Testimonials Section -->
+<section class="py-stack-xl bg-surface-container/30 relative">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="flex flex-col md:flex-row justify-between items-end mb-stack-lg">
+<div class="max-w-xl">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-stack-xs">Trusted by Elite Pet Parents</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Real stories from our high-end community of companion lovers.</p>
+</div>
+<div class="hidden md:flex gap-4">
+<button class="w-12 h-12 rounded-full border border-outline flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-12 h-12 rounded-full border border-outline flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
+<!-- Testimonial 1 -->
+<div class="glass-card p-12 rounded-[48px] flex flex-col md:flex-row gap-8 items-start">
+<div class="w-24 h-24 rounded-full overflow-hidden shrink-0 border-4 border-white shadow-md">
+<img class="w-full h-full object-cover" data-alt="A portrait of a sophisticated young Indian woman named Ananya Sharma, smiling warmly in a sunlit modern apartment. She exudes elegance and trust, dressed in professional yet approachable attire. The background is softly blurred to focus on her friendly expression, maintaining the airy and bright luxury aesthetic of the PetSaathi brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuZR0V_X0i7bTFlDK-FTm1zyFaQCSTCFqh2P4g-lMZIS4yvBjTIL_gejWY6rX0Vr0AqvChMINWPB7AMtqpG1EYhatMihjXqrPU1AfgCSDz6AR6uklCPQF9QeE-0vEz_CX72H9hTB82akkuUDrWZ3ihuZswHefOsC9xQ6GERH2Y800T68a-MAEbf9SilCoy-vWPrgZs2nq1_opnvLr2t3CLo-R8o_fYm9vL4KKF5Z9HGS51VUKM4OapWbLbquagoRQOTQUXEhF1Ub0"/>
+</div>
+<div>
+<div class="flex text-secondary-container mb-4">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface italic mb-6 leading-relaxed">
+                                "PetSaathi has completely changed how I travel. Knowing my Golden Retriever is in such professional hands gives me absolute peace of mind. The level of detail in their reports is unmatched."
+                            </p>
+<h4 class="font-label-bold text-label-bold text-primary">— Ananya Sharma</h4>
+<p class="font-label-sm text-on-surface-variant">Mumbai Resident</p>
+</div>
+</div>
+<!-- Testimonial 2 -->
+<div class="glass-card p-12 rounded-[48px] flex flex-col md:flex-row gap-8 items-start">
+<div class="w-24 h-24 rounded-full overflow-hidden shrink-0 border-4 border-white shadow-md">
+<img class="w-full h-full object-cover" data-alt="A profile picture of a refined Indian gentleman named Vikram Mehra, showing a confident and kind expression. He is photographed in a well-lit office with a touch of greenery, representing a premium lifestyle. The lighting is soft and high-key, aligning with the airy glassmorphism design system of PetSaathi. Pure white surfaces and subtle violet accents are present in the environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdeBvziKT0L4RtFd_o84y2fB0_epxKZAyZWcbXgWet44MxhQyekfTxGCob3PrgV7vlGUt9XNiNUgRjQjwsl26XCfMvHxlm0XNZSgjl7zNuN75gM0psclKVGRpKUb6xR2osNTMCSXMuK9wLv_Ru4yzzLy13b9hGBn8Z7sVeU-1NuzDNnFD7a9TNxcp86yao84B-J0zs8-LBZWLkCw_r1Ue5TIZgsUqc2kXnN89g5oNGGZ2D1YFxEps-c3n912qZhka5I846_0EgjzE"/>
+</div>
+<div>
+<div class="flex text-secondary-container mb-4">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface italic mb-6 leading-relaxed">
+                                "The groomers at PetSaathi are artists. My Persian cat always comes back looking like she’s ready for a show, and more importantly, she’s calm and happy. Truly a five-star experience."
+                            </p>
+<h4 class="font-label-bold text-label-bold text-primary">— Vikram Mehra</h4>
+<p class="font-label-sm text-on-surface-variant">Bangalore Resident</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-stack-xl max-w-container-max mx-auto px-margin-desktop">
+<div class="relative rounded-[64px] overflow-hidden bg-primary p-stack-xl text-center">
+<!-- Abstract background pattern -->
+<div class="absolute inset-0 opacity-10 pointer-events-none">
+<div class="absolute top-0 left-0 w-96 h-96 bg-white blur-[100px] -translate-x-1/2 -translate-y-1/2"></div>
+<div class="absolute bottom-0 right-0 w-96 h-96 bg-secondary-container blur-[100px] translate-x-1/2 translate-y-1/2"></div>
+</div>
+<div class="relative z-10">
+<h2 class="font-display-hero text-headline-lg text-on-primary mb-stack-sm">Join the PetSaathi Family</h2>
+<p class="font-body-lg text-body-lg text-on-primary/80 max-w-2xl mx-auto mb-stack-lg">
+                        Give your pet the gift of luxury. Start your journey today and enjoy a special 20% off your first professional grooming session.
+                    </p>
+<div class="flex flex-col sm:flex-row justify-center gap-stack-sm">
+<button class="bg-secondary-container text-white px-12 py-5 rounded-full font-headline-md text-body-lg shadow-xl hover:scale-105 transition-transform">Get Started</button>
+<button class="bg-white/10 backdrop-blur-md border border-white/20 text-white px-12 py-5 rounded-full font-headline-md text-body-lg hover:bg-white/20 transition-colors">Contact Expert</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-stack-xl bg-surface border-t border-outline-variant">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop py-stack-md max-w-container-max mx-auto">
+<div class="mb-stack-sm md:mb-0">
+<div class="font-headline-md text-headline-md font-bold text-primary">PetSaathi</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">© 2024 PetSaathi Luxury Pet Care. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-stack-md">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors hover:translate-x-1 transition-transform" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors hover:translate-x-1 transition-transform" href="#">Terms of Service</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors hover:translate-x-1 transition-transform" href="#">Contact Us</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors hover:translate-x-1 transition-transform" href="#">About Us</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors hover:translate-x-1 transition-transform" href="#">Careers</a>
+</div>
+<div class="mt-stack-sm md:mt-0 flex gap-4">
+<a class="w-10 h-10 rounded-full bg-violet-soft flex items-center justify-center text-primary hover:bg-primary hover:text-on-primary transition-all" href="#">
+<span class="material-symbols-outlined text-lg">face_nod</span>
+</a>
+<a class="w-10 h-10 rounded-full bg-violet-soft flex items-center justify-center text-primary hover:bg-primary hover:text-on-primary transition-all" href="#">
+<span class="material-symbols-outlined text-lg">share</span>
+</a>
+<a class="w-10 h-10 rounded-full bg-violet-soft flex items-center justify-center text-primary hover:bg-primary hover:text-on-primary transition-all" href="#">
+<span class="material-symbols-outlined text-lg">favorite</span>
+</a>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interaction for buttons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.style.transform = 'scale(0.95)';
+            });
+            button.addEventListener('mouseup', () => {
+                button.style.transform = 'scale(1.05)';
+            });
+            button.addEventListener('mouseleave', () => {
+                button.style.transform = 'scale(1)';
+            });
+        });
+
+        // Simple scroll reveal
+        const observerOptions = {
+            threshold: 0.1
+        };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.glass-card').forEach(el => {
+            el.classList.add('opacity-0', 'translate-y-10', 'transition-all', 'duration-700', 'ease-out');
+            observer.observe(el);
+        });
+    </script>
+</body></html>

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PetSaathi | Admin Concierge</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#747878",
+                        "primary": "#000000",
+                        "secondary-container": "#e5e2dd",
+                        "surface-container": "#f6ece3",
+                        "surface-bright": "#fff8f3",
+                        "on-primary-fixed": "#1c1b1b",
+                        "surface-tint": "#5f5e5e",
+                        "on-primary-fixed-variant": "#474746",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#474743",
+                        "on-tertiary-fixed-variant": "#78310c",
+                        "on-background": "#1f1b15",
+                        "surface-container-low": "#fcf2e8",
+                        "on-tertiary-container": "#c56c43",
+                        "surface-dim": "#e2d9cf",
+                        "on-surface": "#1f1b15",
+                        "background": "#fff8f3",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#c4c7c7",
+                        "primary-fixed": "#e5e2e1",
+                        "surface-variant": "#eae1d8",
+                        "tertiary-container": "#360f00",
+                        "on-secondary-container": "#656461",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "secondary": "#5f5e5b",
+                        "tertiary": "#000000",
+                        "on-secondary-fixed": "#1c1c19",
+                        "primary-container": "#1c1b1b",
+                        "surface-container-high": "#f0e7dd",
+                        "inverse-surface": "#343029",
+                        "tertiary-fixed": "#ffdbcd",
+                        "tertiary-fixed-dim": "#ffb597",
+                        "on-tertiary-fixed": "#360f00",
+                        "surface": "#fff8f3",
+                        "inverse-on-surface": "#f9efe6",
+                        "on-surface-variant": "#444748",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#c9c6c2",
+                        "on-primary-container": "#858383",
+                        "inverse-primary": "#c8c6c5",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#e5e2dd",
+                        "surface-container-highest": "#eae1d8",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-gap": "120px",
+                        "base-unit": "8px",
+                        "gutter": "24px",
+                        "margin-mobile": "20px",
+                        "container-max": "1280px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Playfair Display"],
+                        "label-sm": ["Inter"],
+                        "headline-md": ["Playfair Display"],
+                        "body-lg": ["Inter"],
+                        "display-lg-mobile": ["Playfair Display"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "display-lg-mobile": ["40px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #fff8f3; }
+        .glass { background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(24px); border: 1px solid rgba(255, 255, 255, 0.3); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }
+        .chart-bar { transition: height 1s ease-in-out; }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #e5e2dd; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-background text-on-background overflow-x-hidden">
+<!-- Global Header (TopNavBar Anchor) -->
+<header class="fixed top-0 w-full bg-white/10 dark:bg-black/10 backdrop-blur-xl border-b border-white/10 shadow-sm z-50">
+<div class="flex justify-between items-center px-6 md:px-margin-desktop py-4 w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-8">
+<h1 class="font-display-lg text-[24px] tracking-tighter text-primary dark:text-on-primary-fixed">PetSaathi</h1>
+<nav class="hidden md:flex gap-6">
+<a class="font-body-md text-body-md text-primary font-bold border-b-2 border-primary pb-1" href="#">Dashboard</a>
+<a class="font-body-md text-body-md text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">Sitter Hub</a>
+<a class="font-body-md text-body-md text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">Logistics</a>
+<a class="font-body-md text-body-md text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">Analytics</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative group">
+<span class="material-symbols-outlined text-primary cursor-pointer">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full"></span>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-dim flex items-center justify-center border border-outline-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a premium concierge service manager in a sharp minimalist black suit, soft lighting, high-end editorial photography style, neutral background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkwwHuwAkuEztAUVzgBlpiR70S4yq9y-KorzTio5O7ehkKuZN_FBhVnfcmbPVmFGlTHvjSYoMCWW9DMoaFPCAjGkdLwLqtkzdkM6zkZGACOUPcDQTzEcyKzLkcY18_r9264YxkpQ9D8gly2TkauqZA19MhaLnZTM8QRXCrlRHUE7HjJC-CsJfnDX7iejkYjw2QqytAnSKm40kwU54AeT-tYg7kCgyJbZPsIcDSpO9foN7gJ7EcgxVKe-ynv3oxiAI8oZy9R62ZWQ"/>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-section-gap px-6 md:px-margin-desktop max-w-container-max mx-auto space-y-12">
+<!-- Header Section -->
+<section class="flex flex-col md:flex-row justify-between items-end gap-6">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Administrative Portal</span>
+<h2 class="font-display-lg text-display-lg-mobile md:text-headline-md mt-2">Executive Overview</h2>
+</div>
+<div class="flex gap-4">
+<button class="px-6 py-3 bg-secondary-container text-on-secondary-container font-body-md text-body-md rounded-xl hover:scale-95 transition-transform duration-200">Export Report</button>
+<button class="px-6 py-3 bg-primary text-on-primary font-body-md text-body-md rounded-xl hover:scale-95 transition-transform duration-200">Global Settings</button>
+</div>
+</section>
+<!-- Bento Grid: Analytics & City Status -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- City Management: Ahmedabad Focus -->
+<div class="md:col-span-8 glass rounded-[2rem] p-8 relative overflow-hidden shadow-2xl">
+<div class="flex justify-between items-start mb-8">
+<div>
+<h3 class="font-headline-md text-headline-md">City Infrastructure</h3>
+<p class="font-body-md text-on-surface-variant">Live operations across Tier-1 clusters</p>
+</div>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-[10px] rounded-full uppercase tracking-tighter">14 Cities Active</span>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div class="p-6 rounded-2xl bg-surface-container-highest/50 border border-white/20">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<span class="font-body-md font-bold text-primary">Ahmedabad</span>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between text-sm">
+<span class="text-on-surface-variant">Active Sitters</span>
+<span class="font-bold">142</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-on-surface-variant">Daily Bookings</span>
+<span class="font-bold">38</span>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[85%]"></div>
+</div>
+<p class="text-[10px] text-on-tertiary-container font-medium uppercase">Peak Demand Threshold</p>
+</div>
+</div>
+<div class="p-6 rounded-2xl bg-surface-container-low border border-white/20">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-outline">location_on</span>
+<span class="font-body-md font-bold text-on-surface-variant">Mumbai</span>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between text-sm">
+<span class="text-on-surface-variant">Active Sitters</span>
+<span class="font-bold">412</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-on-surface-variant">Daily Bookings</span>
+<span class="font-bold">112</span>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-outline h-full w-[60%]"></div>
+</div>
+</div>
+</div>
+<div class="p-6 rounded-2xl bg-surface-container-low border border-white/20">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-outline">location_on</span>
+<span class="font-body-md font-bold text-on-surface-variant">Bangalore</span>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between text-sm">
+<span class="text-on-surface-variant">Active Sitters</span>
+<span class="font-bold">289</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-on-surface-variant">Daily Bookings</span>
+<span class="font-bold">94</span>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-outline h-full w-[45%]"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-8 rounded-2xl overflow-hidden h-[200px] relative border border-white/30">
+<div class="absolute inset-0 bg-cover bg-center" data-location="Ahmedabad" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDC6nyNEA9PimiliZT-tGFqXeQECDnOLf0MDcMVIYTq2Z_QA01X9jfLKP-B5MmfcY33-qUdR564_za0czlIH6yOrjLNnoW21UrZuY8GJ6V6wMidRgiZgJmgNCGY2-Gxppy38CE5yrBFj7vpZ4h2ICSXK4shD42InahHw2TSREHnzdZxkmKGBkPpSN89baB2nGdnXpfq0QKEutrND0cVZaQCVHvN5qUIzmbUIp-VcRO0L22g23shfZ2lEMnqFoseuIlp_HE2Rh3vqg')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent"></div>
+<div class="absolute bottom-4 left-4 text-white">
+<p class="font-label-sm text-[10px] uppercase">Real-time Heatmap</p>
+<p class="font-body-md font-bold">Ahmedabad Cluster Alpha</p>
+</div>
+</div>
+</div>
+<!-- Revenue Mini Chart -->
+<div class="md:col-span-4 glass rounded-[2rem] p-8 flex flex-col shadow-xl">
+<h3 class="font-headline-md text-[24px] mb-2">Platform Revenue</h3>
+<p class="text-[32px] font-bold text-primary mb-6">₹1.42 Cr <span class="text-sm font-normal text-on-tertiary-container">+12.4%</span></p>
+<div class="flex-grow flex items-end gap-2 px-2">
+<div class="flex-1 bg-primary/10 rounded-t-lg chart-bar h-[40%] hover:bg-primary transition-colors cursor-pointer group relative">
+<span class="absolute -top-8 left-1/2 -translate-x-1/2 text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">Mon</span>
+</div>
+<div class="flex-1 bg-primary/10 rounded-t-lg chart-bar h-[65%] hover:bg-primary transition-colors cursor-pointer group relative"></div>
+<div class="flex-1 bg-primary/10 rounded-t-lg chart-bar h-[55%] hover:bg-primary transition-colors cursor-pointer group relative"></div>
+<div class="flex-1 bg-primary/20 rounded-t-lg chart-bar h-[85%] hover:bg-primary transition-colors cursor-pointer group relative"></div>
+<div class="flex-1 bg-primary/10 rounded-t-lg chart-bar h-[45%] hover:bg-primary transition-colors cursor-pointer group relative"></div>
+<div class="flex-1 bg-primary/30 rounded-t-lg chart-bar h-[95%] hover:bg-primary transition-colors cursor-pointer group relative"></div>
+<div class="flex-1 bg-primary/10 rounded-t-lg chart-bar h-[30%] hover:bg-primary transition-colors cursor-pointer group relative"></div>
+</div>
+<div class="mt-8 space-y-4">
+<div class="flex justify-between items-center p-3 rounded-xl bg-white/40">
+<span class="text-sm font-medium">Concierge Commission</span>
+<span class="text-sm font-bold">₹82,400</span>
+</div>
+<div class="flex justify-between items-center p-3 rounded-xl bg-white/40">
+<span class="text-sm font-medium">Premium Suites</span>
+<span class="text-sm font-bold">₹58,900</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Sitter Verification Queue & Details -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Queue List -->
+<div class="lg:col-span-4 space-y-6">
+<div class="flex justify-between items-center">
+<h3 class="font-headline-md text-[20px]">Verification Queue</h3>
+<span class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold">12</span>
+</div>
+<div class="space-y-3 max-h-[600px] overflow-y-auto pr-2">
+<!-- Active/Selected Sitter -->
+<div class="p-4 rounded-2xl bg-white border-2 border-primary shadow-sm flex items-center gap-4 cursor-pointer">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-dim shrink-0">
+<img class="w-full h-full object-cover" data-alt="Close-up portrait of a serene woman in her late 20s, minimalist high-fashion look, soft studio lighting, neutral tones, pet-friendly luxury vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9G6B4sJVUZ2d5F7VlwzFvQ0IQSFR_XKxx-NZGzYOVKRwPDmb0psKEWXgQrIP6IYJwGQ25isPc-Eh0EVONOYGim9JHi8jtX2E0PgIM3wQjMfqH28I_Blt5vR2HA8XVhQ2c0iSE7f9uRmrmnEDr-onHqbnBhPQQK5_uNd3UR1PT1dD3rf-dCQcGkExfnhXYBhOC1NqGdABc02UF8OQkFudBP14gRvLMTX995JypFIAOQQ5seL5qVXeVYCd_snAS2QXKAYobtp0VAQ"/>
+</div>
+<div class="flex-grow">
+<p class="font-bold text-sm">Ananya Sharma</p>
+<p class="text-xs text-on-surface-variant">Ahmedabad • 5 Years Exp</p>
+</div>
+<span class="material-symbols-outlined text-primary">chevron_right</span>
+</div>
+<!-- Other Sitters -->
+<div class="p-4 rounded-2xl bg-surface-container-lowest border border-outline-variant/30 hover:border-primary/50 transition-colors flex items-center gap-4 cursor-pointer">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-dim shrink-0">
+<img class="w-full h-full object-cover" data-alt="High-end editorial portrait of a professional man, calm and reliable expression, warm minimalist lighting, grey background, modern luxury aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyDIhNwGB-cD4wwoyGYc-MCjtMozV38Xu_ZVtxoqr7TUrYIYQkWpMef5uzawia8jRMQCQAQQ0BNqcc9Omh9aoWCQBwV79mAnAmNrqW8_UPeqiLygwBA_kOoDaSiN8-wBPsmjNEtt36Pm6kpF2D3bs9o7lXWFZH6IXgig4YZtQNiw6GwLAimob_nqM3TTb3C_rXSQjaVJy50L1hMLKKXsRxUy7GxvpLhX94HPt-YroU-poaz5y2Q8J0hYLO1Sl9-EboN1ss9DOKdQ"/>
+</div>
+<div class="flex-grow">
+<p class="font-bold text-sm">Rohan Mehta</p>
+<p class="text-xs text-on-surface-variant">Mumbai • Professional Vet</p>
+</div>
+</div>
+<div class="p-4 rounded-2xl bg-surface-container-lowest border border-outline-variant/30 hover:border-primary/50 transition-colors flex items-center gap-4 cursor-pointer">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-dim shrink-0">
+<img class="w-full h-full object-cover" data-alt="Elegant and sophisticated headshot of a mature woman, soft shadows, pristine white clothing, high-key lighting, luxurious and trustworthy professional portrait." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzeBnED8gAvIGcCTXnmqaLKio2BM3_84AJxOLlbOpMzmcgMsaPkiUMu0kWRoUjsFGty5kOP8te89ogfI3Wd1h3tm4iHWSm-EFp1RaWrpVDjalUh-0YNGgEyj8YZHumo3zLJull5_xU-Xk0hBk-Yu4o0jepLMCmg8_4I-tONjOhkE7GwT9qQsF1uDpn3taKCDYIiBkJpMDCHHndWZUjpCW4bOSeWULf1plVWlStivC3K2L0ze8dtQPA4Dx6yKL0kzXFh6mz9wCnng"/>
+</div>
+<div class="flex-grow">
+<p class="font-bold text-sm">Priya Desai</p>
+<p class="text-xs text-on-surface-variant">Pune • Specialized Care</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Profile Review Interface -->
+<div class="lg:col-span-8 glass rounded-[2rem] p-10 shadow-xl flex flex-col">
+<div class="flex flex-col md:flex-row gap-10">
+<div class="w-48 h-48 rounded-[2rem] bg-surface-dim shrink-0 overflow-hidden shadow-lg border-4 border-white">
+<img class="w-full h-full object-cover" data-alt="A striking portrait of a premium pet caretaker, bright and clear eyes, warm soft lighting, minimalist high-end studio photography, clean edges." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAAfFLCHA0YhsvDidxtVbWIzKt9nsi2RfoqLzmq812XSLjwu6D1Z2Db1KCnGwPReU9KpYOaEi6EEKY2nxDGot9Xhhlz_wE5bTp3be01XN5g_vmHd3kq4YerH8LWeCwFXmOB-4nsfTKM-SHbFGetA-s-cpbbGIdqPpZcR2uxpwRJ0CQmPw0FnGXEQLjQmfPEwXo_AxLwhwmR7fku2deWMSD3Bah0KjR2galIOxupdx3uhlNEqByTKPvvG7EOmVrkgM2BUX96URxmQ"/>
+</div>
+<div class="flex-grow space-y-4">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-headline-md text-headline-md">Ananya Sharma</h4>
+<div class="flex gap-2 mt-2">
+<span class="px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed text-[10px] rounded-full uppercase tracking-widest font-bold">Pending Review</span>
+<span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant text-[10px] rounded-full uppercase tracking-widest font-bold">Vetted Experience</span>
+</div>
+</div>
+<div class="text-right">
+<p class="text-[10px] uppercase text-on-surface-variant mb-1">Onboarding Score</p>
+<p class="text-[28px] font-bold text-primary">94/100</p>
+</div>
+</div>
+<p class="font-body-md text-on-surface-variant leading-relaxed">"Passionate about golden retriever behavior and specialized medical care. Managing a small boutique sanctuary in Thaltej for the last 4 years. All certifications from Global Pet Care Institute are valid."</p>
+</div>
+</div>
+<div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="space-y-6">
+<h5 class="font-body-md font-bold border-b border-outline-variant pb-2">Verification Documents</h5>
+<div class="space-y-3">
+<div class="flex items-center justify-between p-4 rounded-xl bg-white border border-outline-variant/30">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">verified_user</span>
+<span class="text-sm">Aadhar / Passport ID</span>
+</div>
+<span class="material-symbols-outlined text-tertiary-container cursor-pointer">visibility</span>
+</div>
+<div class="flex items-center justify-between p-4 rounded-xl bg-white border border-outline-variant/30">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">medical_services</span>
+<span class="text-sm">Pet CPR Certification</span>
+</div>
+<span class="material-symbols-outlined text-tertiary-container cursor-pointer">visibility</span>
+</div>
+</div>
+</div>
+<div class="space-y-6">
+<h5 class="font-body-md font-bold border-b border-outline-variant pb-2">Background Check Findings</h5>
+<div class="p-6 rounded-2xl bg-tertiary-fixed/30 border border-tertiary-fixed text-on-tertiary-fixed-variant">
+<div class="flex gap-4">
+<span class="material-symbols-outlined mt-1">check_circle</span>
+<div class="text-sm">
+<p class="font-bold">Criminal Record Clean</p>
+<p class="opacity-70 mt-1">Checked via National Registry on Nov 14, 2024. No anomalies found.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-auto pt-10 flex justify-end gap-4 border-t border-white/40">
+<button class="px-8 py-4 border border-error text-error font-bold rounded-2xl hover:bg-error/5 transition-colors">Request More Info</button>
+<button class="px-8 py-4 bg-primary text-on-primary font-bold rounded-2xl hover:shadow-2xl hover:scale-[1.02] transition-all">Approve &amp; Live List</button>
+</div>
+</div>
+</section>
+<!-- Security & Audit Logs -->
+<section class="glass rounded-[2rem] p-10 shadow-lg">
+<div class="flex justify-between items-center mb-10">
+<h3 class="font-headline-md text-headline-md">Security &amp; Audit Trails</h3>
+<div class="flex gap-2">
+<div class="h-10 w-10 rounded-full bg-surface-dim flex items-center justify-center cursor-pointer">
+<span class="material-symbols-outlined text-sm">search</span>
+</div>
+<div class="h-10 w-10 rounded-full bg-surface-dim flex items-center justify-center cursor-pointer">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+</div>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="border-b border-outline-variant">
+<tr class="text-on-surface-variant font-label-sm text-[12px] uppercase tracking-widest">
+<th class="py-4 px-4 font-normal">Event Type</th>
+<th class="py-4 px-4 font-normal">Initiated By</th>
+<th class="py-4 px-4 font-normal">Location/IP</th>
+<th class="py-4 px-4 font-normal">Status</th>
+<th class="py-4 px-4 font-normal text-right">Timestamp</th>
+</tr>
+</thead>
+<tbody class="font-body-md">
+<tr class="border-b border-surface-variant/30 hover:bg-white/40 transition-colors">
+<td class="py-6 px-4">
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span>Payout Authorized</span>
+</div>
+</td>
+<td class="py-6 px-4">Admin_Kunal_V</td>
+<td class="py-6 px-4 text-on-surface-variant">Ahmedabad • 122.160.xx.xx</td>
+<td class="py-6 px-4">
+<span class="px-3 py-1 bg-surface-container-low text-on-tertiary-container text-[10px] rounded-full font-bold">SUCCESS</span>
+</td>
+<td class="py-6 px-4 text-right text-on-surface-variant">14:22:11 PM</td>
+</tr>
+<tr class="border-b border-surface-variant/30 hover:bg-white/40 transition-colors">
+<td class="py-6 px-4">
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span>Unauthorized Login Attempt</span>
+</div>
+</td>
+<td class="py-6 px-4">Unknown</td>
+<td class="py-6 px-4 text-on-surface-variant">London, UK • 85.24.xx.xx</td>
+<td class="py-6 px-4">
+<span class="px-3 py-1 bg-error-container text-on-error-container text-[10px] rounded-full font-bold">BLOCKED</span>
+</td>
+<td class="py-6 px-4 text-right text-on-surface-variant">12:05:44 PM</td>
+</tr>
+<tr class="border-b border-surface-variant/30 hover:bg-white/40 transition-colors">
+<td class="py-6 px-4">
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span>City Parameter Update</span>
+</div>
+</td>
+<td class="py-6 px-4">System_Bot_01</td>
+<td class="py-6 px-4 text-on-surface-variant">Automated • internal</td>
+<td class="py-6 px-4">
+<span class="px-3 py-1 bg-surface-container-low text-on-tertiary-container text-[10px] rounded-full font-bold">SUCCESS</span>
+</td>
+<td class="py-6 px-4 text-right text-on-surface-variant">09:12:00 AM</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="mt-8 flex justify-center">
+<button class="text-sm font-bold text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2">
+                    Load Full Audit History <span class="material-symbols-outlined text-sm">keyboard_arrow_down</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Global Footer (Footer Anchor) -->
+<footer class="w-full py-section-gap bg-surface-container-lowest dark:bg-on-primary-fixed border-t border-outline-variant/10">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-6 md:px-margin-desktop max-w-container-max mx-auto">
+<div class="space-y-6">
+<h2 class="font-display-lg text-[24px] text-primary">PetSaathi</h2>
+<p class="font-body-md text-on-surface-variant">Quiet luxury care for the modern caretaker. Precision in every paw-step.</p>
+</div>
+<div>
+<h4 class="font-bold mb-6 text-primary">Operations</h4>
+<ul class="space-y-4 font-body-md text-on-surface-variant">
+<li class="hover:underline transition-all cursor-pointer">Our Story</li>
+<li class="hover:underline transition-all cursor-pointer">Safety Protocol</li>
+<li class="hover:underline transition-all cursor-pointer">Partner Program</li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-6 text-primary">Legal</h4>
+<ul class="space-y-4 font-body-md text-on-surface-variant">
+<li class="hover:underline transition-all cursor-pointer">Privacy Policy</li>
+<li class="hover:underline transition-all cursor-pointer">Terms of Service</li>
+<li class="hover:underline transition-all cursor-pointer">GDPR Compliance</li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-6 text-primary">Global Support</h4>
+<ul class="space-y-4 font-body-md text-on-surface-variant">
+<li class="hover:underline transition-all cursor-pointer">Contact Us</li>
+<li class="hover:underline transition-all cursor-pointer">Admin Helpdesk</li>
+</ul>
+<div class="mt-8 pt-8 border-t border-outline-variant/20">
+<p class="font-label-sm text-label-sm text-on-surface-variant opacity-80">© 2024 PetSaathi Luxury Care. All rights reserved.</p>
+</div>
+</div>
+</div>
+</footer>
+<!-- Interactive Layer: Simple Tooltip logic -->
+<script>
+        document.querySelectorAll('.chart-bar').forEach(bar => {
+            bar.addEventListener('mouseenter', function() {
+                this.style.opacity = '1';
+            });
+            bar.addEventListener('mouseleave', function() {
+                this.style.opacity = '0.8';
+            });
+        });
+
+        // Dashboard Refresh Simulation
+        setInterval(() => {
+            const revenue = document.querySelector('.text-[32px]');
+            if (revenue) {
+                let current = 1.42;
+                let randomAdd = (Math.random() * 0.01).toFixed(2);
+                revenue.innerHTML = `₹${(parseFloat(current) + parseFloat(randomAdd)).toFixed(2)} Cr <span class="text-sm font-normal text-on-tertiary-container">+12.4%</span>`;
+            }
+        }, 5000);
+    </script>
+</body></html>

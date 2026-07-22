@@ -1,0 +1,176 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cream: 250 246 241;
+  --paper: 255 253 250;
+  --ink: 48 31 48;
+  --saffron: 244 185 96;
+  --coral: 225 102 73;
+  --indigo: 91 61 122;
+  --leaf: 69 128 103;
+}
+
+@layer base {
+  * {
+    @apply border-ink/10;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background: rgb(var(--cream));
+  }
+
+  body {
+    @apply bg-cream text-ink antialiased;
+    min-height: 100vh;
+    background-image:
+      radial-gradient(circle at 8% 0%, rgb(var(--saffron) / 0.14), transparent 30rem),
+      radial-gradient(circle at 94% 18%, rgb(var(--indigo) / 0.09), transparent 34rem),
+      linear-gradient(180deg, rgb(var(--paper)), rgb(var(--cream)) 42rem);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  a,
+  button,
+  input,
+  select,
+  textarea {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--indigo));
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  .container-shell {
+    @apply mx-auto w-full max-w-container-max px-margin-mobile md:px-gutter xl:px-margin-desktop;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-indigo/70;
+  }
+
+  .eyebrow::before {
+    content: "";
+    @apply h-px w-7 bg-coral;
+  }
+
+  .section-title {
+    @apply font-display text-4xl font-semibold leading-[1.04] tracking-[-0.045em] text-ink sm:text-5xl lg:text-6xl;
+  }
+
+  .glass-panel {
+    @apply border border-paper/80 bg-paper/75 shadow-soft backdrop-blur-2xl;
+  }
+
+  .surface-card {
+    @apply rounded-4xl border border-indigo/10 bg-paper/90 shadow-lifted;
+  }
+
+  .luxury-grid {
+    background-image:
+      linear-gradient(rgb(var(--indigo) / 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(var(--indigo) / 0.04) 1px, transparent 1px);
+    background-size: 42px 42px;
+  }
+
+  .form-control {
+    @apply min-h-14 w-full rounded-2xl border border-ink/15 bg-paper/85 px-4 text-sm text-ink shadow-sm outline-none transition placeholder:text-ink/35 focus:border-indigo/45 focus:ring-4 focus:ring-indigo/10;
+  }
+
+  .status-dot {
+    @apply inline-block h-2 w-2 rounded-full bg-leaf shadow-[0_0_0_4px_rgb(var(--leaf)/0.12)];
+  }
+}
+
+@layer utilities {
+  .noise-bg {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.025;
+    pointer-events: none;
+  }
+
+  .ambient-shadow {
+    box-shadow: 0 24px 80px -38px rgb(var(--ink) / 0.28);
+  }
+
+  .material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-marquee {
+    animation: marquee 40s linear infinite;
+  }
+
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 8s ease infinite;
+  }
+
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .transform-gpu {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes gradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(var(--cream));
+}
+
+::-webkit-scrollbar-thumb {
+  border: 2px solid rgb(var(--cream));
+  border-radius: 999px;
+  background: rgb(var(--indigo) / 0.32);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

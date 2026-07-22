@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PetSaathi Admin | Command Center</title>
+<!-- Google Fonts: Clash Display & Plus Jakarta Sans -->
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#fff7ff",
+                    "on-primary-container": "#c495ff",
+                    "error": "#ba1a1a",
+                    "secondary-fixed": "#ffdbce",
+                    "outline": "#7c7482",
+                    "surface-dim": "#dfd7e1",
+                    "on-primary-fixed": "#2a0054",
+                    "on-tertiary-container": "#115e59",
+                    "error-container": "#ffdad6",
+                    "on-surface-variant": "#4b4451",
+                    "primary": "#3c0372",
+                    "on-primary-fixed-variant": "#5b2e91",
+                    "surface-container-lowest": "#ffffff",
+                    "surface": "#fff7ff",
+                    "on-secondary-fixed-variant": "#7f2b00",
+                    "surface-tint": "#7448ab",
+                    "on-surface": "#1e1a21",
+                    "tertiary-fixed-dim": "#6bd8cb",
+                    "secondary-fixed-dim": "#ffb599",
+                    "inverse-surface": "#332f36",
+                    "surface-container-highest": "#e8e0e9",
+                    "surface-container-high": "#e5e7eb",
+                    "tertiary": "#00302b",
+                    "surface-bright": "#fff7ff",
+                    "on-error-container": "#93000a",
+                    "surface-container-low": "#f9f1fa",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed": "#89f5e7",
+                    "surface-variant": "#e8e0e9",
+                    "on-primary": "#ffffff",
+                    "inverse-primary": "#d9b9ff",
+                    "inverse-on-surface": "#f6eef8",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#005049",
+                    "on-background": "#1e1a21",
+                    "surface-container": "#f3ebf5",
+                    "primary-fixed-dim": "#d9b9ff",
+                    "outline-variant": "#cdc3d3",
+                    "on-secondary-container": "#7c2d12",
+                    "tertiary-container": "#004842",
+                    "on-secondary-fixed": "#370e00",
+                    "on-error": "#ffffff",
+                    "primary-fixed": "#eedbff",
+                    "secondary-container": "#fd651e",
+                    "primary-container": "#532589",
+                    "secondary": "#a73a00",
+                    "on-tertiary-fixed": "#00201d"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-sm": "16px",
+                    "margin-mobile": "20px",
+                    "margin-desktop": "80px",
+                    "gutter": "32px",
+                    "stack-xl": "120px",
+                    "stack-lg": "64px",
+                    "container-max": "1440px",
+                    "stack-md": "32px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Clash Display"],
+                    "headline-lg-mobile": ["Clash Display"],
+                    "body-lg": ["Plus Jakarta Sans"],
+                    "display-hero-mobile": ["Clash Display"],
+                    "ui-label-bold": ["Plus Jakarta Sans"],
+                    "body-md": ["Plus Jakarta Sans"],
+                    "display-hero": ["Clash Display"],
+                    "ui-label-sm": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Clash Display"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-hero-mobile": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "ui-label-bold": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-hero": ["72px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "ui-label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #fff7ff;
+            color: #1e1a21;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(205, 195, 211, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(60, 3, 114, 0.03);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cdc3d3;
+            border-radius: 10px;
+        }
+        .hover-lift {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px 0 rgba(60, 3, 114, 0.08);
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-md border-b border-outline-variant/30 shadow-sm shadow-primary/5">
+<div class="flex justify-between items-center max-w-container-max mx-auto px-margin-desktop h-20">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">pets</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">PetSaathi Admin</h1>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-primary border-b-2 border-primary font-ui-label-bold text-ui-label-bold pb-2" href="#">Dashboard</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors duration-200 cursor-pointer" href="#">Sitters</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors duration-200 cursor-pointer" href="#">Reports</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors duration-200 cursor-pointer" href="#">Settings</a>
+</nav>
+<div class="flex items-center gap-6">
+<div class="flex gap-4 items-center">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors cursor-pointer">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors cursor-pointer">help</button>
+</div>
+<div class="h-10 w-10 rounded-full overflow-hidden border-2 border-primary/20 shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a luxury hospitality manager, wearing a crisp white shirt and a dark navy blazer, smiling warmly against a bright, airy office background with subtle greenery. High-key lighting, soft focus background, ultra-clear digital photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA68cWpCeXmG67soG88lXC7TeYscN0RmD65tIf4EDP1s3C4YDyv3lkq0H0OM2vvKq-4B8SJdD8tgzlA7JL2d5wHJvAVTIycnlazgK2rE8fLNyFJIQjLZb_S_HsdA3zpPgHYe_fJxWNUCdBq-oeuxCR4JDqieeIstoLbWyAKZZb-sad-Hzo7-VzVMhhN7aiQl6TUC_vMcBgqLACDntEcl-ygCBacj4AAvpcTQhCRC6oSkntRHaaBiAyq-35pTym-lOQYJE_YqzdI0rM"/>
+</div>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-20 h-[calc(100vh-80px)] w-64 bg-surface/50 backdrop-blur-xl border-r border-outline-variant/20 shadow-xl shadow-primary/5 hidden md:flex flex-col p-stack-sm gap-4 overflow-y-auto">
+<div class="px-4 py-6 flex flex-col gap-1">
+<h2 class="font-headline-md text-primary">Command Center</h2>
+<p class="font-ui-label-sm text-ui-label-sm text-outline">Luxury Pet Care Admin</p>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg px-4 py-3 transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">pets</span>
+<span class="font-ui-label-bold text-ui-label-bold">All Pets</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg px-4 py-3 transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">star</span>
+<span class="font-ui-label-bold text-ui-label-bold">VIP Members</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg px-4 py-3 transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined text-secondary">emergency</span>
+<span class="font-ui-label-bold text-ui-label-bold text-secondary">Emergency</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg px-4 py-3 transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-ui-label-bold text-ui-label-bold">Active Bookings</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg px-4 py-3 transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">pending_actions</span>
+<span class="font-ui-label-bold text-ui-label-bold">Pending Review</span>
+</a>
+</nav>
+<div class="mt-auto p-4">
+<button class="w-full bg-primary text-on-primary py-3 px-4 rounded-full font-ui-label-bold text-ui-label-bold flex items-center justify-center gap-2 hover:bg-primary-container hover:text-on-primary-container transition-all active:scale-95">
+<span class="material-symbols-outlined">analytics</span>
+                Generate Report
+            </button>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="md:ml-64 pt-24 px-margin-mobile md:px-stack-lg min-h-screen pb-stack-xl">
+<!-- Header -->
+<header class="mb-stack-md">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Command Center</h2>
+<p class="font-body-lg text-body-lg text-outline">Luxury Pet Care Overview</p>
+</header>
+<!-- Metrics Grid -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter mb-stack-lg">
+<div class="glass-card p-6 rounded-xl hover-lift">
+<div class="flex justify-between items-start mb-4">
+<span class="p-2 bg-primary/10 rounded-lg text-primary material-symbols-outlined">calendar_month</span>
+<span class="text-on-tertiary-container font-ui-label-sm text-ui-label-sm">+12% vs last week</span>
+</div>
+<h3 class="font-ui-label-sm text-ui-label-sm text-outline uppercase tracking-wider">Active Bookings</h3>
+<p class="font-headline-md text-headline-md text-primary mt-1">1,284</p>
+</div>
+<div class="glass-card p-6 rounded-xl hover-lift">
+<div class="flex justify-between items-start mb-4">
+<span class="p-2 bg-primary/10 rounded-lg text-primary material-symbols-outlined">group</span>
+<span class="text-on-tertiary-container font-ui-label-sm text-ui-label-sm">+5% new</span>
+</div>
+<h3 class="font-ui-label-sm text-ui-label-sm text-outline uppercase tracking-wider">New Users</h3>
+<p class="font-headline-md text-headline-md text-primary mt-1">452</p>
+</div>
+<div class="glass-card p-6 rounded-xl hover-lift">
+<div class="flex justify-between items-start mb-4">
+<span class="p-2 bg-tertiary-container/10 rounded-lg text-on-tertiary-container material-symbols-outlined">payments</span>
+<span class="text-on-tertiary-container font-ui-label-sm text-ui-label-sm">+24% revenue</span>
+</div>
+<h3 class="font-ui-label-sm text-ui-label-sm text-outline uppercase tracking-wider">Total Revenue</h3>
+<p class="font-headline-md text-headline-md text-primary mt-1">$142,500</p>
+</div>
+<div class="glass-card p-6 rounded-xl hover-lift">
+<div class="flex justify-between items-start mb-4">
+<span class="p-2 bg-secondary/10 rounded-lg text-secondary material-symbols-outlined">verified_user</span>
+<span class="text-secondary font-ui-label-sm text-ui-label-sm">98% satisfaction</span>
+</div>
+<h3 class="font-ui-label-sm text-ui-label-sm text-outline uppercase tracking-wider">Active Sitters</h3>
+<p class="font-headline-md text-headline-md text-primary mt-1">320</p>
+</div>
+</section>
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-gutter items-start">
+<!-- Recent Incident Reports -->
+<section class="xl:col-span-1 glass-card rounded-xl p-6 h-full">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-md text-headline-md text-on-surface">Recent Incidents</h3>
+<button class="text-primary font-ui-label-bold text-ui-label-bold hover:underline">View All</button>
+</div>
+<div class="flex flex-col gap-4">
+<!-- Incident Item -->
+<div class="p-4 bg-white/40 rounded-lg border border-outline-variant/10 hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="flex justify-between mb-2">
+<span class="bg-secondary-container/20 text-secondary-container px-3 py-1 rounded-full text-ui-label-sm font-ui-label-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">priority_high</span> Urgent
+                            </span>
+<span class="text-outline text-ui-label-sm">12m ago</span>
+</div>
+<h4 class="font-ui-label-bold text-on-surface mb-1">Medical Alert: Golden Retriever "Cooper"</h4>
+<p class="text-ui-label-sm text-outline line-clamp-2">Sitter reported unusual fatigue and lack of appetite during morning walk in Beverly Hills area.</p>
+</div>
+<!-- Incident Item -->
+<div class="p-4 bg-white/40 rounded-lg border border-outline-variant/10 hover:bg-white/60 transition-colors cursor-pointer">
+<div class="flex justify-between mb-2">
+<span class="bg-surface-container-high text-on-surface-variant px-3 py-1 rounded-full text-ui-label-sm font-ui-label-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">hourglass_empty</span> In Progress
+                            </span>
+<span class="text-outline text-ui-label-sm">1h ago</span>
+</div>
+<h4 class="font-ui-label-bold text-on-surface mb-1">Access Issue: Penthouse Suite #402</h4>
+<p class="text-ui-label-sm text-outline line-clamp-2">Smart lock failure reported by sitter Sarah J. Support is currently contacting building management.</p>
+</div>
+<!-- Incident Item -->
+<div class="p-4 bg-white/40 rounded-lg border border-outline-variant/10 hover:bg-white/60 transition-colors cursor-pointer">
+<div class="flex justify-between mb-2">
+<span class="bg-tertiary/10 text-on-tertiary-container px-3 py-1 rounded-full text-ui-label-sm font-ui-label-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">check_circle</span> Resolved
+                            </span>
+<span class="text-outline text-ui-label-sm">4h ago</span>
+</div>
+<h4 class="font-ui-label-bold text-on-surface mb-1">Late Arrival: Morning Walk</h4>
+<p class="text-ui-label-sm text-outline line-clamp-2">Sitter arrived 15 mins late due to traffic. Client notified and credit applied to account.</p>
+</div>
+</div>
+</section>
+<!-- Sitter Approvals Table -->
+<section class="xl:col-span-2 glass-card rounded-xl overflow-hidden">
+<div class="p-6 border-b border-outline-variant/20 flex justify-between items-center bg-white/20">
+<h3 class="font-headline-md text-headline-md text-on-surface">Sitter Approvals</h3>
+<div class="flex gap-2">
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline text-lg">search</span>
+<input class="pl-10 pr-4 py-2 rounded-full border border-outline-variant/50 focus:border-primary outline-none text-ui-label-sm bg-white/50" placeholder="Search sitters..." type="text"/>
+</div>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low/30">
+<th class="px-6 py-4 font-ui-label-bold text-ui-label-bold text-outline">Sitter Name</th>
+<th class="px-6 py-4 font-ui-label-bold text-ui-label-bold text-outline">Experience</th>
+<th class="px-6 py-4 font-ui-label-bold text-ui-label-bold text-outline">Background Status</th>
+<th class="px-6 py-4 font-ui-label-bold text-ui-label-bold text-outline text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A portrait of a cheerful young woman with curly hair, wearing a vibrant yellow rain jacket, smiling while holding a small dachshund. The background is a lush green park with soft morning mist. Professional photography, bright colors, luxury lifestyle feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfjsCjSLvSGaFCpusMacrwbFfqZF6fxtQjU6hWqV34TAy9QJBADZjhUwz-uPm2uWAoSqo8Y8jzorTD2dKGog4ivzYnCOFa43iQn07WUVeB3NKsyaKoT1HyGoZMwQuKIXUymW5IXZR2tREGq_aIwllLb9-kesAVAfR4ApYIHVbZJ-e4vAAV-Cd398NDQd5YrXAhDdg7lXjmIVOmnlsUpHxQL24iGAZflETpflTJrqgi7S75Z0nAPp0LzVWV-n1XbJdXfjeb4rnyewA"/>
+</div>
+<div>
+<p class="font-ui-label-bold text-on-surface">Elena Rodriguez</p>
+<p class="text-ui-label-sm text-outline">New York, NY</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-body-md text-on-surface">8+ Years</td>
+<td class="px-6 py-4">
+<span class="bg-tertiary-fixed/30 text-on-tertiary-fixed-variant px-3 py-1 rounded-full text-ui-label-sm font-ui-label-bold inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">verified</span> Verified
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2">
+<button class="px-4 py-2 bg-primary text-on-primary rounded-full text-ui-label-sm font-ui-label-bold hover:shadow-md transition-shadow">Approve</button>
+<button class="px-4 py-2 border border-outline text-on-surface-variant rounded-full text-ui-label-sm font-ui-label-bold hover:bg-surface-container-high transition-colors">Deny</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A sophisticated middle-aged man with salt-and-pepper hair, wearing a linen shirt, looking confident and calm. He is outdoors in a garden setting with dappled sunlight. High-end portraiture, clean aesthetics, trustworthy vibes." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbYiji9DkoqxNvI9QmnUnGVGMVbESTAE08RUx7useucz89lQ4H-sCRd7ORdpYYIhuD97cnyC5oUHV_jFKSRIdqviRMWyRGGldkqtXPffUbFeJ44MNE05pDtvnl_mLMBZntkJdzTUJp2cORppaRSqNQ9jfAMLYeAPEU3apAUNngov9hyUCfultANntzhtxXjcojz738XKtTSpsQyuDZZLUFGf4HZTFhxepliksx3Hw-DObJaYENAZSkDyAelRUqkBiKX7nErLzZZps"/>
+</div>
+<div>
+<p class="font-ui-label-bold text-on-surface">Marcus Thorne</p>
+<p class="text-ui-label-sm text-outline">Miami, FL</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-body-md text-on-surface">12 Years</td>
+<td class="px-6 py-4">
+<span class="bg-surface-container-high text-on-surface-variant px-3 py-1 rounded-full text-ui-label-sm font-ui-label-bold inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">sync</span> In Review
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2">
+<button class="px-4 py-2 bg-primary text-on-primary rounded-full text-ui-label-sm font-ui-label-bold hover:shadow-md transition-shadow">Approve</button>
+<button class="px-4 py-2 border border-outline text-on-surface-variant rounded-full text-ui-label-sm font-ui-label-bold hover:bg-surface-container-high transition-colors">Deny</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A minimalist portrait of a young man with glasses, wearing a neutral-toned sweater, smiling gently. The background is a clean white interior with modern wooden furniture. Bright, airy, professional hospitality style photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCebIY74XrBC-JYwEmw2oM-fbh5gUd374ItQQca-GA56j4cM42QeBFMXRDKDlRidoybYWDRsrpGtgmGroI0nFAq1dX1lsxtpYaLqOeTeZvr4GmbqFOOvIiOkJ-QHcVI4S0VSKKLHyB0fjuWXN25dWROamkJQ9iT7QDf1G2RjoA1qUyJxeaP3mA3AWpdZH5-kWL9ez-ttnElqh0oj3S11ocQInD8mTRxO354yl4m3HLBzY0Pn8yJP6w9IGGeeuVgfM9Z3NNoPmg3K0Q"/>
+</div>
+<div>
+<p class="font-ui-label-bold text-on-surface">Liam Chen</p>
+<p class="text-ui-label-sm text-outline">San Francisco, CA</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-body-md text-on-surface">3 Years</td>
+<td class="px-6 py-4">
+<span class="bg-tertiary-fixed/30 text-on-tertiary-fixed-variant px-3 py-1 rounded-full text-ui-label-sm font-ui-label-bold inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">verified</span> Verified
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2">
+<button class="px-4 py-2 bg-primary text-on-primary rounded-full text-ui-label-sm font-ui-label-bold hover:shadow-md transition-shadow">Approve</button>
+<button class="px-4 py-2 border border-outline text-on-surface-variant rounded-full text-ui-label-sm font-ui-label-bold hover:bg-surface-container-high transition-colors">Deny</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+<!-- Footer -->
+<footer class="w-full mt-stack-xl border-t border-outline-variant/30 flex flex-col md:flex-row justify-between items-center px-margin-desktop py-stack-md max-w-container-max mx-auto">
+<p class="font-ui-label-sm text-ui-label-sm text-secondary">© 2024 PetSaathi Luxury Care. System Status: All Systems Operational.</p>
+<div class="flex gap-6 mt-4 md:mt-0">
+<a class="text-outline hover:text-secondary transition-colors font-ui-label-sm text-ui-label-sm" href="#">Privacy Policy</a>
+<a class="text-outline hover:text-secondary transition-colors font-ui-label-sm text-ui-label-sm" href="#">Terms of Service</a>
+<a class="text-outline hover:text-secondary transition-colors font-ui-label-sm text-ui-label-sm" href="#">Security Audit</a>
+</div>
+</footer>
+</main>
+<!-- Floating Action Button - Mobile Only -->
+<button class="md:hidden fixed bottom-6 right-6 h-16 w-16 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center z-50 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+<script>
+        // Simple micro-interaction for cards
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                // Potential for adding JS driven animations if needed
+            });
+        });
+
+        // Search bar interaction
+        const searchInput = document.querySelector('input[type="text"]');
+        if (searchInput) {
+            searchInput.addEventListener('focus', () => {
+                searchInput.parentElement.classList.add('ring-2', 'ring-primary/20');
+            });
+            searchInput.addEventListener('blur', () => {
+                searchInput.parentElement.classList.remove('ring-2', 'ring-primary/20');
+            });
+        }
+    </script>
+</body></html>

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PetSaathi | Customer Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-background": "#2d1508",
+                    "secondary-fixed-dim": "#ffb688",
+                    "outline-variant": "#ccc6bc",
+                    "surface-container": "#ffeae0",
+                    "tertiary": "#7c5800",
+                    "on-secondary-fixed": "#311300",
+                    "on-tertiary": "#ffffff",
+                    "surface-bright": "#fff8f6",
+                    "secondary": "#974800",
+                    "surface-variant": "#ffdbca",
+                    "on-primary-fixed": "#1e1b14",
+                    "on-secondary-fixed-variant": "#733500",
+                    "on-error": "#ffffff",
+                    "surface": "#fff8f6",
+                    "on-primary": "#ffffff",
+                    "primary-fixed-dim": "#cdc6ba",
+                    "inverse-surface": "#452a1b",
+                    "secondary-fixed": "#ffdbc7",
+                    "surface-tint": "#635e54",
+                    "tertiary-fixed-dim": "#f1bf62",
+                    "on-tertiary-container": "#936b13",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed-variant": "#5e4200",
+                    "error-container": "#ffdad6",
+                    "on-secondary": "#ffffff",
+                    "primary": "#635e54",
+                    "on-surface": "#2d1508",
+                    "tertiary-container": "#fff7f0",
+                    "on-primary-fixed-variant": "#4a463d",
+                    "background": "#fff8f6",
+                    "surface-container-low": "#fff1eb",
+                    "primary-container": "#fff7ea",
+                    "on-secondary-container": "#6e3300",
+                    "outline": "#7b766e",
+                    "surface-container-highest": "#ffdbca",
+                    "on-error-container": "#93000a",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed": "#ffdea8",
+                    "inverse-primary": "#cdc6ba",
+                    "inverse-on-surface": "#ffede6",
+                    "on-primary-container": "#767167",
+                    "on-tertiary-fixed": "#271900",
+                    "surface-dim": "#fed1ba",
+                    "secondary-container": "#ff964d",
+                    "on-surface-variant": "#4a463f",
+                    "primary-fixed": "#e9e2d5",
+                    "surface-container-high": "#ffe2d5"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "margin-mobile": "20px",
+                    "stack-lg": "48px",
+                    "unit": "8px",
+                    "margin-desktop": "64px",
+                    "stack-sm": "12px",
+                    "stack-md": "24px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Manrope"],
+                    "label-md": ["Manrope"],
+                    "label-sm": ["Manrope"],
+                    "headline-md": ["Playfair Display"],
+                    "body-md": ["Manrope"],
+                    "headline-lg": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"],
+                    "display-lg-mobile": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "display-lg": ["56px", {"lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "48px", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .noise-texture {
+            background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+            opacity: 0.05;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #ffdbca;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- Subtle Overlay Noise -->
+<div class="fixed inset-0 pointer-events-none noise-texture z-0"></div>
+<!-- Navigation Shell -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-[0_10px_40px_rgba(74,46,31,0.08)]">
+<div class="flex justify-between items-center px-6 md:px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="flex items-center gap-8">
+<span class="font-headline-md text-headline-md font-bold text-secondary">PetSaathi</span>
+<div class="hidden md:flex gap-6 items-center">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-all duration-300" href="#">Our Sitters</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-all duration-300" href="#">Services</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-all duration-300" href="#">Safety</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden lg:block px-6 py-2 rounded-full border-1.5 border-secondary text-secondary font-label-md hover:bg-secondary/5 transition-all">Become a Sitter</button>
+<button class="bg-secondary text-on-secondary px-6 py-2.5 rounded-full font-label-md shadow-lg active:scale-95 transition-all hover:opacity-90">Book Pet Care</button>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="relative z-10 pt-24 pb-32 px-6 md:px-margin-desktop max-w-container-max mx-auto">
+<!-- Header: Welcome & Profile Switcher -->
+<header class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-stack-lg">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-2">Welcome back, Rohan</h1>
+<p class="text-on-surface-variant font-body-md">Your concierge is standing by to ensure Bruno and Bella have a wonderful day.</p>
+</div>
+<div class="flex items-center gap-3 bg-surface-container-low p-2 rounded-full shadow-sm">
+<div class="flex -space-x-2">
+<div class="w-12 h-12 rounded-full border-2 border-surface-container-low ring-2 ring-secondary overflow-hidden relative cursor-pointer hover:z-10 transition-transform hover:scale-105">
+<img class="w-full h-full object-cover" data-alt="A portrait of a happy Golden Retriever dog sitting in a sun-drenched, high-end minimalist apartment with warm wooden floors and soft neutral tones. The lighting is editorial and soft, emphasizing the dog's golden fur and joyful expression. The overall mood is luxurious, safe, and sophisticated, matching the PetSaathi brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDY7AtkZp0AidFY9ZJk5AyPN6xTfs6bQ3AeNWa40_dnOqkKQyHYTmSf97wqsVkVRgTau95PseniOUKGFeflPAj8_RpohrN-L-PQ8QQHu6dgmF4zzgu-M1JudSGSPvvanyDc1INWXNikA3YdNY0CkC9azGjdhOWuJIXVBcYilabnrWixdWcs7e8eT-Aiwyxw2OUe4ixkX0TkrySu6T7S_oHJdSRiXnw5laatk4_NAic1liWychNj5mBpG3MvMWJHouqifBGdDpY_0TM"/>
+</div>
+<div class="w-12 h-12 rounded-full border-2 border-surface-container-low overflow-hidden relative cursor-pointer hover:z-10 transition-transform hover:scale-105 opacity-60">
+<img class="w-full h-full object-cover" data-alt="A high-quality editorial photograph of a sleek, elegant grey cat lounging on a designer velvet cushion in a modern, light-filled interior. The aesthetic is clean and minimalist with warm cream and soft sage accents. The lighting is soft and natural, creating an atmosphere of calm and premium pet care." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdD6iSFeGq5exgH7Wi7sxyFWpK_hDJvrwNWKuIFnf4aJfggzCH2nwc19ksMWagozOCq2c-k8wLrOXptIZyReTkfMwMGxfU6cmP7TwMQmvOK0fPm9lGIpJEQxC3nAPo-IUx9F3JzJuqwBtzRlxUQUDJGbDa-yeONQAVI1wVuPBiinL8DWPtauSxPqYdb2Ws9yTui-X_SY7yPbOzGu3fuxOe19yV-eT1iPtU_t6OwyMyzb_Uq1WqMQUmUqDy1EydqPt1gI70BtmqA3M"/>
+</div>
+</div>
+<button class="material-symbols-outlined text-secondary bg-white p-2 rounded-full shadow-sm hover:rotate-180 transition-transform duration-500">add</button>
+</div>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Active Service: Real-time tracking -->
+<section class="lg:col-span-8 bg-white rounded-3xl p-8 shadow-[0_10px_40px_rgba(74,46,31,0.04)] relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-6">
+<span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary-container/30 text-on-secondary-container font-label-sm">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                        LIVE NOW
+                    </span>
+</div>
+<div class="flex flex-col md:flex-row gap-8 items-start">
+<div class="w-full md:w-1/3 aspect-square rounded-2xl overflow-hidden shadow-md">
+<div class="w-full h-full bg-surface-container-highest" data-alt="A sophisticated digital map visualization showing a live GPS tracking path of a pet walk through a lush, upscale residential park area. The map uses a minimalist color palette of creams, sages, and warm tans, with a smooth orange line indicating the walk progress. The style is clean and premium, resembling a high-end concierge application interface." data-location="Mumbai" style=""></div>
+</div>
+<div class="flex-1 flex flex-col justify-between h-full py-2">
+<div>
+<h2 class="font-headline-md text-headline-md mb-1">Bruno's Afternoon Walk</h2>
+<p class="text-on-surface-variant font-body-md flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">mood</span>
+                                Mood: <span class="text-secondary font-bold">Incredibly Happy</span>
+</p>
+</div>
+<div class="mt-8 space-y-4">
+<div class="flex justify-between text-label-sm text-on-surface-variant">
+<span>Progress: 2.4 km of 3.5 km</span>
+<span>65% complete</span>
+</div>
+<div class="w-full h-3 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[65%] rounded-full shadow-[0_0_10px_rgba(151,72,0,0.3)]"></div>
+</div>
+</div>
+<div class="mt-8 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional and friendly portrait of a young Indian male pet sitter with a warm smile, wearing a premium polo shirt. He is outdoors in a blurred park setting with soft, warm golden hour lighting. The image conveys high trust, competence, and a sophisticated approach to professional pet care." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwGeSO3hxd4o-QvUdyodwVVdCD60wlTrIsODPEKmKhVFus0uQ29WxAMKePwBaSGsvlS1jqv6xm2eyoVF5FI9HeXMoj2ARzWFiLhldiEaDNUwa5-G3hkyOhzAl3wB19zvc9oneN2B9683V64vnoP1bdJgWWgsHVlL8vpBWRjmJZbpjM3FIzVPFZJXQM5c0geMA-gW_0BzoMzxKxWHUcLMhAYeepFivRCWM0V74hrCDwGLSG9AfCtdSmU4BQFmZpu4nKvVHwjSRFXyQ"/>
+</div>
+<div>
+<p class="font-label-md">Aarav M.</p>
+<p class="text-label-sm text-on-surface-variant">Top-Rated Sitter • 4.9 ★</p>
+</div>
+</div>
+<button class="bg-surface-container text-secondary p-3 rounded-full hover:bg-secondary hover:text-white transition-all">
+<span class="material-symbols-outlined">chat_bubble</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Next Booking: Summary Card -->
+<aside class="lg:col-span-4 space-y-gutter">
+<div class="bg-tertiary-container/30 border border-tertiary-fixed rounded-3xl p-8 flex flex-col justify-between h-full">
+<div>
+<h3 class="font-label-sm text-tertiary uppercase tracking-widest mb-6">Upcoming Service</h3>
+<div class="space-y-4">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 rounded-2xl bg-white flex items-center justify-center text-secondary shadow-sm">
+<span class="material-symbols-outlined text-3xl">home_max</span>
+</div>
+<div>
+<p class="font-headline-md text-on-surface">Luxury Boarding</p>
+<p class="text-on-surface-variant">For Bruno &amp; Bella</p>
+</div>
+</div>
+<div class="py-4 border-y border-outline-variant/30 space-y-3">
+<div class="flex justify-between text-body-md">
+<span class="text-on-surface-variant">Check-in</span>
+<span class="font-bold">Oct 12, 10:00 AM</span>
+</div>
+<div class="flex justify-between text-body-md">
+<span class="text-on-surface-variant">Duration</span>
+<span class="font-bold">3 Nights</span>
+</div>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 py-4 bg-white text-on-background rounded-2xl font-label-md border-1.5 border-outline-variant hover:border-secondary transition-all shadow-sm">Manage Booking</button>
+</div>
+</aside>
+<!-- Pet Profiles: Horizontal Scroller or Grid -->
+<section class="lg:col-span-12">
+<div class="flex items-center justify-between mb-8">
+<h2 class="font-headline-md text-headline-md">Your Pet Family</h2>
+<button class="text-secondary font-label-md flex items-center gap-1 group">
+                        Manage Profiles
+                        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">chevron_right</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Profile Card 1 -->
+<div class="bg-white rounded-3xl overflow-hidden shadow-[0_10px_40px_rgba(74,46,31,0.04)] hover:shadow-lg transition-all group">
+<div class="h-48 relative">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A stunning, professional pet portrait of a Golden Retriever dog looking directly at the camera with a soulful expression. The dog is in a minimalist, sunlit studio with warm neutral tones. High-end lighting creates soft shadows and highlights the texture of the fur. The style is premium, editorial, and sophisticated." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVEftHVs8pDtctfhCGDZHj8WI2O9QkJ7FV-hMSpLtZ-6qz9Wg_sxFjBVUPvr3lxMvE0fJHuRPdjD5XXTePUs3K6nY2aL5oxL974BZzNmFgqbRl70GFcFu-MsOxLwv0GwiFHAcZ-eplVVbnABnCB_fmTBn3K6N9je7KkxRsu1JtwQSNnt1EbP4WtiD0nV-5H1gufx1Dp6FOWbWoa53FhZMIFW8eakz4UJsKxsDaN83IlS4XrOp5wbERBRhsgzj3C9i1Kav6yeKc4Ew"/>
+<div class="absolute top-4 right-4 px-3 py-1 bg-white/90 backdrop-blur rounded-full font-label-sm text-secondary">Active Now</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline-md text-on-surface">Bruno</h3>
+<p class="text-on-surface-variant font-label-sm">Golden Retriever • 3 Years</p>
+</div>
+<span class="material-symbols-outlined text-secondary">verified_user</span>
+</div>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-surface-container-low rounded-full text-label-sm text-on-surface-variant">Daily Walks</span>
+<span class="px-3 py-1 bg-surface-container-low rounded-full text-label-sm text-on-surface-variant">Dietary Plan</span>
+</div>
+</div>
+</div>
+<!-- Profile Card 2 -->
+<div class="bg-white rounded-3xl overflow-hidden shadow-[0_10px_40px_rgba(74,46,31,0.04)] hover:shadow-lg transition-all group">
+<div class="h-48 relative">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A refined editorial photograph of a beautiful grey cat with piercing eyes, sitting elegantly on a marble surface. The background is a soft, out-of-focus modern living space with warm ambient lighting. The composition is artistic and minimalist, emphasizing luxury pet care and a high-trust atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3tJh99GjVJIPvDYphPv5vyVb9xr8AbS1krZvERRv9dX_otUGBvsqj6KRNr6y_JSnJzYpRgRC5HbqAa_L68Izh1S4ZTJoMKWikT8lBQqM426z5tFAey46qliPRnmcrzL4LwH2gAKz_zveqPQWG6JIWA6NNI9b_oMpa9Fe7PcTzpQv95LYHc_SRHEcEwicmB6QKHqvLNceOVZyMF8YEe4Bw1Up5xquhC3Ee3vrYESkaJkhEJv11tHzBwK5mgeB6pY2LLc35EhMf5O8"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline-md text-on-surface">Bella</h3>
+<p class="text-on-surface-variant font-label-sm">Russian Blue • 5 Years</p>
+</div>
+<span class="material-symbols-outlined text-secondary">verified_user</span>
+</div>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-surface-container-low rounded-full text-label-sm text-on-surface-variant">Drop-in Visits</span>
+<span class="px-3 py-1 bg-surface-container-low rounded-full text-label-sm text-on-surface-variant">Luxury Boarding</span>
+</div>
+</div>
+</div>
+<!-- Add Profile Card -->
+<div class="border-2 border-dashed border-outline-variant rounded-3xl flex flex-col items-center justify-center p-8 hover:bg-surface-container-low/30 transition-all cursor-pointer group">
+<div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center text-secondary mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">add</span>
+</div>
+<p class="font-headline-md text-on-surface">Add a Pet</p>
+<p class="text-on-surface-variant text-center mt-2">Expand your PetSaathi family circle.</p>
+</div>
+</div>
+</section>
+<!-- Recent Report Cards -->
+<section class="lg:col-span-12">
+<div class="flex items-center justify-between mb-8">
+<h2 class="font-headline-md text-headline-md">Recent Report Cards</h2>
+<button class="text-secondary font-label-md">View History</button>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+<!-- Report Item 1 -->
+<div class="flex flex-col gap-3 group cursor-pointer">
+<div class="aspect-square rounded-2xl overflow-hidden relative shadow-sm">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A joyful close-up photo of a dog playing with a tennis ball in a grassy park. The lighting is bright and cheerful, with a shallow depth of field focusing on the pet's happy face. The overall aesthetic is candid yet professionally shot, feeling like a premium report from a dedicated pet sitter." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSkmENrUVQ5ngNdqPHw55YNZqUvqAxvk07O6i5GtVYHDfFvy4FeZaVydoT-m_qCNggDg-tb71f1ap9BD_bXcfANX1Slrf5Ybreav1PjKXPmL9HHkXxSMxVOPVCL83M61T2bVtPUt62yhgLxhPM6BylNMTMn7iwGA8adyJ4t2J0ytVjX9RFFzM_I2DH_A_gF6edNEjXamyQXQn2sxDYIZGScIlWdjiOhSVxd4aO-_VE_euJXNeyi_boVCTLkCtJBCDcX8i1fBH_B4o"/>
+<div class="absolute inset-0 bg-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Morning Play</p>
+<p class="text-label-sm text-on-surface-variant">Sept 28 • Bruno</p>
+</div>
+</div>
+<!-- Report Item 2 -->
+<div class="flex flex-col gap-3 group cursor-pointer">
+<div class="aspect-square rounded-2xl overflow-hidden relative shadow-sm">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A peaceful image of a cat napping in a pool of sunlight on a high-quality woven rug. The atmosphere is serene and quiet, with soft shadows and warm tones. The photograph captures a moment of deep relaxation, illustrating the premium care and comfort provided by PetSaathi." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_kSETqBkciw5xCgco_7cltkOA_Tx2UyGSYIBMKRPcGv-5F15AjYssy_1P8-bmjlRGExigM3CCtNwGSp55C2MuqoXYHylGZFMfrvWPDMGlyFfHsfy_q8NCciX2_Ow8ilutkH70xCfY8kg32pERfj9syl2ZKfFtnMBLpwAiiRn7DckKut9OsV4uId-dWhLLHCxI1M2y64TLIr2ddmhkwqtyPahUUcv-a6KvJHhEttKJ-EVaIHF47Aiw-y1JYfPU29SDnZs6JLzaoMM"/>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Nap Time</p>
+<p class="text-label-sm text-on-surface-variant">Sept 27 • Bella</p>
+</div>
+</div>
+<!-- Report Item 3 -->
+<div class="flex flex-col gap-3 group cursor-pointer">
+<div class="aspect-square rounded-2xl overflow-hidden relative shadow-sm">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="An editorial shot of a dog being gently brushed by a professional pet carer. The focus is on the interaction and the high-quality grooming tools. The lighting is warm and domestic, emphasizing a calm and sophisticated grooming session in a modern home environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJfZv8WjOgEmPSt2YY5mWGkQi97AGocdfme9Ok1JDqkrDj3qD7RhwBi9Sf7pDDGhjhBi32SHv1-4yoIZyxii8vuwCdEmMwLTnwESAmBwWmCA_FHLn2_uL7drcbhhVPeRUvEThNl75XkCtD6IeWQ2Q7w3ke5pcwPgM16LZizBEvEifcgZiskigXx6jxZUcFQopLluplzw4l6UP_2BoQnKzTZSzTO3TWOgiguZcvdXazh3ZjMcvnxm3D_uVmz_MSnlcO8xdbqH4FQ9k"/>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Grooming Day</p>
+<p class="text-label-sm text-on-surface-variant">Sept 26 • Bruno</p>
+</div>
+</div>
+<!-- Report Item 4 -->
+<div class="flex flex-col gap-3 group cursor-pointer">
+<div class="aspect-square rounded-2xl overflow-hidden relative shadow-sm">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A candid photo of a pet sitter feeding a dog from a ceramic designer bowl. The setting is a clean, minimalist kitchen with soft morning light. The image highlights the attentive and premium feeding services provided, focusing on health and high standards." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHPlSLhiACOG90AvODzzTtBmw4qGJYD8WNPHdhHU5wmZj3T8l36D0oNuFvxQc8oKj7NlB4VF300CLYWBwn2A2kKNE9zdemAMNYnTocZZePbbXeH-OTOsLC70sxbCqJUYDJFZJgojsavzPrFc5upmZmTP0Dm380nOaRtjpio42-5sDAN0SyfucndcxkgQWs51DOGFtgRF8q9hacRGrUWMkwQsShygH6r6o8F-RsOAkLvt5MzahNpXoENTuLZmQ6cI6SnLG1g8KemUI"/>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Breakfast</p>
+<p class="text-label-sm text-on-surface-variant">Sept 25 • Bruno</p>
+</div>
+</div>
+<!-- Report Item 5 -->
+<div class="hidden lg:flex flex-col gap-3 group cursor-pointer">
+<div class="aspect-square rounded-2xl overflow-hidden relative shadow-sm">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A high-end landscape photo of a dog walking through an autumnal park with vibrant orange leaves. The dog is looking at the camera with curiosity. The lighting is crisp and clear, creating a beautiful and professional visual report of a scenic outdoor adventure." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAc2pXsR3Prql1uLMGqSq-zCaBAx6T1NgSk8GaqzrgaXQpkxcSqQQFvvNM9_w8ylGyWFtfXjcEnd_cSYV6v-X5rZ_NvrAorR1weVB5IHvfOIIRaENFWEy20nAfOAfd_LdM9bLCCDo0k5DUYiWyV749phWxB9soEDIDoW3bPwV-3Abpy1EXqX6bMVGaYDKDnEwH5591tojMnAJwiRk1mFJLwEk1Nbuinb0fZL9JKR5sPSNqIJftuOiRIxj7U7rbFeBHS7BGA6sz_5X0"/>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Evening Hike</p>
+<p class="text-label-sm text-on-surface-variant">Sept 24 • Bruno</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Support Floating Concierge -->
+<div class="fixed bottom-24 md:bottom-12 right-6 md:right-12 z-40 group">
+<div class="absolute bottom-full right-0 mb-4 opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-300">
+<div class="bg-white p-4 rounded-2xl shadow-xl w-64 border border-surface-container">
+<p class="font-label-md text-on-surface mb-1">Concierge Support</p>
+<p class="text-label-sm text-on-surface-variant">How can I assist you with your booking today?</p>
+<button class="w-full mt-3 py-2 bg-secondary text-on-secondary rounded-lg font-label-sm">Chat Now</button>
+</div>
+</div>
+<button class="w-16 h-16 rounded-full bg-secondary text-on-secondary flex items-center justify-center shadow-[0_10px_40px_rgba(151,72,0,0.3)] hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">concierge</span>
+</button>
+</div>
+<!-- Bottom Nav (Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 bg-surface/90 backdrop-blur-2xl px-4 pb-4 pt-2 flex justify-around items-center shadow-[0_-5px_30px_rgba(74,46,31,0.05)]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-sm text-label-sm">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-label-sm text-label-sm">Bookings</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2" href="#">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="font-label-sm text-label-sm">Inbox</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full p-2" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-surface-container-low mt-20">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-6 md:px-margin-desktop py-stack-lg max-w-container-max mx-auto">
+<div class="md:col-span-1">
+<span class="font-headline-lg text-headline-lg text-secondary block mb-4">PetSaathi</span>
+<p class="text-on-surface-variant font-body-md pr-8">
+                    Elevating the art of pet care with luxury, trust, and contemporary design.
+                </p>
+</div>
+<div class="space-y-4">
+<p class="font-label-md text-on-surface uppercase tracking-wider">Services</p>
+<ul class="space-y-2">
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Luxury Boarding</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Premium Walking</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Pet Concierge</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<p class="font-label-md text-on-surface uppercase tracking-wider">Company</p>
+<ul class="space-y-2">
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Trust &amp; Safety</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Luxury Standards</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Privacy Policy</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<p class="font-label-md text-on-surface uppercase tracking-wider">Connect</p>
+<ul class="space-y-2">
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Instagram</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Contact Concierge</a></li>
+</ul>
+</div>
+</div>
+<div class="px-6 md:px-margin-desktop py-8 border-t border-surface-container text-center text-on-surface-variant text-label-sm">
+            © 2024 PetSaathi Luxury Care. All rights reserved.
+        </div>
+</footer>
+<script>
+        // Micro-interaction: Progress bar simulation
+        const progressBar = document.querySelector('.bg-secondary.w-\\[65\\%\\]');
+        let currentProgress = 65;
+        
+        setInterval(() => {
+            if (currentProgress < 98) {
+                currentProgress += 0.05;
+                progressBar.style.width = `${currentProgress}%`;
+            }
+        }, 3000);
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 20) {
+                nav.classList.add('py-2');
+                nav.classList.remove('py-4');
+            } else {
+                nav.classList.add('py-4');
+                nav.classList.remove('py-2');
+            }
+        });
+    </script>
+</body></html>

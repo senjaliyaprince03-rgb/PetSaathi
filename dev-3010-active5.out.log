@@ -1,0 +1,19 @@
+
+> petsaathi@0.1.0 dev
+> next dev -p 3010 -H 127.0.0.1
+
+   ▲ Next.js 15.5.20
+   - Local:        http://127.0.0.1:3010
+   - Network:      http://127.0.0.1:3010
+
+ ✓ Starting...
+ ✓ Ready in 4.1s
+ ✓ Compiled /middleware in 496ms (213 modules)
+ ○ Compiling /api/health ...
+ ✓ Compiled /api/health in 1110ms (343 modules)
+ GET /api/health 200 in 1504ms
+ ✓ Compiled in 349ms (408 modules)
+ ✓ Compiled in 141ms (408 modules)
+ ✓ Compiled in 151ms (408 modules)
+ ✓ Compiled in 154ms (408 modules)
+[?25h

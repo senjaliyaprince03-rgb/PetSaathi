@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth snap-y snap-mandatory overflow-x-hidden" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PetSaathi | Luxury Pet Care Marketplace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-background": "#2d1508",
+                    "secondary-fixed-dim": "#ffb688",
+                    "outline-variant": "#ccc6bc",
+                    "surface-container": "#ffeae0",
+                    "tertiary": "#d8a84e",
+                    "on-secondary-fixed": "#311300",
+                    "on-tertiary": "#ffffff",
+                    "surface-bright": "#fff8f6",
+                    "secondary": "#4a2e1f",
+                    "surface-variant": "#ffdbca",
+                    "on-primary-fixed": "#1e1b14",
+                    "on-secondary-fixed-variant": "#733500",
+                    "on-error": "#ffffff",
+                    "surface": "#FFF7EA",
+                    "on-primary": "#ffffff",
+                    "primary-fixed-dim": "#cdc6ba",
+                    "inverse-surface": "#4a2e1f",
+                    "secondary-fixed": "#ffdbc7",
+                    "surface-tint": "#635e54",
+                    "tertiary-fixed-dim": "#f1bf62",
+                    "on-tertiary-container": "#936b13",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed-variant": "#5e4200",
+                    "error-container": "#ffdad6",
+                    "on-secondary": "#ffffff",
+                    "primary": "#635e54",
+                    "on-surface": "#2d1508",
+                    "tertiary-container": "#fff7f0",
+                    "on-primary-fixed-variant": "#4a463d",
+                    "background": "#FFF7EA",
+                    "surface-container-low": "#fff1eb",
+                    "primary-container": "#fff7ea",
+                    "on-secondary-container": "#6e3300",
+                    "outline": "#7b766e",
+                    "surface-container-highest": "#ffdbca",
+                    "on-error-container": "#93000a",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed": "#ffdea8",
+                    "inverse-primary": "#cdc6ba",
+                    "inverse-on-surface": "#ffede6",
+                    "on-primary-container": "#767167",
+                    "on-tertiary-fixed": "#271900",
+                    "surface-dim": "#fed1ba",
+                    "secondary-container": "#ff964d",
+                    "on-surface-variant": "#4a463f",
+                    "primary-fixed": "#e9e2d5",
+                    "surface-container-high": "#ffe2d5"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "margin-mobile": "20px",
+                    "stack-lg": "48px",
+                    "unit": "8px",
+                    "margin-desktop": "64px",
+                    "stack-sm": "12px",
+                    "stack-md": "24px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Manrope"],
+                    "label-md": ["Manrope"],
+                    "label-sm": ["Manrope"],
+                    "headline-md": ["Playfair Display"],
+                    "body-md": ["Manrope"],
+                    "headline-lg": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"],
+                    "display-lg-mobile": ["Playfair Display"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { 
+            background-color: #FFF7EA; 
+            color: #2d1508; 
+            cursor: none; /* Custom high-end cursor implementation */
+        }
+        
+        .snap-section {
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Nodal Scale Transition */
+        .nodal-transition {
+            opacity: 0;
+            transform: scale(0.95) translateY(20px);
+            transition: all 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .nodal-transition.active {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        /* Organic Haptics */
+        .haptic-hover {
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .haptic-hover:hover {
+            transform: scale(1.02) translateY(-5px);
+        }
+
+        /* Magnetic Text Effect Placeholder */
+        .magnetic-wrap {
+            display: inline-block;
+            transition: transform 0.2s linear;
+        }
+
+        /* Atmospheric Depth Layers */
+        .layer-far { transform: translateZ(-50px) scale(1.1); }
+        .layer-mid { transform: translateZ(0); }
+        .layer-near { transform: translateZ(50px) scale(0.95); }
+
+        webgl-shader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        #custom-cursor {
+            width: 20px;
+            height: 20px;
+            background: #d8a84e;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 10000;
+            mix-blend-mode: difference;
+            transition: transform 0.15s ease-out;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: minmax(100px, auto);
+            gap: 24px;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-background">
+<div id="custom-cursor"></div>
+<!-- STITCH_SHADER_START:ANIMATION_13 class="" -->
+<div class="" style="display:block;width:100%;height:100%;min-height:200px;">
+<canvas id="shader-canvas-ANIMATION_13" style="display:block;width:100%;height:100%"></canvas>
+<script>
+(function() {
+  const canvas = document.getElementById('shader-canvas-ANIMATION_13');
+
+  // Sync the WebGL drawing-buffer size with the CSS-driven layout size.
+  // This fires on initial layout and whenever the element is resized.
+  function syncSize() {
+    const w = canvas.clientWidth  || 1280;
+    const h = canvas.clientHeight || 720;
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width  = w;
+      canvas.height = h;
+    }
+  }
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(syncSize).observe(canvas);
+  }
+  syncSize();
+
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+  const vs = `attribute vec2 a_position;
+varying vec2 v_texCoord;
+void main() {
+  v_texCoord = a_position * 0.5 + 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
+  const fs = `precision highp float;
+uniform float u_time;
+uniform vec2 u_resolution;
+uniform vec2 u_mouse;
+varying vec2 v_texCoord;
+
+void main() {
+    vec2 uv = v_texCoord;
+    vec2 mouse = u_mouse / u_resolution;
+    
+    // Create organic liquid flow
+    float flow = sin(uv.x * 3.0 + u_time * 0.5) * 0.1;
+    float flow2 = cos(uv.y * 2.0 - u_time * 0.3) * 0.1;
+    
+    // Distort UVs for the "liquid" feel
+    vec2 distortedUv = uv + vec2(flow, flow2);
+    
+    // Mouse interaction - subtle ripple
+    float dist = distance(uv, mouse);
+    float ripple = sin(dist * 10.0 - u_time * 2.0) * exp(-dist * 5.0) * 0.05;
+    distortedUv += ripple;
+
+    // Brand Colors (Converted from hex #FFF7EA, #F5E6D3, #DDEBE3)
+    vec3 color1 = vec3(1.0, 0.968, 0.917); // Warm Cream
+    vec3 color2 = vec3(0.96, 0.90, 0.82); // Soft Sand
+    vec3 color3 = vec3(0.86, 0.92, 0.89); // Muted Sage
+    
+    // Mix colors based on noise/distorted position
+    float mixVal = smoothstep(0.3, 0.7, distortedUv.x + distortedUv.y * 0.5);
+    vec3 finalColor = mix(color1, color2, mixVal);
+    finalColor = mix(finalColor, color3, ripple * 2.0);
+    
+    // Add subtle vignetting
+    float vignette = 1.0 - smoothstep(0.5, 1.5, length(uv - 0.5));
+    finalColor *= vignette;
+
+    gl_FragColor = vec4(finalColor, 1.0);
+}`;
+  function cs(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+  gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  const pos = gl.getAttribLocation(prog, 'a_position');
+  gl.enableVertexAttribArray(pos);
+  gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+  const uTime = gl.getUniformLocation(prog, 'u_time');
+  const uRes = gl.getUniformLocation(prog, 'u_resolution');
+  const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+  // u_mouse is in pixel coordinates matching u_resolution (ShaderToy convention).
+  // Shaders that need normalized coords should use: u_mouse / u_resolution.
+  let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+  window.addEventListener('mousemove', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width && rect.height) {
+      const nx = (event.clientX - rect.left) / rect.width;
+      const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+      mouse.x = nx * canvas.width;
+      mouse.y = ny * canvas.height;
+    }
+  });
+
+  function render(t) {
+    if (typeof ResizeObserver === 'undefined') syncSize();
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    if (uTime) gl.uniform1f(uTime, t * 0.001);
+    if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+    if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(render);
+  }
+  render(0);
+})();
+</script>
+</div>
+<!-- STITCH_SHADER_END:ANIMATION_13 -->
+<!-- Navigation Shell -->
+<header class="fixed top-8 left-1/2 -translate-x-1/2 w-[90%] max-w-5xl z-[100] bg-white/10 backdrop-blur-2xl border border-white/20 rounded-full py-4 px-8 transition-all duration-500" id="main-nav">
+<div class="flex justify-between items-center">
+<a class="font-headline-md text-2xl font-bold text-secondary" href="#">PetSaathi</a>
+<nav class="hidden md:flex items-center gap-10 font-label-md">
+<a class="hover:text-tertiary transition-colors" href="#services">Services</a>
+<a class="hover:text-tertiary transition-colors" href="#safety">Safety</a>
+<a class="hover:text-tertiary transition-colors" href="#sitters">Sitters</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="bg-secondary text-white px-6 py-3 rounded-full font-label-md hover:bg-secondary/90 transition-all shadow-xl">Book Now</button>
+</div>
+</div>
+</header>
+<main class="relative z-10">
+<!-- Hero Section -->
+<section class="snap-section px-margin-mobile md:px-margin-desktop">
+<div class="max-w-container-max mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center nodal-transition active">
+<div class="flex flex-col gap-10">
+<div class="magnetic-wrap-container">
+<span class="font-label-sm text-tertiary tracking-[0.3em] uppercase mb-4 block">Premium Care Ahmedabad</span>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-secondary leading-[1.1] magnetic-text">
+                            Pet care, <br/><span class="italic font-serif text-tertiary">elevated to art.</span>
+</h1>
+<p class="font-body-lg text-secondary/70 max-w-lg mt-6">
+                            Experience the future of pet companionship. GPS-tracked walks, luxury boarding, and certified specialists at your fingertips.
+                        </p>
+</div>
+<div class="flex gap-6">
+<button class="haptic-hover bg-secondary text-white px-10 py-5 rounded-full font-bold shadow-2xl">Find a Sitter</button>
+<button class="haptic-hover border border-secondary text-secondary px-10 py-5 rounded-full font-bold">Learn More</button>
+</div>
+</div>
+<div class="relative flex justify-center items-center">
+<div class="relative w-full aspect-square max-w-xl group haptic-hover">
+<img alt="Luxury Golden Retriever" class="w-full h-full object-cover rounded-[3rem] shadow-2xl" src="https://lh3.googleusercontent.com/aida/AP1WRLsEJdYajpOYt2O1dSWPaktd9CYm-AnT2LQaNKoW8aVJtvOKZuJW4dlEgIdNJI3za_UOF6WL1TyTWQSxgjyvzx7GyBSp8nh4TJ6ftTzck2ST0SZplFDpO9rqVGo_e2vPjC13OGP3vRcTRGcM-k4v35ogCN6MFFRpm2bXp0_GRv2l4uzFLQG8y1hBxJRShEuKbwn6j6DTImt8YGocwnHLhDC1T-CcVT-K-a683BU9Udwc4chQhkU7sf-6jA"/>
+<!-- STITCH_THREEJS_START:ANIMATION_14 class="absolute -top-12 -right-12 w-64 h-64 z-20" -->
+<div class="absolute -top-12 -right-12 w-64 h-64 z-20" style="display:block;">
+<script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
+<div id="threejs-container-ANIMATION_14" style="width:100%;height:100%"></div>
+<script>
+(function() {
+  const container = document.getElementById('threejs-container-ANIMATION_14');
+  const devicePixelRatio = window.devicePixelRatio || 1;
+  const width = container.clientWidth || window.innerWidth;
+const height = container.clientHeight || window.innerHeight;
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(window.devicePixelRatio);
+container.appendChild(renderer.domElement);
+
+// Lighting
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+scene.add(ambientLight);
+const pointLight = new THREE.PointLight(0xd8a84e, 1.5); // Soft Gold
+pointLight.position.set(5, 5, 5);
+scene.add(pointLight);
+
+// Create a Luxury "Floating Paw" (Abstract Geometric representation)
+const group = new THREE.Group();
+
+// Central pad
+const mainPadGeom = new THREE.SphereGeometry(0.8, 32, 32);
+mainPadGeom.scale(1, 0.8, 0.3);
+const material = new THREE.MeshPhongMaterial({ 
+    color: 0x4a2e1f, // Luxury Brown
+    shininess: 100,
+    transparent: true,
+    opacity: 0.9
+});
+const mainPad = new THREE.Mesh(mainPadGeom, material);
+group.add(mainPad);
+
+// Toes
+const toeGeom = new THREE.SphereGeometry(0.3, 32, 32);
+toeGeom.scale(1, 1.2, 0.5);
+const toePositions = [
+    [-0.7, 0.8, 0],
+    [-0.2, 1.1, 0],
+    [0.3, 1.1, 0],
+    [0.8, 0.8, 0]
+];
+
+toePositions.forEach(pos => {
+    const toe = new THREE.Mesh(toeGeom, material);
+    toe.position.set(pos[0], pos[1], pos[2]);
+    group.add(toe);
+});
+
+scene.add(group);
+camera.position.z = 5;
+
+// Animation
+let mouseX = 0;
+let mouseY = 0;
+
+window.addEventListener('mousemove', (e) => {
+    mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+    mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+});
+
+function animate() {
+    requestAnimationFrame(animate);
+    
+    // Floating motion
+    group.position.y = Math.sin(Date.now() * 0.001) * 0.2;
+    group.rotation.y += 0.005;
+    
+    // Mouse follow
+    group.rotation.x += (mouseY * 0.5 - group.rotation.x) * 0.05;
+    group.rotation.z += (mouseX * 0.5 - group.rotation.z) * 0.05;
+    
+    renderer.render(scene, camera);
+}
+
+window.addEventListener('resize', () => {
+    const w = container.clientWidth || window.innerWidth;
+    const h = container.clientHeight || window.innerHeight;
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+    renderer.setSize(w, h);
+});
+
+animate();
+})();
+</script>
+</div>
+<!-- STITCH_THREEJS_END:ANIMATION_14 -->
+</div>
+</div>
+</div>
+</section>
+<!-- Fluid Bento Services -->
+<section class="snap-section bg-secondary/5" id="services">
+<div class="max-w-container-max mx-auto w-full px-margin-mobile md:px-margin-desktop nodal-transition">
+<h2 class="font-headline-lg text-4xl mb-12 text-secondary">World-class Marketplace</h2>
+<div class="bento-grid h-[70vh]">
+<!-- Large Box: Walking -->
+<div class="col-span-12 md:col-span-7 row-span-2 bg-white rounded-[2.5rem] overflow-hidden relative group haptic-hover shadow-lg">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida/AP1WRLtnXl2btngG8luOBZz6htFZ33IeHC14l7T4mxa_olrNNTEbIudcsfZ_n77vFaWe5n2d2hMky70axMuci7Lm20lfiP-pb2e_bwmIC2vzDw8oJJ5t5MO8tdMajuNpY4YgcjW-uTGpF8ysnCKOQOPNuD5D3jWXeOGMA9klCTLcphRHF39EP_nvY78LHlVro77t8DT78si57Gqj2VRnsjdN_lBiZeLgt953-ztljSwZdPGfOABR6XWG_eTyqQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent flex flex-col justify-end p-10 text-white">
+<span class="text-tertiary font-bold tracking-widest uppercase text-xs mb-2">Daily Movement</span>
+<h3 class="text-3xl font-bold">Curated Walks</h3>
+<p class="mt-2 text-white/80 max-w-sm">GPS-tracked personalized routes with health metrics.</p>
+</div>
+</div>
+<!-- Medium Box: Sitting -->
+<div class="col-span-12 md:col-span-5 row-span-1 bg-white rounded-[2.5rem] overflow-hidden relative group haptic-hover shadow-lg">
+<img class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLvv0ppugGETy0vzSSKyAIOaDNz-cEVTKbPGnIlFyq2AFmidJw3woSvLSQe13DnRSjOq8X1QCFNRw4PYuwIlxvNCafOVh0U7wFnCkTe30OEORjQXtuVvTdt8tAditt_d6-nRnguOKlt7tTkWdYpFXO8GW16uVy5-McTUPi36PWyajdYgGEYO9Dzdz_LJ3F8bhn2TwVA0Ay63ynIq055kBs_BX89HExMUf9AllGEEPsipdUSUFaYOQfgM-Q"/>
+<div class="absolute inset-0 bg-secondary/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<button class="bg-white text-secondary px-6 py-3 rounded-full font-bold">Explore Sitters</button>
+</div>
+<div class="absolute bottom-6 left-6 text-white z-10 group-hover:hidden">
+<h3 class="text-xl font-bold">Luxury Sitting</h3>
+</div>
+</div>
+<!-- Medium Box: Boarding -->
+<div class="col-span-12 md:col-span-5 row-span-1 bg-white rounded-[2.5rem] overflow-hidden relative group haptic-hover shadow-lg">
+<img class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLvdpvQbhir4ax_LKEJtiHnuUCGzCO1Y37iyjwxbF-UDhLOyH75_C9_ZUhPJOCulMMX2fTCG2K-6eYxFBAnQlFBiBLPpxoujEH-AlWMQI4dE3orO4uTciks2SfZ8ZEdKW34GayFTaX_6L4noR5y5dlg1BjB4iVLPsgNJ9WMcZ0zcPiLly3v9wu23rvBUJOkntIGpVu6igszcx2eCe1amRae_ps5Ox0jVz1mRSh-Vt8PYHTkUMskJzEWDtw"/>
+<div class="absolute inset-0 bg-gradient-to-tr from-tertiary/60 to-transparent flex flex-col justify-end p-8 text-white">
+<h3 class="text-xl font-bold">Private Boarding</h3>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Safety Immersive Section -->
+<section class="snap-section bg-secondary text-white" id="safety">
+<div class="max-w-container-max mx-auto w-full px-margin-mobile md:px-margin-desktop nodal-transition grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
+<div>
+<h2 class="text-6xl font-headline-lg leading-tight mb-12">Built on <br/><span class="text-tertiary italic">Infallible Trust</span></h2>
+<div class="space-y-12">
+<div class="flex gap-6 haptic-hover group cursor-pointer">
+<div class="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center group-hover:bg-tertiary transition-colors">
+<span class="material-symbols-outlined text-white text-3xl">verified_user</span>
+</div>
+<div>
+<h4 class="text-xl font-bold mb-2">Biometric Verification</h4>
+<p class="text-white/60">Every sitter undergoes rigorous government-level identity checks.</p>
+</div>
+</div>
+<div class="flex gap-6 haptic-hover group cursor-pointer">
+<div class="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center group-hover:bg-tertiary transition-colors">
+<span class="material-symbols-outlined text-white text-3xl">medical_services</span>
+</div>
+<div>
+<h4 class="text-xl font-bold mb-2">Emergency Concierge</h4>
+<p class="text-white/60">24/7 Veterinary support and behavioral specialists on call.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="relative">
+<div class="aspect-[4/5] bg-white/5 rounded-[4rem] border border-white/10 p-12 flex flex-col justify-center items-center text-center layer-near haptic-hover shadow-2xl overflow-hidden">
+<div class="absolute inset-0 opacity-20">
+<img class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida/AP1WRLsEJdYajpOYt2O1dSWPaktd9CYm-AnT2LQaNKoW8aVJtvOKZuJW4dlEgIdNJI3za_UOF6WL1TyTWQSxgjyvzx7GyBSp8nh4TJ6ftTzck2ST0SZplFDpO9rqVGo_e2vPjC13OGP3vRcTRGcM-k4v35ogCN6MFFRpm2bXp0_GRv2l4uzFLQG8y1hBxJRShEuKbwn6j6DTImt8YGocwnHLhDC1T-CcVT-K-a683BU9Udwc4chQhkU7sf-6jA"/>
+</div>
+<span class="text-tertiary font-bold tracking-tighter text-8xl mb-6">100%</span>
+<h4 class="text-2xl font-bold mb-4">Safety Guarantee</h4>
+<p class="text-white/60 max-w-xs">Our insurance policy covers up to ₹5,00,000 for every luxury booking.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="snap-section">
+<div class="max-w-container-max mx-auto w-full px-margin-mobile md:px-margin-desktop nodal-transition text-center">
+<div class="bg-tertiary/10 border border-tertiary/20 rounded-[4rem] py-32 px-12 relative overflow-hidden haptic-hover">
+<div class="absolute -top-24 -left-24 w-96 h-96 bg-tertiary/20 rounded-full blur-[100px]"></div>
+<div class="absolute -bottom-24 -right-24 w-96 h-96 bg-secondary/10 rounded-full blur-[100px]"></div>
+<h2 class="text-6xl md:text-8xl font-headline-lg text-secondary mb-12 leading-none">
+                        Ready to <span class="italic">ascend?</span>
+</h2>
+<button class="bg-secondary text-white px-16 py-6 rounded-full font-bold text-xl shadow-2xl haptic-hover hover:tracking-widest transition-all">
+                        Begin Your Journey
+                    </button>
+<p class="mt-12 text-secondary/40 font-label-sm tracking-[0.5em] uppercase">Join the elite 1% of pet parents</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-white py-24 relative z-10 border-t border-secondary/10">
+<div class="max-w-container-max mx-auto px-margin-desktop grid grid-cols-2 md:grid-cols-4 gap-16">
+<div class="col-span-2">
+<h2 class="text-4xl font-headline-lg text-secondary mb-6">PetSaathi</h2>
+<p class="text-secondary/60 max-w-sm">The gold standard for pet marketplace excellence. Crafted for those who demand the absolute best for their companions.</p>
+</div>
+<div>
+<h4 class="font-bold mb-6 text-tertiary uppercase text-xs tracking-widest">Connect</h4>
+<nav class="flex flex-col gap-4 text-secondary/80">
+<a class="hover:text-tertiary" href="#">Instagram</a>
+<a class="hover:text-tertiary" href="#">LinkedIn</a>
+<a class="hover:text-tertiary" href="#">Concierge Care</a>
+</nav>
+</div>
+<div>
+<h4 class="font-bold mb-6 text-tertiary uppercase text-xs tracking-widest">Location</h4>
+<p class="text-secondary/80">Ahmedabad, Gujarat<br/>Bopal • Satellite • Bodakdev</p>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-desktop mt-24 pt-8 border-t border-secondary/5 text-center text-[10px] uppercase tracking-widest text-secondary/40">
+            © 2024 PetSaathi Luxury Marketplace. All rights reserved.
+        </div>
+</footer>
+<script>
+        // Custom Cursor Implementation
+        const cursor = document.getElementById('custom-cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        document.addEventListener('mousedown', () => cursor.style.transform = 'scale(0.8)');
+        document.addEventListener('mouseup', () => cursor.style.transform = 'scale(1)');
+
+        // Nodal Scrolling Intersection Observer
+        const observerOptions = {
+            threshold: 0.3
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelector('.nodal-transition')?.classList.add('active');
+                } else {
+                    // Optional: remove to keep visible after first scroll
+                    // entry.target.querySelector('.nodal-transition')?.classList.remove('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.snap-section').forEach(section => observer.observe(section));
+
+        // Magnetic Text Effect
+        const magneticElements = document.querySelectorAll('.magnetic-text');
+        magneticElements.forEach(el => {
+            document.addEventListener('mousemove', (e) => {
+                const rect = el.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                const distance = Math.sqrt(x*x + y*y);
+                
+                if (distance < 300) {
+                    el.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
+                } else {
+                    el.style.transform = `translate(0px, 0px)`;
+                }
+            });
+        });
+
+        // Navbar adaptation
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('main-nav');
+            if (window.scrollY > 100) {
+                nav.classList.remove('top-8');
+                nav.classList.add('top-4', 'bg-white/80', 'py-2');
+            } else {
+                nav.classList.add('top-8');
+                nav.classList.remove('top-4', 'bg-white/80', 'py-2');
+            }
+        });
+
+        // Initialize Three.js 3D Paw from DataStore
+        (function initThreeJS() {
+            const container = document.querySelector('threejs-scene');
+            if (container) {
+                // The prompt provides the logic for ANIMATION_14. We implement it here.
+                const width = container.clientWidth;
+                const height = container.clientHeight;
+
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+                const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+                renderer.setSize(width, height);
+                renderer.setPixelRatio(window.devicePixelRatio);
+                container.appendChild(renderer.domElement);
+
+                const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+                scene.add(ambientLight);
+                const pointLight = new THREE.PointLight(0xd8a84e, 1.5);
+                pointLight.position.set(5, 5, 5);
+                scene.add(pointLight);
+
+                const group = new THREE.Group();
+                const material = new THREE.MeshPhongMaterial({ 
+                    color: 0x4a2e1f,
+                    shininess: 100,
+                    transparent: true,
+                    opacity: 0.9
+                });
+
+                const mainPadGeom = new THREE.SphereGeometry(0.8, 32, 32);
+                mainPadGeom.scale(1, 0.8, 0.3);
+                const mainPad = new THREE.Mesh(mainPadGeom, material);
+                group.add(mainPad);
+
+                const toeGeom = new THREE.SphereGeometry(0.3, 32, 32);
+                toeGeom.scale(1, 1.2, 0.5);
+                [[-0.7, 0.8, 0], [-0.2, 1.1, 0], [0.3, 1.1, 0], [0.8, 0.8, 0]].forEach(pos => {
+                    const toe = new THREE.Mesh(toeGeom, material);
+                    toe.position.set(pos[0], pos[1], pos[2]);
+                    group.add(toe);
+                });
+
+                scene.add(group);
+                camera.position.z = 5;
+
+                let mouseX = 0, mouseY = 0;
+                window.addEventListener('mousemove', (e) => {
+                    mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+                    mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+                });
+
+                function animate() {
+                    requestAnimationFrame(animate);
+                    group.position.y = Math.sin(Date.now() * 0.001) * 0.2;
+                    group.rotation.y += 0.005;
+                    group.rotation.x += (mouseY * 0.5 - group.rotation.x) * 0.05;
+                    group.rotation.z += (mouseX * 0.5 - group.rotation.z) * 0.05;
+                    renderer.render(scene, camera);
+                }
+                animate();
+            }
+        })();
+
+        // Simple WebGL Liquid Shader Mock (Since custom elements need JS handling)
+        (function initShader() {
+            const el = document.querySelector('webgl-shader');
+            if (el) {
+                const canvas = document.createElement('canvas');
+                el.appendChild(canvas);
+                const gl = canvas.getContext('webgl');
+                if (!gl) return;
+
+                // Shader Source from ANIMATION_13
+                const vsSource = `
+                    attribute vec2 position;
+                    varying vec2 v_texCoord;
+                    void main() {
+                        v_texCoord = position * 0.5 + 0.5;
+                        gl_Position = vec4(position, 0.0, 1.0);
+                    }
+                `;
+                const fsSource = `
+                    precision highp float;
+                    uniform float u_time;
+                    uniform vec2 u_resolution;
+                    uniform vec2 u_mouse;
+                    varying vec2 v_texCoord;
+
+                    void main() {
+                        vec2 uv = v_texCoord;
+                        vec2 mouse = u_mouse / u_resolution;
+                        float flow = sin(uv.x * 3.0 + u_time * 0.5) * 0.1;
+                        float flow2 = cos(uv.y * 2.0 - u_time * 0.3) * 0.1;
+                        vec2 distortedUv = uv + vec2(flow, flow2);
+                        float dist = distance(uv, mouse);
+                        float ripple = sin(dist * 10.0 - u_time * 2.0) * exp(-dist * 5.0) * 0.05;
+                        distortedUv += ripple;
+                        vec3 color1 = vec3(1.0, 0.968, 0.917);
+                        vec3 color2 = vec3(0.96, 0.90, 0.82);
+                        vec3 color3 = vec3(0.86, 0.92, 0.89);
+                        float mixVal = smoothstep(0.3, 0.7, distortedUv.x + distortedUv.y * 0.5);
+                        vec3 finalColor = mix(color1, color2, mixVal);
+                        finalColor = mix(finalColor, color3, ripple * 2.0);
+                        float vignette = 1.0 - smoothstep(0.5, 1.5, length(uv - 0.5));
+                        gl_FragColor = vec4(finalColor * vignette, 1.0);
+                    }
+                `;
+
+                function createShader(gl, type, source) {
+                    const shader = gl.createShader(type);
+                    gl.shaderSource(shader, source);
+                    gl.compileShader(shader);
+                    return shader;
+                }
+
+                const program = gl.createProgram();
+                gl.attachShader(program, createShader(gl, gl.VERTEX_SHADER, vsSource));
+                gl.attachShader(program, createShader(gl, gl.FRAGMENT_SHADER, fsSource));
+                gl.linkProgram(program);
+                gl.useProgram(program);
+
+                const buffer = gl.createBuffer();
+                gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+                gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+                const pos = gl.getAttribLocation(program, "position");
+                gl.enableVertexAttribArray(pos);
+                gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+
+                const uTime = gl.getUniformLocation(program, "u_time");
+                const uRes = gl.getUniformLocation(program, "u_resolution");
+                const uMouse = gl.getUniformLocation(program, "u_mouse");
+
+                let mx = 0, my = 0;
+                window.addEventListener('mousemove', e => { mx = e.clientX; my = window.innerHeight - e.clientY; });
+
+                function render(time) {
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                    gl.viewport(0, 0, canvas.width, canvas.height);
+                    gl.uniform1f(uTime, time * 0.001);
+                    gl.uniform2f(uRes, canvas.width, canvas.height);
+                    gl.uniform2f(uMouse, mx, my);
+                    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+                    requestAnimationFrame(render);
+                }
+                requestAnimationFrame(render);
+            }
+        })();
+    </script>
+</body></html>

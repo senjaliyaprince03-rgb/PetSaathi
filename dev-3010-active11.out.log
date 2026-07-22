@@ -1,0 +1,61 @@
+
+> petsaathi@0.1.0 dev
+> next dev --hostname 127.0.0.1 --port 3010
+
+   ▲ Next.js 15.5.20
+   - Local:        http://127.0.0.1:3010
+   - Network:      http://127.0.0.1:3010
+   - Experiments (use with caution):
+     · clientTraceMetadata
+
+ ✓ Starting...
+ ○ Compiling /instrumentation ...
+ ✓ Compiled /instrumentation in 3.6s (1224 modules)
+ ✓ Ready in 16.6s
+ ○ Compiling /middleware ...
+ ✓ Compiled /middleware in 872ms (968 modules)
+ ○ Compiling /api/health ...
+ ✓ Compiled /api/health in 3.6s (2300 modules)
+ GET /api/health 200 in 4742ms
+ ○ Compiling / ...
+ ✓ Compiled / in 7.7s (5365 modules)
+ GET / 200 in 10017ms
+ ○ Compiling /book ...
+ ✓ Compiled /book in 5.5s (5504 modules)
+ GET /book 200 in 6439ms
+ ○ Compiling /safety ...
+ ✓ Compiled /safety in 3.4s (5514 modules)
+ GET /safety 200 in 4228ms
+ ✓ Compiled in 4.1s (1707 modules)
+ ✓ Compiled in 1750ms (1707 modules)
+ ✓ Compiled in 2.7s (1707 modules)
+ ✓ Compiled in 1599ms (1707 modules)
+ ✓ Compiled in 1559ms (1707 modules)
+ ✓ Compiled in 2.5s (1707 modules)
+ ✓ Compiled in 1069ms (1707 modules)
+ ✓ Compiled in 1092ms (1707 modules)
+ ✓ Compiled in 1377ms (1707 modules)
+ ✓ Compiled in 2.6s (1707 modules)
+ ✓ Compiled in 17.3s (6496 modules)
+ ✓ Compiled in 1618ms (1707 modules)
+ ✓ Compiled in 1495ms (1707 modules)
+ ✓ Compiled in 1496ms (1707 modules)
+ ✓ Compiled in 1699ms (1707 modules)
+ ✓ Compiled in 2.8s (1707 modules)
+ ✓ Compiled in 1314ms (1707 modules)
+ ✓ Compiled in 1525ms (1707 modules)
+ ✓ Compiled in 13.2s (6482 modules)
+ ✓ Compiled in 2.9s (1707 modules)
+ ✓ Compiled in 1482ms (1707 modules)
+ ✓ Compiled in 1181ms (1707 modules)
+ ✓ Compiled in 15s (6496 modules)
+ ✓ Compiled in 2.6s (1707 modules)
+ ✓ Compiled in 1541ms (1707 modules)
+ ✓ Compiled in 1349ms (1707 modules)
+ ✓ Compiled in 1233ms (1707 modules)
+ ✓ Compiled in 1656ms (1707 modules)
+ ✓ Compiled in 1311ms (1707 modules)
+ ✓ Compiled in 1143ms (1707 modules)
+ ✓ Compiled in 1191ms (1707 modules)
+ ✓ Compiled in 1477ms (1707 modules)
+[?25h

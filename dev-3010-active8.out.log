@@ -1,0 +1,24 @@
+
+> petsaathi@0.1.0 dev
+> next dev -p 3010 -H 127.0.0.1
+
+   ▲ Next.js 15.5.20
+   - Local:        http://127.0.0.1:3010
+   - Network:      http://127.0.0.1:3010
+   - Experiments (use with caution):
+     · clientTraceMetadata
+
+ ✓ Starting...
+ ○ Compiling /instrumentation ...
+ ✓ Compiled /instrumentation in 2.5s (1224 modules)
+ ✓ Ready in 14s
+ ○ Compiling /middleware ...
+ ✓ Compiled /middleware in 733ms (968 modules)
+ ○ Compiling /api/health ...
+ ✓ Compiled /api/health in 4.1s (2300 modules)
+ GET /api/health 200 in 5293ms
+ ✓ Compiled in 2.8s (2411 modules)
+ ✓ Compiled in 1510ms (2411 modules)
+ ✓ Compiled in 696ms (2411 modules)
+ ✓ Compiled in 1427ms (2411 modules)
+[?25h

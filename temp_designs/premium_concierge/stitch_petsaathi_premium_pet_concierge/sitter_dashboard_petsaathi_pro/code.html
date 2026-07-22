@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PetSaathi | Sitter Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-background": "#2d1508",
+                "secondary-fixed-dim": "#ffb688",
+                "outline-variant": "#ccc6bc",
+                "surface-container": "#ffeae0",
+                "tertiary": "#7c5800",
+                "on-secondary-fixed": "#311300",
+                "on-tertiary": "#ffffff",
+                "surface-bright": "#fff8f6",
+                "secondary": "#974800",
+                "surface-variant": "#ffdbca",
+                "on-primary-fixed": "#1e1b14",
+                "on-secondary-fixed-variant": "#733500",
+                "on-error": "#ffffff",
+                "surface": "#fff8f6",
+                "on-primary": "#ffffff",
+                "primary-fixed-dim": "#cdc6ba",
+                "inverse-surface": "#452a1b",
+                "secondary-fixed": "#ffdbc7",
+                "surface-tint": "#635e54",
+                "tertiary-fixed-dim": "#f1bf62",
+                "on-tertiary-container": "#936b13",
+                "surface-container-lowest": "#ffffff",
+                "on-tertiary-fixed-variant": "#5e4200",
+                "error-container": "#ffdad6",
+                "on-secondary": "#ffffff",
+                "primary": "#635e54",
+                "on-surface": "#2d1508",
+                "tertiary-container": "#fff7f0",
+                "on-primary-fixed-variant": "#4a463d",
+                "background": "#fff8f6",
+                "surface-container-low": "#fff1eb",
+                "primary-container": "#fff7ea",
+                "on-secondary-container": "#6e3300",
+                "outline": "#7b766e",
+                "surface-container-highest": "#ffdbca",
+                "on-error-container": "#93000a",
+                "error": "#ba1a1a",
+                "tertiary-fixed": "#ffdea8",
+                "inverse-primary": "#cdc6ba",
+                "inverse-on-surface": "#ffede6",
+                "on-primary-container": "#767167",
+                "on-tertiary-fixed": "#271900",
+                "surface-dim": "#fed1ba",
+                "secondary-container": "#ff964d",
+                "on-surface-variant": "#4a463f",
+                "primary-fixed": "#e9e2d5",
+                "surface-container-high": "#ffe2d5"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "gutter": "24px",
+                "margin-mobile": "20px",
+                "stack-lg": "48px",
+                "unit": "8px",
+                "margin-desktop": "64px",
+                "stack-sm": "12px",
+                "stack-md": "24px",
+                "container-max": "1280px"
+            },
+            "fontFamily": {
+                "body-lg": ["Manrope"],
+                "label-md": ["Manrope"],
+                "label-sm": ["Manrope"],
+                "headline-md": ["Playfair Display"],
+                "body-md": ["Manrope"],
+                "headline-lg": ["Playfair Display"],
+                "display-lg": ["Playfair Display"],
+                "display-lg-mobile": ["Playfair Display"]
+            },
+            "fontSize": {
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                "display-lg": ["56px", {"lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "display-lg-mobile": ["40px", {"lineHeight": "48px", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #fff8f6;
+            background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #ffdbca;
+            border-radius: 10px;
+        }
+        .glass-card {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="text-on-background font-body-md">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl shadow-[0_10px_40px_rgba(74,46,31,0.08)]">
+<div class="flex justify-between items-center px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="flex items-center gap-12">
+<span class="font-headline-md text-headline-md font-bold text-secondary">PetSaathi</span>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-all duration-300" href="#">Our Sitters</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-all duration-300" href="#">Services</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-all duration-300" href="#">Safety</a>
+<a class="font-body-md text-body-md text-secondary font-bold border-b-2 border-secondary transition-all duration-300" href="#">Concierge</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden md:block text-secondary border border-secondary px-6 py-2 rounded-full font-label-md hover:bg-secondary/5 active:scale-95 transition-all">Become a Sitter</button>
+<button class="bg-secondary text-white px-6 py-2 rounded-full font-label-md hover:opacity-90 active:scale-95 transition-all shadow-lg shadow-secondary/20">Book Pet Care</button>
+</div>
+</div>
+</nav>
+<!-- Dashboard Hero Section -->
+<main class="pt-32 pb-stack-lg px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<!-- Welcome Header -->
+<header class="mb-stack-md flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<span class="font-label-sm text-label-sm text-secondary tracking-widest uppercase mb-2 block">Sitter Dashboard</span>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-background">Welcome back, Ananya</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-2 max-w-2xl">Your dedication to reliability keeps our sanctuary thriving. You have 2 assignments scheduled for today.</p>
+</div>
+<div class="flex items-center gap-3 bg-surface-container-low p-2 pr-6 rounded-full border border-outline-variant/30">
+<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white">
+<img class="w-full h-full object-cover" data-alt="A professional portrait of a warm, smiling Indian woman in her late 20s with a kind expression. She is wearing an elegant but practical earthy-toned linen shirt, photographed in a high-end, sun-filled modern interior with soft lighting and a warm, premium aesthetic. Minimalist and sophisticated atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJbZGHMvy8rUHY3mR9YoMTh9MMm4vK8GUaL1JehEKLMNEcawsTfc4PPFq_ytzg4gsB0ahpuN2I4-cQdrdHRLH4BLmKMvRjsiAz4a8be_f_SB1e8p2GBicQ5YOtSLxC0iqYRwNxZ5dX2hYUGYjAYran-Q6X53_XBGR7qQAoLb2Uu3jX8yA5xupudTsI9agKdAOj8Um-qu-AP_ymMOn18jHBKcvWU27TbnbDjgA9g2vPYAp_J0BNRRCzvaJ6W8biJBxYDbebmnGOvHU"/>
+</div>
+<div>
+<p class="font-label-md text-label-md">Verified Pro</p>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-tertiary" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span class="text-xs font-bold text-tertiary">Platinum Tier</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Reliability & Verification (Col 4) -->
+<div class="md:col-span-4 space-y-gutter">
+<!-- Reliability Score Card -->
+<div class="bg-white rounded-xl p-8 shadow-[0_10px_40px_rgba(74,46,31,0.06)] relative overflow-hidden">
+<div class="relative z-10">
+<h3 class="font-headline-md text-headline-md mb-6">Reliability Score</h3>
+<div class="flex flex-col items-center justify-center py-4">
+<!-- Circular Gauge SVG -->
+<div class="relative w-48 h-48">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="none" r="40" stroke="#f1bf6220" stroke-width="8"></circle>
+<circle cx="50" cy="50" fill="none" r="40" stroke="#974800" stroke-dasharray="251.2" stroke-dashoffset="5.02" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-display-lg-mobile text-display-lg-mobile text-secondary">98%</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">EXCEPTIONAL</span>
+</div>
+</div>
+</div>
+<p class="text-center font-body-md text-on-surface-variant mt-4">Top 2% of sitters in Mumbai this month.</p>
+</div>
+<!-- Background texture/decoration -->
+<div class="absolute -bottom-8 -right-8 opacity-5">
+<span class="material-symbols-outlined text-[120px]" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+</div>
+<!-- Verification Badges Card -->
+<div class="bg-surface-container-low rounded-xl p-8 border border-white">
+<h3 class="font-headline-md text-headline-md mb-6">Verification Status</h3>
+<div class="space-y-4">
+<div class="flex items-center gap-4 bg-white/60 p-3 rounded-lg">
+<div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">badge</span>
+</div>
+<div>
+<p class="font-label-md text-label-md">ID Verified</p>
+<p class="text-xs text-on-surface-variant">Identity confirmed 12/2023</p>
+</div>
+<span class="material-symbols-outlined ml-auto text-tertiary">check_circle</span>
+</div>
+<div class="flex items-center gap-4 bg-white/60 p-3 rounded-lg">
+<div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">school</span>
+</div>
+<div>
+<p class="font-label-md text-label-md">Training Certified</p>
+<p class="text-xs text-on-surface-variant">Behavioral Level 3</p>
+</div>
+<span class="material-symbols-outlined ml-auto text-tertiary">check_circle</span>
+</div>
+<div class="flex items-center gap-4 bg-white/60 p-3 rounded-lg">
+<div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">medical_services</span>
+</div>
+<div>
+<p class="font-label-md text-label-md">Safety &amp; CPR</p>
+<p class="text-xs text-on-surface-variant">Emergency ready</p>
+</div>
+<span class="material-symbols-outlined ml-auto text-tertiary">check_circle</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Timeline & Earnings (Col 8) -->
+<div class="md:col-span-8 space-y-gutter">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Earnings Card -->
+<div class="bg-secondary text-white rounded-xl p-8 shadow-xl shadow-secondary/20 flex flex-col justify-between">
+<div>
+<span class="font-label-sm text-label-sm opacity-80 uppercase tracking-widest">Monthly Earnings</span>
+<div class="flex items-baseline gap-2 mt-2">
+<h2 class="font-display-lg-mobile text-display-lg-mobile">₹42,800</h2>
+<span class="text-secondary-fixed opacity-90">+12% vs last mo</span>
+</div>
+</div>
+<div class="mt-8 pt-8 border-t border-white/10 flex justify-between items-center">
+<div>
+<p class="font-label-sm text-label-sm opacity-80">Next Payout</p>
+<p class="font-body-md">Oct 15, 2024</p>
+</div>
+<button class="bg-white text-secondary px-4 py-2 rounded-lg font-label-md hover:bg-secondary-fixed transition-colors">View Details</button>
+</div>
+</div>
+<!-- Service Instructions Quick Access -->
+<div class="bg-white rounded-xl p-8 shadow-[0_10px_40px_rgba(74,46,31,0.06)]">
+<h3 class="font-headline-md text-headline-md mb-4">Client Guides</h3>
+<div class="space-y-3 max-h-[140px] overflow-y-auto custom-scrollbar pr-2">
+<a class="flex items-center gap-3 group" href="#">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center group-hover:bg-secondary-container transition-colors">
+<span class="material-symbols-outlined text-secondary">menu_book</span>
+</div>
+<div>
+<p class="font-label-md text-label-md group-hover:text-secondary transition-colors">Bruno's Dietary Plan</p>
+<p class="text-xs text-on-surface-variant">Updated yesterday</p>
+</div>
+</a>
+<a class="flex items-center gap-3 group" href="#">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center group-hover:bg-secondary-container transition-colors">
+<span class="material-symbols-outlined text-secondary">medical_information</span>
+</div>
+<div>
+<p class="font-label-md text-label-md group-hover:text-secondary transition-colors">Leo's Medication Log</p>
+<p class="text-xs text-on-surface-variant">Active requirement</p>
+</div>
+</a>
+</div>
+<button class="w-full mt-6 text-on-surface-variant font-label-sm text-label-sm uppercase tracking-widest text-center py-2 border-t border-surface-container">See All Guides</button>
+</div>
+</div>
+<!-- Today's Assignments Timeline -->
+<div class="bg-white rounded-xl p-8 shadow-[0_10px_40px_rgba(74,46,31,0.06)]">
+<div class="flex justify-between items-center mb-10">
+<h3 class="font-headline-md text-headline-md">Today's Assignments</h3>
+<div class="flex gap-2">
+<button class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">chevron_left</span>
+</button>
+<button class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="relative space-y-12">
+<!-- Vertical Line -->
+<div class="absolute left-[23px] top-4 bottom-4 w-0.5 bg-surface-container-high z-0"></div>
+<!-- Assignment 1: Completed -->
+<div class="relative z-10 flex gap-6">
+<div class="w-12 flex flex-col items-center">
+<div class="w-12 h-12 rounded-full bg-tertiary flex items-center justify-center text-white ring-4 ring-white shadow-md">
+<span class="material-symbols-outlined">check</span>
+</div>
+<span class="font-label-sm text-label-sm mt-2 text-on-surface-variant">9:00 AM</span>
+</div>
+<div class="flex-1 bg-surface-container-low rounded-xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 border border-outline-variant/20">
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 rounded-xl overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A large, friendly Golden Retriever named Bruno sitting calmly in a sun-dappled modern hallway. High-end photography style, warm lighting, focus on the pet's gentle eyes. Luxury home aesthetic with neutral tones and clean lines." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPA5bQylWTa6IL6m-eL_567igaDfEhZjyttFZsuhTAXe7ZnIB8-t7YhcruI_UwVK19QsXkwW5lPueCu_G_6cWT6CKCHmm3ChldTX6L5ojHDiTVb01hgRDyJEhBeoQ_EyTvU6O-JvKCYdWNqOrNas0agvgd6I0z8ajYHg-4Vo0Bd0xbc7kZRaJbkN5SvZupluJjIH5HwGo1ChKtD3avrcEmD1gERhy6WdPVNZffUMvZVbS8DABIzY0ZjzcHkcy2L_RVDITQZL6BTns"/>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h4 class="font-headline-md text-headline-md text-on-surface">Bruno's Morning Walk</h4>
+<span class="px-3 py-1 rounded-full bg-tertiary/10 text-tertiary font-label-sm text-xs">COMPLETED</span>
+</div>
+<p class="text-on-surface-variant font-body-md mt-1">45 min walk • Marine Drive Sanctuary</p>
+</div>
+</div>
+<button class="text-secondary font-label-md flex items-center gap-2 px-4 py-2 hover:bg-white rounded-lg transition-all">
+                                    View Report <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Assignment 2: Upcoming -->
+<div class="relative z-10 flex gap-6">
+<div class="w-12 flex flex-col items-center">
+<div class="w-12 h-12 rounded-full bg-white border-2 border-secondary flex items-center justify-center text-secondary ring-4 ring-white shadow-md">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">schedule</span>
+</div>
+<span class="font-label-sm text-label-sm mt-2 text-secondary font-bold">2:30 PM</span>
+</div>
+<div class="flex-1 bg-white rounded-xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 border-2 border-secondary shadow-lg shadow-secondary/5">
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 rounded-xl overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A sleek, elegant Siamese cat named Leo reclining on a minimalist designer velvet chair. Editorial interior photography, soft afternoon sunlight filtering through linen curtains, sophisticated muted color palette of sage and cream." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGfOv-OV1pdi7IU9rdVLQ312RurOCqhmm_QLnCmIyXgGSr4-jyAOyQFq-fnOkC1y_3pY0YaxeOhaoxu794lrAQLueCzQZmgYeuE5rr8837iYH_35OvKieINZAy_UDazFPhDS7f5yS8TkG38P0rBAxvfB-oa3xqZUddxnKiOG5_GqE8Bj73wherBK3espSgW2kIyqtbb5dSKHzBrA-rXZ3s-c3qbLIScY2WcLPZZGDBcr7_8w7O7mcIJWdPsAZ6ywhAGnh2UCS3Sg4"/>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h4 class="font-headline-md text-headline-md text-on-surface">Leo's Luxury Visit</h4>
+<span class="px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-xs">UPCOMING</span>
+</div>
+<p class="text-on-surface-variant font-body-md mt-1">60 min visit • Grooming &amp; Play</p>
+</div>
+</div>
+<button class="bg-secondary text-white font-label-md px-8 py-3 rounded-full hover:opacity-95 active:scale-95 transition-all shadow-md shadow-secondary/10">Start Session</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-4 pt-2 bg-surface/90 dark:bg-surface-dim/90 backdrop-blur-2xl md:hidden shadow-[0_-5px_30px_rgba(74,46,31,0.05)]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-sm text-label-sm">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">calendar_today</span>
+<span class="font-label-sm text-label-sm">Bookings</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2" href="#">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="font-label-sm text-label-sm">Inbox</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full p-2 h-14 w-14 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="hidden">Profile</span>
+</a>
+</nav>
+<!-- Footer -->
+<footer class="w-full bg-surface-container-lowest border-t border-surface-container-low mt-12">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-stack-lg max-w-container-max mx-auto">
+<div class="md:col-span-1">
+<span class="font-headline-lg text-headline-lg text-secondary block mb-4">PetSaathi</span>
+<p class="font-body-md text-on-surface-variant">Elevating pet care through luxury service and unwavering trust.</p>
+</div>
+<div class="flex flex-col gap-3">
+<h5 class="font-label-md text-label-md text-on-surface">Resources</h5>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Trust &amp; Safety</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Luxury Standards</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Sitter Academy</a>
+</div>
+<div class="flex flex-col gap-3">
+<h5 class="font-label-md text-label-md text-on-surface">Company</h5>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">About Us</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Careers</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Contact Concierge</a>
+</div>
+<div class="flex flex-col gap-3">
+<h5 class="font-label-md text-label-md text-on-surface">Legal</h5>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Terms of Service</a>
+</div>
+</div>
+<div class="px-margin-desktop py-6 border-t border-surface-container max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-label-sm text-label-sm text-on-surface-variant">© 2024 PetSaathi Luxury Care. All rights reserved.</p>
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-secondary cursor-pointer">public</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-secondary cursor-pointer">share</span>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interaction for reliability gauge
+        document.addEventListener('DOMContentLoaded', () => {
+            const gauge = document.querySelector('circle[stroke="#974800"]');
+            if (gauge) {
+                gauge.style.strokeDashoffset = '251.2';
+                setTimeout(() => {
+                    gauge.style.transition = 'stroke-dashoffset 2s cubic-bezier(0.4, 0, 0.2, 1)';
+                    gauge.style.strokeDashoffset = '5.02'; // 98% of 251.2 is approx 5.02 dashoffset
+                }, 500);
+            }
+        });
+
+        // Sticky Navbar subtle shadow change on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 20) {
+                nav.classList.add('shadow-xl');
+            } else {
+                nav.classList.remove('shadow-xl');
+            }
+        });
+    </script>
+</body></html>

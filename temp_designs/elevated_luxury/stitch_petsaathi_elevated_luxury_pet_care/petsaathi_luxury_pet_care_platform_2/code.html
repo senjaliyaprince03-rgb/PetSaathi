@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PAW &amp; PURR | PetSaathi - Luxury Pet Care</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#fcf9f4",
+                    "primary": "#321f14",
+                    "primary-fixed-dim": "#e1c0af",
+                    "surface-container-high": "#ebe8e3",
+                    "error": "#ba1a1a",
+                    "surface": "#fcf9f4",
+                    "inverse-on-surface": "#f3f0eb",
+                    "inverse-primary": "#e1c0af",
+                    "secondary-fixed": "#ffdbc8",
+                    "surface-dim": "#dcdad5",
+                    "tertiary": "#001e5b",
+                    "on-secondary-fixed-variant": "#753400",
+                    "outline-variant": "#d3c3bc",
+                    "on-primary-container": "#bb9c8c",
+                    "tertiary-container": "#003189",
+                    "tertiary-fixed": "#dbe1ff",
+                    "surface-container-low": "#f6f3ee",
+                    "on-tertiary-fixed-variant": "#003ea8",
+                    "on-primary-fixed": "#29170d",
+                    "on-surface": "#1c1c19",
+                    "secondary": "#994700",
+                    "error-container": "#ffdad6",
+                    "on-secondary": "#ffffff",
+                    "secondary-container": "#fb7800",
+                    "on-tertiary-fixed": "#00174b",
+                    "on-background": "#1c1c19",
+                    "outline": "#81746f",
+                    "surface-tint": "#73594b",
+                    "on-secondary-fixed": "#321200",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-secondary-container": "#592600",
+                    "surface-container": "#f0ede9",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed-dim": "#ffb68b",
+                    "surface-variant": "#e5e2dd",
+                    "on-tertiary-container": "#7e9eff",
+                    "primary-container": "#4a3428",
+                    "surface-container-highest": "#e5e2dd",
+                    "inverse-surface": "#31302d",
+                    "surface-bright": "#fcf9f4",
+                    "on-surface-variant": "#4f453f",
+                    "tertiary-fixed-dim": "#b4c5ff",
+                    "on-primary-fixed-variant": "#594235",
+                    "on-error": "#ffffff",
+                    "primary-fixed": "#ffdbca"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-sm": "8px",
+                    "stack-md": "16px",
+                    "stack-lg": "32px",
+                    "container-max": "1440px",
+                    "margin-mobile": "20px",
+                    "margin-tablet": "40px",
+                    "gutter": "32px",
+                    "stack-xl": "64px",
+                    "margin-desktop": "80px"
+            },
+            "fontFamily": {
+                    "body-md": ["Manrope"],
+                    "headline-lg": ["Fraunces"],
+                    "headline-lg-mobile": ["Fraunces"],
+                    "label-sm": ["Manrope"],
+                    "headline-md": ["Fraunces"],
+                    "label-md": ["Manrope"],
+                    "display-lg": ["Fraunces"],
+                    "display-md": ["Fraunces"],
+                    "body-lg": ["Manrope"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["48px", {"lineHeight": "56px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "700"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "500"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "display-lg": ["84px", {"lineHeight": "92px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "display-md": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 253, 251, 0.7);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(74, 52, 40, 0.08);
+        }
+        .bento-card {
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .bento-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 30px 60px rgba(74, 52, 40, 0.12);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #FAF7F2;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #4A3428;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background font-body-md text-on-background selection:bg-secondary-fixed selection:text-on-secondary-fixed overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/60 backdrop-blur-3xl border-b border-primary/5 shadow-2xl shadow-primary/5">
+<div class="flex justify-between items-center w-full px-margin-desktop py-stack-md max-w-container-max mx-auto">
+<div class="flex items-center gap-12">
+<span class="font-headline-lg text-headline-lg tracking-tight text-primary">PAW &amp; PURR</span>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-all duration-300 font-label-md text-label-md" href="#">Marketplace</a>
+<a class="text-secondary font-bold border-b-2 border-secondary pb-1 font-label-md text-label-md" href="#">Services</a>
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-all duration-300 font-label-md text-label-md" href="#">Stories</a>
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-all duration-300 font-label-md text-label-md" href="#">Boutique</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden lg:flex relative">
+<input class="bg-surface-container-low border-none rounded-full px-6 py-2 w-64 focus:ring-1 focus:ring-primary/20 text-body-md transition-all" placeholder="Search services..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary hover:text-secondary transition-colors">shopping_bag</button>
+<button class="material-symbols-outlined text-primary hover:text-secondary transition-colors">account_circle</button>
+<button class="bg-secondary text-on-secondary px-6 py-2 rounded-full font-label-md text-label-md font-bold hover:scale-105 active:scale-95 transition-all">Join Club</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<header class="relative min-h-screen flex items-center pt-24 overflow-hidden">
+
+<div class="relative z-10 w-full max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-gutter items-center">
+<div class="space-y-stack-lg">
+<div class="inline-flex items-center gap-2 bg-secondary/10 px-4 py-1.5 rounded-full">
+<span class="material-symbols-outlined text-secondary text-sm">verified</span>
+<span class="text-secondary font-label-sm text-label-sm uppercase tracking-widest">The Gold Standard of Pet Care</span>
+</div>
+<h1 class="font-display-md text-display-md lg:text-display-lg leading-tight text-primary">
+                    Elegance for <span class="text-secondary italic">Every</span> Wag.
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                    PetSaathi offers a world-class concierge service for your beloved companions. From cinematic strolls to luxury grooming, we redefine how your pet experiences life.
+                </p>
+<div class="flex items-center gap-6 pt-4">
+<button class="bg-secondary text-on-secondary px-10 py-5 rounded-full font-label-md text-label-md font-bold shadow-lg shadow-secondary/30 hover:shadow-xl hover:-translate-y-1 transition-all">Book Private Session</button>
+<button class="flex items-center gap-2 group text-primary font-bold font-label-md text-label-md">
+                        Explore Portfolio
+                        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+<div class="flex items-center gap-12 pt-12 border-t border-primary/5">
+<div>
+<span class="block font-headline-md text-headline-md text-primary">12k+</span>
+<span class="text-label-sm font-label-sm uppercase text-on-surface-variant tracking-wider">Elite Members</span>
+</div>
+<div>
+<span class="block font-headline-md text-headline-md text-primary">4.9/5</span>
+<span class="text-label-sm font-label-sm uppercase text-on-surface-variant tracking-wider">Luxe Rating</span>
+</div>
+<div>
+<span class="block font-headline-md text-headline-md text-primary">24/7</span>
+<span class="text-label-sm font-label-sm uppercase text-on-surface-variant tracking-wider">Concierge</span>
+</div>
+</div>
+</div>
+<div class="relative lg:h-[700px] flex items-center justify-center">
+<!-- Main Hero Image -->
+<div class="relative w-full h-[600px] rounded-[40px] overflow-hidden shadow-2xl">
+<img class="w-full h-full object-cover" data-alt="A cinematic, high-end photography shot of a professional pet concierge in an elegant, sun-drenched modern living room, playfully interacting with a well-groomed Golden Retriever. The lighting is warm and golden-hour inspired, casting soft shadows across a luxury rug. The background features floor-to-ceiling windows showing a blurred cityscape, emphasizing a premium, sophisticated urban lifestyle dedicated to pet wellness." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtgLeM8T0hClUXCzFVlv87gzwbJ_8gv7im1HCPTXwAzMzvd1m_vVowSasDJN0x2t4i56UfdYkqSUGtX-HTZq_UYbv_rwKJlJcl0WNcLHRLXxeQRFrN1xYUBgqj-xnEOi41nllUsiU793rmXZltAzCepQeBFKD05SlTV5-03OyyyAxQ1EHKHqrE_nEVnAXIKThl8CcfWyGY803-JZBlsBc9m00bExf5tAXt6nOEvVqHP3_L83iOO7xLEqMwXTFmM8elJPAt7BnrbQ"/>
+</div>
+<!-- Floating Glass Booking Card -->
+<div class="absolute -bottom-8 -left-12 glass-card p-8 rounded-[32px] w-80 space-y-4 animate-bounce-slow">
+<div class="flex justify-between items-center">
+<span class="font-headline-md text-2xl text-primary">Live Now</span>
+<span class="w-3 h-3 bg-secondary rounded-full animate-pulse"></span>
+</div>
+<div class="flex items-center gap-4 bg-surface-container/50 p-4 rounded-2xl">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">location_on</span>
+</div>
+<div>
+<p class="text-label-sm font-bold text-on-surface-variant">Ahmedabad</p>
+<p class="text-headline-md text-sm text-primary">34 Active Sitters</p>
+</div>
+</div>
+<button class="w-full py-4 bg-primary text-on-primary rounded-xl font-label-md text-label-md uppercase tracking-widest hover:bg-primary-container transition-colors">Join Live Feed</button>
+</div>
+</div>
+</div>
+</header>
+<!-- Trust Badge Strip -->
+<section class="py-stack-lg bg-surface-container-low border-y border-primary/5">
+<div class="max-w-container-max mx-auto px-margin-desktop flex flex-wrap justify-between items-center gap-12 opacity-60">
+<span class="font-headline-md text-headline-md text-primary grayscale hover:grayscale-0 transition-all cursor-default">Forbes Travel</span>
+<span class="font-headline-md text-headline-md text-primary grayscale hover:grayscale-0 transition-all cursor-default">Pet Luxury Intl.</span>
+<span class="font-headline-md text-headline-md text-primary grayscale hover:grayscale-0 transition-all cursor-default">The Daily Wag</span>
+<span class="font-headline-md text-headline-md text-primary grayscale hover:grayscale-0 transition-all cursor-default">Elite Vet Care</span>
+<span class="font-headline-md text-headline-md text-primary grayscale hover:grayscale-0 transition-all cursor-default">Bark Heritage</span>
+</div>
+</section>
+<!-- Premium Service Bento Showcase -->
+<section class="py-stack-xl max-w-container-max mx-auto px-margin-desktop">
+<div class="text-center mb-stack-xl space-y-4">
+<h2 class="font-headline-lg text-headline-lg text-primary">Artisanal Pet Services</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">Where tradition meets modern care. Every service is tailored to the unique personality of your pet.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]">
+<!-- Service 1: Large -->
+<div class="md:col-span-2 md:row-span-2 bento-card relative rounded-[32px] overflow-hidden group">
+<img class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A wide-angle, editorial style photo of an expansive, luxury pet playground at sunset. The space features modern architectural elements, manicured lawns, and high-end agility equipment. A group of happy, diverse dog breeds are seen running freely under the warm glow of professional landscape lighting, emphasizing safety and joy in a premium environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqvREcRGGUBw9CvU7UmJABTofpSkPhhts_Tq87w0vZGCdwtE1ejRD-sx8abUST5-vimCY_vvnx0D805mbnGZO0XBhIN9U96vcMq6DA0o99ncghtaNYIdRJM68-6MzB-OK8vq-EdofqPS615xjWFuzNbX5q-0Jbnef2XDVv4oB_rUC-bOWNRK1mArXfe88dTnWrNt7zTceFu9w7hKd2KTqJFpr2Vwe2P_HT5i8OmYF9mNhAubbe_lrOBf2sqOCVkdbDTw_l2Aa15Q"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent"></div>
+<div class="absolute bottom-10 left-10 text-white space-y-4 pr-10">
+<span class="bg-secondary px-4 py-1 rounded-full text-label-sm font-label-sm uppercase tracking-widest">Heritage Favorite</span>
+<h3 class="font-headline-lg text-headline-lg text-white">The Royal Stroll</h3>
+<p class="text-white/80 font-body-md max-w-md">Our signature walking service includes GPS tracking, hydration misting, and organic treats delivered post-walk.</p>
+<button class="mt-4 flex items-center gap-2 group/btn font-label-md text-white">Learn More <span class="material-symbols-outlined group-hover/btn:translate-x-2 transition-transform">arrow_right_alt</span></button>
+</div>
+</div>
+<!-- Service 2: Standard -->
+<div class="bento-card bg-surface-container rounded-[32px] p-8 flex flex-col justify-between border border-primary/5">
+<div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-secondary text-4xl">spa</span>
+</div>
+<div class="space-y-2">
+<h3 class="font-headline-md text-2xl text-primary">Luxury Grooming</h3>
+<p class="text-on-surface-variant text-sm">Essential oils, hydro-massage, and master-stylist finishes.</p>
+</div>
+<a class="text-secondary font-bold text-label-md hover:underline underline-offset-4" href="#">Book Spa →</a>
+</div>
+<!-- Service 3: Standard -->
+<div class="bento-card bg-primary-container rounded-[32px] p-8 flex flex-col justify-between text-on-primary">
+<div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center">
+<span class="material-symbols-outlined text-primary-fixed-dim text-4xl">home_health</span>
+</div>
+<div class="space-y-2">
+<h3 class="font-headline-md text-2xl">Elite Boarding</h3>
+<p class="text-white/60 text-sm">Private suites with 24/7 webcams and nightly turndown service.</p>
+</div>
+<a class="text-primary-fixed-dim font-bold text-label-md hover:underline underline-offset-4" href="#">View Suites →</a>
+</div>
+<!-- Service 4: Horizontal -->
+<div class="md:col-span-3 bento-card bg-white rounded-[32px] p-10 flex flex-col md:flex-row items-center gap-12 border border-primary/5">
+<div class="w-full md:w-1/3 aspect-video rounded-2xl overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="Close up high-detail macro shot of gourmet, artisan-crafted pet treats arranged on a minimalist marble platter. The treats are shaped like tiny bone-china pieces and decorated with natural, organic vegetable colors. The lighting is soft, studio-quality, highlighting the texture and premium quality of the ingredients." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEARdGljBsAEaD6wsXfODQA4RuyV75fQGRSbNYux_4uSzemQJT8jWmpI40pufJcEl1kBWilxa1cfuUpUJa66b3O076F1vVkZgJXxZLtKfQTPUUWsNims60S8QYWxH7DFIqAr0xWcnLVDPApICLFIFkuni1Os8eLmyP3lF9rcI87g1c4dMywAUUYi98_cpcX4xU1qmof2h80llb7g0R1AqZgM6ogFsaxGXh3qT-9A_HZeP1iJIFGcEiovX3IuHeFKOIJda-HURguw"/>
+</div>
+<div class="flex-1 space-y-4">
+<h3 class="font-headline-lg text-3xl text-primary">Nutrition Concierge</h3>
+<p class="font-body-md text-on-surface-variant">Custom-tailored dietary plans curated by world-class veterinary nutritionists and prepared by artisanal pet chefs. Freshly delivered to your doorstep every morning.</p>
+<div class="flex gap-4">
+<span class="bg-surface-container-low px-4 py-2 rounded-full text-label-sm font-bold text-primary">Organic</span>
+<span class="bg-surface-container-low px-4 py-2 rounded-full text-label-sm font-bold text-primary">Custom-Macro</span>
+<span class="bg-surface-container-low px-4 py-2 rounded-full text-label-sm font-bold text-primary">Farm-to-Bowl</span>
+</div>
+</div>
+<button class="bg-secondary text-on-secondary px-8 py-4 rounded-full font-label-md text-label-md font-bold hover:bg-on-secondary-container transition-colors">Start Meal Plan</button>
+</div>
+</div>
+</section>
+<!-- Interactive Live GPS & Heatmap Section -->
+<section class="py-stack-xl bg-primary text-on-primary relative overflow-hidden">
+<div class="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none">
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 100 100">
+<path d="M0,50 Q25,20 50,50 T100,50" fill="none" stroke="currentColor" stroke-width="0.5"></path>
+<path d="M0,60 Q25,30 50,60 T100,60" fill="none" stroke="currentColor" stroke-width="0.5"></path>
+</svg>
+</div>
+<div class="max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<div class="space-y-stack-lg">
+<span class="text-primary-fixed-dim font-label-sm text-label-sm uppercase tracking-[0.2em]">Real-Time Security</span>
+<h2 class="font-headline-lg text-headline-lg text-white">Unprecedented Visibility.</h2>
+<p class="text-on-primary/70 text-body-lg">Every moment of your pet's journey is tracked with military-grade precision. From Ahmedabad’s bustling streets to the serene parks, you are always connected.</p>
+<div class="space-y-6 pt-6">
+<div class="flex gap-6 p-6 rounded-[24px] bg-white/5 border border-white/10">
+<span class="material-symbols-outlined text-secondary text-4xl">map</span>
+<div>
+<h4 class="font-headline-md text-xl text-white">City-Wide Coverage</h4>
+<p class="text-on-primary/50 text-sm">Now serving Ahmedabad, Mumbai, and Delhi with verified hotspots.</p>
+</div>
+</div>
+<div class="flex gap-6 p-6 rounded-[24px] bg-white/5 border border-white/10">
+<span class="material-symbols-outlined text-secondary text-4xl">health_metrics</span>
+<div>
+<h4 class="font-headline-md text-xl text-white">Live Vitals Monitoring</h4>
+<p class="text-on-primary/50 text-sm">Track heart rate and activity levels through our smart collar integration.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="relative group">
+<div class="w-full aspect-square rounded-[40px] overflow-hidden shadow-2xl relative border-8 border-white/5">
+<!-- Map Placeholder -->
+<div class="w-full h-full bg-cover bg-center" data-alt="A high-contrast, dark-mode satellite map of Ahmedabad, India, with glowing orange heatmap overlays indicating high-activity pet walking zones. Interactive UI markers shaped like paw prints pulse gently across the map. The aesthetic is futuristic yet clean, utilizing deep blues, blacks, and vibrant orange accents to represent digital connectivity." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCg4eZfRPAbZWb_nEtPli3e1afMquepmJWezJhWK-mBoCWJTZUA-6bl5qrT-dyWqmSNwiGR-Mip-93LJYaBdN5WEs2-u7OYA4jhB-b0afkt2b6Yb4M0pnm-MpiCtpiX5oy65vOCGxh9sulLzu0S_Uv9Gix7tWiL0V3VPx7OG9eR6Ju-CmxL4aTSn_293-f4Z_UcYiTOpWKQyr27NLzuWSgy2IF8AZKr-7eqFpLNq8oC-8XhxSsNdJ9ka7SG3cQoyAIYS2RysVbWVw')"></div>
+<!-- Overlay Mockup Card -->
+<div class="absolute top-8 right-8 w-64 glass-card p-6 rounded-3xl translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-full overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Professional studio portrait of a friendly female pet sitter, smiling warmly. She has a professional and trustworthy demeanor, set against a soft neutral background. The lighting is bright and high-key, conveying reliability and expertise in pet care." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3qs9RXjaXNxP1okQLa9podbU3IJmhltAET52IRb8GVHoUGyFRGIM4UoY-MInJ2j6ghO0j6LRRSyH37vxK9KByYLwExrLbnYUsA7CrrFtjpfMpIeshiWiJCggMe-4-dGRxqhfziIjUg4pWvt_TycfwPHaabNmj6POr73szlxZDu0pBW7pWuPMwywt0bCzOce01M0keqGD8IoHNKRFeT1-re8Vg9G4or9nb8HIhaLjRBfaRtTAcgGbGntW0bgOZB9weNr4pvBE7xQ"/>
+</div>
+<div>
+<p class="text-xs font-bold text-primary">Sitter Spotlight</p>
+<p class="text-[10px] text-on-surface-variant">Arriving in 4 mins</p>
+</div>
+</div>
+<div class="h-1 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-2/3"></div>
+</div>
+</div>
+<!-- Pulse Point -->
+<div class="absolute top-1/2 left-1/3">
+<div class="w-4 h-4 bg-secondary rounded-full animate-ping"></div>
+<div class="absolute inset-0 w-4 h-4 bg-secondary rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Membership Plans -->
+<section class="py-stack-xl max-w-container-max mx-auto px-margin-desktop">
+<div class="text-center mb-stack-xl">
+<h2 class="font-headline-lg text-headline-lg text-primary">Elevate the Experience</h2>
+<p class="text-on-surface-variant font-body-lg">Select a plan that matches your pet's lifestyle.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Basic -->
+<div class="p-10 rounded-[40px] bg-white border border-primary/5 flex flex-col items-center text-center space-y-6 hover:shadow-xl transition-shadow">
+<span class="text-label-sm font-label-sm uppercase tracking-widest text-on-surface-variant">Essential</span>
+<div class="font-headline-lg text-primary">$49<span class="text-lg font-body-md text-on-surface-variant">/mo</span></div>
+<ul class="space-y-4 text-on-surface-variant w-full">
+<li class="flex items-center gap-2 justify-center"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> 4 Strolls per month</li>
+<li class="flex items-center gap-2 justify-center"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> GPS Tracking</li>
+<li class="flex items-center gap-2 justify-center"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> Digital Report Cards</li>
+</ul>
+<button class="w-full py-4 border-2 border-primary text-primary rounded-full font-bold hover:bg-primary hover:text-white transition-all">Start Essential</button>
+</div>
+<!-- Recommended -->
+<div class="p-10 rounded-[40px] bg-primary text-on-primary flex flex-col items-center text-center space-y-6 relative overflow-hidden shadow-2xl scale-105 z-10">
+<div class="absolute top-4 right-[-40px] rotate-45 bg-secondary text-on-secondary px-12 py-1 text-[10px] font-bold uppercase tracking-widest">Most Coveted</div>
+<span class="text-primary-fixed-dim font-label-sm text-label-sm uppercase tracking-widest">Elite Member</span>
+<div class="font-headline-lg text-white">$129<span class="text-lg font-body-md text-on-primary/60">/mo</span></div>
+<ul class="space-y-4 text-on-primary/80 w-full">
+<li class="flex items-center gap-2 justify-center font-bold text-white"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> Daily Strolls</li>
+<li class="flex items-center gap-2 justify-center"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> VIP Grooming Pass</li>
+<li class="flex items-center gap-2 justify-center"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> Nutrition Concierge</li>
+<li class="flex items-center gap-2 justify-center"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> 24/7 Priority Support</li>
+</ul>
+<button class="w-full py-5 bg-secondary text-on-secondary rounded-full font-bold shadow-lg shadow-black/20 hover:scale-105 transition-all">Join The Elite</button>
+</div>
+<!-- Boutique -->
+<div class="p-10 rounded-[40px] bg-white border border-primary/5 flex flex-col items-center text-center space-y-6 hover:shadow-xl transition-shadow">
+<span class="text-label-sm font-label-sm uppercase tracking-widest text-on-surface-variant">Bespoke</span>
+<div class="font-headline-lg text-primary">Custom</div>
+<p class="text-on-surface-variant text-sm">For multiple pets or multi-city travel requirements.</p>
+<ul class="space-y-4 text-on-surface-variant w-full">
+<li class="flex items-center gap-2 justify-center"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> Dedicated Concierge</li>
+<li class="flex items-center gap-2 justify-center"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> Private Chauffeur</li>
+</ul>
+<button class="w-full py-4 border-2 border-primary text-primary rounded-full font-bold hover:bg-primary hover:text-white transition-all">Consult Concierge</button>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full rounded-t-[40px] mt-stack-xl bg-primary text-on-primary overflow-hidden">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-stack-xl max-w-container-max mx-auto">
+<div class="md:col-span-1 space-y-6">
+<span class="font-headline-lg text-headline-lg text-primary-fixed-dim">PAW &amp; PURR</span>
+<p class="text-on-primary/60 text-sm">Defining the future of pet luxury and heritage since 2012. Our mission is to ensure every pet lives a cinematic life.</p>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-secondary hover:border-secondary transition-all" href="#"><span class="material-symbols-outlined text-sm">share</span></a>
+<a class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-secondary hover:border-secondary transition-all" href="#"><span class="material-symbols-outlined text-sm">mail</span></a>
+<a class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-secondary hover:border-secondary transition-all" href="#"><span class="material-symbols-outlined text-sm">call</span></a>
+</div>
+</div>
+<div class="space-y-6">
+<h5 class="text-primary-fixed-dim font-label-sm uppercase tracking-widest">Heritage</h5>
+<nav class="flex flex-col gap-4">
+<a class="text-on-primary/70 hover:text-primary-fixed-dim transition-colors duration-300 font-label-md text-sm" href="#">Our Story</a>
+<a class="text-on-primary/70 hover:text-primary-fixed-dim transition-colors duration-300 font-label-md text-sm" href="#">Sustainability</a>
+<a class="text-on-primary/70 hover:text-primary-fixed-dim transition-colors duration-300 font-label-md text-sm" href="#">Global Concierge</a>
+<a class="text-on-primary/70 hover:text-primary-fixed-dim transition-colors duration-300 font-label-md text-sm" href="#">Join the Team</a>
+</nav>
+</div>
+<div class="space-y-6">
+<h5 class="text-primary-fixed-dim font-label-sm uppercase tracking-widest">Legal</h5>
+<nav class="flex flex-col gap-4">
+<a class="text-on-primary/70 hover:text-primary-fixed-dim transition-colors duration-300 font-label-md text-sm" href="#">Terms of Service</a>
+<a class="text-on-primary/70 hover:text-primary-fixed-dim transition-colors duration-300 font-label-md text-sm" href="#">Privacy Policy</a>
+<a class="text-on-primary/70 hover:text-primary-fixed-dim transition-colors duration-300 font-label-md text-sm" href="#">Safety Standards</a>
+<a class="text-on-primary/70 hover:text-primary-fixed-dim transition-colors duration-300 font-label-md text-sm" href="#">Ethics Charter</a>
+</nav>
+</div>
+<div class="space-y-6">
+<h5 class="text-primary-fixed-dim font-label-sm uppercase tracking-widest">Journal</h5>
+<p class="text-on-primary/60 text-sm">Stay informed with our monthly luxury pet care editorial.</p>
+<div class="relative">
+<input class="w-full bg-white/5 border border-white/10 rounded-full px-6 py-3 text-sm focus:ring-1 focus:ring-secondary outline-none text-white" placeholder="Email Address" type="email"/>
+<button class="absolute right-2 top-1.5 bg-secondary text-on-secondary px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest">Subscribe</button>
+</div>
+</div>
+</div>
+<div class="border-t border-white/5 py-8 text-center">
+<span class="text-on-primary/30 font-label-sm text-[10px] uppercase tracking-[0.3em]">© 2024 PAW &amp; PURR LUXURY CO. ALL RIGHTS RESERVED.</span>
+</div>
+</footer>
+<script>
+        // Smooth reveal on scroll interaction
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section, header > div').forEach(el => {
+            el.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+            observer.observe(el);
+        });
+
+        // Parallax effect for hero images
+        window.addEventListener('scroll', () => {
+            const scroll = window.pageYOffset;
+            const heroImg = document.querySelector('header img');
+            if (heroImg) {
+                heroImg.style.transform = `scale(${1 + scroll * 0.0002}) translateY(${scroll * 0.05}px)`;
+            }
+        });
+    </script>
+</body></html>

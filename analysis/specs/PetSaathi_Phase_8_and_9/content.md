@@ -1,0 +1,46067 @@
+# PetSaathi Phase 8 and 9
+
+- Source: `DOCX/PetSaathi Phase 8 and 9.docx`
+- Pages: 938
+- Ordered content blocks: 20981
+- Embedded media: 8
+- Comments: 0
+- Tracked insertions: 0
+- Tracked deletions: 0
+
+## Ordered content
+
+Phase 8: Service Expansion Strategy 🐾💼
+
+Grooming, Veterinary Support, Training, Pet Taxi, Vaccination Camps and Product Partnerships
+
+Executive decision
+
+Approve Phase 8 as a 90-day controlled expansion.
+
+However, do not launch all proposed categories simultaneously. The recommended sequence is:
+
+Grooming-at-home
+
+Veterinary support and vaccination camps
+
+Dog-training workshops and assessments
+
+Pet taxi pilot
+
+Pet-food and product partnerships
+
+India’s organised pet-services segment—including grooming, training and boarding—was estimated by IBEF at approximately ₹600 crore in calendar year 2024. Larger urban centres already support grooming studios, veterinary clinics and multi-service marketplaces, confirming that customers understand these categories and are willing to purchase them.
+
+The competitive warning is equally clear: platforms such as ThePetNest and PetBacker already advertise combinations of grooming, training, walking, boarding, veterinary support and pet transport. Therefore, “having more services” is not a defensible advantage. Reliable fulfilment, partner quality, local density and integrated pet records must be the advantage.
+
+1. Phase 8 objective
+
+Until Phase 7, the business acquires trust through:
+
+Dog walking
+
+Pet sitting
+
+Controlled boarding
+
+Society partnerships
+
+Verified local caregivers
+
+Tracking and pet reports
+
+Gate and safety protocols
+
+Phase 8 should use that trust to increase:
+
+The goal is not merely to increase gross merchandise value.
+
+The real objective is:
+
+Generate more contribution from an existing trusted customer without proportionately increasing acquisition, support and incident costs.
+
+2. Phase 8 autopsy: what can go wrong
+
+2.1 More revenue can produce less profit
+
+Adding five services may increase gross revenue while simultaneously increasing:
+
+Partner verification expenses
+
+Support tickets
+
+Refunds
+
+Scheduling complexity
+
+Payment reconciliation
+
+Liability exposure
+
+Customer dissatisfaction
+
+Technology development
+
+Quality-assurance requirements
+
+Measure every category through contribution margin, not only revenue.
+
+A service should not scale merely because bookings are growing.
+
+2.2 A partner model does not eliminate liability
+
+Customers will usually blame the platform—not the independent partner—when:
+
+A groomer injures a pet
+
+A trainer uses harmful methods
+
+A veterinarian fails to respond
+
+A taxi driver arrives in an unsuitable vehicle
+
+A vaccination record is incorrect
+
+A product is counterfeit or expired
+
+The Consumer Protection E-Commerce Rules apply to goods and services sold through digital networks and require e-commerce entities to maintain an adequate grievance-redressal mechanism. The rules also require relevant platform, seller and grievance information to be displayed.
+
+Partner-led must therefore mean:
+
+Partner-delivered, platform-governed.
+
+2.3 One bad service can damage the entire brand
+
+The customer does not maintain separate trust accounts for walking, grooming and veterinary bookings.
+
+A severe grooming incident can reduce:
+
+Walking renewals
+
+Society referrals
+
+Boarding demand
+
+RWA confidence
+
+Customer lifetime value
+
+Phase 8 must therefore use stricter verification than a typical lead-generation directory.
+
+2.4 Not every customer request deserves a new category
+
+Customers may request services that are:
+
+Too infrequent
+
+Too risky
+
+Too difficult to standardise
+
+Already available elsewhere
+
+Low-margin
+
+Outside your core geographic zone
+
+Service-expansion decisions should depend on:
+
+not on request count alone.
+
+3. Recommended service sequence
+
+### Table 1
+
+| Priority | Service | Revenue potential | Repeat potential | Operational risk | Recommendation |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Grooming-at-home | High | High | Medium | Launch first |
+| 2 | Vet support | Medium | Medium | Very high | Launch through licensed partners |
+| 3 | Training | High | Medium–high | High | Start with workshops and assessments |
+| 4 | Vaccination camps | Medium | Periodic | High | Use as trust and acquisition infrastructure |
+| 5 | Pet taxi | Medium | Low–medium | High | Controlled cluster pilot |
+| 6 | Products and food | Medium | High | Low–medium | Affiliate/preorder model first |
+
+Why grooming should lead
+
+Professional grooming is already an established urban category. Current provider references place grooming prices broadly between ₹500 and ₹3,500, depending on breed, size, coat and package. Providers commonly recommend recurring grooming intervals, creating a natural repeat cycle.
+
+Grooming also has strong adjacency with walking and sitting because the platform already knows:
+
+Pet breed
+
+Size
+
+Behaviour
+
+Address
+
+Society access
+
+Customer preferences
+
+Previous incidents
+
+That reduces customer onboarding friction.
+
+4. Phase 8 operating model
+
+Recommended structure: managed partner marketplace
+
+The platform should control:
+
+Customer acquisition
+
+Partner verification
+
+Service catalogue
+
+Pricing boundaries
+
+Booking
+
+Payment
+
+Scheduling
+
+Customer communication
+
+Quality standards
+
+Complaints
+
+Refunds
+
+Society access
+
+Performance scoring
+
+The partner should control:
+
+Professional service delivery
+
+Equipment and consumables
+
+Clinical or technical judgement
+
+Required professional registrations
+
+Personal tax and statutory obligations
+
+Service documentation
+
+Compliance with the applicable SOP
+
+Responsibility matrix
+
+### Table 2
+
+| Responsibility | Platform | Partner | Customer |
+| --- | --- | --- | --- |
+| Partner identity verification | ✓ |  |  |
+| Professional credentials | Verify | Provide and maintain |  |
+| Accurate pet information |  |  | ✓ |
+| Professional service delivery | Monitor | ✓ |  |
+| Booking and payment | ✓ |  | ✓ |
+| Medical judgement |  | Registered veterinarian |  |
+| Pet-behaviour disclosure |  |  | ✓ |
+| Society access approval | ✓ | Follow protocol | Confirm entry |
+| Equipment hygiene | Audit | ✓ |  |
+| Complaint management | ✓ | Cooperate | Report promptly |
+| Emergency escalation | Coordinate | Take immediate action | Provide consent/contact |
+| Data security | ✓ | Limited authorised access | Provide consent |
+
+5. Service 1: grooming-at-home
+
+Strategic role
+
+Grooming should become Phase 8’s primary revenue adjacency because it offers:
+
+Repeat usage
+
+Clear packaging
+
+Visual proof of quality
+
+Moderate average order value
+
+Strong before-and-after content
+
+Society-cluster scheduling
+
+Potential subscriptions
+
+Service catalogue
+
+Start with three packages.
+
+Essential grooming
+
+Bath
+
+Drying
+
+Brushing
+
+Nail trimming
+
+Ear cleaning
+
+Paw cleaning
+
+Full grooming
+
+Essential package
+
+Coat trimming
+
+Sanitary trimming
+
+Detangling
+
+Basic styling
+
+Breed/coat-specific grooming
+
+Long-coat breeds
+
+Double-coated breeds
+
+Senior pets
+
+Anxious pets
+
+Cats, only with qualified cat groomers
+
+Medicated bathing only under appropriate veterinary advice
+
+Avoid excessive package complexity.
+
+Groomer verification
+
+Every groomer should complete:
+
+Government-ID verification
+
+Address verification
+
+Video interview
+
+Experience verification
+
+Portfolio review
+
+Practical demonstration
+
+Animal-handling assessment
+
+Tool-hygiene assessment
+
+Reference checks
+
+Incident-history declaration
+
+Society-access orientation
+
+Platform SOP test
+
+A certificate may be useful, but it should not replace a practical competency test.
+
+Competency areas
+
+### Table 3
+
+| Area | Required capability |
+| --- | --- |
+| Handling | Calm restraint without unnecessary force |
+| Coat knowledge | Short, long, curly, double and matted coats |
+| Equipment | Clippers, dryers, brushes and nail tools |
+| Hygiene | Tool disinfection between pets |
+| Behaviour | Recognising stress, fear and aggression |
+| Escalation | Stopping when continuing becomes unsafe |
+| Health awareness | Flagging—but not diagnosing—skin, ear or wound concerns |
+| Customer communication | Explaining results and aftercare |
+
+Grooming booking flow
+
+Before booking
+
+Customer provides:
+
+Breed
+
+Age
+
+Weight
+
+Coat condition
+
+Last grooming date
+
+Bite or aggression history
+
+Skin conditions
+
+Allergies
+
+Medical conditions
+
+Previous grooming problems
+
+Requested services
+
+Photographs when necessary
+
+Risk classification
+
+### Table 4
+
+| Risk | Example | Action |
+| --- | --- | --- |
+| Low | Calm pet, maintained coat | Normal booking |
+| Medium | Anxious pet, mild matting | Senior groomer |
+| High | Severe matting, aggression, open wound | Vet or specialist assessment first |
+| Prohibited | Sedation request without veterinary control | Reject |
+
+At arrival
+
+Partner checks in.
+
+Customer confirms the booked package.
+
+Pet condition is documented.
+
+Existing wounds or skin problems are photographed with consent.
+
+Equipment is shown to be clean.
+
+A safe working area is confirmed.
+
+During service
+
+No unattended restraint.
+
+No unnecessary force.
+
+No cosmetic procedure outside the agreed scope.
+
+No diagnosis or medication recommendation by a non-veterinarian.
+
+Service must stop if respiratory distress, severe fear, collapse, injury or uncontrolled aggression occurs.
+
+After service
+
+Customer receives a grooming report:
+
+Services completed
+
+Coat condition
+
+Behaviour
+
+Skin or ear observations
+
+Products used
+
+Before-and-after photographs
+
+Recommended non-medical maintenance
+
+Suggested next grooming window
+
+Grooming economics
+
+Current provider references suggest a broad ₹500–₹3,500 Indian grooming range, with at-home packages from some operators around ₹999–₹2,499. These are market references—not universal prices.
+
+Illustrative booking
+
+### Table 5
+
+| Item | Amount |
+| --- | --- |
+| Customer price | ₹1,499 |
+| Groomer payout | ₹1,100 |
+| Platform gross revenue | ₹399 |
+| Payment cost | ₹30 |
+| Support and incident provision | ₹40 |
+| Discount amortisation | ₹50 |
+| Approximate contribution | ₹279 |
+
+The example contribution is:
+
+This is more attractive than many low-value individual dog walks—but only when refund and incident rates remain controlled.
+
+Grooming launch gates
+
+Scale only when:
+
+50+ completed grooming bookings
+
+4.6+ average rating
+
+Fewer than 3% complaints
+
+Zero serious preventable injuries
+
+At least 25% of eligible customers rebook or prebook
+
+Positive contribution after discounts
+
+At least two groomers can cover every active cluster
+
+6. Service 2: veterinary support
+
+Strategic role
+
+Veterinary support is primarily a trust and retention service, not merely a commission category.
+
+It can improve:
+
+Emergency confidence
+
+Vaccination compliance
+
+Preventive-care retention
+
+Boarding safety
+
+Grooming safety
+
+Pet-profile accuracy
+
+Society partnership credibility
+
+Critical regulatory boundary
+
+The Veterinary Council of India regulates veterinary practice and maintains the framework governing registered veterinary practitioners. The VCI publishes the Indian Veterinary Council Act and professional-conduct regulations for veterinary practitioners.
+
+Therefore:
+
+Only appropriately registered veterinarians should diagnose disease.
+
+Only veterinarians should prescribe treatment or veterinary medicines.
+
+Groomers, walkers and support agents must not represent themselves as veterinary professionals.
+
+The platform should verify the veterinarian’s registration and current standing.
+
+I did not find a dedicated nationwide veterinary-telemedicine framework in the VCI’s published acts-and-rules archive. That does not prove none exists in every state or professional context. The safer Phase 8 approach is to treat online support as vet-led triage, follow-up and appointment support, with conservative escalation to physical examination.
+
+Veterinary service levels
+
+Level 1: care navigation
+
+Performed by trained support staff:
+
+Find a partner clinic
+
+Schedule an appointment
+
+Arrange pet taxi
+
+Retrieve vaccination history
+
+Send reminders
+
+Explain what documents to carry
+
+Support staff must not provide medical advice.
+
+Level 2: licensed online consultation
+
+Performed by a verified veterinarian:
+
+Non-emergency discussion
+
+Follow-up consultation
+
+Nutrition or preventive-care discussion
+
+Review of previous reports
+
+Decision on whether an in-person examination is required
+
+Level 3: home vet visit
+
+Performed by a registered veterinary professional:
+
+Physical examination
+
+Vaccination where appropriate
+
+Minor procedures within professional scope
+
+Follow-up treatment
+
+Sample collection when properly equipped
+
+Level 4: clinic or hospital referral
+
+Required for:
+
+Surgery
+
+Imaging
+
+Respiratory distress
+
+Severe trauma
+
+Seizure
+
+Uncontrolled bleeding
+
+Poisoning
+
+Suspected gastric dilatation
+
+Heatstroke
+
+Serious bite wounds
+
+Any unstable patient
+
+Triage model
+
+Red: emergency
+
+Immediate physical veterinary care.
+
+Examples:
+
+Collapse
+
+Difficulty breathing
+
+Severe bleeding
+
+Seizures
+
+Suspected poisoning
+
+Road accident
+
+Inability to urinate
+
+Severe abdominal swelling
+
+Unconsciousness
+
+The platform should display:
+
+“Online support is not an emergency service.”
+
+Amber: urgent
+
+Same-day veterinary assessment.
+
+Examples:
+
+Repeated vomiting
+
+Persistent diarrhoea
+
+Wound or swelling
+
+Eye injury
+
+Sudden limping
+
+Reduced eating with lethargy
+
+Suspected infection
+
+Green: routine
+
+Vaccination planning
+
+Preventive-care questions
+
+Routine follow-up
+
+Nutrition discussion
+
+Skin or coat observations without emergency signs
+
+Behaviour referral
+
+Vet partner verification
+
+Require:
+
+State Veterinary Council/VCI registration information
+
+Government ID
+
+Degree and registration verification
+
+Clinic or professional address
+
+Areas of practice
+
+Available consultation modes
+
+Emergency referral arrangement
+
+Professional-indemnity information, where available
+
+Written prescription and record process
+
+Invoice process
+
+Data-protection agreement
+
+Complaint and clinical-review process
+
+Commercial structure
+
+Avoid paying commissions tied to:
+
+Tests ordered
+
+Drugs prescribed
+
+Procedures selected
+
+Hospital admission
+
+Clinical escalation
+
+Those incentives can create trust and conflict-of-interest problems.
+
+Prefer:
+
+Fixed platform booking fee
+
+Flat facilitation charge
+
+Clinic subscription
+
+Clearly disclosed marketplace commission
+
+Sponsored preventive-care programmes with strict independence
+
+Clinical decisions must remain with the veterinarian.
+
+7. Vaccination camps
+
+Strategic role
+
+Vaccination camps can generate:
+
+Society trust
+
+Pet-profile verification
+
+Preventive-care reminders
+
+Veterinary-partner visibility
+
+Leads for grooming and training
+
+Safer boarding and sitting eligibility
+
+Strong RWA engagement
+
+They are not simple marketing events.
+
+The Department of Animal Husbandry and Dairying states that annual rabies vaccination is an important preventive measure and its public guidance identifies vaccination history as essential animal-health documentation.
+
+Mandatory operating rule
+
+The vaccination programme must be operated by the veterinary partner, with the platform handling scheduling, resident communication and logistics.
+
+Camp preparation
+
+Society permission
+
+Local veterinary partner
+
+Veterinarian registration verification
+
+Vaccine procurement responsibility
+
+Storage and transport plan
+
+Vaccination-record format
+
+Owner consent
+
+Pet pre-registration
+
+Post-vaccination observation area
+
+Adverse-reaction plan
+
+Emergency transport arrangement
+
+Sharps and medical-waste disposal
+
+Crowd and pet separation
+
+Appointment slots rather than uncontrolled queues
+
+Customer registration fields
+
+Pet name
+
+Species
+
+Breed
+
+Age
+
+Weight
+
+Previous vaccine
+
+Last vaccine date
+
+Health conditions
+
+Medication
+
+Allergy or reaction history
+
+Veterinary consent
+
+Owner contact
+
+Emergency contact
+
+Camp flow
+
+Registration verification
+
+Health-history review
+
+Veterinarian assessment
+
+Consent confirmation
+
+Vaccination by authorised professional
+
+Batch and expiry documentation
+
+Certificate or record update
+
+Observation
+
+Next-dose reminder
+
+Adverse-event follow-up
+
+Camp KPIs
+
+Registered pets
+
+Attended pets
+
+Eligible pets
+
+Vaccinations completed
+
+Record accuracy
+
+Adverse events
+
+Follow-up completion
+
+Camp cost
+
+Sponsorship revenue
+
+New qualified leads
+
+Subsequent paid bookings
+
+8. Service 3: dog training
+
+Strategic role
+
+Training can offer:
+
+Higher-value packages
+
+Improved walking safety
+
+Lower bite and escape risk
+
+Better society relations
+
+Increased customer retention
+
+Puppy-parent acquisition
+
+Behavioural education
+
+Current Indian provider references show large pricing variation—from lower-priced single sessions to multi-session basic, obedience and behaviour programmes costing several thousand rupees or more. This variance reflects the difficulty of comparing trainer experience, method, problem severity and programme structure.
+
+Primary risk
+
+Training is difficult to standardise.
+
+Two professionals can both call themselves trainers while using completely different methods:
+
+Positive reinforcement
+
+Reward-based shaping
+
+Force or intimidation
+
+Shock devices
+
+Prong collars
+
+Flooding
+
+Dominance-based methods
+
+Unsupervised board-and-train
+
+State rules can also be stricter than national baselines. For example, Tamil Nadu’s reported 2025 policy introduced specific standards for dog-training facilities and positive-reinforcement methods. Local rules must be checked before city launch.
+
+Recommended Phase 8 training offer
+
+Do not immediately sell serious behavioural correction.
+
+Start with:
+
+Group workshops
+
+Puppy foundation
+
+Leash manners
+
+Recall basics
+
+Calm greetings
+
+Society etiquette
+
+Children and dogs
+
+Handling and grooming preparation
+
+Diwali/noise preparation
+
+Individual assessment
+
+45–60-minute evaluation
+
+Problem definition
+
+Owner goals
+
+Risk classification
+
+Recommended training pathway
+
+Basic home programme
+
+Four to six sessions
+
+Owner participation required
+
+Written goals
+
+Homework
+
+Progress tracking
+
+Session reports
+
+Defer
+
+Aggression rehabilitation
+
+Severe bite cases
+
+Board-and-train
+
+Guard or protection training
+
+Complex separation-anxiety treatment
+
+Cases involving suspected medical causes
+
+These require specialist partners and stronger clinical collaboration.
+
+Trainer verification
+
+Require:
+
+Government ID
+
+Experience proof
+
+References
+
+Training-method declaration
+
+Live demonstration
+
+Sample case plans
+
+Handling assessment
+
+Bite and incident history
+
+Equipment disclosure
+
+Customer-communication test
+
+Escalation process
+
+Agreement prohibiting unapproved aversive methods
+
+Collaboration process with veterinarians
+
+Training progress report
+
+After each session:
+
+Goals addressed
+
+Exercises completed
+
+Pet response
+
+Owner participation
+
+Homework
+
+Safety concerns
+
+Progress rating
+
+Next session plan
+
+Referral recommendation
+
+Training success should be outcome-based
+
+Do not measure only completed sessions.
+
+Measure:
+
+Customer goal completion
+
+Homework adherence
+
+Walking improvement
+
+Reduction in reported problem frequency
+
+Owner confidence
+
+Programme completion
+
+Refunds
+
+Safety incidents
+
+30- and 60-day progress
+
+9. Service 4: pet taxi
+
+Strategic role
+
+Pet taxi addresses a genuine access problem:
+
+Veterinary visits
+
+Grooming appointments
+
+Boarding transfer
+
+Airport or railway movement
+
+Emergency transport
+
+Senior or disabled owner support
+
+Indian press has reported increasing demand for pet-specific taxi services where ordinary cabs may refuse animals. Existing providers advertise pet-friendly transport through per-kilometre fares or pet-accommodation surcharges.
+
+Why it should not launch first
+
+Pet taxi creates:
+
+Vehicle-permit questions
+
+Driver verification
+
+Vehicle-cleaning requirements
+
+Pet restraint requirements
+
+Heat and ventilation risk
+
+Escape risk
+
+Accident liability
+
+Live-location expectations
+
+High cancellations
+
+Low route density
+
+Emergency classification problems
+
+Under Section 66 of the Motor Vehicles Act, a vehicle used as a transport vehicle generally requires the relevant permit, subject to the Act’s conditions and exceptions. Pet-taxi partners should therefore use properly registered and permitted commercial vehicles, with city/state transport requirements verified locally.
+
+Recommended model
+
+Do not buy vehicles in Phase 8.
+
+Partner with:
+
+Existing commercial taxi operators
+
+Pet relocation specialists
+
+Veterinary clinics with transport
+
+Permitted vehicle owners
+
+Drivers experienced with animals
+
+Verification checklist
+
+Commercial vehicle registration
+
+Applicable permit
+
+Vehicle fitness
+
+Insurance
+
+Driver licence
+
+Driver identity and address
+
+Accident history declaration
+
+Vehicle photographs
+
+Air conditioning and ventilation
+
+GPS availability
+
+Cleaning SOP
+
+Pet-restraint equipment
+
+Emergency kit
+
+Backup vehicle
+
+Partner service agreement
+
+Vehicle standards
+
+Washable seat covers
+
+Secure crate or restraint points
+
+Non-slip surface
+
+Working air conditioning
+
+No exposed sharp objects
+
+Water bowl
+
+Waste bags
+
+Cleaning supplies
+
+Emergency contact card
+
+Separation option for multiple animals
+
+No unrelated passenger pooling
+
+Booking options
+
+Owner-accompanied trip
+
+Lowest risk. Launch first.
+
+Handler-accompanied trip
+
+Platform or partner handler travels with the pet.
+
+Unaccompanied pet transfer
+
+Highest risk. Launch only after the first two models are stable.
+
+Taxi pricing
+
+Market references vary substantially. One provider advertises ₹15–₹22 per kilometre plus a pet surcharge, while another advertises lower city-specific starting fares. These should be treated only as reference points; actual pricing must account for waiting time, cleaning, handler requirements, tolls and minimum trip economics.
+
+Recommended pricing formula
+
+Avoid hidden cleaning or pet-handling fees.
+
+10. Service 5: pet products and food
+
+Strategic role
+
+Products can increase purchase frequency without adding appointment scheduling.
+
+Potential categories:
+
+Food
+
+Treats
+
+Waste bags
+
+Leashes
+
+Harnesses
+
+Grooming products
+
+Toys
+
+Travel accessories
+
+Training rewards
+
+Feeding accessories
+
+Wrong initial model
+
+Do not immediately:
+
+Build a warehouse
+
+Buy hundreds of SKUs
+
+Develop private-label food
+
+Promise one-hour delivery
+
+Carry prescription products
+
+Manage complex returns
+
+Hold short-expiry inventory
+
+Recommended initial model
+
+Stage 1: affiliate or referral
+
+Customer purchases from the partner. Platform receives referral revenue.
+
+Stage 2: curated preorder
+
+The platform aggregates demand and orders through an authorised seller.
+
+Stage 3: society delivery days
+
+Scheduled weekly or monthly delivery to a society cluster.
+
+Stage 4: subscriptions
+
+Monthly food replenishment
+
+Waste-bag packs
+
+Grooming-maintenance kits
+
+Puppy starter boxes
+
+Product-partner verification
+
+Business identity
+
+GST information where applicable
+
+Authorised reseller status
+
+Proper invoices
+
+Batch and expiry tracking
+
+Storage conditions
+
+Returns
+
+Recall process
+
+Counterfeit-prevention process
+
+Customer-support contact
+
+BIS develops Indian product standards, although whether certification is mandatory depends on the relevant product and government quality-control requirements. Product-level compliance must be checked rather than assuming every pet product is either certified or exempt.
+
+Food recommendation boundary
+
+The platform may display:
+
+Ingredients
+
+Pack size
+
+Manufacturer information
+
+Life-stage positioning
+
+Customer reviews
+
+It should not make unsupported claims that a product:
+
+Cures disease
+
+Prevents a medical condition
+
+Replaces veterinary treatment
+
+Is appropriate for a diagnosed condition
+
+Therapeutic diet recommendations should come from a veterinarian.
+
+11. Partner onboarding system
+
+Each service requires a different verification pathway.
+
+Universal onboarding
+
+Application
+
+Government-ID verification
+
+Address verification
+
+Video interview
+
+References
+
+Professional-document verification
+
+Practical or technical assessment
+
+Background declaration
+
+Contract
+
+Service-specific training
+
+Trial bookings
+
+Quality review
+
+Full activation
+
+Partner status
+
+### Table 6
+
+| Status | Meaning |
+| --- | --- |
+| Applied | Form submitted |
+| Documents pending | Verification incomplete |
+| Assessment pending | Skills not tested |
+| Trial partner | Limited bookings |
+| Verified partner | Normal booking access |
+| Preferred partner | High quality and reliability |
+| Restricted | Limited service scope |
+| Suspended | Temporarily unavailable |
+| Removed | Contract terminated |
+
+Partner score
+
+Serious safety violations should override the numerical score.
+
+12. Cross-service pet profile
+
+Phase 8’s most valuable technology asset is not the service catalogue.
+
+It is the longitudinal pet profile.
+
+Core profile
+
+Pet identity
+
+Species
+
+Breed
+
+Date of birth
+
+Weight
+
+Sex
+
+Sterilisation status
+
+Vaccination history
+
+Allergies
+
+Medical conditions
+
+Medication
+
+Veterinary clinic
+
+Emergency contact
+
+Behavioural risks
+
+Grooming history
+
+Training goals
+
+Walking preferences
+
+Feeding instructions
+
+Transport requirements
+
+Boarding eligibility
+
+Access control
+
+Not every partner should see every field.
+
+### Table 7
+
+| Partner | Necessary access |
+| --- | --- |
+| Walker | Behaviour, leash instructions, emergency contact |
+| Groomer | Coat, skin warnings, behaviour, allergies |
+| Trainer | Behaviour history, goals, medical cautions |
+| Vet | Relevant health and medication history |
+| Taxi driver | Handling instructions, destination, emergency contact |
+| Product seller | Order and delivery information only |
+
+The DPDP Rules, 2025 were notified with phased commencement dates. The platform should nevertheless be built around clear notice, purpose limitation, reasonable security controls, consent management and appropriate deletion from the start.
+
+13. Technology architecture
+
+Shared platform components
+
+Customer account
+
+Pet profile
+
+Society identity
+
+Partner profile
+
+Service catalogue
+
+Availability calendar
+
+Booking
+
+Payment
+
+Offers
+
+Notifications
+
+Reviews
+
+Complaints
+
+Refunds
+
+Partner payouts
+
+Analytics
+
+Service-specific modules
+
+Grooming
+
+Coat assessment
+
+Package configuration
+
+Before/after photos
+
+Products used
+
+Next-service recommendation
+
+Veterinary
+
+Triage
+
+Vet registration
+
+Appointment mode
+
+Prescription/document upload
+
+Referral and follow-up
+
+Training
+
+Assessment
+
+Goals
+
+Session plan
+
+Homework
+
+Progress report
+
+Taxi
+
+Vehicle
+
+Driver
+
+Route
+
+GPS
+
+Waiting time
+
+Owner/handler status
+
+Vaccination camp
+
+Event slots
+
+Eligibility
+
+Consent
+
+Vaccine record
+
+Batch information
+
+Reminder
+
+Products
+
+Seller
+
+SKU
+
+Inventory status
+
+Batch/expiry
+
+Delivery and returns
+
+Do not force all categories into one identical booking workflow.
+
+14. Cross-selling system
+
+Correct trigger-based cross-selling
+
+### Table 8
+
+| Existing event | Relevant offer |
+| --- | --- |
+| New puppy registered | Puppy workshop + grooming introduction |
+| Walk report shows leash pulling | Leash-manners workshop |
+| Groomer observes a skin concern | Vet consultation—not a product sale |
+| Vaccination approaching expiry | Vet appointment/camp reminder |
+| Vet appointment booked | Pet taxi option |
+| Boarding planned | Grooming before or after stay |
+| Frequent product purchase | Subscription |
+| Senior pet profile | Home vet and gentle grooming options |
+
+Incorrect cross-selling
+
+Automatically selling supplements after every vet consultation
+
+Suggesting training for every walking customer
+
+Marking normal coat observations as medical problems
+
+Recommending tests because the platform earns a commission
+
+Adding pet taxi when the customer does not need transport
+
+Preselecting subscriptions in checkout
+
+Cross-selling should be relevant, transparent and removable.
+
+15. Society integration
+
+Phase 8 should continue using the society infrastructure built in Phase 7.
+
+Society-specific services
+
+Grooming days
+
+Prebooked grooming slots
+
+Approved groomer roster
+
+In-home services
+
+Waste and cleanup protocol
+
+Training workshops
+
+Clubhouse or approved area
+
+Limited pet groups
+
+Leash requirements
+
+Noise management
+
+Non-pet-resident safety
+
+Vaccination camps
+
+Appointment slots
+
+Veterinary control
+
+Observation area
+
+Medical-waste process
+
+Emergency access
+
+Taxi pickup zone
+
+Defined pickup point
+
+Vehicle preapproval
+
+Minimal gate waiting
+
+Owner verification
+
+Product delivery days
+
+Consolidated resident orders
+
+Single delivery window
+
+No uncontrolled vendor solicitation
+
+16. Recommended 90-day Phase 8 plan
+
+Days 1–15: service-demand and partner preparation
+
+Objectives
+
+Analyse Phase 7 customer data
+
+Choose launch societies
+
+Recruit partners
+
+Finalise contracts
+
+Create service SOPs
+
+Configure technology
+
+Set pricing
+
+Establish incident procedures
+
+Customer research
+
+Survey at least:
+
+100 existing pet parents
+
+25 repeat customers
+
+10 society representatives
+
+Ask:
+
+Which service was purchased in the last six months?
+
+Current provider
+
+Current price
+
+Frequency
+
+Biggest pain point
+
+Willingness to switch
+
+Preferred booking channel
+
+Most important trust feature
+
+Preferred service time
+
+Whether they would prebook
+
+Partner targets
+
+3–5 groomers
+
+2 veterinary clinics or 3–5 vets
+
+2–3 trainers
+
+2 permitted taxi partners
+
+2 product partners
+
+Do not activate every partner immediately.
+
+Days 16–30: grooming pilot
+
+Launch in:
+
+Two or three highest-performing societies
+
+One concentrated external locality
+
+Targets:
+
+30–50 paid grooming bookings
+
+4.6+ average rating
+
+Less than 3% complaints
+
+Zero serious incidents
+
+Positive contribution
+
+At least 20% rebooking or prebooking
+
+No additional service should receive heavy promotion until grooming operations are stable.
+
+Days 31–45: veterinary support
+
+Launch:
+
+Appointment booking
+
+Licensed online consultation
+
+Home visits where partner capability exists
+
+Vaccination reminders
+
+One controlled society camp
+
+Targets:
+
+25+ veterinary bookings
+
+20+ vaccination records updated
+
+90%+ follow-up completion
+
+Zero unlicensed clinical advice
+
+Clear emergency escalation performance
+
+Days 46–60: training workshops
+
+Launch:
+
+Two puppy or leash workshops
+
+Individual behavioural assessments
+
+Four- to six-session basic programmes
+
+Targets:
+
+30 workshop attendees
+
+15 paid assessments
+
+8 programme purchases
+
+70%+ programme completion
+
+4.6+ trainer rating
+
+Zero prohibited-method incidents
+
+Days 61–75: optimise winning services
+
+For each category:
+
+Remove weak partners
+
+Refine pricing
+
+Improve scheduling
+
+Build subscription or package options
+
+Reduce support cost
+
+Review complaints
+
+Increase society density
+
+Analyse cross-service behaviour
+
+Do not automatically launch pet taxi because the calendar says Day 61.
+
+Days 76–90: pet taxi and product experiment
+
+Launch pet taxi only when:
+
+Vet and grooming bookings demonstrate transport demand
+
+Permitted vehicle partners are available
+
+Insurance and emergency responsibilities are documented
+
+GPS and driver checks work
+
+Owner-accompanied trips can be prioritised
+
+Launch products as:
+
+Curated affiliate offers
+
+Preorders
+
+Society delivery days
+
+Avoid owned inventory during the test.
+
+17. Pricing and revenue model
+
+### Table 9
+
+| Service | Recommended platform model |
+| --- | --- |
+| Grooming | 18–25% commission |
+| Vet booking | Fixed facilitation fee or 8–15% disclosed commission |
+| Training | 15–25% commission |
+| Workshops | Revenue share or fixed trainer payout |
+| Pet taxi | 10–20% commission or fixed booking fee |
+| Vaccination camps | Clinic revenue share, sponsor support or society fee |
+| Products | 8–20% affiliate/retailer margin |
+| Subscriptions | Platform-managed recurring plan |
+
+These are strategic starting ranges, not prescribed market rates.
+
+Avoid double charging
+
+Do not simultaneously collect:
+
+Large partner commission
+
+Customer convenience fee
+
+Society fee
+
+Hidden service charge
+
+Mandatory protection fee
+
+unless each charge represents a separate, clearly disclosed service.
+
+18. Tax and marketplace structure
+
+The GST treatment depends on:
+
+Who contracts with the customer
+
+Who issues the invoice
+
+Who collects payment
+
+Whether the platform is an agent or principal
+
+Whether the supply is through an e-commerce operator
+
+The service classification
+
+Partner registration status
+
+CBIC guidance states that an e-commerce operator collecting consideration for taxable supplies may have tax-collection-at-source obligations under Section 52, subject to the applicable structure and rules.
+
+Before Phase 8 payments begin, obtain a written accounting position covering:
+
+Platform commission invoice
+
+Partner invoice
+
+Customer invoice
+
+GST
+
+TCS
+
+Refunds
+
+Discounts
+
+Credit notes
+
+Partner payouts
+
+Product versus service transactions
+
+19. Phase 8 metrics
+
+Customer expansion
+
+Existing customer cross-sell rate
+
+Revenue per active customer
+
+Services per active customer
+
+Multi-service customer percentage
+
+30-, 60- and 90-day retention
+
+Subscription penetration
+
+Service demand
+
+Grooming bookings
+
+Vet bookings
+
+Training assessments
+
+Training programmes
+
+Taxi trips
+
+Camp registrations
+
+Product orders
+
+Quality
+
+Rating by service
+
+Complaint rate by service
+
+Refund rate
+
+Partner cancellation rate
+
+On-time rate
+
+Serious incident count
+
+Repeat booking rate
+
+Economics
+
+GMV by service
+
+Platform revenue
+
+Partner payouts
+
+Discount cost
+
+Support cost
+
+Refund cost
+
+Contribution by service
+
+Contribution per customer
+
+Cross-sell CAC
+
+Payback period
+
+Partner health
+
+Active partners
+
+Bookings per partner
+
+Partner utilisation
+
+Partner earnings
+
+Acceptance rate
+
+Cancellation rate
+
+Retention
+
+Quality score
+
+20. Service-specific go/no-go criteria
+
+Grooming
+
+### Table 10
+
+| Requirement | Target |
+| --- | --- |
+| Completed bookings | 50+ |
+| Average rating | 4.6+ |
+| Complaint rate | ≤3% |
+| Serious preventable incidents | 0 |
+| Rebook/prebook rate | 25%+ |
+| Positive contribution | Yes |
+| Backup groomer coverage | Yes |
+
+Veterinary support
+
+### Table 11
+
+| Requirement | Target |
+| --- | --- |
+| Verified veterinary partners | 2+ |
+| Completed consultations/visits | 25+ |
+| Clinical records complete | 95%+ |
+| Emergency escalations completed | 100% |
+| Unlicensed medical advice | 0 |
+| Complaints | Manageable |
+| Repeat preventive-care demand | Demonstrated |
+
+Training
+
+### Table 12
+
+| Requirement | Target |
+| --- | --- |
+| Paid assessments | 15+ |
+| Programme customers | 8+ |
+| Programme completion | 70%+ |
+| Average rating | 4.6+ |
+| Prohibited-method incidents | 0 |
+| Measurable customer outcomes | Yes |
+
+Pet taxi
+
+### Table 13
+
+| Requirement | Target |
+| --- | --- |
+| Verified commercial vehicles | 2+ |
+| Completed trips | 20+ |
+| On-time arrival | 95%+ |
+| Escape/injury incidents | 0 |
+| Vehicle complaints | ≤5% |
+| Positive trip contribution | Yes |
+| Backup transport | Yes |
+
+Product partnerships
+
+### Table 14
+
+| Requirement | Target |
+| --- | --- |
+| Orders | 50+ |
+| Repeat order rate | 20%+ |
+| Cancellation/refund rate | ≤5% |
+| Counterfeit/expiry incident | 0 |
+| Positive contribution | Yes |
+| Inventory ownership required | No |
+
+21. Phase 8 final report format
+
+Phase 8 Service Expansion Report
+
+Project information
+
+Project name:City:Target areas:Target societies:Start date:End date:Duration:Report owner:
+
+Executive result
+
+Overall outcome: Pass / Conditional pass / Fail
+
+Best-performing new service:
+
+Worst-performing new service:
+
+Highest-retention service:
+
+Highest-contribution service:
+
+Highest-risk service:
+
+Final decision:Scale / Continue testing / Remove service / Change partner model / Pause expansion
+
+Customer expansion
+
+### Table 15
+
+| Metric | Result |
+| --- | --- |
+| Existing active customers |  |
+| Customers purchasing a new service |  |
+| Cross-sell rate |  |
+| Multi-service customers |  |
+| Revenue per active customer before Phase 8 | ₹ |
+| Revenue per active customer after Phase 8 | ₹ |
+| Contribution per active customer before | ₹ |
+| Contribution per active customer after | ₹ |
+| 30-day retention |  |
+| 60-day retention |  |
+| 90-day retention |  |
+
+Service performance
+
+### Table 16
+
+| Service | Partners | Bookings | Repeat rate | Rating | Complaints | Revenue | Contribution |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Grooming |  |  |  |  |  | ₹ | ₹ |
+| Vet support |  |  |  |  |  | ₹ | ₹ |
+| Training |  |  |  |  |  | ₹ | ₹ |
+| Pet taxi |  |  |  |  |  | ₹ | ₹ |
+| Vaccination camps |  |  |  |  |  | ₹ | ₹ |
+| Products |  |  |  |  |  | ₹ | ₹ |
+
+Partner quality
+
+### Table 17
+
+| Metric | Grooming | Vet | Training | Taxi | Products |
+| --- | --- | --- | --- | --- | --- |
+| Applications |  |  |  |  |  |
+| Verified |  |  |  |  |  |
+| Trial partners |  |  |  |  |  |
+| Suspended |  |  |  |  |  |
+| Acceptance rate |  |  |  |  |  |
+| Cancellation rate |  |  |  |  |  |
+| Average rating |  |  |  |  |  |
+| Partner retention |  |  |  |  |  |
+
+Safety and complaints
+
+### Table 18
+
+| Metric | Result |
+| --- | --- |
+| Total complaints |  |
+| Refunds |  |
+| Grooming injuries |  |
+| Unlicensed medical-advice incidents |  |
+| Training-method violations |  |
+| Taxi escape incidents |  |
+| Vehicle accidents |  |
+| Vaccine adverse events |  |
+| Counterfeit/expired product incidents |  |
+| Unresolved critical incidents |  |
+
+Society expansion impact
+
+### Table 19
+
+| Metric | Result |
+| --- | --- |
+| Societies offering grooming |  |
+| Societies hosting vet camps |  |
+| Societies hosting workshops |  |
+| Society customers using multiple services |  |
+| Society revenue before Phase 8 | ₹ |
+| Society revenue after Phase 8 | ₹ |
+| Society contribution before Phase 8 | ₹ |
+| Society contribution after Phase 8 | ₹ |
+| New RWA complaints |  |
+
+Customer insights
+
+Most requested new service:
+
+Most frequently repeated service:
+
+Top reason for choosing the platform:
+
+Top objection:
+
+Top complaint:
+
+Most valuable cross-sell trigger:
+
+Service customers refused to repurchase:
+
+Most important feature requested:
+
+Final decision by service
+
+### Table 20
+
+| Service | Scale | Continue testing | Change partner | Stop | Reason |
+| --- | --- | --- | --- | --- | --- |
+| Grooming |  |  |  |  |  |
+| Vet support |  |  |  |  |  |
+| Training |  |  |  |  |  |
+| Pet taxi |  |  |  |  |  |
+| Vaccination camps |  |  |  |  |  |
+| Products |  |  |  |  |  |
+
+22. Overall Phase 8 go/no-go criteria
+
+Move beyond Phase 8 only when:
+
+### Table 21
+
+| Requirement | Target |
+| --- | --- |
+| New paid service bookings | 150+ |
+| Existing-customer cross-sell rate | 20%+ |
+| Multi-service customers | 15%+ |
+| Revenue per active customer improvement | 20%+ |
+| Contribution per active customer improvement | Positive and measurable |
+| Average rating | 4.6+ |
+| Serious preventable incidents | 0 |
+| Service complaint rate | ≤3–5%, category dependent |
+| Grooming repeat/prebook rate | 25%+ |
+| Verified vet system | Operational |
+| Training outcomes measured | Yes |
+| Partner backup coverage | Yes |
+| At least two contribution-positive services | Yes |
+| Core walking/sitting quality decline | No |
+| Society complaint escalation | Manageable |
+| Platform grievance process | Operational |
+| Data-access controls | Operational |
+
+Core-protection gate
+
+Phase 8 fails—even with strong expansion revenue—when:
+
+Walking or sitting cancellations materially increase.
+
+Society complaints rise significantly.
+
+Core-customer retention declines.
+
+Support times deteriorate.
+
+Expansion consumes operating capacity needed by the original business.
+
+Serious partner-quality failures remain unresolved.
+
+The core marketplace must remain healthy.
+
+Final Phase 8 recommendation
+
+Approve the 90-day strategy with this sequence
+
+Days 1–30
+
+Grooming-at-home
+
+Days 31–60
+
+Veterinary support + one controlled vaccination camp + basic training workshops
+
+Days 61–90
+
+Optimise the winners, then test pet taxi and curated product partnerships only when demand is proven
+
+Final operating principle
+
+One customer account, one trusted pet profile and one quality system—but separate professional workflows for every service.
+
+Final win condition
+
+Phase 8 wins when:
+
+Existing customers purchase additional trusted services, remain more loyal, generate higher contribution, and experience no reduction in the safety or reliability of walking, sitting, boarding and society operations.
+
+Phase 8 status: GO—with grooming first, licensed veterinary partnerships second, controlled training third and pet taxi delayed until operational demand is proven. 🐾🚀
+
+Phase 8 Success Framework
+
+Add-on Services, Partner Network and Phase 9 Readiness 🐾💼
+
+Executive verdict
+
+Your proposed targets are directionally strong, but they currently measure scale more clearly than quality, utilisation and profitability.
+
+The central weakness is the combination of:
+
+20–50 verified partners
+
+100–300 monthly bookings
+
+At the lowest-utilisation case:
+
+That is not a healthy marketplace. Partners receiving only two bookings per month will become inactive, reject requests or leave the platform.
+
+Phase 8 should therefore prove four things:
+
+Customers want multiple services from the same trusted platform.
+
+Partners receive enough work to remain reliable.
+
+Add-on services increase contribution per customer, not merely revenue.
+
+Expansion does not damage walking, sitting, boarding or society operations.
+
+India’s pet-care market has meaningful expansion potential: IBEF reports that the industry is expected to grow from approximately ₹6,000 crore to ₹10,000 crore by 2028, supported by increasing pet ownership, urbanisation and higher spending on organised pet products and services.
+
+1. Correct definition of Phase 8 success
+
+Phase 8 is successful when an existing pet parent begins using two or more trusted services while:
+
+Remaining active longer
+
+Spending more
+
+Generating higher contribution
+
+Submitting fewer or manageable complaints
+
+Receiving consistent quality
+
+Creating enough partner demand
+
+Continuing to use the original walking, sitting or boarding service
+
+The correct equation is:
+
+Revenue alone is insufficient.
+
+2. Autopsy of the proposed success targets
+
+Target 1: Add-on services launched — 2–4
+
+Assessment
+
+Approve, but define “launched.”
+
+A landing page and one test booking do not constitute a launched service.
+
+Count an add-on service as successfully launched only when it has:
+
+A documented service SOP
+
+Defined pricing
+
+At least two verified delivery partners
+
+One backup partner
+
+Booking and payment workflow
+
+Refund and cancellation rules
+
+Complaint process
+
+Incident escalation
+
+At least 20 completed paid bookings
+
+At least 10 verified reviews
+
+Positive or improving contribution economics
+
+Recommended target
+
+### Table 22
+
+| Status | Target |
+| --- | --- |
+| Fully validated add-on services | 2 |
+| Controlled pilot services | 1–2 |
+| Total active categories | Maximum 4 |
+
+Do not operate four immature services simultaneously.
+
+Target 2: Verified partners — 20–50
+
+Assessment
+
+Too broad as a standalone target.
+
+Verification does not mean:
+
+Available
+
+Responsive
+
+Skilled
+
+Profitable
+
+Consistently rated
+
+Willing to accept bookings
+
+The partner funnel should distinguish:
+
+### Table 23
+
+| Partner stage | Meaning |
+| --- | --- |
+| Applicant | Submitted information |
+| Document verified | Identity and credentials checked |
+| Skills assessed | Practical capability evaluated |
+| Trial partner | Limited bookings permitted |
+| Active partner | Accepting normal bookings |
+| Preferred partner | High reliability and quality |
+| Backup partner | Used for capacity and emergencies |
+| Suspended | Temporarily blocked |
+| Removed | Permanently deactivated |
+
+Correct target
+
+### Table 24
+
+| Metric | Recommended target |
+| --- | --- |
+| Total verified partner bench | 20–50 |
+| Active partners | 10–20 |
+| Preferred partners | 5–10 |
+| Backup capacity | 20–30% of active capacity |
+| Partners receiving 5+ monthly bookings | 70%+ |
+| Partners receiving 10+ monthly bookings | 40%+ |
+| Partner 90-day retention | 75%+ |
+
+Why this matters
+
+A large inactive partner database creates a misleading impression of supply.
+
+Measure:
+
+Recommended minimum:
+
+Target 3: Add-on bookings — 100–300 per month
+
+Assessment
+
+Approve, but require consistency.
+
+One festival camp producing 120 bookings does not prove a stable monthly service business.
+
+Correct target
+
+100–300 completed paid bookings per month
+
+Achieved for two consecutive months
+
+No single event responsible for more than 30% of bookings
+
+No single society responsible for more than 40%
+
+No single partner responsible for more than 25%
+
+At least 50 unique customers
+
+At least 25% of bookings generated by returning add-on customers
+
+Track requested bookings separately from completed bookings.
+
+Recommended:
+
+Target 4: Add-on revenue share — 15–30%
+
+Assessment
+
+The denominator is unclear.
+
+“Revenue share” could mean:
+
+Percentage of total customer spending
+
+Percentage of gross booking value
+
+Percentage of platform revenue
+
+Percentage of contribution margin
+
+These are materially different.
+
+Recommended definitions
+
+Add-on GMV share
+
+Target:
+
+Add-on platform-revenue share
+
+Target:
+
+Add-on contribution share
+
+Recommended minimum:
+
+Add-on revenue without positive contribution should not qualify Phase 8 for progression.
+
+Target 5: Repeat customers using add-ons — 20–35%
+
+Assessment
+
+Approve, but define the eligible customer cohort.
+
+The denominator should not include:
+
+New customers with only one booking
+
+Customers outside the launch area
+
+Customers whose pets are ineligible
+
+Customers who were never offered the service
+
+Inactive customers
+
+Correct formula
+
+Recommended target:
+
+Add a second retention metric
+
+Recommended target:
+
+Grooming: 25%+ within the relevant grooming cycle
+
+Training programme: 60%+ session completion
+
+Vet support: 25%+ preventive-care or follow-up engagement
+
+Products: 20%+ repeat order rate
+
+Taxi: measure repeat only among customers with recurring transport needs
+
+Target 6: Average rating — 4.5+/5
+
+Assessment
+
+Slightly weak for a trust-led premium platform.
+
+Recommended target:
+
+Overall add-on rating: 4.6+
+
+No scaled service below 4.4
+
+At least 100 verified add-on reviews
+
+At least 30% review participation
+
+Fewer than 5% of ratings below four stars
+
+Zero unresolved serious safety incidents
+
+A 4.8 rating from eight reviews is not sufficient evidence.
+
+Use a weighted quality score:
+
+Target 7: Complaint/refund rate — below 5%
+
+Assessment
+
+Approve as a maximum, but do not use only an aggregate rate.
+
+A low product-return rate can conceal a high grooming-injury rate.
+
+Service-level thresholds
+
+### Table 25
+
+| Service | Recommended complaint/refund ceiling |
+| --- | --- |
+| Grooming | 3% |
+| Vet booking administration | 3% |
+| Training | 5% |
+| Society events | 3% |
+| Pet taxi | 5% |
+| Products | 5% |
+| Senior/medical care | 2–3% |
+| Serious preventable safety incidents | 0 |
+
+Separate complaints from refunds
+
+Track:
+
+Complaint rate
+
+Refund rate
+
+Partial refund rate
+
+Service redo rate
+
+Safety incident rate
+
+Partner misconduct rate
+
+Unresolved complaint rate
+
+The Consumer Protection E-Commerce Rules require e-commerce entities to maintain a grievance-redressal mechanism and acknowledge consumer complaints through the designated grievance officer. Your platform must therefore maintain formal complaint ownership, response timelines and escalation records.
+
+Target 8: Partner cancellation rate — below 10%
+
+Assessment
+
+Ten percent is too permissive for high-trust services.
+
+At a 10% cancellation rate, 30 of 300 monthly bookings may fail or require emergency reassignment.
+
+Recommended target
+
+### Table 26
+
+| Service | Maximum partner cancellation |
+| --- | --- |
+| Grooming | 7% |
+| Vet home visit | 5% |
+| Training | 7% |
+| Society event | 2% |
+| Pet taxi | 8% |
+| Senior/medical care | 3% |
+| Overall | 5–7% |
+
+Also track:
+
+Recommended:
+
+A reassigned booking should still count as a partner cancellation, even when the customer ultimately receives the service.
+
+Target 9: Society event conversion — 20%+
+
+Assessment
+
+Good target, but the denominator must be qualified leads.
+
+Do not calculate:
+
+Children, non-pet residents and existing customers may attend.
+
+Correct formula
+
+Target:
+
+Complete event funnel
+
+### Table 27
+
+| Stage | Metric |
+| --- | --- |
+| Attendance | Total visitors |
+| Qualified leads | Relevant pet owners with service interest |
+| Booking-ready leads | Selected service and approximate date |
+| First booking | Paid service completed |
+| Repeat customer | Second paid booking |
+| Multi-service customer | Core plus add-on service |
+| Contribution | Net value after event costs |
+
+An event should not pass solely because it collected many phone numbers.
+
+Target 10: Revenue per customer increases by 30–50%
+
+Assessment
+
+Approve only with contribution and cohort controls.
+
+Revenue per customer can increase because:
+
+A few high-spending customers distort the average
+
+Heavy discounts produce artificial bookings
+
+Customers prepay but later request refunds
+
+Core customers stop purchasing after one expensive add-on
+
+Correct measurement
+
+Compare the same retained customer cohort:
+
+Recommended:
+
+Average revenue per active customer: +30–50%
+
+Median revenue per active customer: +20%+
+
+Contribution per active customer: +15–25%
+
+Core-service repeat rate: no decline greater than 5%
+
+Refund-adjusted revenue: positive
+
+Discount-adjusted contribution: positive
+
+The most important metric is:
+
+not headline revenue.
+
+3. Corrected Phase 8 success scorecard
+
+Final recommended targets
+
+### Table 28
+
+| Metric | Revised Phase 8 target |
+| --- | --- |
+| Fully validated add-on services | 2 |
+| Additional controlled pilots | 1–2 |
+| Total verified partners | 20–50 |
+| Active partners | 10–20 |
+| Preferred partners | 5–10 |
+| Add-on bookings/month | 100–300 for two consecutive months |
+| Unique add-on customers/month | 50+ |
+| Add-on GMV share | 15–30% |
+| Add-on contribution share | 10–20% |
+| Eligible core customers adopting add-ons | 20–35% |
+| Add-on repeat rate | 25%+ where naturally recurring |
+| Average service rating | 4.6+ |
+| Verified reviews | 100+ |
+| Complaint/refund rate | Below 5%, with category limits |
+| Overall partner cancellation | Below 7% |
+| Backup fulfilment | 90%+ |
+| Society event conversion | 20%+ within 30 days |
+| Revenue per active customer | +30–50% |
+| Contribution per active customer | +15–25% |
+| Serious preventable incidents | 0 |
+| Core-service quality decline | None materially significant |
+
+4. Recommended service order
+
+Priority 1: Grooming-at-home
+
+Why it comes first
+
+Grooming provides:
+
+Clear customer understanding
+
+Recurring demand
+
+Attractive average order value
+
+Easy society clustering
+
+Strong visual evidence
+
+Natural subscription potential
+
+Lower regulatory complexity than clinical services
+
+Cross-sell opportunities from walking and boarding
+
+Launch offer
+
+Begin with:
+
+Basic grooming
+
+Full grooming
+
+Breed/coat-specific package
+
+Puppy introduction grooming
+
+Senior gentle grooming, only with qualified handlers
+
+Minimum partner pool
+
+Three verified groomers
+
+Two active groomers
+
+One backup
+
+At least one partner capable of handling large or anxious dogs
+
+Cat grooming separated from ordinary dog-grooming capability
+
+Scale gate
+
+50 completed bookings
+
+4.6+ rating
+
+Less than 3% complaint rate
+
+Zero serious preventable injuries
+
+25% rebook/prebook rate
+
+Positive contribution
+
+Backup coverage operational
+
+Priority 2: Veterinary teleconsultation and visit coordination
+
+Correct positioning
+
+Do not position the platform itself as providing veterinary diagnosis.
+
+Position it as:
+
+Licensed-veterinarian discovery
+
+Appointment coordination
+
+Vet-led online consultation
+
+Home-visit scheduling
+
+Vaccination reminders
+
+Medical-record storage
+
+Emergency clinic referral
+
+Pet-taxi coordination
+
+VCI is the statutory body responsible for regulating veterinary practice and maintaining the Indian Veterinary Practitioners Register. Veterinary partners should be checked against the relevant professional registration records and applicable state registration requirements.
+
+Important teleconsultation rule
+
+Customer-support staff, walkers, groomers and trainers must not:
+
+Diagnose illness
+
+Prescribe medicines
+
+Recommend dosage changes
+
+Interpret emergency symptoms as harmless
+
+Claim to replace a physical examination
+
+Online consultations should be vet-led, with red-flag cases escalated to physical veterinary care.
+
+Minimum vet network
+
+Two clinic partners or three verified veterinarians
+
+One emergency referral clinic
+
+One home-visit option
+
+One documented after-hours process
+
+Verified registration and credentials
+
+Written clinical-record process
+
+Scale gate
+
+25 completed consultations or visits
+
+95% complete booking and clinical records
+
+100% emergency escalation completion
+
+Zero unlicensed clinical advice
+
+4.6+ service rating
+
+Manageable administrative complaints
+
+Clear follow-up process
+
+Priority 3: Dog training
+
+Why it comes third
+
+Training offers:
+
+High-ticket programmes
+
+Better walking safety
+
+Reduced leash problems
+
+Improved society relationships
+
+Puppy-parent acquisition
+
+Multi-session retention
+
+But training is less standardised than grooming. Partner methods can differ substantially.
+
+Recommended initial offer
+
+Start with:
+
+Puppy foundation workshop
+
+Leash-manners workshop
+
+Recall basics
+
+Calm greetings
+
+Society etiquette
+
+Handling and grooming preparation
+
+Individual training assessment
+
+Four- to six-session basic programme
+
+Defer initially
+
+Serious aggression cases
+
+Bite rehabilitation
+
+Protection training
+
+Unsupervised board-and-train
+
+Severe separation anxiety
+
+Cases where pain or illness may be affecting behaviour
+
+Trainer standards
+
+Require:
+
+Method declaration
+
+Practical demonstration
+
+Equipment disclosure
+
+References
+
+Behaviour-risk assessment
+
+Written training plan
+
+Progress reporting
+
+Prohibition of undisclosed harmful or aversive practices
+
+Veterinary referral process
+
+State-level requirements can vary. Tamil Nadu’s February 2026 policy, for example, requires professional dog trainers to register with the Tamil Nadu Animal Welfare Board and establishes specific operating standards. This demonstrates why every Phase 8 city needs its own compliance matrix.
+
+Scale gate
+
+15 paid assessments
+
+Eight paid programmes
+
+70% programme completion
+
+4.6+ rating
+
+Measurable owner-reported outcomes
+
+Zero prohibited-method incidents
+
+Positive programme contribution
+
+Priority 4: Vaccination and grooming society camps
+
+Strategic role
+
+Camps should function as:
+
+Customer-acquisition channels
+
+Society relationship builders
+
+Preventive-care infrastructure
+
+Partner demonstrations
+
+Pet-profile collection points
+
+Cross-selling opportunities
+
+They are not separate marketplaces.
+
+Camp types
+
+Grooming camp
+
+Grooming consultations
+
+Coat-condition checks
+
+Nail and hygiene demonstrations
+
+Prebooked at-home grooming
+
+Groomer introductions
+
+Veterinary and vaccination camp
+
+Vet-led record review
+
+Preventive-care discussion
+
+Scheduled vaccination
+
+Follow-up reminders
+
+Clinic referrals
+
+Emergency education
+
+Vaccination activity should remain under qualified veterinary control, with vaccine storage, records, adverse-event response and medical-waste handling owned by the clinical partner.
+
+Event success gate
+
+25+ qualified pet-parent leads
+
+20%+ paid conversion within 30 days
+
+30%+ repeat among eligible customers
+
+Zero major operational or medical incidents
+
+Positive contribution or demonstrable strategic acquisition value
+
+RWA satisfaction confirmed
+
+Priority 5: Pet taxi
+
+Why it should wait
+
+Pet taxi creates:
+
+Vehicle-permit requirements
+
+Driver verification
+
+Insurance questions
+
+Heat and ventilation risks
+
+Escape risk
+
+Accident liability
+
+Delays and route problems
+
+Vehicle-hygiene requirements
+
+Emergency transport confusion
+
+Section 66 of the Motor Vehicles Act establishes the general requirement that transport vehicles operating in public places must be used according to the conditions of an appropriate permit, subject to statutory exceptions. Pet-taxi partners therefore need proper commercial-vehicle and local transport compliance.
+
+Correct rollout
+
+Owner-accompanied rides
+
+Handler-accompanied rides
+
+Unaccompanied pet transfer only after strong operating evidence
+
+Required partner checks
+
+Commercial vehicle registration
+
+Applicable permit
+
+Vehicle insurance
+
+Driver licence
+
+Vehicle fitness
+
+Working air conditioning
+
+Secure crate/restraint capability
+
+GPS
+
+Cleaning SOP
+
+Accident process
+
+Backup vehicle
+
+Emergency contacts
+
+Scale gate
+
+Two verified vehicle partners
+
+20 completed trips
+
+95%+ on-time arrival
+
+Zero escapes
+
+Zero preventable injuries
+
+Positive contribution
+
+Backup transport available
+
+Priority 6: Pet food and product affiliate partnerships
+
+Why it comes later
+
+Products offer repeat purchases but can distract the organisation through:
+
+Inventory
+
+Expiry
+
+Returns
+
+Counterfeits
+
+Product support
+
+Delivery failures
+
+Working-capital requirements
+
+Nutrition claims
+
+Recommended progression
+
+Stage 1
+
+Affiliate referrals
+
+Stage 2
+
+Curated preorder
+
+Stage 3
+
+Society delivery days
+
+Stage 4
+
+Recurring replenishment subscriptions
+
+Do not own broad inventory during Phase 8.
+
+Product launch categories
+
+Start with low-risk, repeatable products:
+
+Waste bags
+
+Treats
+
+Leashes
+
+Harnesses
+
+Grooming-maintenance products
+
+Training rewards
+
+Toys
+
+Travel accessories
+
+Avoid medical products, prescription diets and unsupported health claims.
+
+Scale gate
+
+50 completed orders
+
+20% repeat order rate
+
+Fewer than 5% returns/cancellations
+
+Zero counterfeit or expired-product incidents
+
+Positive contribution
+
+No warehouse required
+
+Priority 7: Senior and medical pet care
+
+Why this should be last
+
+This service may include:
+
+Medication assistance
+
+Mobility support
+
+Post-operative monitoring
+
+Senior pet sitting
+
+Feeding assistance
+
+Incontinence care
+
+Transport to veterinary appointments
+
+Condition monitoring
+
+It also carries the highest risk of:
+
+Medication errors
+
+Clinical deterioration
+
+Falls or injury
+
+Misinterpretation of symptoms
+
+Emergency delays
+
+Customer disputes
+
+Professional-scope violations
+
+Correct positioning
+
+This should be:
+
+Vet-directed supportive pet care—not independent medical treatment.
+
+Required operating model
+
+Written veterinary care plan
+
+Exact medication instructions
+
+Medication administration log
+
+Time-stamped visit records
+
+Red-flag symptom list
+
+Emergency consent
+
+Vet contact
+
+Backup caregiver
+
+Caregiver competency assessment
+
+No dosage changes
+
+No injections or clinical procedures unless legally and professionally authorised
+
+No diagnosis by caregivers
+
+Minimum entry gate
+
+Three appropriately trained care partners
+
+Two veterinary partner clinics
+
+Medication-record system
+
+Emergency-response protocol
+
+Professional legal review
+
+Appropriate insurance review
+
+Ten closely supervised pilot cases
+
+Zero medication errors
+
+5. Partner-led operating model
+
+Platform responsibilities
+
+The platform should own:
+
+Customer acquisition
+
+Partner verification
+
+Service standards
+
+Booking
+
+Payment
+
+Customer support
+
+Complaint handling
+
+Refund rules
+
+Partner performance
+
+Society access
+
+Quality audits
+
+Incident response
+
+Data permissions
+
+Partner responsibilities
+
+Partners should own:
+
+Professional service delivery
+
+Equipment
+
+Professional credentials
+
+Technical judgement
+
+Service documentation
+
+Statutory registrations
+
+Hygiene
+
+Staff management
+
+Tax and invoice obligations according to the commercial model
+
+Customer responsibilities
+
+Customers should provide:
+
+Correct pet information
+
+Behaviour and bite history
+
+Medical conditions
+
+Allergies
+
+Access instructions
+
+Emergency contact
+
+Vet information
+
+Safe service environment
+
+Authorised consent
+
+6. Universal partner verification
+
+Every partner should pass:
+
+Identity verification
+
+Address verification
+
+Professional-document review
+
+Video interview
+
+References
+
+Practical assessment
+
+Service-specific SOP examination
+
+Trial bookings
+
+Quality review
+
+Full activation
+
+Partner performance score
+
+Critical safety failures should override the numerical score.
+
+Suspension triggers
+
+Falsified credentials
+
+Serious animal-welfare violation
+
+Unauthorised clinical advice
+
+Repeated no-shows
+
+Unauthorised subcontracting
+
+Data misuse
+
+Aggressive conduct
+
+Hidden fees
+
+Repeated low ratings
+
+Failure to report an incident
+
+7. Service-level economics
+
+Core formula
+
+Internal starting hypotheses
+
+### Table 29
+
+| Service | Recommended commercial model |
+| --- | --- |
+| Grooming | 18–25% platform commission |
+| Vet coordination | Fixed fee or carefully disclosed commission |
+| Training | 15–25% commission |
+| Society workshop | Revenue share or fixed partner payout |
+| Pet taxi | Fixed booking fee or 10–20% commission |
+| Products | Affiliate or reseller margin |
+| Senior care | Managed premium service fee |
+
+These are planning assumptions, not market rules.
+
+Minimum economics gate
+
+A service should not scale unless:
+
+Contribution is positive before central overhead
+
+Discount-free customers also convert
+
+Customer support does not consume the entire margin
+
+Refund provisions are included
+
+Partner payouts support retention
+
+Repeat bookings improve economics
+
+8. Technology required
+
+Shared platform modules
+
+Customer account
+
+Pet profile
+
+Partner profile
+
+Society profile
+
+Service catalogue
+
+Availability
+
+Booking
+
+Payment
+
+Partner payout
+
+Offers
+
+Reviews
+
+Complaints
+
+Refunds
+
+Incident reporting
+
+Analytics
+
+Service-specific modules
+
+Grooming
+
+Coat condition
+
+Before/after images
+
+Products used
+
+Grooming report
+
+Rebooking date
+
+Vet support
+
+Appointment mode
+
+Professional registration
+
+Clinical-document upload
+
+Triage category
+
+Referral
+
+Follow-up
+
+Training
+
+Assessment
+
+Goals
+
+Programme
+
+Homework
+
+Progress
+
+Taxi
+
+Driver
+
+Vehicle
+
+Permit status
+
+Route
+
+GPS
+
+Waiting time
+
+Handover records
+
+Senior care
+
+Care plan
+
+Medication log
+
+Symptoms
+
+Visit checklist
+
+Escalation
+
+9. Data and privacy controls
+
+Phase 8 adds sensitive information such as:
+
+Addresses
+
+Home-access details
+
+Veterinary records
+
+Medication
+
+Behaviour history
+
+Emergency contacts
+
+GPS information
+
+Payment details
+
+The Digital Personal Data Protection Rules, 2025 were notified with phased commencement: some provisions began on publication, while others have later commencement dates. The system should nevertheless be designed now around purpose-specific consent, limited partner access, security controls, complaint handling and deletion workflows.
+
+Role-based access
+
+### Table 30
+
+| Partner | Appropriate access |
+| --- | --- |
+| Groomer | Coat, behaviour, allergies and service address |
+| Trainer | Behaviour, goals, medical warnings |
+| Veterinarian | Relevant health and medication history |
+| Taxi driver | Pickup, destination and handling instructions |
+| Product seller | Order and delivery information only |
+| Senior caregiver | Vet-approved care plan and emergency information |
+
+Do not provide every partner with the complete pet and customer profile.
+
+10. GST and commercial structure
+
+Before expansion, determine whether the platform is:
+
+An agent
+
+A managed marketplace
+
+The principal service provider
+
+An e-commerce operator collecting customer consideration
+
+A referral platform
+
+The answer affects:
+
+Invoicing
+
+GST
+
+Partner payouts
+
+Tax collection at source
+
+Refunds
+
+Credit notes
+
+Revenue recognition
+
+CBIC guidance provides specific registration and tax-collection rules for e-commerce operators where the applicable conditions are met. Obtain a written opinion from a qualified chartered accountant before standardising Phase 8 settlement flows.
+
+11. Recommended 90-day execution
+
+Days 1–15: preparation
+
+Establish baseline Phase 7 metrics.
+
+Survey existing customers.
+
+Rank service demand.
+
+Recruit initial partners.
+
+Complete legal and credential checks.
+
+Build service SOPs.
+
+Configure booking workflows.
+
+Establish service-level pricing.
+
+Define refunds and complaints.
+
+Train customer support.
+
+Select two or three launch societies.
+
+Required baseline
+
+Record before launch:
+
+Revenue per active customer
+
+Contribution per active customer
+
+Core repeat rate
+
+Core rating
+
+Core cancellation rate
+
+Support response time
+
+Society complaints
+
+Without a baseline, the claimed Phase 8 uplift cannot be proven.
+
+Days 16–30: grooming launch
+
+Targets:
+
+30–50 paid grooming bookings
+
+Three verified groomers
+
+Two active partners
+
+4.6+ rating
+
+Under 3% complaints
+
+Zero serious incidents
+
+Positive contribution
+
+Do not launch all other categories aggressively during this period.
+
+Days 31–45: vet support
+
+Launch:
+
+Appointment coordination
+
+Licensed online consultation
+
+Home-visit coordination
+
+Vaccination reminders
+
+One controlled society health camp
+
+Targets:
+
+25 completed bookings
+
+Two verified clinical partners
+
+95% documentation completion
+
+100% emergency escalation
+
+Zero unlicensed advice
+
+Days 46–60: training camps
+
+Launch:
+
+Two society workshops
+
+Individual assessments
+
+Basic training programmes
+
+Targets:
+
+30 workshop attendees
+
+15 paid assessments
+
+Eight programme purchases
+
+70% programme completion
+
+4.6+ rating
+
+Zero method violations
+
+Days 61–75: optimisation
+
+Remove weak partners.
+
+Increase availability for strong partners.
+
+Improve pricing.
+
+Analyse contribution.
+
+Introduce grooming rebooking.
+
+Introduce training packages.
+
+Improve vet follow-up.
+
+Review society conversion.
+
+Measure cross-service adoption.
+
+Check whether core quality has declined.
+
+Days 76–90: conditional experiments
+
+Only after grooming, veterinary support and training are stable:
+
+Pilot owner-accompanied pet taxi.
+
+Test affiliate products.
+
+Design senior-care SOPs.
+
+Do not scale senior/medical care yet.
+
+Produce the final Phase 8 report.
+
+12. Phase 9 go/no-go decision
+
+Move to Phase 9 only when all critical gates pass.
+
+Demand gate
+
+Two fully validated add-on services
+
+100–300 monthly completed bookings
+
+50+ unique monthly add-on customers
+
+20–35% eligible-customer adoption
+
+25%+ repeat rate where relevant
+
+Quality gate
+
+4.6+ overall rating
+
+100+ verified reviews
+
+Complaint/refund rate below 5%
+
+Zero unresolved serious incidents
+
+No scaled service below 4.4
+
+Partner gate
+
+10–20 active partners
+
+20–50 verified partner bench
+
+Cancellation below 7%
+
+90%+ backup fulfilment
+
+75%+ 90-day partner retention
+
+Healthy bookings per active partner
+
+Economics gate
+
+Add-ons generate 15–30% of platform revenue
+
+Add-ons generate 10–20% of contribution
+
+Revenue per active customer increases 30–50%
+
+Contribution per active customer increases 15–25%
+
+At least two add-on services are contribution-positive
+
+Results are not dependent on heavy discounts
+
+Core-protection gate
+
+Core walking/sitting ratings remain stable
+
+Core repeat rate does not decline materially
+
+Core cancellations do not increase materially
+
+Society complaints remain manageable
+
+Support response times remain acceptable
+
+Existing customers are not confused by service expansion
+
+Compliance gate
+
+Veterinary credentials verified
+
+Local training and facility rules checked
+
+Taxi permits and vehicle documents verified
+
+Customer grievance mechanism operational
+
+Data-access controls operational
+
+Partner contracts complete
+
+Tax and invoicing structure approved
+
+Final recommendation
+
+Approve this order
+
+### Table 31
+
+| Priority | Service | Decision |
+| --- | --- | --- |
+| 1 | Grooming-at-home | Launch immediately |
+| 2 | Vet consultation/visit coordination | Launch through verified veterinarians |
+| 3 | Training workshops and programmes | Launch in controlled societies |
+| 4 | Vaccination/grooming camps | Use as an acquisition layer |
+| 5 | Pet taxi | Pilot only after core add-ons stabilise |
+| 6 | Products and food | Affiliate/preorder model |
+| 7 | Senior/medical care | Defer until vet-directed protocols exist |
+
+Correct Phase 8 win condition
+
+At least two add-on services produce recurring customer demand, positive contribution, reliable partner utilisation and high quality—while increasing contribution per existing customer without weakening the core pet-care marketplace.
+
+Final status
+
+Phase 8: GO
+
+Conditions:
+
+Grooming first
+
+Vet support only through registered professionals
+
+Training through tightly controlled methods
+
+Pet taxi delayed
+
+Products kept inventory-light
+
+Senior medical care treated as a future specialist service
+
+Phase 9 blocked unless contribution, quality and core-service protection all pass together
+
+Phase 8 Service Model: Grooming-at-Home 🐾✂️
+
+End-to-End Business, Product and Operating Blueprint
+
+Executive verdict
+
+Grooming-at-home should be the first Phase 8 add-on.
+
+It has the best combination of:
+
+Existing customer trust
+
+Repeat demand
+
+Clear service packages
+
+Attractive order value
+
+Society-cluster efficiency
+
+Visible proof of completion
+
+Moderate regulatory complexity
+
+Natural cross-selling from walking, sitting and boarding
+
+Your proposed pricing is broadly within the Indian market, but several changes are necessary:
+
+₹499 is usually too low for a standalone at-home bath unless it is a promotional or society-batched service.
+
+Tick/flea “treatment” must be separated into grooming and veterinary treatment.
+
+Cat grooming must use specialist partners and a separate workflow.
+
+Nail trimming and ear cleaning work better as package inclusions or route-dense add-ons.
+
+Partner commissions must be tested against travel time, equipment costs, support, discounts and refunds.
+
+Current Indian provider references place professional grooming broadly around ₹500–₹3,500, depending on city, pet size, coat, package and condition. Vetic currently lists its own starting prices around ₹1,099 for a bath, ₹1,699 for a haircut and ₹2,199 for a bath plus haircut; ThePetNest advertises basic and full-service packages around ₹1,199 and ₹1,999 before city-level variation.
+
+1. Why grooming should be added first
+
+Your core platform has already established:
+
+The customer’s identity
+
+The pet’s profile
+
+The service address
+
+Pet behaviour and temperament
+
+Society entry procedures
+
+Payment trust
+
+Reviews
+
+Emergency contacts
+
+Previous care history
+
+That creates a major advantage over a cold grooming marketplace.
+
+A customer who already trusts your walker or sitter does not need to be convinced that your company understands the pet. The customer only needs to be convinced that the specific groomer is qualified, hygienic and safe.
+
+Strategic benefits
+
+Higher revenue per customer
+
+A walking customer may purchase grooming every four to eight weeks, depending on breed, coat and lifestyle. Industry providers already structure grooming as a recurring service, with frequency varying significantly by coat type.
+
+Better society economics
+
+One groomer can serve several residents in the same society on one day:
+
+Lower travel time
+
+Lower cancellation risk
+
+Easier gate access
+
+Better equipment utilisation
+
+More bookings per route
+
+Lower acquisition cost
+
+Easier backup coverage
+
+Stronger retention
+
+A customer using walking and grooming is less likely to leave than a customer using only one service, provided the new service maintains quality.
+
+Visible service evidence
+
+Before-and-after photographs, coat reports and service checklists make grooming easier to verify than many other pet-care services.
+
+2. Pricing autopsy
+
+Your original pricing
+
+### Table 32
+
+| Service | Proposed range | Assessment |
+| --- | --- | --- |
+| Basic bath | ₹499–₹999 | Low for standalone at-home service |
+| Bath + blow dry | ₹799–₹1,499 | Realistic in many markets |
+| Full grooming | ₹1,499–₹3,999 | Broadly realistic |
+| Tick/flea treatment | ₹999–₹2,499 | Must be medically reclassified |
+| Nail trimming | ₹199–₹499 | Suitable as an add-on |
+| Ear cleaning | ₹199–₹499 | Suitable with strict scope |
+| Cat grooming | ₹1,499–₹4,999 | Upper end needs specialist justification |
+
+Market references show substantial variation. Vetic cites a general Indian range of ₹500–₹3,500, while its current clinic packages begin around ₹1,099–₹2,199. ThePetNest city pages frequently show packages around ₹899–₹1,999, while long-coat, premium and large-pet services may be higher.
+
+Recommended launch pricing
+
+These are testing ranges, not mandatory nationwide prices.
+
+### Table 33
+
+| Service | Recommended launch range |
+| --- | --- |
+| Essential bath | ₹899–₹1,299 |
+| Bath + blow dry + brush | ₹1,099–₹1,699 |
+| Bath + hygiene grooming | ₹1,299–₹1,999 |
+| Full grooming | ₹1,799–₹3,499 |
+| Large/long-coat full grooming | ₹2,499–₹3,999 |
+| Nail trimming—standalone | ₹299–₹499 |
+| Nail trimming—package add-on | ₹149–₹299 |
+| External ear hygiene | ₹249–₹499 |
+| De-shedding add-on | ₹399–₹999 |
+| Dematting | Inspection-based |
+| Cat bath/basic grooming | ₹1,199–₹1,999 |
+| Specialist cat full grooming | ₹1,999–₹3,499 |
+| Severe matting or difficult handling | Custom quote |
+
+Why ₹499 is risky
+
+Assume a ₹699 at-home bath:
+
+### Table 34
+
+| Item | Illustration |
+| --- | --- |
+| Customer price | ₹699 |
+| Groomer payout at 78% | ₹545 |
+| Platform gross revenue | ₹154 |
+| Payment cost | ₹14 |
+| Customer support allocation | ₹20 |
+| Promotional allocation | ₹30 |
+| Refund/incident reserve | ₹15 |
+| Approximate contribution | ₹75 |
+
+That ₹75 still has to support technology, operations and central overhead.
+
+A low-price bath can work when:
+
+Several bookings are in the same society
+
+The package is intentionally promotional
+
+The groomer already has nearby work
+
+Equipment and consumable costs are controlled
+
+The customer is expected to convert into recurring grooming
+
+It is weak as a city-wide standalone service.
+
+3. Use a dynamic pricing engine
+
+Do not price grooming using one flat number.
+
+Recommended formula
+
+Pricing variables
+
+Pet size
+
+Small
+
+Medium
+
+Large
+
+Extra-large
+
+Use actual weight bands, not only breed names.
+
+Coat type
+
+Short
+
+Medium
+
+Long
+
+Curly
+
+Double-coated
+
+Hairless/special-care
+
+Coat condition
+
+Maintained
+
+Heavy shedding
+
+Mildly tangled
+
+Matted
+
+Severely matted
+
+Parasite signs
+
+Skin irritation
+
+Behaviour
+
+Calm
+
+Anxious
+
+Handling-sensitive
+
+Reactive
+
+Previous bite history
+
+Requires two trained handlers
+
+Service location
+
+Normal service zone
+
+Extended service zone
+
+Society grooming day
+
+Same-building multi-pet booking
+
+Price-transparency rule
+
+The customer must see:
+
+Exact package inclusions
+
+Expected duration
+
+Product type
+
+Potential condition-based surcharge
+
+Cancellation terms
+
+Whether two groomers are required
+
+Taxes and fees
+
+Final amount before service starts
+
+Do not allow a groomer to arrive and demand an undocumented surcharge.
+
+4. Recommended grooming catalogue
+
+Package 1: Essential Bath
+
+Best for: short-coated and regularly maintained pets.
+
+Includes:
+
+Pre-groom visual assessment
+
+Pet-safe shampoo
+
+Conditioner where appropriate
+
+Towel and controlled blow drying
+
+Brushing
+
+Paw cleaning
+
+Basic fragrance only with owner approval
+
+Grooming report
+
+Does not include:
+
+Haircut
+
+Dematting
+
+Nail trimming unless selected
+
+Ear cleaning unless selected
+
+Medical or anti-parasitic treatment
+
+Package 2: Bath and Hygiene
+
+Includes:
+
+Essential Bath
+
+Nail trimming
+
+External ear cleaning
+
+Paw-pad trimming
+
+Sanitary trimming
+
+Basic de-shedding
+
+Eye-area surface cleaning
+
+Grooming report
+
+This should become the main standard package.
+
+Package 3: Full Grooming
+
+Includes:
+
+Bath and Hygiene
+
+Coat trimming or haircut
+
+Breed-appropriate styling
+
+Moderate detangling
+
+Finishing brush
+
+Before-and-after photographs
+
+Maintenance recommendation
+
+The platform should specify whether the price includes:
+
+Scissor work
+
+Clipper work
+
+Breed-standard styling
+
+Dematting
+
+Two-person handling
+
+Package 4: De-shedding
+
+For:
+
+Labradors
+
+Golden Retrievers
+
+German Shepherds
+
+Huskies
+
+Other double-coated or shedding breeds
+
+Includes:
+
+Pre-brushing
+
+Appropriate bath
+
+Coat-safe drying
+
+Undercoat removal
+
+Final brush-out
+
+Avoid promising that shedding will be “eliminated.”
+
+Package 5: Puppy Introduction Grooming
+
+For young pets receiving an early grooming introduction.
+
+Includes:
+
+Short acclimatisation session
+
+Gentle brushing
+
+Paw handling
+
+Nail-tool introduction
+
+Low-noise dryer introduction
+
+Light cleaning
+
+Owner education
+
+This should prioritise comfort over cosmetic perfection.
+
+Package 6: Senior Gentle Grooming
+
+For older pets with reduced mobility or medical history.
+
+Requires:
+
+Medical-condition disclosure
+
+Shorter handling periods
+
+Non-slip surface
+
+Lower heat
+
+Rest breaks
+
+Emergency contact
+
+Vet referral for unstable pets
+
+This is grooming, not medical care.
+
+5. Tick and flea service: critical correction
+
+The hidden problem
+
+“Tick/flea treatment” combines two different activities:
+
+Grooming activity
+
+Visual parasite check
+
+Parasite-removal bath using an appropriate product
+
+Washing and combing
+
+Environmental hygiene advice
+
+Referral recommendation
+
+Veterinary activity
+
+Diagnosing infestation or skin disease
+
+Selecting medication
+
+Prescribing topical or oral parasiticides
+
+Treating secondary infection
+
+Determining dosage
+
+Managing toxicity or adverse reactions
+
+Under the Indian Veterinary Council Act, veterinary medicine practice is reserved to appropriately registered veterinary practitioners, subject to the Act’s provisions. The platform should not permit groomers or support staff to diagnose or prescribe treatment.
+
+Correct service naming
+
+Replace:
+
+Tick/flea treatment
+
+With:
+
+Parasite-control grooming bath
+
+Then add:
+
+Veterinary assessment may be required. Groomers do not diagnose infestations or prescribe medicines.
+
+Recommended workflow
+
+Customer declares known tick/flea history.
+
+Customer uploads a photograph where practical.
+
+System checks whether a veterinarian has recommended a product.
+
+Groomer performs a visual assessment.
+
+Severe infestation, wounds, fever, weakness or skin infection triggers veterinary referral.
+
+Only approved pet products are used.
+
+Product name and batch are documented.
+
+Customer receives environmental cleaning guidance.
+
+No medication dosage recommendation is given by the groomer.
+
+Automatic rejection or referral
+
+Do not proceed normally when there is:
+
+Open wound
+
+Severe skin inflammation
+
+Suspected mange or fungal disease
+
+Heavy infestation with weakness
+
+Prior product reaction
+
+Seizure history relevant to the intended product
+
+Very young or medically fragile pet
+
+Unidentified chemical already applied
+
+6. Ear cleaning boundary
+
+“Ear cleaning” must mean external hygiene only.
+
+A groomer may:
+
+Wipe the visible outer ear
+
+Use an approved pet ear-cleaning product
+
+Report visible wax, odour or redness
+
+Stop if the pet shows pain
+
+A groomer should not:
+
+Insert objects deeply into the ear canal
+
+Diagnose an infection
+
+treat discharge
+
+Recommend prescription medication
+
+continue when there is bleeding, severe pain or swelling
+
+Redness, strong odour, discharge, head tilting or obvious pain should trigger veterinary referral.
+
+7. Cat grooming requires a separate service
+
+Cats should not be placed into the ordinary dog-grooming workflow.
+
+Current providers recognise cat-specific needs such as low-noise drying, cat-safe products, stress-sensitive handling and specialist dematting. Published current pricing references commonly place basic cat grooming around ₹800–₹1,500 and more involved sessions around ₹1,500–₹2,500, with location and condition affecting the result.
+
+Cat partner requirements
+
+Demonstrated cat-handling experience
+
+Cat-specific grooming assessment
+
+Low-noise dryer capability
+
+Cat-safe shampoo and products
+
+Scratch and bite protocol
+
+Escape-prevention protocol
+
+Specialist dematting capability
+
+Appropriate protective equipment
+
+No dog-focused handling methods
+
+Non-negotiable rules
+
+No unapproved sedation
+
+No forced restraint merely to complete the booking
+
+No dog products on cats
+
+No grooming near an open exterior door
+
+No common-area society grooming for highly stressed cats
+
+Stop service if the cat shows respiratory distress, collapse or extreme panic
+
+Cat services should have a separate Cat Grooming Specialist badge.
+
+8. Groomer verification system
+
+A generic “verified” badge is too vague.
+
+Verification stages
+
+Level 1: Identity Verified
+
+Government ID
+
+Address
+
+Photograph
+
+Phone
+
+Emergency contact
+
+Level 2: Background Checked
+
+References
+
+Work history
+
+Background declaration
+
+Previous platform history
+
+Police verification where lawful and operationally available
+
+Level 3: Skills Assessed
+
+Practical grooming demonstration
+
+Nail-trim demonstration
+
+Drying and temperature control
+
+Tool handling
+
+Animal handling
+
+Equipment cleaning
+
+Stress-signal recognition
+
+Level 4: Specialist Approved
+
+Potential specialisations:
+
+Cat grooming
+
+Large breeds
+
+Double-coated dogs
+
+Senior pets
+
+Anxious pets
+
+Breed-specific styling
+
+Two-person handling
+
+Level 5: Preferred Groomer
+
+Requires:
+
+Minimum completed bookings
+
+4.7+ rating
+
+Low cancellation rate
+
+Low complaint rate
+
+Repeat customers
+
+No unresolved safety incidents
+
+Current documents
+
+Partner onboarding sequence
+
+Application
+
+Identity verification
+
+Experience review
+
+Certificate review
+
+References
+
+Video interview
+
+Practical assessment
+
+Hygiene examination
+
+Platform training
+
+Two to five supervised trial bookings
+
+Trial performance review
+
+Activation
+
+Some Indian providers already advertise trained groomers, background checks, sanitised equipment and standardised hygiene as core customer expectations.
+
+9. Grooming equipment and hygiene checklist
+
+Required tools
+
+Pet-safe shampoo
+
+Conditioner
+
+Clean towels
+
+Brushes and combs
+
+Clippers
+
+Scissors
+
+Nail clippers/grinder
+
+Low-temperature dryer
+
+Non-slip mat
+
+Waste bags
+
+Disinfectant suitable for equipment
+
+Disposable gloves
+
+First-aid kit
+
+Hair collection and cleanup equipment
+
+Before each booking
+
+Tools cleaned and disinfected
+
+Towels freshly laundered
+
+Bottles properly labelled
+
+Clippers checked
+
+Dryer heat checked
+
+Electrical wires inspected
+
+Previous pet hair removed
+
+Products checked for expiry
+
+Correct species-specific products packed
+
+During the service
+
+No shared dirty towel
+
+No tool used on wounds
+
+Heat continuously controlled
+
+Pet never left secured and unattended
+
+Pet restrained only as necessary and safely
+
+Water and electrical equipment separated
+
+Stress breaks provided
+
+After the service
+
+Hair collected
+
+Wet area cleaned
+
+Tools separated for disinfection
+
+Used towels sealed for laundering
+
+Product usage recorded
+
+Injury or skin observation logged
+
+Tamil Nadu’s 2026 state policy is a useful example of tightening standards: it requires grooming centres in that state to register, use qualified groomers, maintain sanitation, follow humane handling practices and keep service and incident records. It also imposes centre-specific requirements such as CCTV and environmental controls. These requirements are not automatically national rules, but they demonstrate why every launch city needs a local legal checklist.
+
+10. Complete booking flow
+
+Your current MVP flow is correct but incomplete.
+
+Recommended production flow
+
+Customer selects grooming
+
+↓
+
+Selects existing pet profile
+
+↓
+
+Completes grooming-risk assessment
+
+↓
+
+System recommends eligible packages
+
+↓
+
+Dynamic price calculated
+
+↓
+
+Customer chooses date, slot and groomer
+
+↓
+
+Partner accepts within SLA
+
+↓
+
+Customer reviews package and consent
+
+↓
+
+Payment authorised
+
+↓
+
+Society/gate entry pre-approved
+
+↓
+
+Groomer checks in through OTP
+
+↓
+
+Pre-groom inspection completed
+
+↓
+
+Customer approves any disclosed change
+
+↓
+
+Grooming service performed
+
+↓
+
+Before/after report uploaded
+
+↓
+
+Customer confirms completion
+
+↓
+
+Partner payout released
+
+↓
+
+Review collected
+
+↓
+
+Rebooking date recommended
+
+11. Pre-booking risk assessment
+
+The customer should answer:
+
+Pet information
+
+Species
+
+Breed
+
+Age
+
+Weight
+
+Coat type
+
+Last grooming date
+
+Last nail trim
+
+Sterilisation status where relevant
+
+Medical information
+
+Allergies
+
+Skin condition
+
+Ear condition
+
+Open wounds
+
+Recent surgery
+
+Heart or respiratory disease
+
+Seizure history
+
+Medication
+
+Veterinarian details
+
+Behaviour information
+
+Previous bite or scratch
+
+Fear of dryer
+
+Fear of water
+
+Fear of nail trimming
+
+Handling sensitivity
+
+Separation anxiety
+
+Grooming history
+
+Muzzle history
+
+Coat condition
+
+Normal
+
+Heavy shedding
+
+Tangled
+
+Matted
+
+Severely matted
+
+Ticks/fleas observed
+
+Unknown
+
+Environment
+
+Running water available
+
+Safe electrical socket
+
+Ventilated area
+
+Non-slip surface
+
+Pet can be isolated from other animals
+
+Society entry approved
+
+12. Risk classification
+
+### Table 35
+
+| Risk level | Example | Booking rule |
+| --- | --- | --- |
+| Green | Calm pet, maintained coat | Standard groomer |
+| Amber | Mild anxiety or tangles | Experienced groomer |
+| Orange | Bite history, senior pet, severe matting | Specialist assessment |
+| Red | Open wounds, unstable health, severe distress | Vet referral or rejection |
+
+A partner must be allowed to stop the service without commercial penalty when continuing would endanger the pet or groomer.
+
+13. Pre-groom inspection
+
+At arrival, the groomer records:
+
+Pet identity
+
+General condition
+
+Coat condition
+
+Existing wounds
+
+Matting
+
+Parasite signs
+
+Skin redness
+
+Ear appearance
+
+Nail condition
+
+Behaviour
+
+Products approved by customer
+
+Final scope
+
+Change-order rule
+
+Any additional fee requires:
+
+Photograph or recorded evidence
+
+Explanation
+
+Updated price
+
+Customer approval in the app
+
+No work beyond the original scope until approved
+
+This prevents post-service pricing disputes.
+
+14. Grooming report card
+
+Before-and-after photographs are valuable, but they are not sufficient.
+
+Report fields
+
+Check-in time
+
+Completion time
+
+Package delivered
+
+Groomer
+
+Products used
+
+Bath completed
+
+Drying completed
+
+Nail trimming status
+
+Ear hygiene status
+
+Haircut/style
+
+Coat condition
+
+Behaviour during session
+
+Skin or parasite observations
+
+Any incident
+
+Owner notified
+
+Recommended next grooming period
+
+Before photograph
+
+After photograph
+
+Photograph consent
+
+The customer should choose separately whether photographs may be used for:
+
+Service documentation
+
+Dispute resolution
+
+Groomer quality review
+
+Marketing
+
+Social media
+
+Consent for service documentation should not automatically become marketing consent. Current Indian data-protection rules and legislation reinforce the importance of purpose-specific notice, access control and grievance processes.
+
+15. “Same groomer again” feature
+
+This is one of the strongest retention features.
+
+Benefits
+
+Groomer understands the pet
+
+Pet experiences less anxiety
+
+Customer trust increases
+
+Service duration becomes predictable
+
+Behaviour notes improve
+
+Rebooking friction falls
+
+Product logic
+
+After a successful booking, show:
+
+Rebook with [First Name]
+
+Options:
+
+Same package
+
+Recommended package
+
+Preferred day
+
+Recurring interval
+
+Accept backup groomer if unavailable
+
+Wait specifically for the same groomer
+
+Operational constraint
+
+Do not promise the same groomer unless:
+
+The groomer serves that locality
+
+Availability exists
+
+The groomer remains active
+
+Previous booking had no safety restriction
+
+The pet/groomer match remains appropriate
+
+The app should distinguish:
+
+Same groomer required
+
+Same groomer preferred
+
+Any equivalent verified groomer
+
+16. Society grooming day
+
+Correct model
+
+A society grooming day should primarily be a route-density programme, not an uncontrolled common-area salon.
+
+Preferred model
+
+Residents book individual in-home slots.
+
+One or more approved groomers serve the society for the day.
+
+Equipment enters once.
+
+Security has a pre-approved roster.
+
+Booking slots prevent delays.
+
+Residents receive a society-specific rate.
+
+Common-area model
+
+Use only where there is:
+
+Written society approval
+
+Water supply
+
+Drainage
+
+Electrical safety
+
+Ventilation
+
+Noise control
+
+Pet separation
+
+Waste cleanup
+
+Secure entry and exit
+
+Appropriate local compliance
+
+Emergency veterinary contact
+
+Common-area grooming is unsuitable for many anxious pets and cats.
+
+Society-day schedule
+
+### Table 36
+
+| Time | Activity |
+| --- | --- |
+| 8:30 | Groomer entry and equipment check |
+| 9:00 | Booking 1 |
+| 10:30 | Booking 2 |
+| 12:00 | Cleaning and break |
+| 1:00 | Booking 3 |
+| 2:30 | Booking 4 |
+| 4:00 | Booking 5 |
+| 5:30 | Final cleanup and report submission |
+
+Do not schedule sessions back-to-back without cleaning and delay buffers.
+
+Society campaign
+
+Society-specific landing page
+
+QR code
+
+Limited available slots
+
+Verified local groomer profiles
+
+Resident pricing
+
+Pet-risk questionnaire
+
+RWA-approved communication
+
+Same-day support number
+
+17. Revenue model
+
+1. Booking commission
+
+Recommended launch rate
+
+20–25%
+
+Your proposed 15–25% range is viable, but 15% may be too low for low-value home services unless:
+
+Partner acquisition is inexpensive
+
+Support requirements are minimal
+
+No large discounts are offered
+
+Travel is route-dense
+
+Payment and refund costs are controlled
+
+2. Partner subscription
+
+Launch later.
+
+A subscription may include:
+
+Lower commission
+
+Lead priority
+
+Analytics
+
+Scheduling tools
+
+Faster payouts
+
+Business profile
+
+Training resources
+
+Do not charge a partner subscription before the platform delivers meaningful booking volume.
+
+3. Society camp revenue share
+
+Clarify whether 20–30% means:
+
+Percentage of booking GMV
+
+Percentage of platform commission
+
+Percentage of event revenue
+
+Percentage after direct event costs
+
+Recommended:
+
+Calculate partner and society shares from clearly defined net revenue, not an ambiguous headline percentage.
+
+4. Featured groomer
+
+Launch only after marketplace liquidity exists.
+
+Featured placement must not override:
+
+Quality
+
+Distance
+
+Pet compatibility
+
+Availability
+
+Safety status
+
+Customer preference
+
+Sponsored profiles must be labelled.
+
+18. Illustrative unit economics
+
+Assume a full grooming booking:
+
+### Table 37
+
+| Item | Amount |
+| --- | --- |
+| Customer price | ₹1,999 |
+| Groomer payout | ₹1,520 |
+| Platform gross revenue | ₹479 |
+| Payment processing | ₹40 |
+| Support allocation | ₹30 |
+| Refund/incident provision | ₹25 |
+| Promotion amortisation | ₹60 |
+| Approximate contribution | ₹324 |
+
+This is attractive only when:
+
+The booking completes
+
+The partner arrives on time
+
+The customer does not receive a large refund
+
+Support burden remains low
+
+Partner payouts are competitive
+
+The customer rebooks
+
+Society-day improvement
+
+A society day may improve partner earnings and platform economics by reducing:
+
+Travel time
+
+Fuel expenditure
+
+Gate delays
+
+Empty intervals
+
+Last-minute rejections
+
+Part of that saving can fund a modest resident discount without destroying contribution.
+
+19. Cancellations and payouts
+
+Customer cancellation
+
+### Table 38
+
+| Timing | Suggested rule |
+| --- | --- |
+| More than 24 hours | Full refund |
+| 8–24 hours | Partial fee or one reschedule |
+| Under 8 hours | Cancellation charge |
+| Groomer already travelling | Travel protection fee |
+| Verified emergency | Case review |
+
+Partner cancellation
+
+Cancellation is recorded even when replaced.
+
+Customer receives immediate backup options.
+
+Repeated cancellation lowers ranking.
+
+Last-minute cancellation may trigger a penalty.
+
+Legitimate emergency cases are reviewed separately.
+
+Partner payout
+
+Release payout after:
+
+Service marked complete
+
+Required report submitted
+
+No immediate critical incident
+
+Payment captured
+
+Preferred partners may qualify for faster payouts.
+
+20. Complaint and incident handling
+
+Complaint categories
+
+Service quality
+
+Uneven haircut
+
+Requested service omitted
+
+Poor cleanup
+
+Excessive delay
+
+Product mismatch
+
+Billing
+
+Unexpected surcharge
+
+Duplicate payment
+
+Refund delay
+
+Incorrect package
+
+Safety
+
+Cut or burn
+
+Pet escape
+
+Excessive restraint
+
+Heat distress
+
+Unreported injury
+
+Groomer misconduct
+
+Medical boundary
+
+Groomer diagnosed disease
+
+Groomer prescribed medication
+
+Unapproved medicated product
+
+Failure to recommend veterinary assessment
+
+Critical incident protocol
+
+Stop service.
+
+Stabilise the environment.
+
+Notify pet parent immediately.
+
+Contact veterinary partner where necessary.
+
+Record photographs and facts.
+
+Arrange transport when required.
+
+Suspend partner from new bookings pending review.
+
+Conduct root-cause analysis.
+
+Decide refund and expense responsibility.
+
+Implement corrective action.
+
+21. Consumer and marketplace compliance
+
+The platform must display:
+
+Legal business identity
+
+Contact details
+
+Grooming package information
+
+Total price
+
+Cancellation policy
+
+Refund policy
+
+Complaint channel
+
+Grievance contact
+
+Partner identity information appropriate to the transaction
+
+Review authenticity policy
+
+The Consumer Protection (E-Commerce) Rules cover digital sales of goods and services and require an adequate grievance-redressal mechanism.
+
+Important claims to avoid
+
+Do not advertise:
+
+“100% risk-free”
+
+“Guaranteed no injury”
+
+“Veterinary treatment” by a groomer
+
+“Government certified” without an actual government certification
+
+“Police verified” when only identity verification was completed
+
+“Hypoallergenic” unless the product and claim are properly supported
+
+“Cures ticks, infection or allergy” without appropriate veterinary and product basis
+
+22. Product and admin requirements
+
+Customer application
+
+Pet profile
+
+Package comparison
+
+Dynamic pricing
+
+Groomer profiles
+
+Specialist badges
+
+Availability
+
+Same-groomer rebooking
+
+Risk disclosures
+
+Payment
+
+Booking tracking
+
+Grooming report
+
+Review
+
+Complaint reporting
+
+Groomer application
+
+Booking requests
+
+Pet-risk summary
+
+Navigation
+
+Gate instructions
+
+Check-in OTP
+
+Pre-service assessment
+
+Change request
+
+Photo upload
+
+Report card
+
+Incident reporting
+
+Earnings
+
+Availability
+
+Admin dashboard
+
+Partner onboarding
+
+Document expiry
+
+Groomer capability
+
+Service zones
+
+Pricing
+
+Booking assignment
+
+Partner cancellations
+
+Complaints
+
+Incident severity
+
+Refunds
+
+Payouts
+
+Society performance
+
+Customer repeat rate
+
+Partner quality score
+
+23. Critical KPIs
+
+Demand
+
+Grooming bookings per month
+
+Unique grooming customers
+
+Existing-customer cross-sell rate
+
+First-to-second grooming conversion
+
+Prebooking rate
+
+Society-day bookings
+
+Operations
+
+Partner acceptance rate
+
+Time to confirmation
+
+On-time arrival
+
+Booking completion
+
+Average service duration
+
+Partner cancellation
+
+Backup fulfilment
+
+Gate delay
+
+Quality
+
+Average rating
+
+Verified review count
+
+Complaint rate
+
+Refund rate
+
+Grooming redo rate
+
+Injury rate
+
+Medical-boundary violations
+
+Same-groomer request rate
+
+Economics
+
+Average order value
+
+Platform take rate
+
+Contribution per booking
+
+Discount cost
+
+Support cost
+
+Partner earnings per active hour
+
+Society-day contribution
+
+Customer lifetime contribution
+
+24. Grooming go/no-go criteria
+
+Scale grooming after the pilot only when:
+
+### Table 39
+
+| Requirement | Target |
+| --- | --- |
+| Completed paid bookings | 50+ |
+| Unique customers | 30+ |
+| Average rating | 4.6+ |
+| Verified reviews | 25+ |
+| Complaint rate | Below 3% |
+| Refund/redo rate | Below 5% |
+| Serious preventable incidents | 0 |
+| Partner cancellation | Below 7% |
+| On-time arrival | 95%+ |
+| Rebook or prebook rate | 25%+ |
+| Positive booking contribution | Yes |
+| Active groomers | 3+ |
+| Backup groomer coverage | Yes |
+| Cat specialist | Required before cat launch |
+| Core-service quality decline | No |
+
+Final recommended grooming model
+
+Launch first
+
+Essential Bath
+
+Bath and Hygiene
+
+Full Grooming
+
+De-shedding
+
+Nail trimming
+
+External ear hygiene
+
+Puppy introduction package
+
+Launch after specialist verification
+
+Cat grooming
+
+Senior gentle grooming
+
+Severe dematting
+
+Anxious or reactive pet grooming
+
+Parasite-control grooming bath
+
+Do not permit groomers to provide
+
+Veterinary diagnosis
+
+Prescription or dosage advice
+
+Sedation
+
+Injections
+
+Treatment of wounds
+
+Deep ear procedures
+
+Unsupported medical claims
+
+Unapproved chemical or parasite products
+
+Final positioning
+
+Verified grooming at your home, with transparent packages, hygienic equipment, pet-temperament matching, before-and-after reports and the option to rebook the same trusted groomer.
+
+Final decision
+
+Grooming-at-home: GO
+
+Launch it as a managed, quality-controlled service, not an open directory.
+
+The strongest differentiator will not be the lowest price. It will be:
+
+The right groomer for the right pet, delivered safely, documented clearly and available again when the customer needs them.
+
+Phase 8 Service Model 2: Vet Support 🩺🐾
+
+End-to-End Coordination, Booking, Triage and Health-Record Blueprint
+
+Executive verdict
+
+Vet support should be launched as a regulated coordination layer—not as a digital hospital.
+
+Your platform may safely own:
+
+Veterinary discovery and availability
+
+Appointment booking
+
+Teleconsultation infrastructure
+
+Home-visit coordination
+
+Emergency-clinic routing
+
+Payments and refunds
+
+Vaccination reminders
+
+Pet-health records
+
+Follow-up automation
+
+Customer support
+
+The licensed veterinarian must retain control over:
+
+Clinical assessment
+
+Diagnosis
+
+Treatment decisions
+
+Prescriptions
+
+Vaccination eligibility
+
+Medical certificates
+
+Referral to diagnostics, surgery or hospitalisation
+
+The Indian Veterinary Council Act reserves veterinary practice to registered veterinary practitioners, subject to limited state-authorised minor-service exceptions. It also gives registered practitioners the right to practise and charge professional fees.
+
+The final positioning should be:
+
+Book verified veterinary care, organise your pet’s health records and reach appropriate help quickly—without the platform pretending to be the veterinarian.
+
+1. Critical issues exposed
+
+1.1 Your commission model creates a professional-ethics risk
+
+The most important hidden problem is not teleconsultation technology. It is the proposed commercial model.
+
+The VCI professional-conduct regulations state that veterinarians should not give, solicit or receive a commission, gift or benefit in consideration for referring or procuring clients for specialist services or treatment.
+
+Therefore, these models need legal restructuring:
+
+### Table 40
+
+| Proposed model | Risk |
+| --- | --- |
+| 10–20% teleconsult commission deducted from vet fee | May resemble commission for procuring patients |
+| ₹100–₹300 clinic lead fee | Directly resembles referral compensation |
+| 10–20% home-visit commission | Potential fee-splitting concern |
+| 15–30% vaccination share | Risky when tied directly to clinical fees |
+
+This does not automatically establish that every platform fee is unlawful. It means your agreements and payment flows must avoid appearing to sell patients or split clinical fees improperly.
+
+Safer structures
+
+Transparent customer booking feeThe veterinarian charges the clinical fee. The platform separately charges the customer for booking, record storage, support or convenience.
+
+Fixed clinic software subscriptionThe clinic pays a fixed monthly fee for scheduling, payments, reminders and patient-management technology—not per referred patient.
+
+Fixed event-management feeFor vaccination camps, the clinic charges for clinical services while the platform charges a separately documented fee for registration, logistics, resident communication and event operations.
+
+Flat transaction-processing feeA fixed operational fee may be easier to justify than a percentage of professional treatment revenue, subject to legal and accounting review.
+
+Recommendation: eliminate the phrase “clinic lead fee” from the business model.
+
+1.2 “Emergency vet contact” must not imply emergency medical coverage
+
+A list of clinic phone numbers is not an emergency service.
+
+To label the feature Emergency Vet Support, the platform needs:
+
+Current clinic hours
+
+Confirmation that emergencies are accepted
+
+Species supported
+
+Live call button
+
+Navigation
+
+Estimated distance
+
+After-hours availability
+
+Escalation when the first clinic does not answer
+
+Monthly verification of contact details
+
+Clear statement that the platform does not operate an ambulance or hospital
+
+Do not advertise “24/7 emergency care” unless contracted partners actually provide continuous coverage with measurable service-level commitments.
+
+1.3 Teleconsultation is not appropriate for every case
+
+I did not find a standalone national veterinary-telemedicine guideline in the VCI’s currently published acts-and-rules archive. The archive publishes the Veterinary Council Act, professional-conduct regulations and registration rules, but not an equivalent dedicated national veterinary-telemedicine framework.
+
+The conservative model is therefore:
+
+Only registered veterinarians conduct teleconsultations.
+
+The veterinarian decides what can responsibly be assessed remotely.
+
+The platform never guarantees diagnosis or prescription.
+
+New, severe or uncertain cases are escalated to physical examination.
+
+State-specific requirements are checked before launch.
+
+The veterinarian—not the algorithm—decides whether an online consultation is clinically sufficient.
+
+2. Service catalogue
+
+Service 1: Emergency veterinary routing
+
+Purpose
+
+Help the customer reach appropriate physical care quickly.
+
+Platform responsibilities
+
+Display verified emergency clinics by area
+
+Call-test clinic contacts regularly
+
+Show opening status
+
+Provide tap-to-call and directions
+
+Share the pet’s emergency summary with consent
+
+Offer pet-taxi coordination when available
+
+Record whether the customer connected successfully
+
+Platform must not
+
+Promise that a clinic will accept the case without confirmation
+
+Delay physical transport while waiting for a chat response
+
+Provide medication instructions through support staff
+
+Tell the owner that a serious symptom is safe to monitor at home
+
+Respiratory difficulty, collapse, seizures, loss of consciousness, profuse vomiting, substantial pain and inability to urinate are among conditions veterinary emergency references classify as requiring urgent evaluation.
+
+Service 2: Vet teleconsultation booking
+
+Best use cases
+
+Preventive-care discussion
+
+Nutrition questions
+
+Routine follow-up
+
+Review of an existing treatment plan
+
+Vaccination scheduling
+
+Minor non-emergency concerns
+
+Deciding whether a clinic visit is necessary
+
+Post-visit progress review
+
+Usually unsuitable as teleconsult-only
+
+Breathing difficulty
+
+Collapse
+
+Seizures
+
+Severe trauma
+
+Poisoning
+
+Uncontrolled bleeding
+
+Acute abdominal swelling
+
+Inability to urinate
+
+Serious eye injury
+
+Severe pain
+
+Complicated labour
+
+Any rapidly deteriorating condition
+
+Consultation modes
+
+Audio
+
+Video
+
+Secure asynchronous message, only where the partner veterinarian accepts it
+
+Follow-up consultation
+
+Existing-patient review
+
+Current Indian providers advertise online veterinary consultations at prices such as ₹199 and approximately ₹300 for scheduled audio consultations. These are individual provider references rather than universal market prices.
+
+Suggested test pricing
+
+### Table 41
+
+| Consultation | Customer price hypothesis |
+| --- | --- |
+| Scheduled audio, 15–20 minutes | ₹299–₹499 |
+| Video consultation, 20 minutes | ₹399–₹699 |
+| Specialist consultation | ₹699–₹1,499 |
+| Short follow-up | ₹199–₹399 |
+| Emergency-routing assistance | Free or subscription-supported |
+
+The veterinarian’s fee and the platform fee should be disclosed separately.
+
+Service 3: Clinic appointment booking
+
+Customer value
+
+Search clinics by location and capability
+
+View available appointments
+
+Upload previous records
+
+Avoid repeated data entry
+
+Receive reminders
+
+Navigate to the clinic
+
+Store visit documents afterward
+
+Clinic profile fields
+
+Clinic name and legal identity
+
+Veterinary practitioners
+
+Registration details
+
+Species supported
+
+Services offered
+
+Diagnostics available
+
+Surgery capability
+
+Emergency acceptance
+
+Opening hours
+
+Accessibility
+
+Home-visit capability
+
+Cancellation policy
+
+Verified customer ratings
+
+Appointment types
+
+General consultation
+
+Vaccination
+
+Follow-up
+
+Skin and coat concern
+
+Dental examination
+
+Orthopaedic assessment
+
+Diagnostic test
+
+Surgical consultation
+
+Emergency visit
+
+Do not rank clinics solely by who pays the highest listing fee. Clinical relevance, availability, proximity and verified quality should remain dominant.
+
+Service 4: Home veterinary visit
+
+Suitable uses
+
+Routine physical examination
+
+Vaccination
+
+Senior-pet assessment
+
+Follow-up
+
+Mobility-limited pets
+
+Pets experiencing travel stress
+
+Minor procedures within the veterinarian’s professional scope
+
+Unsuitable cases
+
+Surgery
+
+Imaging-dependent emergencies
+
+Severe respiratory distress
+
+Major trauma
+
+Cases requiring hospital monitoring
+
+Unstable animals
+
+Situations where the home environment is unsafe
+
+Current provider-specific references show advertised starting home-visit consultation prices around ₹399–₹599, although medicines, vaccines, procedures and travel may be charged separately. Actual economics will vary significantly by city and distance.
+
+Suggested pricing structure
+
+Every component must be visible before payment wherever possible.
+
+Service 5: Vaccination reminders
+
+This is one of the safest and highest-retention features.
+
+Reminder engine
+
+Store:
+
+Vaccine name
+
+Previous administration date
+
+Next recommended date
+
+Clinic/veterinarian
+
+Certificate or record
+
+Batch information when supplied by the vet
+
+Reminder consent
+
+Send reminders:
+
+30 days before
+
+14 days before
+
+Three days before
+
+On the due date
+
+Follow-up after a missed date
+
+Important wording
+
+Do not state:
+
+“Your pet must receive vaccine X today.”
+
+Use:
+
+“Your pet’s recorded vaccination may be due. Confirm the appropriate vaccine and timing with a registered veterinarian.”
+
+The veterinarian should determine eligibility, especially when the pet is ill, has experienced a previous reaction or has an uncertain vaccination history.
+
+3. Vet partner verification
+
+A generic “verified vet” badge is insufficient.
+
+Required verification
+
+Government ID
+
+Veterinary qualification
+
+State Veterinary Council registration
+
+Registration number
+
+Current practice location
+
+Professional address
+
+Areas of practice
+
+Clinic affiliation
+
+Consultation modes
+
+Emergency/referral arrangement
+
+Professional references
+
+Bank and tax information
+
+Signed clinical-independence agreement
+
+The VCI publishes an Indian Veterinary Practitioners Register, but its public page currently lists the 2023 register and historical supplements. Therefore, partner verification should also use the relevant State Veterinary Council and current registration documents rather than relying exclusively on an older static national file.
+
+Badge levels
+
+### Table 42
+
+| Badge | Meaning |
+| --- | --- |
+| Identity verified | Identity and contact validated |
+| Registration verified | Registration checked with available official records |
+| Clinic verified | Practice location and clinic relationship checked |
+| Home-visit approved | Documents, service zone and field protocol approved |
+| Emergency partner | Contracted emergency acceptance process |
+| Preferred partner | High reliability, documentation and ratings |
+
+Display the registration number and verifying authority where appropriate.
+
+4. End-to-end customer flow
+
+Pet parent opens Vet Support
+
+↓
+
+Selects pet profile
+
+↓
+
+Selects concern or service
+
+↓
+
+Completes basic symptom intake
+
+↓
+
+System screens for emergency red flags
+
+↓
+
+Emergency?
+
+Yes → call clinic + directions + transport support
+
+No → show teleconsult / clinic / home-visit options
+
+↓
+
+Customer selects verified veterinarian
+
+↓
+
+Price, limitations and availability displayed
+
+↓
+
+Veterinarian accepts booking
+
+↓
+
+Customer provides consent and pays
+
+↓
+
+Consultation or visit occurs
+
+↓
+
+Veterinarian creates clinical note
+
+↓
+
+Documents stored in pet health record
+
+↓
+
+Follow-up or referral scheduled
+
+↓
+
+Customer reviews booking experience
+
+Critical workflow rule
+
+The platform may route and prioritise. Only the veterinarian may clinically assess and conclude.
+
+5. Symptom intake form
+
+The form should collect structured information without producing a diagnosis.
+
+Basic intake
+
+Main concern
+
+When it started
+
+Whether it is worsening
+
+Species and breed
+
+Age
+
+Weight
+
+Sex
+
+Existing conditions
+
+Current medicines
+
+Allergies
+
+Recent treatment
+
+Eating and drinking
+
+Urination and stool
+
+Activity level
+
+Temperature, only if reliably measured
+
+Photographs or videos
+
+Previous medical records
+
+Emergency screen
+
+Ask prominently:
+
+Is the pet having difficulty breathing?
+
+Has the pet collapsed or lost consciousness?
+
+Is the pet having a seizure?
+
+Is there severe or uncontrolled bleeding?
+
+Was poison or a toxic substance consumed?
+
+Is the pet unable to urinate?
+
+Was the pet hit by a vehicle or seriously injured?
+
+Is there severe abdominal swelling?
+
+Is the pet experiencing extreme pain?
+
+Is the condition rapidly worsening?
+
+A “yes” should bypass ordinary appointment discovery and display immediate physical-care options.
+
+Do not show
+
+Disease probability percentages
+
+“Most likely diagnosis”
+
+Suggested prescription medication
+
+Dosage recommendations
+
+Statements that rule out emergencies
+
+False reassurance such as “This does not appear serious”
+
+6. Urgency model
+
+Red: immediate physical care
+
+Action:
+
+Prominent emergency warning
+
+Tap-to-call
+
+Nearest appropriate clinic
+
+Directions
+
+Pet taxi where available
+
+No ordinary booking queue
+
+Amber: same-day professional review
+
+Examples:
+
+Repeated vomiting
+
+Persistent diarrhoea
+
+Wound or swelling
+
+Sudden limping
+
+Loss of appetite with lethargy
+
+Ear pain or discharge
+
+Eye irritation or injury
+
+Action:
+
+Same-day clinic or veterinarian-led decision
+
+Teleconsult may be used for routing, not to delay needed examination
+
+Green: routine
+
+Examples:
+
+Vaccination planning
+
+General nutrition discussion
+
+Routine follow-up
+
+Preventive health
+
+Stable chronic-condition review
+
+Behaviour referral
+
+Action:
+
+Scheduled teleconsult, clinic visit or home visit
+
+The urgency label is an operational routing tool. It must not be presented as a medical diagnosis.
+
+7. AI chatbot safety architecture
+
+Permitted AI functions
+
+The AI may:
+
+Ask structured intake questions
+
+Summarise the owner’s description
+
+Detect emergency keywords
+
+Recommend contacting a veterinarian
+
+Find nearby veterinary partners
+
+Explain how booking works
+
+Retrieve vaccination dates from stored records
+
+Prepare a consultation summary
+
+Draft non-clinical follow-up reminders
+
+Prohibited AI functions
+
+The AI must not:
+
+Produce a final diagnosis
+
+Prescribe a drug
+
+Calculate a dose
+
+Tell the customer to stop prescribed treatment
+
+Claim that emergency care is unnecessary
+
+Interpret test results as a final clinical decision
+
+Replace the veterinarian
+
+Generate a medical certificate
+
+Approve a pet for vaccination or surgery
+
+Recommended permanent disclaimer
+
+This tool does not provide a veterinary diagnosis or prescription. It collects information and helps connect you with a registered veterinary professional. Seek immediate physical veterinary care for emergencies.
+
+Better contextual warning
+
+When red flags are detected:
+
+Your answers may indicate an urgent condition. Do not wait for an online response. Contact the displayed veterinary facility immediately and begin travelling if the clinic advises you to attend.
+
+A disclaimer alone is not enough. The product must technically prevent the AI from producing prohibited outputs.
+
+8. Consultation room
+
+Before consultation
+
+Customer sees:
+
+Veterinarian’s name
+
+Registration status
+
+Consultation type
+
+Duration
+
+Fee breakdown
+
+Teleconsultation limitations
+
+Cancellation policy
+
+Emergency warning
+
+Consent request
+
+The veterinarian receives:
+
+Pet profile
+
+Presenting concern
+
+Intake answers
+
+Media uploads
+
+Medication list
+
+Previous records authorised by the customer
+
+During consultation
+
+Features:
+
+Secure audio/video
+
+Document upload
+
+Photograph review
+
+Timeline notes
+
+Referral button
+
+Schedule follow-up
+
+Convert to clinic/home visit
+
+Emergency escalation
+
+Customer identity confirmation
+
+After consultation
+
+The veterinarian submits:
+
+Consultation date and time
+
+Presenting concern
+
+History
+
+Observations
+
+Professional assessment
+
+Advice provided
+
+Treatment or prescription, where professionally and legally appropriate
+
+Tests recommended
+
+Referral
+
+Red flags
+
+Follow-up interval
+
+Veterinarian identity and registration information
+
+The VCI professional regulations emphasise written information when a patient is referred and communication of relevant history, examination and treatment information between veterinarians.
+
+9. Pet health record
+
+Record structure
+
+Pet identity
+
+Name
+
+Species
+
+Breed
+
+Age/date of birth
+
+Sex
+
+Weight history
+
+Identification or microchip
+
+Medical information
+
+Allergies
+
+Diagnoses entered by veterinarians
+
+Previous surgeries
+
+Chronic conditions
+
+Current medication
+
+Adverse drug reactions
+
+Laboratory reports
+
+Imaging reports
+
+Discharge summaries
+
+Preventive care
+
+Vaccinations
+
+Deworming history
+
+Parasite-control history
+
+Dental care
+
+Sterilisation status
+
+Preventive-care reminders
+
+Visit history
+
+Teleconsultations
+
+Clinic appointments
+
+Home visits
+
+Emergency visits
+
+Referrals
+
+Follow-ups
+
+Record ownership and editing
+
+The owner controls permission to share.
+
+The platform maintains the technical record.
+
+Veterinarian-authored notes should not be silently rewritten.
+
+Corrections require an audit trail.
+
+The customer may add information, clearly labelled as customer-reported.
+
+Deleted records may need retention exceptions for disputes, tax or professional obligations.
+
+10. Privacy and access control
+
+Pet-health records usually contain personal information linked to the pet owner:
+
+Name
+
+Phone
+
+Address
+
+Payment records
+
+Home-access information
+
+Consultation communications
+
+Emergency contacts
+
+India’s DPDP Rules were notified in November 2025 with an accompanying enforcement timeline. The platform should use purpose-specific notice, reasonable security, controlled access, correction mechanisms and deletion/retention workflows.
+
+Role-based access
+
+### Table 43
+
+| Role | Appropriate access |
+| --- | --- |
+| Customer support | Booking status; minimum clinical detail |
+| Veterinarian | Authorised health history and current concern |
+| Clinic receptionist | Scheduling and necessary identification |
+| Home-visit vet | Health summary, address and access instructions |
+| Groomer | Only allergies/conditions relevant to grooming |
+| Walker/sitter | Emergency and care instructions only |
+| Taxi partner | Pickup, destination and handling instructions |
+| Marketing team | No medical records |
+
+Separate consent
+
+Obtain separate choices for:
+
+Delivering veterinary service
+
+Sharing records with the selected vet
+
+Sharing records with another clinic
+
+Marketing notifications
+
+Vaccination reminders
+
+Research or analytics
+
+Testimonials
+
+Photographs
+
+Do not make marketing consent mandatory for treatment booking.
+
+11. Emergency partner directory
+
+Data fields
+
+Clinic name
+
+Location
+
+Phone
+
+Normal hours
+
+Emergency hours
+
+Last verification date
+
+Species treated
+
+ICU availability
+
+Surgery availability
+
+Imaging availability
+
+Blood testing
+
+Ambulance or transport
+
+Current acceptance status
+
+Verification cycle
+
+Monthly call verification
+
+Quarterly formal partner confirmation
+
+Immediate update after a customer reports failure
+
+Automatic warning for stale records
+
+Remove clinics that repeatedly fail verification
+
+Directory status
+
+### Table 44
+
+| Status | Meaning |
+| --- | --- |
+| Verified open | Recently confirmed |
+| Call before travelling | Availability uncertain |
+| Partner emergency clinic | Contracted routing process |
+| Temporarily unavailable | Not accepting cases |
+| Unverified listing | Should not appear as a recommended emergency option |
+
+12. Revenue model redesign
+
+Recommended model
+
+### Table 45
+
+| Revenue source | Safer structure |
+| --- | --- |
+| Teleconsultation | Customer pays vet fee plus separate platform booking fee |
+| Clinic appointment | Customer convenience fee or clinic SaaS subscription |
+| Home visit | Vet fee plus disclosed travel and platform coordination fee |
+| Vaccination camp | Fixed event-management fee or sponsor support |
+| Health-record subscription | Optional customer subscription |
+| Clinic software | Fixed monthly software fee |
+| Emergency routing | Free trust feature or subscription benefit |
+
+Example teleconsult economics
+
+### Table 46
+
+| Item | Illustration |
+| --- | --- |
+| Customer total | ₹499 |
+| Veterinarian professional fee | ₹350 |
+| Platform booking/support fee | ₹149 |
+| Payment cost | ₹10 |
+| Support allocation | ₹25 |
+| Refund provision | ₹10 |
+| Approximate platform contribution | ₹104 |
+
+The invoice should state what each amount represents.
+
+Avoid
+
+Percentage commissions linked to prescribed medication
+
+Payments for ordering diagnostic tests
+
+Referral bonuses to veterinarians
+
+Revenue targets that influence clinical decisions
+
+Hidden convenience fees
+
+Commission on emergency escalation
+
+Ranking clinics by referral payment
+
+Clinical recommendations must not change based on platform margin.
+
+13. Vaccination-camp commercial model
+
+Recommended separation
+
+Veterinary partner invoices
+
+Clinical examination
+
+Vaccine
+
+Administration
+
+Certificate
+
+Any clinical follow-up
+
+Platform invoices
+
+Registration technology
+
+Society communication
+
+Appointment management
+
+Event staffing
+
+Reminder infrastructure
+
+Venue logistics where applicable
+
+Optional sponsor covers
+
+Resident discount
+
+Educational materials
+
+Event setup
+
+Non-clinical giveaways
+
+Do not calculate the platform’s compensation as an opaque percentage of vaccine or treatment revenue without professional legal review.
+
+14. Medicine selling
+
+Defer medicine sales during the initial vet-support launch.
+
+The manufacture, sale and distribution of drugs—including veterinary drugs and biological products—are regulated under the Drugs and Cosmetics Act and Rules, with licensing, storage and prescription requirements depending on the product.
+
+Safer early model
+
+Vet produces the prescription where appropriate.
+
+Customer fulfils it through a licensed pharmacy or clinic.
+
+Platform stores the prescription with consent.
+
+Platform does not substitute products.
+
+Platform does not recommend dosage.
+
+Platform does not promote prescription medicines through behavioural advertising.
+
+Add medicine fulfilment only after
+
+Pharmacy licensing analysis
+
+State-level compliance review
+
+Prescription validation
+
+Storage and cold-chain capability
+
+Batch and expiry tracking
+
+Recall management
+
+Pharmacist oversight where required
+
+Clear seller-of-record structure
+
+Adverse-event reporting process
+
+15. Cancellation, refunds and complaints
+
+Cancellation policy
+
+### Table 47
+
+| Situation | Recommended treatment |
+| --- | --- |
+| Customer cancels early | Full refund or free reschedule |
+| Customer cancels close to appointment | Partial fee |
+| Vet cancels | Full refund plus immediate replacement |
+| Vet does not connect | Full refund |
+| Technical failure | Reschedule or refund |
+| Emergency escalation during teleconsult | Do not treat escalation as a failed service automatically |
+| Home-visit travel already started | Disclosed travel charge may apply |
+
+Complaint categories
+
+Vet did not attend
+
+Consultation too short
+
+Technical failure
+
+Hidden fee
+
+Record missing
+
+Prescription/document issue
+
+Privacy complaint
+
+Unprofessional conduct
+
+Incorrect clinic information
+
+Failure to escalate an emergency
+
+Clinical complaint handling
+
+The platform must not independently overrule a veterinarian’s professional judgement.
+
+Use:
+
+Customer-support review
+
+Documentation collection
+
+Independent veterinary clinical review where necessary
+
+Partner response
+
+Refund/service decision
+
+Safety action
+
+Regulatory escalation where required
+
+The Consumer Protection E-Commerce Rules establish duties for digital marketplaces and require a grievance-redressal mechanism.
+
+16. Admin dashboard
+
+Vet management
+
+Application status
+
+Identity
+
+Registration
+
+State council
+
+Qualifications
+
+Clinic affiliations
+
+Special interests
+
+Consultation modes
+
+Home-visit zones
+
+Emergency capability
+
+Document expiry
+
+Complaint history
+
+Booking operations
+
+New requests
+
+Acceptance time
+
+Consultation status
+
+Emergency flags
+
+Failed calls
+
+Reassignments
+
+Follow-ups
+
+Refunds
+
+Payments
+
+Clinical governance
+
+Missing clinical notes
+
+Unlicensed advice reports
+
+Prescription audit flags
+
+Emergency escalation failures
+
+Record-access logs
+
+Customer-consent status
+
+Suspended partners
+
+Performance
+
+Acceptance rate
+
+On-time rate
+
+Completion rate
+
+Rating
+
+Complaint rate
+
+Follow-up completion
+
+Cancellation rate
+
+Revenue
+
+Platform contribution
+
+17. Key performance indicators
+
+Demand
+
+Vet-support users
+
+Teleconsult bookings
+
+Clinic bookings
+
+Home visits
+
+Emergency-routing sessions
+
+Vaccination reminders converted
+
+Repeat veterinary customers
+
+Operations
+
+Median time to vet acceptance
+
+Consultation connection success
+
+Appointment completion rate
+
+Home-visit on-time rate
+
+Partner cancellation rate
+
+Emergency contact success
+
+Record-completion rate
+
+Safety
+
+Red-flag cases routed correctly
+
+Delayed emergency escalations
+
+Unlicensed clinical-advice incidents
+
+Prescription complaints
+
+Data-access violations
+
+Unresolved serious complaints
+
+Economics
+
+Average booking value
+
+Platform service revenue
+
+Contribution per booking
+
+Refund cost
+
+Support cost
+
+Vet retention
+
+Customer retention
+
+Cross-sell from core services
+
+18. Vet-support go/no-go criteria
+
+Scale the service only when:
+
+### Table 48
+
+| Requirement | Target |
+| --- | --- |
+| Verified veterinary partners | 3–5 minimum |
+| Clinic partners | 2+ |
+| Emergency referral partner | 1+ per launch cluster |
+| Completed bookings | 50+ |
+| Average rating | 4.6+ |
+| Verified reviews | 25+ |
+| Booking completion | 92%+ |
+| Clinical-note completion | 95%+ |
+| Vet cancellation | Below 5% |
+| Emergency-routing contact success | 90%+ |
+| Emergency escalation failures | 0 |
+| Unlicensed diagnosis/advice by platform | 0 |
+| Complaint/refund rate | Below 3–5% |
+| Positive platform contribution | Yes |
+| Data-access controls | Operational |
+| Professional-fee structure reviewed | Yes |
+
+19. Recommended MVP
+
+Launch now
+
+Verified veterinarian profiles
+
+Clinic appointment booking
+
+Scheduled teleconsultation
+
+Home-visit requests
+
+Emergency clinic directory
+
+Basic symptom intake
+
+Urgent red-flag routing
+
+Vaccination reminders
+
+Pet health record
+
+Secure document upload
+
+Follow-up reminders
+
+Customer grievance workflow
+
+Launch later
+
+Live 24/7 vet marketplace
+
+Veterinary specialists
+
+Diagnostics booking
+
+Medicine fulfilment
+
+Insurance claims
+
+AI-supported clinical documentation
+
+Chronic-care plans
+
+Emergency transport dispatch
+
+Laboratory integrations
+
+Do not launch
+
+AI diagnosis
+
+Automated prescriptions
+
+Medication dosage calculator for pet parents
+
+“Guaranteed emergency vet”
+
+Unregistered veterinary advisors
+
+Paid clinic ranking disguised as relevance
+
+Referral commissions without legal clearance
+
+Medical certificates generated by the platform
+
+Final vet-support model
+
+Correct product definition
+
+A verified veterinary access and coordination platform that helps pet parents choose the right mode of care, book registered professionals, organise records, receive reminders and reach physical emergency care quickly.
+
+Correct safety rule
+
+The platform collects information and facilitates care. The registered veterinarian makes all clinical decisions.
+
+Correct commercial rule
+
+Charge transparently for technology and coordination; do not build the business around selling referrals or taking opaque percentages from clinical decisions.
+
+Final decision
+
+Vet Support: GO—with conditions.
+
+Launch booking and coordination first.
+
+Verify registration through current official and state-level records.
+
+Separate platform fees from veterinary professional fees.
+
+Make emergency routing operational, not decorative.
+
+Keep diagnosis and prescription exclusively within the veterinarian’s professional scope.
+
+Prevent the AI system technically—not merely through disclaimers—from giving final medical conclusions.
+
+Phase 8 Service Model 3: Dog Training 🐕🎓
+
+End-to-End Marketplace, Safety, Pricing and Operating Blueprint
+
+Executive verdict
+
+Dog training is a strong third add-on—but it should be launched as a managed coaching service, not an unrestricted trainer directory.
+
+Training can create:
+
+High-value multi-session packages
+
+Strong customer retention
+
+Safer dog walking
+
+Fewer society complaints
+
+Better owner–pet communication
+
+Demand from new puppy parents
+
+Recurring workshops and follow-up sessions
+
+The central business risk is that “dog trainer” is not one standard capability. A person teaching puppy toilet routines is not automatically qualified to manage aggression, severe fear or separation anxiety.
+
+Your platform must separate:
+
+Foundation training
+
+Life-skills and manners
+
+Behaviour modification
+
+Veterinary behaviour cases
+
+That distinction protects the customer, the dog, the trainer and your brand.
+
+1. Why dog training belongs in Phase 8
+
+Your existing platform already knows:
+
+The customer
+
+The pet’s age and breed
+
+Walking behaviour
+
+Society environment
+
+Bite or reactivity history
+
+Previous care providers
+
+Customer availability
+
+Payment history
+
+Location and gate protocol
+
+That creates natural training triggers.
+
+### Table 49
+
+| Existing observation | Relevant training offer |
+| --- | --- |
+| Walker reports leash pulling | Loose-leash coaching |
+| Puppy repeatedly soils indoors | Puppy routine consultation |
+| Dog jumps on visitors | Greeting and impulse-control programme |
+| Owner struggles with recall | Recall foundation sessions |
+| Society receives barking complaints | Barking assessment |
+| Dog panics when left alone | Vet-supported separation assessment |
+| Dog growls or lunges | Safety assessment before any package |
+| Groomer reports handling fear | Cooperative-care training |
+
+The platform should not automatically sell training whenever a pet behaves imperfectly. It should recommend an assessment appropriate to the reported problem.
+
+2. Critical distinction: training versus behavioural treatment
+
+Ordinary training
+
+Suitable for:
+
+Sit, down and stay
+
+Recall foundations
+
+Loose-leash walking
+
+Door manners
+
+Jumping
+
+Toilet routines
+
+Puppy socialisation
+
+Calm handling
+
+Crate introduction
+
+Basic impulse control
+
+These cases can usually begin with a qualified reward-based trainer.
+
+Behaviour modification
+
+May include:
+
+Fear
+
+Resource guarding
+
+Reactivity
+
+Repeated growling
+
+Lunging
+
+Bite history
+
+Noise phobia
+
+Severe handling sensitivity
+
+Persistent destructive behaviour
+
+These require more experienced behaviour professionals, stronger risk controls and often veterinary collaboration.
+
+Veterinary behaviour cases
+
+Aggression, anxiety, fear, compulsive behaviour and separation-related disorders can have medical components or may require medication alongside environmental management and behaviour modification. AVSAB recommends veterinary evaluation for serious behaviour concerns so medical contributors can be excluded and an appropriate treatment plan created.
+
+Correct platform rule
+
+A trainer may teach and implement a behaviour plan but must not diagnose medical or psychiatric conditions or prescribe medication.
+
+3. Autopsy of the proposed packages
+
+Your proposed pricing
+
+### Table 50
+
+| Package | Proposed range | Assessment |
+| --- | --- | --- |
+| Puppy basics | ₹2,999–₹7,999 | Viable for 3–6 structured sessions |
+| Leash training | ₹1,999–₹4,999 | Viable if scope and session count are clear |
+| Obedience programme | ₹5,999–₹15,999 | Realistic for multi-session home programmes |
+| Behaviour correction | ₹7,999–₹25,000 | Too broad without risk classification |
+| Society group class | ₹299–₹999/person | Viable with sufficient attendance |
+| One-hour consultation | ₹499–₹1,499 | Lower end may be too low for a senior specialist |
+
+Current provider listings illustrate a highly fragmented market. Petsfolio advertises sessions starting at ₹499, while ThePetNest cites home training starting around ₹1,500 and basic programmes around ₹8,000, with advanced programmes reaching ₹35,000 or more. Another provider advertises puppy-oriented packages around ₹4,999. These are provider-published prices, not an independent market average.
+
+Main pricing problem
+
+The label “behaviour correction” can cover anything from mild barking to a dog with multiple bite incidents.
+
+Those cases should not share one checkout package.
+
+Replace it with:
+
+Behaviour assessment
+
+Mild behaviour coaching
+
+Reactivity programme
+
+Separation-related behaviour plan
+
+Specialist aggression assessment
+
+The final programme and price should be offered only after assessment.
+
+4. Recommended service catalogue
+
+Package 1: Puppy Start Programme
+
+Best for: puppies approximately 2–6 months old, adjusted for vaccination status and veterinary guidance.
+
+Outcomes
+
+Toilet routine
+
+Name response
+
+Sit and settle
+
+Bite-inhibition guidance
+
+Handling tolerance
+
+Crate or safe-space introduction
+
+Leash introduction
+
+Calm greetings
+
+Appropriate socialisation
+
+Owner routine planning
+
+Recommended format
+
+One intake consultation
+
+Four to six coaching sessions
+
+Digital homework
+
+Weekly progress check
+
+Final assessment
+
+Pricing hypothesis
+
+₹3,999–₹8,999
+
+Package 2: Loose-Leash and Walking Skills
+
+Outcomes
+
+Harness and leash setup
+
+Attention around distractions
+
+Reduced pulling
+
+Direction changes
+
+Calm exits
+
+Passing people or dogs at safe distances
+
+Walker–owner consistency
+
+Recommended format
+
+One assessment
+
+Three to five practical sessions
+
+At least one session on the dog’s normal walking route
+
+Walker handover where applicable
+
+Pricing hypothesis
+
+₹2,999–₹6,999
+
+A one-session “leash fix” should not be promised. Behaviour must generalise across locations, handlers and distraction levels.
+
+Package 3: Home Manners and Life Skills
+
+A clearer customer-facing name than “obedience programme.”
+
+Outcomes
+
+Sit, down and settle
+
+Stay foundations
+
+Recall
+
+Door manners
+
+Visitor greetings
+
+Leave-it and drop-it
+
+Place or mat training
+
+Impulse control
+
+Household routine
+
+Recommended format
+
+Six to ten sessions
+
+Owner participation
+
+Progress milestones
+
+Video homework
+
+Mid-programme review
+
+Pricing hypothesis
+
+₹6,999–₹16,999
+
+Package 4: One-Hour Behaviour Assessment
+
+Purpose
+
+Determine:
+
+What behaviour is occurring
+
+Where and when it occurs
+
+Likely triggers
+
+Risk level
+
+Whether medical evaluation is needed
+
+Whether the platform has a qualified professional
+
+Whether remote, home or outdoor sessions are appropriate
+
+Deliverable
+
+Written assessment summary
+
+Immediate safety-management steps
+
+Recommended service pathway
+
+Proposed session count
+
+Professional assigned
+
+Veterinary-referral recommendation where needed
+
+Pricing hypothesis
+
+### Table 51
+
+| Professional level | Suggested range |
+| --- | --- |
+| Foundation trainer | ₹699–₹1,299 |
+| Senior behaviour consultant | ₹1,499–₹3,000 |
+| Vet-led behaviour assessment | Clinician-defined |
+
+The assessment fee can be partially credited toward a programme, but do not make it free if that encourages uncontrolled sales recommendations.
+
+Package 5: Reactivity Programme
+
+For dogs that bark, lunge or become difficult to manage around identifiable triggers.
+
+Required controls
+
+Full history
+
+Bite-risk classification
+
+Safe equipment
+
+Trigger-distance plan
+
+Environment management
+
+Owner capability assessment
+
+No group-class placement initially
+
+Veterinary referral when indicated
+
+Programme
+
+Assessment
+
+Management plan
+
+Four to eight sessions
+
+Controlled exposure
+
+Reward-based behaviour modification
+
+Owner coaching
+
+Progress review
+
+Pricing hypothesis
+
+₹8,999–₹25,000+
+
+Do not guarantee that reactivity will be “cured.”
+
+Package 6: Separation-Related Behaviour Support
+
+Do not sell this simply as ordinary “separation-anxiety training.”
+
+Destruction, barking or toileting when alone can have several causes, and true separation anxiety may need veterinary involvement. AVSAB notes that separation-related signs can be confused with other behavioural problems and that serious anxiety may require a broader treatment plan.
+
+Correct flow
+
+Collect video of the dog when alone where safe.
+
+Review schedule and trigger history.
+
+Recommend veterinary examination when clinically indicated.
+
+Establish a non-punitive gradual plan.
+
+Track duration and distress signals.
+
+Avoid deliberately leaving the dog beyond its coping threshold.
+
+Coordinate with the veterinarian if medication is prescribed.
+
+Pricing
+
+Assessment-led; do not offer an instant fixed package before review.
+
+5. Services to defer or restrict
+
+Aggression involving bites
+
+Do not allow instant booking.
+
+Require:
+
+Detailed bite history
+
+Injury severity
+
+Trigger information
+
+Victim type
+
+Medical evaluation where appropriate
+
+Senior specialist approval
+
+Written safety plan
+
+Appropriate equipment
+
+Controlled location
+
+Board-and-train
+
+Defer during the initial training launch.
+
+Board-and-train combines:
+
+Training
+
+Boarding
+
+Transportation
+
+Overnight welfare
+
+Facility safety
+
+Veterinary responsibility
+
+Owner handover
+
+Tamil Nadu’s February 2026 policy, for example, requires professional dog trainers to register with the state Animal Welfare Board, obtain licensing and maintain separate permissions for training and boarding activities. It also requires reward-based methods and prohibits shock collars, prong collars and physical punishment. Those requirements are state-specific, but they illustrate why local compliance must be checked city by city.
+
+Protection or attack training
+
+Do not include this in the general consumer marketplace.
+
+It introduces:
+
+Elevated public-safety risk
+
+Liability
+
+Misuse
+
+Specialist competency requirements
+
+Society conflicts
+
+Insurance problems
+
+6. Humane training standard
+
+Your platform should formally adopt a reward-based training policy.
+
+AVSAB’s current position states that reward-based methods should be used for dog training and behaviour modification and rejects tools or methods based on physical or psychological punishment, including electronic collars, prong collars, choke chains and punitive leash corrections.
+
+Permitted methods
+
+Food rewards
+
+Play
+
+Praise
+
+Access to valued activities
+
+Marker or clicker training
+
+Shaping
+
+Capturing
+
+Desensitisation
+
+Counterconditioning
+
+Environmental management
+
+Reinforcing alternative behaviours
+
+Predictable routines
+
+Prohibited on the platform
+
+Shock or electronic collars
+
+Prong collars
+
+Choke-chain corrections
+
+Hitting
+
+Kicking
+
+Alpha rolls
+
+Hanging or lifting by the collar
+
+Forced flooding
+
+Deliberate intimidation
+
+Deprivation of food or water
+
+Punishment for fear responses
+
+Covert use of aversive equipment
+
+Forcing dog-to-dog contact
+
+The Prevention of Cruelty to Animals Act establishes a national legal framework against inflicting unnecessary pain or suffering on animals.
+
+7. Trainer verification system
+
+A police or ID check does not demonstrate training competence.
+
+Verification levels
+
+Level 1: Identity Verified
+
+Government ID
+
+Address
+
+Photograph
+
+Phone
+
+Emergency contact
+
+Level 2: Background Reviewed
+
+Employment history
+
+References
+
+Complaint declaration
+
+Criminal/background verification where available
+
+Prior platform history
+
+Level 3: Foundation Trainer
+
+Must demonstrate:
+
+Puppy coaching
+
+Basic learning theory
+
+Reward delivery
+
+Marker timing
+
+Leash handling
+
+Owner communication
+
+Dog body-language recognition
+
+Safe session management
+
+Level 4: Advanced Trainer
+
+Additional competence:
+
+Reactivity
+
+Fear
+
+Resource guarding
+
+Multi-dog environments
+
+Detailed behaviour plans
+
+Risk management
+
+Veterinary referrals
+
+Level 5: Behaviour Specialist
+
+Requires:
+
+Documented advanced education
+
+Significant case experience
+
+Case studies
+
+Professional references
+
+Strong veterinary collaboration
+
+Defined service limitations
+
+Continuing education
+
+Level 6: Vet-Integrated Behaviour Partner
+
+A registered veterinarian or a programme formally supervised in collaboration with one for cases involving possible medical contributors or medication.
+
+8. Practical trainer assessment
+
+Do not activate trainers based only on certificates.
+
+Assessment components
+
+Knowledge interview
+
+Learning theory
+
+Stress signals
+
+Fear and aggression
+
+Reinforcement timing
+
+Safe socialisation
+
+When to stop a session
+
+When to refer to a veterinarian
+
+Live demonstration
+
+Teaching a new behaviour
+
+Leash handling
+
+Reward placement
+
+Responding to disengagement
+
+Owner coaching
+
+Equipment use
+
+Scenario assessment
+
+Ask what the trainer would do when:
+
+A puppy urinates indoors
+
+A dog growls near food
+
+A dog lunges at another dog
+
+A dog refuses treats
+
+A dog becomes frozen or tries to escape
+
+A dog has sudden new aggression
+
+An owner requests a shock collar
+
+A child wants to join the session
+
+Trial period
+
+Require:
+
+Three to five supervised or closely audited sessions
+
+Customer feedback
+
+Report-card completion
+
+Video or field review with consent
+
+No safety violations
+
+9. Behaviour intake form
+
+Pet information
+
+Name
+
+Age
+
+Breed
+
+Sex
+
+Sterilisation status
+
+Weight
+
+Adoption history
+
+Time in current home
+
+Vaccination status
+
+Medical conditions
+
+Current medications
+
+Behaviour concern
+
+Exact observable behaviour
+
+First occurrence
+
+Frequency
+
+Duration
+
+Severity
+
+Location
+
+Trigger
+
+Distance from trigger
+
+Recovery time
+
+What happens immediately before
+
+What happens immediately after
+
+Avoid vague entries such as:
+
+“My dog is dominant.”
+
+Collect observable facts:
+
+“The dog stiffens and growls when approached while eating.”
+
+Risk questions
+
+Any bite to a person?
+
+Any bite to another animal?
+
+Was skin broken?
+
+Was medical treatment required?
+
+Has the behaviour escalated?
+
+Are children or vulnerable adults in the home?
+
+Does the dog guard food, toys or spaces?
+
+Has the dog escaped?
+
+Has the dog injured itself?
+
+Does the dog show sudden behavioural change?
+
+Current methods
+
+Equipment used
+
+Previous trainer
+
+Commands learned
+
+Punishment history
+
+Reward preferences
+
+Daily exercise
+
+Time alone
+
+Sleep
+
+Feeding schedule
+
+Walk schedule
+
+10. Risk classification and routing
+
+### Table 52
+
+| Level | Example | Routing |
+| --- | --- | --- |
+| Green | Puppy basics, jumping, toilet routine | Foundation trainer |
+| Yellow | Pulling, mild barking, low-level fear | Experienced trainer |
+| Orange | Lunging, guarding, panic, previous minor bite | Behaviour specialist |
+| Red | Serious bite, sudden aggression, severe anxiety, self-injury | Vet evaluation plus specialist |
+| Out of scope | Protection training, uncontrolled high-risk case | Decline or specialist external referral |
+
+The matching algorithm must prioritise competence and risk suitability, not merely distance or trainer availability.
+
+11. End-to-end training flow
+
+Customer selects training need
+
+↓
+
+Selects pet profile
+
+↓
+
+Completes behaviour and risk form
+
+↓
+
+System assigns preliminary risk level
+
+↓
+
+High-risk or medical red flag?
+
+Yes → veterinary/specialist review
+
+No → eligible trainer matching
+
+↓
+
+Customer views trainer method, experience and price
+
+↓
+
+Introductory assessment booked
+
+↓
+
+Trainer conducts owner-and-dog assessment
+
+↓
+
+Written goals and baseline recorded
+
+↓
+
+Programme recommendation presented
+
+↓
+
+Customer approves scope and payment
+
+↓
+
+Sessions scheduled
+
+↓
+
+Owner participates and completes homework
+
+↓
+
+Progress reports recorded
+
+↓
+
+Mid-programme review
+
+↓
+
+Final assessment
+
+↓
+
+Maintenance plan and follow-up
+
+↓
+
+Verified customer review
+
+Important sales rule
+
+The trainer who performs the assessment may recommend a package, but the platform should:
+
+Show the reason
+
+Show expected session count
+
+Display alternative options
+
+Prevent instant pressure selling
+
+Permit customer review before purchase
+
+Audit unusually high-value recommendations
+
+12. Goal and baseline design
+
+“Improve obedience” is not measurable.
+
+Use specific outcomes.
+
+Poor goal
+
+Stop barking.
+
+Better goal
+
+During three controlled visitor arrivals, the dog remains behind the gate or on its mat for 30 seconds with owner guidance and does not lunge.
+
+Poor goal
+
+Fix leash pulling.
+
+Better goal
+
+The dog walks for five consecutive minutes on the usual society route with a loose leash for at least 70% of measured intervals.
+
+Baseline fields
+
+Trigger distance
+
+Behaviour frequency
+
+Behaviour duration
+
+Recovery time
+
+Number of successful repetitions
+
+Owner assistance required
+
+Distraction level
+
+Environment
+
+Progress should be measured against baseline, not attractive video clips.
+
+13. Session structure
+
+Before session
+
+Confirm goals
+
+Review homework
+
+Check recent incidents
+
+Confirm equipment
+
+Check health changes
+
+Choose safe environment
+
+During session
+
+Warm-up and observation
+
+Teach one or two core skills
+
+Owner practises with coaching
+
+Adjust difficulty
+
+Record successful repetitions
+
+Stop before the dog becomes exhausted or distressed
+
+Assign realistic homework
+
+After session
+
+Complete report
+
+Upload supporting video where consented
+
+Record progress
+
+Schedule next session
+
+Escalate health or safety concerns
+
+Send owner instructions
+
+Dog training is largely owner coaching. A trainer who performs everything while the owner watches is not building durable results.
+
+14. Training report card
+
+Your proposed fields are correct. Expand them into a measurable record.
+
+Required fields
+
+Session information
+
+Session number
+
+Date
+
+Duration
+
+Location
+
+Trainer
+
+Owner participants
+
+Behaviour goal
+
+Target behaviour
+
+Baseline
+
+Session objective
+
+Success criterion
+
+Exercises taught
+
+Exercise name
+
+Cue
+
+Reward used
+
+Difficulty
+
+Environment
+
+Number of successful repetitions
+
+Pet response
+
+Engagement
+
+Stress signs
+
+Trigger distance
+
+Recovery time
+
+Reward preference
+
+Distraction tolerance
+
+Owner coaching
+
+Skills practised
+
+Timing issues
+
+Leash handling
+
+Reward delivery
+
+Consistency notes
+
+Homework
+
+Exercise
+
+Session length
+
+Frequency
+
+Required setup
+
+Stop conditions
+
+Video request
+
+Next plan
+
+Next milestone
+
+Environment progression
+
+Equipment
+
+Veterinary or specialist referral
+
+Next session date
+
+Trainer note
+
+Safety concern
+
+Health observation
+
+Change in prognosis
+
+Incident
+
+Programme adjustment
+
+15. Progress dashboard
+
+Show customers:
+
+Sessions completed
+
+Goals achieved
+
+Homework completion
+
+Trainer comments
+
+Videos
+
+Progress trends
+
+Upcoming sessions
+
+Maintenance reminders
+
+Do not display a fabricated universal score such as:
+
+“Your dog is 82% trained.”
+
+Use individual goal status:
+
+Not introduced
+
+Introduced
+
+Learning
+
+Reliable at home
+
+Reliable with mild distractions
+
+Reliable in target environment
+
+Maintenance required
+
+16. Owner homework system
+
+Without owner implementation, many training programmes fail.
+
+Homework design
+
+Homework should be:
+
+Short
+
+Specific
+
+Safe
+
+Repeatable
+
+Recorded
+
+Appropriate for the dog
+
+Easy to complete within normal routines
+
+Example
+
+Practise mat settling twice daily for three minutes in a quiet room. Reward calm behaviour every five to ten seconds. Stop if the dog repeatedly leaves, shows distress or refuses normally valued rewards.
+
+Track
+
+Days completed
+
+Minutes practised
+
+Success
+
+Difficulties
+
+Video submitted
+
+Owner confidence
+
+Do not punish customers for incomplete homework. Use it to interpret outcomes and adjust plans.
+
+17. Society group classes
+
+Best uses
+
+Puppy foundations
+
+Loose-leash skills
+
+Calm greetings
+
+Recall games
+
+Handling preparation
+
+Pet-parent education
+
+Society etiquette
+
+Noise-event preparation
+
+Poor uses
+
+Aggression
+
+Serious reactivity
+
+Dogs with bite histories
+
+Severe fear
+
+Separation anxiety
+
+Resource guarding between dogs
+
+Dogs unable to remain safely under threshold
+
+Class requirements
+
+RWA permission
+
+Secure area
+
+Entry and exit plan
+
+One dog per handler
+
+Fixed leash
+
+Distance between stations
+
+Water and shade
+
+Veterinary emergency contact
+
+Vaccination policy
+
+No forced greetings
+
+Assistant for larger groups
+
+Maximum class size
+
+Recommended ratios
+
+### Table 53
+
+| Class type | Trainer ratio |
+| --- | --- |
+| Puppy class | 1 trainer + assistant per 6–8 dogs |
+| Basic adult manners | 1 + assistant per 8–10 dogs |
+| Leash workshop | 1 + assistant per 6–8 dogs |
+| Pet-parent seminar without dogs | Larger audience possible |
+
+18. Society-class pricing economics
+
+At ₹299 per person, assume ten participants:
+
+### Table 54
+
+| Item | Amount |
+| --- | --- |
+| Ticket revenue | ₹2,990 |
+| Trainer payout | ₹1,500 |
+| Assistant | ₹500 |
+| Society/venue cost | ₹300 |
+| Payment and support | ₹150 |
+| Promotion | ₹300 |
+| Approximate contribution | ₹240 |
+
+The economics are fragile.
+
+At ₹699 with ten participants:
+
+### Table 55
+
+| Item | Amount |
+| --- | --- |
+| Ticket revenue | ₹6,990 |
+| Trainer and assistant | ₹2,500 |
+| Society/venue cost | ₹500 |
+| Payment and support | ₹350 |
+| Promotion/material | ₹600 |
+| Approximate contribution | ₹3,040 |
+
+Recommended pricing
+
+Introductory event: ₹299–₹499
+
+Standard practical workshop: ₹599–₹999
+
+Specialist workshop: ₹999–₹1,999
+
+RWA-sponsored event: resident ticket can be reduced
+
+Free seminar: use for lead generation, not practical dog handling
+
+19. Revenue model
+
+Trainer commission
+
+Your proposed 15–30% platform share is workable when the platform provides:
+
+Qualified leads
+
+Scheduling
+
+Payments
+
+Customer support
+
+Progress technology
+
+Society access
+
+Replacement support
+
+Marketing
+
+Dispute resolution
+
+Recommended range
+
+### Table 56
+
+| Service | Platform share hypothesis |
+| --- | --- |
+| Assessment | 15–20% |
+| Private training package | 18–25% |
+| Specialist behaviour case | 12–20% |
+| Group workshop | 20–40% after direct costs |
+| Online coaching | 20–30% |
+
+Specialist professionals may reject 30% when they provide all expertise, travel and follow-up.
+
+Society workshop
+
+Use:
+
+Then divide the net amount according to the written agreement.
+
+Avoid ambiguous language such as “ticket share” without defining the cost base.
+
+Featured trainer listings
+
+Defer until sufficient marketplace supply and demand exist.
+
+Sponsored placement must not outrank:
+
+Safety status
+
+Relevant qualifications
+
+Risk suitability
+
+Service area
+
+Availability
+
+Customer history
+
+Label paid placement clearly.
+
+20. Illustrative package economics
+
+Assume an eight-session home-manners programme:
+
+### Table 57
+
+| Item | Amount |
+| --- | --- |
+| Customer price | ₹11,999 |
+| Trainer payout | ₹8,800 |
+| Platform gross revenue | ₹3,199 |
+| Payment cost | ₹240 |
+| Support allocation | ₹350 |
+| Acquisition allocation | ₹600 |
+| Refund/incident reserve | ₹250 |
+| Progress technology/operations | ₹300 |
+| Approximate contribution | ₹1,459 |
+
+Profit improves when:
+
+Existing customers cross-buy
+
+Society routing reduces travel
+
+Package completion is high
+
+Refunds are low
+
+Trainer scheduling is efficient
+
+Customers buy follow-up sessions
+
+21. Payment structure
+
+Recommended approach
+
+Assessment
+
+Paid separately.
+
+Programme
+
+Choose:
+
+Full upfront payment
+
+Two instalments
+
+Session-based release from an authorised payment balance
+
+Trainer payout
+
+Release:
+
+A portion after each completed session, or
+
+Weekly based on verified sessions
+
+Do not retain all trainer earnings until the programme ends.
+
+Refund logic
+
+Refund only unused sessions, less clearly disclosed non-refundable assessment or completed-service amounts.
+
+Example
+
+Customer purchased eight sessions and completed three:
+
+Avoid calculating the refund using an inflated retrospective per-session price unless that rule was shown before purchase.
+
+22. Cancellation policy
+
+Customer cancellation
+
+### Table 58
+
+| Notice | Suggested treatment |
+| --- | --- |
+| More than 24 hours | Free reschedule |
+| 8–24 hours | One courtesy reschedule, then fee |
+| Under 8 hours | Session may be chargeable |
+| Genuine emergency | Case review |
+
+Trainer cancellation
+
+Record every cancellation
+
+Offer replacement or reschedule
+
+No customer penalty
+
+Repeated cancellation reduces ranking
+
+Last-minute patterns trigger suspension
+
+Specialist cases should not be reassigned without reviewing suitability
+
+Recommended overall trainer cancellation target:
+
+23. Complaint and safety system
+
+Complaint categories
+
+Trainer no-show
+
+Inappropriate method
+
+Hidden equipment
+
+Harsh handling
+
+Injury
+
+Unapproved physical correction
+
+Poor owner communication
+
+Package mis-selling
+
+No progress documentation
+
+Privacy issue
+
+Unqualified handling of aggression
+
+Critical incidents
+
+Bite during session
+
+Dog escape
+
+Trainer injury
+
+Dog injury
+
+Child endangered
+
+Aversive-tool violation
+
+Trainer conceals an incident
+
+Severe medical symptom ignored
+
+Critical response
+
+Stop the session.
+
+Secure dog and people.
+
+Provide appropriate first aid.
+
+Contact emergency medical or veterinary help.
+
+Inform owner immediately.
+
+Record facts and evidence.
+
+Suspend the trainer pending review.
+
+Conduct root-cause analysis.
+
+Determine customer remedy.
+
+Update matching or training controls.
+
+24. Consumer-protection requirements
+
+A digital training marketplace should clearly display:
+
+Trainer identity and verified status
+
+Package scope
+
+Number and duration of sessions
+
+Training methods
+
+Equipment policy
+
+Total pricing
+
+Cancellation and refund rules
+
+Outcome limitations
+
+Complaint channel
+
+Grievance contact
+
+Review-verification policy
+
+The Consumer Protection E-Commerce Rules require e-commerce entities to maintain an adequate grievance-redressal mechanism.
+
+Claims to prohibit
+
+“Guaranteed aggression cure”
+
+“Guaranteed in seven days”
+
+“100% obedient”
+
+“Permanent behaviour correction”
+
+“Certified” without naming the credential
+
+“Veterinary behaviourist” without suitable veterinary credentials
+
+“Government approved” without valid approval
+
+“No owner effort required”
+
+25. Product architecture
+
+Customer application
+
+Training-needs selection
+
+Behaviour intake
+
+Risk assessment
+
+Trainer matching
+
+Trainer profiles
+
+Assessment booking
+
+Programme proposal
+
+Instalment payment
+
+Session calendar
+
+Progress dashboard
+
+Homework
+
+Video upload
+
+Report cards
+
+Complaints
+
+Rebooking
+
+Trainer application
+
+Qualified case requests
+
+Risk summary
+
+Customer goals
+
+Scheduling
+
+Check-in
+
+Session plan
+
+Progress measurements
+
+Homework assignment
+
+Incident reporting
+
+Veterinary-referral request
+
+Earnings
+
+Document renewal
+
+Admin dashboard
+
+Trainer verification
+
+Skills and specialisations
+
+Methods declaration
+
+Risk-level permissions
+
+Case assignments
+
+Package recommendations
+
+Session completion
+
+Complaint monitoring
+
+Method violations
+
+Refunds
+
+Trainer payouts
+
+Society workshops
+
+Customer outcomes
+
+26. AI and automation boundaries
+
+AI may:
+
+Structure customer intake
+
+Summarise reported behaviour
+
+Detect bite or medical red flags
+
+Recommend an appropriate professional category
+
+Generate report-card templates
+
+Remind customers about homework
+
+Compare progress measurements
+
+AI should not:
+
+Diagnose aggression
+
+Diagnose separation anxiety
+
+Guarantee suitability for a group class
+
+Recommend medication
+
+Generate punishment instructions
+
+Decide that a bite-risk dog is safe
+
+Replace professional case review
+
+Recommended disclaimer:
+
+This assessment does not diagnose a behavioural or medical condition. A qualified trainer, behaviour professional or veterinarian must review higher-risk concerns.
+
+27. Training KPIs
+
+Demand
+
+Assessments booked
+
+Programmes purchased
+
+Workshop tickets
+
+Existing-customer cross-sell
+
+Trainer-match conversion
+
+Average programme value
+
+Operations
+
+Time to trainer acceptance
+
+Assessment completion
+
+Session completion
+
+Trainer cancellation
+
+Customer cancellation
+
+Homework completion
+
+Programme completion
+
+Quality
+
+Average rating
+
+Complaint rate
+
+Aversive-method violations
+
+Injury incidents
+
+Specialist-referral rate
+
+Owner confidence improvement
+
+Goal-achievement rate
+
+Economics
+
+GMV
+
+Platform revenue
+
+Contribution per package
+
+Support cost
+
+Refund cost
+
+Trainer earnings
+
+Customer acquisition cost
+
+Repeat and maintenance revenue
+
+Retention
+
+Second programme
+
+Follow-up session
+
+Workshop-to-programme conversion
+
+Training customer using walking
+
+Walking customer adopting training
+
+30-, 60- and 90-day outcome follow-up
+
+28. Dog-training go/no-go criteria
+
+Scale the service only when:
+
+### Table 59
+
+| Requirement | Target |
+| --- | --- |
+| Verified trainers | 5–10 |
+| Active trainers | 3–6 |
+| Senior behaviour specialists | At least 1–2 |
+| Paid assessments | 30+ |
+| Training programmes sold | 15+ |
+| Completed sessions | 100+ |
+| Programme completion | 75%+ |
+| Average rating | 4.6+ |
+| Verified reviews | 40+ |
+| Complaint/refund rate | Below 5% |
+| Trainer cancellation | Below 7% |
+| Serious preventable incidents | 0 |
+| Aversive-method violations | 0 |
+| Owner homework participation | 60%+ |
+| Measurable goal improvement | 70%+ of completed programmes |
+| Positive contribution | Yes |
+| Veterinary-referral route | Operational |
+| Backup trainer capacity | Yes |
+
+29. Recommended MVP
+
+Launch first
+
+Puppy foundation programme
+
+Loose-leash coaching
+
+Home manners
+
+One-hour assessments
+
+Individual online coaching
+
+Puppy society workshops
+
+Leash and society-etiquette workshops
+
+Digital homework
+
+Training report cards
+
+Launch under specialist controls
+
+Reactivity programmes
+
+Resource guarding
+
+Mild separation-related support
+
+Fearful-dog coaching
+
+Multi-dog household cases
+
+Defer
+
+Serious aggression
+
+Board-and-train
+
+Protection training
+
+Severe separation anxiety without vet collaboration
+
+Cases involving major injury risk
+
+Behaviour cases with possible untreated pain or disease
+
+Final dog-training model
+
+Correct positioning
+
+Reward-based dog training with verified professionals, personalised assessments, owner coaching, measurable progress and veterinary escalation for serious behaviour concerns.
+
+Correct commercial rule
+
+Sell an assessment before selling a complex behaviour programme.
+
+Correct safety rule
+
+Foundation trainers teach skills; behaviour specialists manage complex cases; veterinarians evaluate medical contributors and cases that may require clinical treatment.
+
+Correct operational rule
+
+Progress belongs in measurable behaviour and owner capability—not merely in the number of sessions completed.
+
+Final decision
+
+Dog Training: GO—with controlled scope.
+
+Launch with puppy skills, leash training, home manners and society workshops. Introduce behaviour programmes only after specialist verification, veterinary referral pathways and strict reward-based standards are operating reliably.
+
+Phase 8 Service Model 4: Society Camps 🏢🐾
+
+End-to-End Growth, Operations, Safety and Revenue Blueprint
+
+Executive verdict
+
+Society camps should be approved as a major Phase 8 growth engine.
+
+They can produce:
+
+High-density customer acquisition
+
+Immediate paid bookings
+
+RWA trust
+
+Partner visibility
+
+Pet-profile data
+
+Cross-service adoption
+
+Lower travel costs
+
+Repeat bookings inside one locality
+
+However, “society camp” is not one operating model. A grooming day, vaccination camp, training workshop and adoption event carry completely different commercial, clinical and safety requirements.
+
+The correct principle is:
+
+One camp, one primary objective, one accountable operating owner.
+
+A camp that tries to combine grooming, vaccination, training, adoption, photography and product stalls at the same time will create crowding, animal stress, unclear responsibility and unreliable conversion data.
+
+1. What society camps actually do
+
+A society camp can serve four different functions.
+
+### Table 60
+
+| Camp category | Primary objective | Example |
+| --- | --- | --- |
+| Commercial service camp | Generate immediate revenue | Grooming day |
+| Clinical camp | Build health trust and preventive care | Vaccination camp |
+| Educational camp | Generate qualified demand | Puppy or Diwali workshop |
+| Engagement camp | Build community and brand goodwill | Photo day or adoption awareness |
+
+Do not judge every category by the same KPI.
+
+For example:
+
+Grooming should generate contribution.
+
+Vaccination should generate trusted health records and preventive-care retention.
+
+Training workshops should generate assessments and programmes.
+
+Adoption awareness should generate suitable adoption applications—not revenue.
+
+Photo days should generate engagement and reusable marketing content with consent.
+
+2. Why the society format is powerful
+
+A society creates concentrated demand within a controlled geographic area.
+
+This allows you to:
+
+Serve multiple customers without repeated travel
+
+Pre-approve partners at the gate
+
+Use one announcement to reach many households
+
+Create resident referrals
+
+Rebook customers inside the same locality
+
+Build a dedicated partner pool
+
+Reduce customer-acquisition cost
+
+Give the RWA one escalation contact
+
+AWBI guidance advises pet owners to ensure vaccinations, cleanliness and responsible handling, while also addressing the rights and responsibilities of pet parents, caregivers and RWAs. A professionally managed camp can support those responsibilities rather than functioning as uncontrolled commercial solicitation.
+
+Large organised drives are operationally possible. For example, Greater Chennai Corporation reportedly registered and vaccinated more than 2,500 pets across seven centres during one November 2025 drive. Your private society model will be much smaller, but the example demonstrates that appointment-led registration, vaccination and record creation can work at scale when clinical and municipal systems are clearly defined.
+
+3. Critical problems exposed
+
+3.1 “Camp” is too broad a term
+
+You should internally separate:
+
+Service Day: paid grooming or similar services
+
+Clinical Camp: vaccination or veterinary examination
+
+Workshop: training or safety education
+
+Community Event: photo day or adoption awareness
+
+This distinction determines:
+
+Who is professionally responsible
+
+Whether payment is collected
+
+Whether clinical consent is required
+
+What records must be stored
+
+What insurance is needed
+
+How animals are separated
+
+How success is measured
+
+3.2 Your ₹30,000 example is GMV—not platform revenue
+
+Your example:
+
+### Table 61
+
+| Item | Amount |
+| --- | --- |
+| 30 grooming bookings | ₹1,000 each |
+| Customer spending/GMV | ₹30,000 |
+| Partner payout | ₹21,000–₹24,000 |
+| Gross platform take | ₹6,000–₹9,000 |
+
+The ₹30,000 is gross booking value. The ₹6,000–₹9,000 is gross platform revenue before operating costs.
+
+An illustrative camp cost structure could look like this:
+
+### Table 62
+
+| Cost | Illustrative amount |
+| --- | --- |
+| Payment processing | ₹600 |
+| Event coordinator/support | ₹1,500 |
+| Marketing and printing | ₹1,000 |
+| Society or venue support | ₹0–₹2,000 |
+| Cleaning, water and power | ₹800 |
+| Equipment movement | ₹700 |
+| Refund/incident provision | ₹600 |
+| Total direct cost | ₹5,200–₹7,200 |
+
+That produces an approximate event contribution of:
+
+### Table 63
+
+| Gross platform take | Contribution after example costs |
+| --- | --- |
+| ₹6,000 | −₹1,200 to ₹800 |
+| ₹9,000 | ₹1,800 to ₹3,800 |
+
+These are planning assumptions, not market benchmarks.
+
+The economics improve when:
+
+The society provides the venue free
+
+Residents prepay
+
+Partners serve several bookings without travel
+
+A sponsor funds marketing
+
+The camp creates repeat services
+
+Full-price bookings replace large discounts
+
+Therefore, the event should be judged through:
+
+3.3 Thirty grooming bookings may exceed realistic capacity
+
+Assume an average service time of 90 minutes.
+
+If each groomer delivers approximately seven productive hours:
+
+You would need approximately seven groomers to complete 30 such bookings in one day.
+
+Thirty bookings are realistic when they consist mainly of:
+
+Nail trims
+
+Hygiene services
+
+Short basic baths
+
+Consultations
+
+Bookings distributed across two days
+
+In-home appointments handled by multiple groomers
+
+Thirty full grooming sessions with one or two groomers are not realistic.
+
+Better initial target
+
+For one society day:
+
+8–15 full grooming bookings, or
+
+15–25 mixed grooming services, or
+
+25–40 quick-care services such as nail trims and assessments
+
+3.4 “Future leads” can become a vanity metric
+
+Thirty to one hundred names are not automatically valuable leads.
+
+Separate the funnel:
+
+### Table 64
+
+| Stage | Definition |
+| --- | --- |
+| Attendee | Visited the event |
+| Consented lead | Shared contact details with valid consent |
+| Qualified pet-parent lead | Has a pet and a relevant need |
+| Booking-ready lead | Selected a service and approximate date |
+| Paying customer | Completed a paid booking |
+| Repeat customer | Completed another booking |
+| Multi-service customer | Uses the core service plus an add-on |
+
+The useful conversion formula is:
+
+Your Phase 8 target of 20%+ society-event conversion should use qualified leads as the denominator—not total visitors.
+
+4. Recommended camp portfolio
+
+### Table 65
+
+| Priority | Camp | Primary objective |
+| --- | --- | --- |
+| 1 | Grooming society day | Revenue and grooming adoption |
+| 2 | Vaccination camp | Preventive-care trust |
+| 3 | Veterinary checkup camp | Health-record creation and vet bookings |
+| 4 | Puppy-training workshop | Training assessments and packages |
+| 5 | Diwali pet-safety session | Seasonal retention and trust |
+| 6 | Pet photo day | Engagement and referrals |
+| 7 | Adoption awareness event | Community goodwill and responsible adoption |
+
+Run only one or two camp types in the first 30 days.
+
+5. End-to-end society camp flow
+
+Society shortlisted
+
+↓
+
+RWA/facility manager meeting
+
+↓
+
+Camp objective and format selected
+
+↓
+
+Written pilot/event agreement
+
+↓
+
+Date, venue and capacity confirmed
+
+↓
+
+Verified partners assigned
+
+↓
+
+Society-specific landing page created
+
+↓
+
+Resident announcement approved
+
+↓
+
+Pre-booking and consent form opened
+
+↓
+
+Customers screened and time slots assigned
+
+↓
+
+Gate, safety and emergency protocols confirmed
+
+↓
+
+Camp conducted
+
+↓
+
+Payments and records completed
+
+↓
+
+Leads synchronised to CRM
+
+↓
+
+Follow-up offers sent
+
+↓
+
+Repeat bookings measured
+
+↓
+
+RWA report submitted
+
+↓
+
+Camp repeated, modified or stopped
+
+6. Society selection
+
+Do not conduct camps in every society that agrees.
+
+Ideal pilot society
+
+500+ occupied homes
+
+Meaningful pet-parent population
+
+Active resident communication channel
+
+Cooperative RWA or facility manager
+
+Suitable event space
+
+Reliable power and water where required
+
+Controlled gate access
+
+Nearby veterinary emergency support
+
+Existing demand for grooming or health services
+
+Several nearby societies for future clustering
+
+Society camp score
+
+### Table 66
+
+| Factor | Weight |
+| --- | --- |
+| Estimated pet-parent population | 25 |
+| Resident engagement | 15 |
+| RWA responsiveness | 15 |
+| Venue quality | 10 |
+| Gate feasibility | 10 |
+| Partner availability | 10 |
+| Nearby society cluster | 5 |
+| Emergency vet access | 5 |
+| Spending potential | 5 |
+
+Prioritise societies scoring at least 70/100.
+
+7. RWA partnership proposal
+
+The proposal should answer:
+
+What is the camp?
+
+Who is responsible?
+
+Who enters the society?
+
+Are all partners verified?
+
+Will animals be brought into a common area?
+
+How will bites or escapes be prevented?
+
+Who handles waste and cleaning?
+
+What happens during an emergency?
+
+Will resident information be shared?
+
+Is the RWA paying?
+
+Will the platform advertise afterward?
+
+Who handles complaints?
+
+RWA agreement
+
+Include:
+
+Scope
+
+Camp type
+
+Date and operating hours
+
+Expected attendance
+
+Services permitted
+
+Services explicitly excluded
+
+Venue
+
+Exact location
+
+Water
+
+Power
+
+Drainage
+
+Shade and ventilation
+
+Entry and exit routes
+
+Cleaning responsibility
+
+Commercial terms
+
+RWA fee, if any
+
+Sponsor terms
+
+Ticket revenue
+
+Platform charges
+
+Partner payouts
+
+Taxes
+
+Cancellation terms
+
+Safety
+
+Partner roster
+
+Pet restraint requirements
+
+Maximum animal capacity
+
+Emergency veterinary contact
+
+Bite/escape protocol
+
+Incident reporting
+
+Data
+
+Who collects resident information
+
+Permitted purposes
+
+Marketing consent
+
+Reporting format
+
+Data-retention responsibilities
+
+Publicity
+
+Approved posters
+
+Society-app announcements
+
+Photography
+
+Logo use
+
+Testimonials
+
+8. Resident communication
+
+Announcement sequence
+
+Seven to ten days before
+
+Camp purpose
+
+Date
+
+Service list
+
+Prices
+
+Partner verification
+
+Booking link
+
+Capacity limit
+
+Safety rules
+
+Three days before
+
+Remaining slots
+
+Preparation instructions
+
+Required records
+
+Cancellation rules
+
+One day before
+
+Exact appointment
+
+Venue
+
+Gate instructions
+
+What to carry
+
+Emergency contact
+
+Event day
+
+Live support contact
+
+Delay notifications
+
+Walk-in availability, if any
+
+Avoid
+
+“Free checkup” without explaining scope
+
+“Guaranteed healthy”
+
+“100% safe”
+
+“Government-approved vet” without valid evidence
+
+Artificial scarcity when slots remain available
+
+Automatic marketing opt-in
+
+9. Pre-booking form
+
+Resident information
+
+Name
+
+Phone
+
+Email
+
+Society
+
+Tower and flat
+
+Preferred language
+
+Pet information
+
+Name
+
+Species
+
+Breed
+
+Age
+
+Weight
+
+Sex
+
+Vaccination status
+
+Medical conditions
+
+Current medication
+
+Behaviour concerns
+
+Bite or scratch history
+
+Camp-specific information
+
+Grooming
+
+Coat type
+
+Matting
+
+Last groom
+
+Grooming anxiety
+
+Requested package
+
+Vaccination
+
+Previous record
+
+Last vaccine date
+
+Adverse-reaction history
+
+Current illness
+
+Veterinarian details
+
+Training
+
+Main behaviour concern
+
+Bite history
+
+Trigger
+
+Training history
+
+Adoption event
+
+Household profile
+
+Landlord/society permission
+
+Existing pets
+
+Adoption readiness
+
+Consent
+
+Collect separate consent for:
+
+Camp fulfilment
+
+Partner access to necessary information
+
+Payment
+
+Emergency action
+
+Marketing follow-up
+
+Photography
+
+Society-level aggregate reporting
+
+The Digital Personal Data Protection Rules, 2025 require notices to be clear, understandable and specific about the personal data collected and the purposes for which it will be used. The rules also contemplate accessible methods for withdrawing consent and exercising data rights.
+
+10. Event venue design
+
+Minimum zones
+
+Check-in zone
+
+Resident verification
+
+Booking confirmation
+
+Payment status
+
+Consent
+
+Token or appointment number
+
+Waiting zone
+
+Spaced seating
+
+Separate entry and exit
+
+Water
+
+Shade
+
+No uncontrolled dog interaction
+
+Service zone
+
+Depends on the camp:
+
+Grooming stations
+
+Veterinary examination space
+
+Training area
+
+Photography area
+
+Quiet zone
+
+For:
+
+Anxious pets
+
+Cats
+
+Senior pets
+
+Pets recovering from vaccination
+
+Owners needing private discussion
+
+Emergency zone
+
+First-aid equipment
+
+Emergency contacts
+
+Vehicle access
+
+Clear exit route
+
+Waste zone
+
+Hair and grooming waste
+
+General waste
+
+Sharps
+
+Medical waste
+
+Used towels
+
+Disinfection supplies
+
+Clinical and non-clinical waste must not be mixed.
+
+11. Universal animal-safety rules
+
+All dogs remain on secure fixed leashes.
+
+Retractable leashes should be discouraged in crowded camp spaces.
+
+Cats remain in secure carriers.
+
+No forced pet-to-pet greetings.
+
+Children interact only with owner permission and supervision.
+
+Reactive animals receive private time slots.
+
+Water is available.
+
+Waiting time is minimised.
+
+No loud music near the service area.
+
+Pets showing severe distress are removed from the event area.
+
+Partners may stop a service when continuation is unsafe.
+
+No animal is used as entertainment.
+
+AWBI guidance places responsibility on pet owners for health, vaccination, cleanliness and responsible control. The camp SOP should reinforce these responsibilities without treating every pet as a risk.
+
+12. Camp type 1: Grooming society day
+
+Primary objective
+
+Generate paid grooming bookings and recurring grooming customers.
+
+Recommended format
+
+The safest model is:
+
+One groomer team serves prebooked residents inside their homes or designated private service spaces.
+
+This is preferable to bringing many unknown dogs into one common grooming area.
+
+Services
+
+Basic bath
+
+Bath and blow dry
+
+Hygiene grooming
+
+Full grooming
+
+De-shedding
+
+Nail trimming
+
+External ear hygiene
+
+Grooming consultation
+
+Camp design
+
+Fixed time slots
+
+Services grouped by duration
+
+Groomers assigned by pet size and coat
+
+Cleaning buffer between pets
+
+Society discount only where route density creates savings
+
+Same-groomer rebooking
+
+Capacity example
+
+### Table 67
+
+| Team | Approximate daily output |
+| --- | --- |
+| One groomer, full grooming | 3–5 pets |
+| One groomer, mixed services | 5–8 pets |
+| Three groomers, mixed services | 15–24 pets |
+| Five groomers, short-service focus | 25–35 pets |
+
+These are planning assumptions and should be adjusted using actual service durations.
+
+Grooming camp KPIs
+
+Slots available
+
+Slots booked
+
+Attendance
+
+Gross booking value
+
+Contribution
+
+Rating
+
+Complaint rate
+
+Same-groomer requests
+
+Rebooking within 60 days
+
+Grooming subscription conversion
+
+13. Camp type 2: Vaccination camp
+
+Primary objective
+
+Build preventive-health trust and create accurate vaccination records.
+
+Critical clinical boundary
+
+The platform may organise registration and logistics, but vaccination must remain under an appropriately registered veterinary practitioner’s authority.
+
+The Indian Veterinary Council Act restricts the practice of veterinary medicine to registered veterinary practitioners, subject to its defined exceptions.
+
+Clinical partner responsibilities
+
+The veterinary partner should own:
+
+Vaccine selection
+
+Pet eligibility
+
+Clinical assessment
+
+Vaccine procurement
+
+Storage and cold chain
+
+Administration
+
+Clinical consent
+
+Batch and expiry documentation
+
+Adverse-reaction management
+
+Vaccination certificate
+
+Medical-waste disposal
+
+Follow-up instructions
+
+Platform responsibilities
+
+The platform may own:
+
+Society coordination
+
+Registration
+
+Time slots
+
+Payment collection where appropriately structured
+
+Resident reminders
+
+Queue management
+
+Record upload
+
+Follow-up reminders
+
+Non-clinical support
+
+Cold-chain requirement
+
+AWBI’s current ABC handbook states that rabies-vaccine cold chain must be maintained, storage logs kept and refrigerator temperatures checked and recorded. Although that handbook addresses ABC programmes, the cold-chain principle is equally relevant to any properly run vaccination operation.
+
+Required camp equipment
+
+Approved vaccine carrier
+
+Temperature monitoring
+
+Vaccine log
+
+Consent forms
+
+Syringes and needles
+
+Sharps container
+
+Examination table
+
+Disinfectant
+
+Emergency medications controlled by the vet
+
+Observation area
+
+Waste-disposal arrangement
+
+Emergency transport access
+
+Vaccination flow
+
+Pre-registration
+
+↓
+
+Previous record reviewed
+
+↓
+
+Pet arrives in assigned slot
+
+↓
+
+Veterinarian examines eligibility
+
+↓
+
+Owner confirms clinical consent
+
+↓
+
+Vaccination administered
+
+↓
+
+Batch, expiry and date recorded
+
+↓
+
+Pet observed
+
+↓
+
+Certificate uploaded
+
+↓
+
+Next reminder scheduled
+
+Do not promise
+
+Vaccination without examination
+
+Vaccination for every arriving animal
+
+Guaranteed absence of adverse reaction
+
+“Free lifetime protection”
+
+Vaccine choice by non-clinical staff
+
+14. Vaccination-camp commercial model
+
+Avoid treating the veterinarian’s clinical fee as an ordinary marketplace product commission.
+
+VCI’s professional-conduct regulations state that veterinarians should not give, solicit or receive commissions or benefits in consideration for referring or procuring clients for specialist services or treatment.
+
+Safer models
+
+Fixed event-management fee
+
+The veterinary partner or sponsor pays the platform for:
+
+Registration
+
+Resident communication
+
+Event staffing
+
+Scheduling
+
+Digital records
+
+Follow-up reminders
+
+Transparent customer platform fee
+
+The customer sees:
+
+Veterinary professional fee
+
+Vaccine/product fee
+
+Platform event or booking fee
+
+Society-sponsored model
+
+The RWA, developer or sponsor funds:
+
+Venue
+
+Resident subsidy
+
+Event logistics
+
+Brand-sponsored preventive-care event
+
+Permitted only where:
+
+Sponsorship is disclosed
+
+Clinical judgement stays independent
+
+No partner is pressured to use an inappropriate product
+
+15. Camp type 3: Veterinary checkup camp
+
+Primary objective
+
+Generate health awareness, veterinary trust and follow-up appointments.
+
+Correct scope
+
+A checkup camp may include:
+
+Brief physical assessment
+
+Weight check
+
+Body-condition discussion
+
+Vaccination-record review
+
+Dental observation
+
+Skin and coat observation
+
+Preventive-care advice
+
+Referral to clinic or home visit
+
+It should not become
+
+Public diagnosis in a crowded hall
+
+Fast prescription line
+
+Aggressive diagnostic-test selling
+
+Medicine-sales event
+
+Replacement for a complete clinic consultation
+
+Emergency treatment centre
+
+Privacy
+
+Veterinary discussions should occur in a separated area. Owners should not be expected to discuss medical history in a public queue.
+
+Conversion path
+
+Checkup
+
+↓
+
+Observation recorded by vet
+
+↓
+
+No concern → preventive reminder
+
+Routine concern → appointment booking
+
+Urgent concern → same-day referral
+
+Emergency concern → immediate clinic routing
+
+KPIs
+
+Checkups completed
+
+Clinic bookings
+
+Home-visit bookings
+
+Vaccination records updated
+
+Urgent referrals completed
+
+Follow-up completion
+
+Customer rating
+
+Clinical complaints
+
+16. Camp type 4: Puppy-training workshop
+
+Primary objective
+
+Convert new puppy parents into training assessments and programmes.
+
+Suitable topics
+
+Toilet routines
+
+Puppy biting
+
+Name response
+
+Handling
+
+Safe socialisation
+
+Leash introduction
+
+Calm greetings
+
+Crate or safe-space introduction
+
+Owner consistency
+
+Format
+
+45–60 minutes
+
+Six to eight puppies per trainer
+
+One assistant
+
+Marked individual stations
+
+No uncontrolled play
+
+Owner participation
+
+Digital handout
+
+Post-workshop assessment offer
+
+Entry screening
+
+Collect:
+
+Puppy age
+
+Vaccination status
+
+Illness symptoms
+
+Fear or aggression
+
+Bite history
+
+Ability to remain safely in a group
+
+High-risk or highly fearful puppies should receive individual sessions instead.
+
+Workshop funnel
+
+Recommended success targets
+
+15+ attendees
+
+30%+ paid-assessment conversion
+
+40%+ assessment-to-programme conversion
+
+4.6+ workshop rating
+
+Zero preventable incidents
+
+17. Camp type 5: Diwali pet-safety session
+
+Primary objective
+
+Create seasonal trust and reduce avoidable pet-care incidents.
+
+Recommended timing
+
+Conduct it approximately two to four weeks before the festival so residents can prepare.
+
+Topics
+
+Secure identification and contact tags
+
+Safe indoor room preparation
+
+Closing escape routes
+
+Exercise before peak noise hours
+
+Sound and light management
+
+Feeding and toilet routines
+
+Safe walking times
+
+Pet-sitter or boarding planning
+
+When to contact a veterinarian
+
+Why owners should not administer sedatives without veterinary instruction
+
+Support for community animals
+
+Format
+
+Veterinarian or qualified behaviour professional
+
+45-minute education session
+
+15-minute Q&A
+
+Downloadable safety checklist
+
+Booking links for sitting, boarding or veterinary support
+
+Do not include
+
+Firecracker demonstrations
+
+Forced noise exposure
+
+Public handling of fearful pets
+
+Medication recommendations by non-veterinarians
+
+Claims that one product will eliminate anxiety
+
+Revenue
+
+This session may be:
+
+Free for existing subscribers
+
+Sponsored by the society
+
+Ticketed at a low amount
+
+Used to generate sitting, boarding and vet bookings
+
+Its value is primarily retention and seasonal demand—not ticket margin.
+
+18. Camp type 6: Adoption awareness event
+
+Primary objective
+
+Generate responsible adoption interest and community goodwill.
+
+Recommended model
+
+Partner with:
+
+An established animal-welfare organisation
+
+Registered shelter
+
+Recognised rescue group
+
+Veterinary partner
+
+Best format
+
+Use:
+
+Pet adoption education
+
+Shelter profiles
+
+Digital pet profiles
+
+Adoption-readiness questionnaire
+
+Volunteer introductions
+
+Scheduled meet-and-greets
+
+Donation and foster information
+
+Avoid bringing a large number of animals into a noisy society event.
+
+Adoption flow
+
+Resident expresses interest
+
+↓
+
+Application completed
+
+↓
+
+Household suitability reviewed
+
+↓
+
+Existing-pet compatibility assessed
+
+↓
+
+Meet-and-greet
+
+↓
+
+Home/society readiness confirmed
+
+↓
+
+Adoption agreement
+
+↓
+
+Handover
+
+↓
+
+Post-adoption follow-up
+
+Non-negotiable rules
+
+No impulse same-day handover merely to improve adoption numbers
+
+No platform commission per animal adopted
+
+No breeder or commercial seller presented as a rescue
+
+No sale of animals at an “adoption” event
+
+No animal used as a photo prop
+
+No adoption without verified shelter/rescue ownership or authority
+
+No mixing unknown animals without controlled handling
+
+Commercial sale and display of pets can trigger the Prevention of Cruelty to Animals (Pet Shop) Rules, 2018, including registration and welfare obligations. Adoption events should remain clearly separated from commercial animal sales.
+
+Success metrics
+
+Qualified applications
+
+Foster applications
+
+Shelter donations
+
+Completed adoptions after screening
+
+Thirty- and ninety-day adoption retention
+
+Returned adoptions
+
+Welfare incidents
+
+19. Camp type 7: Pet photo day
+
+Primary objective
+
+Increase engagement, referrals and consented brand content.
+
+Format
+
+Five- to ten-minute slots
+
+Secure backdrop
+
+Non-slip surface
+
+Owner stays with pet
+
+No forced costumes
+
+No loud sound effects
+
+No flash for pets distressed by it
+
+Separate cat sessions
+
+QR delivery of images
+
+Revenue models
+
+Paid photography package
+
+Free photograph with paid booking
+
+Society-sponsored resident event
+
+Brand-sponsored activation
+
+Referral campaign
+
+Data and marketing rule
+
+Consent to take a photograph is not automatically consent to publish it.
+
+Separate:
+
+Private photo delivery
+
+Internal service documentation
+
+Website marketing
+
+Social-media publication
+
+Third-party sponsor use
+
+20. Partner assignment
+
+Every event should have one designated accountable owner.
+
+Grooming camp
+
+Lead groomer
+
+Grooming partners
+
+Event coordinator
+
+Cleaning support
+
+Emergency veterinary contact
+
+Clinical camp
+
+Lead registered veterinarian
+
+Additional vets/assistants
+
+Clinical-record owner
+
+Cold-chain owner
+
+Waste-management owner
+
+Event coordinator
+
+Training workshop
+
+Lead trainer
+
+Assistant
+
+Pet-screening owner
+
+Safety observer
+
+Adoption event
+
+Shelter/rescue lead
+
+Adoption-screening owner
+
+Animal handlers
+
+Veterinary contact
+
+Photo day
+
+Photographer
+
+Pet handler
+
+Consent/data owner
+
+Event coordinator
+
+“Everyone is responsible” usually means no one is accountable.
+
+21. Day-of-event operating schedule
+
+Ninety minutes before
+
+Partner check-in
+
+Credential verification
+
+Equipment inspection
+
+Venue zoning
+
+Power and water test
+
+Emergency route confirmed
+
+Clinical cold-chain check where applicable
+
+QR and payment test
+
+Waste containers installed
+
+Staff briefing
+
+At customer arrival
+
+Booking verified
+
+Pet identity confirmed
+
+Risk information reviewed
+
+Consent confirmed
+
+Payment status checked
+
+Pet directed to the correct zone
+
+During the event
+
+Track delays
+
+Update residents
+
+Prevent crowding
+
+Maintain separation
+
+Log complaints
+
+Document incidents
+
+Monitor partner capacity
+
+Closing
+
+Final service records completed
+
+Clinical inventory reconciled
+
+Waste removed
+
+Venue cleaned
+
+Lost-property check
+
+Incident review
+
+Partner payout data finalised
+
+RWA representative signs completion
+
+22. CRM and follow-up system
+
+Required CRM fields
+
+Society
+
+Camp type
+
+Event date
+
+Pet profile
+
+Services requested
+
+Service completed
+
+Acquisition channel
+
+Partner
+
+Customer rating
+
+Follow-up date
+
+Consent status
+
+First booking
+
+Repeat booking
+
+Revenue
+
+Contribution
+
+Follow-up schedule
+
+Immediately
+
+Receipt
+
+Service report
+
+Booking confirmation
+
+Relevant care instructions
+
+Within 24 hours
+
+Satisfaction check
+
+Complaint link
+
+Health follow-up where appropriate
+
+Within three to seven days
+
+Relevant next service
+
+Not a generic catalogue
+
+Within 14 days
+
+Reminder for interested but unbooked qualified leads
+
+Within 30 days
+
+Repeat conversion measurement
+
+Society event report
+
+Do not send grooming, taxi, food, training and boarding promotions to every attendee.
+
+Use intent-based follow-up.
+
+23. Cross-sell rules
+
+### Table 68
+
+| Camp activity | Relevant follow-up |
+| --- | --- |
+| Grooming completed | Rebooking or grooming plan |
+| Skin concern observed | Veterinary booking |
+| Vaccination completed | Next reminder and health record |
+| Vet check finds leash problem | Training assessment |
+| Puppy workshop attended | Puppy programme |
+| Diwali session attended | Sitting, boarding or vet support |
+| Adoption inquiry | Shelter-led adoption process |
+| Photo day attendee | Referral or optional service credit |
+
+Avoid:
+
+Selling medical products after every vet check
+
+Turning a free checkup into pressure selling
+
+Recommending training for every dog
+
+Claiming a groomer identified a disease
+
+Selling clinical treatment based on non-clinical observations
+
+24. Camp economics
+
+Revenue sources
+
+Commercial services
+
+Grooming booking commission
+
+Training workshop tickets
+
+Photography packages
+
+Product-sponsor fees
+
+Society revenue
+
+Fixed event fee
+
+Monthly society subscription
+
+Resident-benefit programme
+
+Partner revenue
+
+Fixed technology or event-management fee
+
+Non-clinical marketplace commission
+
+Sponsorship
+
+Pet-food brands
+
+Accessory companies
+
+Developers
+
+Veterinary companies, with clinical independence protected
+
+Revenue restrictions
+
+For clinical camps:
+
+Do not accept commissions tied to specific diagnoses.
+
+Do not pay vets per referral generated.
+
+Do not rank clinics based on payment.
+
+Do not incentivise unnecessary tests, medicines or vaccines.
+
+Disclose sponsorships.
+
+25. Full camp profit-and-loss template
+
+### Table 69
+
+| Line item | Amount |
+| --- | --- |
+| Grooming/service GMV | ₹ |
+| Workshop ticket revenue | ₹ |
+| Society event fee | ₹ |
+| Sponsorship revenue | ₹ |
+| Platform booking fees | ₹ |
+| Total gross revenue | ₹ |
+| Partner payouts | ₹ |
+| Payment processing | ₹ |
+| Discounts | ₹ |
+| Venue/RWA cost | ₹ |
+| Event staffing | ₹ |
+| Marketing | ₹ |
+| Equipment/logistics | ₹ |
+| Cleaning | ₹ |
+| Refunds | ₹ |
+| Incident reserve | ₹ |
+| Direct camp contribution | ₹ |
+| Thirty-day repeat contribution | ₹ |
+| Ninety-day repeat contribution | ₹ |
+| Total cohort contribution | ₹ |
+
+A camp may be acceptable with low direct contribution when its 30- or 90-day customer cohort is highly profitable. That exception should be documented rather than assumed.
+
+26. Camp risks
+
+### Table 70
+
+| Risk | Mitigation |
+| --- | --- |
+| Dog bite | Screening, fixed leash, distance, trained handlers |
+| Pet escape | Secure entry, carriers, double-door process |
+| Grooming injury | Verified groomers, SOP, stop-work authority |
+| Vaccine reaction | Vet-led camp, observation, emergency protocol |
+| Cold-chain failure | Temperature logs, carriers, named owner |
+| Cross-infection | Time slots, cleaning, no symptomatic pets |
+| Partner no-show | Backup partners |
+| Overcrowding | Prebooking and capacity limits |
+| Children approaching pets | Controlled interaction rules |
+| Data misuse | Purpose-specific consent and access controls |
+| RWA complaint | One escalation owner and written rules |
+| Hidden charges | Final pricing before service |
+| Animal stress | Quiet zones, no forced interaction |
+| Adoption failure | Shelter screening and post-adoption support |
+| Misleading claims | Approved communications and clinical review |
+
+27. Complaint and incident handling
+
+Complaint categories
+
+Partner delay
+
+Service quality
+
+Unexpected fee
+
+Poor cleanup
+
+Unsafe handling
+
+Medical concern
+
+Data/privacy issue
+
+RWA or security complaint
+
+Animal escape
+
+Bite or injury
+
+Marketing complaint
+
+The Consumer Protection E-Commerce Rules require e-commerce entities to maintain a grievance-redressal mechanism and identify the responsible grievance officer. Your camp bookings should therefore connect to the same formal complaint and escalation system as the main platform.
+
+Incident response
+
+Stop the affected activity.
+
+Secure the animal and people.
+
+Provide appropriate emergency assistance.
+
+Notify the pet parent.
+
+Contact the clinical or emergency partner.
+
+Record facts and evidence.
+
+Notify the RWA when relevant.
+
+Suspend the responsible partner where required.
+
+Complete root-cause analysis.
+
+Implement corrective action before the next event.
+
+28. Society camp KPIs
+
+Acquisition
+
+Residents reached
+
+Event registrations
+
+Qualified leads
+
+Booking-ready leads
+
+New paying customers
+
+Customer acquisition cost
+
+Event execution
+
+Attendance rate
+
+Slot utilisation
+
+On-time start rate
+
+Partner cancellation
+
+Waiting time
+
+Service completion
+
+Gate success
+
+Commercial
+
+GMV
+
+Platform revenue
+
+Event contribution
+
+Thirty-day cohort contribution
+
+Revenue per attendee
+
+Revenue per qualified lead
+
+Conversion
+
+Qualified lead to paid booking
+
+First booking to repeat booking
+
+Add-on adoption
+
+Workshop to assessment
+
+Assessment to programme
+
+Grooming rebooking
+
+Quality
+
+Average rating
+
+Verified reviews
+
+Complaint rate
+
+Refund rate
+
+Safety incidents
+
+RWA satisfaction
+
+Partner rating
+
+29. Camp success thresholds
+
+Run at least three to five camps before declaring the model proven.
+
+### Table 71
+
+| Requirement | Recommended target |
+| --- | --- |
+| Societies tested | 3+ |
+| Camp types tested | 2–3 |
+| Qualified leads | 100+ |
+| Paid bookings generated | 40+ |
+| Qualified-lead conversion | 20%+ |
+| Repeat rate | 25–35% |
+| Average rating | 4.6+ |
+| Complaint/refund rate | Below 5% |
+| Serious preventable incidents | 0 |
+| Partner cancellation | Below 5% |
+| RWA satisfaction | 4.5+/5 |
+| Commercial camps contribution-positive | Yes |
+| Clinical-record completion | 95%+ |
+| Gate protocol working | Yes |
+| Backup partner coverage | Yes |
+
+Scale only when
+
+Two separate societies produce acceptable results.
+
+The camp is not dependent on one exceptional partner.
+
+Conversion remains healthy without unlimited discounts.
+
+Repeat services are measurable.
+
+The RWA is willing to host another event.
+
+Event operations do not damage core walking or sitting service quality.
+
+30. Final society camp report format
+
+Phase 8 Society Camp Report
+
+Project name:City:Society:Camp type:Date:Primary objective:Partners:RWA contact:
+
+Event funnel
+
+### Table 72
+
+| Metric | Result |
+| --- | --- |
+| Residents reached |  |
+| Registrations |  |
+| Qualified leads |  |
+| Bookings |  |
+| Attendees |  |
+| Services completed |  |
+| New paying customers |  |
+| Repeat bookings within 30 days |  |
+
+Operations
+
+### Table 73
+
+| Metric | Result |
+| --- | --- |
+| Available slots |  |
+| Slot utilisation |  |
+| Average waiting time |  |
+| Partner cancellations |  |
+| Gate failures |  |
+| Complaints |  |
+| Safety incidents |  |
+
+Financials
+
+### Table 74
+
+| Metric | Result |
+| --- | --- |
+| GMV | ₹ |
+| Platform revenue | ₹ |
+| Partner payouts | ₹ |
+| Direct camp costs | ₹ |
+| Camp contribution | ₹ |
+| Thirty-day follow-up revenue | ₹ |
+| Thirty-day cohort contribution | ₹ |
+
+Quality
+
+### Table 75
+
+| Metric | Result |
+| --- | --- |
+| Average rating |  |
+| Verified reviews |  |
+| Complaint rate |  |
+| Refund rate |  |
+| RWA rating |  |
+
+Decision
+
+Repeat unchanged
+
+Repeat with modifications
+
+Change society
+
+Change partner
+
+Change pricing
+
+Stop this camp type
+
+Convert society into recurring partner
+
+Final recommendation
+
+Approve the following order
+
+Grooming society day
+
+Vaccination or preventive-health camp
+
+Puppy-training workshop
+
+Diwali pet-safety session
+
+Pet photo day
+
+Adoption awareness event
+
+Best initial combination
+
+Run two separate events:
+
+Event A: Commercial
+
+Prebooked grooming society day
+
+Event B: Trust and acquisition
+
+Vet-led vaccination/checkup camp with puppy-parent education
+
+Do not combine full grooming, vaccinations and group training in one crowded event.
+
+Correct win condition
+
+A society camp should generate qualified leads, paid services, repeat bookings and RWA trust at an acceptable acquisition cost—without compromising animal welfare, clinical governance or resident safety.
+
+Final decision
+
+Society Camps: GO
+
+The model becomes defensible when camps are:
+
+Prebooked
+
+Capacity-controlled
+
+Partner-verified
+
+Clinically governed where necessary
+
+Financially measured
+
+Privacy-safe
+
+Connected to repeat service workflows
+
+The real asset is not the one-day event.
+
+The real asset is the recurring, trusted pet-care relationship created inside the society after the camp ends.
+
+Phase 8 Service Model 5: Pet Taxi 🚕🐾
+
+End-to-End Partner-Based Beta, Safety, Compliance and Unit-Economics Blueprint
+
+Executive verdict
+
+Pet taxi should remain a manual, partner-operated beta during early Phase 8.
+
+Launch only:
+
+In one city cluster
+
+With a small verified commercial-vehicle pool
+
+For existing customers
+
+For prebooked vet, grooming and boarding trips
+
+With owner-accompanied rides as the default
+
+With human operations monitoring every trip
+
+Do not initially position it as:
+
+An on-demand taxi network
+
+A veterinary ambulance
+
+An interstate relocation service
+
+A fully autonomous pet-transfer service
+
+A substitute for emergency medical care
+
+India has a visible transport gap because ordinary cab drivers may refuse animals, while specialist operators increasingly offer pet-friendly vet, grooming, boarding and relocation trips. Demand exists, but the category is still operationally fragmented.
+
+The recommended positioning is:
+
+Prebooked, trackable pet-friendly transport through verified commercial drivers and animal-safe vehicles.
+
+1. Why pet taxi is operationally dangerous
+
+Pet taxi combines three separate risk systems:
+
+Commercial road transport
+
+Animal custody
+
+Marketplace coordination
+
+A normal taxi error can cause a delayed appointment. A pet-taxi error can cause:
+
+Pet escape
+
+Heat distress
+
+Bite incidents
+
+Injury during braking
+
+Missed veterinary treatment
+
+Delivery to the wrong person
+
+Lost medical records
+
+Disputes about the pet’s condition
+
+Liability between driver, handler, platform and customer
+
+Therefore:
+
+It is a controlled chain-of-custody service.
+
+2. The hidden legal issue: vehicle and platform classification
+
+Vehicle permit
+
+Section 66 of the Motor Vehicles Act generally prohibits using a motor vehicle as a transport vehicle in a public place except in accordance with an appropriate permit. The Act separately provides for registration, fitness certificates, contract-carriage permits and other state-administered transport requirements.
+
+Accordingly, do not use privately registered “white-board” cars for paid pet transport merely because the owner is willing to accept a booking.
+
+Require:
+
+Valid vehicle registration
+
+Appropriate commercial/transport classification
+
+Applicable contract-carriage or other permit
+
+Valid fitness certificate where required
+
+Applicable state tax
+
+Pollution certificate
+
+Valid insurance
+
+Driver licence valid for the vehicle class
+
+Any locally required badge or public-service authorisation
+
+The exact classification of a pet-only ride—particularly where no human passenger travels—may depend on the vehicle model, contractual arrangement and state transport rules. Obtain a written transport-law opinion or RTO clarification for the launch city before commercial rollout.
+
+Platform or aggregator status
+
+If your app onboards drivers or vehicles, matches transport requests and controls fares, payments or trip allocation, state motor-vehicle aggregator licensing may become relevant. The Union government issued Motor Vehicle Aggregator Guidelines in 2025, but implementation and licensing remain state-dependent. The official Parivahan portal currently lists those guidelines for state transport administrations.
+
+A manual partnership does not automatically remove regulatory exposure. Section 93 of the Motor Vehicles Act also addresses licensing of agents soliciting customers for public-service vehicles or handling goods-carriage business.
+
+Before the beta, document whether the company is acting as:
+
+A transport aggregator
+
+A booking agent
+
+A technology provider
+
+A managed service provider
+
+A reseller of transport
+
+A referral platform
+
+That decision affects licensing, invoices, driver payouts, liability and taxes.
+
+Vehicle insurance
+
+Section 146 of the Motor Vehicles Act requires motor vehicles used in public places to carry qualifying third-party insurance.
+
+Third-party motor insurance should not be assumed to cover:
+
+Injury or death of the transported pet
+
+Veterinary treatment costs
+
+Pet escape
+
+Care, custody and control liability
+
+Driver mishandling
+
+Lost documents or accessories
+
+Platform contractual liability
+
+Obtain written confirmation from the insurer and consider separate:
+
+Commercial motor cover
+
+Public liability
+
+Pet-in-transit cover
+
+Care, custody and control cover
+
+Employee/handler accident cover
+
+Platform professional or operational liability
+
+3. Animal-transport rules
+
+The Transport of Animals Rules expressly apply to dogs and cats transported by road. Their text requires a valid veterinary health certificate to accompany each consignment, prohibits transporting dogs or cats in advanced pregnancy, and imposes additional controls for aggressive animals and long journeys.
+
+For short-distance road transport in a public vehicle, Rule 9 states that dogs or cats should be placed in a cage inside the vehicle—not on its roof—that the vehicle should minimise sudden stops and shocks, and that an attendant should remain present during transit.
+
+This creates an important compliance question because many modern pet-cab businesses advertise harness-based or “cage-free” transport.
+
+Conservative launch policy
+
+Until city-specific legal advice confirms the acceptable implementation:
+
+Cats must travel in a secured, appropriately sized carrier.
+
+Unaccompanied dogs should travel in an appropriate secured crate.
+
+Every trip should have an owner or trained attendant.
+
+Crates must be ventilated, secure and anchored.
+
+Aggressive animals require individual containment and specialist review.
+
+Sedation must never be initiated by the platform or driver; the rules place administration of sedatives in extreme cases with a qualified veterinary professional.
+
+For owner-accompanied dogs using a restraint harness rather than a crate, obtain an explicit local legal and insurance position before making that your standard policy.
+
+4. When the service should be added
+
+Approve the beta only when all of the following are true:
+
+### Table 76
+
+| Requirement | Minimum status |
+| --- | --- |
+| Veterinary partners | 2+ active clinics |
+| Grooming partners | 2+ active partners |
+| Boarding partners | Controlled and verified |
+| Repeat customers | Existing trusted customer base |
+| Drivers | 3–5 verified commercial drivers |
+| Vehicles | 3+ approved pet-safe vehicles |
+| Tracking | Live-location system tested |
+| Emergency routing | At least one verified clinic per zone |
+| Support | Human operator during every beta ride |
+| Insurance | Written coverage review completed |
+| Legal classification | State/city review completed |
+| Incident SOP | Tested through simulations |
+
+Pet taxi should solve demand created by your existing marketplace. It should not be launched as a separate cold-start marketplace.
+
+5. Recommended service order
+
+Stage 1: Owner-accompanied local rides
+
+The owner travels with the pet.
+
+Best uses:
+
+Veterinary appointments
+
+Grooming visits
+
+Boarding drop-off
+
+Boarding pickup
+
+This is the lowest-risk model because the owner:
+
+Controls the pet
+
+Confirms its normal behaviour
+
+Communicates with the veterinarian
+
+Verifies pickup and drop-off
+
+Responds to distress
+
+Launch this first.
+
+Stage 2: Owner-accompanied round trip with waiting
+
+The driver:
+
+Collects owner and pet.
+
+Travels to the vet or groomer.
+
+Waits for a defined period.
+
+Returns them home.
+
+This offers stronger economics than two separate trips and avoids uncertain return availability.
+
+Stage 3: Handler-accompanied transport
+
+A trained handler travels with the pet when the owner cannot attend.
+
+Use only for:
+
+Existing customers
+
+Known pets
+
+Routine visits
+
+Written owner authorisation
+
+Clinics willing to accept delegated handover
+
+The handler must not independently approve:
+
+Diagnostics
+
+Treatment
+
+Medication
+
+Surgery
+
+Vaccination
+
+Additional expenses beyond the owner’s authorisation
+
+Stage 4: Unaccompanied pet transfer
+
+This is a high-risk chain-of-custody service.
+
+Use only after:
+
+At least 100 safe rides
+
+A reliable handler pool
+
+Secure restraint standards
+
+Two-party handover controls
+
+Strong pet-in-transit insurance
+
+Tested incident response
+
+Do not let the driver perform both driving and active animal handling during travel.
+
+Stage 5: Airport and intercity relocation
+
+Treat this as a separate product line.
+
+It may require:
+
+Airline or railway procedures
+
+Health certificates
+
+Vaccination documentation
+
+Travel crates
+
+Destination rules
+
+Longer-duration care
+
+Interstate permits
+
+Airport timing and handover
+
+Specialist relocation partners
+
+Do not include “airport relocation” inside the ordinary five-kilometre city-taxi workflow.
+
+Stage 6: Emergency transport
+
+Do not market the initial beta as a pet ambulance.
+
+Use the label:
+
+Priority veterinary transport
+
+Only call it an ambulance when the service actually has:
+
+Required approvals
+
+Clinical equipment
+
+Appropriate staff
+
+Veterinary operating protocols
+
+Continuous emergency availability
+
+Documented service standards
+
+Recent reporting continues to show gaps in round-the-clock veterinary and animal-ambulance availability in some Indian cities. That makes emergency routing valuable, but it also makes false promises especially dangerous.
+
+6. Recommended MVP service catalogue
+
+### Table 77
+
+| Service | Beta status |
+| --- | --- |
+| Owner + pet: one-way vet trip | Launch |
+| Owner + pet: round trip | Launch |
+| Owner + pet: grooming trip | Launch |
+| Boarding pickup/drop with owner | Launch |
+| Driver waiting package | Launch |
+| Handler-accompanied routine visit | Controlled pilot |
+| Pet-only grooming transfer | Defer |
+| Pet-only boarding transfer | Defer |
+| Emergency priority dispatch | Limited, preverified zones |
+| Intercity relocation | External specialist partner |
+| Airport documentation/relocation | Separate future service |
+| Multi-pet pooled taxi | Do not launch |
+
+7. End-to-end booking flow
+
+Customer selects Pet Taxi
+
+↓
+
+Chooses pet profile
+
+↓
+
+Selects trip purpose
+
+↓
+
+Enters pickup, destination and appointment time
+
+↓
+
+Declares owner-accompanied or handler-required
+
+↓
+
+Completes transport-risk form
+
+↓
+
+System checks service eligibility
+
+↓
+
+Fare and terms displayed
+
+↓
+
+Commercial driver and vehicle matched
+
+↓
+
+Human operations team verifies assignment
+
+↓
+
+Customer pays or authorises payment
+
+↓
+
+Driver arrives and checks in
+
+↓
+
+Pet, restraint and documents verified
+
+↓
+
+Pickup OTP completed
+
+↓
+
+Live ride tracking begins
+
+↓
+
+Destination handover verified
+
+↓
+
+Drop OTP and condition confirmation
+
+↓
+
+Photo/document proof uploaded
+
+↓
+
+Return trip or ride completion
+
+↓
+
+Customer rating and incident check
+
+8. Transport-risk intake form
+
+Pet profile
+
+Collect:
+
+Species
+
+Breed
+
+Age
+
+Weight
+
+Sex
+
+Pregnancy status
+
+Crate dimensions
+
+Mobility limitations
+
+Veterinary conditions
+
+Current medication
+
+Allergies
+
+Vaccination status
+
+Travel history
+
+Behaviour
+
+Fear of vehicles
+
+Motion sickness
+
+Escape attempts
+
+Bite or scratch history
+
+Reactivity to strangers
+
+Reactivity to dogs
+
+Sensitivity to crates
+
+Sensitivity to handling
+
+Muzzle history
+
+Separation distress
+
+Trip information
+
+Purpose
+
+Destination
+
+Appointment time
+
+Expected duration
+
+Owner accompanying
+
+Handler needed
+
+Waiting required
+
+Return trip
+
+Recipient name
+
+Emergency clinic preference
+
+Equipment
+
+Customer provides crate
+
+Platform provides crate
+
+Harness available
+
+Leash available
+
+Muzzle prescribed/appropriately conditioned
+
+Mobility ramp required
+
+Waterproof liner required
+
+9. Trip eligibility rules
+
+Green: standard ride
+
+Owner accompanies pet
+
+Calm or known pet
+
+Local journey
+
+Secure restraint available
+
+No acute medical problem
+
+Confirmed destination
+
+Amber: enhanced controls
+
+Known travel anxiety
+
+Large dog
+
+Senior pet
+
+Mild mobility limitation
+
+History of motion sickness
+
+Handler required
+
+Long waiting period
+
+Requires an experienced driver, larger vehicle or handler.
+
+Orange: specialist approval
+
+Bite history
+
+Severe crate distress
+
+Recent surgery
+
+Significant mobility impairment
+
+Pet-only transport
+
+Multiple pets
+
+Long-distance trip
+
+Red: decline or direct clinical coordination
+
+Breathing difficulty
+
+Collapse
+
+Severe bleeding
+
+Active seizure
+
+Uncontrolled vomiting
+
+Heatstroke signs
+
+Uncontained aggressive animal
+
+Suspected contagious disease
+
+Advanced pregnancy
+
+No safe restraint
+
+No authorised recipient
+
+Vehicle climate control unavailable
+
+The platform’s risk classification is operational—not a diagnosis.
+
+10. Driver verification
+
+Documents
+
+Require:
+
+Government ID
+
+Address verification
+
+Valid driving licence
+
+Commercial vehicle relationship
+
+Vehicle registration
+
+Applicable permit
+
+Fitness certificate
+
+Insurance
+
+Pollution certificate
+
+State-required badge or authorisation
+
+Bank and tax details
+
+Police/background verification where lawful
+
+Performance review
+
+Check:
+
+Driving history declaration
+
+Accident history
+
+Previous customer complaints
+
+Alcohol/drug violation declaration
+
+Navigation competence
+
+Punctuality
+
+Communication
+
+Ability to follow custody procedures
+
+Animal-handling training
+
+Drivers should understand:
+
+Safe approach
+
+Escape prevention
+
+Crate positioning
+
+Signs of obvious distress
+
+When not to touch a pet
+
+Bite avoidance
+
+Owner instructions
+
+Emergency escalation
+
+Vehicle cleaning
+
+Documentation
+
+A driver is not automatically a pet handler.
+
+11. Driver versus handler responsibility
+
+### Table 78
+
+| Task | Driver | Handler |
+| --- | --- | --- |
+| Operate vehicle | ✓ |  |
+| Navigation and traffic safety | ✓ |  |
+| Monitor vehicle climate | ✓ | Assist |
+| Secure crate before departure | Verify | ✓ |
+| Actively calm or monitor pet |  | ✓ |
+| Manage leash at pickup/drop | Limited | ✓ |
+| Communicate with vet/groomer | Basic logistics | ✓ |
+| Authorise medical decisions |  | Never without owner consent |
+| Diagnose distress | No | No |
+| Contact emergency vet | ✓ | ✓ |
+
+For unaccompanied trips, do not expect the driver to safely manage a loose or distressed animal while also driving.
+
+12. Vehicle standards
+
+Minimum vehicle requirements
+
+Working air conditioning
+
+Functional ventilation
+
+Clean interior
+
+Non-slip floor or mat
+
+Washable seat protection
+
+Secure crate anchoring points
+
+Child locks
+
+No exposed sharp edges
+
+No loose equipment
+
+Adequate pet space
+
+GPS-capable phone or device
+
+Fire extinguisher
+
+Human first-aid kit
+
+Animal emergency contact card
+
+Water
+
+Towels
+
+Waste bags
+
+Cleaning supplies
+
+The Transport of Animals Rules require cages or crates to provide adequate space, ventilation and safety, and prohibit dangerous construction such as exposed edges.
+
+Prohibited vehicles
+
+Two-wheelers
+
+Open loading beds
+
+Unventilated cargo compartments
+
+Vehicles without functional climate control in hot weather
+
+Vehicles carrying hazardous materials
+
+Vehicles with unsecured tools or luggage
+
+Vehicles with invalid documents
+
+Vehicles not authorised for paid transport
+
+No pooling
+
+Do not combine unrelated pets or passengers in the same ride during the beta.
+
+This reduces:
+
+Disease exposure
+
+Conflict between animals
+
+Pickup delays
+
+Escape opportunities
+
+Customer privacy concerns
+
+Liability complexity
+
+13. Restraint policy
+
+Cats
+
+Secure species-appropriate carrier
+
+Carrier anchored inside vehicle
+
+No opening during transit
+
+No travel in arms
+
+No loose cat inside vehicle
+
+Small dogs
+
+Secured crate is preferred.
+
+Crate must not slide or tip.
+
+Medium and large dogs
+
+Use the legally and operationally approved system for the city:
+
+Appropriately sized secured crate, or
+
+Approved harness/restraint only where legal and insurer-approved
+
+Reactive animals
+
+Individual transport
+
+Specialist handler
+
+Secure containment
+
+Warning visible to authorised handlers
+
+No public waiting area
+
+Preplanned pickup and drop
+
+Sedation
+
+The driver, handler and platform must never recommend or administer a sedative. Any sedation decision belongs to a qualified veterinarian.
+
+14. Pickup chain of custody
+
+At pickup:
+
+Driver verifies booking ID.
+
+Owner verifies driver and vehicle.
+
+Pet identity is confirmed.
+
+Current condition is documented.
+
+Restraint is inspected.
+
+Destination is reconfirmed.
+
+Recipient is verified.
+
+Essential documents are sealed or digitally shared.
+
+Owner completes pickup OTP.
+
+Live tracking begins.
+
+Pickup record
+
+Store:
+
+Time
+
+GPS location
+
+Driver
+
+Handler
+
+Vehicle
+
+Pet
+
+Visible condition
+
+Restraint type
+
+Documents received
+
+Accessories received
+
+Owner authorisation
+
+Do not rely only on a photograph. Use a structured checklist.
+
+15. Drop and handover protocol
+
+At destination:
+
+Driver enters the approved drop area.
+
+Authorised recipient is contacted.
+
+Recipient provides OTP or secure confirmation.
+
+Pet is removed only after the recipient is ready.
+
+Pet condition is checked.
+
+Documents and accessories are handed over.
+
+Recipient signs digitally.
+
+A time-stamped proof is recorded.
+
+Customer is notified.
+
+Never
+
+Leave the pet at a gate
+
+Hand the pet to an unverified guard
+
+Tie the pet outside
+
+Leave the pet inside an unattended vehicle
+
+Complete the trip before custody changes
+
+Use a photograph as the sole identity check
+
+16. Live-tracking features
+
+Customer interface should show:
+
+Driver first name and photo
+
+Vehicle registration
+
+Vehicle photo
+
+Handler details
+
+Pickup ETA
+
+Live map
+
+Trip status
+
+Destination ETA
+
+Support button
+
+Emergency contact button
+
+Waiting-time status
+
+Handover confirmation
+
+Do not expose the driver’s permanent personal phone number. Use masked communication.
+
+Live GPS, pickup addresses, customer contact details and health information are sensitive personal data linked to the owner. India’s DPDP Rules were notified in 2025 with phased commencement, so the platform should implement purpose-specific access, retention controls and a user grievance channel from launch.
+
+17. Emergency protocol
+
+Vehicle accident
+
+Driver stops safely.
+
+Human safety is assessed.
+
+Pet containment is checked.
+
+Emergency services are contacted where required.
+
+Operations team is informed.
+
+Customer is informed.
+
+Alternative transport is dispatched.
+
+Nearest suitable vet is contacted.
+
+Evidence and incident details are preserved.
+
+Pet distress
+
+Possible warning observations include:
+
+Collapse
+
+Severe breathing difficulty
+
+Repeated vomiting
+
+Unresponsiveness
+
+Seizure
+
+Extreme overheating
+
+Uncontrolled bleeding
+
+The driver or handler should not diagnose.
+
+Action:
+
+Stop in a safe location.
+
+Contact the designated vet.
+
+Redirect to physical veterinary care.
+
+Notify owner.
+
+Follow the owner’s emergency authorisation where possible.
+
+Record all actions.
+
+Escape
+
+Do not chase into traffic.
+
+Secure other animals and vehicle doors.
+
+Notify operations and owner immediately.
+
+Record last location.
+
+Activate local search protocol.
+
+Notify society security or relevant local teams.
+
+Keep one accountable incident commander.
+
+Preserve GPS and handover records.
+
+Bite
+
+Secure the animal.
+
+Arrange human medical care.
+
+Notify the owner.
+
+Record circumstances and injury.
+
+Suspend further transport pending review.
+
+Review vaccination and behavioural information.
+
+18. Emergency pricing
+
+The proposal suggests a higher “premium emergency fee.” That requires modification.
+
+Do not use uncontrolled emergency surge pricing
+
+A distressed pet parent has limited ability to compare prices.
+
+Use a transparent fee schedule:
+
+Standard base fare
+
+Per-kilometre charge
+
+After-hours dispatch fee
+
+Priority driver mobilisation fee
+
+Handler fee
+
+Waiting charge
+
+Tolls and parking
+
+The amount must be displayed before booking wherever practical.
+
+Do not charge based on:
+
+Perceived medical severity
+
+Customer panic
+
+Lack of alternative clinics
+
+Treatment cost
+
+Outcome
+
+A priority transport fee pays for availability—not for clinical care or a guaranteed outcome.
+
+19. Pricing model
+
+Recommended formula
+
+Current reference points
+
+One Bengaluru operator currently advertises ₹500 for up to five kilometres, ₹30 per additional kilometre, ₹500 for a handler, and waiting charges of ₹150 for 30 minutes or ₹300 for 60 minutes. Treat this as a competitor reference—not a validated market average.
+
+Other advertised pet-friendly taxi prices vary substantially by vehicle, city and journey format, reinforcing the need for local pilot pricing rather than a single national fare.
+
+Suggested beta pricing hypothesis
+
+### Table 79
+
+| Item | Test range |
+| --- | --- |
+| Base fare, first 4–5 km | ₹499–₹799 |
+| Additional distance | ₹25–₹40/km |
+| Driver waiting | ₹150–₹300 per 30 minutes |
+| Trained handler | ₹399–₹799 |
+| After-hours dispatch | ₹299–₹599 |
+| Large-vehicle upgrade | ₹299–₹699 |
+| Cleaning due to disclosed accident/motion sickness | Predeclared fixed fee |
+| Tolls and parking | Actual cost |
+
+Do not advertise a ₹99 service fee if it is then combined with an undisclosed commission, cleaning charge and compulsory handling fee.
+
+20. Revenue model
+
+Model A: Commission
+
+10–20% of ride value
+
+Works when:
+
+Driver receives sufficient net earnings
+
+Platform does not fund the entire discount
+
+Support is lightweight
+
+Ride frequency is high
+
+Local transport/aggregator requirements permit the arrangement
+
+Model B: Fixed coordination fee
+
+₹99–₹299
+
+Works when:
+
+Transport partner sets the fare
+
+Platform provides booking and tracking
+
+Driver collects or receives the transport amount
+
+Fee is separately disclosed
+
+Model C: Bundle margin
+
+Examples:
+
+Vet round trip plus 60-minute waiting
+
+Grooming trip plus return pickup
+
+Boarding pickup and future return
+
+Four-ride monthly care bundle
+
+Recommended beta model
+
+Use:
+
+This makes unit economics easier to audit and avoids hiding the platform’s value.
+
+21. Illustrative unit economics
+
+Assume an owner-accompanied vet round trip:
+
+### Table 80
+
+| Item | Amount |
+| --- | --- |
+| Customer fare | ₹1,099 |
+| Driver payout | ₹750 |
+| Platform gross revenue | ₹349 |
+| Payment cost | ₹22 |
+| Human operations allocation | ₹55 |
+| Incident/insurance provision | ₹35 |
+| Discount allocation | ₹50 |
+| Approximate contribution | ₹187 |
+
+This becomes unattractive when:
+
+The driver travels far to pickup
+
+The customer receives a large discount
+
+Waiting time is underestimated
+
+The return trip is cancelled
+
+Operations must manually resolve every booking
+
+The trip produces a refund
+
+Track contribution per trip—not only gross booking value.
+
+22. Bundle design
+
+Vet round-trip package
+
+Includes:
+
+Pickup
+
+Clinic transport
+
+Defined waiting allowance
+
+Return home
+
+Live tracking
+
+Does not include:
+
+Veterinary fees
+
+Medicine
+
+Diagnostics
+
+Unlimited waiting
+
+Grooming trip package
+
+Initially owner-accompanied.
+
+Later, handler-accompanied transfer may be offered where the groomer, customer and platform have a documented custody arrangement.
+
+Boarding transfer
+
+Require:
+
+Boarding booking ID
+
+Vaccination documents
+
+Boarding-partner acceptance
+
+Pet belongings checklist
+
+Recipient OTP
+
+Monthly transport plan
+
+For customers with recurring care:
+
+Four local rides
+
+Priority scheduling
+
+Fixed service zone
+
+Discounted waiting
+
+No emergency guarantee
+
+23. Cancellation and waiting policy
+
+Customer cancellation
+
+### Table 81
+
+| Timing | Suggested treatment |
+| --- | --- |
+| More than 12–24 hours | Full refund or free reschedule |
+| Driver not assigned | Full refund |
+| Driver assigned but not travelling | Small cancellation fee |
+| Driver travelling | Pickup/mobilisation fee |
+| Driver arrived | Base fare charge |
+| Medical emergency changes destination | Human review |
+
+Driver cancellation
+
+Recorded even if replaced
+
+Immediate backup search
+
+Customer receives revised ETA
+
+No customer penalty
+
+Repeated cancellation lowers driver status
+
+Critical appointment failures trigger suspension review
+
+Waiting
+
+First 10–15 minutes may be included.
+
+Paid waiting starts after the included period.
+
+Customer receives a warning before charges begin.
+
+Waiting charges stop while delay is caused by the driver.
+
+Clinic waiting should be sold as a package where possible.
+
+24. Cleaning and biosecurity
+
+After each ride:
+
+Remove hair and waste
+
+Replace washable covers
+
+Clean surfaces
+
+Disinfect crates and contact points
+
+Dry the vehicle
+
+Record cleaning completion
+
+Check for forgotten medication or documents
+
+Enhanced cleaning is required after:
+
+Vomiting
+
+Urination
+
+Defecation
+
+Suspected infectious illness
+
+Parasite contamination
+
+Do not carry another animal before required cleaning is completed.
+
+If infectious disease is suspected, the driver should stop accepting bookings and obtain operational guidance from the veterinary partner.
+
+25. Customer protection
+
+Display before payment:
+
+Driver/partner identity
+
+Vehicle type
+
+Full fare
+
+Waiting rules
+
+Cancellation rules
+
+Restraint requirements
+
+Handler responsibility
+
+Emergency limitations
+
+Insurance limitations
+
+Complaint process
+
+Refund process
+
+The Consumer Protection E-Commerce Rules require an adequate grievance-redressal mechanism for online platforms.
+
+Claims to avoid
+
+“Guaranteed emergency rescue”
+
+“Pet ambulance” without clinical capability
+
+“100% safe”
+
+“Vet-trained driver” unless precisely substantiated
+
+“Fully insured” without naming the coverage
+
+“Any pet accepted”
+
+“Cage-free transport” without legal and safety review
+
+“Instant service” during a manual beta
+
+“Door-to-door relocation” when only a city ride is provided
+
+26. Technology requirements
+
+Customer app
+
+Trip purpose
+
+Pet profile
+
+Risk form
+
+Fare quote
+
+Driver/vehicle profile
+
+Live location
+
+Masked communication
+
+Pickup OTP
+
+Drop OTP
+
+Waiting timer
+
+Support
+
+Incident button
+
+Ride report
+
+Rating
+
+Driver app
+
+Booking request
+
+Pet risk summary
+
+Equipment requirements
+
+Navigation
+
+Gate instructions
+
+Pickup checklist
+
+OTP
+
+Live tracking
+
+Waiting control
+
+Handover checklist
+
+Incident escalation
+
+Earnings
+
+Admin dashboard
+
+Driver and vehicle verification
+
+Document expiry
+
+Trip monitoring
+
+Risk flags
+
+Manual assignment
+
+Emergency routing
+
+Customer contact
+
+Cancellation
+
+Refund
+
+Incident records
+
+Partner performance
+
+Contribution per ride
+
+27. AI boundaries
+
+AI may:
+
+Structure booking intake
+
+Detect risk keywords
+
+Recommend an appropriate vehicle size
+
+Identify that a human review is required
+
+Summarise instructions for the driver
+
+Estimate travel and waiting requirements
+
+AI must not:
+
+Declare a pet medically fit to travel
+
+Diagnose travel distress
+
+Recommend sedation
+
+Determine that an emergency can wait
+
+Approve an aggressive pet automatically
+
+Replace driver, handler or veterinary review
+
+Recommended warning:
+
+This assessment checks transport requirements; it does not determine medical fitness. Contact a registered veterinarian when your pet is ill, injured or unstable.
+
+28. Thirty-day manual beta
+
+Launch configuration
+
+One city
+
+Two adjacent service zones
+
+Three to five commercial drivers
+
+Three approved vehicles minimum
+
+Two vet partners
+
+Two groomer/boarding partners
+
+Existing customers only
+
+Owner-accompanied rides
+
+Advance booking preferred
+
+Human operator monitoring
+
+Ride target
+
+30–50 completed rides
+
+That is enough to test the workflow without pretending the service is already scalable.
+
+Week 1
+
+Internal simulations
+
+Empty-vehicle route tests
+
+Driver training
+
+Crate and equipment tests
+
+Five employee/friendly-customer rides
+
+Week 2
+
+Ten owner-accompanied vet/grooming rides
+
+Review pricing and delay causes
+
+Week 3
+
+Expand to round trips and waiting packages
+
+Test backup assignment
+
+Week 4
+
+Complete 30–50 rides
+
+Review incidents, economics and repeat demand
+
+Decide whether to continue
+
+29. Beta success criteria
+
+### Table 82
+
+| Metric | Target |
+| --- | --- |
+| Completed rides | 30–50 |
+| Ride completion rate | 95%+ |
+| On-time pickup | 90–95%+ |
+| Driver cancellation | Below 8% |
+| Backup fulfilment | 90%+ |
+| Average rating | 4.6+ |
+| Complaint/refund rate | Below 5% |
+| Pet escapes | 0 |
+| Preventable pet injuries | 0 |
+| Wrong-person handovers | 0 |
+| Unauthorised vehicles | 0 |
+| Tracking success | 98%+ |
+| Positive contribution | Yes |
+| Repeat or second-ride intent | 25%+ |
+| Emergency protocol simulation | Passed |
+| Legal/insurance review | Completed |
+
+30. Scale decision
+
+Continue the beta when
+
+Demand is real but operational consistency needs improvement.
+
+Customers accept advance booking.
+
+Drivers earn enough to remain available.
+
+The service is contribution-positive before central overhead.
+
+No serious safety incidents occur.
+
+Expand carefully when
+
+At least 100 rides are completed.
+
+Two independent drivers consistently perform well.
+
+Backup transport works.
+
+Vet/grooming bundles create repeat trips.
+
+Owner-accompanied journeys remain reliable.
+
+Stop or redesign when
+
+Private vehicles are being used commercially.
+
+Insurance coverage is unclear.
+
+Drivers regularly reject pets after arrival.
+
+Unaccompanied handovers cannot be controlled.
+
+Customer support costs exceed the margin.
+
+Safety incidents are concealed.
+
+Emergency marketing exceeds actual capability.
+
+Regulations make the proposed operating structure unsuitable.
+
+Final recommendation
+
+Approve
+
+Manual partner-based beta
+
+Owner-accompanied local rides
+
+Vet, grooming and boarding trips
+
+Prebooked round-trip packages
+
+Live tracking
+
+Verified commercial vehicles
+
+Secure pickup and drop OTPs
+
+Human trip monitoring
+
+Defer
+
+Instant on-demand dispatch
+
+Pet-only rides
+
+Multi-pet pooling
+
+Interstate relocation
+
+Airport relocation
+
+Medical transport claims
+
+Owned fleet
+
+Automated driver assignment
+
+Reject
+
+Private cars taking paid trips
+
+Drivers transporting loose pets
+
+Leaving pets unattended
+
+Hidden emergency charges
+
+Sedation advice
+
+Unverified recipients
+
+“Pet ambulance” branding without clinical capability
+
+Correct Phase 8 positioning
+
+Reliable, prebooked pet-friendly rides for vet, grooming and boarding appointments—with verified commercial drivers, animal-safe vehicles, live tracking and controlled handovers.
+
+Final decision
+
+Pet Taxi: CONDITIONAL GO — manual partner-based beta only.
+
+The service becomes scalable only after you prove:
+
+The vehicle is not the main product.
+
+The product is verified custody from one trusted person to another.
+
+https://economictimes.indiatimes.com/news/company/corporate-trends/fur-taxi-and-the-furious-how-indias-pet-cabs-are-rescuing-the-rides-for-furry-passengers/articleshow/121696293.cms?utm_source=chatgpt.comhttps://timesofindia.indiatimes.com/city/kolkata/pet-parents-urge-govt-to-set-up-24x7-emergency-vet-services/articleshow/124432126.cms?utm_source=chatgpt.comPhase 8 Service Model 6: Pet Food and Product Partnerships 🛒🐾
+
+End-to-End Affiliate, Subscription, Society-Bulk-Order and Recommendation Blueprint
+
+Executive verdict
+
+Pet products should be introduced as a lightweight commerce layer—not as a full online pet store.
+
+The correct order is:
+
+Curated affiliate recommendations
+
+Recurring food-subscription referrals
+
+Society bulk-order experiments
+
+Preorder-based bundles and care kits
+
+Managed marketplace
+
+Inventory-led e-commerce only after substantial validation
+
+Pet food is commercially attractive because it is naturally recurring. IBEF reports that pet food represented roughly ₹4,000 crore and nearly 80% of India’s pet-care market in calendar year 2024, with the segment projected to grow materially toward 2028.
+
+But product commerce can quickly damage the service business through:
+
+Inventory and working-capital requirements
+
+Expired or damaged goods
+
+Returns and replacements
+
+Counterfeit risks
+
+Food-transition complaints
+
+Medical and nutritional claims
+
+Delivery failures
+
+Customer-support burden
+
+Complicated tax and invoicing
+
+Distraction from walking, grooming, vet and training operations
+
+Final positioning
+
+Trusted, profile-aware product recommendations from verified sellers—starting with affiliate links and recurring essentials, without building a warehouse.
+
+1. Why products should come after services
+
+Your primary advantage is not retail buying power. It is pet context.
+
+By Phase 8, the platform may already know:
+
+Species
+
+Breed
+
+Age
+
+Weight
+
+Coat type
+
+Walking routine
+
+Grooming history
+
+Training requirements
+
+Existing medical warnings
+
+Society
+
+Current services
+
+Customer purchase intent
+
+That context allows recommendations to be more relevant than a generic e-commerce catalogue.
+
+For example:
+
+### Table 83
+
+| Existing platform signal | Relevant recommendation |
+| --- | --- |
+| New puppy profile | Adjustable harness, bowl, chew toy, training treats |
+| Frequent walking bookings | Waste bags, reflective leash, portable water bottle |
+| Long-coated dog | Brush, detangling comb, coat-care shampoo |
+| Grooming completed | Maintenance brush and groomer-approved shampoo |
+| Leash-training programme | Fixed leash, reward pouch, training treats |
+| Senior dog | Non-slip mat, raised bowl, mobility-support accessories |
+| Boarding booking | Travel bowl, ID tag, labelled food container |
+
+The recommendation must be based on an identifiable need—not on whichever brand pays the highest commission.
+
+2. The primary strategic rule
+
+Wrong model
+
+Build:
+
+Hundreds of SKUs
+
+Warehouse
+
+Same-day delivery
+
+Own-brand food
+
+Supplements
+
+Medicines
+
+Prescription diets
+
+Product returns
+
+Marketplace sellers
+
+Loyalty points
+
+Flash sales
+
+all at once.
+
+Correct model
+
+Start with:
+
+20–50 curated products
+
+Two or three verified sellers
+
+No owned stock
+
+No medicine sales
+
+No unsupported medical claims
+
+Transparent affiliate disclosures
+
+Product recommendations linked to existing services
+
+Manual measurement of conversion and complaints
+
+Scale only categories that improve:
+
+Customer retention
+
+Repeat purchasing
+
+Contribution per customer
+
+Core-service experience
+
+3. Commercial model stages
+
+Stage 1: Affiliate recommendations
+
+The retail partner remains the seller.
+
+Flow
+
+Customer views recommended product
+
+↓
+
+Platform explains why it may be relevant
+
+↓
+
+Affiliate/sponsored status disclosed
+
+↓
+
+Customer opens retailer page
+
+↓
+
+Retailer handles checkout
+
+↓
+
+Retailer handles payment and delivery
+
+↓
+
+Platform receives attribution
+
+↓
+
+Affiliate commission paid
+
+Platform responsibilities
+
+Verify the retailer
+
+Select appropriate products
+
+Disclose the commercial relationship
+
+Avoid misleading claims
+
+Keep links current
+
+Provide a way to report inappropriate or unsafe recommendations
+
+Retailer responsibilities
+
+Product listing
+
+Price
+
+Inventory
+
+Invoice
+
+Delivery
+
+Return
+
+Refund
+
+Seller grievance handling
+
+Product authenticity
+
+This is the best initial model because it avoids inventory and fulfilment risk.
+
+Stage 2: Subscription referrals
+
+The customer enrols in a recurring order with the retailer or brand.
+
+Suitable for:
+
+Established food already used by the pet
+
+Waste bags
+
+Grooming-maintenance items
+
+Training treats
+
+Dental-care products where appropriate
+
+Litter for cats
+
+Important restriction
+
+Do not automatically recommend changing a pet’s food merely to create subscription revenue.
+
+The safer flow is:
+
+Ask what food the pet currently eats.
+
+Confirm package and consumption frequency.
+
+Offer replenishment of the same product.
+
+Allow skip, pause and cancel.
+
+Require veterinary review for therapeutic or disease-specific diets.
+
+Avoid promising a health outcome.
+
+Stage 3: Society bulk orders
+
+The platform aggregates resident demand for scheduled delivery.
+
+Example
+
+Society order window opens
+
+↓
+
+Residents place individual orders
+
+↓
+
+Minimum order threshold reached
+
+↓
+
+Authorised retailer confirms inventory
+
+↓
+
+Orders packed and invoiced
+
+↓
+
+Single society delivery window
+
+↓
+
+Each resident receives sealed order
+
+↓
+
+Returns remain traceable to retailer
+
+Benefits
+
+Lower last-mile expense
+
+Concentrated demand
+
+Better retailer negotiation
+
+Society-specific promotions
+
+Lower acquisition cost
+
+Predictable delivery days
+
+Risks
+
+Orders mixed between residents
+
+Packages left with security
+
+Incorrect quantities
+
+Storage in heat or moisture
+
+Confusion about the seller
+
+Short-expiry products
+
+RWA objection to commercial delivery events
+
+Do not allow loose food to be repacked by the platform during the MVP.
+
+Stage 4: Preorder care kits
+
+The platform creates a curated bundle but purchases stock only after customer orders are confirmed.
+
+Examples:
+
+Puppy starter kit
+
+Walking essentials kit
+
+Grooming maintenance kit
+
+Travel kit
+
+Senior comfort kit
+
+The underlying products should remain individually identifiable with:
+
+Manufacturer
+
+Seller
+
+Batch where applicable
+
+Expiry where applicable
+
+Price
+
+Return terms
+
+Stage 5: Managed marketplace
+
+Retailers sell through your application, but they remain clearly identified as sellers.
+
+This introduces significantly more responsibility around:
+
+Seller due diligence
+
+Product information
+
+Mandatory package declarations
+
+Complaints
+
+Refunds
+
+Counterfeits
+
+Restricted products
+
+Seller ranking
+
+Tax and settlement
+
+The Consumer Protection (E-Commerce) Rules apply to goods and services sold through e-commerce and require platform and seller information, grievance mechanisms and protection against unfair trade practices.
+
+Stage 6: Inventory-led commerce
+
+Only consider this after proving:
+
+High repeat demand
+
+Predictable SKU velocity
+
+Positive contribution after fulfilment
+
+Low return and damage rates
+
+Expiry controls
+
+Supplier credit
+
+Reliable warehousing
+
+Batch traceability
+
+Product recall capability
+
+Full e-commerce is a separate operating business—not a minor application feature.
+
+4. Product-category priority
+
+Priority 1: Walking accessories
+
+Start with:
+
+Fixed leashes
+
+Harnesses
+
+Collars
+
+ID tags
+
+Waste bags
+
+Treat pouches
+
+Portable water bottles
+
+Reflective accessories
+
+Why first
+
+Directly connected to dog walking
+
+Minimal expiry risk
+
+Easy to explain
+
+Easy to bundle
+
+Lower regulatory sensitivity than food or veterinary products
+
+Product safety checks
+
+Size chart
+
+Weight suitability
+
+Clip and buckle quality
+
+Material declaration
+
+Choking or breakage warnings
+
+Return rules
+
+Clear distinction between decorative and restraint products
+
+Do not automatically recommend choke or prong collars through the training or walking experience.
+
+Priority 2: Grooming-maintenance products
+
+Start with:
+
+Brushes
+
+Combs
+
+De-shedding tools
+
+Paw wipes
+
+Towels
+
+Pet-safe shampoo
+
+Conditioner
+
+Nail-maintenance tools for capable owners
+
+Recommendations should be linked to:
+
+Coat type
+
+Groomer report
+
+Species
+
+Skin warnings
+
+Customer ability
+
+Important boundary
+
+A groomer may suggest a maintenance product. A non-veterinarian should not claim that it treats:
+
+Infection
+
+Mange
+
+Fungal disease
+
+Allergy
+
+Dermatitis
+
+Ear disease
+
+Therapeutic claims can change the regulatory nature of a product.
+
+Priority 3: Existing-food subscriptions
+
+Do not begin with “find the perfect food for your pet.”
+
+Begin with:
+
+Never run out of the food your pet already uses.
+
+Subscription inputs
+
+Brand
+
+Product
+
+Pack size
+
+Daily quantity
+
+Number of pets
+
+Current stock
+
+Expected replenishment interval
+
+Skip date
+
+Delivery address
+
+Example replenishment calculation
+
+If a 10 kg package is consumed at 250 grams per day:
+
+Send the reorder reminder before the expected depletion date, with a customer-adjustable buffer.
+
+Priority 4: Puppy starter kits
+
+Recommended contents
+
+Adjustable harness
+
+Fixed leash
+
+ID tag
+
+Food and water bowls
+
+Waste bags
+
+Chew toy
+
+Training treats
+
+Grooming brush
+
+Pet-safe cleaning supplies
+
+Puppy-routine guide
+
+Food rule
+
+Do not insert a random food brand into every starter kit.
+
+Offer:
+
+The customer’s existing food
+
+A breeder/shelter handover food where properly identified
+
+A veterinarian-approved option
+
+A food-selection consultation
+
+Abruptly changing food can create avoidable customer complaints, even where the product itself is not defective.
+
+Priority 5: Senior comfort kits
+
+Use the name Senior Comfort Kit, not “Medical Care Kit,” unless it is clinically supervised.
+
+Suitable products
+
+Non-slip mat
+
+Raised bowl
+
+Supportive bed
+
+Mobility ramp
+
+Easy-grip leash
+
+Waterproof liner
+
+Night visibility light
+
+Medication organiser for owner use
+
+Travel support mat
+
+Exclude initially
+
+Prescription medicine
+
+Pain relief
+
+Joint injections
+
+Therapeutic diets
+
+Disease-treatment products
+
+Products making cure claims
+
+Supplements automatically recommended from age alone
+
+Medical recommendations belong with a veterinarian.
+
+Priority 6: Toys and enrichment
+
+Products may include:
+
+Chew toys
+
+Puzzle feeders
+
+Fetch toys
+
+Snuffle mats
+
+Cat wand toys
+
+Lick mats
+
+Required information
+
+Pet size
+
+Intended play style
+
+Supervision requirements
+
+Material
+
+Small-part warnings
+
+Durability limitations
+
+Replacement conditions
+
+Do not describe any toy as “indestructible” unless the claim can be substantiated.
+
+5. High-risk categories to defer
+
+Tick, flea and parasite products
+
+Your proposed example includes “tick protection.” That phrase can cover:
+
+A grooming product
+
+Repellent accessory
+
+Shampoo
+
+Topical veterinary medicine
+
+Oral veterinary medicine
+
+Environmental pesticide
+
+These products do not share one regulatory pathway.
+
+Veterinary drugs and biologics fall within the Drugs and Cosmetics regulatory framework, including rules governing manufacture, import, sale and product quality.
+
+Safe Phase 8 rule
+
+Do not recommend or sell a parasite-control product unless:
+
+The product has been properly classified.
+
+The seller is authorised for that product.
+
+Veterinary approval is obtained where appropriate.
+
+The species, age and weight restrictions are available.
+
+Contraindications are shown.
+
+The platform does not calculate medicinal dosage.
+
+The recommendation does not replace a vet consultation.
+
+Never recommend dog parasite products for cats merely because the product names appear similar.
+
+Supplements
+
+Defer automated recommendations for:
+
+Joint supplements
+
+Skin supplements
+
+Calming supplements
+
+Vitamins
+
+Probiotics
+
+Weight-gain products
+
+Problems include:
+
+Unsupported claims
+
+Interaction with medication
+
+Duplicate ingredients
+
+Disease-related recommendations
+
+Weak evidence
+
+Product-classification ambiguity
+
+Marketplace restrictions
+
+Use veterinary review before personalised supplement recommendations.
+
+Prescription and therapeutic diets
+
+Do not include these in ordinary affiliate recommendations.
+
+Require:
+
+Veterinarian recommendation
+
+Exact product
+
+Intended duration
+
+Reassessment date
+
+No automatic substitute
+
+Licensed and authentic seller
+
+Clear distinction from ordinary maintenance food
+
+Veterinary medicines
+
+Keep outside the initial product model.
+
+The Drugs and Cosmetics Act regulates manufacture, sale and distribution of drugs and provides controls for misbranded, adulterated and spurious products.
+
+Medicine fulfilment requires a separate legal and operational design covering:
+
+Prescription validation
+
+Authorised seller
+
+Storage
+
+Batch and expiry
+
+Cold chain where applicable
+
+Recall
+
+Substitution
+
+Pharmacological claims
+
+Adverse-event escalation
+
+6. Pet-food standards and supplier checks
+
+BIS maintains IS 11968:2019, Pet Food for Dogs and Cats—Specification, and the standard was recorded as reviewed in 2024; BIS is also working on a draft revision.
+
+Do not automatically describe compliance with that standard as legally compulsory for every product unless the specific SKU and applicable quality-control requirements have been verified.
+
+Use it as an important procurement and quality benchmark.
+
+Food supplier due diligence
+
+Request:
+
+Legal business identity
+
+GST details where applicable
+
+Manufacturer
+
+Brand authorisation
+
+Country of origin
+
+Ingredient list
+
+Nutritional declaration
+
+Feeding guidance
+
+Batch number
+
+Manufacturing date
+
+Expiry/best-before date
+
+Storage instructions
+
+Customer-care details
+
+Product testing or quality records
+
+Recall process
+
+Complaint history
+
+Import documentation where applicable
+
+Imported pet food
+
+Imports of dog and cat food of animal origin may require sanitary import documentation and veterinary health certification. DAHD and AQCS publish specific sanitary requirements and import procedures for pet food and livestock products.
+
+For affiliate sales, make the importer or authorised retailer warrant that imported inventory complies with applicable import and quarantine requirements.
+
+Do not attempt to verify compliance using only a product photograph.
+
+7. Packaged-product information
+
+The Legal Metrology framework requires mandatory declarations on applicable packaged commodities, and e-commerce entities must ensure that required declarations are available to customers online, subject to specified exceptions.
+
+For each listed packaged product, capture where applicable:
+
+Manufacturer/packer/importer
+
+Generic product name
+
+Net quantity
+
+Month/year information required by applicable rules
+
+Maximum retail price
+
+Customer-care details
+
+Country of origin where required
+
+Dimensions or size where relevant
+
+Do not launch a seller whose product page omits basic package information.
+
+8. Seller verification
+
+Universal checks
+
+Legal entity or proprietor identity
+
+Registered address
+
+GST information where applicable
+
+Bank verification
+
+Customer support
+
+Grievance contact
+
+Authorised distributor/reseller documents
+
+Manufacturer invoices
+
+Returns address
+
+Product-liability allocation
+
+Recall and complaint process
+
+Product-level checks
+
+Exact brand and SKU
+
+Authenticity
+
+Batch and expiry
+
+Storage
+
+Importer information
+
+Applicable licences
+
+Mandatory declarations
+
+Known recalls
+
+Seller invoice capability
+
+Seller status
+
+### Table 84
+
+| Status | Meaning |
+| --- | --- |
+| Applicant | Submitted onboarding information |
+| Business verified | Identity and tax documents checked |
+| Brand-authorised | Distribution authority confirmed |
+| Product verified | SKU documentation checked |
+| Trial seller | Limited listings/orders |
+| Approved seller | Normal listing permission |
+| Preferred seller | Strong fulfilment and complaint record |
+| Restricted | Certain categories blocked |
+| Suspended | Temporarily unavailable |
+| Removed | Terminated |
+
+9. Recommendation engine
+
+The proposed “Recommended Care Kit for Bruno” can become a valuable feature, but it must not become a disguised advertising engine.
+
+Recommended MVP: rules before AI
+
+Start with transparent rules.
+
+Inputs
+
+Species
+
+Age
+
+Weight range
+
+Breed or body type
+
+Coat type
+
+Current services
+
+Existing equipment
+
+Current food
+
+Known allergies
+
+Medical restrictions
+
+Lifestyle
+
+Society environment
+
+Owner-stated goal
+
+Output structure
+
+Recommended for Bruno’s walking routine
+
+Adjustable Y-shaped harness — recommended because Bruno has recurring walking bookings.
+
+Fixed 1.5-metre leash — suitable for controlled society walks.
+
+Waste-bag pack — estimated one-month supply.
+
+Portable water bottle — useful for longer summer walks.
+
+For every item, show:
+
+Why it was recommended
+
+Whether it is sponsored
+
+Seller
+
+Price
+
+Alternatives
+
+Ability to dismiss the recommendation
+
+Recommendation hierarchy
+
+Use this ranking order:
+
+Safety and pet suitability
+
+Veterinarian restrictions
+
+Existing customer preference
+
+Product authenticity
+
+Availability
+
+Quality and complaint history
+
+Price
+
+Platform commission
+
+Commission must never outrank safety or suitability.
+
+10. Sponsored recommendations
+
+Sponsored placement must be visibly distinguishable from ordinary recommendations.
+
+The CCPA’s misleading-advertisement guidelines require advertisements and endorsements to be truthful and properly substantiated. ASCI’s digital disclosure guidance states that material commercial connections should be disclosed prominently and understandably.
+
+Use labels such as:
+
+Sponsored
+
+Advertisement
+
+Affiliate link
+
+Paid partnership
+
+Avoid unclear labels such as:
+
+Partner choice
+
+Top pick
+
+Recommended
+
+Best for your pet
+
+when placement was purchased.
+
+Correct design
+
+Recommended based on Bruno’s profile
+
+[Organic result]
+
+Sponsored alternative
+
+[Paid result clearly labelled]
+
+Do not make the sponsored product visually indistinguishable from the organic recommendation.
+
+11. Personalisation and privacy
+
+A product-recommendation engine may use owner-linked profile information such as:
+
+Address
+
+Purchase history
+
+Service history
+
+Pet medical warnings
+
+App behaviour
+
+Society
+
+Marketing preferences
+
+The final Digital Personal Data Protection Rules, 2025 establish requirements including notices, security safeguards, contact mechanisms and grievance handling, with phased commencement provisions.
+
+Recommended consent separation
+
+Required for service operation
+
+Pet profile
+
+Service delivery
+
+Safety information
+
+Optional for product personalisation
+
+Service history used for recommendations
+
+Purchase history
+
+Marketing notifications
+
+Sponsored personalised offers
+
+Do not require personalised retail marketing as a condition for booking a walker or vet.
+
+User controls
+
+Provide:
+
+Turn off personalised recommendations
+
+Stop promotional notifications
+
+Delete browsing/recommendation history where appropriate
+
+Correct pet information
+
+Hide a category
+
+Explain “Why am I seeing this?”
+
+12. Affiliate revenue model
+
+Your proposed 5–20% affiliate range is a reasonable internal planning range, but actual rates will vary by retailer, category, attribution window, cancellation and returned orders.
+
+Affiliate economics example
+
+### Table 85
+
+| Item | Illustration |
+| --- | --- |
+| Customer order value | ₹2,000 |
+| Affiliate rate | 10% |
+| Gross affiliate revenue | ₹200 |
+| Content/technology allocation | ₹25 |
+| Support allocation | ₹15 |
+| Reversal provision | ₹20 |
+| Approximate contribution | ₹140 |
+
+Affiliate commissions are often reversed when:
+
+Order is cancelled
+
+Product is returned
+
+Payment fails
+
+Attribution is lost
+
+Coupon rules are violated
+
+Measure approved commission, not merely tracked sales.
+
+13. Food-subscription economics
+
+Assume:
+
+### Table 86
+
+| Item | Illustration |
+| --- | --- |
+| Monthly customer order | ₹2,500 |
+| Referral/affiliate rate | 8% |
+| Monthly gross revenue | ₹200 |
+| Retention | 8 months |
+| Gross lifetime affiliate revenue | ₹1,600 |
+
+This becomes valuable because acquisition cost is shared with the original service business.
+
+Track:
+
+Active subscribers
+
+Skip rate
+
+Cancellation rate
+
+Failed delivery
+
+Product substitution
+
+Commission reversal
+
+Subscriber lifetime
+
+Margin per subscription
+
+Do not count a subscription as recurring revenue until at least the second successful order.
+
+14. Society bulk-order economics
+
+Illustration
+
+Assume:
+
+### Table 87
+
+| Item | Amount |
+| --- | --- |
+| 25 resident orders |  |
+| Average order | ₹1,500 |
+| GMV | ₹37,500 |
+| Gross platform margin at 15% | ₹5,625 |
+| Society delivery and coordination | ₹1,200 |
+| Payment cost | ₹750 |
+| Promotion | ₹800 |
+| Returns/damage provision | ₹500 |
+| Support | ₹500 |
+| Approximate contribution | ₹1,875 |
+
+The margin can improve if:
+
+Retailer delivers directly
+
+Orders are prepaid
+
+The society provides a distribution point
+
+Few SKUs are offered
+
+No platform repacking occurs
+
+Return rates remain low
+
+It can collapse if the platform manages individual last-mile deliveries.
+
+15. Care-kit model
+
+Puppy Starter Kit
+
+### Table 88
+
+| Category | Example |
+| --- | --- |
+| Walking | Harness and leash |
+| Identification | Tag |
+| Feeding | Bowls |
+| Training | Treat pouch and treats |
+| Grooming | Brush |
+| Enrichment | Chew toy |
+| Hygiene | Waste bags and cleaner |
+
+Walking Kit
+
+Harness
+
+Fixed leash
+
+Waste bags
+
+Water bottle
+
+Reflective accessory
+
+Grooming Maintenance Kit
+
+Coat-appropriate brush
+
+Comb
+
+Groomer-approved shampoo
+
+Towel
+
+Paw wipes
+
+Travel Kit
+
+Portable bowls
+
+Food container
+
+Waste bags
+
+ID tag
+
+Travel mat
+
+Document wallet
+
+Senior Comfort Kit
+
+Non-slip mat
+
+Raised bowl
+
+Supportive bed
+
+Easy-grip leash
+
+Waterproof liner
+
+Bundle rule
+
+Display:
+
+Individual product prices
+
+Bundle price
+
+Genuine saving
+
+Optional removal of products
+
+Seller identity
+
+Return rules for each item
+
+Do not claim a fake bundle discount by inflating the comparison price.
+
+16. Subscription controls
+
+Every subscription should support:
+
+Clear billing frequency
+
+Exact item and quantity
+
+Next billing date
+
+Skip
+
+Pause
+
+Change pack size
+
+Change delivery date
+
+Cancel
+
+Payment-failure notice
+
+No hidden preselected subscription
+
+CCPA has specifically emphasised action against deceptive digital interfaces and dark patterns, including manipulative consent and e-commerce design.
+
+Avoid:
+
+Prechecked recurring orders
+
+Difficult cancellation
+
+Hidden renewal
+
+Forced bundles
+
+Countdown timers without real expiry
+
+Adding products to the cart automatically
+
+Confirm-shaming language
+
+17. Returns, recalls and complaints
+
+Return categories
+
+Wrong item
+
+Damaged package
+
+Leaking package
+
+Expired or short-expiry product
+
+Incorrect size
+
+Counterfeit suspicion
+
+Delivery failure
+
+Adverse reaction
+
+Customer preference
+
+Food and hygiene products may have restricted returns after opening, but those restrictions must be clearly disclosed and must not eliminate remedies for defective, incorrect or unsafe goods.
+
+Recall workflow
+
+Supplier reports issue.
+
+Affected SKU, batch and expiry identified.
+
+Listings suspended.
+
+Customers located through order records.
+
+Safety notice sent.
+
+Refund or replacement process opened.
+
+Seller inventory quarantined.
+
+Authorities and manufacturer contacted where required.
+
+Incident closed only after reconciliation.
+
+Product complaint record
+
+Order
+
+Seller
+
+Product
+
+SKU
+
+Batch
+
+Expiry
+
+Complaint
+
+Photographs
+
+Pet impact
+
+Veterinary involvement
+
+Refund
+
+Seller response
+
+Corrective action
+
+18. Customer-support boundary
+
+Your support team may help with:
+
+Order status
+
+Subscription changes
+
+Returns
+
+Seller contact
+
+Product information shown on the package
+
+Escalation to the retailer
+
+Connecting the customer with a veterinarian
+
+Support must not:
+
+Diagnose an adverse reaction
+
+Recommend medicinal dosage
+
+Tell the customer to continue feeding after suspected illness
+
+Substitute a therapeutic diet
+
+Provide an emergency medical conclusion
+
+Blame the customer before investigation
+
+For suspected illness:
+
+Stop using the product where appropriate, retain the packaging and batch details, and contact a registered veterinarian promptly. This support response is not a diagnosis.
+
+19. Platform architecture
+
+Customer application
+
+Product recommendations
+
+“Why recommended” explanation
+
+Sponsored label
+
+Seller profile
+
+Price comparison
+
+Affiliate redirect
+
+Subscription management
+
+Society-order calendar
+
+Care-kit builder
+
+Order history
+
+Complaint reporting
+
+Partner portal
+
+Seller verification
+
+Product feed
+
+Inventory status
+
+Prices
+
+Batch/expiry where relevant
+
+Orders
+
+Returns
+
+Recall alerts
+
+Customer support
+
+Commission reporting
+
+Admin dashboard
+
+Sellers
+
+Product categories
+
+Restricted products
+
+Recommendation rules
+
+Sponsored placements
+
+Affiliate attribution
+
+Commission approval
+
+Complaints
+
+Counterfeit flags
+
+Expiry issues
+
+Recalls
+
+Society orders
+
+Contribution
+
+20. Important product data model
+
+Each product should include:
+
+Product ID
+
+Seller ID
+
+Manufacturer
+
+Brand
+
+Product name
+
+Category
+
+Species
+
+Life stage
+
+Size/weight suitability
+
+Ingredients/material
+
+Net quantity
+
+MRP
+
+Selling price
+
+Country of origin
+
+Importer
+
+Batch information where applicable
+
+Expiry/best-before
+
+Storage
+
+Warnings
+
+Return policy
+
+Affiliate/sponsored status
+
+Applicable licence/compliance fields
+
+Avoid one generic “pet product” table with only a name, image and price.
+
+21. Key performance indicators
+
+Demand
+
+Product-page views
+
+Recommendation click-through rate
+
+Affiliate conversion
+
+Orders
+
+Subscriptions
+
+Care-kit purchases
+
+Society bulk orders
+
+Customer value
+
+Product adoption among active customers
+
+Revenue per active customer
+
+Contribution per customer
+
+Repeat order rate
+
+Subscription retention
+
+Multi-service-plus-product adoption
+
+Quality
+
+Cancellation rate
+
+Return rate
+
+Damaged-order rate
+
+Wrong-item rate
+
+Counterfeit complaints
+
+Expired-product complaints
+
+Adverse-event reports
+
+Seller rating
+
+Economics
+
+Affiliate revenue
+
+Approved versus pending commission
+
+Commission reversals
+
+Margin per order
+
+Support cost
+
+Society-order contribution
+
+Subscriber lifetime contribution
+
+Fulfilment cost
+
+22. MVP go/no-go criteria
+
+Run the affiliate and society-order model for 60–90 days.
+
+### Table 89
+
+| Requirement | Target |
+| --- | --- |
+| Verified retail partners | 2–5 |
+| Curated products | 20–50 |
+| Affiliate clicks | 500+ |
+| Completed attributed orders | 50+ |
+| Affiliate conversion | 5–10% starting hypothesis |
+| Repeat/subscription customers | 20%+ |
+| Society bulk-order pilots | 2–3 |
+| Product return/cancellation rate | Below 5–8%, category-dependent |
+| Counterfeit incidents | 0 |
+| Expired-product incidents | 0 |
+| Misleading medical claims | 0 |
+| Positive contribution | Yes |
+| Sponsored disclosures | 100% |
+| Personalisation opt-out | Operational |
+| Core-service quality decline | None |
+
+The conversion target is an internal testing hypothesis, not a universal benchmark.
+
+23. Conditions for full e-commerce
+
+Do not build owned inventory until the platform demonstrates:
+
+At least 300–500 monthly product orders
+
+30%+ repeat customer rate
+
+Predictable top 20 SKUs
+
+Positive contribution after fulfilment
+
+Low expiry exposure
+
+Supplier credit terms
+
+Batch tracking
+
+Product recall process
+
+Reliable returns
+
+Dedicated commerce operations
+
+Written tax and seller-of-record structure
+
+Full-commerce decision
+
+Move forward only when owning inventory produces a measurable advantage such as:
+
+Better margin
+
+Higher availability
+
+Faster delivery
+
+Exclusive bundles
+
+Stronger subscription retention
+
+Do not own stock simply because affiliate margins appear small.
+
+24. Recommended rollout
+
+Days 1–15: preparation
+
+Survey existing customers.
+
+Identify the 20 most requested products.
+
+Recruit two or three retailers.
+
+Verify seller documents.
+
+Exclude medicines and supplements.
+
+Build affiliate disclosure.
+
+Create product-data standards.
+
+Establish complaint routing.
+
+Days 16–30: affiliate launch
+
+Launch recommendations after:
+
+Walking
+
+Grooming
+
+Training
+
+Puppy-profile creation
+
+Target:
+
+200 product clicks
+
+20 completed orders
+
+Zero misleading recommendations
+
+Zero seller-authenticity issues
+
+Days 31–45: food replenishment
+
+Capture current food.
+
+Estimate reorder timing.
+
+Offer same-product subscription referral.
+
+Add skip/pause/cancel controls.
+
+Do not recommend an automatic food switch.
+
+Days 46–60: care kits
+
+Test:
+
+Puppy starter kit
+
+Walking kit
+
+Grooming maintenance kit
+
+Use preorders or direct retailer fulfilment.
+
+Days 61–75: society bulk orders
+
+One order window
+
+Limited SKU catalogue
+
+Prepaid orders
+
+Sealed manufacturer packaging
+
+Authorised retailer invoice
+
+One scheduled delivery
+
+Days 76–90: optimise
+
+Remove low-conversion products.
+
+Suspend poor sellers.
+
+Analyse contribution.
+
+Review complaints.
+
+Test subscriptions.
+
+Decide whether a managed marketplace is justified.
+
+25. Recommended “Bruno Care Kit” experience
+
+Customer-facing design
+
+Recommended for Bruno
+
+Based on: medium-sized adult dog, recurring walking bookings and short coat.
+
+Adjustable walking harnessRecommended for controlled daily walks.
+
+Fixed-length leashDesigned for predictable handling in society areas.
+
+Monthly waste-bag packQuantity estimated from Bruno’s walking frequency.
+
+Short-coat grooming brushSuitable for maintenance between grooming sessions.
+
+Training treat pouchUseful during leash-training exercises.
+
+Important controls
+
+Remove any item
+
+Change budget
+
+See alternatives
+
+Hide sponsored products
+
+Explain why each item appears
+
+Confirm pet size
+
+Retain existing food
+
+Ask a vet about health-related items
+
+Avoid in the first recommendation
+
+Automatic tick medicine
+
+Supplement
+
+Prescription diet
+
+Medical shampoo
+
+Sedative or calming product
+
+Any product claiming to treat disease
+
+Final recommendation
+
+Approve now
+
+Affiliate recommendations
+
+Existing-food replenishment
+
+Walking accessories
+
+Grooming-maintenance products
+
+Toys and enrichment
+
+Puppy starter kits
+
+Society bulk-order pilots
+
+Transparent sponsored placements
+
+Launch under restrictions
+
+Food subscriptions
+
+Imported food
+
+Senior comfort kits
+
+Shampoo and coat products
+
+Personalised recommendations
+
+Defer
+
+Owned inventory
+
+Private-label food
+
+Supplements
+
+Veterinary medicines
+
+Prescription diets
+
+Automated tick/flea recommendations
+
+One-hour delivery
+
+Broad multi-seller marketplace
+
+Correct commercial rule
+
+Let verified retailers own inventory, fulfilment and product liability while the platform owns trust, personalisation, attribution and customer context.
+
+Correct recommendation rule
+
+Pet suitability first, existing veterinary guidance second, product quality third, price fourth—and platform commission last.
+
+Final decision
+
+Pet Food and Product Partnerships: GO—affiliate and preorder model only.
+
+The winning product layer is not an enormous catalogue.
+
+It is a small, trusted selection of the right essentials presented at the moment the pet parent actually needs them.
+
+Phase 8 Partner System
+
+End-to-End Onboarding, Verification, Scoring and Governance Blueprint 🐾🤝
+
+Executive decision
+
+Approve the partner-system concept, but redesign it around three separate dimensions:
+
+Verification status — what has been checked
+
+Service permissions — what the partner is allowed to perform
+
+Performance grade — how well the partner performs after activation
+
+Your current P0–P7 ladder mixes onboarding progress with quality status. For example, P6 Premium is an achievement, while P7 Paused is an enforcement state. Paused is not a higher verification level.
+
+The correct architecture is:
+
+Verification lifecycle
+
++
+
+Approved service scope
+
++
+
+Live performance grade
+
++
+
+Risk/enforcement status
+
+A partner must never remain active merely because their numerical score is high. Expired professional registration, a missing transport permit, document fraud, animal cruelty or another critical violation should override the score immediately.
+
+1. Partner-system operating principle
+
+The system should answer five questions for every booking:
+
+Who is delivering the service?
+
+Has that person and business been verified?
+
+Are they legally and professionally permitted to deliver this specific service?
+
+Are they qualified for this pet, location and risk level?
+
+Are their recent quality and reliability scores acceptable?
+
+The objective is not to build the largest partner database.
+
+The objective is to build the smallest reliable supply network capable of fulfilling demand safely and repeatedly.
+
+2. Partner classifications
+
+Partners should be grouped by operating and regulatory risk.
+
+### Table 90
+
+| Partner class | Examples | Primary verification focus |
+| --- | --- | --- |
+| Individual service professional | Groomer, trainer, handler | Identity, competence, animal handling |
+| Regulated professional | Veterinarian | Registration, qualification, professional scope |
+| Transport provider | Pet-taxi driver/operator | Driver, vehicle, permits, insurance |
+| Facility operator | Boarding centre, clinic | Entity, premises, licences, operating standards |
+| Retail partner | Pet shop, food retailer | Business identity, product authenticity, returns |
+| Event provider | Camp operator, photographer | Staff, equipment, safety, venue capability |
+| Multi-service business | Clinic with grooming, boarding and taxi | Verify every service separately |
+
+Critical rule
+
+A verified business does not automatically make every employee verified.
+
+For example:
+
+Verify the veterinary clinic entity
+
+Verify each veterinarian performing consultations
+
+Verify the grooming business
+
+Verify each groomer assigned to bookings
+
+Verify the taxi operator
+
+Verify each driver and vehicle
+
+Every booking must identify the actual individual who delivered the service.
+
+3. Correct partner-status architecture
+
+A. Verification lifecycle
+
+### Table 91
+
+| Code | Status | Meaning |
+| --- | --- | --- |
+| P0 | Applicant | Application submitted |
+| P1 | Contact Verified | Phone, email and basic identity confirmed |
+| P2 | Documents Verified | Required identity, entity and service documents checked |
+| P3 | Competency Verified | Skills, facility or operational capability assessed |
+| P4 | Trial Partner | Approved for restricted trial bookings |
+| P5 | Active Partner | Approved for standard bookings |
+| P6 | Premium Partner | Meets enhanced quality and volume requirements |
+
+B. Enforcement status
+
+Store this separately:
+
+### Table 92
+
+| Status | Meaning |
+| --- | --- |
+| Active | May receive eligible bookings |
+| Limited | Restricted to specified pets, services or areas |
+| Under Review | May finish existing work but receive no new high-risk bookings |
+| Paused | No new bookings |
+| Suspended | Removed pending investigation or remediation |
+| Rejected | Application did not qualify |
+| Removed | Relationship terminated |
+| Expired | Mandatory document has expired |
+
+Recommended change to your model
+
+Replace P7 Paused with a separate enforcement field.
+
+verification_level = P0–P6
+
+account_status = active / limited / paused / suspended / removed
+
+performance_grade = premium / approved / monitor / review
+
+This makes the system technically cleaner and prevents status contradictions.
+
+4. Service permissions
+
+A partner should not receive a generic “approved” flag.
+
+Store specific permissions.
+
+Example: groomer
+
+Dog bathing
+
+Dog full grooming
+
+Large-dog grooming
+
+Cat grooming
+
+Senior-pet grooming
+
+Anxious-pet handling
+
+Severe dematting
+
+Society grooming camp
+
+Example: trainer
+
+Puppy foundations
+
+Loose-leash training
+
+Home manners
+
+Group classes
+
+Mild reactivity
+
+Resource guarding
+
+Bite-history cases
+
+Separation-related cases
+
+A foundation trainer should not automatically receive aggression cases.
+
+Example: veterinarian
+
+Clinic consultation
+
+Teleconsultation
+
+Home visit
+
+Vaccination
+
+Emergency referral
+
+Dermatology
+
+Surgery consultation
+
+Senior-pet care
+
+Veterinary professionals should be checked against available official registration records and the relevant State Veterinary Council. The VCI maintains the Indian Veterinary Practitioners Register and publishes the governing professional rules, but its public IVPR page currently lists the 2023 register as the latest main register, so current state-level verification should also be used.
+
+Example: pet taxi
+
+Owner-accompanied rides
+
+Handler-accompanied rides
+
+Pet-only transfers
+
+Local vet trips
+
+Boarding transfers
+
+Airport relocation
+
+Priority veterinary transport
+
+Do not permit a driver approved for owner-accompanied rides to receive unaccompanied pet transfers automatically.
+
+5. Universal application form
+
+Identity and entity information
+
+### Table 93
+
+| Field | Type |
+| --- | --- |
+| Legal name | Text |
+| Public/display name | Text |
+| Business name | Text |
+| Entity type | Individual/proprietorship/company/partnership |
+| Government ID | Secure upload |
+| Business-registration document | Secure upload |
+| PAN | Secure field |
+| GSTIN, where applicable | Secure field |
+| Registered address | Address |
+| Operating address | Address |
+| Phone | OTP-verified |
+| Email | Verified |
+| Website/social profile | URL |
+| Emergency contact | Contact |
+| Bank-account holder | Text |
+| Bank account | Secure field |
+| Cancelled cheque/bank proof | Secure upload |
+
+Operating information
+
+### Table 94
+
+| Field | Type |
+| --- | --- |
+| City | Dropdown |
+| Areas served | Multi-select/map |
+| Service radius | Kilometres or polygons |
+| Service types | Multi-select |
+| Years of experience | Number |
+| Languages | Multi-select |
+| Availability | Calendar |
+| Daily booking capacity | Number |
+| Home visits | Yes/no |
+| Emergency availability | Yes/no |
+| Weekend availability | Yes/no |
+| Society-event capability | Yes/no |
+| Travel charge | Pricing field |
+| Cancellation terms | Structured text |
+
+Experience and quality
+
+### Table 95
+
+| Field | Type |
+| --- | --- |
+| Qualifications | Structured text |
+| Certifications | Upload |
+| Previous employer/business | Text |
+| Portfolio | Media upload |
+| References | Contact fields |
+| Previous-platform ratings | Optional evidence |
+| Complaint/incident declaration | Structured form |
+| Previous suspension or licence action | Yes/no with explanation |
+| Professional insurance | Upload |
+| Equipment list | Checklist |
+| SOP acknowledgement | Checkbox |
+
+Legal and contractual
+
+Partner agreement acceptance
+
+Data-processing obligations
+
+Customer confidentiality
+
+Animal-welfare policy
+
+Service-specific SOPs
+
+Incident-reporting obligation
+
+No unauthorised subcontracting
+
+Pricing and payout agreement
+
+Tax declaration
+
+Marketing-content consent
+
+Background-verification consent
+
+Audit and premises-inspection consent
+
+Do not combine all consent into one checkbox. Different purposes should be identified clearly.
+
+6. Service-specific application fields
+
+A. Groomer
+
+Collect:
+
+Species handled
+
+Dog-size experience
+
+Cat-grooming competence
+
+Coat-type experience
+
+Senior or anxious-pet experience
+
+Grooming tools
+
+Dryer type
+
+Products used
+
+Tool-disinfection process
+
+Previous injury incidents
+
+Before-and-after portfolio
+
+Home-grooming setup
+
+Water and electricity requirements
+
+Two-person handling capability
+
+Society-camp capacity
+
+Practical assessment
+
+The groomer should demonstrate:
+
+Animal approach
+
+Restraint
+
+Nail trimming
+
+Tool handling
+
+Dryer temperature management
+
+Hygiene
+
+Stress-signal recognition
+
+Stop-work judgement
+
+B. Veterinarian
+
+Collect:
+
+Veterinary qualification
+
+State Veterinary Council
+
+Registration number
+
+Current registration certificate
+
+Clinic affiliation
+
+Practice address
+
+Areas of practice
+
+Teleconsultation capability
+
+Home-visit capability
+
+Prescription and clinical-note process
+
+Emergency referral arrangement
+
+Professional indemnity, where held
+
+Availability
+
+Clinic documentation
+
+Medical-waste arrangements where applicable
+
+The VCI professional rules govern professional conduct, records and ethical responsibilities. Clinical judgement, diagnosis and prescription must remain with the registered veterinarian rather than the platform.
+
+Veterinary verification
+
+Match name and registration number.
+
+Check State Veterinary Council evidence.
+
+Check available IVPR records.
+
+Confirm clinic or practice address.
+
+Contact the clinic directly.
+
+Verify consultation modes.
+
+Confirm professional documents periodically.
+
+Define the exact approved clinical scope.
+
+C. Dog trainer
+
+Collect:
+
+Training philosophy
+
+Methods used
+
+Equipment used
+
+Certifications
+
+Mentorship
+
+Years and number of cases
+
+Puppy-training experience
+
+Reactivity experience
+
+Bite-case experience
+
+Group-class capability
+
+Veterinary-referral process
+
+Sample training plans
+
+Before-and-after case documentation
+
+Training videos
+
+Complaint or injury history
+
+Automatic rejection or investigation
+
+Shock/electronic-collar dependency
+
+Physical punishment
+
+Hidden equipment
+
+Guaranteed “cure” claims
+
+Serious behaviour work without appropriate competence
+
+Refusal to disclose methods
+
+Unauthorised medical advice
+
+D. Pet-taxi driver/operator
+
+Collect:
+
+Driver licence
+
+Vehicle registration
+
+Applicable commercial permit
+
+Vehicle fitness certificate
+
+Insurance
+
+Pollution certificate
+
+Vehicle photographs
+
+Vehicle capacity
+
+Air-conditioning status
+
+Crate-anchoring capability
+
+GPS capability
+
+Cleaning process
+
+Accident history
+
+Backup driver/vehicle
+
+Animal-handling experience
+
+Owner-accompanied or pet-only capability
+
+Paid transport vehicles generally require the applicable permit under the Motor Vehicles Act. The central government also publishes Motor Vehicle Aggregator Guidelines, while implementation and licensing depend on the state and operating model.
+
+Vehicle inspection
+
+Document match
+
+Registration plate
+
+Interior cleanliness
+
+Climate control
+
+Secure crate/restraint points
+
+Door and window security
+
+Non-slip surface
+
+Sharp-edge check
+
+Emergency equipment
+
+Live-tracking test
+
+E. Pet shop or product partner
+
+Collect:
+
+Legal business identity
+
+GSTIN where applicable
+
+Authorised distributor documents
+
+Brand authorisations
+
+Manufacturer invoices
+
+Product categories
+
+Storage conditions
+
+Batch/expiry process
+
+Returns policy
+
+Recall process
+
+Complaint contact
+
+Fulfilment capacity
+
+Delivery zones
+
+Seller-of-record status
+
+Exclude from the initial model:
+
+Prescription medicine
+
+Restricted veterinary products
+
+Unsupported supplements
+
+Counterfeit or grey-market goods
+
+Live-animal sales
+
+If a partner sells live animals, that becomes a separate regulated activity under the Prevention of Cruelty to Animals (Pet Shop) Rules, 2018 and should not be treated as an ordinary accessory partnership.
+
+F. Boarding centre
+
+Collect:
+
+Entity documents
+
+Local licence or registration
+
+Premises ownership/lease
+
+Facility photographs and video
+
+Capacity
+
+Kennel and room dimensions
+
+Ventilation and temperature control
+
+Double-entry or escape controls
+
+Cleaning schedule
+
+Vaccination requirements
+
+Isolation capability
+
+CCTV policy
+
+Overnight staffing
+
+Veterinarian tie-up
+
+Emergency transport
+
+Fire and disaster plan
+
+Incident logs
+
+Insurance
+
+Owner handover process
+
+Requirements may differ materially by state. Tamil Nadu’s February 2026 policy, for example, establishes specific state requirements and operating standards for boarding, training and grooming facilities. It should be treated as a state-specific example rather than a nationwide rule.
+
+G. Society-event partner
+
+Collect:
+
+Camp type
+
+Responsible professional
+
+Staff roster
+
+Service capacity
+
+Equipment
+
+Venue requirements
+
+Insurance
+
+Clinical partner, if applicable
+
+Emergency plan
+
+Waste-disposal plan
+
+Data-collection process
+
+Consent forms
+
+Previous event evidence
+
+Maximum safe animal count
+
+Backup staffing
+
+Event approval should apply to the actual event configuration—not merely the organiser’s business.
+
+7. Verification workflow
+
+Application submitted
+
+↓
+
+Duplicate and fraud screening
+
+↓
+
+Phone/email verification
+
+↓
+
+Identity and business checks
+
+↓
+
+Service-specific document review
+
+↓
+
+Reference checks
+
+↓
+
+Interview
+
+↓
+
+Practical/facility/vehicle assessment
+
+↓
+
+Risk and permission assignment
+
+↓
+
+Contract signed
+
+↓
+
+Training and SOP examination
+
+↓
+
+Trial bookings
+
+↓
+
+Trial review
+
+↓
+
+Active approval
+
+↓
+
+Continuous monitoring
+
+Verification methods
+
+Automated checks
+
+OTP
+
+Email verification
+
+Duplicate phone/email
+
+Bank-name match
+
+Document-expiry parsing
+
+Duplicate ID detection
+
+Image-manipulation flags
+
+Sanctions or internal blocklist
+
+Device and account risk signals
+
+Human checks
+
+Document authenticity
+
+Professional registration
+
+References
+
+Portfolio
+
+Interview
+
+Skills assessment
+
+Premises inspection
+
+Vehicle inspection
+
+Service-method review
+
+Field verification
+
+Use where risk justifies it:
+
+Boarding centres
+
+Grooming facilities
+
+Clinic premises
+
+Taxi vehicles
+
+Product warehouses
+
+Large camp providers
+
+8. Hard compliance gates
+
+A score must never override these conditions.
+
+Universal hard gates
+
+Identity verified
+
+Bank account verified
+
+Required agreement signed
+
+Mandatory documents current
+
+No unresolved document fraud
+
+No unresolved critical welfare incident
+
+No unauthorised subcontractor
+
+No prohibited service claim
+
+Service-specific hard gates
+
+### Table 96
+
+| Partner | Hard gate |
+| --- | --- |
+| Veterinarian | Current professional-registration evidence |
+| Pet taxi | Valid driver, vehicle, permit and insurance documents |
+| Boarding centre | Applicable local permissions and safe premises |
+| Product seller | Legal seller identity and product authenticity |
+| Groomer | Competency and hygiene assessment |
+| Trainer | Method disclosure and humane-training agreement |
+| Camp provider | Responsible professional and approved safety plan |
+
+A partner with a performance score of 96 must still be paused if a mandatory licence expires.
+
+9. Document-management system
+
+Every document should have:
+
+Document type
+
+Partner/entity
+
+Document number
+
+Issuer
+
+Issue date
+
+Expiry date
+
+Verification method
+
+Verified by
+
+Verification date
+
+File checksum
+
+Status
+
+Notes
+
+Replacement history
+
+Expiry automation
+
+Send reminders:
+
+60 days before
+
+30 days before
+
+Seven days before
+
+On expiry
+
+Recommended state logic:
+
+60 days: reminder
+
+30 days: warning
+
+7 days: booking restriction warning
+
+Expiry: automatic pause for affected service
+
+Do not delete the historical document when a new version is uploaded. Retain an audit trail according to the platform’s retention policy.
+
+10. Data protection
+
+Partner applications contain:
+
+Government IDs
+
+Addresses
+
+banking information
+
+licences
+
+certificates
+
+vehicle documents
+
+references
+
+background-check information
+
+The DPDP Rules, 2025 require clear notices describing the personal data collected and the specified purpose, along with methods for consent withdrawal and rights requests; several substantive rules have phased commencement dates. Design the system to the full standard now rather than waiting for every provision to commence.
+
+Access-control example
+
+### Table 97
+
+| Role | Permitted access |
+| --- | --- |
+| Onboarding agent | Application and required documents |
+| Operations agent | Service permissions, availability, contact |
+| Customer support | Booking-related profile only |
+| Customer | Public profile and relevant badges |
+| Finance | Bank, tax and payout details |
+| Safety team | Incidents and necessary identity records |
+| Marketing | Public portfolio only |
+| Society security | Minimum approved entry information |
+
+Do not expose government IDs, private addresses, bank details or background reports on public partner profiles.
+
+11. Trial programme
+
+P4 should be a genuine controlled trial—not merely the first ordinary customer booking.
+
+General trial structure
+
+Limited geography
+
+Low- or medium-risk cases
+
+Reduced booking volume
+
+Manual operations review
+
+Required report submission
+
+Customer follow-up
+
+No premium placement
+
+No high-risk assignment
+
+Immediate suspension after serious breach
+
+Trial volume
+
+### Table 98
+
+| Partner | Suggested trial |
+| --- | --- |
+| Groomer | 3–5 bookings |
+| Trainer | 3 assessments or 5 sessions |
+| Veterinarian | 3–5 platform bookings, primarily workflow review |
+| Taxi driver | 5 supervised/owner-accompanied rides |
+| Boarding centre | Inspection plus 2–3 controlled stays |
+| Product seller | 10–20 fulfilled orders |
+| Event partner | One controlled event |
+
+For veterinarians, the platform should review operational quality and documentation—not second-guess independent clinical judgement.
+
+Trial review
+
+Evaluate:
+
+Attendance
+
+Communication
+
+SOP compliance
+
+Customer feedback
+
+Report completeness
+
+Animal handling
+
+Safety
+
+Pricing compliance
+
+Incident reporting
+
+Partner responsiveness
+
+12. Partner scorecard
+
+Your proposed scorecard is a sound starting point.
+
+Recommended universal score
+
+### Table 99
+
+| Factor | Weight |
+| --- | --- |
+| Service quality and outcome | 25 |
+| Reliability and on-time performance | 20 |
+| Pet welfare and handling | 20 |
+| Customer communication | 15 |
+| Hygiene, safety and documentation | 10 |
+| Verified customer rating | 10 |
+| Total | 100 |
+
+Factor definitions
+
+Service quality — 25
+
+Measure according to service:
+
+Groomer: package completeness and grooming result
+
+Trainer: goal progress and owner coaching
+
+Taxi: custody and transport completion
+
+Boarding: care-plan compliance
+
+Product partner: correct and authentic fulfilment
+
+Event partner: event delivery
+
+Veterinarian: booking fulfilment, documentation and professional process—not clinical outcome popularity
+
+Reliability — 20
+
+On-time arrival
+
+Acceptance rate
+
+Completion rate
+
+Cancellation
+
+Response time
+
+Availability accuracy
+
+Report submission
+
+Pet welfare and handling — 20
+
+Safe handling
+
+Stress recognition
+
+Restraint
+
+Escape prevention
+
+Owner instructions
+
+No prohibited practices
+
+Incident escalation
+
+Communication — 15
+
+Pre-service confirmation
+
+Clear pricing
+
+Professional behaviour
+
+Progress updates
+
+Delay communication
+
+Issue resolution
+
+Hygiene, safety and documentation — 10
+
+Tool or vehicle cleaning
+
+Record completion
+
+Valid documents
+
+Equipment checks
+
+Photo/report compliance
+
+Facility standards
+
+Verified customer rating — 10
+
+Use only:
+
+Completed bookings
+
+Verified customers
+
+Category-specific ratings
+
+Fraud-filtered reviews
+
+13. Avoid raw-rating distortion
+
+A partner with one five-star review should not outrank a partner with 100 reviews averaging 4.75.
+
+Use a confidence-adjusted rating.
+
+A practical Bayesian model is:
+
+Where:
+
+= partner’s raw rating
+
+= number of verified ratings
+
+= platform/category average
+
+= minimum confidence threshold, such as 20 reviews
+
+Until the partner reaches the threshold, label the score:
+
+Provisional rating
+
+14. Recent performance versus lifetime performance
+
+A partner should not retain Premium indefinitely because of old success.
+
+Recommended formula:
+
+This allows:
+
+Improvement after remediation
+
+Rapid detection of deterioration
+
+Protection against one unusually good early period
+
+Incident penalties
+
+### Table 100
+
+| Event | Suggested impact |
+| --- | --- |
+| Minor documentation failure | −1 to −3 |
+| Late arrival without notice | −2 |
+| Avoidable cancellation | −3 to −5 |
+| Repeated hygiene failure | −5 to −10 |
+| Unauthorised subcontracting | Immediate pause |
+| Pet escape | Immediate safety review |
+| Falsified documents | Removal |
+| Animal cruelty | Immediate suspension/removal |
+| Unlicensed clinical conduct | Immediate suspension |
+
+Critical incidents should be handled through enforcement, not merely score deductions.
+
+15. Partner grades
+
+Premium
+
+Requirements
+
+Score: 90–100
+
+At least 30 completed bookings
+
+At least 20 verified reviews
+
+Rating: 4.7+
+
+Cancellation: below 3%
+
+Complaint rate: below 2%
+
+Documents current
+
+No unresolved serious incident
+
+At least 90 days active
+
+Benefits
+
+Preferred placement where compatible
+
+Early access to bookings
+
+Society-event eligibility
+
+Faster payout
+
+Premium badge
+
+Advanced analytics
+
+Recurring-customer matching
+
+Premium must never override pet suitability, distance or safety.
+
+Approved
+
+Requirements
+
+Score: 80–89
+
+Standard documents current
+
+Normal service permissions
+
+Acceptable cancellation and complaint performance
+
+Action
+
+Standard booking access
+
+Normal ranking
+
+Regular monitoring
+
+Monitor
+
+Score
+
+70–79
+
+Action
+
+Reduced booking volume
+
+No high-risk cases
+
+Quality coaching
+
+Additional report audits
+
+Thirty-day improvement plan
+
+Possible retrial
+
+Retrain or Review
+
+Score
+
+60–69
+
+Action
+
+Pause premium/high-risk work
+
+Restrict service permissions
+
+Mandatory retraining
+
+Investigation
+
+Controlled retrial before reactivation
+
+Remove
+
+Score
+
+Below 60 after sufficient sample and review, or a critical non-remediable violation.
+
+Action
+
+Stop new bookings
+
+Resolve existing customer obligations
+
+Complete payouts subject to legitimate deductions
+
+Revoke system access
+
+Preserve audit and incident records
+
+Notify affected stakeholders where necessary
+
+Do not remove a new partner based on one poor customer rating without investigation.
+
+16. Ranking system
+
+Partner ranking should not equal score ranking.
+
+Recommended ranking order
+
+1. Hard eligibility
+
+2. Service permission
+
+3. Pet-risk compatibility
+
+4. Availability
+
+5. Geography and travel time
+
+6. Customer’s previous-partner preference
+
+7. Quality score
+
+8. Price and package
+
+9. Platform balancing
+
+10. Sponsored placement
+
+Sponsored or featured placement must never override:
+
+Expired documents
+
+Risk incompatibility
+
+Insufficient competence
+
+Customer safety
+
+Service availability
+
+Example
+
+A Premium groomer qualified only for small dogs should not outrank an Approved groomer who is qualified for a reactive 40 kg dog.
+
+17. Service-level thresholds
+
+Different categories need different performance standards.
+
+### Table 101
+
+| Metric | Grooming | Vet | Training | Taxi | Boarding | Product |
+| --- | --- | --- | --- | --- | --- | --- |
+| On-time target | 95% | 95% | 95% | 90–95% | N/A/check-in | Dispatch SLA |
+| Cancellation ceiling | 7% | 5% | 7% | 8% | 5% | Order cancellation 5–8% |
+| Complaint ceiling | 3% | 3–5% | 5% | 5% | 3% | 5–8% |
+| Report completion | 95% | 95% | 95% | 98% handover | 100% care record | Tracking required |
+| Serious preventable incidents | 0 | 0 | 0 | 0 | 0 | 0 safety/counterfeit |
+
+These should be starting internal thresholds and recalibrated using actual operational data.
+
+18. Incident severity system
+
+S0 — Critical
+
+Examples:
+
+Pet death or major injury
+
+Pet escape
+
+Animal cruelty
+
+Falsified professional registration
+
+Unauthorised diagnosis or prescription
+
+Wrong-person pet handover
+
+Unauthorised transport vehicle
+
+Serious data breach
+
+Counterfeit or dangerous product
+
+Action
+
+Immediate suspension
+
+Live customer support
+
+Evidence preservation
+
+Senior review
+
+Veterinary or emergency escalation
+
+Regulatory or insurer notification where required
+
+Root-cause analysis
+
+Formal reinstatement or removal decision
+
+S1 — High
+
+Bite incident
+
+Unapproved subcontractor
+
+Partner unreachable during service
+
+Major care-plan violation
+
+Repeated no-shows
+
+Serious hygiene failure
+
+Action
+
+Immediate pause pending review.
+
+S2 — Medium
+
+Significant delay
+
+Incomplete service
+
+Missing report
+
+Pricing dispute
+
+Poor communication
+
+Action
+
+Correction, score impact and potential retraining.
+
+S3 — Low
+
+Minor delay
+
+Small documentation error
+
+Non-critical customer preference issue
+
+Action
+
+Normal customer-support resolution.
+
+19. Partner agreements
+
+Every partner contract should cover:
+
+Identity and scope
+
+Legal contracting party
+
+Approved services
+
+Approved areas
+
+Approved staff
+
+No unauthorised subcontracting
+
+Service delivery
+
+Service SOPs
+
+Pricing
+
+Booking acceptance
+
+Cancellation
+
+Customer communication
+
+Report requirements
+
+Equipment
+
+Hygiene
+
+Animal welfare
+
+Commercial
+
+Partner payout
+
+Platform fee
+
+Taxes
+
+Refund allocation
+
+Chargebacks
+
+Incentives
+
+Society-event revenue
+
+Payout timing
+
+Safety
+
+Incident reporting
+
+Emergency escalation
+
+Insurance
+
+Professional responsibility
+
+Pet custody
+
+Cooperation with investigation
+
+Data
+
+Confidentiality
+
+Role-based access
+
+No off-platform copying
+
+Customer-contact restrictions
+
+Data deletion or return
+
+Breach reporting
+
+Governance
+
+Audit rights
+
+Document renewal
+
+Performance monitoring
+
+Suspension
+
+Termination
+
+Appeal process
+
+Governing law
+
+Dispute mechanism
+
+Veterinarian addendum
+
+Include:
+
+Clinical independence
+
+Registration maintenance
+
+Clinical-record ownership and access
+
+Prescription responsibility
+
+Emergency limitations
+
+No platform interference with professional judgement
+
+Taxi addendum
+
+Include:
+
+Vehicle substitution rules
+
+Driver substitution rules
+
+Permit requirements
+
+insurance
+
+live tracking
+
+custody
+
+accident reporting
+
+no unattended pet
+
+20. Payout system
+
+Recommended payout flow
+
+Booking completed
+
+↓
+
+Required report submitted
+
+↓
+
+Critical-incident check
+
+↓
+
+Customer payment captured
+
+↓
+
+Platform fee calculated
+
+↓
+
+Tax/deduction calculated
+
+↓
+
+Partner payout queued
+
+↓
+
+Payout released
+
+↓
+
+Statement issued
+
+Payout tiers
+
+### Table 102
+
+| Partner | Suggested payout |
+| --- | --- |
+| Trial | T+5 to T+7 |
+| Approved | T+2 to T+4 |
+| Premium | T+1 or scheduled fast payout |
+| Under review | Hold only the legitimately disputed amount |
+
+Partners should receive a transparent statement showing:
+
+Booking value
+
+Discount funding
+
+Platform fee
+
+Taxes
+
+Refunds
+
+Penalties
+
+Net payout
+
+If the platform collects customer consideration for supplies made through it, GST e-commerce and tax-collection-at-source obligations may apply depending on the legal structure. Obtain a written CA position for each service and seller model.
+
+21. Consumer-facing partner badges
+
+Do not use one ambiguous Verified badge.
+
+Use precise labels:
+
+### Table 103
+
+| Badge | Meaning |
+| --- | --- |
+| Identity Verified | Identity and phone checked |
+| Business Verified | Entity details checked |
+| Registration Verified | Professional registration checked |
+| Skills Assessed | Practical competence assessed |
+| Facility Inspected | Premises reviewed |
+| Vehicle Inspected | Vehicle and documents reviewed |
+| Cat Specialist | Cat-grooming assessment passed |
+| Behaviour Specialist | Advanced training permission |
+| Home-Visit Approved | Approved for customer homes |
+| Society Approved | Completed society access protocol |
+| Premium Partner | Performance requirements met |
+
+Include an info icon explaining what each badge does and does not mean.
+
+Avoid claims such as:
+
+“Government certified” without a named certification
+
+“Fully insured” without defining the policy
+
+“Police verified” when only identity checks occurred
+
+“Medical expert” for a non-veterinarian
+
+22. Grievance and appeals
+
+E-commerce entities must maintain an adequate consumer grievance mechanism and publish relevant grievance information. Your partner system therefore needs both a customer-complaint flow and a partner-appeal flow.
+
+Customer grievance flow
+
+Complaint submitted
+
+↓
+
+Severity classified
+
+↓
+
+Customer acknowledged
+
+↓
+
+Evidence collected
+
+↓
+
+Partner response
+
+↓
+
+Safety/clinical review if required
+
+↓
+
+Refund or corrective action
+
+↓
+
+Score/enforcement update
+
+↓
+
+Complaint closed
+
+Partner appeal
+
+Allow appeals for:
+
+Incorrect document rejection
+
+Rating fraud
+
+Cancellation attribution
+
+Customer misconduct
+
+Score calculation
+
+Suspension decision
+
+Payout dispute
+
+Appeals should not automatically reactivate a partner when safety is involved.
+
+23. Technology architecture
+
+Core modules
+
+1. Partner application portal
+
+Dynamic service-specific forms
+
+Document upload
+
+Save and resume
+
+Application tracking
+
+Agreement signing
+
+2. Verification console
+
+Identity checks
+
+Document review
+
+Registration verification
+
+Reference calls
+
+Interview notes
+
+Decision workflow
+
+3. Capability and permission engine
+
+Service categories
+
+Species
+
+Size
+
+Behaviour risk
+
+Geographic areas
+
+Facility/vehicle permissions
+
+Maximum booking risk
+
+4. Trial manager
+
+Trial booking allocation
+
+Manual approval
+
+Audit checklist
+
+Customer follow-up
+
+Trial decision
+
+5. Document vault
+
+Encryption
+
+Expiry
+
+access logs
+
+version history
+
+renewal workflow
+
+6. Quality engine
+
+Booking metrics
+
+ratings
+
+complaints
+
+incident penalties
+
+score history
+
+grade changes
+
+7. Enforcement console
+
+pause
+
+limit
+
+suspend
+
+remove
+
+evidence
+
+action history
+
+appeal
+
+8. Finance
+
+commissions
+
+payouts
+
+deductions
+
+invoices
+
+taxes
+
+reserves
+
+disputes
+
+9. Partner dashboard
+
+profile
+
+bookings
+
+availability
+
+earnings
+
+performance
+
+documents
+
+training
+
+complaints
+
+improvement actions
+
+24. Recommended data model
+
+Core entities:
+
+partners
+
+partner_entities
+
+partner_people
+
+partner_services
+
+partner_permissions
+
+partner_service_areas
+
+partner_availability
+
+partner_documents
+
+document_verifications
+
+partner_certifications
+
+partner_references
+
+partner_equipment
+
+partner_facilities
+
+partner_vehicles
+
+partner_bank_accounts
+
+partner_agreements
+
+partner_trials
+
+bookings
+
+booking_reports
+
+reviews
+
+complaints
+
+incidents
+
+score_snapshots
+
+grade_history
+
+enforcement_actions
+
+appeals
+
+payouts
+
+audit_logs
+
+Important separation
+
+partner
+
+├── legal entity
+
+├── individual service providers
+
+├── facilities
+
+├── vehicles
+
+├── documents
+
+└── permissions
+
+This lets one clinic have:
+
+Three veterinarians
+
+One home-visit team
+
+One vehicle
+
+Different service areas
+
+Individual performance histories
+
+25. Partner dashboard
+
+Home
+
+Current status
+
+Grade
+
+Score
+
+Upcoming bookings
+
+Required actions
+
+Document warnings
+
+Earnings
+
+Performance
+
+On-time rate
+
+Acceptance
+
+Completion
+
+Cancellation
+
+Rating
+
+Complaints
+
+Repeat customers
+
+Score explanation
+
+Improvement
+
+Required training
+
+Failed checklist items
+
+Incident corrective actions
+
+Retrial eligibility
+
+Documents
+
+Current documents
+
+Expiry dates
+
+Renewal upload
+
+Verification status
+
+Finance
+
+Booking statements
+
+Platform charges
+
+Taxes
+
+Refunds
+
+Payout status
+
+Avoid showing only one unexplained score. Partners should understand how the score was calculated.
+
+26. Fraud and abuse controls
+
+Monitor:
+
+One document used by multiple accounts
+
+Fake certificates
+
+Modified documents
+
+Self-created bookings
+
+Review rings
+
+Customer coercion for five-star reviews
+
+Off-platform payments
+
+Unauthorised staff substitution
+
+GPS manipulation
+
+Fake service reports
+
+Reused before-and-after photographs
+
+Duplicate product invoices
+
+Hidden service surcharges
+
+Controls
+
+Device linking
+
+Duplicate-document matching
+
+Booking anomaly detection
+
+Review-velocity checks
+
+Photograph metadata and duplicate detection
+
+Random customer calls
+
+Spot inspections
+
+Mystery bookings
+
+Payment reconciliation
+
+Staff identity check-in
+
+27. Partner concentration risk
+
+Do not allow one partner to control the marketplace.
+
+Track:
+
+Recommended warning threshold:
+
+Largest individual partner: above 25%
+
+Largest business partner: above 40%
+
+High concentration creates:
+
+Pricing power
+
+Service disruption risk
+
+Customer migration risk
+
+Dependence on one relationship
+
+Weak backup coverage
+
+Every active service zone should have:
+
+Primary partner
+
+Secondary partner
+
+Backup partner
+
+28. Partner-system KPIs
+
+Acquisition
+
+Applications
+
+Application completion rate
+
+Cost per applicant
+
+Applicant source
+
+Qualified applicant rate
+
+Verification
+
+P0-to-P2 conversion
+
+P2-to-P3 conversion
+
+Verification time
+
+Document rejection rate
+
+Fraud detection
+
+Reference completion
+
+Activation
+
+Trial completion
+
+Trial pass rate
+
+Time to first booking
+
+Active partner rate
+
+First-30-day bookings
+
+Quality
+
+Average score
+
+On-time performance
+
+Completion
+
+Cancellation
+
+complaints
+
+incidents
+
+rating
+
+repeat customers
+
+Supply health
+
+Active partners
+
+Partner utilisation
+
+Bookings per partner
+
+Earnings per active partner
+
+Service-area coverage
+
+Peak-hour coverage
+
+Backup fulfilment
+
+Retention
+
+30-day partner retention
+
+90-day retention
+
+Premium progression
+
+Voluntary churn
+
+Suspension/removal rate
+
+29. Phase 8 partner-system success criteria
+
+### Table 104
+
+| Requirement | Recommended target |
+| --- | --- |
+| Total verified partner bench | 20–50 |
+| Active partners | 10–20 |
+| Premium partners | 5–10 |
+| Active-partner rate | 60%+ |
+| Partners completing 5+ monthly bookings | 70%+ of active partners |
+| Verification turnaround | 3–7 working days by category |
+| Mandatory documents current | 98%+ |
+| Trial completion rate | 70%+ |
+| Average partner rating | 4.6+ |
+| Overall partner cancellation | Below 7% |
+| Complaint/refund rate | Below 5% |
+| Serious preventable incidents | 0 |
+| Backup coverage | Yes |
+| Ninety-day partner retention | 75%+ |
+| Largest-partner concentration | Below 25% where practical |
+| Grievance process | Operational |
+| Audit logs | Operational |
+
+30. Recommended 90-day implementation
+
+Days 1–15: system design
+
+Build:
+
+Partner data model
+
+Status architecture
+
+Service permissions
+
+Universal application
+
+Service-specific forms
+
+Document vault
+
+Verification checklists
+
+Partner agreements
+
+Incident framework
+
+Scoring rules
+
+Days 16–30: controlled onboarding
+
+Recruit:
+
+5 groomers
+
+3–5 veterinarians/clinics
+
+3 trainers
+
+3 taxi partners
+
+2 product partners
+
+2 boarding centres
+
+2 event partners
+
+Do not approve everyone merely to reach the partner target.
+
+Days 31–50: competency and facility verification
+
+Interviews
+
+Practical assessments
+
+Vehicle inspections
+
+Facility inspections
+
+Registration checks
+
+Reference calls
+
+Partner training
+
+Days 51–70: trials
+
+Controlled bookings
+
+Manual assignment
+
+Customer follow-up
+
+Report audits
+
+Incident simulations
+
+Score calibration
+
+Days 71–90: activation and optimisation
+
+Promote passing partners to P5
+
+Restrict or remove weak partners
+
+Identify Premium candidates
+
+Measure utilisation
+
+Improve service-area coverage
+
+Test backup fulfilment
+
+Review partner economics
+
+Publish Phase 8 partner report
+
+Final recommended system
+
+Verification
+
+P0 Applicant
+
+P1 Contact Verified
+
+P2 Documents Verified
+
+P3 Competency Verified
+
+P4 Trial Partner
+
+P5 Active Partner
+
+P6 Premium Partner
+
+Enforcement
+
+Active
+
+Limited
+
+Under Review
+
+Paused
+
+Suspended
+
+Rejected
+
+Removed
+
+Expired
+
+Performance grades
+
+90–100 Premium
+
+80–89 Approved
+
+70–79 Monitor
+
+60–69 Retrain/Review
+
+Below 60 Remove or deactivate after investigation
+
+Non-negotiable rule
+
+Compliance and safety gates override performance scores, revenue and customer demand.
+
+Correct partner-system positioning
+
+A service-specific verification and quality network that approves the actual person, business, facility or vehicle delivering each booking—and continuously monitors their reliability, animal welfare, customer experience and compliance.
+
+Final decision
+
+Phase 8 Partner System: GO—with structural modification.
+
+The most important change is to stop treating partner verification as a single ladder.
+
+The defensible system is:
+
+That is what turns an ordinary service marketplace into a trusted pet-care operating network.
+
+Phase 8 Product Modules
+
+End-to-End Architecture, Database, API and UX Blueprint 🐾⚙️
+
+Executive verdict
+
+The module roadmap is directionally correct, but the proposed implementation needs one major architectural change:
+
+Build one universal service-commerce core, then attach grooming, veterinary care, training, camps, taxi and products as specialised modules.
+
+Do not create six independent booking systems. That would duplicate:
+
+Pricing
+
+Availability
+
+Payments
+
+Assignment
+
+Notifications
+
+Cancellation
+
+Reviews
+
+Reports
+
+Refunds
+
+Payouts
+
+Disputes
+
+The correct structure is:
+
+Shared marketplace core
+
+├── Partner and verification system
+
+├── Service catalogue
+
+├── Availability and quotation
+
+├── Booking state machine
+
+├── Payments, refunds and payouts
+
+├── Media and reports
+
+├── Reviews, complaints and incidents
+
+├── Notifications
+
+├── Audit and analytics
+
+│
+
+├── Grooming extension
+
+├── Vet-care extension
+
+├── Training extension
+
+├── Society-event extension
+
+├── Pet-taxi extension
+
+└── Affiliate-product extension
+
+1. Revised module priorities
+
+Your priority order needs a few adjustments.
+
+P0 — Marketplace foundation
+
+These modules are required before the first Phase 8 transaction:
+
+### Table 105
+
+| Module | Priority | Reason |
+| --- | --- | --- |
+| Authentication and role permissions | P0 | Protect customer, partner and admin data |
+| Partner profiles | P0 | Required to identify the service provider |
+| Partner verification and permissions | P0 | A profile alone does not prove eligibility |
+| Service catalogue and packages | P0 | Shared foundation for every add-on |
+| Availability and quotations | P0 | Required before booking |
+| Universal add-on booking engine | P0 | Core transaction system |
+| Grooming booking extension | P0 | First Phase 8 service |
+| Partner assignment | P0 | Manual and automated fulfilment |
+| Payment and refund ledger | P0 | Required for commercial launch |
+| Internal payout tracker | P0 | Partner money must be reconciled |
+| Service reports and media | P0 | Required to verify completion |
+| Admin operations dashboard | P0 | Manual control is essential during launch |
+| Notifications | P0 | Booking, reminders, delays and completion |
+| Complaints and incidents | P0 | Required before real bookings |
+| Audit logs | P0 | Required for safety and financial disputes |
+
+Important correction
+
+The partner-facing payout dashboard can be P1, but the underlying payout ledger cannot. You need internal payout accounting from the first paid partner booking.
+
+P1 — High-value service extensions
+
+### Table 106
+
+| Module | Priority | Reason |
+| --- | --- | --- |
+| Vet booking flow | P1 | Second major service |
+| Pet health record | P1 | Supports vet and vaccination workflows |
+| Training booking flow | P1 | Multi-session service |
+| Training progress tracker | P1 | Sessions and outcomes differ from one-time bookings |
+| Society camp booking | P1 | Growth and acquisition layer |
+| Event registration and capacity | P1 | Different from ordinary bookings |
+| Partner dashboard | P1 | Reduces manual operations |
+| Partner payout dashboard | P1 | Earnings transparency |
+| Recurring bookings and packages | P1 | Grooming and training retention |
+| Subscription and reminder engine | P1 | Vaccines, grooming and packages |
+
+Veterinary practitioners must be verified using current professional-registration evidence and relevant State Veterinary Council records. The VCI public IVPR page currently exposes the 2023 register as its latest main register, so the platform should not rely on that static file alone.
+
+P2 — Controlled experiments
+
+### Table 107
+
+| Module | Priority | Reason |
+| --- | --- | --- |
+| Pet-taxi beta flow | P2 | Operationally sensitive |
+| Product affiliate system | P2 | Should not distract from services |
+| Care-kit recommendations | P2 | Requires enough profile and transaction data |
+| Advanced matching | P2 | Manual matching is acceptable initially |
+| Automated pricing | P2 | Begin with controlled package pricing |
+| Partner subscription plans | P2 | Only useful after demand exists |
+| Sponsored listings | P2 | Requires marketplace liquidity and disclosures |
+
+2. Core architectural model
+
+Recommended bounded domains
+
+Use separate application domains even when they are initially deployed as one modular monolith.
+
+Identity domain
+
+Users
+
+Roles
+
+Customer accounts
+
+Partner accounts
+
+Admin accounts
+
+Sessions
+
+Permissions
+
+Pet domain
+
+Pet profiles
+
+Health warnings
+
+Behaviour flags
+
+Vaccinations
+
+Documents
+
+Emergency contacts
+
+Partner domain
+
+Partner organisations
+
+Partner staff
+
+Verification
+
+Credentials
+
+Facilities
+
+Vehicles
+
+Service permissions
+
+Service areas
+
+Catalogue domain
+
+Service types
+
+Service packages
+
+Package inclusions
+
+Pricing
+
+Duration
+
+Eligibility
+
+Add-ons
+
+Booking domain
+
+Quotes
+
+Bookings
+
+Assignments
+
+Status transitions
+
+Scheduling
+
+Cancellation
+
+Reassignment
+
+Fulfilment domain
+
+Check-in and check-out
+
+Reports
+
+Media
+
+Clinical notes
+
+Training sessions
+
+Taxi handovers
+
+Event attendance
+
+Finance domain
+
+Payments
+
+Refunds
+
+Platform fees
+
+Partner earnings
+
+Payouts
+
+Adjustments
+
+Tax data
+
+Trust and safety domain
+
+Reviews
+
+Complaints
+
+Incidents
+
+Partner restrictions
+
+Audit logs
+
+Evidence
+
+Society domain
+
+Societies
+
+Membership or eligibility
+
+Events
+
+Registrations
+
+Society-specific offers
+
+Gate protocols
+
+3. Universal booking model
+
+Why addon_bookings is too weak
+
+The current table contains:
+
+partner_id
+
+service_type
+
+package_id
+
+scheduled_date
+
+scheduled_time
+
+price
+
+status
+
+payment_status
+
+notes
+
+This will break when you need:
+
+Partner reassignment
+
+Multiple partners
+
+Rescheduling
+
+Multiple training sessions
+
+Home visit versus teleconsult
+
+Event registrations
+
+Dynamic price components
+
+Refunds
+
+Disputes
+
+Multiple status changes
+
+Service reports
+
+Cancellation reasons
+
+Time zones
+
+Taxes
+
+Society attribution
+
+Recommended booking lifecycle
+
+draft
+
+↓
+
+quoted
+
+↓
+
+payment_authorized
+
+↓
+
+requested
+
+↓
+
+partner_assigned
+
+↓
+
+accepted
+
+↓
+
+confirmed
+
+↓
+
+checked_in
+
+↓
+
+in_progress
+
+↓
+
+service_submitted
+
+↓
+
+completed
+
+↓
+
+payout_eligible
+
+↓
+
+paid_out
+
+Exception states
+
+expired
+
+rejected
+
+reassignment_pending
+
+reschedule_requested
+
+cancelled_by_customer
+
+cancelled_by_partner
+
+cancelled_by_platform
+
+no_show_customer
+
+no_show_partner
+
+disputed
+
+partially_refunded
+
+refunded
+
+incident_review
+
+Critical API rule
+
+Never expose a generic endpoint such as:
+
+PUT /api/addons/bookings/:id/status
+
+That allows clients to attempt arbitrary transitions.
+
+Use action endpoints:
+
+POST /v1/bookings/{id}/accept
+
+POST /v1/bookings/{id}/reject
+
+POST /v1/bookings/{id}/check-in
+
+POST /v1/bookings/{id}/start
+
+POST /v1/bookings/{id}/submit-completion
+
+POST /v1/bookings/{id}/approve-completion
+
+POST /v1/bookings/{id}/cancel
+
+POST /v1/bookings/{id}/request-reschedule
+
+The server must validate:
+
+Current status
+
+User role
+
+Booking ownership
+
+Partner assignment
+
+Required documents
+
+Time restrictions
+
+Payment state
+
+Service-specific requirements
+
+Object-level and property-level authorisation are major API risks. Every endpoint accepting a booking, pet, partner, record or media ID must verify that the authenticated user is authorised to access that exact object and field—not merely that the user is logged in.
+
+4. Revised database design
+
+4.1 Partner organisations
+
+A partner is not always one person. A clinic may contain several vets; a grooming business may have several groomers.
+
+partner_organizations
+
+- id
+
+- legal_name
+
+- display_name
+
+- organization_type
+
+- business_registration_number
+
+- tax_id
+
+- city_id
+
+- primary_address_id
+
+- verification_level
+
+- account_status
+
+- performance_grade
+
+- average_rating
+
+- completed_booking_count
+
+- created_at
+
+- updated_at
+
+organization_type
+
+individual
+
+proprietorship
+
+partnership
+
+company
+
+clinic
+
+boarding_facility
+
+retailer
+
+transport_operator
+
+event_provider
+
+4.2 Partner members
+
+partner_members
+
+- id
+
+- partner_organization_id
+
+- user_id
+
+- public_display_name
+
+- role
+
+- is_booking_provider
+
+- verification_level
+
+- account_status
+
+- average_rating
+
+- completed_booking_count
+
+- created_at
+
+- updated_at
+
+Examples of role:
+
+groomer
+
+veterinarian
+
+trainer
+
+driver
+
+pet_handler
+
+clinic_receptionist
+
+partner_manager
+
+Every booking should record the actual member who performed the service.
+
+4.3 Partner credentials
+
+partner_credentials
+
+- id
+
+- partner_organization_id
+
+- partner_member_id nullable
+
+- credential_type
+
+- credential_number
+
+- issuing_authority
+
+- issued_at
+
+- expires_at
+
+- storage_object_key
+
+- verification_status
+
+- verified_by_admin_id
+
+- verified_at
+
+- rejection_reason
+
+- created_at
+
+- updated_at
+
+Do not store sensitive documents as public URLs.
+
+Use private object storage and short-lived signed access links.
+
+4.4 Service definitions
+
+service_definitions
+
+- id
+
+- code
+
+- name
+
+- category
+
+- description
+
+- fulfilment_type
+
+- requires_pet
+
+- requires_partner
+
+- requires_report
+
+- requires_check_in
+
+- requires_payment
+
+- is_active
+
+- created_at
+
+Examples:
+
+grooming
+
+vet_teleconsult
+
+vet_clinic_visit
+
+vet_home_visit
+
+training_assessment
+
+training_program
+
+pet_taxi
+
+society_event
+
+affiliate_product
+
+4.5 Service packages
+
+service_packages
+
+- id
+
+- service_definition_id
+
+- name
+
+- description
+
+- base_price_minor
+
+- currency
+
+- duration_minutes
+
+- cancellation_policy_id
+
+- eligibility_rules_json
+
+- is_active
+
+- created_at
+
+- updated_at
+
+Store monetary amounts in the smallest currency unit:
+
+₹1,499 = 149900 paise
+
+Do not store money as floating-point values.
+
+4.6 Partner service offerings
+
+partner_service_offerings
+
+- id
+
+- partner_organization_id
+
+- partner_member_id nullable
+
+- service_definition_id
+
+- service_package_id
+
+- partner_price_minor
+
+- platform_price_minor
+
+- duration_minutes
+
+- booking_notice_minutes
+
+- capacity
+
+- service_mode
+
+- is_active
+
+- approved_at
+
+- created_at
+
+- updated_at
+
+service_mode
+
+customer_home
+
+partner_location
+
+teleconsult
+
+clinic
+
+society_event
+
+transport
+
+online
+
+4.7 Partner service areas
+
+Do not rely only on service_radius_km.
+
+partner_service_areas
+
+- id
+
+- partner_organization_id
+
+- service_definition_id
+
+- city_id
+
+- geographic_boundary
+
+- radius_km nullable
+
+- travel_fee_rule_id
+
+- is_active
+
+A polygon or locality mapping is more precise than radius-only coverage.
+
+4.8 Availability
+
+partner_availability_rules
+
+- id
+
+- partner_member_id
+
+- day_of_week
+
+- start_time
+
+- end_time
+
+- timezone
+
+- recurrence_rule
+
+- effective_from
+
+- effective_until
+
+partner_availability_exceptions
+
+- id
+
+- partner_member_id
+
+- starts_at
+
+- ends_at
+
+- exception_type
+
+- reason
+
+Exception types:
+
+blocked
+
+additional_availability
+
+holiday
+
+booked_externally
+
+unavailable
+
+4.9 Quotes
+
+Add a quotation layer before booking.
+
+service_quotes
+
+- id
+
+- customer_id
+
+- pet_id
+
+- service_package_id
+
+- partner_offering_id nullable
+
+- society_id nullable
+
+- subtotal_minor
+
+- discount_minor
+
+- tax_minor
+
+- platform_fee_minor
+
+- travel_fee_minor
+
+- total_minor
+
+- currency
+
+- pricing_breakdown_json
+
+- expires_at
+
+- created_at
+
+This prevents the booking price from changing when package prices are edited later.
+
+4.10 Bookings
+
+bookings
+
+- id
+
+- public_reference
+
+- customer_id
+
+- pet_id
+
+- service_definition_id
+
+- service_package_id
+
+- quote_id
+
+- society_id nullable
+
+- service_address_id nullable
+
+- scheduled_start_at
+
+- scheduled_end_at
+
+- timezone
+
+- booking_status
+
+- payment_status
+
+- fulfilment_mode
+
+- customer_instructions
+
+- internal_notes
+
+- cancellation_policy_snapshot_json
+
+- pricing_snapshot_json
+
+- created_at
+
+- updated_at
+
+- version
+
+Use optimistic concurrency through version or equivalent locking to prevent two admins or partners from overwriting the same booking.
+
+4.11 Partner assignment history
+
+Do not place only one mutable partner_id on the booking.
+
+booking_assignments
+
+- id
+
+- booking_id
+
+- partner_organization_id
+
+- partner_member_id
+
+- assignment_status
+
+- assigned_at
+
+- accepted_at
+
+- rejected_at
+
+- rejection_reason
+
+- unassigned_at
+
+- unassignment_reason
+
+This preserves reassignment history.
+
+4.12 Booking status history
+
+booking_status_history
+
+- id
+
+- booking_id
+
+- from_status
+
+- to_status
+
+- changed_by_user_id
+
+- reason_code
+
+- notes
+
+- occurred_at
+
+This table is essential for disputes, support and analytics.
+
+5. Service-specific extensions
+
+Use specialised tables rather than forcing everything into notes or one JSON blob.
+
+5.1 Grooming booking details
+
+grooming_booking_details
+
+- booking_id
+
+- coat_type
+
+- coat_condition
+
+- pet_size_class
+
+- temperament_level
+
+- bite_history
+
+- requested_style
+
+- products_approved
+
+- water_available
+
+- power_available
+
+- specialist_requirements
+
+- risk_level
+
+5.2 Veterinary booking details
+
+vet_booking_details
+
+- booking_id
+
+- consultation_mode
+
+- concern_category
+
+- symptom_started_at
+
+- urgency_level
+
+- red_flag_detected
+
+- preferred_clinic_id
+
+- emergency_routing_required
+
+- intake_summary
+
+- customer_consent_at
+
+A clinical note should be stored separately from booking operations.
+
+clinical_records
+
+- id
+
+- pet_id
+
+- booking_id
+
+- vet_partner_member_id
+
+- record_type
+
+- clinical_title
+
+- encrypted_clinical_body
+
+- authored_at
+
+- signed_at
+
+- supersedes_record_id nullable
+
+- visibility_status
+
+- created_at
+
+Customer support should not silently edit a veterinarian-authored record. Corrections should create a new version or addendum.
+
+5.3 Training programmes
+
+Training is a multi-session service, so one booking row is insufficient.
+
+training_programs
+
+- id
+
+- customer_id
+
+- pet_id
+
+- trainer_member_id
+
+- package_id
+
+- assessment_booking_id
+
+- goal_summary
+
+- baseline_summary
+
+- session_count
+
+- completed_session_count
+
+- program_status
+
+- starts_at
+
+- expected_end_at
+
+training_sessions
+
+- id
+
+- training_program_id
+
+- booking_id
+
+- session_number
+
+- scheduled_start_at
+
+- status
+
+- session_goal
+
+- pet_response
+
+- owner_homework
+
+- next_session_plan
+
+- trainer_notes
+
+training_goals
+
+- id
+
+- training_program_id
+
+- goal_name
+
+- baseline_measure
+
+- target_measure
+
+- current_status
+
+- achieved_at
+
+5.4 Pet-taxi details
+
+taxi_booking_details
+
+- booking_id
+
+- pickup_address_id
+
+- drop_address_id
+
+- trip_type
+
+- owner_accompanying
+
+- handler_required
+
+- vehicle_requirement
+
+- restraint_type
+
+- appointment_time
+
+- waiting_minutes_included
+
+- risk_level
+
+taxi_trip_events
+
+- id
+
+- booking_id
+
+- event_type
+
+- latitude
+
+- longitude
+
+- occurred_at
+
+- recorded_by_user_id
+
+Events:
+
+driver_assigned
+
+driver_arrived
+
+pet_collected
+
+trip_started
+
+destination_arrived
+
+pet_handed_over
+
+return_started
+
+completed
+
+6. Reports and media
+
+Why URL arrays are weak
+
+This design is insufficient:
+
+before_media_urls
+
+after_media_urls
+
+It does not track:
+
+Who uploaded the media
+
+Media type
+
+Scan status
+
+Upload time
+
+Customer consent
+
+Whether it is before or after
+
+Whether it is private or marketing-approved
+
+Deletion status
+
+Recommended media model
+
+media_assets
+
+- id
+
+- owner_user_id
+
+- booking_id nullable
+
+- pet_id nullable
+
+- storage_object_key
+
+- media_type
+
+- purpose
+
+- mime_type
+
+- file_size_bytes
+
+- upload_status
+
+- malware_scan_status
+
+- visibility
+
+- marketing_consent
+
+- created_at
+
+- deleted_at
+
+purpose
+
+before_service
+
+after_service
+
+incident_evidence
+
+clinical_document
+
+vaccination_certificate
+
+training_progress
+
+taxi_handover
+
+partner_portfolio
+
+Use:
+
+Pre-signed uploads
+
+File-size limits
+
+MIME allowlists
+
+Content validation
+
+Malware scanning
+
+Private storage
+
+Short-lived signed downloads
+
+Removal of unnecessary metadata
+
+OWASP recommends allowlisting file types, setting size limits, validating uploads and protecting applications against malicious file content.
+
+Service reports
+
+service_reports
+
+- id
+
+- booking_id
+
+- partner_member_id
+
+- report_type
+
+- summary
+
+- concern_flag
+
+- concern_severity
+
+- submitted_at
+
+- reviewed_by_admin_id nullable
+
+- reviewed_at nullable
+
+Use service-specific report sections:
+
+service_report_fields
+
+- id
+
+- service_report_id
+
+- field_code
+
+- value_text
+
+- value_number
+
+- value_boolean
+
+- value_json
+
+For early implementation, a validated JSON payload per report type is acceptable, provided the schema is versioned.
+
+7. Pet health record redesign
+
+Your existing table is a good first concept, but it needs security, provenance and access controls.
+
+Recommended structure
+
+pet_health_records
+
+- id
+
+- pet_id
+
+- record_type
+
+- title
+
+- summary
+
+- record_date
+
+- source_type
+
+- source_partner_member_id nullable
+
+- source_booking_id nullable
+
+- entered_by_user_id
+
+- verification_status
+
+- sensitivity_level
+
+- current_version_id
+
+- created_at
+
+- updated_at
+
+pet_health_record_versions
+
+- id
+
+- health_record_id
+
+- version_number
+
+- encrypted_description
+
+- document_media_id nullable
+
+- correction_reason nullable
+
+- supersedes_version_id nullable
+
+- authored_at
+
+- created_at
+
+pet_health_reminders
+
+- id
+
+- pet_id
+
+- related_health_record_id
+
+- reminder_type
+
+- due_at
+
+- status
+
+- reminder_source
+
+- created_at
+
+Record sources
+
+customer_reported
+
+registered_veterinarian
+
+clinic_document
+
+vaccination_camp
+
+platform_import
+
+Access policy
+
+Customer: own pets
+
+Selected vet: records authorised for consultation
+
+Groomer: only grooming-relevant warnings
+
+Walker/sitter: only emergency-care instructions
+
+Support: metadata, not unrestricted clinical details
+
+Marketing: no health-record access
+
+The DPDP Rules, 2025 have phased commencement dates, but the system should be designed now around clear notices, specified purposes, access controls, security safeguards and user grievance mechanisms.
+
+8. Society events model
+
+Society event
+
+society_events
+
+- id
+
+- society_id
+
+- event_type
+
+- title
+
+- description
+
+- venue
+
+- scheduled_start_at
+
+- scheduled_end_at
+
+- timezone
+
+- capacity
+
+- registration_opens_at
+
+- registration_closes_at
+
+- event_status
+
+- primary_partner_organization_id
+
+- responsible_partner_member_id
+
+- pricing_type
+
+- ticket_price_minor
+
+- expected_attendees
+
+- actual_attendees
+
+- gross_revenue_minor
+
+- direct_cost_minor
+
+- contribution_minor
+
+- created_at
+
+- updated_at
+
+Event registrations
+
+society_event_registrations
+
+- id
+
+- society_event_id
+
+- customer_id
+
+- pet_id nullable
+
+- selected_session_id nullable
+
+- registration_status
+
+- payment_status
+
+- consent_snapshot_json
+
+- checked_in_at
+
+- created_at
+
+Event sessions
+
+Use this for grooming slots, vaccination appointments and workshop time blocks.
+
+society_event_sessions
+
+- id
+
+- society_event_id
+
+- partner_member_id
+
+- package_id nullable
+
+- starts_at
+
+- ends_at
+
+- capacity
+
+- booked_count
+
+- status
+
+Event partner assignments
+
+society_event_partners
+
+- id
+
+- society_event_id
+
+- partner_organization_id
+
+- partner_member_id nullable
+
+- role
+
+- assignment_status
+
+A vaccination event may have:
+
+Lead veterinarian
+
+Additional veterinarian
+
+Registration staff
+
+Cold-chain owner
+
+Event coordinator
+
+9. Payments, refunds and payouts
+
+Separate the booking from the financial ledger
+
+Do not rely only on:
+
+bookings.price
+
+bookings.payment_status
+
+You need immutable financial records.
+
+Payments
+
+payments
+
+- id
+
+- booking_id nullable
+
+- event_registration_id nullable
+
+- customer_id
+
+- provider
+
+- provider_payment_reference
+
+- amount_minor
+
+- currency
+
+- payment_status
+
+- authorized_at
+
+- captured_at
+
+- failed_at
+
+- created_at
+
+Refunds
+
+refunds
+
+- id
+
+- payment_id
+
+- booking_id
+
+- amount_minor
+
+- reason_code
+
+- refund_status
+
+- provider_refund_reference
+
+- initiated_by_user_id
+
+- created_at
+
+- completed_at
+
+Partner earnings
+
+partner_earnings
+
+- id
+
+- booking_id
+
+- partner_organization_id
+
+- partner_member_id nullable
+
+- gross_service_amount_minor
+
+- platform_fee_minor
+
+- tax_withholding_minor
+
+- refund_adjustment_minor
+
+- penalty_adjustment_minor
+
+- net_earning_minor
+
+- earning_status
+
+- created_at
+
+Payouts
+
+partner_payouts
+
+- id
+
+- partner_organization_id
+
+- provider_payout_reference
+
+- total_amount_minor
+
+- payout_status
+
+- scheduled_at
+
+- initiated_at
+
+- completed_at
+
+- failure_reason
+
+partner_payout_items
+
+- id
+
+- partner_payout_id
+
+- partner_earning_id
+
+- amount_minor
+
+Recommended payout lifecycle
+
+service completed
+
+↓
+
+required report submitted
+
+↓
+
+critical incident check
+
+↓
+
+customer payment captured
+
+↓
+
+short dispute window
+
+↓
+
+earning becomes payout eligible
+
+↓
+
+payout batch created
+
+↓
+
+provider processes payout
+
+↓
+
+partner receives statement
+
+Use an authorised payment provider rather than building an internal wallet or settlement system. Payment-system activity involving payment, clearing or settlement falls within regulated financial infrastructure in India, so the exact funds flow should be reviewed with the selected provider, counsel and accountant.
+
+Marketplace payment systems commonly separate charges, connected-party balances, refunds, disputes and scheduled or manual payouts. That is the architecture your ledger should support, regardless of the final India-compatible provider selected.
+
+10. Revised API design
+
+General rules
+
+Use:
+
+/v1/ versioning
+
+Noun-based resources
+
+Explicit action endpoints for state transitions
+
+Idempotency keys for payments and booking creation
+
+Cursor pagination
+
+Structured error codes
+
+Optimistic concurrency
+
+Webhooks for external payment and notification events
+
+OpenAPI documentation
+
+OpenAPI provides a language-agnostic contract for describing HTTP APIs, allowing frontend, backend and integration teams to understand capabilities without inspecting implementation code.
+
+10.1 Partner application APIs
+
+Replace:
+
+POST /api/partners/apply
+
+with:
+
+POST /v1/partner-applications
+
+GET /v1/partner-applications/{applicationId}
+
+PATCH /v1/partner-applications/{applicationId}
+
+POST /v1/partner-applications/{applicationId}/submit
+
+POST /v1/partner-applications/{applicationId}/documents
+
+Admin verification
+
+GET /v1/admin/partner-applications
+
+GET /v1/admin/partner-applications/{id}
+
+POST /v1/admin/partner-applications/{id}/request-changes
+
+POST /v1/admin/partner-applications/{id}/verify-documents
+
+POST /v1/admin/partner-applications/{id}/schedule-assessment
+
+POST /v1/admin/partner-applications/{id}/approve-trial
+
+POST /v1/admin/partner-applications/{id}/reject
+
+Do not allow admins to set an arbitrary verification number through one unrestricted PUT.
+
+10.2 Catalogue APIs
+
+GET /v1/services
+
+GET /v1/services/{serviceCode}
+
+GET /v1/services/{serviceCode}/packages
+
+GET /v1/service-offerings
+
+Recommended query parameters:
+
+pet_id
+
+city_id
+
+latitude
+
+longitude
+
+society_id
+
+scheduled_at
+
+service_mode
+
+partner_id
+
+10.3 Quote APIs
+
+POST /v1/service-quotes
+
+GET /v1/service-quotes/{quoteId}
+
+Example request:
+
+{
+
+"pet_id": "pet_123",
+
+"service_package_id": "pkg_full_grooming",
+
+"scheduled_start_at": "2026-08-02T10:30:00+05:30",
+
+"service_address_id": "addr_456",
+
+"preferred_partner_member_id": "partner_member_789"
+
+}
+
+The returned quote should include:
+
+Package
+
+Duration
+
+Base price
+
+Travel fee
+
+Discount
+
+Taxes
+
+Platform fee
+
+Final price
+
+Expiration
+
+Cancellation terms
+
+10.4 Booking APIs
+
+POST /v1/bookings
+
+GET /v1/bookings
+
+GET /v1/bookings/{bookingId}
+
+POST /v1/bookings/{bookingId}/cancel
+
+POST /v1/bookings/{bookingId}/request-reschedule
+
+POST /v1/bookings/{bookingId}/confirm-reschedule
+
+POST /v1/bookings/{bookingId}/submit-complaint
+
+Partner actions
+
+GET /v1/partner/bookings
+
+GET /v1/partner/bookings/{bookingId}
+
+POST /v1/partner/bookings/{bookingId}/accept
+
+POST /v1/partner/bookings/{bookingId}/reject
+
+POST /v1/partner/bookings/{bookingId}/check-in
+
+POST /v1/partner/bookings/{bookingId}/start
+
+POST /v1/partner/bookings/{bookingId}/submit-completion
+
+Admin actions
+
+POST /v1/admin/bookings/{bookingId}/assign
+
+POST /v1/admin/bookings/{bookingId}/reassign
+
+POST /v1/admin/bookings/{bookingId}/cancel
+
+POST /v1/admin/bookings/{bookingId}/approve-completion
+
+POST /v1/admin/bookings/{bookingId}/place-on-hold
+
+10.5 Report and media APIs
+
+POST /v1/media/upload-intents
+
+POST /v1/bookings/{bookingId}/reports
+
+GET /v1/bookings/{bookingId}/reports
+
+POST /v1/reports/{reportId}/media
+
+upload-intents should return a temporary signed upload target rather than proxying every file through the application server.
+
+10.6 Health-record APIs
+
+GET /v1/pets/{petId}/health-records
+
+POST /v1/pets/{petId}/health-records
+
+GET /v1/pets/{petId}/health-records/{recordId}
+
+POST /v1/pets/{petId}/health-records/{recordId}/corrections
+
+POST /v1/pets/{petId}/health-reminders
+
+PATCH /v1/pets/{petId}/health-reminders/{reminderId}
+
+Do not expose unrestricted PUT editing of veterinarian-authored notes.
+
+Use append-only corrections and version history.
+
+10.7 Society-event APIs
+
+GET /v1/societies/{societyId}/events
+
+GET /v1/society-events/{eventId}
+
+GET /v1/society-events/{eventId}/sessions
+
+POST /v1/society-events/{eventId}/registrations
+
+POST /v1/society-events/{eventId}/registrations/{registrationId}/cancel
+
+POST /v1/society-events/{eventId}/registrations/{registrationId}/check-in
+
+Admin
+
+POST /v1/admin/society-events
+
+PATCH /v1/admin/society-events/{eventId}
+
+POST /v1/admin/society-events/{eventId}/publish
+
+POST /v1/admin/society-events/{eventId}/cancel
+
+POST /v1/admin/society-events/{eventId}/partners
+
+POST /v1/admin/society-events/{eventId}/sessions
+
+GET /v1/admin/society-events/{eventId}/analytics
+
+11. Authentication and authorisation
+
+Roles
+
+customer
+
+partner_owner
+
+partner_manager
+
+partner_provider
+
+veterinarian
+
+trainer
+
+groomer
+
+driver
+
+society_manager
+
+support_agent
+
+operations_admin
+
+verification_admin
+
+finance_admin
+
+safety_admin
+
+super_admin
+
+Do not use only:
+
+user
+
+partner
+
+admin
+
+That would give support agents, finance staff and verification reviewers unnecessary access.
+
+Permission examples
+
+### Table 108
+
+| Action | Allowed roles |
+| --- | --- |
+| View customer clinical record | Customer, authorised vet |
+| Change partner payout | Finance admin |
+| Verify veterinary registration | Verification admin |
+| Assign groomer | Operations admin |
+| Suspend partner after incident | Safety admin |
+| View bank account | Finance-restricted role |
+| View society booking | Customer, assigned partner, authorised admin |
+
+Database enforcement
+
+Application-level checks are mandatory. PostgreSQL row-level security can add defence in depth by restricting which rows a role can view or modify, including separate policies for SELECT, INSERT, UPDATE and DELETE.
+
+Example conceptual policy:
+
+Customers can read bookings where customer_id = current_user_id.
+
+Partners can read bookings with an active assignment to their member ID.
+
+Support can read operational fields but not unrestricted health-record content.
+
+Do not let the application connect as a database superuser or a role that bypasses row-level security.
+
+12. API security requirements
+
+Mandatory controls
+
+Object-level authorisation on every ID
+
+Property-level authorisation
+
+Rate limits
+
+Request-size limits
+
+Server-side input validation
+
+Idempotency
+
+Audit trails
+
+Short session lifetime for sensitive roles
+
+Multi-factor authentication for admins
+
+Secure password or passkey handling
+
+Webhook signature verification
+
+Replay protection
+
+Restricted API keys
+
+Secret rotation
+
+File scanning
+
+PII encryption
+
+No sensitive data in logs
+
+OWASP’s current API guidance specifically highlights broken object-level authorisation, broken authentication, unrestricted resource consumption and property-level authorisation as key API risks.
+
+Rate-limit examples
+
+### Table 109
+
+| Endpoint | Starting limit |
+| --- | --- |
+| Login/OTP verification | Strict |
+| Quote creation | 10–20/minute/user |
+| Booking creation | 5/minute/user |
+| Media upload intent | 20/hour/user |
+| Partner accept/reject | Normal operational limit |
+| Admin search | Higher authenticated limit |
+| Public service search | IP and device controlled |
+
+The exact limits should be tuned from production traffic.
+
+13. Customer experience
+
+Customer dashboard structure
+
+Primary navigation
+
+Home
+
+My Pets
+
+Bookings
+
+More Services
+
+Health
+
+Society
+
+Support
+
+“Recommended services for your pet”
+
+Cards should explain the reason.
+
+Example
+
+Bruno — Labrador
+
+Grooming may be due this month based on Bruno’s last recorded grooming date.
+
+Actions:
+
+View packages
+
+Book same groomer
+
+Remind me later
+
+Dismiss
+
+Simba — Persian cat
+
+Cat-grooming specialists are available in your area.
+
+Actions:
+
+View specialists
+
+See safety requirements
+
+Max — Puppy
+
+A puppy-foundation workshop is scheduled in your society.
+
+Actions:
+
+Register
+
+View workshop details
+
+Bella — Senior dog
+
+Bella’s recorded veterinary follow-up date is approaching.
+
+Actions:
+
+View reminder
+
+Book a veterinarian
+
+Mark as completed elsewhere
+
+Do not state that veterinary care is “due” unless the date comes from a valid record or veterinarian instruction.
+
+14. Universal service-discovery flow
+
+Customer dashboard
+
+↓
+
+More Services
+
+↓
+
+Select service category
+
+↓
+
+Select pet
+
+↓
+
+Eligibility and risk questions
+
+↓
+
+Select package or consultation type
+
+↓
+
+Location and availability
+
+↓
+
+View eligible partners
+
+↓
+
+Receive final quotation
+
+↓
+
+Select date and time
+
+↓
+
+Review terms and cancellation
+
+↓
+
+Pay or authorise payment
+
+↓
+
+Booking requested
+
+↓
+
+Partner accepts
+
+↓
+
+Booking confirmed
+
+↓
+
+Service fulfilled
+
+↓
+
+Report shared
+
+↓
+
+Review and repeat booking
+
+Partner selection modes
+
+Offer:
+
+Best match
+
+Same partner again
+
+Select a partner
+
+Fastest available
+
+Platform assigns
+
+The matching result should explain:
+
+Qualification
+
+Service area
+
+Availability
+
+Pet compatibility
+
+Rating
+
+Price
+
+Repeat relationship
+
+15. Service pages
+
+Routes
+
+/services/grooming
+
+/services/vet-care
+
+/services/dog-training
+
+/services/pet-taxi
+
+/services/society-camps
+
+Each page should include
+
+Hero
+
+Clear value proposition
+
+Starting price
+
+Availability area
+
+Primary booking CTA
+
+Service inclusions
+
+What is included
+
+What is excluded
+
+Expected duration
+
+Add-ons
+
+Partner trust
+
+Exact verification badges
+
+Qualification requirements
+
+Review methodology
+
+Number of completed services
+
+How it works
+
+Select pet
+
+Select service
+
+Choose partner or assignment mode
+
+Pay
+
+Receive service and report
+
+Safety
+
+Pet risk disclosure
+
+Stop-work rules
+
+Emergency escalation
+
+Complaint process
+
+Service limitations
+
+Pricing
+
+Starting price
+
+Possible adjustments
+
+Travel fee
+
+Cancellation rules
+
+Taxes and platform fee
+
+FAQs
+
+Service-specific, not generic.
+
+CTA
+
+Book now
+
+View availability
+
+Schedule an assessment
+
+Register for an event
+
+Avoid a vague “Safety Promise” that implies guaranteed safety. Prefer:
+
+Our safety process
+
+Then explain the actual controls.
+
+16. Partner dashboard
+
+Dashboard home
+
+Upcoming bookings
+
+Pending requests
+
+Today’s schedule
+
+Earnings
+
+Required reports
+
+Document-expiry warnings
+
+Quality score
+
+Booking request
+
+Show only necessary information before acceptance:
+
+Service
+
+General location
+
+Date and time
+
+Pet species, size and risk summary
+
+Estimated earnings
+
+Travel estimate
+
+Required equipment
+
+Reveal exact customer address only after acceptance and confirmation.
+
+Booking fulfilment
+
+Accept
+
+↓
+
+Review pet details
+
+↓
+
+Confirm preparation
+
+↓
+
+Navigate/check in
+
+↓
+
+Start service
+
+↓
+
+Complete service-specific checklist
+
+↓
+
+Upload report/media
+
+↓
+
+Submit completion
+
+↓
+
+Earning pending
+
+Earnings
+
+Gross booking amount
+
+Partner earnings
+
+Platform fee
+
+Refund adjustment
+
+Tax deduction
+
+Payout status
+
+Statement download
+
+17. Admin operations dashboard
+
+Main queues
+
+New partner applications
+
+Verification pending
+
+Trial partners
+
+Unassigned bookings
+
+Partner acceptance timeout
+
+Reassignment required
+
+Services in progress
+
+Reports awaiting review
+
+Complaints
+
+Incidents
+
+Refund requests
+
+Payout holds
+
+Expiring credentials
+
+Booking detail screen
+
+Display:
+
+Customer
+
+Pet
+
+Service
+
+Quote snapshot
+
+Partner assignment history
+
+Status history
+
+Payment
+
+Reports
+
+Media
+
+Communications
+
+Complaints
+
+Payout state
+
+Audit trail
+
+Assignment engine
+
+Filter partners by:
+
+Active status
+
+Valid documents
+
+Approved service permission
+
+Pet compatibility
+
+Service area
+
+Availability
+
+Travel time
+
+Customer preference
+
+Quality and reliability
+
+Fair workload distribution
+
+18. Society-event experience
+
+Customer section
+
+Upcoming pet-care events in your society
+
+Event cards:
+
+Grooming day
+
+Vaccination camp
+
+Puppy workshop
+
+Diwali safety session
+
+Pet-parent meetup
+
+Photo day
+
+Event card fields
+
+Event title
+
+Date and time
+
+Venue
+
+Partner
+
+Verification
+
+Price
+
+Available slots
+
+Pet eligibility
+
+What to bring
+
+Register CTA
+
+Registration flow
+
+Select event
+
+↓
+
+Select pet
+
+↓
+
+Select session or slot
+
+↓
+
+Complete event-specific form
+
+↓
+
+Consent and safety rules
+
+↓
+
+Pay if ticketed
+
+↓
+
+Receive QR/booking reference
+
+↓
+
+Reminder
+
+↓
+
+Check in
+
+↓
+
+Attendance and follow-up
+
+RWA reporting
+
+The society dashboard should receive only aggregate information:
+
+Registrations
+
+Attendance
+
+Completed services
+
+Rating
+
+Complaints
+
+Gate incidents
+
+General follow-up actions
+
+Do not expose individual health, behaviour or booking records.
+
+19. Notification architecture
+
+Use event-driven notifications.
+
+Events
+
+booking.created
+
+booking.assigned
+
+booking.accepted
+
+booking.rejected
+
+booking.reassigned
+
+booking.confirmed
+
+booking.reminder_due
+
+booking.partner_arriving
+
+booking.checked_in
+
+booking.completed
+
+booking.report_ready
+
+booking.cancelled
+
+payment.succeeded
+
+payment.failed
+
+refund.completed
+
+payout.completed
+
+credential.expiring
+
+event.registration_confirmed
+
+health.reminder_due
+
+Channels
+
+In-app
+
+Push
+
+SMS
+
+Email
+
+WhatsApp through approved business messaging
+
+Store notification preferences and avoid sending medical information in insecure message previews.
+
+20. Audit and observability
+
+Audit events
+
+Record:
+
+Partner verification changes
+
+Credential access
+
+Booking status transitions
+
+Assignment changes
+
+Price adjustments
+
+Refund decisions
+
+Payout holds
+
+Health-record access
+
+Clinical-record corrections
+
+Admin impersonation
+
+Partner suspension
+
+Consent changes
+
+Operational metrics
+
+Quote-to-booking conversion
+
+Assignment time
+
+Acceptance rate
+
+Reassignment rate
+
+Completion rate
+
+Cancellation rate
+
+Report-completion time
+
+Payment failure
+
+Refund rate
+
+Payout delay
+
+Complaint rate
+
+API error rate
+
+File-scan failure
+
+Notification failure
+
+OWASP recommends security-focused application logging, but logs must avoid sensitive credentials, unrestricted clinical data and full financial information.
+
+21. Recommended technical deployment
+
+Start with a modular monolith
+
+Do not begin with microservices.
+
+Recommended first architecture:
+
+Web/PWA applications
+
+├── Customer app
+
+├── Partner app
+
+└── Admin app
+
+↓
+
+API application
+
+├── Identity module
+
+├── Partner module
+
+├── Catalogue module
+
+├── Booking module
+
+├── Payment module
+
+├── Report module
+
+├── Society module
+
+└── Trust and safety module
+
+↓
+
+PostgreSQL
+
+Object storage
+
+Queue/job worker
+
+Cache
+
+Notification providers
+
+Payment provider
+
+A modular monolith gives:
+
+Simpler transactions
+
+Faster development
+
+Easier debugging
+
+Lower deployment complexity
+
+Clear future extraction boundaries
+
+Extract separate services only when there is real scaling, ownership or reliability pressure.
+
+22. Recommended launch sequence
+
+Sprint group 1: Marketplace core
+
+Build:
+
+Identity and RBAC
+
+Partner organisations and members
+
+Partner verification
+
+Service catalogue
+
+Packages
+
+Availability
+
+Quotes
+
+Booking state machine
+
+Admin assignment
+
+Payments
+
+Reports
+
+Audit logs
+
+Sprint group 2: Grooming launch
+
+Build:
+
+Grooming intake
+
+Risk classification
+
+Groomer matching
+
+Before/after media
+
+Grooming report
+
+Same-groomer rebooking
+
+Refund and complaint flow
+
+Sprint group 3: Partner self-service
+
+Build:
+
+Partner dashboard
+
+Availability
+
+Accept/reject
+
+Check-in
+
+Completion report
+
+Earnings and payout status
+
+Sprint group 4: Vet and health
+
+Build:
+
+Vet verification
+
+Concern intake
+
+Urgency routing
+
+Teleconsult/home/clinic modes
+
+Health records
+
+Vaccination reminders
+
+Clinical-note access control
+
+Sprint group 5: Training and camps
+
+Build:
+
+Training assessment
+
+Programmes and sessions
+
+Homework and progress
+
+Society events
+
+Sessions and registrations
+
+Event reporting
+
+Sprint group 6: P2 experiments
+
+Build:
+
+Pet-taxi manual dispatch
+
+Live tracking and handover
+
+Affiliate links
+
+Recommendation rules
+
+Society bulk orders
+
+23. P0 launch acceptance criteria
+
+Do not release grooming commercially until:
+
+### Table 110
+
+| Area | Requirement |
+| --- | --- |
+| Authorisation | Customers cannot access another customer’s booking or pet |
+| Partner access | Partners see only assigned bookings |
+| Admin permissions | Finance, support and verification roles are separated |
+| Booking states | Invalid transitions are rejected |
+| Idempotency | Duplicate requests cannot create duplicate bookings or payments |
+| Assignment | Reassignment history is retained |
+| Payments | Payment, refund and payout states reconcile |
+| Reports | Completion report is mandatory |
+| Uploads | Private, scanned and size-limited |
+| Audit | Admin and financial actions are recorded |
+| Notifications | Critical booking events are delivered |
+| Complaints | Customer can report a problem |
+| Incidents | Safety team can pause a partner immediately |
+| Documents | Expired mandatory credentials restrict service |
+| Backups | Database and object-storage recovery tested |
+
+24. Final recommended structure
+
+Customer product
+
+Pet profile
+
+↓
+
+Recommendation
+
+↓
+
+Service discovery
+
+↓
+
+Eligibility
+
+↓
+
+Quote
+
+↓
+
+Booking
+
+↓
+
+Payment
+
+↓
+
+Partner fulfilment
+
+↓
+
+Report
+
+↓
+
+Review
+
+↓
+
+Repeat service
+
+Partner product
+
+Application
+
+↓
+
+Verification
+
+↓
+
+Service permissions
+
+↓
+
+Availability
+
+↓
+
+Booking acceptance
+
+↓
+
+Fulfilment
+
+↓
+
+Report
+
+↓
+
+Quality score
+
+↓
+
+Earning
+
+↓
+
+Payout
+
+Admin product
+
+Verify supply
+
+↓
+
+Configure services
+
+↓
+
+Manage assignments
+
+↓
+
+Monitor fulfilment
+
+↓
+
+Resolve incidents
+
+↓
+
+Approve refunds
+
+↓
+
+Reconcile payouts
+
+↓
+
+Measure service performance
+
+Final decision
+
+Phase 8 Product Modules: GO—with architectural restructuring.
+
+The most important implementation changes are:
+
+Use a universal booking core with service-specific extensions.
+
+Separate partner organisations, actual service providers, facilities and vehicles.
+
+Replace arbitrary status updates with a validated booking state machine.
+
+Add quote snapshots, assignment history and immutable financial ledgers.
+
+Treat reports, media, incidents and audit logs as P0—not optional extras.
+
+Make health records versioned, permission-controlled and provenance-aware.
+
+Keep pet taxi and product commerce isolated as P2 experiments.
+
+Use role- and object-level authorisation for every customer, partner and admin operation.
+
+The final product should not feel like several unrelated services bolted onto a dog-walking application.
+
+It should feel like one trusted pet-care operating system with specialised workflows behind each service.Phase 8 Execution Plan — Month 1
+
+Grooming-at-Home + Partner Onboarding 🐾✂️
+
+Executive decision
+
+Month 1 should launch grooming as a controlled local pilot—not as a city-wide marketplace.
+
+The commercial goal is valid:
+
+Launch verified at-home grooming, complete the first 30–50 paid bookings, identify reliable groomers, and prove repeatable quality and positive contribution.
+
+However, one target needs correction:
+
+That is too little activity to evaluate performance or keep partners engaged.
+
+Recommended Month 1 partner funnel
+
+### Table 111
+
+| Partner stage | Target |
+| --- | --- |
+| Groomer applications | 25–40 |
+| Contact verified | 18–25 |
+| Documents verified | 12–20 |
+| Competency assessed | 8–12 |
+| Trial groomers | 6–10 |
+| Active groomers | 4–8 |
+| Backup groomers | 2–4 |
+
+The 10–20 groomer target should represent the verified supply bench, not the number of partners receiving bookings immediately.
+
+1. Month 1 objective
+
+By the end of Month 1, the business should know:
+
+Whether customers will pay for grooming through the platform.
+
+Which grooming packages convert best.
+
+Whether groomers arrive on time and follow hygiene standards.
+
+Whether the platform’s commission covers support and operating costs.
+
+Whether customers request the same groomer again.
+
+Whether society-cluster bookings improve economics.
+
+Whether complaints, injuries and refunds remain controlled.
+
+Current Indian provider references indicate that professional grooming commonly varies from approximately ₹500 to ₹3,500 depending on breed, coat, size, city and package. Doorstep operators also advertise entry packages around ₹799 in some cities, confirming that your service can test multiple price tiers rather than using one national price.
+
+2. Revised Month 1 targets
+
+### Table 112
+
+| Metric | Original target | Recommended target |
+| --- | --- | --- |
+| Verified groomer bench | 10–20 | 10–20 |
+| Active groomers | Not defined | 4–8 |
+| Backup groomers | Not defined | 2–4 |
+| Paid grooming bookings | 30–50 | 30–50 |
+| Unique grooming customers | Not defined | 25–40 |
+| Average rating | 4.5+ | 4.6+ |
+| Verified reviews | Not defined | 20+ |
+| Platform take rate | 15–25% | 18–25% test range |
+| Contribution margin | Not defined | Positive; ideally 10%+ of GMV |
+| Complaint rate | Below 5% | Below 3–5% |
+| Refund/redo rate | Not defined | Below 5% |
+| Groomer cancellation | Not defined | Below 7% |
+| On-time arrival | Not defined | 95%+ |
+| Serious preventable incidents | Not defined | Zero |
+| Rebook/prebook intent | Not defined | 25%+ |
+| Same-groomer request | Not defined | 20%+ |
+
+Critical distinction
+
+The platform take rate is not profit.
+
+The more useful metric is:
+
+3. Launch scope
+
+Geography
+
+Launch in:
+
+One city
+
+Two or three adjacent neighbourhoods
+
+Three to five target societies
+
+A maximum service radius of approximately 3–5 km per groomer cluster
+
+Do not open the service across the entire city.
+
+Customer eligibility
+
+Prioritise:
+
+Existing walking or sitting customers
+
+Residents in Phase 7 partner societies
+
+Pets with completed profiles
+
+Customers willing to complete a grooming-risk form
+
+Customers with suitable water, power and service space
+
+Services to launch
+
+Launch immediately
+
+Essential bath
+
+Bath and blow-dry
+
+Bath and hygiene package
+
+Full grooming
+
+Nail trimming
+
+External ear cleaning
+
+De-shedding
+
+Puppy-introduction grooming
+
+Restricted launch
+
+Large breeds
+
+Anxious pets
+
+Senior pets
+
+Severe matting
+
+Cats
+
+These require specifically approved partners.
+
+Do not launch in Month 1
+
+Sedation
+
+Veterinary treatment
+
+Open-wound care
+
+Deep ear procedures
+
+Parasite medication advice
+
+Aggressive pets without specialist assessment
+
+Unverified groomers
+
+Common-area grooming without society and safety approval
+
+4. Week 1 — Partner criteria, forms and operating system
+
+Goal
+
+Create the rules, technology and operating documents required to onboard groomers safely.
+
+Week 1 outputs
+
+Groomer application form
+
+Verification checklist
+
+Practical skills assessment
+
+Partner agreement
+
+Grooming SOP
+
+Hygiene checklist
+
+Pet-risk questionnaire
+
+Package and pricing structure
+
+Cancellation and refund rules
+
+Incident protocol
+
+Admin verification dashboard
+
+Trial-booking policy
+
+Partner scorecard
+
+Day 1: Define partner eligibility
+
+Minimum entry requirements
+
+Government ID
+
+Verified phone and email
+
+Address
+
+Work experience
+
+Portfolio
+
+Two references
+
+Equipment list
+
+Product list
+
+Grooming-method declaration
+
+Incident-history declaration
+
+Service areas
+
+Availability
+
+Bank and tax information
+
+Signed partner agreement
+
+Automatic rejection or investigation
+
+Falsified documents
+
+Refusal to disclose products
+
+Unauthorised sedation
+
+Animal cruelty or excessive force
+
+Serious concealed injury history
+
+Claims of veterinary treatment
+
+Unwillingness to report incidents
+
+Unauthorised subcontracting
+
+Poorly maintained tools
+
+Inability to identify animal-distress signals
+
+Day 2: Create service permissions
+
+Do not approve every groomer for every pet.
+
+Permission matrix
+
+### Table 113
+
+| Permission | Requirement |
+| --- | --- |
+| Small-dog grooming | Standard practical assessment |
+| Medium/large dog | Large-pet handling assessment |
+| Full haircut | Clipper and scissor assessment |
+| Double-coated breed | Coat-specific competence |
+| Senior pet | Gentle-handling and risk training |
+| Anxious pet | Advanced handling assessment |
+| Cat grooming | Separate cat-specialist assessment |
+| Severe dematting | Senior groomer approval |
+| Society camp | Capacity and event SOP |
+
+Store permissions separately from the groomer’s general verification level.
+
+Day 3: Finalise packages and pricing
+
+Use a limited catalogue.
+
+### Table 114
+
+| Package | Illustrative launch price |
+| --- | --- |
+| Essential bath | ₹899–₹1,299 |
+| Bath + blow dry + brush | ₹1,099–₹1,699 |
+| Bath + hygiene grooming | ₹1,299–₹1,999 |
+| Full grooming | ₹1,799–₹3,499 |
+| Nail trimming add-on | ₹149–₹299 |
+| Standalone nail trimming | ₹299–₹499 |
+| De-shedding add-on | ₹399–₹999 |
+| Cat grooming | Specialist pricing only |
+
+Pricing should vary by:
+
+Pet size
+
+Coat type
+
+Coat condition
+
+Service duration
+
+Behaviour risk
+
+Distance
+
+Need for a second handler
+
+Day 4: Build the safety framework
+
+Pre-booking questions
+
+Collect:
+
+Species
+
+Breed
+
+Age
+
+Weight
+
+Coat type
+
+Last grooming date
+
+Medical conditions
+
+Skin problems
+
+Open wounds
+
+Allergies
+
+Bite history
+
+Fear of dryer or water
+
+Previous grooming incidents
+
+Matting
+
+Tick or flea observations
+
+Risk levels
+
+### Table 115
+
+| Risk | Example | Action |
+| --- | --- | --- |
+| Green | Calm, regularly groomed pet | Standard partner |
+| Amber | Mild anxiety or tangles | Experienced groomer |
+| Orange | Bite history, senior pet, severe matting | Specialist review |
+| Red | Open wounds, unstable health, extreme distress | Decline or vet referral |
+
+Day 5: Build compliance controls
+
+Your platform must provide clear package descriptions, prices, cancellation terms, refund handling and a consumer grievance mechanism. India’s Consumer Protection (E-Commerce) Rules apply to digital sales of goods and services and require an adequate grievance process.
+
+Partner IDs, addresses, portfolio files, customer home details and before/after photographs must be held with controlled access. The final DPDP Rules were published in November 2025 with phased commencement, so the onboarding and booking system should use clear notices, limited-purpose access, secure storage and deletion or correction workflows from launch.
+
+Tamil Nadu’s February 2026 policy introduces specific registration, hygiene, humane-handling and record requirements for grooming centres in that state. It is a state-specific rule, but it shows why local requirements must be checked separately before launching in each city.
+
+Week 1 completion gate
+
+Do not recruit actively until all of these exist:
+
+Defined packages
+
+Groomer permissions
+
+Hygiene standards
+
+Partner agreement
+
+Risk form
+
+Complaint process
+
+Incident process
+
+Pricing and payout model
+
+Admin approval workflow
+
+Trial-booking rules
+
+5. Week 2 — Groomer recruitment and verification
+
+Goal
+
+Build a small, high-quality supply pool rather than a large unverified directory.
+
+Recruitment channels
+
+Prioritise:
+
+Existing independent home groomers
+
+Grooming academies
+
+Veterinary-clinic groomers
+
+Grooming salons seeking home-service demand
+
+Groomers referred by customers
+
+Society-based grooming professionals
+
+Experienced partners on adjacent pet-care networks
+
+Avoid onboarding solely through broad job advertisements without practical assessment.
+
+Recruitment funnel
+
+25–40 applications
+
+↓
+
+18–25 contact verified
+
+↓
+
+12–20 documents verified
+
+↓
+
+8–12 practical assessments
+
+↓
+
+6–10 trial groomers
+
+↓
+
+4–8 active groomers
+
+Capacity planning
+
+Assume 40 bookings in Month 1 and six active groomers:
+
+Each active groomer receives approximately six to seven pilot bookings. This is still a small sample, but enough to identify obvious reliability, hygiene and quality problems.
+
+Verification process
+
+Step 1: Contact verification
+
+Phone OTP
+
+Email verification
+
+Service area
+
+Availability
+
+Identity consistency
+
+Step 2: Document review
+
+Government ID
+
+Address
+
+Business documents where applicable
+
+Bank proof
+
+Certificates
+
+References
+
+Insurance where available
+
+Step 3: Interview
+
+Assess:
+
+Experience
+
+Supported breeds and sizes
+
+Handling methods
+
+Products used
+
+Hygiene process
+
+Incident response
+
+Customer communication
+
+Step 4: Practical assessment
+
+Require demonstration of:
+
+Safe approach
+
+Restraint
+
+Brushing
+
+Nail trimming
+
+Clipper use
+
+Dryer-temperature control
+
+Tool cleaning
+
+Stress recognition
+
+Stop-service judgement
+
+Step 5: SOP examination
+
+Test:
+
+What happens if the pet growls?
+
+What happens if a wound is discovered?
+
+What happens if an extra charge is required?
+
+When should service stop?
+
+What must be included in the report?
+
+How should tools be cleaned?
+
+What can only a veterinarian advise?
+
+Step 6: Trial approval
+
+Trial groomers receive only:
+
+Low-risk pets
+
+Nearby bookings
+
+Limited volume
+
+Manual admin assignment
+
+No Premium placement
+
+No cat or difficult-pet bookings unless separately approved
+
+Partner economics interview
+
+Before activation, confirm:
+
+Expected earnings per service
+
+Travel expectations
+
+Consumable responsibility
+
+Cancellation policy
+
+Payout timing
+
+Platform commission
+
+Refund allocation
+
+Who funds discounts
+
+Whether the groomer can sustain the economics
+
+A partner who loses money will eventually cancel, cut corners or move customers off-platform.
+
+Week 2 targets
+
+### Table 116
+
+| Metric | Target |
+| --- | --- |
+| Applications | 25–40 |
+| Contact verified | 18–25 |
+| Documents verified | 12–20 |
+| Practical assessments | 8–12 |
+| Trial approved | 6–10 |
+| Rejected or held | Evidence-based |
+| Service-zone coverage | At least two groomers per launch cluster |
+| Backup coverage | At least one backup per cluster |
+
+6. Week 3 — Grooming booking flow and controlled launch
+
+Goal
+
+Make the service technically and operationally bookable.
+
+Minimum customer flow
+
+Customer opens Grooming
+
+↓
+
+Selects pet profile
+
+↓
+
+Completes grooming-risk form
+
+↓
+
+Selects package
+
+↓
+
+Views price breakdown
+
+↓
+
+Selects slot
+
+↓
+
+Chooses groomer or platform assignment
+
+↓
+
+Reviews cancellation and safety terms
+
+↓
+
+Pays
+
+↓
+
+Partner accepts
+
+↓
+
+Booking confirmed
+
+Minimum groomer flow
+
+Booking request
+
+↓
+
+Risk summary
+
+↓
+
+Earnings and travel shown
+
+↓
+
+Accept or reject
+
+↓
+
+Customer address revealed after acceptance
+
+↓
+
+Check in
+
+↓
+
+Pre-service inspection
+
+↓
+
+Service completed
+
+↓
+
+Before/after media uploaded
+
+↓
+
+Report submitted
+
+↓
+
+Payout pending
+
+Minimum admin flow
+
+New booking
+
+↓
+
+Risk reviewed
+
+↓
+
+Eligible groomers filtered
+
+↓
+
+Partner assigned
+
+↓
+
+Acceptance monitored
+
+↓
+
+Backup assigned if needed
+
+↓
+
+Completion report reviewed
+
+↓
+
+Complaint/incident check
+
+↓
+
+Payout released
+
+Required P0 technology
+
+Groomer profiles
+
+Service packages
+
+Risk questionnaire
+
+Quote and pricing snapshot
+
+Booking state machine
+
+Manual assignment
+
+Accept/reject
+
+Payment
+
+Refund support
+
+Before/after media
+
+Grooming report
+
+Customer review
+
+Partner earnings ledger
+
+Complaint form
+
+Incident escalation
+
+Audit trail
+
+Internal test scenarios
+
+Test before public launch:
+
+Normal booking
+
+Partner rejection
+
+Partner does not respond
+
+Customer reschedules
+
+Groomer requests an approved surcharge
+
+Payment succeeds twice
+
+Payment fails
+
+Customer cancels
+
+Groomer cancels
+
+Groomer discovers an open wound
+
+Service stops due to pet distress
+
+Customer disputes the haircut
+
+Report is missing
+
+Media upload fails
+
+Refund is issued
+
+Partner payout is held after an incident
+
+Soft-launch group
+
+Begin with:
+
+Existing trusted customers
+
+Employees or known pilot participants
+
+Phase 7 society customers
+
+Low-risk dogs
+
+Standard packages
+
+Short travel distances
+
+Do not begin with paid advertisements sending unknown customers across the city.
+
+Week 3 targets
+
+### Table 117
+
+| Metric | Target |
+| --- | --- |
+| End-to-end test bookings | 10+ |
+| Payment success | 95%+ |
+| Duplicate bookings/payments | 0 |
+| Assignment success | 95%+ |
+| Required report completion | 100% in tests |
+| Customer-support workflow | Tested |
+| Incident simulation | Passed |
+| Active groomers | 4–8 |
+| Booking zones | 2–3 clusters |
+
+7. Week 4 — First 30–50 paid bookings
+
+Goal
+
+Validate customer demand, fulfilment quality, pricing and contribution.
+
+Booking release strategy
+
+Do not release all 50 bookings simultaneously.
+
+Wave 1: First 5 bookings
+
+Use:
+
+Lowest-risk pets
+
+Best-assessed groomers
+
+Manual operations monitoring
+
+Customer call after every service
+
+Wave 2: Bookings 6–15
+
+Test:
+
+More groomers
+
+Multiple package types
+
+Two societies
+
+Reassignment and backup
+
+Wave 3: Bookings 16–30
+
+Test:
+
+Society grooming day
+
+Same-groomer preference
+
+Larger pets
+
+Limited add-ons
+
+Wave 4: Bookings 31–50
+
+Expand only when:
+
+No serious incidents
+
+Rating remains above 4.5
+
+Reports are complete
+
+Complaints are manageable
+
+Partner cancellation is controlled
+
+8. Booking-day operating procedure
+
+Before service
+
+Confirm partner identity.
+
+Confirm pet profile.
+
+Send groomer arrival window.
+
+Confirm water and power.
+
+Confirm society gate entry.
+
+Review risk flags.
+
+Confirm package and price.
+
+Provide support contact.
+
+On arrival
+
+The groomer must:
+
+Check in through OTP.
+
+Confirm pet identity.
+
+Conduct pre-groom inspection.
+
+Photograph pre-existing matting, wounds or concerns with consent.
+
+Confirm service scope.
+
+Request digital approval for any price change.
+
+During service
+
+Use clean equipment.
+
+Monitor dryer temperature.
+
+Never leave a restrained pet unattended.
+
+Stop if continuing becomes unsafe.
+
+Do not diagnose medical conditions.
+
+Report injuries or incidents immediately.
+
+After service
+
+Complete the package checklist.
+
+Upload before-and-after media.
+
+Record products used.
+
+Note pet behaviour.
+
+Record concerns.
+
+Clean the service area.
+
+Submit grooming report.
+
+Ask the customer to review.
+
+9. Grooming report card
+
+Every completed booking should contain:
+
+Groomer
+
+Check-in time
+
+Completion time
+
+Package delivered
+
+Products used
+
+Coat condition
+
+Nail-trim status
+
+External ear-cleaning status
+
+Pet behaviour
+
+Skin or parasite observations
+
+Service changes
+
+Incident or concern
+
+Before photograph
+
+After photograph
+
+Suggested next grooming period
+
+Do not automatically use customer or pet photographs for marketing. Service-documentation consent and marketing consent should be separate.
+
+10. Partner scorecard for Month 1
+
+Use the full 100-point structure, but mark early scores as provisional because sample sizes will be small.
+
+### Table 118
+
+| Factor | Weight |
+| --- | --- |
+| Skill and service completion | 25 |
+| On-time and reliability | 20 |
+| Pet handling | 20 |
+| Customer communication | 15 |
+| Hygiene and safety | 10 |
+| Verified customer rating | 10 |
+| Total | 100 |
+
+Month 1 enforcement
+
+Immediate pause
+
+Pet escape
+
+Serious preventable injury
+
+Cruel handling
+
+Falsified documents
+
+Hidden subcontractor
+
+Unapproved chemical or medication
+
+Failure to report an incident
+
+Limited status
+
+Repeated lateness
+
+Missing reports
+
+Poor cleanup
+
+Avoidable package errors
+
+Two or more customer complaints
+
+Cancellation above threshold
+
+11. Unit economics
+
+Illustrative booking
+
+Assume:
+
+### Table 119
+
+| Item | Amount |
+| --- | --- |
+| Customer price | ₹1,799 |
+| Groomer payout | ₹1,350 |
+| Platform gross revenue | ₹449 |
+| Payment processing | ₹36 |
+| Support allocation | ₹35 |
+| Promotion | ₹60 |
+| Refund/incident reserve | ₹25 |
+| Approximate contribution | ₹293 |
+
+This is only an illustration.
+
+Track by package
+
+### Table 120
+
+| Package | Bookings | AOV | Take rate | Contribution | Complaints |
+| --- | --- | --- | --- | --- | --- |
+| Essential bath |  |  |  |  |  |
+| Hygiene package |  |  |  |  |  |
+| Full grooming |  |  |  |  |  |
+| De-shedding |  |  |  |  |  |
+| Add-ons |  |  |  |  |  |
+
+Low-value standalone add-ons may be unprofitable unless they are part of a society route or a larger package.
+
+12. Society grooming-day experiment
+
+Run one controlled society day during Week 4.
+
+Recommended setup
+
+One society
+
+8–12 prebooked services
+
+Two or three groomers
+
+Individual in-home slots
+
+One operations coordinator
+
+Pre-approved gate roster
+
+Cleaning buffers
+
+Backup groomer
+
+Emergency vet contact
+
+Compare against ordinary bookings
+
+### Table 121
+
+| Metric | Society day | Normal local booking |
+| --- | --- | --- |
+| Partner travel time |  |  |
+| Bookings per groomer |  |  |
+| Customer acquisition cost |  |  |
+| Average order value |  |  |
+| Contribution per booking |  |  |
+| Delays |  |  |
+| Rating |  |  |
+| Rebook intent |  |  |
+
+The society experiment passes when density improves contribution without lowering quality.
+
+13. Customer feedback system
+
+Immediate post-service survey
+
+Ask:
+
+Did the groomer arrive on time?
+
+Was the package explained clearly?
+
+Did the groomer handle your pet safely?
+
+Was equipment visibly clean?
+
+Was your home left clean?
+
+Did the result match expectations?
+
+Would you book this groomer again?
+
+Did any issue occur?
+
+Follow-up call triggers
+
+Call every customer when:
+
+Rating is below four
+
+Concern flag is submitted
+
+Refund is requested
+
+Groomer records pet distress
+
+Customer reports an injury
+
+Price changed during service
+
+The booking was reassigned
+
+During the first ten paid bookings, call every customer regardless of rating.
+
+14. Compliance and financial setup
+
+Consumer protection
+
+Display:
+
+Legal business identity
+
+Package inclusions
+
+Final price
+
+Partner details
+
+Cancellation rules
+
+Refund process
+
+Complaint contact
+
+Grievance officer details
+
+The Consumer Protection (E-Commerce) Rules require online marketplaces to maintain adequate grievance redressal and disclose relevant platform and seller/service information.
+
+Data protection
+
+Limit access as follows:
+
+### Table 122
+
+| Role | Access |
+| --- | --- |
+| Groomer | Assigned booking and relevant pet risks |
+| Customer support | Booking and complaint details |
+| Finance | Payment and payout details |
+| Verification staff | Groomer documents |
+| Marketing | No private booking media without consent |
+
+Tax and settlement
+
+The platform must define:
+
+Who invoices the customer
+
+Who supplies the service legally
+
+How the partner is paid
+
+How platform fees are invoiced
+
+How refunds are recorded
+
+Whether e-commerce-operator/TCS obligations apply
+
+CBIC guidance describes separate GST and TCS obligations that may apply to e-commerce operators depending on the transaction structure. Obtain a written CA position before automating settlements.
+
+15. Month 1 dashboard
+
+Supply
+
+Applications
+
+Verification pass rate
+
+Active groomers
+
+Backup groomers
+
+Available booking hours
+
+Bookings per groomer
+
+Groomer earnings
+
+Groomer cancellation
+
+Demand
+
+Grooming-page visits
+
+Package views
+
+Quote requests
+
+Paid bookings
+
+Unique customers
+
+Repeat or prebook intent
+
+Same-groomer requests
+
+Operations
+
+Time to assignment
+
+Acceptance rate
+
+On-time rate
+
+Completion rate
+
+Report completion
+
+Support contacts
+
+Reassignments
+
+Average duration
+
+Quality
+
+Rating
+
+Review participation
+
+Complaints
+
+Refunds
+
+Redos
+
+Injuries
+
+Concern flags
+
+Hygiene failures
+
+Economics
+
+GMV
+
+Platform revenue
+
+Partner payouts
+
+Discounts
+
+Payment cost
+
+Refund cost
+
+Support cost
+
+Contribution
+
+Contribution per booking
+
+16. Daily operating review
+
+During Week 4, conduct a short daily review.
+
+Review questions
+
+Were all bookings assigned?
+
+Did every groomer arrive?
+
+Were any services delayed?
+
+Were package changes approved digitally?
+
+Were reports complete?
+
+Were any animals distressed or injured?
+
+Did any customer request a refund?
+
+Did every partner earn the expected amount?
+
+Did any groomer attempt off-platform payment?
+
+What must change before tomorrow?
+
+Do not wait until the end of the month to investigate safety or fulfilment problems.
+
+17. Month 1 go/no-go criteria
+
+Proceed to Month 2 when
+
+### Table 123
+
+| Requirement | Target |
+| --- | --- |
+| Paid grooming bookings | 30–50 |
+| Unique customers | 25+ |
+| Active groomers | 4–8 |
+| Backup groomers | 2+ |
+| Average rating | 4.6+ |
+| Verified reviews | 20+ |
+| On-time arrival | 95%+ |
+| Completion rate | 95%+ |
+| Groomer cancellation | Below 7% |
+| Complaint rate | Below 3–5% |
+| Refund/redo rate | Below 5% |
+| Serious preventable incidents | 0 |
+| Report completion | 95%+ |
+| Rebook/prebook intent | 25%+ |
+| Positive contribution | Yes |
+| Society route tested | Yes |
+
+Continue Month 1 testing when
+
+Demand exists but fewer than 30 bookings completed.
+
+Ratings are strong but assignment is slow.
+
+Contribution is near break-even.
+
+Groomers need better training.
+
+One launch area performs but another fails.
+
+Pause expansion when
+
+A serious preventable injury occurs.
+
+Groomer documents cannot be verified.
+
+Cancellation exceeds 10%.
+
+Complaints exceed 8–10%.
+
+Customers receive undisclosed charges.
+
+Reports or media are routinely missing.
+
+Groomers use prohibited products or methods.
+
+Refund and support costs eliminate the margin.
+
+18. Month 1 final report template
+
+Phase 8 Month 1 Grooming Report
+
+Project name:City:Launch areas:Target societies:Start date:End date:
+
+Partner funnel
+
+### Table 124
+
+| Metric | Result |
+| --- | --- |
+| Applications |  |
+| Contact verified |  |
+| Documents verified |  |
+| Skills assessed |  |
+| Trial groomers |  |
+| Active groomers |  |
+| Backup groomers |  |
+| Rejected or paused |  |
+
+Booking funnel
+
+### Table 125
+
+| Metric | Result |
+| --- | --- |
+| Service-page visitors |  |
+| Quote requests |  |
+| Paid bookings |  |
+| Completed bookings |  |
+| Unique customers |  |
+| Rebook/prebook requests |  |
+| Same-groomer requests |  |
+
+Performance
+
+### Table 126
+
+| Metric | Result |
+| --- | --- |
+| On-time arrival |  |
+| Completion rate |  |
+| Partner cancellation |  |
+| Report completion |  |
+| Average rating |  |
+| Verified reviews |  |
+| Complaint rate |  |
+| Refund/redo rate |  |
+| Serious incidents |  |
+
+Economics
+
+### Table 127
+
+| Metric | Result |
+| --- | --- |
+| Grooming GMV | ₹ |
+| Platform revenue | ₹ |
+| Partner payouts | ₹ |
+| Discounts | ₹ |
+| Payment costs | ₹ |
+| Refund costs | ₹ |
+| Support and operations | ₹ |
+| Net contribution | ₹ |
+| Contribution per booking | ₹ |
+
+Findings
+
+Best-selling package:Most profitable package:Best-performing area:Best acquisition channel:Most common complaint:Most common grooming concern:Best-performing groomer characteristic:Top customer request:
+
+Final decision
+
+Proceed to Month 2
+
+Continue grooming pilot
+
+Reduce service area
+
+Recruit more supply
+
+Change pricing
+
+Improve partner quality
+
+Pause expansion
+
+Final Month 1 recommendation
+
+Approve the plan with these modifications
+
+Original
+
+Recruit 10–20 groomers
+
+Complete 30–50 bookings
+
+Achieve 4.5+ rating
+
+Earn 15–25% revenue share
+
+Keep complaints below 5%
+
+Corrected
+
+Recruit 25–40 applicants
+
+Verify 10–20 partners
+
+Activate only 4–8 groomers
+
+Maintain 2–4 backup partners
+
+Complete 30–50 paid bookings
+
+Achieve 4.6+ rating
+
+Keep serious incidents at zero
+
+Keep partner cancellation below 7%
+
+Prove positive contribution—not just commission
+
+Test one society-density route
+
+Generate at least 25% rebook or prebook intent
+
+Month 1 win condition
+
+A small group of verified groomers can repeatedly deliver safe, on-time, profitable at-home grooming to paying customers, with high ratings, complete reports and early repeat demand.
+
+Month 1 status: GO—with a controlled launch and reduced active-partner count.
+
+Phase 8 Execution Plan — Month 2
+
+Vet Support + Dog Training Services 🩺🐕🎓
+
+Executive decision
+
+Month 2 should proceed, but as two controlled launches—not one combined marketplace expansion.
+
+The recommended sequence is:
+
+Weeks 5–6: veterinary coordination and booking
+
+Weeks 7–8: dog-training assessments and entry-level programmes
+
+The original targets are achievable, but partner utilisation needs correction:
+
+Similarly:
+
+That is insufficient to evaluate every partner meaningfully.
+
+Better Month 2 model
+
+### Table 128
+
+| Partner category | Verified bench | Active initially | Backup/specialist |
+| --- | --- | --- | --- |
+| Veterinarians/clinics | 5–10 | 3–5 | 1–2 |
+| Trainers | 5–10 | 3–5 | 1–2 specialists |
+
+“Verified” should mean eligible to enter the supply pool. “Active” should mean receiving normal customer bookings.
+
+1. Month 2 objective
+
+By the end of Month 2, the business should prove that it can:
+
+Connect pet parents with appropriately registered veterinary professionals.
+
+Route urgent concerns without the platform diagnosing them.
+
+Store consultation documents securely.
+
+Sell training assessments before complex programmes.
+
+Match training cases by risk and trainer competence.
+
+Enforce reward-based, humane training standards.
+
+Generate positive contribution without damaging grooming, walking or sitting operations.
+
+The Month 2 win condition is:
+
+Vet access and training can be delivered safely, professionally and profitably through a small partner pool, with clear clinical boundaries, measurable training progress and reliable customer support.
+
+2. Critical weaknesses exposed
+
+2.1 Veterinary commissions need restructuring
+
+The proposed veterinary business model should not simply deduct a percentage from clinical fees.
+
+VCI’s professional-conduct rules state that veterinary professionals should not give, solicit or receive commissions or benefits for referring or procuring clients for specialist services or treatment. They also state that professional remuneration should be announced to the client.
+
+Safer commercial structure
+
+Separate:
+
+Veterinarian’s professional fee
+
+Platform booking or coordination fee
+
+Travel fee for home visits
+
+Payment-processing or technology charge where applicable
+
+For example:
+
+### Table 129
+
+| Component | Illustrative amount |
+| --- | --- |
+| Veterinarian fee | ₹400 |
+| Platform booking/support fee | ₹149 |
+| Home-visit travel fee | ₹250 |
+| Customer total | ₹799 |
+
+This is only an illustrative structure. The final arrangement should receive legal and accounting review.
+
+Avoid:
+
+Clinic “lead fees”
+
+Commission based on prescribed medicine
+
+Commission based on diagnostics
+
+Bonuses for treatment escalation
+
+Ranking vets according to payment
+
+2.2 Veterinary registration must be current
+
+The VCI maintains the Indian Veterinary Practitioners Register, but its public page currently presents the 2023 register as the latest main register. Therefore, partner verification should also use current registration documents and the relevant State Veterinary Council rather than relying only on the public national PDF.
+
+Required verification
+
+Veterinary qualification
+
+State Veterinary Council
+
+Registration number
+
+Current registration evidence
+
+Clinic affiliation
+
+Practice address
+
+Teleconsultation capability
+
+Home-visit capability
+
+Emergency referral arrangement
+
+Professional references
+
+Clinical-record process
+
+2.3 Teleconsultation must remain conservative
+
+I did not locate a dedicated national veterinary-telemedicine framework in the VCI’s published acts-and-rules archive. The archive currently lists the Indian Veterinary Council Act, registration rules and professional-conduct regulations.
+
+Accordingly, the safest product model is:
+
+Only registered vets conduct consultations.
+
+The vet decides whether the case is suitable for remote consultation.
+
+The platform does not guarantee diagnosis or prescription.
+
+Serious, uncertain or rapidly worsening cases are escalated to physical care.
+
+State-specific requirements are checked before launch.
+
+2.4 Trainers cannot be approved through certificates alone
+
+Certificates, years of experience and portfolio photographs do not prove that a trainer:
+
+Uses humane methods
+
+Recognises stress
+
+Can manage bite risk
+
+Knows when to stop
+
+Understands medical referral boundaries
+
+Can coach the owner effectively
+
+Tamil Nadu’s February 2026 policy provides a useful example of tightening state-level regulation. It requires professional trainers in that state to register and obtain a licence, complete recognised training and use reward-based methods; the policy prohibits shock collars, prong collars and physical punishment. Those requirements are specific to Tamil Nadu, so every launch city needs its own compliance review.
+
+AVSAB’s current humane-training position also recommends reward-based methods and advises against training methods based on pain, force, intimidation or physical discomfort.
+
+2.5 Month 2 can damage Month 1
+
+Launching veterinary care and training may divert:
+
+Engineering capacity
+
+Customer support
+
+Partner-verification staff
+
+Operations managers
+
+Society coordinators
+
+Marketing budget
+
+Month 2 should be paused or narrowed when Month 1 still has:
+
+Unresolved grooming incidents
+
+High partner cancellation
+
+Negative contribution
+
+Incomplete grooming reports
+
+Support backlogs
+
+Failed partner payouts
+
+Expansion is not successful when new revenue weakens the core marketplace.
+
+3. Revised Month 2 targets
+
+Recommended scorecard
+
+### Table 130
+
+| Metric | Original | Recommended |
+| --- | --- | --- |
+| Verified vets/clinics | 5–10 | 5–10 |
+| Active vets | Not defined | 3–5 |
+| Emergency referral clinics | Not defined | At least 1 per cluster |
+| Verified trainers | 5–10 | 5–10 |
+| Active trainers | Not defined | 3–5 |
+| Senior behaviour specialists | Not defined | 1–2 |
+| Completed vet bookings | 20–50 | 25–50 |
+| Vet completion rate | Not defined | 92%+ |
+| Clinical-note completion | Not defined | 95%+ |
+| Vet cancellation | Not defined | Below 5% |
+| Qualified training leads | 20–40 | 20–40 |
+| Paid training assessments | Not defined | 10–20 |
+| Training packages sold | 5–15 | 5–15 |
+| Assessment-to-package conversion | Not defined | 30–50% |
+| First-session attendance | Not defined | 90%+ |
+| Average rating | Not defined | 4.6+ |
+| Serious preventable incidents | Not defined | Zero |
+| Unlicensed diagnosis by platform | Not defined | Zero |
+| Prohibited training methods | Not defined | Zero |
+| Positive contribution | Not defined | Required by service |
+
+Define a qualified training lead
+
+A qualified lead must:
+
+Own or care for the dog
+
+Identify a specific training problem
+
+Live within the service area
+
+Provide contact consent
+
+Indicate willingness to book an assessment
+
+Meet the platform’s basic safety eligibility
+
+A person who only attends a free event is not automatically a qualified lead.
+
+4. Month 2 prerequisites
+
+Before Week 5 begins, confirm:
+
+Core-business gate
+
+Month 1 grooming pilot completed
+
+No unresolved critical grooming incident
+
+Partner payout process operational
+
+Complaint process working
+
+Support response times acceptable
+
+Core cancellation rates stable
+
+Technology gate
+
+Partner organisation and individual-provider records
+
+Service permissions
+
+Booking state machine
+
+Payment and refund ledger
+
+Partner earnings ledger
+
+Private media and document storage
+
+Complaint and incident reporting
+
+Role-based access
+
+Audit logs
+
+Compliance gate
+
+Veterinary partner agreement
+
+Clinical-independence clause
+
+Trainer humane-method policy
+
+Data notice and consent flow
+
+Grievance contact
+
+City-specific partner-requirement checklist
+
+The DPDP Rules, 2025 have phased commencement, but they already provide the direction for clear notices, purpose-specific processing, access controls and security safeguards. Health records and behavioural intake should therefore be designed with restricted access from launch.
+
+5. Week 5 — Veterinary partner onboarding
+
+Goal
+
+Create a small network capable of handling:
+
+Scheduled teleconsultations
+
+Clinic appointments
+
+Home visits
+
+Vaccination planning
+
+Routine follow-ups
+
+Emergency physical-care referrals
+
+Do not attempt to create a complete hospital network in one week.
+
+Week 5 recruitment funnel
+
+### Table 131
+
+| Stage | Target |
+| --- | --- |
+| Vets/clinics approached | 15–25 |
+| Applications or formal interest | 8–15 |
+| Registration documents received | 6–12 |
+| Fully verified | 5–10 |
+| Active for launch | 3–5 |
+| Emergency referral clinics | 1–2 |
+| Home-visit providers | 2+ |
+
+Recommended partner mix
+
+### Table 132
+
+| Partner | Role |
+| --- | --- |
+| General-practice clinic | Routine clinic appointments |
+| Teleconsult vet | Scheduled online consultation |
+| Home-visit vet | Vaccination and routine home care |
+| Emergency clinic | Physical emergency routing |
+| Optional specialist | Dermatology, behaviour or senior care |
+
+Do not onboard ten professionals offering identical availability while leaving emergency, home-visit or weekend coverage empty.
+
+Day 1: Finalise veterinary scope
+
+Launch services
+
+Scheduled teleconsultation
+
+Clinic appointment booking
+
+Home-visit request
+
+Vaccination reminder
+
+Follow-up booking
+
+Emergency clinic directory and routing
+
+Do not launch
+
+AI diagnosis
+
+Automated prescriptions
+
+Medicine sales
+
+Diagnostic-test commissions
+
+Platform-created medical certificates
+
+Guaranteed emergency response
+
+Unregistered “pet health consultants”
+
+Day 2: Verify credentials
+
+Required documents
+
+Government identity
+
+Veterinary degree
+
+State Veterinary Council certificate
+
+Registration number
+
+Current registration evidence
+
+Clinic relationship
+
+Practice location
+
+Bank and tax information
+
+Professional indemnity, where available
+
+Emergency referral process
+
+Verification sequence
+
+Application
+
+↓
+
+Identity matched
+
+↓
+
+Registration checked
+
+↓
+
+Clinic contacted
+
+↓
+
+Service modes confirmed
+
+↓
+
+Clinical workflow reviewed
+
+↓
+
+Agreement signed
+
+↓
+
+Trial operational booking
+
+↓
+
+Active approval
+
+The platform assesses booking and operational quality. It should not second-guess independent clinical judgement without an appropriately qualified clinical-review process.
+
+Day 3: Establish clinical governance
+
+Create:
+
+Clinical independence policy
+
+Teleconsultation limitation notice
+
+Emergency red-flag protocol
+
+Clinical-note requirements
+
+Prescription/document handling
+
+Follow-up process
+
+Referral process
+
+Customer complaint pathway
+
+Clinical-review escalation
+
+Data-access policy
+
+Non-negotiable wording
+
+The platform facilitates access to veterinary care. Diagnosis, treatment and prescription decisions are made solely by the registered veterinary practitioner.
+
+Day 4: Emergency directory verification
+
+For each emergency partner, verify:
+
+Phone number
+
+Address
+
+Operating hours
+
+After-hours availability
+
+Species supported
+
+Surgery capability
+
+Diagnostic capability
+
+Whether walk-ins are accepted
+
+Whether calling first is mandatory
+
+Last verification date
+
+Do not display:
+
+“Open 24/7”
+
+unless it has been directly confirmed and monitored.
+
+Recommended states:
+
+Verified available
+
+Call before travelling
+
+Temporarily unavailable
+
+Routine clinic only
+
+Unverified—do not recommend
+
+Day 5: Vet partner training
+
+Train partners on:
+
+Booking acceptance
+
+Customer identity confirmation
+
+Record upload
+
+Referral
+
+Follow-up scheduling
+
+Cancellation
+
+Emergency escalation
+
+Platform fee disclosure
+
+Privacy
+
+Complaints
+
+Technical support
+
+Week 5 completion gate
+
+Proceed to public booking only when:
+
+Three active vets are available.
+
+At least one physical clinic partner exists.
+
+Emergency directory has been call-tested.
+
+Fee structure is transparent.
+
+Registration documents are verified.
+
+Clinical notes and document access work.
+
+AI and customer support cannot produce diagnoses.
+
+6. Week 6 — Vet booking and consultation flow
+
+Goal
+
+Launch basic veterinary access with strong routing and documentation.
+
+Customer flow
+
+Customer opens Vet Support
+
+↓
+
+Selects pet
+
+↓
+
+Selects concern
+
+↓
+
+Completes basic symptom intake
+
+↓
+
+Emergency red-flag screen
+
+↓
+
+Urgent?
+
+Yes → physical clinic routing
+
+No → teleconsult / clinic / home visit
+
+↓
+
+Selects verified vet
+
+↓
+
+Reviews vet fee and platform fee
+
+↓
+
+Consents and pays
+
+↓
+
+Consultation completed
+
+↓
+
+Vet submits clinical note/document
+
+↓
+
+Follow-up or referral created
+
+↓
+
+Customer reviews booking experience
+
+Symptom intake
+
+Collect:
+
+Primary concern
+
+Onset
+
+Whether worsening
+
+Eating and drinking
+
+Urination and stool
+
+Activity
+
+Existing diagnoses
+
+Medication
+
+Allergies
+
+Relevant photographs or videos
+
+Previous reports
+
+Emergency questions
+
+Difficulty breathing?
+
+Collapse or unconsciousness?
+
+Seizure?
+
+Severe bleeding?
+
+Suspected poisoning?
+
+Serious trauma?
+
+Unable to urinate?
+
+Severe abdominal swelling?
+
+Rapid deterioration?
+
+A positive red flag should prioritise physical-care contact rather than place the customer in a normal teleconsult queue.
+
+AI boundary
+
+Permitted
+
+Ask intake questions
+
+Summarise customer answers
+
+Detect red-flag terms
+
+Find suitable partners
+
+Explain booking
+
+Retrieve reminders
+
+Prepare a summary for the vet
+
+Prohibited
+
+Final diagnosis
+
+Drug recommendation
+
+Dosage
+
+Stopping prescribed medication
+
+Declaring a case non-urgent
+
+Interpreting diagnostics as a final conclusion
+
+Certifying fitness or vaccination eligibility
+
+Display:
+
+This intake is not a diagnosis. A registered veterinary professional must review your pet’s condition. Seek immediate physical veterinary care for emergencies.
+
+Clinical record requirements
+
+Every completed consultation should contain:
+
+Vet identity and registration
+
+Date and mode
+
+Presenting concern
+
+Relevant history
+
+Professional assessment
+
+Advice
+
+Prescription or treatment document where appropriate
+
+Referral
+
+Warning signs
+
+Follow-up interval
+
+Record rules
+
+Vet-authored notes are versioned.
+
+Customer support cannot rewrite them.
+
+Corrections create an addendum.
+
+Customer controls sharing with future partners.
+
+Marketing teams cannot access health records.
+
+Week 6 launch waves
+
+Wave 1: five internal or controlled bookings
+
+Test:
+
+Registration display
+
+Payment
+
+Audio/video connection
+
+Clinical-note upload
+
+Referral
+
+Refund
+
+Emergency-routing simulation
+
+Wave 2: first 10 paying customers
+
+Use:
+
+Existing customers
+
+Routine concerns
+
+Scheduled slots
+
+Manual operations monitoring
+
+Wave 3: bookings 11–25
+
+Add:
+
+Clinic appointments
+
+Home visits
+
+Follow-up reminders
+
+One society cluster
+
+Wave 4: up to 50 bookings
+
+Expand only when:
+
+Cancellation is controlled
+
+Clinical records are complete
+
+No emergency-routing failure has occurred
+
+Customers understand service limitations
+
+7. Week 6 veterinary KPIs
+
+### Table 133
+
+| Metric | Target |
+| --- | --- |
+| Completed vet bookings | 20–30 by end of Week 6 |
+| Month total | 25–50 |
+| Booking completion | 92%+ |
+| Vet acceptance time | Defined by service mode |
+| Vet cancellation | Below 5% |
+| Connection success | 95%+ |
+| Clinical-note completion | 95%+ |
+| Follow-up creation where required | 90%+ |
+| Average rating | 4.6+ |
+| Complaint/refund rate | Below 3–5% |
+| Unlicensed platform diagnosis | Zero |
+| Emergency escalation failure | Zero |
+
+Rating the booking experience should be separated from rating the medical outcome.
+
+Suggested questions:
+
+Was the vet available at the scheduled time?
+
+Were the fee and service mode clear?
+
+Were you able to explain the concern?
+
+Did you receive the promised note or follow-up?
+
+Was the platform support satisfactory?
+
+8. Week 7 — Trainer onboarding
+
+Goal
+
+Build a small network of humane, competence-matched trainers.
+
+Recruitment funnel
+
+### Table 134
+
+| Stage | Target |
+| --- | --- |
+| Trainers approached/applications | 15–25 |
+| Method declarations completed | 10–15 |
+| Interviews | 8–12 |
+| Practical assessments | 6–10 |
+| Fully verified | 5–10 |
+| Active for launch | 3–5 |
+| Senior behaviour specialists | 1–2 |
+
+Trainer mix
+
+### Table 135
+
+| Partner | Initial role |
+| --- | --- |
+| Foundation trainer | Puppy skills and home manners |
+| Walking-skills trainer | Leash coaching |
+| Group-workshop trainer | Society classes |
+| Senior behaviour consultant | Reactivity and guarding assessments |
+| Vet referral partner | Medical or severe anxiety concerns |
+
+Day 1: Define training permissions
+
+Permissions should be granular:
+
+Puppy foundations
+
+Toilet-routine coaching
+
+Loose-leash skills
+
+Home manners
+
+Recall foundations
+
+Group classes
+
+Mild fear
+
+Reactivity
+
+Resource guarding
+
+Bite-history cases
+
+Separation-related concerns
+
+A trainer approved for puppy classes should not receive bite-history cases.
+
+Day 2: Review methods
+
+Require a written declaration covering:
+
+Training philosophy
+
+Rewards used
+
+Equipment used
+
+Handling methods
+
+Corrective methods
+
+Owner participation
+
+Referral thresholds
+
+Stop-session conditions
+
+Prohibit
+
+Shock collars
+
+Prong collars
+
+Choke corrections
+
+Physical punishment
+
+Alpha rolls
+
+Intimidation
+
+Flooding
+
+Food or water deprivation
+
+Hidden equipment
+
+Guaranteed behaviour “cures”
+
+These controls are aligned with reward-based welfare standards and, in Tamil Nadu, are also reflected in the state’s 2026 trainer policy.
+
+Day 3: Practical trainer assessment
+
+Test the trainer’s ability to:
+
+Read canine body language
+
+Reinforce behaviour with correct timing
+
+Teach a basic skill
+
+Coach the pet parent
+
+Handle disengagement
+
+Stop when the dog is distressed
+
+Manage the environment
+
+Explain homework
+
+Refer medical concerns
+
+Scenarios
+
+Ask how the trainer handles:
+
+Puppy toileting indoors
+
+Leash pulling
+
+Growling around food
+
+Sudden aggression
+
+Dog refusing normally valued rewards
+
+Previous bite
+
+Customer requesting a shock collar
+
+Dog showing pain during training
+
+Day 4: Risk routing
+
+### Table 136
+
+| Risk | Example | Partner |
+| --- | --- | --- |
+| Green | Puppy skills, jumping, toilet routine | Foundation trainer |
+| Yellow | Pulling, barking, mild fear | Experienced trainer |
+| Orange | Lunging, guarding, minor bite history | Behaviour specialist |
+| Red | Serious bite, sudden aggression, severe anxiety | Vet + specialist |
+| Out of scope | Protection training or uncontrolled high risk | Decline/refer |
+
+Serious behaviour concerns may have medical contributors. The intake should therefore support veterinary referral rather than treating every behaviour as a training-only problem.
+
+Day 5: Trial approval
+
+Trial trainers receive:
+
+Low-risk cases
+
+Limited geography
+
+Assessments before packages
+
+Manual admin review
+
+Required session reports
+
+No Premium placement
+
+No high-risk behaviour cases without explicit permission
+
+9. Week 8 — Training consultation flow
+
+Goal
+
+Launch assessments, puppy programmes, leash coaching and basic home-manners programmes.
+
+Correct commercial flow
+
+Do not let customers buy an expensive “behaviour correction” package directly.
+
+Customer selects training concern
+
+↓
+
+Completes behaviour and bite-risk form
+
+↓
+
+Preliminary risk routing
+
+↓
+
+Trainer or specialist matched
+
+↓
+
+Paid assessment
+
+↓
+
+Baseline and goals documented
+
+↓
+
+Written programme proposed
+
+↓
+
+Customer reviews package
+
+↓
+
+Payment or instalment plan
+
+↓
+
+Sessions scheduled
+
+↓
+
+Progress reports and homework
+
+↓
+
+Mid-programme review
+
+↓
+
+Final outcome review
+
+Initial service catalogue
+
+One-hour assessment
+
+History
+
+Behaviour observation
+
+Risk classification
+
+Owner goals
+
+Immediate management advice
+
+Programme recommendation
+
+Puppy foundation programme
+
+Toilet routine
+
+Name response
+
+Handling
+
+Puppy biting
+
+Leash introduction
+
+Calm greetings
+
+Owner coaching
+
+Loose-leash programme
+
+Equipment assessment
+
+Attention around distractions
+
+Reduced pulling
+
+Normal walking-route sessions
+
+Walker handover where relevant
+
+Home-manners programme
+
+Sit and settle
+
+Door manners
+
+Recall foundations
+
+Visitor greetings
+
+Leave-it
+
+Place training
+
+Society workshop
+
+Puppy basics
+
+Leash skills
+
+Calm greetings
+
+Pet-parent education
+
+Defer
+
+Severe aggression
+
+Major bite cases
+
+Board-and-train
+
+Protection training
+
+Severe separation anxiety without vet involvement
+
+Cases involving untreated pain or sudden behaviour change
+
+10. Training report card
+
+Every session should record:
+
+Session information
+
+Session number
+
+Date and location
+
+Trainer
+
+Participants
+
+Duration
+
+Behaviour goal
+
+Observable target behaviour
+
+Baseline
+
+Session objective
+
+Success criterion
+
+Exercises
+
+Exercise taught
+
+Cue
+
+Reward
+
+Environment
+
+Repetitions
+
+Distraction level
+
+Dog response
+
+Engagement
+
+Stress signs
+
+Trigger distance
+
+Recovery
+
+Reward preference
+
+Owner coaching
+
+Skills practised
+
+Leash handling
+
+Reward timing
+
+Consistency concerns
+
+Homework
+
+Exercise
+
+Duration
+
+Frequency
+
+Stop conditions
+
+Optional video
+
+Next plan
+
+Next milestone
+
+Environment progression
+
+Referral
+
+Next session date
+
+Avoid meaningless metrics such as “80% trained.” Track individual goals as:
+
+Not introduced
+
+Learning
+
+Reliable at home
+
+Reliable with mild distractions
+
+Reliable in target environment
+
+Maintenance required
+
+11. Week 8 launch waves
+
+Wave 1: five paid assessments
+
+Use:
+
+Puppy concerns
+
+Leash pulling
+
+Home manners
+
+Existing customers
+
+Review every recommendation before selling a package.
+
+Wave 2: assessments 6–10
+
+Test:
+
+Two trainers
+
+Different service areas
+
+Programme proposals
+
+Instalment payments
+
+Homework delivery
+
+Wave 3: assessments 11–20
+
+Add:
+
+One society workshop
+
+Mild reactivity assessments with approved specialists
+
+Cross-sell from existing walking reports
+
+Package launch
+
+Sell 5–15 packages only when:
+
+Baseline exists
+
+Goals are measurable
+
+Session count is justified
+
+Method is disclosed
+
+Price and refund policy are clear
+
+Trainer has the correct permission
+
+12. Training funnel targets
+
+### Table 137
+
+| Stage | Month 2 target |
+| --- | --- |
+| Qualified training leads | 20–40 |
+| Paid assessments | 10–20 |
+| Assessment completion | 90%+ |
+| Programme recommendations | 8–18 |
+| Packages sold | 5–15 |
+| Assessment-to-package conversion | 30–50% |
+| First sessions completed | 5–15 |
+| First-session attendance | 90%+ |
+| Baseline documented | 100% |
+| Homework assigned | 100% of programmes |
+| Average rating | 4.6+ |
+| Trainer cancellation | Below 7% |
+| Prohibited-method incidents | Zero |
+
+Full programme-completion rates should be measured in Month 3 because many packages will extend beyond the Month 2 reporting period.
+
+13. Month 2 product requirements
+
+Veterinary P0/P1
+
+Verified vet profiles
+
+Registration fields
+
+Consultation modes
+
+Concern intake
+
+Red-flag routing
+
+Appointment scheduling
+
+Separate fee display
+
+Secure consultation room or external link
+
+Clinical-note upload
+
+Health-record permissions
+
+Follow-up reminders
+
+Emergency directory
+
+Cancellation/refund
+
+Clinical complaint routing
+
+Training P0/P1
+
+Trainer profiles
+
+Method declaration
+
+Capability permissions
+
+Behaviour-risk intake
+
+Assessment booking
+
+Programme proposal
+
+Session calendar
+
+Instalment payment
+
+Training goals
+
+Report cards
+
+Homework
+
+Progress dashboard
+
+Vet referral
+
+Method-violation reporting
+
+Shared
+
+Partner assignment history
+
+Booking status history
+
+Payment ledger
+
+Payout ledger
+
+Private documents
+
+Customer reviews
+
+Complaints
+
+Incidents
+
+Audit logs
+
+14. Operations staffing
+
+Month 2 should have named owners.
+
+### Table 138
+
+| Responsibility | Owner |
+| --- | --- |
+| Vet verification | Credential/compliance lead |
+| Vet operations | Clinical-operations coordinator |
+| Emergency directory | Operations manager |
+| Trainer verification | Training-quality lead |
+| High-risk cases | Senior trainer/veterinary reviewer |
+| Booking assignment | Marketplace operations |
+| Refunds | Customer support + finance |
+| Safety incidents | Trust and safety lead |
+| Health-record access | Privacy/security owner |
+| Partner payout | Finance operations |
+
+One person may hold multiple roles during the pilot, but responsibilities must be explicit.
+
+15. Daily operations review
+
+During Weeks 6 and 8, review:
+
+Veterinary
+
+Were urgent cases routed correctly?
+
+Were all vets registered and available?
+
+Were consultations connected?
+
+Were notes uploaded?
+
+Did any platform employee give medical advice?
+
+Were follow-ups scheduled?
+
+Were fees disclosed correctly?
+
+Were complaints clinically or operationally classified?
+
+Training
+
+Were cases assigned by competence?
+
+Did any trainer use prohibited methods?
+
+Were bite risks disclosed?
+
+Were goals measurable?
+
+Was homework provided?
+
+Did trainers pressure customers into packages?
+
+Were high-risk cases referred?
+
+Were reports completed?
+
+16. Month 2 economics
+
+Veterinary contribution
+
+Calculate:
+
+Do not count the veterinarian’s professional fee as platform revenue when it is payable to the veterinarian.
+
+Training contribution
+
+Partner utilisation
+
+Vet utilisation
+
+With 30 bookings and four active vets:
+
+Trainer utilisation
+
+Use completed assessments and sessions—not merely packages sold.
+
+A trainer who sells a package but does not begin delivery should not be treated as utilised successfully.
+
+17. Month 2 go/no-go criteria
+
+Veterinary gate
+
+### Table 139
+
+| Requirement | Target |
+| --- | --- |
+| Verified vets/clinics | 5–10 |
+| Active vets | 3–5 |
+| Emergency referral clinic | 1+ per cluster |
+| Completed bookings | 25–50 |
+| Booking completion | 92%+ |
+| Clinical-note completion | 95%+ |
+| Vet cancellation | Below 5% |
+| Average rating | 4.6+ |
+| Complaint/refund rate | Below 3–5% |
+| Unlicensed diagnosis by platform | 0 |
+| Emergency escalation failure | 0 |
+| Fee structure legally reviewed | Yes |
+| Positive contribution | Yes or credible path |
+
+Training gate
+
+### Table 140
+
+| Requirement | Target |
+| --- | --- |
+| Verified trainers | 5–10 |
+| Active trainers | 3–5 |
+| Senior specialists | 1–2 |
+| Qualified leads | 20–40 |
+| Paid assessments | 10–20 |
+| Packages sold | 5–15 |
+| Assessment-to-package conversion | 30–50% |
+| First-session attendance | 90%+ |
+| Baseline and goals documented | 100% |
+| Average rating | 4.6+ |
+| Trainer cancellation | Below 7% |
+| Prohibited-method incidents | 0 |
+| Serious preventable incidents | 0 |
+| Vet referral route | Operational |
+| Positive contribution | Yes or credible path |
+
+Core-protection gate
+
+Proceed only when:
+
+Grooming rating remains stable.
+
+Walking and sitting cancellation do not increase materially.
+
+Customer-support backlog remains manageable.
+
+Partner payouts remain on time.
+
+Society complaints remain controlled.
+
+No unresolved critical incident exists.
+
+18. Month 2 final report format
+
+Phase 8 Month 2 Report
+
+Project name:City:Launch areas:Launch societies:Start date:End date:
+
+Veterinary partner funnel
+
+### Table 141
+
+| Metric | Result |
+| --- | --- |
+| Partners approached |  |
+| Applications received |  |
+| Registration verified |  |
+| Active vets |  |
+| Clinic partners |  |
+| Home-visit vets |  |
+| Emergency clinics |  |
+| Paused/rejected |  |
+
+Veterinary performance
+
+### Table 142
+
+| Metric | Result |
+| --- | --- |
+| Teleconsultations |  |
+| Clinic bookings |  |
+| Home visits |  |
+| Completed bookings |  |
+| Completion rate |  |
+| Cancellation rate |  |
+| Clinical-note completion |  |
+| Follow-ups created |  |
+| Emergency escalations |  |
+| Escalation failures |  |
+| Average rating |  |
+| Complaints/refunds |  |
+
+Trainer partner funnel
+
+### Table 143
+
+| Metric | Result |
+| --- | --- |
+| Trainer applications |  |
+| Method reviews |  |
+| Practical assessments |  |
+| Verified trainers |  |
+| Active trainers |  |
+| Senior specialists |  |
+| Restricted/paused |  |
+
+Training performance
+
+### Table 144
+
+| Metric | Result |
+| --- | --- |
+| Qualified leads |  |
+| Paid assessments |  |
+| Programme recommendations |  |
+| Packages sold |  |
+| First sessions completed |  |
+| Assessment-to-package conversion |  |
+| First-session attendance |  |
+| Average rating |  |
+| Trainer cancellation |  |
+| Method violations |  |
+| Vet referrals |  |
+
+Economics
+
+### Table 145
+
+| Metric | Vet support | Training |
+| --- | --- | --- |
+| Customer GMV | ₹ | ₹ |
+| Platform revenue | ₹ | ₹ |
+| Partner earnings | ₹ | ₹ |
+| Discounts | ₹ | ₹ |
+| Payment costs | ₹ | ₹ |
+| Refunds | ₹ | ₹ |
+| Operations cost | ₹ | ₹ |
+| Contribution | ₹ | ₹ |
+
+Findings
+
+Best vet service mode:Most common pet-health request:Most common training need:Best acquisition source:Top customer objection:Top partner complaint:Most common cancellation reason:Most effective trainer characteristic:Most important product improvement:
+
+Decision
+
+Proceed to Month 3
+
+Continue veterinary pilot
+
+Continue training pilot
+
+Reduce partner bench
+
+Improve matching
+
+Improve clinical routing
+
+Improve trainer quality
+
+Pause one service
+
+Pause expansion
+
+Final recommendation
+
+Approve the Month 2 plan with these modifications
+
+Veterinary
+
+Verify 5–10 vets or clinics.
+
+Activate only 3–5 initially.
+
+Launch coordination and booking—not a digital hospital.
+
+Separate professional fees from platform fees.
+
+Do not use clinical referral commissions.
+
+Complete 25–50 bookings.
+
+Require 95% clinical-note completion.
+
+Maintain zero emergency-routing failures.
+
+Training
+
+Verify 5–10 trainers.
+
+Activate only 3–5.
+
+Include at least one senior behaviour specialist.
+
+Sell assessments before complex packages.
+
+Generate 20–40 qualified leads.
+
+Complete 10–20 paid assessments.
+
+Sell 5–15 justified programmes.
+
+Enforce reward-based methods.
+
+Maintain zero prohibited-method incidents.
+
+Month 2 status
+
+GO—with separate veterinary and training workstreams, reduced active-partner counts and strict clinical and behaviour-safety boundaries.
+
+The Month 2 success condition is not simply adding two service pages:
+
+It is proving that the platform can coordinate regulated veterinary access and measurable humane training without pretending to be the clinician, trainer or hospital itself.
+
+Phase 8 Execution Plan — Month 3
+
+Society Events + Service Bundles 🏢🐾📈
+
+Executive decision
+
+Month 3 should proceed as a controlled society-monetisation sprint.
+
+The objective is not simply to host several pet events. It is to prove that society-based acquisition can convert into:
+
+Immediate add-on revenue
+
+Repeat service bookings
+
+Multi-service customers
+
+Higher contribution per customer
+
+Stronger RWA relationships
+
+Lower customer-acquisition cost than ordinary advertising
+
+The recommended structure is:
+
+### Table 146
+
+| Week | Primary experiment | Commercial objective |
+| --- | --- | --- |
+| Week 9 | Grooming society day | Immediate service revenue |
+| Week 10 | Vet checkup/vaccination camp | Trust, health records and follow-up bookings |
+| Week 11 | Puppy/training workshop | Paid assessments and training packages |
+| Week 12 | Service bundles | Increase retention and customer lifetime value |
+
+The most important correction is this:
+
+Do not expect every event to generate the same volume, revenue or margin.
+
+A grooming day is primarily commercial. A veterinary camp is primarily trust and preventive-care infrastructure. A training workshop is a lead-to-package funnel.
+
+1. Month 3 objective
+
+By the end of Month 3, the business should know:
+
+Which society-event format produces the best qualified customers.
+
+Whether residents convert into paid add-on bookings.
+
+Whether customers purchase a second service.
+
+Whether society-event CAC is lower than paid-ad CAC.
+
+Whether service bundles increase contribution—not merely discounted revenue.
+
+Whether events can operate without harming animal welfare, gate security or core service quality.
+
+Whether RWAs are willing to repeat or pay for the programme.
+
+Month 3 win condition
+
+At least two society-event formats generate repeatable paid demand, and at least one transparent service bundle increases contribution per retained customer without creating excessive discounts, complaints or operational complexity.
+
+2. Autopsy of the original targets
+
+Original targets
+
+### Table 147
+
+| Metric | Target |
+| --- | --- |
+| Society events | 3–5 |
+| Event leads | 100–300 |
+| Add-on bookings | 100–300 |
+| Repeat add-on users | 20%+ |
+| Revenue per customer | +30–50% |
+
+These targets are directionally useful, but several definitions are missing.
+
+2.1 Three to five events is reasonable
+
+Approve, but distinguish between:
+
+Events scheduled
+
+Events conducted
+
+Events with adequate attendance
+
+Events that generated paid bookings
+
+Events that generated repeat customers
+
+Events that produced positive contribution
+
+A cancelled or poorly attended event should not count as a successful society event.
+
+Recommended standard
+
+Three mandatory completed events
+
+A fourth event if the first two operate safely
+
+A fifth event only when partner capacity and demand justify it
+
+2.2 Event leads must mean qualified pet-parent leads
+
+Do not count:
+
+QR-code scans
+
+Children attending
+
+Non-pet residents
+
+Existing customers who gave no new service intent
+
+Duplicate registrations
+
+People entering a giveaway
+
+Qualified event lead
+
+A qualified lead should have:
+
+A valid resident identity and contact
+
+An active pet or imminent pet-adoption need
+
+Consent for the requested follow-up
+
+A selected service interest
+
+A relevant timeframe
+
+A pet profile or minimum eligibility details
+
+Correct funnel
+
+Recommended target
+
+100–300 total event registrations
+
+75–200 qualified pet-parent leads
+
+20%+ qualified-lead-to-paid conversion within 30 days
+
+2.3 One hundred to three hundred add-on bookings may be too aggressive
+
+Suppose Month 3 conducts four events and expects 300 add-on bookings:
+
+That would require an average of 75 completed bookings per event.
+
+This is unrealistic if those bookings are full grooming sessions, veterinary consultations or multi-session training packages delivered during the event.
+
+The target becomes plausible only when “add-on bookings” includes:
+
+Event-day services
+
+Follow-up grooming
+
+Vet clinic/home appointments
+
+Paid training assessments
+
+Training sessions
+
+Existing-customer add-ons
+
+Repeat bookings during the full month
+
+Recommended Month 3 target
+
+### Table 148
+
+| Booking measure | Target |
+| --- | --- |
+| Event-day completed services | 40–80 |
+| Event-attributed follow-up bookings | 30–80 |
+| Other ongoing add-on bookings | 40–100 |
+| Total completed add-on bookings | 110–260 |
+
+Do not count:
+
+Unpaid registrations
+
+Cancelled bookings
+
+Unaccepted requests
+
+Full training packages as all sessions completed
+
+Unattended camp slots
+
+2.4 Repeat add-on users need a cohort definition
+
+Use:
+
+Do not include customers whose first grooming happened three days before the report when the normal grooming cycle may be several weeks.
+
+Month 3 targets
+
+Overall repeat or second-service adoption: 20%+
+
+Grooming prebook/rebook intent: 25%+
+
+Training assessment-to-package conversion: 30–50%
+
+Vet follow-up completion: 70%+ where a follow-up was requested
+
+Multi-service customer rate: 15–25%
+
+2.5 Revenue per customer can be misleading
+
+Revenue per customer may rise because:
+
+A few premium customers distort the average
+
+Customers prepay for incomplete training packages
+
+Discounts artificially inflate transaction count
+
+High-margin services are replaced by low-margin bundles
+
+Customers buy once but stop using the core service
+
+Measure the same eligible customer cohort before and after expansion.
+
+Also measure:
+
+Recommended thresholds
+
+Average revenue per active customer: +30–50%
+
+Median revenue per active customer: +15–25%
+
+Contribution per active customer: +15–25%
+
+Core-service retention decline: no more than 5%
+
+Discount-adjusted contribution: positive
+
+3. Recommended Month 3 scorecard
+
+### Table 149
+
+| Metric | Recommended target |
+| --- | --- |
+| Completed society events | 3–5 |
+| Societies involved | 2–4 |
+| Event registrations | 100–300 |
+| Qualified leads | 75–200 |
+| Event-day services | 40–80 |
+| Event-attributed follow-up bookings | 30–80 |
+| Total monthly add-on bookings | 110–260 |
+| Qualified-lead conversion | 20%+ |
+| Eligible add-on repeat rate | 20%+ |
+| Multi-service customer rate | 15–25% |
+| Average event/service rating | 4.6+ |
+| Complaint/refund rate | Below 5% |
+| Serious preventable incidents | Zero |
+| RWA satisfaction | 4.5+/5 |
+| Revenue per active customer | +30–50% |
+| Contribution per active customer | +15–25% |
+| Contribution-positive event formats | At least 1 commercial format |
+| RWAs agreeing to another event | 50%+ |
+
+4. Month 3 prerequisites
+
+Do not start events until Month 1 and Month 2 systems are stable.
+
+Partner readiness
+
+At least three active groomers
+
+At least two verified veterinary partners
+
+At least one physical veterinary clinic
+
+At least two active trainers
+
+One senior trainer or behaviour specialist
+
+Backup partner for every event
+
+Current partner credentials
+
+Product readiness
+
+Event registration
+
+Appointment slots
+
+Payment and refund flow
+
+Partner assignment
+
+QR or booking-reference check-in
+
+Service reports
+
+Health-record upload
+
+Training assessment
+
+CRM attribution
+
+Complaint and incident workflow
+
+Society-level reporting
+
+Operational readiness
+
+Written RWA agreement
+
+Gate protocol
+
+Venue assessment
+
+Emergency contact
+
+Capacity limits
+
+Waste-management process
+
+Consent forms
+
+Event coordinator
+
+Support contact
+
+Event-specific SOP
+
+Core protection
+
+No unresolved critical incident
+
+Grooming quality remains stable
+
+Vet bookings are operating reliably
+
+Training cases are being assigned correctly
+
+Partner payouts are current
+
+Support queue is manageable
+
+5. Society-event architecture
+
+Every event must have:
+
+One primary objective
+
+Examples:
+
+Grooming revenue
+
+Vaccination completion
+
+Health-record creation
+
+Training-assessment sales
+
+Resident education
+
+One accountable owner
+
+Examples:
+
+Lead groomer
+
+Registered veterinarian
+
+Lead trainer
+
+Platform event manager
+
+One defined customer funnel
+
+Resident announcement
+
+↓
+
+Event page
+
+↓
+
+Pre-registration
+
+↓
+
+Eligibility screening
+
+↓
+
+Slot selection
+
+↓
+
+Payment or free registration
+
+↓
+
+Event attendance
+
+↓
+
+Service/report completion
+
+↓
+
+CRM follow-up
+
+↓
+
+Second booking
+
+One financial model
+
+Ticket revenue
+
+Booking commission
+
+Fixed event-management fee
+
+Sponsor funding
+
+Society programme fee
+
+Avoid mixing all models without a clear settlement statement.
+
+6. Week 9 — Society grooming camp
+
+Goal
+
+Validate a high-density grooming-day model that produces immediate revenue and future rebookings.
+
+Recommended format
+
+Use a prebooked society grooming day, preferably through individual home appointments rather than placing many unfamiliar pets together in one common hall.
+
+Launch configuration
+
+One strong Phase 7 society
+
+Two or three groomers
+
+Eight to fifteen full or mixed bookings
+
+One backup groomer
+
+One event coordinator
+
+One verified veterinary emergency contact
+
+Appointments only
+
+No uncontrolled walk-ins
+
+Capacity planning
+
+Assume a full service takes approximately 90–120 minutes.
+
+One groomer operating for seven productive hours may complete approximately:
+
+Three to four full grooming bookings, or
+
+Five to eight mixed shorter services
+
+Therefore:
+
+### Table 150
+
+| Groomers | Safe mixed-service capacity |
+| --- | --- |
+| 1 | 4–7 bookings |
+| 2 | 8–14 bookings |
+| 3 | 12–20 bookings |
+| 4 | 16–28 bookings |
+
+Do not advertise 30 full grooming slots without enough qualified partners and cleaning buffers.
+
+Week 9 preparation
+
+Seven days before
+
+Obtain RWA approval.
+
+Confirm groomer roster.
+
+Create society event page.
+
+Publish packages and prices.
+
+Open booking form.
+
+Collect pet-risk information.
+
+Confirm gate access.
+
+Confirm water and power requirements.
+
+Set cancellation policy.
+
+Three days before
+
+Close unsuitable bookings.
+
+Assign each booking.
+
+Confirm equipment.
+
+Confirm backup partner.
+
+Send appointment reminders.
+
+Confirm emergency vet contact.
+
+Event day
+
+Partner check-in and identity verification
+
+Equipment and hygiene inspection
+
+Booking and pet verification
+
+Pre-service condition record
+
+Service delivery
+
+Before/after report
+
+Customer review
+
+Same-groomer rebooking offer
+
+Grooming event KPIs
+
+### Table 151
+
+| Metric | Target |
+| --- | --- |
+| Available slots | 10–20 |
+| Slot utilisation | 80%+ |
+| Completed services | 8–18 |
+| On-time starts | 90%+ |
+| Average rating | 4.6+ |
+| Complaints | Below 3% |
+| Serious injuries | Zero |
+| Same-groomer request | 20%+ |
+| Rebook/prebook intent | 25%+ |
+| Positive direct contribution | Yes |
+
+Grooming event economics
+
+Illustrative example:
+
+### Table 152
+
+| Item | Amount |
+| --- | --- |
+| 15 bookings × ₹1,499 | ₹22,485 GMV |
+| Partner payouts at 76% | ₹17,088 |
+| Platform gross revenue | ₹5,397 |
+| Payment cost | ₹450 |
+| Event coordinator | ₹1,000 |
+| Promotion and print | ₹500 |
+| Cleaning/logistics | ₹500 |
+| Refund/incident reserve | ₹300 |
+| Approximate contribution | ₹2,647 |
+
+This is only a planning example. Actual pricing, partner payouts and costs must be measured.
+
+7. Week 10 — Vaccination and veterinary checkup camp
+
+Goal
+
+Build health trust, update records and convert residents into ongoing veterinary relationships.
+
+Critical operating principle
+
+The veterinary partner controls every clinical decision. The platform controls registration, scheduling, payment technology, reminders and logistics.
+
+Veterinary practice in India is governed through the Indian Veterinary Council framework and current professional-registration requirements. Platform staff must not diagnose, prescribe or independently determine vaccination eligibility.
+
+Recommended camp scope
+
+Include
+
+Vaccination-record review
+
+Vet-led health check
+
+Weight and body-condition discussion
+
+Preventive-care consultation
+
+Scheduled vaccination where clinically appropriate
+
+Follow-up appointment booking
+
+Health-record upload
+
+Next reminder creation
+
+Exclude
+
+Emergency treatment
+
+Surgery
+
+Extensive diagnostics
+
+Crowded public diagnosis
+
+Medicine selling
+
+Vaccination without vet assessment
+
+Clinical advice from non-veterinary staff
+
+Clinical responsibilities
+
+The vet or clinic should own:
+
+Medical eligibility
+
+Vaccine selection
+
+Vaccine procurement
+
+Storage and cold chain
+
+Administration
+
+Clinical consent
+
+Batch and expiry records
+
+Adverse-reaction response
+
+Clinical waste and sharps
+
+Vaccination certificates
+
+Follow-up instructions
+
+The platform should own:
+
+Resident registration
+
+Slot scheduling
+
+Society communications
+
+Queue management
+
+Payment coordination
+
+Digital record storage
+
+Follow-up reminders
+
+Customer support
+
+AWBI’s vaccination guidance stresses maintaining the vaccine cold chain, keeping storage logs and checking refrigerator temperatures regularly. While its handbook relates to ABC operations, the same basic vaccine-integrity controls are relevant to a responsibly operated vaccination camp.
+
+Safer commercial model
+
+Avoid treating clinical care as an ordinary product commission.
+
+VCI professional-conduct rules list ethical restrictions around commissions or benefits for procuring or referring clinical clients. Use a legally reviewed structure that separates veterinary professional fees from platform technology or event-management fees.
+
+Suitable structure
+
+### Table 153
+
+| Charge | Recipient |
+| --- | --- |
+| Veterinary consultation/vaccination fee | Veterinary partner |
+| Vaccine or medical item | Veterinary partner/authorised seller |
+| Platform booking or event fee | Platform |
+| Society sponsorship/subsidy | Clearly disclosed party |
+| Venue/logistics fee | Platform or society, where applicable |
+
+Camp flow
+
+Resident preregisters
+
+↓
+
+Vaccination record uploaded
+
+↓
+
+Appointment slot allocated
+
+↓
+
+Pet and owner check in
+
+↓
+
+Veterinarian reviews history
+
+↓
+
+Vet determines eligibility
+
+↓
+
+Clinical consent confirmed
+
+↓
+
+Vaccination/checkup completed
+
+↓
+
+Batch/date/certificate recorded
+
+↓
+
+Observation and instructions
+
+↓
+
+Health record updated
+
+↓
+
+Next reminder scheduled
+
+Veterinary camp KPIs
+
+### Table 154
+
+| Metric | Target |
+| --- | --- |
+| Pre-registrations | 30–70 |
+| Attendees | 20–50 |
+| Completed clinical interactions | 20–45 |
+| Vaccination/record completion | As clinically eligible |
+| Health-record completeness | 95%+ |
+| Follow-up bookings | 20%+ of relevant attendees |
+| Average rating | 4.6+ |
+| Adverse clinical events | Managed by clinical SOP |
+| Unlicensed clinical advice | Zero |
+| Data/privacy complaints | Zero |
+
+AWBI guidance for pet owners and RWAs emphasises responsible vaccination, cleanliness and safe handling, making preventive-health events a credible RWA value proposition when they are properly governed.
+
+8. Week 11 — Society training workshop
+
+Goal
+
+Convert puppy and behaviour-related demand into paid assessments and appropriate training programmes.
+
+Recommended first workshop
+
+Puppy Foundations and Society Manners
+
+Topics:
+
+Toilet routine
+
+Puppy biting
+
+Leash introduction
+
+Calm greetings
+
+Handling
+
+Safe socialisation
+
+Society lift and common-area manners
+
+Owner consistency
+
+Alternative:
+
+Loose-Leash and Calm Walking Workshop
+
+Do not combine puppy basics, serious aggression and separation anxiety into one group class.
+
+Event format
+
+45–60 minutes
+
+Six to eight dogs per trainer
+
+One assistant
+
+Individual marked spaces
+
+No forced greetings
+
+Fixed leashes
+
+Owner participation
+
+Water and shade
+
+Private assessment option
+
+Veterinary contact available
+
+Pre-screening
+
+Collect:
+
+Dog age
+
+Vaccination status
+
+Main concern
+
+Bite history
+
+Reactivity
+
+Medical conditions
+
+Group suitability
+
+High-risk or distressed dogs should be redirected into individual assessments.
+
+Workshop funnel
+
+Resident registration
+
+↓
+
+Eligibility screening
+
+↓
+
+Workshop attendance
+
+↓
+
+Trainer observes owner and dog
+
+↓
+
+Optional paid assessment
+
+↓
+
+Written programme recommendation
+
+↓
+
+Training package purchase
+
+↓
+
+Sessions and progress reports
+
+Humane-training standard
+
+Use reward-based methods and prohibit hidden aversive tools, physical punishment and intimidation. Tamil Nadu’s current state policy is one example of formal rules requiring humane, reward-based training and regulating trainers and facilities; equivalent local rules must be checked for the actual launch city.
+
+Training workshop KPIs
+
+### Table 155
+
+| Metric | Target |
+| --- | --- |
+| Registrations | 20–40 |
+| Attendees | 15–30 |
+| Paid assessments | 30%+ of qualified attendees |
+| Assessment-to-package conversion | 30–50% |
+| Average rating | 4.6+ |
+| Serious incidents | Zero |
+| Prohibited-method incidents | Zero |
+| Qualified follow-up leads | 10–20 |
+
+9. Week 12 — Service bundles
+
+Goal
+
+Increase customer lifetime value through relevant combinations—not through indiscriminate discounting.
+
+Core bundle principle
+
+A bundle should:
+
+Solve one identifiable customer need
+
+Use services the customer is eligible for
+
+Show individual service prices
+
+Show the genuine bundle saving
+
+Allow necessary choices
+
+Avoid forced medical services
+
+Preserve partner economics
+
+Increase contribution over the customer lifecycle
+
+CCPA guidance prohibits deceptive interface practices and has instructed e-commerce platforms to audit dark patterns. Bundle checkout should not preselect subscriptions, hide exclusions or make cancellation intentionally difficult.
+
+10. Recommended Month 3 bundles
+
+Bundle 1: Puppy Start Pack
+
+Includes
+
+Puppy training assessment
+
+Three or four foundation sessions
+
+Puppy-introduction grooming
+
+Vet appointment coordination or vaccination-record review
+
+Digital puppy routine guide
+
+Important medical boundary
+
+The bundle may include:
+
+Vet booking or vaccination-record review
+
+It should not promise:
+
+Guaranteed vaccination
+
+The veterinarian must determine clinical eligibility.
+
+Ideal customer
+
+Puppy aged approximately two to eight months
+
+New pet parent
+
+No severe behaviour concern
+
+Within service area
+
+Bundle 2: Society Walk and Groom Plan
+
+Includes
+
+Recurring walking plan
+
+One grooming package
+
+Preferred same groomer
+
+Monthly pet-care report
+
+Society-specific support
+
+Why it works
+
+This combines a high-frequency core service with a higher-value periodic add-on.
+
+Success metric
+
+Grooming adoption among active walkers
+
+Core-walking retention
+
+Contribution uplift
+
+Same-provider preference
+
+Bundle 3: Wellness Coordination Pack
+
+Includes
+
+Vet appointment or teleconsult booking
+
+Vaccination-record organisation
+
+Grooming package
+
+Follow-up reminder
+
+Exclude
+
+Medicine
+
+Diagnostics
+
+Guaranteed medical outcomes
+
+Opaque percentage deductions from clinical fees
+
+Veterinary professional fees and platform coordination charges should be shown separately to preserve transparency and professional independence.
+
+Bundle 4: Training and Walking Consistency Pack
+
+Includes
+
+Training assessment
+
+Four leash/home-manners sessions
+
+Two walker handover sessions
+
+Shared walking instructions
+
+Progress reports
+
+Why it works
+
+Training frequently fails when the owner, trainer and walker use inconsistent cues.
+
+Product requirement
+
+The trainer should create a controlled, customer-approved care plan visible to the assigned walker.
+
+Bundle 5: Travel-Ready Pet Pack
+
+Includes
+
+Boarding or sitting booking
+
+Pre-travel grooming
+
+Updated pet profile
+
+Emergency vet details
+
+Optional owner-accompanied pet taxi when beta eligibility exists
+
+Do not include automatically
+
+Pet-only taxi
+
+Medication management
+
+Veterinary certificate
+
+Vaccination
+
+Those require separate eligibility and professional control.
+
+Bundle 6: Senior Comfort Plan
+
+Includes
+
+Gentle grooming
+
+Vet appointment coordination
+
+Short pet-sitting visits
+
+Mobility and home-care checklist
+
+Restrictions
+
+Vet-directed instructions for medical support
+
+No diagnosis by sitters or groomers
+
+No medication changes
+
+No emergency-care guarantee
+
+11. Bundle pricing model
+
+Incorrect approach
+
+Total service value ₹10,000
+
+Discount 50%
+
+Customer pays ₹5,000
+
+This may create volume but destroy partner and platform economics.
+
+Recommended structure
+
+The saving should come from genuine efficiency:
+
+One acquisition journey
+
+Society route density
+
+Shared administration
+
+Reduced partner travel
+
+Prepaid scheduling
+
+Higher customer retention
+
+Illustrative bundle economics
+
+Suppose:
+
+### Table 156
+
+| Component | Normal price |
+| --- | --- |
+| Grooming | ₹1,799 |
+| Training assessment | ₹999 |
+| Four training sessions | ₹5,000 |
+| Platform vet booking support | ₹199 |
+| Total | ₹7,997 |
+
+Bundle price:
+
+The ₹600 reduction should be allocated transparently between:
+
+Platform-funded discount
+
+Partner concession
+
+Society sponsorship
+
+Operational efficiency
+
+Do not silently reduce partner earnings after the bundle is sold.
+
+12. Bundle payment and fulfilment
+
+Recommended payment model
+
+One-time low-value bundle
+
+Collect full payment.
+
+Multi-session package
+
+Use:
+
+Full prepayment, or
+
+Two instalments, or
+
+Authorised payment with session-based partner earnings
+
+Clinical component
+
+Maintain separate professional-fee lines and appropriate invoices.
+
+Bundle lifecycle
+
+Customer chooses bundle
+
+↓
+
+Eligibility checked
+
+↓
+
+Partners and availability confirmed
+
+↓
+
+Final component prices displayed
+
+↓
+
+Customer pays
+
+↓
+
+Individual component bookings created
+
+↓
+
+Services fulfilled separately
+
+↓
+
+Partner earnings released per service
+
+↓
+
+Bundle progress shown
+
+↓
+
+Customer receives follow-up
+
+Do not store one bundle as a single opaque booking. Each component needs:
+
+Partner
+
+Date
+
+Status
+
+Cancellation policy
+
+Report
+
+Payment allocation
+
+Complaint pathway
+
+13. Event CRM and attribution
+
+Every lead and booking should store:
+
+Society
+
+Event
+
+Event type
+
+Resident acquisition source
+
+Partner
+
+Service interest
+
+Pet profile
+
+Registration date
+
+Attendance
+
+First paid booking
+
+Second booking
+
+Bundle adoption
+
+Revenue
+
+Contribution
+
+Consent status
+
+Attribution windows
+
+Recommended:
+
+Immediate conversion: event day
+
+Short-term conversion: 14 days
+
+Standard event conversion: 30 days
+
+Cohort contribution: 90 days
+
+Avoid claiming event attribution indefinitely.
+
+14. Consent and privacy
+
+Society events may collect:
+
+Name
+
+Phone
+
+Flat or tower
+
+Pet information
+
+Health records
+
+Behaviour concerns
+
+Photos
+
+Booking history
+
+Use separate consent for:
+
+Event fulfilment
+
+Sharing necessary information with the partner
+
+Follow-up about the selected service
+
+General marketing
+
+Photography
+
+RWA aggregate reporting
+
+The DPDP Rules, 2025 provide phased commencement, but the operating design should already use clear notices, specified purposes, controlled access and a method for withdrawal or grievance handling.
+
+The RWA should receive aggregate results—not individual veterinary, behavioural or payment records.
+
+15. Consumer protection
+
+For every event and bundle, display:
+
+Organiser
+
+Service provider
+
+Partner credentials
+
+Exact inclusions
+
+Exclusions
+
+Final price
+
+Refund rules
+
+Cancellation rules
+
+Complaint channel
+
+Grievance officer
+
+Whether an offer is sponsored
+
+Whether a service requires professional approval
+
+The Consumer Protection (E-Commerce) Rules require an adequate grievance-redressal mechanism and appropriate platform disclosures for online transactions.
+
+16. Event incident system
+
+Critical incidents
+
+Pet escape
+
+Bite causing injury
+
+Grooming injury
+
+Vaccine cold-chain breach
+
+Incorrect pet vaccination
+
+Adverse reaction without response
+
+Unauthorised clinical advice
+
+Trainer using prohibited methods
+
+Data disclosure
+
+Wrong booking or handover
+
+Response
+
+Stop the affected activity.
+
+Protect the pet and people.
+
+Activate veterinary or medical support.
+
+Notify the owner.
+
+Notify the RWA where relevant.
+
+Preserve records and evidence.
+
+Pause the responsible partner where required.
+
+Investigate root cause.
+
+Issue refund or corrective action.
+
+Do not repeat the format until controls are fixed.
+
+17. Month 3 economics
+
+Event contribution
+
+Cohort contribution
+
+A free or break-even trust event may be acceptable when its 30- and 90-day cohort produces profitable repeat bookings.
+
+That must be measured—not assumed.
+
+18. Month 3 operational dashboard
+
+Events
+
+Events planned
+
+Events completed
+
+Registrations
+
+Qualified leads
+
+Attendance
+
+Slot utilisation
+
+Service completion
+
+Waiting time
+
+RWA rating
+
+Conversion
+
+Event-day paid conversion
+
+14-day conversion
+
+30-day conversion
+
+Repeat rate
+
+Bundle adoption
+
+Multi-service customer rate
+
+Service quality
+
+Grooming rating
+
+Vet-support rating
+
+Training rating
+
+Partner cancellation
+
+Complaint rate
+
+Refund rate
+
+Serious incidents
+
+Economics
+
+Event GMV
+
+Platform event revenue
+
+Partner payouts
+
+Event costs
+
+Direct contribution
+
+Follow-up revenue
+
+90-day cohort contribution
+
+CAC by event type
+
+Revenue per active customer
+
+Contribution per active customer
+
+19. Week-by-week review gates
+
+End of Week 9
+
+Proceed when:
+
+Grooming event completed safely.
+
+At least 80% of booked slots completed.
+
+Rating is 4.6+.
+
+No serious incident occurred.
+
+Contribution is measurable.
+
+At least 25% express repeat intent.
+
+End of Week 10
+
+Proceed when:
+
+Veterinary partner controlled clinical workflow.
+
+Health records are 95% complete.
+
+Cold-chain and vaccine records are documented.
+
+No unlicensed advice occurred.
+
+Follow-up demand exists.
+
+RWA is satisfied.
+
+End of Week 11
+
+Proceed when:
+
+Group eligibility screening worked.
+
+No unsafe dog interaction occurred.
+
+30%+ of qualified attendees booked assessments.
+
+Training methods complied with platform policy.
+
+Reports and leads entered the CRM.
+
+End of Week 12
+
+Approve bundles when:
+
+Component economics are positive.
+
+Partner payouts are protected.
+
+Customers understand each component.
+
+Clinical services remain professionally independent.
+
+No forced or hidden subscriptions exist.
+
+Contribution per customer improves.
+
+20. Month 3 go/no-go criteria
+
+Society-event gate
+
+### Table 157
+
+| Requirement | Target |
+| --- | --- |
+| Completed events | 3–5 |
+| Societies tested | 2–4 |
+| Qualified leads | 75–200 |
+| Qualified-lead conversion | 20%+ |
+| RWA satisfaction | 4.5+ |
+| Serious preventable incidents | Zero |
+| Complaint/refund rate | Below 5% |
+| Repeat-event interest from RWA | 50%+ |
+
+Add-on demand gate
+
+### Table 158
+
+| Requirement | Target |
+| --- | --- |
+| Monthly completed add-on bookings | 110–260 |
+| Event-attributed bookings | 30–80 |
+| Eligible repeat add-on users | 20%+ |
+| Multi-service customers | 15–25% |
+| Grooming rebook/prebook | 25%+ |
+| Training assessment conversion | 30%+ |
+| Vet follow-up completion | 70%+ where required |
+
+Economics gate
+
+### Table 159
+
+| Requirement | Target |
+| --- | --- |
+| Revenue per active customer | +30–50% |
+| Median revenue uplift | +15–25% |
+| Contribution per customer | +15–25% |
+| Contribution-positive commercial event | At least 1 format |
+| Profitable/credible 90-day event cohort | Yes |
+| Core retention decline | No more than 5% |
+| Heavy-discount dependency | No |
+
+Operations gate
+
+Partner backup coverage exists.
+
+Gate protocol works.
+
+Event capacities are respected.
+
+Health and training records are complete.
+
+Customer-support response remains acceptable.
+
+Partner payouts remain on time.
+
+Core walking, sitting and grooming quality remains stable.
+
+21. Month 3 final report template
+
+Phase 8 Month 3 Society Expansion Report
+
+Project name:City:Target societies:Start date:End date:
+
+Event summary
+
+### Table 160
+
+| Event | Society | Registrations | Attendees | Paid services | Leads | Contribution | Rating |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Grooming day |  |  |  |  |  | ₹ |  |
+| Vet camp |  |  |  |  |  | ₹ |  |
+| Training workshop |  |  |  |  |  | ₹ |  |
+| Additional event |  |  |  |  |  | ₹ |  |
+
+Lead and conversion funnel
+
+### Table 161
+
+| Metric | Result |
+| --- | --- |
+| Residents reached |  |
+| Registrations |  |
+| Qualified leads |  |
+| Event attendees |  |
+| First paid bookings |  |
+| Follow-up bookings |  |
+| Repeat customers |  |
+| Multi-service customers |  |
+| Bundle customers |  |
+
+Service performance
+
+### Table 162
+
+| Metric | Grooming | Vet | Training |
+| --- | --- | --- | --- |
+| Bookings/interactions |  |  |  |
+| Completion rate |  |  |  |
+| Average rating |  |  |  |
+| Complaints |  |  |  |
+| Refunds |  |  |  |
+| Partner cancellation |  |  |  |
+| Serious incidents |  |  |  |
+
+Bundle performance
+
+### Table 163
+
+| Bundle | Customers | Revenue | Discount | Contribution | Completion | Repeat rate |
+| --- | --- | --- | --- | --- | --- | --- |
+| Puppy Start |  | ₹ | ₹ | ₹ |  |  |
+| Walk + Groom |  | ₹ | ₹ | ₹ |  |  |
+| Wellness |  | ₹ | ₹ | ₹ |  |  |
+| Training + Walking |  | ₹ | ₹ | ₹ |  |  |
+
+Customer economics
+
+### Table 164
+
+| Metric | Baseline | Month 3 | Change |
+| --- | --- | --- | --- |
+| Average revenue/customer | ₹ | ₹ |  |
+| Median revenue/customer | ₹ | ₹ |  |
+| Contribution/customer | ₹ | ₹ |  |
+| Services/customer |  |  |  |
+| Core repeat rate |  |  |  |
+
+Key findings
+
+Best event type:Best-performing society:Best acquisition channel:Highest-converting service:Most profitable bundle:Top RWA objection:Top pet-parent request:Most common complaint:Largest operational failure:Most valuable cross-sell trigger:
+
+Decision
+
+Proceed to Phase 9
+
+Continue society-event rollout
+
+Repeat only selected event types
+
+Redesign bundles
+
+Change target societies
+
+Improve partner capacity
+
+Improve event operations
+
+Pause expansion
+
+Final recommendation
+
+Approve Month 3 with these operating rules
+
+Conduct three mandatory events: grooming, vet/preventive health and training.
+
+Add a fourth or fifth event only after early events pass safety and quality gates.
+
+Treat 100–300 as registrations or broad leads—not automatically qualified opportunities.
+
+Target 75–200 qualified leads and at least 20% conversion.
+
+Count add-on bookings only when paid and completed.
+
+Measure revenue and contribution on the same customer cohort.
+
+Keep veterinary professional fees transparent and clinically independent.
+
+Build bundles around genuine needs—not arbitrary service combinations.
+
+Protect partner payouts and avoid discount-led fake growth.
+
+Block Phase 9 if core service quality declines.
+
+Month 3 status
+
+GO—with revised attribution, booking and profitability targets.
+
+The strategic result should be:
+
+A society stops being merely an event venue and becomes a recurring local customer cluster where grooming, veterinary access, training and core pet care reinforce one another.
+
+Phase 8 Bundle Strategy
+
+Revenue Architecture, Pricing, Operations and Corrected Economics 🐾📦
+
+Executive verdict
+
+Bundles should become the commercial engine of Phase 8—but only after individual services work independently.
+
+India’s organised pet-services segment, including grooming, training and boarding, was estimated at about ₹600 crore in CY2024. The opportunity is real, but current Indian provider pricing varies widely across cities, service depth and partner quality, so bundles must be priced from actual component economics rather than broad headline ranges.
+
+The correct objective is not:
+
+Sell several services together at the largest possible discount.
+
+It is:
+
+Convert a single-service customer into a retained multi-service customer while increasing contribution per customer and simplifying care.
+
+The strongest early bundle remains:
+
+Monthly Dog Care Pack
+
+10 scheduled walks
+
+One controlled grooming credit
+
+Vaccination reminder
+
+Same-walker preference
+
+Monthly care summary
+
+It combines a frequent core service with a periodic add-on without introducing clinical, transport or multi-partner complexity.
+
+1. What bundles should accomplish
+
+A strong bundle should improve at least three of these five metrics:
+
+Customer retention
+
+Bookings per customer
+
+Revenue per customer
+
+Contribution per customer
+
+Service consistency
+
+A bundle is weak when it merely:
+
+Gives a large discount
+
+Combines unrelated services
+
+Forces customers to prepay for services they may not use
+
+Reduces partner earnings
+
+Hides individual component prices
+
+Creates complicated refunds
+
+Includes medical care without professional approval
+
+Bundle value equation
+
+A bundle should be created only when the result is positive.
+
+2. Critical financial correction
+
+Your example shows:
+
+### Table 165
+
+| Service | Customer spending | Platform amount |
+| --- | --- | --- |
+| Grooming | ₹1,20,000 | ₹24,000 |
+| Vet support | ₹35,000 | ₹5,250 |
+| Training | ₹80,000 | ₹20,000 |
+| Society camps | ₹75,000 | ₹15,000 |
+| Total | ₹3,10,000 | ₹64,250 |
+
+The ₹3,10,000 should be labelled:
+
+Gross Merchandise Value—or total customer spending
+
+It is not necessarily platform revenue.
+
+The ₹64,250 is:
+
+Gross platform revenue before direct operating costs
+
+Blended platform take rate
+
+That is commercially plausible, but it is not net profit.
+
+3. Correct revenue waterfall
+
+Use these four financial levels consistently.
+
+Level 1: GMV
+
+Total customer payments for the services.
+
+Level 2: Partner earnings
+
+Amounts payable to groomers, trainers, veterinarians, event providers and other partners.
+
+Using your example:
+
+Level 3: Platform gross revenue
+
+Commissions, booking fees, event fees and other platform income.
+
+Level 4: Contribution
+
+Platform gross revenue after direct variable expenses:
+
+Level 5: Operating profit
+
+Contribution after:
+
+Salaries
+
+Technology
+
+Rent
+
+Legal and accounting
+
+Insurance
+
+Management
+
+General marketing
+
+Central administration
+
+4. Illustrative corrected monthly P&L
+
+Using your ₹3,10,000 GMV example:
+
+### Table 166
+
+| Financial line | Illustrative amount |
+| --- | --- |
+| Customer GMV | ₹3,10,000 |
+| Partner payouts | ₹2,45,750 |
+| Platform gross revenue | ₹64,250 |
+| Payment processing | ₹6,200 |
+| Discounts and service credits | ₹8,000 |
+| Refund/redo provision | ₹6,200 |
+| Event staffing and logistics | ₹8,000 |
+| Customer support and quality checks | ₹7,500 |
+| Partner onboarding/compliance allocation | ₹4,000 |
+| Illustrative contribution | ₹24,350 |
+
+This gives:
+
+The ₹24,350 is still before salaries, technology and central overhead.
+
+This is why Phase 8 should not report:
+
+“We made ₹64,250 profit.”
+
+The correct statement would be:
+
+“We generated ₹3.10 lakh GMV, ₹64,250 gross platform revenue and approximately ₹24,350 illustrative contribution before fixed overhead.”
+
+Actual costs must replace these planning assumptions after the pilot.
+
+5. Bundle design rules
+
+Every bundle needs a written definition covering:
+
+Eligible customer
+
+Eligible pet
+
+Component services
+
+Individual service values
+
+Bundle price
+
+Partner payout
+
+Platform-funded discount
+
+Expiration
+
+Cancellation
+
+Unused-credit treatment
+
+Medical eligibility
+
+Service-area restrictions
+
+Refund allocation
+
+Required bundle principles
+
+One problem per bundle
+
+A puppy bundle solves first-time pet-parent onboarding.
+
+A travel bundle solves temporary care during travel.
+
+A senior bundle supports recurring care for ageing pets.
+
+Do not create a random “Gold Pet Package” containing unrelated services.
+
+Every component remains separate operationally
+
+A bundle should create individual child bookings:
+
+Bundle purchase
+
+├── Walk booking 1
+
+├── Walk booking 2
+
+├── Grooming booking
+
+├── Vet coordination entitlement
+
+└── Reminder entitlement
+
+Each component needs its own:
+
+Partner
+
+Schedule
+
+Completion status
+
+Report
+
+Cancellation rule
+
+Payout
+
+Complaint route
+
+Show real individual prices
+
+Display:
+
+### Table 167
+
+| Component | Standard price |
+| --- | --- |
+| 10 walks | ₹X |
+| Grooming credit | ₹Y |
+| Reminder | Free |
+| Bundle saving | ₹Z |
+| Final bundle price | ₹Total |
+
+Do not hide component values behind one opaque total.
+
+Discounts must come from genuine efficiency
+
+Valid sources of bundle savings include:
+
+Lower customer-acquisition cost
+
+Prepaid demand
+
+Society route density
+
+Reduced partner travel
+
+Lower administrative cost
+
+Increased customer retention
+
+Sponsor contribution
+
+The discount should not simply be deducted from the partner’s earnings after the sale.
+
+6. Bundle 1: Puppy Starter Pack
+
+Proposed
+
+Vet consultation
+
+Training introduction
+
+Grooming
+
+₹1,999–₹4,999
+
+Assessment
+
+The concept is strong, but ₹1,999 is generally too low if all three are full paid services.
+
+Current provider-published prices show that even entry-level grooming, veterinary teleconsultation and dog-training sessions can consume most or all of that price independently.
+
+Recommended two-tier version
+
+Puppy Starter Lite
+
+Suggested test price: ₹1,999–₹2,999
+
+Includes:
+
+Puppy grooming introduction
+
+Society or online puppy workshop
+
+Vet appointment coordination
+
+Vaccination-record reminder
+
+Digital puppy routine guide
+
+The veterinarian’s professional consultation fee is separate unless specifically included and disclosed.
+
+Puppy Starter Complete
+
+Suggested test price: ₹3,999–₹6,999
+
+Includes:
+
+Registered-vet consultation
+
+Paid puppy training assessment
+
+Puppy introduction grooming
+
+Pet profile and vaccination schedule
+
+One follow-up reminder
+
+Important rules
+
+Vet eligibility remains with the veterinarian.
+
+Do not promise vaccination.
+
+Do not recommend food or medicine automatically.
+
+The training assessment should precede a larger programme.
+
+Grooming should be limited to age-appropriate, low-stress service.
+
+Success metrics
+
+Vet booking completion
+
+Assessment-to-training conversion
+
+Grooming completion
+
+Thirty-day second-service use
+
+Puppy-parent retention
+
+Contribution per customer
+
+7. Bundle 2: Monthly Dog Care Pack
+
+Recommended first bundle
+
+This is the strongest early bundle because it mostly depends on already validated operations.
+
+Core pack
+
+10 scheduled 30-minute walks
+
+₹250–₹400 grooming credit
+
+Vaccination reminder
+
+Same-walker preference
+
+Monthly walking and care summary
+
+Priority rescheduling
+
+Why use a grooming credit rather than “grooming discount”?
+
+“Ten percent grooming discount” is difficult for the customer to value and may create inconsistent economics across packages.
+
+Use a fixed benefit:
+
+₹300 grooming credit valid on a grooming booking above ₹1,299.
+
+This makes the financial liability predictable.
+
+Illustrative pricing
+
+Assume:
+
+### Table 168
+
+| Component | Amount |
+| --- | --- |
+| 10 walks at standard ₹249 | ₹2,490 |
+| Grooming credit | ₹300 |
+| Reminder and report | Included |
+| Total displayed value | ₹2,790 |
+| Bundle price | ₹2,649–₹2,699 |
+
+The customer saving is modest. The main value comes from convenience and continuity—not extreme discounting.
+
+Illustrative bundle economics
+
+Assume bundle price of ₹2,699:
+
+### Table 169
+
+| Item | Amount |
+| --- | --- |
+| Customer payment | ₹2,699 |
+| Walker payouts—10 × ₹180 | ₹1,800 |
+| Gross platform revenue before grooming credit | ₹899 |
+| Grooming credit if redeemed | ₹300 |
+| Payment cost | ₹54 |
+| Support and scheduling | ₹120 |
+| Refund/cancellation provision | ₹50 |
+| Illustrative contribution | ₹375 |
+
+The contribution improves when:
+
+Walks are society-dense
+
+The same walker serves several customers
+
+The grooming credit drives an additional positive-margin booking
+
+The customer renews
+
+Better tier structure
+
+### Table 170
+
+| Plan | Includes | Illustrative range |
+| --- | --- | --- |
+| Care Lite | 8 walks + ₹200 grooming credit | ₹2,099–₹2,399 |
+| Care Standard | 10 walks + ₹300 grooming credit | ₹2,599–₹2,999 |
+| Care Plus | 16–20 walks + ₹500 grooming credit | ₹4,499–₹6,499 |
+
+Actual prices must be calculated from local walk payouts and customer pricing.
+
+8. Monthly Care Pack operating flow
+
+Customer selects Monthly Care
+
+↓
+
+Chooses pet
+
+↓
+
+Selects preferred walk days
+
+↓
+
+Same walker or equivalent backup selected
+
+↓
+
+Bundle terms and credits displayed
+
+↓
+
+Customer authorises recurring payment
+
+↓
+
+Monthly walking entitlements created
+
+↓
+
+Walks completed and partner paid individually
+
+↓
+
+Grooming credit becomes available
+
+↓
+
+Vaccination reminder remains optional
+
+↓
+
+Customer receives monthly report
+
+↓
+
+Renew, pause or cancel
+
+Subscription rules
+
+Customers must be able to:
+
+View the next billing date
+
+Pause
+
+Cancel
+
+Change plan
+
+Reschedule eligible walks
+
+See remaining credits
+
+Understand expiry
+
+Download invoices
+
+India’s dark-pattern framework expressly identifies practices such as subscription traps, forced action and drip pricing. Cancellation should therefore be as easy and visible as enrolment, and fees should not appear only at the final checkout step.
+
+Credit-expiration recommendation
+
+Walk credits expire at the end of the billing period.
+
+Offer a short grace period for platform-caused cancellations.
+
+Allow one or two limited rollovers where commercially viable.
+
+Grooming credits may remain valid for 45–60 days.
+
+Expiration dates must be shown clearly.
+
+Do not erase credits silently.
+
+9. Bundle 3: Travel Care Pack
+
+Proposed
+
+Boarding
+
+Grooming
+
+Pet-taxi beta
+
+₹1,999–₹5,999
+
+Assessment
+
+The bundle is attractive, but the proposed flat range is misleading because boarding depends on the number of nights.
+
+A package containing:
+
+Two or more boarding nights
+
+Full grooming
+
+Taxi pickup and drop
+
+may already exceed ₹5,999 before the platform adds a margin.
+
+Correct pricing formula
+
+Recommended structure
+
+Travel Essentials
+
+Boarding or sitting reservation
+
+Pet document checklist
+
+Emergency contact record
+
+Pre-travel grooming credit
+
+Travel Complete
+
+Boarding
+
+Pre- or post-stay grooming
+
+Owner-accompanied taxi in eligible zones
+
+Daily update commitment
+
+Emergency vet information
+
+Restrictions
+
+Pet taxi remains beta.
+
+Do not promise pet-only transfer initially.
+
+Boarding eligibility and vaccination requirements remain separate.
+
+Taxi, boarding and grooming each retain their own cancellation policy.
+
+The customer must know which component is refundable.
+
+10. Bundle 4: Senior Pet Pack
+
+Proposed
+
+Sitting
+
+Vet check
+
+Medication reminder
+
+₹2,999–₹8,999
+
+Assessment
+
+The concept is valuable, but the bundle must distinguish between:
+
+Reminder software
+
+Caregiver assistance
+
+Veterinary clinical care
+
+Medication administration
+
+Recommended name
+
+Senior Comfort Plan
+
+Includes:
+
+Four or eight short pet-care visits
+
+Vet appointment or teleconsult coordination
+
+Health and vaccination reminders
+
+Feeding and mobility instructions
+
+Caregiver visit reports
+
+Emergency contact profile
+
+Medical boundary
+
+A medication reminder is not medical treatment.
+
+Medication administration should require:
+
+Written veterinary instructions
+
+Exact medicine and dosage
+
+Administration time
+
+Customer authorisation
+
+Trained caregiver permission
+
+Missed-dose escalation
+
+No independent dose changes
+
+Suggested tiers
+
+### Table 171
+
+| Plan | Includes |
+| --- | --- |
+| Senior Lite | 4 visits + reminders |
+| Senior Standard | 8 visits + vet coordination |
+| Senior Plus | 8 visits + vet consultation + gentle grooming credit |
+
+Clinical fees should remain transparent and separately identifiable.
+
+11. Bundle 5: Society Pet Day
+
+Proposed
+
+Grooming
+
+Vet
+
+Training workshop
+
+Custom price
+
+Assessment
+
+Do not treat this as one simultaneous multi-service event.
+
+Combining full grooming, vaccination and group training in one crowded area can create:
+
+Stress
+
+Cross-infection risk
+
+Long waits
+
+Pet conflict
+
+Confused responsibility
+
+Poor conversion attribution
+
+Better model
+
+Create a Society Pet-Care Programme with separate activity blocks:
+
+Commercial day
+
+Prebooked grooming
+
+Paid nail and hygiene services
+
+Preventive-health day
+
+Vet-led checkup
+
+Vaccination-record review
+
+Vaccination where clinically appropriate
+
+Education day
+
+Puppy or leash workshop
+
+Diwali safety session
+
+Pet-parent seminar
+
+Revenue model
+
+Fixed event-management fee
+
+Non-clinical ticket share
+
+Grooming booking commission
+
+Society subscription
+
+Sponsor support
+
+Do not take an opaque percentage of clinical fees. VCI’s professional-conduct rules state that vets should not give, solicit or receive commissions or bonuses for referring or procuring clients, and also require professional remuneration to be announced to the client. A fixed platform technology or event-management charge is structurally safer than a referral-based clinical commission, subject to professional legal review.
+
+12. Revenue-model corrections
+
+Grooming commission: 15–25%
+
+Approve.
+
+Use higher rates only when the platform provides:
+
+Qualified customers
+
+Payment
+
+Support
+
+Society access
+
+Scheduling
+
+Reports
+
+Replacement
+
+Complaint resolution
+
+Measure partner earnings after travel and consumables.
+
+Veterinary commission: 10–20%
+
+Modify.
+
+Avoid a simple clinical-fee commission.
+
+Recommended alternatives:
+
+Fixed customer booking fee
+
+Fixed clinic software subscription
+
+Flat home-visit coordination fee
+
+Fixed society-event management fee
+
+Transparent technology fee
+
+Do not tie platform income to:
+
+Prescription volume
+
+Diagnostic tests
+
+Treatment escalation
+
+Medicine sales
+
+Referrals
+
+VCI regulations expressly address professional fees and commissions for procuring clients, so this structure requires special caution.
+
+Training commission: 15–30%
+
+Approve conditionally.
+
+Recommended starting ranges:
+
+### Table 172
+
+| Training type | Platform range |
+| --- | --- |
+| Intro assessment | 15–20% |
+| Foundation programme | 18–25% |
+| Group workshop | 20–35% after event costs |
+| Senior behaviour specialist | 12–20% |
+
+Experienced specialists may reject a 30% commission because they provide assessment, travel, planning, sessions and follow-up.
+
+Society-event revenue
+
+Approve with a defined cost base.
+
+Avoid saying simply:
+
+Fixed fee plus 20% share.
+
+Define whether the share applies to:
+
+Gross ticket revenue
+
+Net ticket revenue
+
+Platform commission
+
+Revenue after venue and event costs
+
+Non-clinical services only
+
+Recommended formula:
+
+Then divide according to the agreement.
+
+Pet-taxi commission: 10–20%
+
+Keep in beta.
+
+A transparent fixed coordination fee may initially be easier to manage than a percentage:
+
+This makes driver earnings and customer charges clearer.
+
+Product affiliate: 5–20%
+
+Approve later.
+
+Require:
+
+Seller verification
+
+Affiliate disclosure
+
+Accurate recommendation rationale
+
+Return responsibility
+
+No automatic health claims
+
+No recommendation ranking based solely on commission
+
+Featured partner listing
+
+Defer.
+
+Featured placement must be labelled as sponsored and must never outrank:
+
+Safety eligibility
+
+Service permission
+
+Pet compatibility
+
+Location
+
+Availability
+
+Quality
+
+Existing customer preference
+
+13. Bundle margin model
+
+For every bundle, calculate three margins.
+
+Gross bundle margin
+
+Contribution margin
+
+Customer lifetime contribution
+
+A low-margin first month may be acceptable when renewal and retention are strong.
+
+A low-margin bundle is not acceptable when it creates no repeat use.
+
+14. Bundle discount funding
+
+Every discount must have an owner.
+
+### Table 173
+
+| Discount source | Example |
+| --- | --- |
+| Platform-funded | New-customer acquisition credit |
+| Partner-funded | Groomer offers society-day discount |
+| Society-funded | RWA subsidises resident wellness event |
+| Sponsor-funded | Brand funds puppy workshop |
+| Efficiency-funded | Lower travel cost in one society |
+| Shared | Platform and partner each contribute |
+
+Store discount allocation at the booking-component level.
+
+Do not deduct the full bundle discount from whichever partner is paid last.
+
+15. Refund logic
+
+Bundles require partial-refund rules.
+
+Example
+
+A customer purchases:
+
+10 walks
+
+₹300 grooming credit
+
+Reminder service
+
+The customer completes four walks and cancels.
+
+A transparent refund model is:
+
+Do not retrospectively reprice the four used walks at an inflated rate unless this was clearly disclosed before purchase.
+
+Component failure
+
+Partner cancellation: replace or refund that component.
+
+Customer cancellation: apply that component’s rule.
+
+Clinical ineligibility: refund or credit the unused clinical component.
+
+Platform failure: restore credit or refund.
+
+Bundle remains active when unaffected components can still be delivered.
+
+16. Data and consent
+
+Bundles may combine:
+
+Walking history
+
+Grooming records
+
+Veterinary reminders
+
+Behaviour information
+
+Home address
+
+Society membership
+
+Subscription data
+
+The DPDP Rules, 2025 were notified with phased commencement. Bundle consent should still be purpose-specific: service fulfilment, clinical-record sharing, recurring billing, marketing and society reporting should not be merged into one mandatory consent.
+
+Recommended controls:
+
+Separate marketing opt-in
+
+Separate health-record sharing
+
+Clear recurring-billing consent
+
+Easy cancellation
+
+Data-access limits by partner type
+
+No health information in promotional messages
+
+Aggregate society reporting only
+
+17. Tax and marketplace structure
+
+The financial model must define:
+
+Who supplies each service
+
+Who invoices the customer
+
+Who collects customer consideration
+
+Whether the platform acts as principal or agent
+
+How discounts are allocated
+
+How partner payouts are documented
+
+How bundle refunds are credited
+
+Whether TCS obligations apply
+
+CBIC guidance defines an e-commerce operator and states that TCS may apply where taxable supplies are made through the platform and consideration is collected by the operator; the exact treatment depends on the transaction and supplier structure.
+
+Because bundles combine different suppliers and possibly different tax treatments, obtain a written chartered-accountant position covering:
+
+Service component invoices
+
+Platform fee invoices
+
+Event income
+
+Partner payouts
+
+Refund credit notes
+
+Subscription billing
+
+Product affiliate income
+
+Clinical professional fees
+
+18. Bundle technology model
+
+Recommended entities:
+
+bundles
+
+bundle_versions
+
+bundle_components
+
+bundle_prices
+
+bundle_subscriptions
+
+bundle_entitlements
+
+bundle_orders
+
+bundle_order_components
+
+bundle_usage
+
+bundle_discount_allocations
+
+bundle_refunds
+
+Parent and child structure
+
+Bundle order
+
+├── Component order: walking
+
+│ ├── Booking 1
+
+│ ├── Booking 2
+
+│ └── Booking 10
+
+├── Component credit: grooming
+
+├── Reminder entitlement
+
+└── Monthly report entitlement
+
+Required component states
+
+Available
+
+Scheduled
+
+Redeemed
+
+Completed
+
+Expired
+
+Cancelled
+
+Refunded
+
+Replaced
+
+A bundle should never be stored as one generic booking row.
+
+19. Customer bundle dashboard
+
+Show:
+
+Current plan
+
+Billing date
+
+Used benefits
+
+Remaining benefits
+
+Expiration dates
+
+Scheduled services
+
+Partners assigned
+
+Grooming credit
+
+Health reminders
+
+Savings achieved
+
+Pause
+
+Cancel
+
+Change plan
+
+Recommended customer wording
+
+Monthly Dog Care Standard
+
+6 of 10 walks remaining
+
+₹300 grooming credit available until September 15
+
+Next vaccination reminder: October 2
+
+Next billing date: August 25
+
+Cancel or pause plan
+
+Avoid hiding cancellation under support chat.
+
+20. Bundle KPIs
+
+Adoption
+
+Eligible customers shown bundle
+
+Bundle-page views
+
+Bundle conversion
+
+Bundle mix
+
+Acquisition source
+
+Usage
+
+Walk-credit utilisation
+
+Grooming-credit redemption
+
+Component completion
+
+Expired credits
+
+Skipped months
+
+Partner cancellation
+
+Retention
+
+First renewal
+
+Three-month retention
+
+Six-month retention
+
+Voluntary cancellation
+
+Failed payment
+
+Pause-to-reactivation
+
+Economics
+
+Bundle GMV
+
+Platform revenue
+
+Discount cost
+
+Partner payouts
+
+Contribution
+
+Contribution per subscriber
+
+Customer-acquisition cost
+
+Payback period
+
+Quality
+
+Rating by component
+
+Complaint rate
+
+Refund rate
+
+Cross-service incident rate
+
+Core-service cancellation
+
+Support contacts per subscriber
+
+21. Phase 8 bundle success criteria
+
+Scale recurring bundles only when:
+
+### Table 174
+
+| Requirement | Target |
+| --- | --- |
+| Bundle customers | 30–50 pilot customers |
+| First-month component completion | 90%+ |
+| First renewal rate | 60%+ starting target |
+| Three-month retention | 50%+ starting target |
+| Grooming-credit redemption | 25–50% |
+| Add-on adoption | 20%+ |
+| Average service rating | 4.6+ |
+| Complaint/refund rate | Below 5% |
+| Partner cancellation | Below 7% |
+| Contribution per customer improvement | 15–25%+ |
+| Revenue per customer improvement | 30%+ |
+| Core-service quality decline | None material |
+| Subscription cancellation flow | Clear and functional |
+| Hidden or forced charges | Zero |
+| Serious preventable incidents | Zero |
+
+These retention thresholds are internal pilot hypotheses and should be recalibrated after the first cohorts.
+
+22. Recommended Phase 8 bundle rollout
+
+Stage 1
+
+Launch one bundle:
+
+Monthly Dog Care Pack
+
+10 walks
+
+Fixed grooming credit
+
+Vaccination reminder
+
+Same-walker preference
+
+Monthly report
+
+Stage 2
+
+After 30–50 bundle customers:
+
+Puppy Starter Pack
+
+Training and Walking Consistency Pack
+
+Stage 3
+
+After pet taxi and boarding operations are stable:
+
+Travel Care Pack
+
+Stage 4
+
+After vet-directed senior-care SOPs exist:
+
+Senior Comfort Plan
+
+Stage 5
+
+After society events are repeatable:
+
+Society Pet-Care Programme
+
+Final recommendation
+
+Approve
+
+Monthly Dog Care Pack as the first recurring bundle
+
+Fixed grooming credit instead of vague discount percentages
+
+Transparent component pricing
+
+Separate partner payouts
+
+Easy pause and cancellation
+
+Component-level refunds
+
+Customer cohort economics
+
+Modify
+
+Split Puppy Starter into Lite and Complete
+
+Price Travel Care according to nights and actual services
+
+Rename Senior Pet Pack as Senior Comfort Plan
+
+Convert Society Pet Day into separate scheduled activities
+
+Replace veterinary percentage commission with transparent coordination or technology fees
+
+Defer
+
+Deeply discounted annual plans
+
+Pet-taxi-heavy bundles
+
+Medicine or prescription-diet bundles
+
+Opaque “unlimited care” subscriptions
+
+Featured partner placement
+
+Complex product bundles
+
+Corrected financial conclusion
+
+Your example represents:
+
+₹3.10 lakh GMV
+
+₹64,250 gross platform revenue
+
+20.7% blended take rate
+
+A potentially much smaller contribution after direct costs
+
+Additional revenue beyond walking, sitting and boarding—but not automatically additional profit
+
+Phase 8 bundle win condition
+
+Bundles increase retained customer contribution, simplify recurring pet care and create consistent partner demand—without relying on excessive discounts, hiding fees or weakening service quality.
+
+Bundle Strategy: GO—begin with the Monthly Dog Care Pack and validate contribution before expanding the catalogue.
+
+Worked for 18s
+
+What Goes Wrong in Service-Expansion Phases
+
+Failure Analysis, Corrective Framework and Expansion Gates 🐾⚙️
+
+Executive verdict
+
+Most service-expansion failures do not happen because the new service has no demand.
+
+They happen because the company adds commercial complexity faster than operational control.
+
+Every new service introduces another layer of:
+
+Partner recruitment
+
+Verification
+
+Scheduling
+
+Pricing
+
+Customer expectations
+
+Safety procedures
+
+Complaints
+
+Refunds
+
+Data access
+
+Payments and payouts
+
+Legal responsibility
+
+The wrong expansion formula is:
+
+The correct formula is:
+
+A grooming, veterinary, training, taxi or product category should not scale merely because customers request it. It should scale only when the business can deliver it reliably, safely and profitably.
+
+Mistake 1: Expanding before the core service is stable
+
+The wrong approach
+
+The platform still has:
+
+Missed walks
+
+Late sitters
+
+Partner cancellations
+
+Poor customer support
+
+Incomplete service reports
+
+Low repeat rates
+
+Refund disputes
+
+Safety complaints
+
+But the founder launches:
+
+Grooming
+
+Veterinary care
+
+Training
+
+Pet taxi
+
+Product commerce
+
+Society events
+
+This multiplies unresolved problems.
+
+Why it fails
+
+The same weak operating system is reused for every new service.
+
+If partner assignment already fails for walking, it will also fail for:
+
+Groomers
+
+Trainers
+
+Veterinarians
+
+Taxi drivers
+
+Boarding centres
+
+If customer support cannot resolve a late walker, it will struggle more with:
+
+A grooming injury
+
+A veterinary escalation
+
+A trainer-method complaint
+
+A lost pet during transport
+
+A damaged food order
+
+Expansion does not repair operational weakness. It amplifies it.
+
+Core-service stability gate
+
+Do not begin Phase 8 until the core marketplace meets minimum standards for at least four to eight consecutive weeks.
+
+### Table 175
+
+| Core metric | Recommended minimum |
+| --- | --- |
+| Booking completion | 95%+ |
+| On-time service | 95%+ |
+| Partner cancellation | Below 5–7% |
+| Customer complaint rate | Below 3–5% |
+| Average rating | 4.6+ |
+| Repeat customer rate | 30%+ or service-appropriate |
+| Required report completion | 95%+ |
+| Critical unresolved incidents | Zero |
+| Backup fulfilment | 90%+ |
+| Positive booking contribution | Demonstrated |
+| Partner payouts | On time |
+| Support response | Within defined SLA |
+
+Core-protection rule
+
+Every Phase 8 dashboard should compare:
+
+Before expansion
+
+vs.
+
+During expansion
+
+Track:
+
+Core-service cancellation
+
+Core rating
+
+Core repeat rate
+
+Support-response time
+
+Refund rate
+
+Society complaints
+
+Partner payout delays
+
+Automatic expansion pause
+
+Pause the new category when:
+
+Core cancellations rise materially.
+
+Support backlogs increase.
+
+Core ratings decline.
+
+Existing customers receive slower responses.
+
+Partner payouts are delayed.
+
+Critical incidents remain unresolved.
+
+Correct decision
+
+Fix the operating engine before adding more vehicles to it.
+
+Mistake 2: Hiring full-time specialists too early
+
+The wrong approach
+
+The business immediately hires:
+
+Full-time groomers
+
+Full-time trainers
+
+In-house veterinarians
+
+Drivers
+
+Product-delivery staff
+
+Event teams
+
+before demand is proven.
+
+Why it fails
+
+Full-time hiring converts variable costs into fixed costs.
+
+A partner may be paid only when a booking occurs. An employee creates monthly obligations regardless of demand:
+
+Salary
+
+Benefits
+
+Equipment
+
+Training
+
+Management
+
+Idle time
+
+Insurance
+
+Replacement coverage
+
+Workspace or vehicle requirements
+
+If demand is geographically fragmented, an internal specialist may spend more time travelling or waiting than delivering paid services.
+
+Correct partner-first model
+
+Stage 1: Verified partner
+
+Use independent or business partners to test:
+
+Demand
+
+Pricing
+
+Service duration
+
+Customer preferences
+
+Repeat rates
+
+Geography
+
+Capacity
+
+Complaints
+
+Stage 2: Preferred partner
+
+Give reliable partners:
+
+Higher booking priority
+
+Recurring customers
+
+Better scheduling
+
+Faster payouts
+
+Society routes
+
+Volume commitments where justified
+
+Stage 3: Dedicated capacity agreement
+
+Reserve defined capacity without employing the entire team.
+
+Examples:
+
+Groomer available every Tuesday in one society cluster
+
+Trainer reserves Saturday workshops
+
+Veterinary clinic reserves teleconsultation slots
+
+Taxi operator guarantees two vehicles during defined periods
+
+Stage 4: Employment
+
+Hire internally only when demand is:
+
+Predictable
+
+Dense
+
+Repeated
+
+Profitable
+
+Difficult to fulfil through partners
+
+Strategically important to control
+
+Full-time hiring trigger
+
+A role becomes a hiring candidate when most of these conditions are true:
+
+### Table 176
+
+| Requirement | Example trigger |
+| --- | --- |
+| Demand consistency | 70%+ capacity utilisation for three months |
+| Geographic density | Majority of work inside a manageable cluster |
+| Partner shortage | Bookings repeatedly lost due to insufficient supply |
+| Quality advantage | Internal team materially improves safety or consistency |
+| Economic advantage | Loaded employment cost is below partner cost |
+| Management capacity | Supervisor, training and backup systems exist |
+| Service repeatability | SOP is stable |
+| Revenue visibility | Confirmed recurring contracts or subscriptions |
+
+Hire based on loaded cost
+
+Do not compare:
+
+Partner payout vs employee salary
+
+Compare:
+
+against:
+
+Correct decision
+
+Partners validate demand. Employees optimise proven demand.
+
+Mistake 3: Building full e-commerce too early
+
+The wrong approach
+
+The business launches:
+
+Hundreds of SKUs
+
+Warehouse inventory
+
+Food subscriptions
+
+Same-day delivery
+
+Returns
+
+Private-label products
+
+Supplements
+
+Medicines
+
+Multiple sellers
+
+Product recommendations
+
+before the core service marketplace is stable.
+
+Why it fails
+
+Product commerce is not merely another screen in the application.
+
+It introduces a separate operating system:
+
+Supplier contracts
+
+Seller verification
+
+Inventory forecasting
+
+Working capital
+
+Storage conditions
+
+Batch and expiry tracking
+
+Product authenticity
+
+Packaging
+
+Delivery
+
+Returns
+
+Damaged goods
+
+Product recalls
+
+Customer complaints
+
+Seller payouts
+
+Tax treatment
+
+India’s Consumer Protection (E-Commerce) Rules apply to marketplace and inventory models and require appropriate disclosures, fair practices and grievance redressal. Drug sales and distribution operate under the Drugs and Cosmetics regulatory framework, making veterinary medicines and some treatment products a materially more sensitive category than ordinary accessories.
+
+Correct commerce maturity ladder
+
+Stage 1: Affiliate recommendations
+
+The customer purchases from the retailer.
+
+The platform receives:
+
+Referral commission
+
+Click attribution
+
+Conversion data
+
+The retailer manages:
+
+Inventory
+
+Invoice
+
+Delivery
+
+Returns
+
+Product authenticity
+
+Stage 2: Same-product replenishment
+
+Recommend recurring purchase of food or supplies the customer already uses.
+
+Do not immediately create automated food-switch recommendations.
+
+Stage 3: Curated care kits
+
+Offer preorder-based bundles such as:
+
+Puppy starter kit
+
+Walking kit
+
+Grooming-maintenance kit
+
+Travel kit
+
+Avoid holding stock until orders are confirmed.
+
+Stage 4: Society bulk orders
+
+Aggregate sealed manufacturer-packaged products for scheduled society delivery.
+
+Stage 5: Managed marketplace
+
+Onboard multiple sellers only after seller-verification, refunds, complaints and product data are operating reliably.
+
+Stage 6: Inventory-led business
+
+Consider owned inventory only when:
+
+Monthly demand is predictable.
+
+Top SKUs are identifiable.
+
+Repeat rates are strong.
+
+Contribution remains positive after fulfilment.
+
+Expiry and recall systems exist.
+
+Working capital is available.
+
+Product-expansion gate
+
+### Table 177
+
+| Metric | Suggested threshold |
+| --- | --- |
+| Verified retail partners | 2–5 |
+| Curated SKUs | 20–50 |
+| Completed affiliate/preorder transactions | 50+ |
+| Repeat product customers | 20%+ |
+| Return/cancellation rate | Below 5–8% |
+| Counterfeit incidents | Zero |
+| Expired-product incidents | Zero |
+| Unsupported medical claims | Zero |
+| Positive contribution | Yes |
+| Core-service decline | None |
+
+Dark-pattern warning
+
+Subscriptions and bundles must provide clear pricing, renewal dates and simple cancellation. Indian consumer guidance identifies practices such as forced action, basket sneaking and subscription traps as dark patterns.
+
+Correct decision
+
+Start with recommendations and attribution. Earn the right to become a retailer later.
+
+Mistake 4: Treating veterinary services casually
+
+The wrong approach
+
+The platform:
+
+Lets support agents answer medical questions
+
+Lets an AI chatbot diagnose diseases
+
+Suggests medication or dosage
+
+Onboards unverified “pet experts”
+
+Treats emergency routing as a normal booking
+
+Takes commissions linked to prescriptions or tests
+
+Stores health records without proper access control
+
+Why it fails
+
+Veterinary care is not an ordinary marketplace category.
+
+The Veterinary Council of India is the statutory body regulating veterinary practice under the Indian Veterinary Council framework, and it publishes professional-conduct requirements for veterinary practitioners. Veterinary diagnosis, treatment and prescriptions must remain under appropriately registered professional control.
+
+Veterinary support also introduces sensitive owner-linked information:
+
+Addresses
+
+Medical histories
+
+Prescriptions
+
+Consultation records
+
+Emergency contacts
+
+Payments
+
+Pet-health documents
+
+The DPDP Act and 2025 Rules establish the framework for notices, purpose-specific processing, security safeguards and grievance mechanisms for personal data.
+
+Correct platform role
+
+The platform may provide:
+
+Veterinary discovery
+
+Registration verification
+
+Appointment booking
+
+Teleconsultation infrastructure
+
+Home-visit coordination
+
+Emergency clinic routing
+
+Vaccination reminders
+
+Secure record storage
+
+Follow-up reminders
+
+Payment and support
+
+The veterinarian controls:
+
+Clinical assessment
+
+Diagnosis
+
+Treatment
+
+Prescription
+
+Vaccination eligibility
+
+Diagnostic recommendations
+
+Clinical referrals
+
+Safe veterinary flow
+
+Pet parent requests help
+
+↓
+
+Selects pet
+
+↓
+
+Completes symptom intake
+
+↓
+
+Emergency red-flag check
+
+↓
+
+Urgent?
+
+Yes → immediate physical-care routing
+
+No → teleconsult / clinic / home visit
+
+↓
+
+Registered vet accepts
+
+↓
+
+Fees and limitations shown
+
+↓
+
+Consultation completed
+
+↓
+
+Vet-authored record stored securely
+
+↓
+
+Follow-up or referral scheduled
+
+AI safety boundary
+
+AI may
+
+Ask structured questions
+
+Summarise symptoms
+
+Detect emergency terms
+
+Retrieve health records with permission
+
+Suggest contacting a vet
+
+Match the customer with a verified provider
+
+Create a non-clinical consultation summary
+
+AI must not
+
+Give a final diagnosis
+
+Prescribe medicine
+
+Recommend dosage
+
+Tell the owner to stop medication
+
+Rule out an emergency
+
+Certify vaccination eligibility
+
+Replace physical examination
+
+Interpret tests as a final medical conclusion
+
+Required wording
+
+This is not a veterinary diagnosis or prescription. A registered veterinary professional should review your pet’s condition. Seek immediate physical veterinary care for emergencies.
+
+A disclaimer alone is insufficient. The application must technically prevent the AI from producing prohibited clinical outputs.
+
+Medical-record controls
+
+Health records should be:
+
+Private by default
+
+Versioned
+
+Attributed to their author
+
+Shared only with authorised providers
+
+Hidden from marketing teams
+
+Corrected through an audit trail
+
+Protected from ordinary support editing
+
+Access example
+
+### Table 178
+
+| Role | Access |
+| --- | --- |
+| Pet parent | Full authorised record |
+| Selected veterinarian | Relevant approved history |
+| Groomer | Grooming-relevant warnings only |
+| Walker/sitter | Emergency care instructions only |
+| Support | Booking metadata, not unrestricted clinical content |
+| Marketing | No medical access |
+
+Correct decision
+
+The platform coordinates veterinary care; it does not practise veterinary medicine.
+
+Mistake 5: No partner quality scoring
+
+The wrong approach
+
+A partner is onboarded once and treated as permanently verified.
+
+After bookings begin, the platform does not systematically monitor:
+
+On-time arrival
+
+Cancellation
+
+Service quality
+
+Animal handling
+
+Communication
+
+Hygiene
+
+Documentation
+
+Complaints
+
+Repeat customers
+
+Safety incidents
+
+Why it fails
+
+Initial verification only proves what was checked during onboarding.
+
+It does not prove that the partner continues to:
+
+Maintain standards
+
+Renew documents
+
+Arrive reliably
+
+Use approved methods
+
+Communicate properly
+
+Handle pets safely
+
+Report incidents honestly
+
+Quality changes over time.
+
+Correct partner-governance model
+
+Use four separate systems.
+
+1. Verification level
+
+What has been checked?
+
+P0 Applicant
+
+P1 Contact verified
+
+P2 Documents verified
+
+P3 Competency verified
+
+P4 Trial partner
+
+P5 Active partner
+
+P6 Premium partner
+
+2. Service permissions
+
+What may the partner perform?
+
+Examples:
+
+Dog grooming
+
+Cat grooming
+
+Senior-pet grooming
+
+Puppy training
+
+Reactivity cases
+
+Vet teleconsultation
+
+Home visits
+
+Owner-accompanied taxi
+
+Pet-only transfer
+
+3. Performance score
+
+How well is the partner performing?
+
+4. Enforcement status
+
+Can the partner currently receive bookings?
+
+Active
+
+Limited
+
+Under review
+
+Paused
+
+Suspended
+
+Removed
+
+Expired
+
+Do not mix verification level and enforcement status.
+
+Partner scorecard
+
+### Table 179
+
+| Factor | Weight |
+| --- | --- |
+| Service quality | 25 |
+| Reliability and punctuality | 20 |
+| Pet handling and welfare | 20 |
+| Customer communication | 15 |
+| Hygiene, safety and documentation | 10 |
+| Verified customer rating | 10 |
+| Total | 100 |
+
+Grade actions
+
+### Table 180
+
+| Score | Grade | Action |
+| --- | --- | --- |
+| 90–100 | Premium | Preferred placement where suitable |
+| 80–89 | Approved | Normal booking access |
+| 70–79 | Monitor | Limited bookings and coaching |
+| 60–69 | Review | Restrict, retrain and retrial |
+| Below 60 | Remove/reject | After evidence review |
+
+Hard safety gates override scores
+
+A partner with a score of 96 should still be suspended immediately for:
+
+Falsified credentials
+
+Animal cruelty
+
+Pet escape
+
+Unauthorised medical treatment
+
+Hidden subcontracting
+
+Serious unreported injury
+
+Expired professional registration
+
+Invalid vehicle permit
+
+Counterfeit products
+
+Severe privacy breach
+
+Recent performance matters
+
+Use a recency-weighted score:
+
+This prevents an old strong record from hiding current deterioration.
+
+Rating confidence
+
+Do not rank a partner with one five-star review above a partner with 100 reviews at 4.8.
+
+Use a confidence-adjusted score or minimum sample requirement.
+
+Premium eligibility might require:
+
+30+ completed bookings
+
+20+ verified reviews
+
+Rating of 4.7+
+
+Cancellation below 3%
+
+Complaint rate below 2%
+
+No unresolved serious incidents
+
+Current documents
+
+At least 90 active days
+
+Service-specific quality metrics
+
+Groomer
+
+Package completeness
+
+Pet handling
+
+Hygiene
+
+Injury rate
+
+Same-groomer requests
+
+Rebooking
+
+Veterinarian
+
+Booking reliability
+
+Record completion
+
+Communication
+
+Follow-up
+
+Registration status
+
+Do not grade veterinarians according to whether customers liked the clinical outcome.
+
+Trainer
+
+Humane method compliance
+
+Goal documentation
+
+Owner coaching
+
+Programme completion
+
+Measurable progress
+
+Referral appropriateness
+
+Current AVSAB guidance recommends reward-based methods and advises against aversive tools and techniques involving fear, pain or intimidation.
+
+Taxi
+
+On-time pickup
+
+Vehicle condition
+
+Tracking success
+
+Handover accuracy
+
+Pet escapes
+
+Driver cancellation
+
+Product seller
+
+Authentic products
+
+Correct fulfilment
+
+Expiry controls
+
+Returns
+
+Delivery reliability
+
+Complaints
+
+Correct decision
+
+Verification gets a partner into the marketplace. Continuous performance determines whether they remain there.
+
+Five additional expansion mistakes usually hidden underneath
+
+Mistake 6: Launching every category simultaneously
+
+Launching grooming, vet, training, taxi and commerce at once makes it impossible to identify:
+
+Which service caused support growth
+
+Which partner category is weak
+
+Which economics work
+
+Which acquisition channel converts
+
+Which operational workflow failed
+
+Correct sequence
+
+Launch one service
+
+↓
+
+Reach quality threshold
+
+↓
+
+Measure contribution
+
+↓
+
+Document SOP
+
+↓
+
+Add the next service
+
+Mistake 7: Measuring GMV instead of contribution
+
+A business may report:
+
+₹10 lakh add-on revenue
+
+when that number is actually total customer spending.
+
+The platform may retain only 20%, then lose most of that to:
+
+Discounts
+
+Payment processing
+
+Support
+
+Refunds
+
+Partner acquisition
+
+Event costs
+
+Required financial levels
+
+GMV
+
+Partner payout
+
+Platform revenue
+
+Direct contribution
+
+Operating profit
+
+A service should scale only when its contribution is positive or has a documented short-term path to positive contribution.
+
+Mistake 8: Counting applicants instead of active supply
+
+Fifty verified partners may sound impressive.
+
+But if only ten accept bookings, the real active supply is ten.
+
+Track:
+
+Also measure:
+
+Bookings per active partner
+
+Partner earnings
+
+Acceptance rate
+
+Capacity utilisation
+
+Ninety-day partner retention
+
+Backup coverage
+
+Mistake 9: Ignoring data-access expansion
+
+Every new service expands who can access customer information.
+
+For example:
+
+Groomer needs coat and behaviour information.
+
+Vet needs health history.
+
+Trainer needs behaviour information.
+
+Driver needs pickup and handling instructions.
+
+Retailer needs only order and delivery data.
+
+Giving every partner the complete customer and pet profile creates unnecessary privacy and security risk.
+
+OWASP’s API guidance identifies broken object-level and property-level authorisation as major risks; every API that receives a booking, pet, record or partner ID must verify access to the exact object and fields requested.
+
+Mistake 10: Using disclaimers instead of operational controls
+
+A disclaimer does not fix an unsafe workflow.
+
+Examples:
+
+“We are not responsible for injury.”
+
+“AI advice is informational.”
+
+“Partner is independently responsible.”
+
+“Customer uses service at own risk.”
+
+These statements do not replace:
+
+Verification
+
+Insurance
+
+Safe assignment
+
+Incident response
+
+Refund handling
+
+Access control
+
+Professional boundaries
+
+Consumer grievance processes
+
+The Consumer Protection E-Commerce Rules require e-commerce entities to maintain an adequate grievance mechanism; customer remedies cannot be replaced by a broad disclaimer.
+
+The correct service-expansion framework
+
+Gate 1: Core readiness
+
+Reliable bookings
+
+Strong ratings
+
+Repeat customers
+
+Positive contribution
+
+Working support
+
+No unresolved serious incidents
+
+Gate 2: Demand evidence
+
+Customer interviews
+
+Existing request data
+
+Paid pilot interest
+
+Society demand
+
+Frequency estimates
+
+Willingness to pay
+
+Gate 3: Supply readiness
+
+Verified partners
+
+Backup partners
+
+Competency assessment
+
+Service permissions
+
+Partner economics
+
+Trial bookings
+
+Gate 4: Product readiness
+
+Service catalogue
+
+Eligibility
+
+Booking workflow
+
+Payments
+
+Refunds
+
+Reports
+
+Complaints
+
+Incident response
+
+Audit logs
+
+Gate 5: Controlled pilot
+
+Small geography
+
+Existing customers
+
+Limited partners
+
+Manual monitoring
+
+Defined booking cap
+
+Daily review
+
+Gate 6: Performance validation
+
+Completion
+
+Rating
+
+Complaints
+
+Cancellation
+
+Repeat
+
+Partner utilisation
+
+Contribution
+
+Gate 7: Scale
+
+Scale only when:
+
+Demand repeats.
+
+Quality is stable.
+
+Backup supply works.
+
+Contribution is positive.
+
+Core services remain healthy.
+
+SOPs are documented.
+
+Regulatory obligations are understood.
+
+Expansion decision matrix
+
+### Table 181
+
+| Condition | Decision |
+| --- | --- |
+| Core unstable, add-on demand strong | Fix core first |
+| Core stable, demand unproven | Run paid demand test |
+| Demand proven, supply weak | Recruit and verify partners |
+| Supply ready, product flow weak | Delay public launch |
+| Bookings strong, contribution negative | Reprice or stop |
+| Revenue strong, complaints high | Pause scale |
+| Quality strong, utilisation low | Reduce partner bench |
+| Quality and contribution strong | Scale cluster by cluster |
+| Critical safety incident | Pause and investigate |
+| Core quality declines after expansion | Roll back or narrow scope |
+
+Final recommendation
+
+Approve service expansion only under these five non-negotiable rules:
+
+The core marketplace must be stable before expansion.
+
+Use partner-led supply before creating permanent payroll.
+
+Begin products through affiliate, preorder and referral models.
+
+Keep veterinary diagnosis and treatment under registered professional control.
+
+Continuously score, restrict and remove partners based on real performance.
+
+Final expansion principle
+
+Do not reward the company for launching more categories. Reward it for making each category repeatable, safe and contribution-positive.
+
+The real Phase 8 success metric is not:
+
+“We now offer seven pet services.”
+
+It is:
+
+“At least two additional services increase retained customer contribution without weakening the trust, safety or reliability of the original business.”
+
+Phase 8 Final Decision
+
+Service Expansion, Risk Controls and Phase 9 Gate 🐾⚙️
+
+Executive verdict
+
+Approve Phase 8—with modifications and hard operating gates.
+
+The strategy should be:
+
+A partner-led add-on marketplace beginning with grooming, followed by veterinary coordination, training and society events, while pet taxi remains a restricted beta and product commerce remains affiliate-led.
+
+Approval matrix
+
+### Table 182
+
+| Proposed rule | Decision | Required modification |
+| --- | --- | --- |
+| Start with grooming-at-home | Approve | Launch as a controlled cluster pilot |
+| Use partner-led delivery | Approve | Platform still owns verification, support and quality governance |
+| Vet support through verified partners | Approve | Separate clinical fees from platform coordination fees |
+| Pet taxi remains controlled beta | Approve with modification | Use performance gates, not an arbitrary “Phase 10” date |
+| Society camps become a required channel | Approve conditionally | Require testing, but scale only where local conversion works |
+
+1. Autopsy of the current risk plan
+
+Your prevention list is directionally correct, but several controls are incomplete.
+
+Risk 1: Bad grooming experience
+
+Basic control
+
+Partner verification
+
+Before-and-after photographs
+
+Hidden problem
+
+Photographs prove appearance—not:
+
+Safe handling
+
+Dryer temperature
+
+Tool hygiene
+
+Unreported cuts
+
+Product suitability
+
+Pet distress
+
+Surprise charges
+
+Complete prevention system
+
+Practical groomer assessment
+
+Service-specific permissions
+
+Pet temperament and medical intake
+
+Tool-hygiene checklist
+
+Pre-service condition record
+
+Customer approval for scope changes
+
+Stop-work authority
+
+Mandatory grooming report
+
+Injury and concern reporting
+
+Customer follow-up after low ratings
+
+Monitoring
+
+### Table 183
+
+| Metric | Target |
+| --- | --- |
+| Average rating | 4.6+ |
+| Complaint rate | Below 3% |
+| Refund/redo rate | Below 5% |
+| On-time arrival | 95%+ |
+| Serious preventable injuries | 0 |
+| Rebook/prebook rate | 25%+ |
+
+Automatic pause
+
+Pause the groomer after:
+
+Pet escape
+
+Concealed injury
+
+Cruel or excessive restraint
+
+Undisclosed chemical use
+
+Falsified portfolio or credentials
+
+Repeated hygiene failures
+
+Risk 2: Veterinary liability
+
+Basic control
+
+Only partner veterinarians give medical advice.
+
+Hidden problems
+
+You must also control:
+
+Vet registration
+
+AI outputs
+
+Support-agent responses
+
+Clinical record access
+
+Emergency routing
+
+Professional fees
+
+Referral incentives
+
+Prescription documents
+
+Veterinary professional rules require veterinary practitioners’ professional fees to be announced to clients and prohibit commissions or benefits for procuring or referring clients for treatment or specialist services. Therefore, ordinary percentage commissions and clinic “lead fees” require restructuring and professional legal review.
+
+Correct vet model
+
+The platform handles:
+
+Vet discovery
+
+Appointment booking
+
+Teleconsult infrastructure
+
+Home-visit coordination
+
+Emergency-clinic routing
+
+Payments
+
+Record storage
+
+Vaccination reminders
+
+Follow-ups
+
+The registered veterinarian controls:
+
+Diagnosis
+
+Treatment
+
+Prescription
+
+Vaccination eligibility
+
+Clinical escalation
+
+Medical certificates
+
+Safer revenue structure
+
+Prefer:
+
+Separate customer booking fee
+
+Fixed platform coordination fee
+
+Fixed clinic software subscription
+
+Fixed society-event management fee
+
+Transparent home-visit logistics fee
+
+Avoid platform income tied to:
+
+Medicine prescribed
+
+Diagnostic tests
+
+Treatment escalation
+
+Clinical referrals
+
+Hospital admission
+
+AI rule
+
+AI may collect and summarise symptoms, detect urgent terms and connect users to care.
+
+AI must not:
+
+Give a final diagnosis
+
+Prescribe medicine
+
+Calculate dosage
+
+Tell a customer to stop medication
+
+Rule out an emergency
+
+Approve a pet for vaccination
+
+Use:
+
+This is not a veterinary diagnosis or prescription. A registered veterinary professional must review your pet’s condition. Seek immediate physical veterinary care for emergencies.
+
+Risk 3: Trainer quality variation
+
+Basic control
+
+Trial class
+
+Customer reviews
+
+Hidden problem
+
+A trainer can receive excellent reviews while using harmful methods that produce temporary compliance.
+
+Your system should assess:
+
+Training philosophy
+
+Equipment
+
+Handling
+
+Stress recognition
+
+Owner coaching
+
+Risk assessment
+
+Veterinary-referral judgment
+
+Progress documentation
+
+AVSAB’s current professional position recommends reward-based training and advises against methods based on pain, intimidation or force, including electronic collars, prong collars and punitive physical corrections.
+
+Permission levels
+
+### Table 184
+
+| Trainer permission | Example scope |
+| --- | --- |
+| Foundation | Puppy basics, toilet routine, home manners |
+| Walking skills | Leash pulling, recall foundations |
+| Group workshop | Society puppy and manners classes |
+| Advanced behaviour | Reactivity, mild guarding |
+| Specialist | Bite histories, serious fear |
+| Vet-integrated | Cases with possible medical or medication needs |
+
+Hard rules
+
+Assessment before complex packages
+
+No instant “aggression correction” checkout
+
+No guaranteed cures
+
+No hidden equipment
+
+High-risk cases reviewed before assignment
+
+Sudden behaviour change routed to veterinary evaluation
+
+Risk 4: Pet taxi safety
+
+Basic control
+
+Controlled beta.
+
+Hidden problem
+
+A manual beta is still a commercial transport and animal-custody operation.
+
+Section 66 of the Motor Vehicles Act generally requires a transport vehicle used in a public place to operate under the conditions of an appropriate permit.
+
+The Transport of Animals Rules contain specific provisions for dogs and cats transported by road, including fitness-to-travel documentation and enhanced controls for aggressive animals.
+
+Phase 8 taxi limits
+
+Launch only:
+
+Owner-accompanied trips
+
+Vet, grooming and boarding journeys
+
+Existing customers
+
+One or two service clusters
+
+Approved commercial vehicles
+
+Human monitoring
+
+Prebooked rides
+
+Defer
+
+Instant dispatch
+
+Unaccompanied pet transfer
+
+Airport relocation
+
+Intercity journeys
+
+Pooled pets
+
+“Pet ambulance” claims
+
+Required controls
+
+Driver and vehicle documents
+
+Permit and insurance review
+
+Vehicle inspection
+
+Climate control
+
+Secure carrier/restraint system
+
+Pickup and drop OTPs
+
+Live tracking
+
+Named recipient
+
+Accident and escape SOP
+
+Backup vehicle
+
+Scale gate—not Phase-number gate
+
+Pet taxi can leave beta only after:
+
+100+ completed rides
+
+95%+ completion
+
+90–95% on-time pickup
+
+Fewer than 8% driver cancellations
+
+Zero escapes
+
+Zero preventable injuries
+
+Positive contribution
+
+Insurance and city-level transport position confirmed
+
+Risk 5: Too many services
+
+Basic control
+
+Phased rollout.
+
+Correct sequence
+
+Grooming
+
+↓
+
+Quality and margin gate
+
+↓
+
+Vet coordination
+
+↓
+
+Clinical workflow gate
+
+↓
+
+Training
+
+↓
+
+Method and outcome gate
+
+↓
+
+Society events
+
+↓
+
+Conversion gate
+
+↓
+
+Taxi/product experiments
+
+Work-in-progress rule
+
+Do not have more than:
+
+Two services actively launching
+
+One service in optimisation
+
+One experimental beta
+
+at the same time.
+
+Expansion pause triggers
+
+Core-service rating declines
+
+Support backlog increases
+
+Partner payouts become late
+
+Critical incident remains open
+
+New service contribution is negative without a credible correction
+
+Partner cancellation exceeds 10%
+
+Risk 6: Partner poaching customers
+
+Basic control
+
+Partner agreement
+
+Repeat-booking incentives
+
+Hidden problem
+
+An agreement alone will not stop off-platform movement when:
+
+Platform fees are excessive
+
+Partner payouts are slow
+
+App workflows are inconvenient
+
+Customers get no additional value
+
+Repeat bookings are difficult
+
+Complete anti-disintermediation system
+
+Contractual
+
+No unauthorised off-platform solicitation
+
+Confidentiality
+
+Customer-data restrictions
+
+No hidden subcontracting
+
+Clear consequences
+
+Economic
+
+Competitive partner payout
+
+Faster payout for trusted partners
+
+Reduced commission for repeat customers
+
+Society route density
+
+Partner loyalty benefits
+
+Product
+
+One-tap same-partner rebooking
+
+Recurring schedules
+
+Insurance or protection benefits where available
+
+Digital reports
+
+Support and replacements
+
+Credits and bundles
+
+Masked communications
+
+Detection
+
+Repeated booking cancellations after contact exchange
+
+Unusual reduction in repeat bookings
+
+Customer reports
+
+Message patterns
+
+Partner requests for cash payment
+
+The objective is not to trap customers or partners. It is to make the platform materially more valuable than bypassing it.
+
+Risk 7: Refund disputes
+
+Basic control
+
+Clear package description
+
+Additional controls
+
+Every booking should show:
+
+Exact inclusions
+
+Exclusions
+
+Duration
+
+Partner
+
+Travel fee
+
+Potential condition surcharge
+
+Cancellation terms
+
+Refund rules
+
+Taxes and platform fees
+
+Required customer preparation
+
+Online service marketplaces must maintain an adequate grievance-redressal mechanism and provide relevant consumer-facing information under the Consumer Protection (E-Commerce) Rules.
+
+Evidence required
+
+Quote snapshot
+
+Package snapshot
+
+Customer consent
+
+Check-in time
+
+Scope-change approval
+
+Service report
+
+Media where appropriate
+
+Customer communications
+
+Status history
+
+Refund decision categories
+
+Full refund
+
+Partial refund
+
+Free redo
+
+Service credit
+
+Partner replacement
+
+Complaint rejected with documented reasoning
+
+Safety investigation
+
+Risk 8: Society event failure
+
+Basic control
+
+Prebooking required.
+
+Hidden failure modes
+
+Poor turnout
+
+Partner no-show
+
+Overbooking
+
+Unscreened reactive animals
+
+Vaccine cold-chain failure
+
+Gate rejection
+
+Venue problems
+
+Weak follow-up
+
+Too many services in one event
+
+Complete prevention
+
+Written RWA approval
+
+One primary event objective
+
+Capacity and time slots
+
+Pet eligibility screening
+
+Backup partner
+
+Gate roster
+
+Venue inspection
+
+Emergency contact
+
+Consent and payment
+
+Event owner
+
+CRM attribution
+
+Thirty-day follow-up
+
+Event success threshold
+
+### Table 185
+
+| Metric | Target |
+| --- | --- |
+| Slot utilisation | 75–80%+ |
+| Qualified leads | 25+ per meaningful event |
+| Lead-to-paid conversion | 20%+ within 30 days |
+| Average rating | 4.6+ |
+| Partner cancellation | Below 5% |
+| Serious preventable incidents | 0 |
+| RWA satisfaction | 4.5+ |
+| Repeat-event interest | Yes |
+
+2. Decision on the five proposed upgrades
+
+Upgrade 1: Start with grooming first
+
+Decision: Approve
+
+Grooming is the best first adjacency because:
+
+It is naturally connected to walking and sitting.
+
+Customers already trust the platform with the pet.
+
+Service completion can be documented.
+
+Packages are relatively easy to define.
+
+Repeat cycles can be created.
+
+It has fewer clinical-governance requirements than veterinary care.
+
+Conditions
+
+Restricted launch geography
+
+4–8 active groomers, not 20 receiving sparse demand
+
+30–50 paid pilot bookings
+
+4.6+ rating
+
+Zero serious preventable incidents
+
+Positive contribution
+
+Upgrade 2: Partner-led model only
+
+Decision: Approve
+
+Partner-led delivery should be the default for early Phase 8.
+
+However:
+
+Partner-led does not mean platform-light.
+
+The platform must still control:
+
+Verification
+
+Permissions
+
+Pricing rules
+
+Booking
+
+Payment
+
+Reports
+
+Complaints
+
+Incident response
+
+Partner scoring
+
+Payout reconciliation
+
+Hiring trigger
+
+Consider full-time specialists only after:
+
+Three months of predictable demand
+
+70%+ usable capacity
+
+Dense geographic utilisation
+
+Stable SOP
+
+Internal cost advantage
+
+Reliable management and backup systems
+
+Upgrade 3: Vet service as coordination, not diagnosis
+
+Decision: Approve—non-negotiable
+
+The business should be positioned as:
+
+A veterinary access, booking, record and follow-up layer.
+
+Only verified registered veterinary practitioners should make clinical decisions. VCI is the statutory professional body operating under the Indian Veterinary Council framework, and partner registration should be checked using current professional and State Veterinary Council documentation.
+
+Additional requirement
+
+Replace “vet booking commission” with a legally reviewed, transparent platform-fee model because the professional regulations restrict commissions for procuring or referring veterinary clients.
+
+Upgrade 4: Pet taxi beta only
+
+Decision: Approve with modification
+
+Do not state:
+
+“Pet taxi remains beta until Phase 10+.”
+
+Phase numbering is arbitrary.
+
+Use:
+
+“Pet taxi remains beta until safety, compliance, reliability and contribution gates pass.”
+
+This prevents both premature scaling and unnecessary delay after the model becomes proven.
+
+Upgrade 5: Society camps as acquisition engine
+
+Decision: Approve conditionally
+
+Society events should be a required experiment in Phase 8.
+
+They should not be required as the dominant channel in every city.
+
+Required test
+
+At least three completed events
+
+At least two societies
+
+Grooming plus vet/training formats tested
+
+100+ combined qualified leads
+
+20%+ lead-to-paid conversion
+
+Positive direct or 90-day cohort contribution
+
+RWA repeat interest
+
+Scale only the formats that outperform alternative acquisition channels.
+
+3. Phase 8 deliverables
+
+P0 — Mandatory before public launch
+
+### Table 186
+
+| Deliverable | Status |
+| --- | --- |
+| Partner onboarding form | Required |
+| Partner verification system | Required |
+| Service permissions | Required |
+| Partner agreements | Required |
+| Grooming service flow | Required |
+| Grooming partner bench | Required |
+| Universal add-on booking module | Required |
+| Payment/refund ledger | Required |
+| Internal partner payout tracker | Required |
+| Partner scorecard | Required |
+| Service reports and proof | Required |
+| Complaint and incident system | Required |
+| Audit logs | Required |
+
+P1 — Required during Phase 8
+
+### Table 187
+
+| Deliverable | Status |
+| --- | --- |
+| Vet partner list | Required |
+| Vet coordination flow | Required |
+| Emergency clinic directory | Required |
+| Trainer partner list | Required |
+| Training assessment flow | Required |
+| Training progress reports | Required |
+| Society event model | Required |
+| Event registration and capacity | Required |
+| Pet health record | Required, not merely recommended |
+| Add-on analytics report | Required |
+| Partner-facing payout dashboard | Required |
+
+The health record should be private, permission-controlled and versioned. The DPDP Rules, 2025 include phased commencement and specify security safeguards such as encryption or masking, access controls, monitoring, backups and contractual protections for data processing.
+
+P2 — Conditional
+
+### Table 188
+
+| Deliverable | Status |
+| --- | --- |
+| Pet taxi beta SOP | Required only if taxi beta launches |
+| Live taxi tracking | Required for beta |
+| Affiliate products module | Optional |
+| Care-kit recommendations | Optional |
+| Featured partner listings | Defer |
+| Full e-commerce | Reject for Phase 8 |
+
+4. Partner scorecard
+
+Recommended weighting
+
+### Table 189
+
+| Factor | Weight |
+| --- | --- |
+| Service skill and completion | 25 |
+| Reliability and punctuality | 20 |
+| Pet handling and welfare | 20 |
+| Customer communication | 15 |
+| Hygiene, safety and records | 10 |
+| Verified customer rating | 10 |
+| Total | 100 |
+
+Grade rules
+
+### Table 190
+
+| Score | Grade | Action |
+| --- | --- | --- |
+| 90–100 | Premium | Preferred placement where compatible |
+| 80–89 | Approved | Standard booking access |
+| 70–79 | Monitor | Reduced volume and coaching |
+| 60–69 | Review | Restrict, retrain and retrial |
+| Below 60 | Remove | After evidence and appeal review |
+
+Critical override
+
+A score cannot protect a partner after:
+
+Credential fraud
+
+Animal cruelty
+
+Pet escape
+
+Unlicensed medical conduct
+
+Severe privacy breach
+
+Counterfeit goods
+
+Invalid taxi permit
+
+Deliberately concealed incident
+
+5. Corrected Phase 8 final report
+
+Phase 8 Service Expansion Report
+
+Project information
+
+Project name:City:Launch clusters:Target societies:Start date:End date:Duration:Report owner:
+
+Services launched
+
+### Table 191
+
+| Service | Status | Launch date | Active partners | Bookings | Rating | Contribution |
+| --- | --- | --- | --- | --- | --- | --- |
+| Grooming |  |  |  |  |  | ₹ |
+| Vet coordination |  |  |  |  |  | ₹ |
+| Training |  |  |  |  |  | ₹ |
+| Society events |  |  |  |  |  | ₹ |
+| Pet taxi beta |  |  |  |  |  | ₹ |
+
+Partner network
+
+### Table 192
+
+| Metric | Grooming | Vet | Training | Taxi |
+| --- | --- | --- | --- | --- |
+| Applicants |  |  |  |  |
+| Verified |  |  |  |  |
+| Active |  |  |  |  |
+| Premium |  |  |  |  |
+| Paused/removed |  |  |  |  |
+| Cancellation rate |  |  |  |  |
+| Average score |  |  |  |  |
+
+Demand and retention
+
+### Table 193
+
+| Metric | Result |
+| --- | --- |
+| Completed add-on bookings |  |
+| Unique add-on customers |  |
+| Existing customers adopting add-ons |  |
+| Repeat add-on customers |  |
+| Multi-service customers |  |
+| Add-on bookings per active customer |  |
+| Society-event qualified leads |  |
+| Event-to-paid conversion |  |
+
+Quality and safety
+
+### Table 194
+
+| Metric | Result |
+| --- | --- |
+| Average add-on rating |  |
+| Verified reviews |  |
+| Complaint rate |  |
+| Refund/redo rate |  |
+| Partner cancellation |  |
+| Serious preventable incidents |  |
+| Unresolved critical incidents |  |
+| Missing reports |  |
+| Privacy/security incidents |  |
+
+Financials
+
+Do not use one ambiguous “add-on revenue” figure.
+
+### Table 195
+
+| Metric | Result |
+| --- | --- |
+| Add-on GMV/customer spending | ₹ |
+| Partner payouts | ₹ |
+| Platform gross revenue | ₹ |
+| Discounts | ₹ |
+| Payment costs | ₹ |
+| Refunds/redos | ₹ |
+| Direct operations cost | ₹ |
+| Add-on contribution | ₹ |
+| Contribution margin on GMV |  |
+| Contribution per add-on booking | ₹ |
+
+Customer economics
+
+### Table 196
+
+| Metric | Before Phase 8 | After Phase 8 | Change |
+| --- | --- | --- | --- |
+| Average revenue/customer | ₹ | ₹ |  |
+| Median revenue/customer | ₹ | ₹ |  |
+| Contribution/customer | ₹ | ₹ |  |
+| Services/customer |  |  |  |
+| Core repeat rate |  |  |  |
+
+Findings
+
+Top add-on service:Highest-contribution service:Lowest-quality service category:Lowest-performing partner ID:Top society event:Top acquisition channel:Top customer complaint:Top partner complaint:Most common cancellation reason:Most valuable cross-sell trigger:
+
+Decision
+
+Move to Phase 9
+
+Continue controlled expansion
+
+Remove weak service
+
+Change partner model
+
+Improve partner quality
+
+Improve pricing
+
+Reduce launch area
+
+Pause expansion
+
+6. Corrected Phase 9 go/no-go criteria
+
+Move to Phase 9 only when all critical gates pass.
+
+Demand gate
+
+### Table 197
+
+| Requirement | Target |
+| --- | --- |
+| Stable add-on services | At least 2 |
+| Completed add-on bookings | 100+ per month |
+| Sustained period | Two consecutive months |
+| Existing customers adopting add-ons | 20%+ |
+| Eligible repeat add-on customers | 20–30%+ |
+| Multi-service customers | 15%+ |
+
+Quality gate
+
+### Table 198
+
+| Requirement | Target |
+| --- | --- |
+| Overall add-on rating | 4.6+ |
+| Scaled service minimum rating | 4.4+ |
+| Complaint/refund rate | Below 5% |
+| Partner cancellation | Below 7% |
+| Serious preventable incidents | 0 |
+| Unresolved critical incidents | 0 |
+| Report completion | 95%+ |
+
+Partner gate
+
+### Table 199
+
+| Requirement | Target |
+| --- | --- |
+| Scorecard operational | Yes |
+| Active partners scored | 90%+ |
+| Backup coverage | Yes |
+| Ninety-day partner retention | 75%+ |
+| Mandatory documents current | 98%+ |
+| Largest-partner concentration | Ideally below 25–30% |
+
+Service gates
+
+### Table 200
+
+| Requirement | Target |
+| --- | --- |
+| Grooming stable | Yes |
+| Vet coordination stable | Yes |
+| Training assessment model tested | Yes |
+| Veterinary fee model reviewed | Yes |
+| Society events tested | At least 3 |
+| Event lead-to-paid conversion | 20%+ |
+| Taxi | May remain beta; not a Phase 9 requirement |
+
+Economics gate
+
+### Table 201
+
+| Requirement | Target |
+| --- | --- |
+| Contribution-positive services | At least 2 |
+| Revenue/customer increase | 30%+ |
+| Contribution/customer increase | 15–25%+ |
+| Add-on margin after direct costs | Positive |
+| Heavy-discount dependency | No |
+| Partner payouts | On time |
+
+Core-protection gate
+
+Phase 9 is blocked if:
+
+Core rating declines materially.
+
+Walking/sitting cancellation rises materially.
+
+Core repeat rate falls by more than approximately five percentage points.
+
+Support response deteriorates.
+
+Society complaints increase significantly.
+
+Expansion creates payout or incident backlogs.
+
+7. Phase 9 readiness warning
+
+Phase 9 introduces subscriptions and recurring billing. It must not be used to hide weak service fulfilment behind advance payments.
+
+Official consumer guidance identifies subscription traps and deceptive interface patterns as prohibited dark patterns. Memberships should therefore provide prominent renewal dates, usable credits, simple cancellation and no preselected recurring charges.
+
+Before subscriptions launch, confirm:
+
+Component services are reliable.
+
+Credits can be tracked.
+
+Failed services can be replaced or refunded.
+
+Partners can fulfil recurring demand.
+
+Customers can pause or cancel easily.
+
+Expiry and rollover rules are visible.
+
+Contribution remains positive after bundle discounts.
+
+Final recommendation
+
+Approved Phase 8 model
+
+A partner-led service expansion layer beginning with at-home grooming, followed by verified veterinary coordination, reward-based dog training and controlled society events—all connected to existing pet profiles, bookings, payments, reports, reviews and partner-performance systems.
+
+Do
+
+Launch grooming first.
+
+Activate a small partner pool.
+
+Keep veterinary decisions with registered professionals.
+
+Score every partner continuously.
+
+Test society camps as measurable acquisition channels.
+
+Track contribution rather than only GMV.
+
+Keep taxi gate-based and controlled.
+
+Protect health and customer data by role.
+
+Do not
+
+Hire complete internal specialist teams prematurely.
+
+Take opaque commissions from clinical decisions.
+
+Let AI diagnose pets.
+
+Launch pet taxi city-wide.
+
+Build warehouse-led e-commerce.
+
+Scale services with unresolved safety incidents.
+
+Move to subscriptions merely because booking volume is growing.
+
+Final approval decision
+
+### Table 202
+
+| Rule | Decision |
+| --- | --- |
+| Start with grooming-at-home | Approved |
+| Use partner-led delivery | Approved |
+| Vet support through verified partners only | Approved |
+| Pet taxi controlled beta | Approved with gate-based exit |
+| Society camps required as a Phase 8 test | Approved |
+
+Phase 8 win condition
+
+Existing customers safely adopt at least two additional services, generating higher retention, repeat usage and contribution per pet parent—without weakening the original walking, sitting, boarding or society marketplace.
+
+Phase 8 status: APPROVED WITH HARD SAFETY, QUALITY AND CONTRIBUTION GATES.
+
+@
+
+Phase 9: Subscription and Membership Phase 🐾💰
+
+End-to-End Recurring-Revenue Blueprint
+
+Executive verdict
+
+Phase 9 should be approved, with monthly dog walking as the first recurring product.
+
+The strategic transition is:
+
+One-time booking marketplace
+
+↓
+
+Recurring service plans
+
+↓
+
+Multi-service memberships
+
+↓
+
+Society subscriptions
+
+↓
+
+Predictable customer and partner revenue
+
+Monthly walking is the strongest starting point because it has:
+
+Naturally recurring demand
+
+Predictable scheduling
+
+High customer habit formation
+
+Strong same-walker preference
+
+Clear service completion evidence
+
+Easier capacity forecasting
+
+Natural grooming, sitting and training cross-sells
+
+Indian operators already offer weekly, monthly and quarterly dog-walking plans, indicating that recurring walking packages are a familiar commercial format in the market. One current Bengaluru provider, for example, publicly lists weekly, monthly and quarterly walking options.
+
+However, recurring billing does not automatically create a strong subscription business.
+
+A subscription becomes valuable only when the platform can reliably fulfil every recurring service it sells.
+
+1. What changes in Phase 9
+
+Until Phase 8, the transaction is usually:
+
+Customer has a need
+
+↓
+
+Customer finds a service
+
+↓
+
+Customer books once
+
+↓
+
+Service completes
+
+↓
+
+Platform waits for the next need
+
+In Phase 9:
+
+Customer trusts the platform
+
+↓
+
+Customer selects a recurring plan
+
+↓
+
+Service capacity is reserved
+
+↓
+
+Payment renews automatically
+
+↓
+
+Bookings are generated or scheduled
+
+↓
+
+Services are fulfilled
+
+↓
+
+Usage and satisfaction are measured
+
+↓
+
+Plan renews, changes, pauses or cancels
+
+This creates potential advantages:
+
+More predictable demand
+
+Lower repeat acquisition cost
+
+More stable partner earnings
+
+Better geographic route density
+
+Higher customer retention
+
+Easier staffing and capacity planning
+
+More opportunities to cross-sell
+
+But it also creates liabilities:
+
+Unused credits
+
+Future service obligations
+
+Failed payments
+
+Refund calculations
+
+Partner capacity commitments
+
+Renewal complaints
+
+Cancellation requests
+
+Holiday and weather disruptions
+
+The company is no longer selling only today’s service. It is promising future fulfilment.
+
+2. Recurring products are not all the same
+
+Phase 9 should distinguish four commercial models.
+
+A. Recurring service plan
+
+The customer prepays or subscribes to a defined number of services.
+
+Example:
+
+20 dog walks per month
+
+The plan contains actual service entitlements.
+
+B. Care bundle
+
+The customer receives several defined services or credits.
+
+Example:
+
+10 walks + ₹300 grooming credit + vaccination reminder
+
+Each component should be separately tracked.
+
+C. Membership
+
+The customer pays for privileges, access or discounts, while most services remain separately chargeable.
+
+Example:
+
+Priority booking + reduced booking fees + event discounts
+
+A membership should not be marketed as a service plan unless it includes actual bookable services.
+
+D. B2B subscription
+
+A society or partner pays a monthly platform fee.
+
+Examples:
+
+Society pet-care desk
+
+Partner business software
+
+Faster payout plan
+
+Profile and scheduling tools
+
+These plans have different buyers, economics and cancellation rules.
+
+3. Phase 9 prerequisite gate
+
+Do not launch recurring plans simply because Phase 8 is complete on paper.
+
+Core readiness
+
+### Table 203
+
+| Requirement | Recommended minimum |
+| --- | --- |
+| Walking completion rate | 95%+ |
+| Walking on-time rate | 95%+ |
+| Walker cancellation | Below 5–7% |
+| Average core rating | 4.6+ |
+| Repeat walking customers | 30%+ |
+| Backup fulfilment | 90%+ |
+| Customer complaint rate | Below 3–5% |
+| Partner payouts | On time |
+| Positive contribution per walk | Yes |
+| Critical unresolved incidents | 0 |
+
+Phase 8 readiness
+
+### Table 204
+
+| Requirement | Recommended minimum |
+| --- | --- |
+| Stable add-on categories | At least 2 |
+| Add-on bookings | 100+ monthly |
+| Stable period | Two consecutive months |
+| Add-on rating | 4.6+ |
+| Partner scorecard | Operational |
+| Add-on contribution | Positive |
+| Society model | Tested |
+
+If ordinary walks are already difficult to fulfil, a monthly plan will multiply missed-service and refund problems.
+
+4. Best first product: Monthly Dog Walking
+
+Why walking should lead
+
+Walking is better suited to subscriptions than grooming, veterinary care or boarding because:
+
+It occurs several times per week.
+
+Customers prefer continuity.
+
+Time slots can be reserved.
+
+Partner capacity can be forecast.
+
+Usage begins immediately.
+
+The customer can see value throughout the month.
+
+The plan supports future grooming and training conversion.
+
+Grooming may recur every few weeks, but the exact frequency depends on coat, breed and lifestyle. Veterinary demand is important but less predictable. Boarding is travel-driven rather than monthly for most customers.
+
+Recommended positioning
+
+A dependable monthly walking routine with a preferred walker, verified backup coverage and clear walk reports.
+
+Do not lead with:
+
+Cheapest dog walks in the city.
+
+The subscription advantage should be reliability and continuity, not maximum discount.
+
+5. Recommended walking-plan structure
+
+Use several frequency tiers rather than one package.
+
+### Table 205
+
+| Plan | Monthly entitlement | Best for |
+| --- | --- | --- |
+| Flex Walk | 8 walks | Occasional support |
+| Routine Walk | 12 walks | Three walks weekly |
+| Weekday Walk | 20–22 walks | Working pet parents |
+| Daily Walk | 26–30 walks | Near-daily routine |
+| Twice-Daily Care | 40–60 walks | High-frequency care |
+
+Plan configuration
+
+Each plan should specify:
+
+Walk duration
+
+Number of walks
+
+Service window
+
+Preferred days
+
+Preferred walker
+
+Backup permission
+
+Service area
+
+Cancellation rules
+
+Rollover rules
+
+Holiday rules
+
+Weather and safety policy
+
+Additional-walk price
+
+Renewal date
+
+Do not simply sell “one month of walking.”
+
+6. Pricing the walking plans
+
+Correct formula
+
+The discount should be funded by genuine efficiencies:
+
+Lower acquisition cost
+
+Reserved time slots
+
+Reduced partner travel
+
+Society route density
+
+Lower rescheduling overhead
+
+Predictable partner demand
+
+Recommended discount bands
+
+### Table 206
+
+| Plan size | Starting discount hypothesis |
+| --- | --- |
+| 8 walks | 0–3% |
+| 12 walks | 3–6% |
+| 20–22 walks | 5–10% |
+| 26–30 walks | 8–12% |
+| 40+ walks | Individually modelled |
+
+Avoid discounts above 15–20% until customer retention and route efficiency prove that the economics support them.
+
+Never discount partner earnings silently
+
+For every discount, define who funds it:
+
+Platform
+
+Partner
+
+Society
+
+Sponsor
+
+Shared
+
+Operational savings
+
+Store this allocation in the financial ledger.
+
+7. Illustrative monthly-plan economics
+
+Assume a 20-walk plan.
+
+### Table 207
+
+| Item | Illustration |
+| --- | --- |
+| Customer plan price | ₹3,999 |
+| Walker payout: ₹140 × 20 | ₹2,800 |
+| Platform gross revenue | ₹1,199 |
+| Payment processing | ₹80 |
+| Support and scheduling | ₹150 |
+| Backup-service provision | ₹75 |
+| Refund/make-good reserve | ₹75 |
+| Approximate contribution | ₹819 |
+
+This is an illustration, not a market price recommendation.
+
+The plan becomes weaker when:
+
+Walks are geographically scattered.
+
+Partners travel long distances.
+
+Customers repeatedly reschedule.
+
+The platform provides excessive discounts.
+
+Backup fulfilment is expensive.
+
+Support must manually manage every walk.
+
+8. Walking entitlement rules
+
+Scheduling
+
+Give customers two models.
+
+Fixed schedule
+
+Example:
+
+Monday–Friday
+
+7:00–7:30 AM
+
+Preferred walker reserved
+
+Best for routine customers.
+
+Flexible credits
+
+Example:
+
+12 credits
+
+Customer books 12–24 hours in advance
+
+Subject to availability
+
+Best for lower-frequency plans.
+
+Fixed schedules provide stronger retention and partner utilisation. Flexible credits reduce customer commitment but make supply planning harder.
+
+Rollover
+
+Recommended policy:
+
+Allow one or two credits to roll over.
+
+Rolled credits expire during the next billing cycle.
+
+Platform-caused cancellations always restore or extend the credit.
+
+Customer no-shows should not automatically roll over.
+
+Unused credits must remain visible.
+
+Unlimited rollover creates a growing service liability.
+
+No rollover creates customer resentment when normal disruptions occur.
+
+Pause
+
+Allow customers to pause for:
+
+Travel
+
+Pet illness
+
+Temporary relocation
+
+Surgery or recovery
+
+Extreme weather
+
+Other reasonable circumstances
+
+Recommended controls:
+
+One pause per billing cycle
+
+Defined maximum pause duration
+
+Renewal date moves accordingly, or remaining credits are preserved
+
+No hidden reactivation
+
+Same-walker preference
+
+Offer:
+
+Same walker required
+
+Same walker preferred
+
+Any equally qualified backup
+
+Do not guarantee the same walker indefinitely.
+
+A subscription must survive:
+
+Walker sickness
+
+Leave
+
+Partner departure
+
+Area changes
+
+Capacity limits
+
+9. Monthly Care Bundle
+
+After the walking plan is stable, launch one multi-service bundle.
+
+Recommended product
+
+Monthly Dog Care Pack
+
+Includes:
+
+10 or 20 walks
+
+Fixed grooming credit
+
+Vaccination reminder
+
+Same-walker preference
+
+Monthly care summary
+
+Priority rescheduling
+
+Why fixed credit is better
+
+Instead of:
+
+15% off grooming
+
+Use:
+
+₹300 grooming credit on bookings above ₹1,299.
+
+A fixed credit provides:
+
+Clear customer value
+
+Predictable platform liability
+
+Easier financial allocation
+
+Better package comparison
+
+Recommended progression
+
+### Table 208
+
+| Stage | Product |
+| --- | --- |
+| Stage 1 | Walking subscription |
+| Stage 2 | Walking + grooming credit |
+| Stage 3 | Walking + sitting credits |
+| Stage 4 | Training or wellness bundle |
+| Stage 5 | Premium membership layer |
+
+Do not introduce five bundles at launch.
+
+10. Premium Pet-Parent Membership
+
+A membership should increase platform loyalty without committing the company to unlimited expensive services.
+
+Suitable benefits
+
+Reduced or waived booking fees
+
+Priority support
+
+Priority access during peak periods
+
+Lower cancellation or rescheduling fees
+
+Society event discounts
+
+Grooming credit
+
+Same-partner rebooking
+
+Pet health-record storage
+
+Vaccination and care reminders
+
+Emergency-clinic directory
+
+Partner replacement support
+
+Benefits to avoid
+
+Unlimited walking
+
+Unlimited veterinary consultation
+
+Guaranteed emergency appointments
+
+Unlimited pet taxi
+
+Guaranteed same sitter
+
+Free services with no fair-use limit
+
+Clinical advice from non-veterinarians
+
+Suggested test tiers
+
+### Table 209
+
+| Membership | Illustrative monthly fee | Positioning |
+| --- | --- | --- |
+| Pet Parent Basic | ₹199–₹299 | Convenience and reminders |
+| Pet Parent Plus | ₹399–₹599 | Credits and priority access |
+| Pet Parent Family | ₹699–₹999 | Multiple pets and stronger benefits |
+
+These are internal testing hypotheses and should be priced from the actual cost of included benefits.
+
+Membership value rule
+
+The customer should be able to reasonably recover the fee through normal usage without the platform relying entirely on unused benefits.
+
+11. Society subscription plans
+
+Society subscriptions are B2B recurring contracts.
+
+The society pays for pet-care infrastructure, not individual clinical treatment.
+
+Suitable inclusions
+
+Society-specific landing page
+
+Approved local partner pool
+
+Gate-entry protocol
+
+Resident support contact
+
+One monthly or quarterly event
+
+Emergency vet directory
+
+Pet-parent education sessions
+
+Resident offers
+
+Incident escalation
+
+Monthly activity report
+
+Aggregate resident insights
+
+Suggested tiers
+
+### Table 210
+
+| Tier | Suitable for |
+| --- | --- |
+| Society Essentials | Landing page, partner list and support |
+| Society Care | Events, reporting and resident offers |
+| Society Plus | Dedicated coordinator and priority services |
+
+Pricing formula
+
+Do not make clinical services appear “included” unless the veterinary partner’s role, fee and eligibility are separately clear.
+
+Society renewal metrics
+
+Resident registrations
+
+Paid bookings
+
+Event attendance
+
+Complaints
+
+Gate incidents
+
+Resident repeat rate
+
+RWA satisfaction
+
+Revenue generated
+
+Support response
+
+Renewal intent
+
+12. Sitter Pro memberships
+
+This model requires caution.
+
+Wrong model
+
+Sitters must pay monthly before they can receive bookings.
+
+That may create:
+
+Low-quality supply incentives
+
+Partner resentment
+
+Pay-to-work concerns
+
+Fraudulent earnings claims
+
+Churn before the platform produces demand
+
+Correct model
+
+Maintain a free partner tier.
+
+Offer an optional Pro tier only after meaningful booking volume exists.
+
+Suitable Pro benefits
+
+Faster payouts
+
+Lower repeat-booking commission
+
+Advanced calendar
+
+Earnings analytics
+
+Profile tools
+
+Training modules
+
+Priority support
+
+Business invoice tools
+
+Customer retention features
+
+Optional verification renewals
+
+Multi-staff management for businesses
+
+Do not sell
+
+Guaranteed bookings
+
+Guaranteed earnings
+
+Safety approval
+
+Artificially inflated ratings
+
+Access to high-risk pets without competence
+
+Rankings that override quality
+
+Pro eligibility gate
+
+Offer the membership only to partners who:
+
+Have completed several bookings
+
+Understand their current earnings
+
+Can calculate whether the plan benefits them
+
+Are not under quality review
+
+Have current documents
+
+13. Partner premium listings
+
+Premium listings should be one of the last Phase 9 products.
+
+Why delay them
+
+Paid placement creates a conflict between:
+
+Customer suitability
+
+Partner quality
+
+Platform revenue
+
+A sponsored trainer or groomer must not outrank a safer or more appropriate provider.
+
+Ranking order
+
+1. Active and compliant
+
+2. Service permission
+
+3. Pet compatibility
+
+4. Availability
+
+5. Location
+
+6. Customer history
+
+7. Quality and reliability
+
+8. Price
+
+9. Sponsored placement
+
+Paid placement should be labelled clearly as Sponsored, Featured or Advertisement. Advertising guidance emphasises that material commercial relationships should be disclosed prominently and in language that an ordinary user can understand.
+
+Better monetisation
+
+Charge premium partners for tools, not safety ranking:
+
+Better analytics
+
+Business profile customisation
+
+CRM tools
+
+Faster payouts
+
+Promotion in appropriate discovery sections
+
+Society campaign participation
+
+14. Recurring-payment architecture
+
+Recommended payment options
+
+UPI AutoPay
+
+Card e-mandate
+
+NACH for suitable B2B or higher-value arrangements
+
+Manual renewal as a fallback
+
+NPCI’s UPI AutoPay product supports recurring e-mandates through UPI applications and is designed for recurring payment use cases.
+
+As of July 2026, RBI’s updated e-mandate framework allows ordinary recurring transactions up to ₹15,000 per transaction without transaction-level additional authentication after mandate registration, while giving customers controls around mandate validity and cancellation. Most consumer pet-care plans would likely fall below that threshold, but implementation should be delegated to a compliant payment provider.
+
+Important limitation
+
+Do not build your own payment system or hold funds in an unregulated internal wallet.
+
+Under India’s Payment and Settlement Systems Act framework, operating a payment system requires RBI authorisation. Use an authorised payment provider and maintain your own commercial ledger around provider transactions.
+
+15. Subscription payment flow
+
+Customer chooses plan
+
+↓
+
+Plan price and renewal disclosed
+
+↓
+
+Customer selects payment method
+
+↓
+
+Mandate created with customer authorisation
+
+↓
+
+Plan activates
+
+↓
+
+Entitlements generated
+
+↓
+
+Renewal notification sent
+
+↓
+
+Recurring debit attempted
+
+↓
+
+Payment succeeds or enters recovery
+
+↓
+
+New entitlements generated
+
+Never create entitlements before payment certainty
+
+Use one of these rules:
+
+Activate after successful payment
+
+Temporarily activate during a defined grace period
+
+Suspend future bookings after failed recovery
+
+Do not allow unlimited unpaid service accumulation.
+
+16. Failed-payment recovery
+
+Recommended recovery schedule:
+
+### Table 211
+
+| Time | Action |
+| --- | --- |
+| Initial failure | Notify customer; retry safely |
+| Day 1–2 | Second attempt or payment-link option |
+| Day 3–5 | Final retry and warning |
+| End of grace period | Pause future entitlements |
+| Later payment | Reactivate without duplicate benefits |
+
+Provide:
+
+Change payment method
+
+Manual payment
+
+Retry now
+
+Pause plan
+
+Cancel plan
+
+Do not repeatedly debit without clear processor controls.
+
+17. Consumer protection and cancellation
+
+Recurring plans are especially vulnerable to dark-pattern complaints.
+
+The CCPA’s dark-pattern guidelines define a subscription trap as making cancellation impossible or unnecessarily complex, or hiding the cancellation option.
+
+Required customer controls
+
+Renewal date visible
+
+Renewal amount visible
+
+Benefits visible
+
+Remaining credits visible
+
+Simple pause
+
+Simple cancellation
+
+Downloadable invoices
+
+Price-change notice
+
+Failed-payment notice
+
+No prechecked subscription box
+
+No hidden auto-renewal
+
+No call-only cancellation
+
+Cancellation should be approximately as easy as joining.
+
+Cancellation outcomes
+
+The customer should be told whether:
+
+Access ends immediately
+
+Access continues until the paid period ends
+
+Unused credits remain usable
+
+Credits expire
+
+A partial refund applies
+
+The payment mandate is cancelled separately
+
+18. Data and privacy
+
+Phase 9 uses behavioural and transactional data to make recommendations:
+
+Walk frequency
+
+Pet profile
+
+Service history
+
+Society
+
+Grooming history
+
+Health reminders
+
+Payment history
+
+Plan usage
+
+Cancellation reasons
+
+The DPDP Rules, 2025 were notified with phased commencement and support a design based on clear notices, specified purposes, controlled access, security safeguards and grievance handling.
+
+Separate purposes
+
+Do not merge these into one consent:
+
+Plan fulfilment
+
+Recurring payment
+
+Partner data sharing
+
+Health reminders
+
+Personalised recommendations
+
+Marketing
+
+Society reporting
+
+Access controls
+
+### Table 212
+
+| Role | Appropriate access |
+| --- | --- |
+| Walker | Assigned walks and relevant pet instructions |
+| Groomer | Grooming-relevant profile details |
+| Veterinarian | Authorised health records |
+| Customer support | Subscription and booking operations |
+| Finance | Payments, refunds and payouts |
+| Marketing | No clinical or sensitive care details |
+| Society | Aggregate activity only |
+
+19. Subscription accounting
+
+Do not treat all cash received as immediately earned profit.
+
+Suppose a customer prepays ₹4,000 for 20 future walks.
+
+The platform now has:
+
+Cash received
+
+20 service obligations
+
+Future walker payouts
+
+Potential refund liability
+
+Backup-service liability
+
+Financial terms
+
+Subscription GMV
+
+Total customer plan payments.
+
+Platform recurring revenue
+
+Only the platform fee or retained share.
+
+Deferred or unearned obligation
+
+The value associated with future services not yet delivered.
+
+Recognised revenue
+
+Revenue recognised according to completed services and the company’s accounting policy.
+
+Contribution
+
+Platform revenue minus:
+
+Payment costs
+
+Partner payouts where relevant
+
+Support
+
+Refunds
+
+Make-goods
+
+Discounts
+
+Variable fulfilment costs
+
+Obtain a written accounting and GST position covering prepaid service plans, partner payouts, credits, refunds and recurring invoices.
+
+20. Core Phase 9 metrics
+
+Monthly recurring revenue
+
+Do not include:
+
+One-time setup fees
+
+One-time grooming
+
+Non-recurring event revenue
+
+Annual payment as one month’s MRR
+
+An annual plan of ₹12,000 contributes:
+
+MRR movement
+
+New MRR
+
+Revenue from new subscribers.
+
+Expansion MRR
+
+Customers upgrading plans or adding pets.
+
+Contraction MRR
+
+Customers downgrading.
+
+Churned MRR
+
+Revenue lost from cancellations.
+
+Subscriber churn
+
+Gross revenue retention
+
+Net revenue retention
+
+21. Operational subscription metrics
+
+Revenue metrics alone are not enough.
+
+Track:
+
+### Table 213
+
+| Metric | Purpose |
+| --- | --- |
+| Credit utilisation | Whether customers use the plan |
+| Walk completion | Whether obligations are fulfilled |
+| Same-walker fulfilment | Continuity |
+| Backup usage | Supply resilience |
+| Failed payments | Billing health |
+| Pause rate | Temporary churn risk |
+| First renewal | Initial product-market fit |
+| Three-month retention | Habit formation |
+| Complaint rate | Service quality |
+| Contribution/subscriber | Economic value |
+| Support contacts/subscriber | Operational burden |
+| Partner hours reserved | Supply commitment |
+| Unused service liability | Future fulfilment exposure |
+
+Watch both extremes
+
+Very low utilisation
+
+May indicate:
+
+Weak value
+
+Wrong plan size
+
+Intentional breakage dependence
+
+Customer misunderstanding
+
+Very high utilisation with weak margins
+
+May indicate:
+
+Underpricing
+
+Over-generous benefits
+
+Partner-capacity pressure
+
+High support costs
+
+22. Subscription cancellation analysis
+
+Require customers to select an optional reason:
+
+Too expensive
+
+Not enough usage
+
+Walker availability
+
+Service quality
+
+Moving
+
+Pet health
+
+Travel
+
+Preferred to book manually
+
+Payment issue
+
+Other
+
+Use this information to:
+
+Improve pricing
+
+Add lower-frequency plans
+
+Fix supply gaps
+
+Offer pause instead of cancellation
+
+Improve service quality
+
+Do not obstruct cancellation with repeated discount screens.
+
+One optional retention offer is acceptable. A maze of forced offers is not.
+
+23. Phase 9 rollout plan
+
+Month 1: Walking subscriptions
+
+Goal
+
+Prove recurring walking fulfilment.
+
+Launch
+
+8-, 12- and 20-walk plans
+
+One or two clusters
+
+Existing high-rating customers
+
+Preferred and backup walkers
+
+UPI AutoPay/manual renewal
+
+Clear pause and cancellation
+
+Target
+
+### Table 214
+
+| Metric | Target |
+| --- | --- |
+| Pilot subscribers | 30–50 |
+| First-month fulfilment | 95%+ |
+| Walker cancellation | Below 5% |
+| Average rating | 4.6+ |
+| Payment success | 90–95%+ |
+| Positive contribution | Yes |
+
+Month 2: Monthly Care Pack and membership
+
+Launch
+
+Walking plan plus grooming credit
+
+Pet Parent Basic membership
+
+Care reminders
+
+Priority rescheduling
+
+Monthly report
+
+Target
+
+### Table 215
+
+| Metric | Target |
+| --- | --- |
+| Total subscribers | 75–150 |
+| First renewal | 60%+ |
+| Grooming-credit redemption | 25–50% |
+| Add-on adoption | 20%+ |
+| Contribution/subscriber | Positive |
+| Complaint rate | Below 5% |
+
+Month 3: Society and partner subscriptions
+
+Launch
+
+Two or three society subscription pilots
+
+Optional partner Pro plan
+
+Advanced analytics
+
+Faster payout tier
+
+Society monthly reports
+
+Defer
+
+Featured ranking
+
+Annual customer plans
+
+Unlimited plans
+
+Mandatory sitter subscriptions
+
+Target
+
+### Table 216
+
+| Metric | Target |
+| --- | --- |
+| Paid society subscriptions | 2–5 |
+| RWA renewal intent | 60%+ |
+| Pro partner adoption | Demand-led |
+| Subscriber count | 150–300 |
+| Three-month customer retention | 50%+ starting target |
+| Core quality decline | None |
+
+24. Phase 9 risk register
+
+### Table 217
+
+| Risk | Prevention |
+| --- | --- |
+| Selling more capacity than available | Reserve partner capacity before plan sales |
+| Heavy discounting | Price from contribution, not competitor headlines |
+| Unlimited-service losses | Use defined entitlements and fair-use limits |
+| Same-walker dependency | Maintain backup permission and handover notes |
+| Unused-credit disputes | Clear rollover, expiry and refund rules |
+| Subscription traps | One-step pause/cancel and clear renewals |
+| Failed payments | Automated recovery and grace period |
+| Partner income instability | Reserved recurring schedules |
+| Customer churn after one month | Match plan frequency to actual usage |
+| Society plan lacks value | Monthly usage and outcome reports |
+| Paid partner ranking harms trust | Sponsored label and quality-first ranking |
+| Annual prepayment liability | Delay annual plans until retention is proven |
+| Core service deteriorates | Capacity and quality gates before new sales |
+
+25. What not to launch in early Phase 9
+
+Do not begin with:
+
+Unlimited dog walks
+
+Unlimited vet consultations
+
+Annual non-refundable memberships
+
+Five or more consumer tiers
+
+Hidden auto-renewal
+
+Mandatory sitter subscriptions
+
+Guaranteed partner leads
+
+Pay-to-win partner ranking
+
+Pet-taxi membership
+
+Medicine subscriptions
+
+Large prepaid wallets
+
+Lifetime memberships
+
+These products either create excessive liability or require maturity the platform has not yet earned.
+
+26. Phase 10 go/no-go criteria
+
+Move beyond Phase 9 only when recurring revenue is operationally healthy.
+
+### Table 218
+
+| Requirement | Target |
+| --- | --- |
+| Paying subscribers | 200–500, depending on city scope |
+| Monthly walking-plan fulfilment | 95%+ |
+| First renewal rate | 60%+ |
+| Three-month retention | 50%+ |
+| Subscriber churn | Below 8–10% monthly initially |
+| Payment success | 90–95%+ |
+| Complaint/refund rate | Below 5% |
+| Partner cancellation | Below 5–7% |
+| Positive contribution/subscriber | Yes |
+| Society subscriptions | 3+ repeatable pilots |
+| Core rating | 4.6+ |
+| Critical unresolved incidents | 0 |
+| Cancellation UX | Fully operational |
+| Subscription accounting | Reconciled |
+| Customer data controls | Operational |
+
+Targets should be recalibrated after real cohorts develop.
+
+Final approval decisions
+
+### Table 219
+
+| Phase 9 product | Decision |
+| --- | --- |
+| Monthly walking plans | Approve first |
+| Monthly pet-care bundles | Approve after walking validation |
+| Premium pet-parent membership | Approve as a controlled pilot |
+| Society subscription plans | Approve |
+| Sitter Pro memberships | Conditional; free tier required |
+| Partner premium listings | Defer |
+| Annual customer plans | Defer |
+| Unlimited plans | Reject |
+
+Final Phase 9 recommendation
+
+Build:
+
+A recurring pet-care system anchored by monthly dog walking, then expanded into transparent care bundles, customer memberships and society subscriptions—all supported by reserved partner capacity, automated payments, visible entitlements, simple cancellation and contribution-level economics.
+
+The Phase 9 win condition is not merely:
+
+“Customers are being charged every month.”
+
+It is:
+
+Customers renew because recurring care is reliable, partners receive predictable work, every benefit is fulfilable, and contribution per pet parent rises without creating hidden liabilities or subscription friction.
+
+Phase 9 status: GO—launch monthly dog walking first.
+
+A quarterly subscription-regulation and recurring-payment review would be useful as RBI, NPCI and consumer-protection requirements evolve.
+
+Phase 9 Duration and Success Framework
+
+60-Day Subscription and Membership Rollout 🐾💰
+
+Executive decision
+
+Approve a 60-day Phase 9, but treat it as a subscription validation phase, not a mature membership rollout.
+
+Sixty days is enough to test:
+
+Plan selection and pricing
+
+Recurring-payment setup
+
+Walking fulfilment
+
+First renewal behaviour
+
+Failed-payment recovery
+
+Pause and cancellation flows
+
+Early customer contribution
+
+Partner-capacity planning
+
+It is not long enough to prove:
+
+Three- or six-month retention
+
+Long-term churn
+
+Annual-plan economics
+
+Society renewal consistency
+
+Mature sitter-Pro demand
+
+A customer starting on Day 20 may complete only one billing cycle by Day 60. Therefore, Phase 10 should require a 60-day operational gate plus a 90-day cohort check for retention-heavy claims.
+
+Current Indian operators already market monthly-billed dog-walking plans, which suggests that recurring walking is a customer-understood category, although this does not prove that any particular pricing or plan will work in your launch cluster.
+
+1. Correct duration options
+
+### Table 220
+
+| Version | Duration | Suitable use |
+| --- | --- | --- |
+| Fast subscription test | 15–30 days | Test pricing, checkout and fulfilment with 20–40 existing customers |
+| Standard subscription phase | 45–60 days | Validate walking plans, one membership and one society plan |
+| Deep membership rollout | 90–120 days | Measure three-month retention, churn, upgrades and society renewal |
+
+Recommended structure
+
+Run:
+
+60-day Phase 9 launch
+
+Followed by a 30-day retention observation
+
+Phase 10 approval after operational and cohort gates pass
+
+This avoids waiting unnecessarily while preventing one successful renewal cycle from being mistaken for durable subscription-market fit.
+
+2. Autopsy of the proposed targets
+
+Target: 3–5 subscription plans
+
+Assessment
+
+Five plans are too many for an initial 60-day test.
+
+Each additional plan fragments:
+
+Customer demand
+
+Product analytics
+
+Walker capacity
+
+Pricing experiments
+
+Support documentation
+
+Refund rules
+
+Subscription reporting
+
+Recommended target
+
+Launch three core products, with a fourth only after the first month:
+
+12-walk monthly plan
+
+20-walk monthly plan
+
+Pet Parent Plus membership
+
+Society Care subscription as a controlled B2B pilot
+
+Do not launch Sitter Pro, partner subscriptions and corporate benefits simultaneously.
+
+Target: 50–200 monthly subscribers
+
+Assessment
+
+Directionally reasonable, but it should be split into base and stretch targets.
+
+### Table 221
+
+| Result | Active paying subscribers |
+| --- | --- |
+| Minimum validation | 30–50 |
+| Phase 9 base target | 50–100 |
+| Strong result | 100–150 |
+| Stretch result | 150–200 |
+
+Count only customers who:
+
+Successfully paid
+
+Have an active plan
+
+Are inside an operational service area
+
+Have not received a full refund
+
+Have at least one usable entitlement
+
+Do not count:
+
+Free trials
+
+Failed mandates
+
+Paused accounts
+
+Society residents merely eligible for a benefit
+
+Cancelled subscriptions still displayed in the database
+
+Target: ₹1 lakh–₹10 lakh subscription revenue per month
+
+Assessment
+
+This range is too broad to function as one operating target.
+
+The relationship is:
+
+Scenario analysis
+
+### Table 222
+
+| Subscribers | Average monthly value | MRR |
+| --- | --- | --- |
+| 50 | ₹2,000 | ₹1,00,000 |
+| 75 | ₹2,500 | ₹1,87,500 |
+| 100 | ₹3,000 | ₹3,00,000 |
+| 150 | ₹4,000 | ₹6,00,000 |
+| 200 | ₹5,000 | ₹10,00,000 |
+
+Therefore:
+
+₹1 lakh MRR can be achieved with 50 customers at ₹2,000.
+
+₹10 lakh MRR requires 200 customers averaging ₹5,000.
+
+A ₹299 membership cannot independently create the upper target without thousands of members.
+
+Recommended 60-day target
+
+### Table 223
+
+| Level | Ending MRR |
+| --- | --- |
+| Minimum validation | ₹1 lakh+ |
+| Base target | ₹1.5–₹3 lakh |
+| Strong result | ₹3–₹5 lakh |
+| Stretch | ₹5 lakh+ |
+| ₹10 lakh | Later-city-scale target |
+
+Critical accounting distinction
+
+Track separately:
+
+Subscription GMV: full customer payment
+
+Partner payouts
+
+Platform recurring revenue
+
+Subscription contribution
+
+A ₹4,000 walking plan is not ₹4,000 of platform revenue when most of that amount is owed to walkers.
+
+Target: recurring revenue is 25–40% of total revenue
+
+Assessment
+
+Good strategic target, but the denominator must be defined.
+
+Use:
+
+Do not calculate recurring share using:
+
+Total subscription GMV against platform commission revenue
+
+Annual prepayments entirely in the month received
+
+Unfulfilled future walks
+
+Failed or refunded payments
+
+Recommended progression
+
+### Table 224
+
+| Time | Recurring platform-revenue share |
+| --- | --- |
+| End of Day 30 | 10–20% |
+| End of Day 60 | 20–30% |
+| 90-day maturity target | 25–40% |
+
+A 40% share after only 60 days may be possible, but it can also indicate that ordinary booking revenue declined rather than subscriptions growing healthily.
+
+Target: renewal rate of 60–80%
+
+Assessment
+
+Reasonable for a first-renewal pilot.
+
+Use:
+
+Exclude subscribers who have not yet reached their billing date.
+
+Recommended threshold
+
+### Table 225
+
+| Result | First renewal rate |
+| --- | --- |
+| Weak | Below 50% |
+| Needs improvement | 50–59% |
+| Validated | 60–69% |
+| Strong | 70–80% |
+| Exceptional | Above 80%, subject to usage and complaint checks |
+
+A high renewal rate can still be unhealthy if customers cannot easily cancel. CCPA’s dark-pattern guidelines define a “subscription trap” to include making cancellation impossible or unnecessarily complex, or hiding cancellation functionality.
+
+Target: churn below 10–15% monthly
+
+Assessment
+
+This conflicts with a 60–80% first-renewal target unless the cohorts are defined separately.
+
+A 60% renewal rate means 40% failed to renew at the first renewal. That is not compatible with a 10% churn claim for the same cohort.
+
+Correct separation
+
+First-renewal failure
+
+Measures whether new customers reach their second month.
+
+Mature monthly churn
+
+Measures cancellations among subscribers who have already renewed at least once.
+
+Use:
+
+Recommended targets
+
+### Table 226
+
+| Metric | Target |
+| --- | --- |
+| First renewal | 60–80% |
+| Mature monthly voluntary churn | Below 10% |
+| Total mature churn including failed payments | Below 12–15% |
+| Three-month retention | 50–65% starting target |
+
+The mature churn target cannot be fully validated during a 60-day programme.
+
+Target: repeat walking customers of 35–50%
+
+Assessment
+
+Useful, but subscription conversion is a better Phase 9 metric.
+
+Track:
+
+Recommended targets
+
+Repeat walking customers: 35–50%
+
+Eligible repeat customers adopting a plan: 20–35%
+
+One-time walking customers converting after three bookings: 25%+
+
+Subscription customers completing a second month: 60%+
+
+Target: monthly walking completion of 90%+
+
+Assessment
+
+Too low.
+
+A customer purchasing 20 walks and receiving only 18 has lost 10% of the service purchased. Repeated monthly, this would create significant complaints and liabilities.
+
+Recommended targets
+
+### Table 227
+
+| Metric | Target |
+| --- | --- |
+| Scheduled walks completed | 95%+ |
+| Platform-caused missed walks | Below 2% |
+| Walker-caused cancellation | Below 5% |
+| Cancelled walks successfully reassigned | 90%+ |
+| Walk reports completed | 95%+ |
+| On-time arrival within window | 95%+ |
+
+Customer-cancelled and customer-paused walks should be reported separately from platform fulfilment failures.
+
+Target: sitter reliability of 95%+
+
+Assessment
+
+Approve, but replace “sitter reliability” with a defined subscription fulfilment score.
+
+Include:
+
+Arrival
+
+Completion
+
+Report
+
+No partner-caused cancellation
+
+Correct walker or approved backup
+
+Recommended:
+
+Subscription fulfilment reliability: 95%+
+
+Preferred-walker fulfilment: 80–90%+
+
+Primary-or-approved-backup fulfilment: 98%+
+
+Walker no-show: below 1%
+
+3. Recommended Phase 9 product portfolio
+
+Product 1: Routine Walk Plan
+
+Includes
+
+12 walks per month
+
+Fixed or flexible schedule
+
+Preferred walker
+
+Approved backup
+
+Walk reports
+
+One or two limited rollover credits
+
+Priority rescheduling
+
+Best for
+
+Customers requiring approximately three walks per week.
+
+Product 2: Weekday Walk Plan
+
+Includes
+
+20–22 walks monthly
+
+Monday–Friday schedule
+
+Reserved service window
+
+Preferred walker
+
+Backup coverage
+
+Monthly activity summary
+
+Best for
+
+Working pet parents with consistent weekday needs.
+
+This should become the primary MRR product.
+
+Product 3: Pet Parent Plus
+
+This should be a membership—not another walk package.
+
+Suitable benefits
+
+Priority customer support
+
+Lower booking fees
+
+Fixed grooming credit
+
+Event discounts
+
+Same-partner rebooking tools
+
+Vaccination and service reminders
+
+Early access to peak dates
+
+Health-record storage
+
+Avoid
+
+Unlimited services
+
+Guaranteed emergency vet access
+
+Unlimited rescheduling
+
+Guaranteed same provider
+
+Medical advice
+
+Taxi included without eligibility
+
+The membership must have independently understandable value. It should not exist merely to make customers pay before buying ordinary services.
+
+Product 4: Society Care Plan
+
+Launch with two or three Phase 7–8 partner societies.
+
+Includes
+
+Society-specific service page
+
+Verified local partner pool
+
+Gate-access protocol
+
+Resident support contact
+
+One scheduled event or workshop
+
+Resident offers
+
+Emergency-clinic directory
+
+Monthly aggregate report
+
+Buyer
+
+RWA
+
+Facility manager
+
+Developer
+
+Society management company
+
+Do not include
+
+Unlimited resident services
+
+Guaranteed clinical access
+
+Individual health information in RWA reports
+
+Unfunded discounts
+
+4. Three-sided subscription model
+
+A. Pet-parent subscriptions
+
+Launch in Phase 9
+
+Walking plans
+
+Monthly care bundle
+
+Pet-parent membership
+
+Revenue logic
+
+Highest recurring GMV
+
+Strongest customer retention impact
+
+Requires fulfilment capacity
+
+B. Sitter or walker Pro plan
+
+Do not make this mandatory
+
+Maintain a free tier.
+
+A Pro plan may later offer:
+
+Faster payouts
+
+Reduced repeat-booking commission
+
+Advanced availability tools
+
+Earnings analytics
+
+Route planning
+
+Training modules
+
+Business-profile tools
+
+Priority support
+
+Do not promise
+
+Guaranteed leads
+
+Guaranteed earnings
+
+Paid quality badges
+
+Access to high-risk pets without verification
+
+Top placement regardless of performance
+
+Launch only after sitters are already receiving enough platform value to judge whether the fee makes economic sense.
+
+C. Society subscriptions
+
+These are suitable during the 60-day pilot because the society operating model was validated in Phase 7 and Phase 8.
+
+Start with:
+
+Two paid society pilots
+
+One tier
+
+One clear service-level agreement
+
+Monthly reporting
+
+Defined event and support capacity
+
+Do not launch three society tiers before learning what RWAs actually value.
+
+D. Partner subscriptions
+
+Launch later for grooming businesses, trainers or clinics.
+
+Potential value:
+
+Staff management
+
+Calendar tools
+
+CRM
+
+Analytics
+
+Faster payouts
+
+Society campaign access
+
+Lower repeat-booking commission
+
+Do not charge partners merely for remaining visible in the marketplace.
+
+E. Corporate pet-care benefits
+
+Defer until:
+
+Consumer subscriptions are stable
+
+Employer eligibility rules exist
+
+Invoicing is reliable
+
+Service areas are defined
+
+Benefit misuse controls exist
+
+Corporate support has an owner
+
+Potential future product:
+
+Employer-funded pet-care allowance or discounted care membership for employees.
+
+5. End-to-end subscription flow
+
+Customer becomes eligible
+
+↓
+
+Plan recommendation shown
+
+↓
+
+Customer compares plan and pay-as-you-go pricing
+
+↓
+
+Service area and partner capacity checked
+
+↓
+
+Schedule selected
+
+↓
+
+Price, renewal date and rules displayed
+
+↓
+
+Customer creates recurring mandate
+
+↓
+
+Initial payment succeeds
+
+↓
+
+Entitlements generated
+
+↓
+
+Recurring bookings scheduled
+
+↓
+
+Services fulfilled and reported
+
+↓
+
+Usage and contribution monitored
+
+↓
+
+Pre-renewal communication
+
+↓
+
+Payment renewed
+
+↓
+
+Entitlements refreshed
+
+UPI AutoPay supports recurring e-mandates through UPI applications and is suitable for recurring use cases. Use an authorised payment provider rather than attempting to manage bank mandates directly.
+
+6. Capacity-first subscription sales
+
+Never sell plans based only on customer demand.
+
+Before checkout, verify:
+
+Service area active
+
+Time window available
+
+Preferred walker capacity
+
+Backup capacity
+
+Maximum pets per walker
+
+Travel time
+
+Leave and holiday coverage
+
+Capacity formula
+
+Example:
+
+Five walkers
+
+100 usable monthly walk slots each
+
+15% backup reserve
+
+If the average plan includes 20 walks:
+
+That cluster should not sell 40 weekday plans merely because customers are willing to pay.
+
+7. Recurring payment and billing controls
+
+Customer must see before activation
+
+Plan price
+
+Billing frequency
+
+Next renewal date
+
+Services included
+
+Credit expiry
+
+Rollover rules
+
+Pause rules
+
+Cancellation process
+
+Refund method
+
+Price-change policy
+
+The Consumer Protection (E-Commerce) Rules apply to goods and services transacted through digital or electronic networks and require appropriate disclosures and grievance handling.
+
+Required account controls
+
+Pause plan
+
+Cancel renewal
+
+Change payment method
+
+Retry payment
+
+Upgrade
+
+Downgrade
+
+View remaining services
+
+View invoices
+
+Report failed fulfilment
+
+No call-only cancellation.
+
+No hidden cancellation page.
+
+No preselected auto-renewal checkbox.
+
+No benefits silently removed after payment.
+
+8. Failed-payment recovery
+
+Recommended workflow
+
+### Table 228
+
+| Time | Action |
+| --- | --- |
+| Payment fails | Notify customer immediately |
+| Day 1 | Retry or offer manual payment |
+| Day 3 | Second reminder and payment-method update |
+| Day 5 | Final recovery notice |
+| Grace period ends | Pause future unfulfilled services |
+| Payment completed | Reactivate without duplicate credits |
+
+Do not repeatedly attempt charges outside the payment provider’s approved mandate and retry rules.
+
+9. Pause, cancellation and rollover
+
+Pause
+
+Allow a pause for:
+
+Customer travel
+
+Pet illness
+
+Temporary relocation
+
+Surgery or recovery
+
+Extended weather disruption
+
+Recommended:
+
+One pause per billing cycle
+
+Maximum pause period
+
+Visible reactivation date
+
+No charge during a full approved pause unless clearly disclosed
+
+Cancellation
+
+Customer chooses:
+
+Cancel immediately where applicable
+
+Stop renewal but retain current paid benefits
+
+Request partial refund according to used benefits
+
+Rollover
+
+Recommended:
+
+One or two unused walk credits
+
+Valid for the following cycle only
+
+Unlimited restoration for platform-caused cancellations
+
+No invisible expiry
+
+10. 60-day execution plan
+
+Days 1–10: subscription readiness
+
+Build
+
+Plan catalogue
+
+Entitlement ledger
+
+Recurring mandate integration
+
+Renewal scheduler
+
+Usage dashboard
+
+Pause and cancellation
+
+Failed-payment flow
+
+Refund calculation
+
+Capacity reservation
+
+MRR reporting
+
+Finalise
+
+Plan terms
+
+Rollover policy
+
+Partner payout policy
+
+Support scripts
+
+Customer notices
+
+Society agreement
+
+Gate
+
+No public launch until duplicate billing, cancellation and failed-renewal scenarios are tested.
+
+Days 11–25: walking-plan pilot
+
+Launch
+
+12-walk plan
+
+20-walk plan
+
+One or two dense clusters
+
+Existing satisfied customers
+
+20–40 subscribers
+
+Monitor daily
+
+Walk assignment
+
+On-time fulfilment
+
+Preferred-walker match
+
+Backup use
+
+Customer cancellation
+
+Walker capacity
+
+Contribution
+
+Gate
+
+Expand only when completion is at least 95% and serious complaints are zero.
+
+Days 26–40: expand subscriptions
+
+Actions
+
+Increase to 50–100 subscribers
+
+Add Pet Parent Plus
+
+Introduce grooming credit
+
+Test one society subscription
+
+Begin first renewal cohort
+
+Test failed-payment recovery
+
+Do not add
+
+Annual plans
+
+Unlimited walks
+
+Sitter subscriptions
+
+Featured partner listings
+
+Days 41–50: renewal and society validation
+
+Measure
+
+First renewal
+
+Voluntary cancellation
+
+Payment failure
+
+Plan usage
+
+Support cost
+
+Grooming-credit redemption
+
+Society engagement
+
+Walker earnings
+
+Launch a second society subscription only when the first has a clear operating model.
+
+Days 51–60: optimise and decide
+
+Actions
+
+Remove weak plans
+
+Reprice negative-contribution plans
+
+Reduce overloaded time windows
+
+Improve backup supply
+
+Analyse cancellation reasons
+
+Prepare Phase 9 final report
+
+Establish the 30-day retention observation cohort
+
+11. Corrected Phase 9 scorecard
+
+### Table 229
+
+| Metric | 60-day target |
+| --- | --- |
+| Subscription products launched | 3–4 |
+| Active paying subscribers | 50–120 base; 150–200 stretch |
+| Ending MRR | ₹1.5–₹3 lakh base |
+| Stretch MRR | ₹3–₹5 lakh+ |
+| Recurring platform-revenue share | 20–30% by Day 60 |
+| First renewal rate | 60–80% |
+| Mature monthly churn | Track after second renewal |
+| Payment success | 90–95%+ |
+| Walking completion | 95%+ |
+| Subscription fulfilment reliability | 95%+ |
+| Backup fulfilment | 90%+ |
+| Average rating | 4.6+ |
+| Complaint/refund rate | Below 5% |
+| Contribution per subscriber | Positive |
+| Eligible repeat walkers converting | 20–35% |
+| Paid society subscriptions | 1–3 |
+| Critical incidents | Zero |
+| Cancellation and pause flow | Fully operational |
+
+12. MRR dashboard
+
+Required movements
+
+Track:
+
+New MRR
+
+Upgrades
+
+Downgrades
+
+Voluntary churn
+
+Failed-payment churn
+
+Society MRR
+
+Pet-parent MRR
+
+Membership MRR
+
+Do not classify as MRR
+
+One-time grooming
+
+One-off boarding
+
+Event ticket revenue
+
+Setup fees
+
+Non-recurring taxi rides
+
+Unrenewed prepaid credits
+
+Annual cash collected entirely as monthly revenue
+
+13. Unit economics
+
+For every plan:
+
+Required metrics
+
+Revenue per subscriber
+
+Contribution per subscriber
+
+Partner earnings per reserved hour
+
+Support contacts per subscriber
+
+Acquisition cost
+
+First-month payback
+
+Three-month projected contribution
+
+Unused service liability
+
+Do not rely on unused walks as the primary source of profitability. That produces customer dissatisfaction and increases cancellation risk.
+
+14. Privacy and personalisation
+
+Subscriptions use:
+
+Pet routines
+
+Home addresses
+
+Walking schedules
+
+Partner preferences
+
+Payment history
+
+Health reminders
+
+Service usage
+
+The DPDP Rules were notified on November 14, 2025 with phased commencement. Some provisions are already effective, while major operational provisions commence later; the product should nevertheless be designed now with specific notices, restricted access, security controls and grievance processes.
+
+Separate consent for:
+
+Subscription fulfilment
+
+Recurring payment
+
+Partner access
+
+Health reminders
+
+Personalised promotions
+
+Society aggregate reporting
+
+A society must not receive individual walking histories, addresses, health information or payment records.
+
+15. Phase 9 risk register
+
+### Table 230
+
+| Risk | Control |
+| --- | --- |
+| Overselling capacity | Real-time cluster capacity limit |
+| Missed recurring walks | Reserved primary and backup walkers |
+| High first-month churn | Match plan size to actual usage |
+| Negative contribution | Plan-level P&L |
+| Subscription trap complaints | Visible pause and cancellation |
+| Failed mandates | Recovery and grace workflow |
+| Excess rollover liability | Limited rollover |
+| Preferred walker leaves | Documented handover and backup |
+| Society pays but residents do not use it | Monthly usage and value report |
+| Pro plan exploits sitters | Free tier and no guaranteed-lead claims |
+| Paid listing damages trust | Quality-first ranking and sponsorship labels |
+| Core service declines | Stop sales before service quality falls |
+| Personal schedule exposed | Role-based, minimum-data access |
+
+16. Phase 10 go/no-go criteria
+
+Operational gate
+
+Walking-plan completion: 95%+
+
+Partner-caused cancellations: below 5%
+
+Backup fulfilment: 90%+
+
+Average rating: 4.6+
+
+Serious preventable incidents: zero
+
+Subscription gate
+
+At least 50–100 active paying subscribers
+
+First-renewal rate: 60%+
+
+Positive subscriber contribution
+
+Payment success: 90%+
+
+Functional cancellation and pause
+
+No unresolved recurring-billing complaints
+
+Revenue gate
+
+Ending MRR: ₹1.5 lakh+ minimum validation
+
+Recurring platform-revenue share: 20–30% by Day 60
+
+Credible path to 25–40%
+
+No dependence on unsustainable discounts
+
+Partner payouts remain current
+
+90-day follow-up gate
+
+Before calling the model mature:
+
+Three-month retention: 50%+
+
+Mature churn: below 10–15%
+
+At least one society willing to renew
+
+No deterioration in core service quality
+
+Subscriber contribution remains positive after benefit redemption
+
+Final decisions
+
+### Table 231
+
+| Proposal | Decision |
+| --- | --- |
+| Run Phase 9 for 60 days | Approve |
+| Launch 3–5 plans | Approve 3–4; avoid 5 initially |
+| Target 50–200 subscribers | Approve as base-to-stretch range |
+| Target ₹1L–₹10L MRR | Replace with staged scenario targets |
+| Reach 25–40% recurring-revenue share | Target 20–30% in 60 days; 25–40% at maturity |
+| Renewal rate 60–80% | Approve |
+| Monthly churn below 10–15% | Measure on mature cohorts after renewal |
+| Walking completion 90%+ | Increase to 95%+ |
+| Pet-parent subscriptions | Approve |
+| Society subscriptions | Approve controlled pilots |
+| Sitter Pro plans | Defer until supply receives proven value |
+| Partner subscriptions | Later |
+| Corporate pet benefits | Later |
+
+Final Phase 9 recommendation
+
+Build:
+
+A 60-day recurring-care pilot anchored by 12- and 20-walk monthly plans, followed by one lightweight pet-parent membership and one society subscription pilot.
+
+The Phase 9 win condition should be:
+
+Customers successfully renew because scheduled care is dependable; walkers receive predictable, geographically dense work; cancellations remain simple; and each subscriber generates positive contribution after fulfilment costs.
+
+Phase 9 status: GO—with three core products, capacity-controlled sales and a 90-day retention check before full Phase 10 expansion.
+
+Phase 9.1: Pet-Parent Subscriptions
+
+Monthly Dog-Walking Plans — End-to-End Blueprint 🐕🚶‍♂️💰
+
+Executive verdict
+
+Approve monthly dog-walking plans as the flagship Phase 9 subscription product.
+
+Walking has the strongest recurring-service characteristics:
+
+Customers need it several times each week.
+
+Time slots can be reserved in advance.
+
+Preferred walkers can build trust with the dog.
+
+Partner demand becomes predictable.
+
+Society-level route density can improve margins.
+
+Grooming, training and sitting can be cross-sold naturally.
+
+Your proposed city ranges are broadly usable as premium managed-service hypotheses, but they should not be published yet as universal market prices.
+
+The model needs four corrections:
+
+Every plan must define the walk duration.
+
+The per-walk price must decline as the plan becomes larger.
+
+“Same walker” should be a preferred-continuity promise—not an absolute guarantee.
+
+Prices must be calculated by neighbourhood cluster, not merely by city.
+
+1. The most important pricing problem
+
+Your current prices do not always produce a logical volume discount.
+
+Implied per-walk prices
+
+### Table 232
+
+| City | 12-walk plan | 20-walk plan | 30-walk plan |
+| --- | --- | --- | --- |
+| Bengaluru | ₹208–₹333 | ₹225–₹350 | ₹233–₹333 |
+| Pune | ₹167–₹292 | ₹175–₹300 | ₹200–₹300 |
+| Mumbai | ₹250–₹417 | ₹275–₹450 | ₹300–₹433 |
+| Gurugram | ₹250–₹417 | ₹275–₹450 | ₹300–₹433 |
+| Ahmedabad | ₹125–₹250 | ₹150–₹275 | ₹167–₹267 |
+| Surat | ₹108–₹208 | ₹125–₹225 | ₹133–₹233 |
+
+At the lower end, customers may pay more per walk when buying 30 walks than when buying 12.
+
+That reverses the normal subscription incentive.
+
+Correct discount curve
+
+### Table 233
+
+| Plan | Recommended discount against flexible single-walk price |
+| --- | --- |
+| 8 walks | 0–3% |
+| 12 walks | 4–7% |
+| 20 walks | 8–12% |
+| 30 walks | 12–18% |
+| Quarterly commitment | Additional 3–6%, only after monthly retention is proven |
+
+The larger plan should lower the unit price because it gives the platform:
+
+Predictable demand
+
+Reserved schedules
+
+Lower customer-acquisition cost
+
+Better route planning
+
+Reduced empty partner time
+
+2. Duration must be part of the plan name
+
+A ₹200 walk means little without knowing whether it lasts:
+
+15 minutes
+
+20 minutes
+
+30 minutes
+
+40 minutes
+
+60 minutes
+
+Current advertised subscription references demonstrate the difference. Sploot lists city-level monthly rates around ₹88–₹125 for 20-minute walks and roughly ₹114–₹199 for 40-minute walks, depending on city. Its current Bengaluru page advertises ₹125 per 20-minute walk and ₹162 per 40-minute walk, while Pune and Mumbai show approximately ₹101 and ₹199 for the corresponding durations.
+
+Recommended service durations
+
+Quick Relief Walk — 20 minutes
+
+Suitable for:
+
+Toilet breaks
+
+Senior dogs
+
+Puppies where appropriate
+
+Low-energy dogs
+
+Additional evening outing
+
+Standard Routine Walk — 30 minutes
+
+Suitable for:
+
+Most ordinary subscription plans
+
+Apartment dogs
+
+Regular weekday support
+
+Moderate exercise and sniffing
+
+Active Walk — 40–45 minutes
+
+Suitable for:
+
+Higher-energy dogs
+
+Dogs needing more enrichment
+
+Customers paying for premium time
+
+Trainer-approved walking routines
+
+Extended Walk — 60 minutes
+
+Use selectively.
+
+Requires:
+
+Health and age suitability
+
+Climate-safe scheduling
+
+Higher partner payout
+
+Water and route planning
+
+Experienced walker
+
+Your city pricing table should explicitly state that it refers to a 30-minute, one-dog, solo managed walk unless otherwise shown.
+
+3. Current advertised pricing reference points
+
+These are competitor-published prices, not independent market averages.
+
+### Table 234
+
+| City | Current advertised reference |
+| --- | --- |
+| Bengaluru | Sploot advertises ₹125 for a 20-minute monthly walk and ₹162 for 40 minutes; its page also lists monthly subscriptions around ₹3,299 and ₹4,399. PawSpace lists a monthly 30-minute walking plan around ₹4,299. |
+| Pune | Sploot advertises approximately ₹101 for 20 minutes and ₹199 for 40 minutes, with monthly packages around ₹2,799 and ₹5,499. |
+| Mumbai | Sploot advertises monthly packages around ₹2,749 for 20-minute walks and ₹5,499 for 40-minute walks. Platypus advertises a once-daily monthly plan at ₹4,680 and twice-daily at ₹7,800, including tracking and backup-oriented service controls. |
+| Gurugram | Sploot advertises ₹102 for 20 minutes and ₹141 for 40 minutes, with monthly plans around ₹2,999 and ₹3,999. Another current Gurugram provider guide estimates roughly ₹3,000–₹3,500 for one daily walk. |
+| Ahmedabad | Sploot advertises approximately ₹88 for 20 minutes and ₹114 for 40 minutes, with subscriptions around ₹2,400 and ₹3,540. |
+| Surat | Transparent, like-for-like monthly plan data is limited. One national provider advertises plans starting near ₹999 per month, but the exact number of walks and service scope are not sufficiently clear for strong benchmarking. |
+
+The wider current market is highly fragmented. Recent provider guidance places ordinary independent 20–30-minute walks around ₹150–₹350 in tier-two markets and ₹250–₹500 in Bengaluru, Mumbai and Delhi NCR, with managed service providers charging for verification, replacement coverage, tracking and support.
+
+Pricing conclusion
+
+Your proposed rates are credible only when the product includes meaningful managed-service features such as:
+
+Solo or tightly controlled walks
+
+Verified walker
+
+Backup walker
+
+GPS route
+
+Start/end proof
+
+Walk report
+
+Support
+
+Society access handling
+
+Incident response
+
+Without these features, several upper-end prices will look expensive against current advertised alternatives.
+
+4. Recommended flagship plans
+
+Plan 1: Starter Walk Plan
+
+### Table 235
+
+| Field | Recommendation |
+| --- | --- |
+| Entitlement | 8 walks per month |
+| Schedule | Flexible booking |
+| Duration | 20 or 30 minutes |
+| Best for | Occasional support |
+| Advance booking | 12–24 hours |
+| Rollover | One walk maximum |
+| Preferred walker | Best-effort |
+| Discount | 0–3% |
+
+This plan is an entry product—not the main retention engine.
+
+Plan 2: Regular Walk Plan
+
+### Table 236
+
+| Field | Recommendation |
+| --- | --- |
+| Entitlement | 12 walks per month |
+| Frequency | Approximately three walks weekly |
+| Duration | 30 minutes |
+| Schedule | Fixed days or flexible credits |
+| Preferred walker | Yes |
+| Backup walker | Customer-approved |
+| Rollover | One or two walks |
+| Discount | 4–7% |
+
+This should become the easiest plan for existing occasional customers to adopt.
+
+Plan 3: Active Dog Plan
+
+### Table 237
+
+| Field | Recommendation |
+| --- | --- |
+| Entitlement | 20 walks per month |
+| Frequency | Weekday routine |
+| Duration | 30 or 40 minutes |
+| Schedule | Primarily fixed |
+| Preferred walker | Reserved |
+| Backup | Mandatory |
+| Monthly report | Included |
+| Discount | 8–12% |
+
+This should be the primary MRR product.
+
+It gives the company enough booking frequency to:
+
+Reserve partner capacity
+
+Build customer habit
+
+Improve route density
+
+Measure renewal accurately
+
+Create meaningful recurring revenue
+
+Plan 4: Daily Walk Plan
+
+### Table 238
+
+| Field | Recommendation |
+| --- | --- |
+| Entitlement | 26–30 walks |
+| Frequency | Near daily |
+| Duration | 30 or 40 minutes |
+| Schedule | Fixed |
+| Preferred walker | Reserved |
+| Named backup | Required |
+| Rollover | One or two only |
+| Discount | 12–18% |
+| Support | Priority |
+
+Avoid saying “30 walks” when the service operates only six days per week. Sell either:
+
+26 walks
+
+30 calendar-day walks
+
+Monday–Saturday package
+
+Monday–Sunday package
+
+The entitlement must match the operating calendar.
+
+5. Premium Same-Walker Plan
+
+Correct product name
+
+Use:
+
+Preferred Walker Continuity Plan
+
+Avoid an unconditional “same walker guaranteed” claim.
+
+No platform can guarantee one person indefinitely because of:
+
+Illness
+
+Leave
+
+Partner departure
+
+Emergency
+
+Customer schedule changes
+
+Capacity restrictions
+
+Recommended service promise
+
+Preferred walker fulfils 85–90%+ of eligible walks.
+
+Named backup is introduced in advance.
+
+Primary or approved backup fulfils 98%+.
+
+Customer can reject a proposed permanent replacement.
+
+Care and handling notes transfer securely.
+
+Premium features
+
+Dedicated primary walker
+
+Named secondary walker
+
+Reserved time window
+
+Meet-and-greet with both
+
+Consistent commands and route
+
+Priority rescheduling
+
+Monthly performance summary
+
+Lower last-minute reassignment rate
+
+Dedicated support escalation
+
+Premium price
+
+Charge approximately:
+
+The premium should fund:
+
+Reserved walker capacity
+
+Lower schedule flexibility
+
+Backup introduction
+
+Quality monitoring
+
+Higher walker retention benefits
+
+Do not charge a premium while continuing to assign random available walkers.
+
+6. Recommended city testing bands
+
+These are premium managed 30-minute solo-walk hypotheses, derived from your model and current advertised reference points. They are not official city averages.
+
+### Table 239
+
+| City | 12 walks | 20 walks | 30 walks |
+| --- | --- | --- | --- |
+| Bengaluru | ₹2,699–₹3,699 | ₹4,299–₹5,999 | ₹6,099–₹8,499 |
+| Pune | ₹2,199–₹3,299 | ₹3,599–₹5,199 | ₹5,099–₹7,399 |
+| Mumbai | ₹3,199–₹4,799 | ₹4,999–₹7,599 | ₹7,099–₹10,699 |
+| Gurugram | ₹2,999–₹4,599 | ₹4,699–₹7,199 | ₹6,599–₹10,199 |
+| Ahmedabad | ₹1,699–₹2,699 | ₹2,699–₹4,299 | ₹3,799–₹6,099 |
+| Surat | ₹1,499–₹2,499 | ₹2,299–₹3,999 | ₹3,299–₹5,599 |
+
+How to use the range
+
+Use the lower half for:
+
+Dense society routes
+
+Standard 30-minute dogs
+
+Flexible windows
+
+Easy handling
+
+Predictable weekday schedules
+
+Use the upper half for:
+
+Narrow time windows
+
+Large or handling-sensitive dogs
+
+Premium neighbourhoods
+
+Lower-density routes
+
+Experienced walker requirements
+
+Enhanced tracking and support
+
+Preferred-walker continuity
+
+These bands should be tested in two or three micro-markets before being published city-wide.
+
+7. Pricing formula
+
+Do not store only a city-level plan price.
+
+Use:
+
+Pricing variables
+
+Walk duration
+
+20 minutes
+
+30 minutes
+
+40–45 minutes
+
+60 minutes
+
+Pet handling
+
+Standard
+
+Strong puller
+
+Mildly reactive
+
+Senior or mobility-sensitive
+
+Specialist-only
+
+High-risk cases should not simply receive a surcharge. Some should require training or specialist assessment before subscription activation.
+
+Time window
+
+Broad morning window
+
+Exact 30-minute slot
+
+Peak early-morning slot
+
+Late-night slot
+
+Weekend or holiday
+
+Additional dog
+
+Recommended starting model:
+
+Second compatible dog: +25–50%
+
+Separate walking required: normal individual price
+
+Dogs should not be combined merely to reduce cost
+
+Society density
+
+Offer approximately 5–10% efficiency savings when:
+
+Five or more residents subscribe
+
+Walkers serve the same building or cluster
+
+Gate entry is standardised
+
+Schedule windows can be grouped
+
+8. Subscription eligibility
+
+Do not offer a high-frequency plan to every new customer immediately.
+
+Recommended eligibility flow
+
+Step 1: Pet profile completed
+
+Include:
+
+Age
+
+Breed
+
+Weight
+
+Medical issues
+
+Behaviour
+
+Bite history
+
+Leash equipment
+
+Emergency contact
+
+Society access
+
+Step 2: Trial walk
+
+The trial validates:
+
+Walker compatibility
+
+Leash behaviour
+
+Pickup and handover
+
+Route
+
+Time requirement
+
+Risk level
+
+Step 3: Initial walking history
+
+Preferred requirement:
+
+Two or three successful walks
+
+No unresolved incident
+
+Customer rating of four or above
+
+Stable pet-handling assessment
+
+Step 4: Plan recommendation
+
+Recommend based on actual use:
+
+### Table 240
+
+| Customer history | Suggested plan |
+| --- | --- |
+| 1–2 walks monthly | Continue pay-as-you-go |
+| 2 walks weekly | Starter or Regular |
+| 3 walks weekly | Regular |
+| Weekday demand | Active Dog |
+| Daily demand | Daily Walk |
+| Strong continuity preference | Preferred Walker Plan |
+
+Do not force a subscription on customers whose usage is genuinely occasional.
+
+9. End-to-end customer flow
+
+Customer completes successful trial walk
+
+↓
+
+Subscription eligibility confirmed
+
+↓
+
+Customer selects duration
+
+↓
+
+Selects 8 / 12 / 20 / 30 walks
+
+↓
+
+Chooses fixed or flexible schedule
+
+↓
+
+Selects preferred-walker option
+
+↓
+
+Platform checks cluster capacity
+
+↓
+
+Primary and backup walkers identified
+
+↓
+
+Price and renewal terms displayed
+
+↓
+
+Recurring mandate authorised
+
+↓
+
+Initial payment succeeds
+
+↓
+
+Monthly entitlements generated
+
+↓
+
+Recurring walks scheduled
+
+↓
+
+Each completed walk consumes one entitlement
+
+↓
+
+Reports and GPS proof shared
+
+↓
+
+Usage and service quality reviewed
+
+↓
+
+Renew / upgrade / downgrade / pause / cancel
+
+UPI AutoPay can support recurring mandates through UPI applications, making it an appropriate payment option for monthly plans when integrated through a compliant payment provider.
+
+10. Walker fulfilment flow
+
+Recurring schedule assigned
+
+↓
+
+Walker confirms monthly capacity
+
+↓
+
+Walker views approved pet instructions
+
+↓
+
+Arrival check-in
+
+↓
+
+Pickup OTP or verified handover
+
+↓
+
+GPS walk starts
+
+↓
+
+Walk completed
+
+↓
+
+Return confirmed
+
+↓
+
+Photo/note/report uploaded
+
+↓
+
+Entitlement marked used
+
+↓
+
+Walker earning becomes eligible
+
+Walk report
+
+Each walk should record:
+
+Walker
+
+Start and completion time
+
+Route or distance where enabled
+
+Toilet activity
+
+Energy and behaviour
+
+Water provided
+
+Interaction or trigger concerns
+
+Handover confirmation
+
+Incident flag
+
+Photo where consented
+
+A walk credit should be consumed only after valid completion evidence exists.
+
+11. Capacity control
+
+Never sell walking subscriptions before reserving fulfilment capacity.
+
+Example
+
+Assume:
+
+Five active walkers
+
+Each can reliably complete 80 subscription walks monthly
+
+15% of capacity is reserved for leave and backup
+
+The cluster can safely sell approximately 340 monthly walk entitlements.
+
+That supports roughly:
+
+17 customers on 20-walk plans, or
+
+28 customers on 12-walk plans, or
+
+A controlled mixture
+
+Do not sell 50 Active Dog Plans simply because payment demand exists.
+
+12. Cancellation, credit and rollover rules
+
+Customer cancellation
+
+### Table 241
+
+| Notice | Recommended treatment |
+| --- | --- |
+| More than 12 hours | Credit restored |
+| 4–12 hours | Limited courtesy restoration |
+| Under 4 hours | Credit normally consumed |
+| Genuine pet emergency | Human review |
+| Platform or walker failure | Credit always restored plus remedy where appropriate |
+
+Walker cancellation
+
+Find approved backup.
+
+Keep customer informed.
+
+Restore the credit if no replacement is available.
+
+Do not charge the customer.
+
+Track cancellation against walker score.
+
+Repeated failures remove subscription assignments.
+
+Rollover
+
+Recommended:
+
+Starter: one rollover credit
+
+Regular: two rollover credits
+
+Active: two rollover credits
+
+Daily: two or three rollover credits
+
+Rolled credits expire during the following cycle
+
+Platform-caused cancellations do not count toward the rollover limit
+
+Pause
+
+Allow pauses for:
+
+Pet illness
+
+Surgery
+
+Customer travel
+
+Temporary relocation
+
+Extreme weather disruption
+
+The plan dashboard should show:
+
+Pause start
+
+Reactivation date
+
+Remaining entitlements
+
+Revised billing date
+
+13. Weather and pet-safety policy
+
+A subscription does not require a walker to complete a walk when conditions are unsafe.
+
+Use replacement options such as:
+
+Short toilet break
+
+Rescheduled walk
+
+Indoor enrichment visit
+
+Credit restoration
+
+The decision should consider:
+
+Extreme heat
+
+Heavy rain or flooding
+
+Air-quality events
+
+Pet illness
+
+Local safety conditions
+
+Customer terms should explain this before subscription purchase.
+
+14. Illustrative unit economics
+
+Assume a Bengaluru 20-walk plan priced at ₹4,999.
+
+### Table 242
+
+| Item | Illustration |
+| --- | --- |
+| Customer payment | ₹4,999 |
+| Walker payout: ₹160 × 20 | ₹3,200 |
+| Platform gross revenue | ₹1,799 |
+| Payment processing | ₹100 |
+| Scheduling and support | ₹250 |
+| Backup capacity reserve | ₹125 |
+| Refund/make-good reserve | ₹100 |
+| Tracking/report infrastructure | ₹75 |
+| Illustrative contribution | ₹1,149 |
+
+This contribution is before central salaries, technology overhead and management.
+
+Economics improve when
+
+Several customers live in one society.
+
+Time windows are predictable.
+
+Walkers serve compact routes.
+
+Customer acquisition comes from existing users.
+
+Failed walks remain low.
+
+Customers renew.
+
+Economics deteriorate when
+
+Walkers travel between distant neighbourhoods.
+
+Exact slots are promised without premiums.
+
+Customers reschedule frequently.
+
+Large discounts are used.
+
+Same-walker promises require expensive emergency replacements.
+
+Support manually coordinates every walk.
+
+15. Subscription customer dashboard
+
+Show prominently:
+
+Current plan
+
+Active Dog Plan — 20 walks
+
+12 walks remaining
+
+Eight walks completed
+
+Preferred walker: assigned
+
+Backup walker: introduced
+
+Next walk: Wednesday, 7:30 AM
+
+Billing date: August 15
+
+Monthly price: ₹4,999
+
+Controls
+
+Schedule walks
+
+Reschedule
+
+View reports
+
+Add an extra walk
+
+Change preferred time
+
+Upgrade
+
+Downgrade
+
+Pause
+
+Cancel renewal
+
+Report a problem
+
+Cancellation must not be hidden behind a telephone call or prolonged support flow. Indian dark-pattern guidance specifically identifies making paid-subscription cancellation impossible, hidden or unnecessarily complex as a subscription trap.
+
+16. Privacy and access control
+
+Walking subscriptions involve sensitive operational information:
+
+Home address
+
+Access instructions
+
+Recurring absence patterns
+
+Pet behaviour
+
+Customer schedule
+
+Phone number
+
+Gate information
+
+Live location
+
+Provide the assigned walker only the information required to fulfil the walk.
+
+Access policy
+
+### Table 243
+
+| Role | Access |
+| --- | --- |
+| Primary walker | Assigned schedule, pet instructions and service address |
+| Backup walker | Details only after assignment or approved introduction |
+| Support | Booking and fulfilment data |
+| Finance | Billing and refunds |
+| Society | Aggregate activity only |
+| Marketing | No access instructions, routes or health details |
+
+The Digital Personal Data Protection Rules, 2025 were notified with phased commencement. Subscription architecture should nevertheless use clear purpose notices, restricted access, correction mechanisms and appropriate security controls from the start.
+
+17. Flagship-plan KPIs
+
+Acquisition
+
+Eligible customers shown plans
+
+Plan-page conversion
+
+Trial-to-subscription conversion
+
+Conversion after three one-time walks
+
+Customer-acquisition cost
+
+Fulfilment
+
+Scheduled walks
+
+Completed walks
+
+On-time walks
+
+Preferred-walker fulfilment
+
+Backup usage
+
+Walker cancellation
+
+Walk-report completion
+
+Subscription health
+
+Active subscribers
+
+New MRR
+
+First renewal
+
+Upgrade rate
+
+Downgrade rate
+
+Pause rate
+
+Voluntary churn
+
+Failed-payment churn
+
+Customer value
+
+Average rating
+
+Complaint rate
+
+Support contacts
+
+Grooming cross-sell
+
+Training cross-sell
+
+Revenue per subscriber
+
+Contribution per subscriber
+
+18. Pilot success targets
+
+Run the initial walking-subscription pilot in two or three compact clusters.
+
+### Table 244
+
+| Requirement | Target |
+| --- | --- |
+| Active paying subscribers | 50–100 |
+| Completed subscription walks | 750+ |
+| Walk completion | 95%+ |
+| Platform-caused missed walks | Below 2% |
+| Preferred-walker fulfilment | 85%+ |
+| Primary-or-backup fulfilment | 98%+ |
+| On-time arrival | 95%+ |
+| Report completion | 95%+ |
+| First renewal | 60–80% |
+| Average rating | 4.6+ |
+| Complaint/refund rate | Below 5% |
+| Walker cancellation | Below 5% |
+| Serious preventable incidents | Zero |
+| Positive contribution/subscriber | Yes |
+| Subscription conversion from eligible users | 20–35% |
+
+Final recommendation
+
+Approve
+
+Monthly walking as the flagship subscription
+
+8-, 12-, 20- and 30-walk tiers
+
+City-specific pricing
+
+Preferred-walker premium
+
+Fixed and flexible schedules
+
+Limited rollover
+
+Easy pause and cancellation
+
+Society-density discounts
+
+Modify
+
+Add walk duration to every plan.
+
+Ensure per-walk cost falls as commitment increases.
+
+Rename “Same-Walker Plan” to “Preferred Walker Continuity Plan.”
+
+Sell subscriptions by micro-market capacity—not entire-city demand.
+
+Separate 20-minute budget plans from 30- or 40-minute premium plans.
+
+Reject
+
+Unlimited walking
+
+Guaranteed permanent same walker
+
+Hidden auto-renewal
+
+Large annual prepayments during the pilot
+
+City-wide fixed pricing
+
+Selling more plans than partner capacity supports
+
+Consuming credits without valid completion proof
+
+Final flagship product
+
+A predictable monthly walking routine with a preferred verified walker, approved backup coverage, clear reports, transparent credits and city-specific pricing.
+
+Pet-Parent Walking Subscriptions: GO—with duration-based pricing and capacity-controlled sales.
+
+A monthly city pricing watch would keep the six launch bands aligned with competitor and partner-cost changes; ask me to schedule it.
+
+Phase 9.3: Pet-Parent Membership 🐾💳
+
+End-to-End Benefits, Pricing, Billing and Operating Model
+
+Executive verdict
+
+Approve a pet-parent membership, beginning with only two paid tiers: Plus and Premium.
+
+The proposed prices—₹199 and ₹499 per month—are reasonable pilot prices, but several benefits need tighter definitions.
+
+The correct structure is:
+
+### Table 245
+
+| Tier | Role |
+| --- | --- |
+| Free | Functional marketplace access |
+| Plus | Convenience, moderate savings and faster support |
+| Premium | Higher flexibility, concierge matching and urgent-care coordination |
+| Society plan | Separate B2B product, not a consumer membership tier |
+
+The most important principle is:
+
+A membership sells privileges and convenience. A service plan sells actual service entitlements.
+
+A ₹499 Premium membership should not include “20 walks” or “one grooming session.” Those belong in walking plans or care bundles.
+
+1. Membership versus service plan
+
+Service plan
+
+A service plan creates a future fulfilment obligation.
+
+Example:
+
+12 dog walks per month
+
+The customer owns 12 service entitlements. The platform must provide, restore, reschedule or refund them according to the plan terms.
+
+Membership
+
+A membership provides benefits around separately purchased services.
+
+Example:
+
+Early booking access, reduced fees and flexible cancellation.
+
+The customer still pays separately for grooming, sitting, training or walking unless a clearly defined credit is included.
+
+Why the distinction matters
+
+Mixing the two models creates confusion around:
+
+What the monthly fee actually buys
+
+Whether unused services expire
+
+Whether refunds are due
+
+How partners are paid
+
+Whether a benefit is guaranteed
+
+How subscription revenue is calculated
+
+Use separate products:
+
+Monthly Walking Plan
+
+= service entitlements
+
+Pet Parent Plus
+
+= booking privileges and benefits
+
+Monthly Care Pack
+
+= services plus defined credits
+
+2. Problems hidden in the proposed benefits
+
+“Priority booking” is too vague
+
+It could mean:
+
+Early access to slots
+
+Higher waitlist position
+
+Faster partner assignment
+
+Guaranteed availability
+
+Displacement of another customer
+
+Only the first three are appropriate.
+
+Correct definition
+
+Members receive earlier access to selected peak slots and higher waitlist priority after safety, eligibility, geography and partner availability checks.
+
+Never promise:
+
+Guaranteed sitter or guaranteed booking.
+
+“Five percent off add-ons” needs a cap
+
+Without a cap, one high-value booking can consume more than the monthly membership fee.
+
+Example:
+
+That would exceed the entire Plus membership price.
+
+Recommended rule
+
+Plus
+
+5% off eligible non-clinical add-ons
+
+Maximum discount: ₹150 per billing cycle
+
+Premium
+
+5% off eligible non-clinical add-ons
+
+Maximum discount: ₹250 per billing cycle
+
+Recommended exclusions
+
+Veterinary professional fees
+
+Medicines and clinical products
+
+Taxes
+
+Partner pass-through travel costs
+
+Pet-taxi emergency or after-hours fees
+
+Society-event tickets funded by third parties
+
+Other memberships
+
+Already discounted packages
+
+A membership may waive or reduce the platform’s coordination fee for veterinary bookings, but it should not automatically discount the veterinarian’s professional fee. Veterinary services remain governed by registered practitioners and VCI professional-conduct requirements.
+
+“Emergency support priority” is risky language
+
+Actual emergency information should not be hidden behind a paid tier.
+
+Every customer should have access to:
+
+Emergency warning messages
+
+Verified clinic directory
+
+Tap-to-call
+
+Basic physical-care routing
+
+Clear statement that the platform is not a hospital
+
+Premium may receive:
+
+Faster human administrative callback
+
+Help sending the pet’s records
+
+Clinic availability checking
+
+Pet-taxi coordination where available
+
+Follow-up support
+
+Premium must not receive higher clinical priority because they paid more.
+
+Correct wording
+
+Priority emergency coordination
+
+Not:
+
+Priority emergency treatment
+
+Clinical assessment and treatment must remain under a registered veterinary practitioner.
+
+“Priority sitter” needs qualification
+
+Membership must never override:
+
+Partner verification
+
+Pet compatibility
+
+Bite-risk restrictions
+
+Geography
+
+Availability
+
+Partner workload
+
+Required service permissions
+
+Correct wording
+
+Priority caregiver matching
+
+This can include:
+
+Early access to proven caregivers
+
+Preferred-caregiver rebooking
+
+Higher waitlist position
+
+Concierge matching
+
+Faster replacement search
+
+It must not mean that a Premium member receives an unsuitable sitter ahead of a safer match.
+
+“Flexible cancellation” must be measurable
+
+Unlimited flexible cancellation would create:
+
+Lost partner earnings
+
+Unused reserved capacity
+
+Schedule instability
+
+Membership abuse
+
+Better rule
+
+Plus
+
+One free reschedule each month when requested before the late-cancellation window
+
+Premium
+
+Two flexible reschedules monthly
+
+One late-cancellation fee waiver per month, capped at ₹200
+
+Not applicable after the partner has arrived
+
+Not applicable to completed work or non-refundable third-party costs
+
+Platform-caused cancellation should always be corrected for every customer, regardless of membership.
+
+3. Recommended final tiers
+
+Free — ₹0
+
+Free must remain a complete, usable marketplace experience.
+
+Benefits
+
+Normal service discovery
+
+Standard booking access
+
+Verified partner profiles
+
+Pet profiles
+
+Booking reports
+
+Standard customer support
+
+Reviews and complaints
+
+Emergency clinic information
+
+Normal cancellation policy
+
+Do not intentionally degrade the Free tier to force upgrades.
+
+All customers should retain:
+
+Safe partners
+
+Transparent prices
+
+Grievance access
+
+Refund eligibility
+
+Essential emergency routing
+
+India’s e-commerce rules require an adequate grievance-redressal mechanism; complaint resolution cannot be restricted to paid members.
+
+Plus — ₹199/month
+
+Recommended benefits
+
+### Table 246
+
+| Benefit | Definition |
+| --- | --- |
+| Early booking access | Selected peak slots released 12–24 hours earlier |
+| Waitlist priority | After safety and availability checks |
+| Add-on discount | 5%, capped at ₹150/month |
+| Faster support | Defined first-response SLA during support hours |
+| Flexible rescheduling | One fee-free eligible reschedule monthly |
+| Same-partner rebooking | Faster one-tap rebooking |
+| Care reminders | Grooming, vaccination and service reminders |
+| Event access | Early society-event registration |
+
+Recommended support SLA
+
+For example:
+
+Normal requests: first response within four business hours
+
+Urgent operational issue: first response within one business hour
+
+Do not use “faster support” unless the company can publish and consistently meet a real SLA.
+
+Premium — ₹499/month
+
+Recommended benefits
+
+Includes all Plus benefits, plus:
+
+### Table 247
+
+| Benefit | Definition |
+| --- | --- |
+| Priority caregiver matching | Concierge matching with preferred partners |
+| Higher discount cap | 5% up to ₹250/month |
+| Flexible rescheduling | Two eligible reschedules monthly |
+| Cancellation waiver | One late fee waiver, capped at ₹200/month |
+| Urgent coordination | Faster human callback during published hours |
+| Vet coordination support | Record sharing and appointment routing |
+| Priority replacement | Faster search after partner cancellation |
+| Multi-pet profile support | Shared dashboard and reminders |
+| Premium events | Early or reduced-fee access to selected events |
+
+Important limitation
+
+The membership may prioritise the administrative response, but it cannot guarantee:
+
+A specific sitter
+
+An emergency veterinarian
+
+A clinic appointment
+
+Treatment
+
+A diagnosis
+
+A pet taxi
+
+A particular response time from an external clinic
+
+4. Tier structure to avoid
+
+Do not launch all of these simultaneously:
+
+Basic
+
+Bronze
+
+Silver
+
+Gold
+
+Premium
+
+Family
+
+Elite
+
+Society Premium
+
+Too many tiers cause:
+
+Choice paralysis
+
+Weak analytics
+
+Unclear differences
+
+Support confusion
+
+Difficult refund rules
+
+Low subscriber counts per tier
+
+Recommended launch architecture
+
+Free
+
+Plus — ₹199
+
+Premium — ₹499
+
+After at least three renewal cycles, consider:
+
+Family membership
+
+only when multi-pet households show meaningful demand.
+
+5. Society Premium should be a separate product
+
+A society plan is purchased by:
+
+RWA
+
+Facility manager
+
+Housing developer
+
+Society management company
+
+It is not simply a higher-priced consumer membership.
+
+Society plan inclusions
+
+Society-specific landing page
+
+Approved local partner roster
+
+Gate protocol
+
+Resident support contact
+
+Early event access
+
+Resident offers
+
+One periodic event or workshop
+
+Emergency clinic directory
+
+Monthly aggregate report
+
+Individual residents may receive benefits because their society subscribes, but the society contract and resident membership should remain separate.
+
+6. Membership priority engine
+
+Priority should be applied only after mandatory eligibility rules.
+
+Correct matching sequence
+
+1. Partner active and documents current
+
+2. Correct service permission
+
+3. Pet safety and behavioural compatibility
+
+4. Service-area eligibility
+
+5. Partner availability
+
+6. Existing customer–partner relationship
+
+7. Membership priority
+
+8. Rating and reliability
+
+9. Price
+
+Membership must never move above safety or competency.
+
+Example
+
+A Premium customer requests a trainer for a dog with a serious bite history.
+
+The platform must not assign the highest-rated general puppy trainer merely because the customer is Premium.
+
+It must route the case to:
+
+An appropriately permitted behaviour specialist
+
+Veterinary review where required
+
+A safe assessment workflow
+
+7. Urgent and emergency coordination flow
+
+Customer selects urgent help
+
+↓
+
+Red-flag warning displayed
+
+↓
+
+Physical emergency clinic options shown to everyone
+
+↓
+
+Premium member requests human coordination
+
+↓
+
+Coordinator verifies clinic availability
+
+↓
+
+Relevant pet record shared with consent
+
+↓
+
+Transport assistance checked
+
+↓
+
+Customer contacts or travels to clinic
+
+↓
+
+Follow-up support provided
+
+Available to all customers
+
+Emergency warning
+
+Clinic directory
+
+Tap-to-call
+
+Directions
+
+“Do not wait for chat” instruction
+
+Basic record access
+
+Premium coordination
+
+Human callback
+
+Clinic call assistance
+
+Records preparation
+
+Transport coordination
+
+Post-visit follow-up
+
+The coordinator must not provide a diagnosis or medication instruction.
+
+8. Membership checkout flow
+
+Customer opens Membership
+
+↓
+
+Compares Free, Plus and Premium
+
+↓
+
+Views exact benefits, caps and exclusions
+
+↓
+
+Sees estimated value based on recent usage
+
+↓
+
+Selects plan
+
+↓
+
+Sees billing date and auto-renewal
+
+↓
+
+Authorises recurring payment
+
+↓
+
+Initial payment succeeds
+
+↓
+
+Membership benefits activate
+
+↓
+
+Benefit usage is tracked
+
+↓
+
+Customer can pause, downgrade or cancel
+
+UPI AutoPay supports recurring e-mandates and provides customer-facing modify, revoke, pause and unpause functions through supported UPI applications.
+
+9. Membership value calculator
+
+Before checkout, show a transparent estimate.
+
+Example
+
+Your estimated Plus value
+
+Based on last month:
+
+### Table 248
+
+| Benefit | Estimated value |
+| --- | --- |
+| Eligible add-on discount | ₹90 |
+| Booking-fee saving | ₹50 |
+| Flexible rescheduling | ₹75 |
+| Event discount | ₹50 |
+| Estimated value | ₹265 |
+| Membership fee | ₹199 |
+
+Avoid guaranteed statements such as:
+
+You will save ₹500 every month.
+
+Use:
+
+Based on your recent eligible bookings, your estimated monthly benefit is ₹265.
+
+10. Unit economics
+
+A membership must produce incremental customer contribution—not just fee revenue.
+
+Plus example
+
+### Table 249
+
+| Item | Illustrative amount |
+| --- | --- |
+| Membership fee | ₹199 |
+| Payment cost | ₹4 |
+| Expected discount redemption | ₹65 |
+| Incremental support cost | ₹25 |
+| Reschedule reserve | ₹20 |
+| Approximate direct contribution | ₹85 |
+
+Premium example
+
+### Table 250
+
+| Item | Illustrative amount |
+| --- | --- |
+| Membership fee | ₹499 |
+| Payment cost | ₹10 |
+| Expected discount redemption | ₹120 |
+| Support/concierge cost | ₹60 |
+| Cancellation reserve | ₹75 |
+| Urgent-coordination reserve | ₹50 |
+| Approximate direct contribution | ₹184 |
+
+These are planning illustrations.
+
+The real economic formula is:
+
+The main question
+
+Do not ask only:
+
+Is the ₹499 fee profitable?
+
+Also ask:
+
+Do Premium members book more often, retain longer and generate more total contribution than comparable non-members?
+
+11. Benefit cost controls
+
+Every benefit needs:
+
+Eligibility rules
+
+Monthly cap
+
+Applicable categories
+
+Start and end date
+
+Usage ledger
+
+Stacking policy
+
+Fraud controls
+
+Discount stacking
+
+Recommended rule:
+
+Membership discount cannot stack with another percentage discount.
+
+Customer receives the higher eligible offer.
+
+Fixed service credits may stack only where explicitly allowed.
+
+Vet professional fees remain excluded.
+
+Refunds restore benefits only where the original payment is fully reversed.
+
+Abuse controls
+
+Monitor:
+
+Multiple accounts sharing one pet
+
+Repeated late-cancellation waivers
+
+Membership activation immediately before one expensive booking
+
+Cancellation immediately after benefit redemption
+
+Fake emergency coordination requests
+
+Shared membership across unrelated households
+
+Do not punish legitimate multi-pet families; create a later Family tier for that need.
+
+12. Renewal, pause and cancellation
+
+Before renewal
+
+Show:
+
+Renewal date
+
+Renewal amount
+
+Current tier
+
+Benefits used
+
+Benefits remaining
+
+Any price change
+
+Pause and cancel controls
+
+CCPA guidance identifies hidden or unnecessarily difficult subscription cancellation as a subscription trap, and its 2025 advisory directed e-commerce platforms to audit dark-pattern practices.
+
+Cancellation options
+
+Cancel renewal but retain benefits until period end
+
+Downgrade to Free
+
+Switch Plus to Premium
+
+Switch Premium to Plus
+
+Pause for one billing cycle where supported
+
+Refund recommendation
+
+Membership unused
+
+Allow a short cooling-off period—such as 24–48 hours—if no benefit was used.
+
+Membership benefit used
+
+Generally:
+
+Cancel future renewal
+
+Retain the current membership until the paid period ends
+
+No full refund after material benefit redemption
+
+Handle exceptional mis-selling or platform failure separately
+
+Terms must be shown before purchase.
+
+13. Failed-payment flow
+
+Renewal payment fails
+
+↓
+
+Customer notified
+
+↓
+
+Short grace period begins
+
+↓
+
+Payment method can be changed
+
+↓
+
+Provider retries according to mandate rules
+
+↓
+
+Payment succeeds → membership continues
+
+Payment fails → account returns to Free
+
+Do not:
+
+Create negative membership balances
+
+Keep charging outside the authorised mandate
+
+Remove already-paid benefits before the current term expires
+
+Make users contact support merely to update payment details
+
+14. Customer-support design
+
+Free
+
+Standard queue
+
+Safety and incident escalation
+
+Grievance access
+
+Standard published response targets
+
+Plus
+
+Faster operational queue
+
+Defined business-hour SLA
+
+Priority rescheduling support
+
+Premium
+
+Concierge queue
+
+Urgent coordination callback
+
+Priority replacement support
+
+Multi-service coordination
+
+Universal safety rule
+
+Serious welfare, security, privacy or medical-routing issues should be prioritised based on severity—not membership tier.
+
+A Free customer reporting a lost pet must take priority over a Premium customer requesting a normal reschedule.
+
+15. Privacy and data use
+
+Membership personalisation may use:
+
+Previous bookings
+
+Add-on spending
+
+Pet profiles
+
+Society
+
+Customer preferences
+
+Support history
+
+Reminder preferences
+
+The final DPDP Rules, 2025 have phased commencement. They establish a framework involving clear notices, defined processing purposes, access controls and grievance mechanisms, so membership marketing and operational processing should be separated from the start.
+
+Separate purposes
+
+Membership fulfilment
+
+Recurring payment
+
+Benefit personalisation
+
+Health reminders
+
+Marketing
+
+Society reporting
+
+Do not make promotional consent mandatory for membership activation.
+
+16. Recommended product architecture
+
+Core tables
+
+membership_plans
+
+- id
+
+- name
+
+- monthly_price_minor
+
+- currency
+
+- status
+
+- created_at
+
+membership_plan_versions
+
+- id
+
+- membership_plan_id
+
+- version
+
+- benefits_snapshot
+
+- terms_snapshot
+
+- effective_from
+
+- effective_until
+
+customer_memberships
+
+- id
+
+- customer_id
+
+- plan_version_id
+
+- status
+
+- current_period_start
+
+- current_period_end
+
+- cancel_at_period_end
+
+- paused_at
+
+- payment_mandate_id
+
+membership_benefits
+
+- id
+
+- plan_version_id
+
+- benefit_type
+
+- limit_type
+
+- monthly_limit
+
+- monetary_cap_minor
+
+- eligibility_rules
+
+membership_benefit_usage
+
+- id
+
+- customer_membership_id
+
+- benefit_id
+
+- booking_id
+
+- amount_minor
+
+- used_at
+
+membership_renewal_attempts
+
+- id
+
+- customer_membership_id
+
+- payment_id
+
+- attempt_number
+
+- status
+
+- attempted_at
+
+Membership states
+
+pending_payment
+
+active
+
+grace_period
+
+paused
+
+cancel_at_period_end
+
+cancelled
+
+expired
+
+payment_failed
+
+Do not implement this with only:
+
+users.is_premium = true
+
+That structure cannot support renewals, plan versions, benefit limits, downgrades or historical disputes.
+
+17. Recommended APIs
+
+GET /v1/membership-plans
+
+POST /v1/memberships/checkout
+
+GET /v1/me/membership
+
+GET /v1/me/membership/benefits
+
+GET /v1/me/membership/usage
+
+POST /v1/me/membership/pause
+
+POST /v1/me/membership/resume
+
+POST /v1/me/membership/change-plan
+
+POST /v1/me/membership/cancel-renewal
+
+POST /v1/me/membership/reactivate
+
+Internal APIs:
+
+POST /v1/internal/membership-benefits/apply
+
+POST /v1/internal/membership-benefits/reverse
+
+POST /v1/webhooks/payments/membership-renewal
+
+Benefit application should be calculated by the server, not trusted from the customer application.
+
+18. Sixty-day launch plan
+
+Days 1–10: build and test
+
+Finalise Plus and Premium
+
+Define caps and exclusions
+
+Build benefit ledger
+
+Integrate recurring payment
+
+Build pause and cancellation
+
+Define support SLAs
+
+Test failed renewal
+
+Test upgrades and downgrades
+
+Days 11–25: Plus pilot
+
+Launch to:
+
+30–50 existing active customers
+
+Customers with at least two completed bookings
+
+One or two operational clusters
+
+Measure:
+
+Conversion
+
+Discount use
+
+Support demand
+
+Booking-frequency change
+
+Complaints
+
+Days 26–40: Premium pilot
+
+Launch to:
+
+High-frequency customers
+
+Multi-service customers
+
+Customers requesting continuity or concierge support
+
+Target:
+
+20–40 Premium customers
+
+Actual usage of priority matching
+
+Cancellation-waiver cost
+
+Urgent-coordination demand
+
+Days 41–60: renewal and optimisation
+
+Measure first renewals
+
+Remove low-value benefits
+
+Cap expensive benefits
+
+Improve unclear wording
+
+Analyse cancellations
+
+Compare member and non-member contribution
+
+Decide whether to scale
+
+19. Success targets
+
+### Table 251
+
+| Metric | 60-day target |
+| --- | --- |
+| Paid members | 50–100 |
+| Plus/Premium mix | Approximately 60–75% Plus |
+| Eligible-customer conversion | 5–15% initial hypothesis |
+| First renewal | 60–75%+ |
+| Payment success | 90–95%+ |
+| Benefit utilisation | 30–60% |
+| Membership complaint rate | Below 3–5% |
+| Support SLA achieved | 90%+ |
+| Member booking frequency uplift | 15–25% |
+| Member retention uplift | Positive |
+| Contribution per member | Positive |
+| Core-service rating | 4.6+ |
+| Hidden-fee complaints | Zero |
+| Cancellation-trap complaints | Zero |
+| Serious incident prioritisation failures | Zero |
+
+Scale gate
+
+Scale only when:
+
+for both Plus and Premium independently.
+
+Final decisions
+
+### Table 252
+
+| Proposal | Decision |
+| --- | --- |
+| Keep a Free tier | Approve |
+| Plus at ₹199/month | Approve as pilot |
+| Premium at ₹499/month | Approve as pilot |
+| Priority booking | Approve with precise limits |
+| 5% add-on discount | Approve with monthly caps and exclusions |
+| Faster support | Approve with published SLA |
+| Priority sitter | Rename priority caregiver matching |
+| Flexible cancellation | Approve with waiver limits |
+| Emergency support priority | Rename priority emergency coordination |
+| Family at ₹999 | Defer |
+| Society Premium | Move to separate B2B society plan |
+
+Recommended final membership
+
+Plus — ₹199/month
+
+Early access to selected slots
+
+Priority waitlist
+
+5% eligible add-on discount up to ₹150
+
+Faster support
+
+One flexible reschedule
+
+Early society-event access
+
+Premium — ₹499/month
+
+All Plus benefits
+
+5% eligible add-on discount up to ₹250
+
+Priority caregiver matching
+
+Two flexible reschedules
+
+One capped cancellation waiver
+
+Priority urgent-care coordination
+
+Faster replacement assistance
+
+Multi-pet dashboard support
+
+Final win condition
+
+Members remain subscribed because the platform is easier, faster and more dependable—not because essential safety, support or cancellation options were removed from Free users.
+
+Pet-Parent Membership: GO—with two paid tiers, capped benefits and non-clinical emergency coordination.
+
+A quarterly membership-compliance review would help keep AutoPay, cancellation and consumer-protection workflows current.
+
+Phase 9.4: Sitter Pro Membership
+
+End-to-End Partner Subscription, Fair-Ranking and Revenue Model 🐾🧑‍💼
+
+Executive verdict
+
+Approve an optional Sitter Pro plan—but reject the proposed pay-to-verify and pay-for-leads structure.
+
+The correct sequence is:
+
+Free onboarding
+
+↓
+
+Verification and trial
+
+↓
+
+Real completed bookings
+
+↓
+
+Consistent sitter earnings
+
+↓
+
+Optional paid productivity tools
+
+↓
+
+Measured sitter ROI
+
+The sitter must never have to pay for:
+
+Basic access to work
+
+Identity verification
+
+Safety assessment
+
+Receiving ordinary eligible bookings
+
+Customer reviews
+
+Complaint resolution
+
+Incident reporting
+
+Earnings already owed
+
+Maintaining an active profile
+
+The strongest positioning is:
+
+A free marketplace for earning, with an optional paid toolkit for established sitters who want better business operations.
+
+1. Why this product must be handled carefully
+
+A pet-care platform has two very different monetisation options:
+
+Healthy monetisation
+
+The sitter pays for tools that help them operate more efficiently:
+
+Calendar management
+
+Earnings analytics
+
+Repeat-customer CRM
+
+Faster eligible payouts
+
+Route planning
+
+Invoicing
+
+Profile customisation
+
+Advanced education
+
+Unhealthy monetisation
+
+The sitter pays because the platform restricts their ability to work:
+
+Pay to appear in search
+
+Pay for verification
+
+Pay to retain reviews
+
+Pay to access ordinary leads
+
+Pay for a quality badge
+
+Pay before the platform has generated earnings
+
+The second model creates adverse selection. High-quality professionals may leave, while desperate applicants may pay despite having little chance of recovering the fee.
+
+2. Important 2026 gig-worker compliance update
+
+This is no longer only a commercial-design issue.
+
+The Code on Social Security now recognises gig and platform workers. The Seventh Schedule includes service marketplaces, professional-service platforms, healthcare platforms and broadly other goods-and-services platforms within its aggregator classifications. A pet-care marketplace may therefore fall within scope, although the exact classification should be confirmed by Indian labour counsel.
+
+The Social Security Rules, 2026 require aggregators to electronically share details of engaged gig and platform workers with the designated government portal. A June 2026 Ministry of Labour direction instructed online aggregators to complete eShram onboarding and API integration by 21 June 2026. Since that deadline has passed, an in-scope pet-care platform should treat this as an immediate compliance workstream.
+
+The Code also provides for an aggregator contribution of between 1% and 2% of annual turnover, capped at 5% of amounts paid or payable to gig and platform workers; the applicable rate and commencement depend on government notification. Build a compliance reserve, but do not assume a specific payable rate without checking the latest notification.
+
+Practical implication
+
+A Sitter Pro subscription does not replace or reduce the platform’s obligations concerning:
+
+Worker registration
+
+Required government reporting
+
+Social-security contributions when applicable
+
+Accurate partner earnings records
+
+Data security
+
+Fair payment
+
+Grievance handling
+
+Charging a sitter a subscription also does not by itself determine whether that person is an independent gig worker or employee. The actual operating relationship still requires legal review.
+
+3. What is wrong with the proposed tiers
+
+“Verified Pro — ₹299”
+
+This name should be rejected.
+
+Verification must mean:
+
+Identity checked
+
+Documents checked
+
+Background process completed
+
+Skills assessed
+
+Trial passed
+
+It cannot mean:
+
+The sitter paid ₹299.
+
+Otherwise customers may believe that a safety or competency badge was earned when it was purchased.
+
+Correct name
+
+Sitter Pro Tools — ₹299/month
+
+“Training certificate”
+
+A basic platform course should produce:
+
+Course-completion badge
+
+Learning record
+
+Assessment result
+
+Skill-module badge
+
+Do not describe it as a nationally recognised qualification unless it is issued through an appropriately recognised awarding and assessment framework.
+
+NCVET-recognised Awarding Bodies are authorised to award certificates for approved, NSQF-aligned qualifications following training and assessment. Without that framework, use wording such as “Platform Course Completed”, not “government certified” or “nationally certified.”
+
+“More leads”
+
+Reject this as a guaranteed benefit.
+
+The platform can offer:
+
+Better profile tools
+
+Faster response controls
+
+Availability optimisation
+
+Eligibility for selected campaigns
+
+Sponsored advertising opportunities
+
+It cannot truthfully promise a fixed number of leads unless it has a defined contractual lead-delivery model.
+
+Use:
+
+Tools designed to improve profile discovery and booking readiness.
+
+Not:
+
+Guaranteed more leads.
+
+“Premium badge”
+
+A quality badge must be earned from performance.
+
+Examples:
+
+Identity Verified
+
+Skills Assessed
+
+100 Services Completed
+
+4.8+ Customer Rating
+
+Society Approved
+
+Cat-Care Qualified
+
+A paid subscriber could have a small Pro Tools account indicator in their dashboard, but this should not be displayed to customers as evidence of safety or quality.
+
+“Featured listing”
+
+Paid placement must be separated from organic ranking.
+
+Indian dark-pattern guidance identifies disguised advertising as advertising presented as ordinary or neutral content. ASCI similarly requires commercial content to be disclosed upfront using clear labels such as “Ad,” “Advertisement” or “Sponsored.”
+
+Use:
+
+Sponsored Partner
+
+Do not use:
+
+Top sitter
+
+Best sitter
+
+Recommended for you
+
+Premium expert
+
+when the placement was purchased.
+
+4. Recommended membership architecture
+
+Tier 1: Free Sitter — ₹0
+
+The Free tier must be capable of generating real earnings.
+
+Includes
+
+Partner application
+
+Identity and document verification
+
+Basic public profile
+
+Service permissions
+
+Availability calendar
+
+Ordinary eligible booking requests
+
+Accept/reject controls
+
+Customer reviews
+
+Service reports
+
+Incident reporting
+
+Standard partner support
+
+Standard payout schedule
+
+Earnings statements
+
+Performance score
+
+Basic training library
+
+Non-negotiable rule
+
+Free sitters must continue to appear in organic matching when they are the safest and most suitable option.
+
+Tier 2: Sitter Pro Tools — ₹299/month
+
+Launch only after the sitter has already earned through the platform.
+
+Recommended eligibility
+
+P5 Active Partner
+
+At least five completed bookings
+
+At least 30 active days
+
+Rating of approximately 4.5+
+
+Documents current
+
+No unresolved serious incident
+
+No active quality restriction
+
+Recommended benefits
+
+### Table 253
+
+| Benefit | Definition |
+| --- | --- |
+| Advanced earnings dashboard | Revenue, fees, payouts and trends |
+| Availability automation | Recurring slots and block scheduling |
+| Repeat-customer tools | Rebooking links and customer-care notes |
+| Profile builder | Better portfolio and service presentation |
+| Advanced learning modules | Care, safety and customer-service courses |
+| Course-completion badges | Clearly identified as platform learning |
+| Eligible faster payout | Subject to completed booking and settlement rules |
+| Route insights | Demand and society-cluster information |
+| Priority partner support | Defined operational-response SLA |
+| Tax and statement tools | Monthly downloadable statements |
+
+Optional economic benefit
+
+You may offer a small reduction in commission on repeat bookings, for example:
+
+Standard commission on first bookings
+
+Slightly lower commission on qualifying repeat bookings
+
+Monthly saving capped to protect economics
+
+This is easier for the sitter to value than vague “higher visibility.”
+
+Tier 3: Sitter Business Pro — ₹799–₹999/month
+
+Defer this tier until meaningful high-volume sitters exist.
+
+Recommended eligibility
+
+15–20+ monthly bookings
+
+At least 90 active days
+
+High reliability
+
+Strong customer retention
+
+Positive customer ratings
+
+No safety restrictions
+
+Suitable benefits
+
+Advanced repeat-customer CRM
+
+Route and time-slot optimisation
+
+Priority society-route applications
+
+Faster eligible payouts
+
+Reduced commission on defined repeat bookings
+
+Business invoice tools
+
+Revenue forecasting
+
+Enhanced profile media
+
+Priority operational support
+
+Multiple service packages
+
+Do not include
+
+Guaranteed bookings
+
+Guaranteed earnings
+
+Automatic Premium quality grade
+
+Automatic top placement
+
+Access to high-risk pets
+
+Removal of complaints
+
+Protection from performance enforcement
+
+5. Trainer and Groomer Partner Pro
+
+The proposed ₹999–₹2,999/month range can work later, but it should be positioned as B2B software rather than a fee for leads.
+
+Best customers
+
+Grooming businesses with several staff
+
+Training academies
+
+High-volume independent trainers
+
+Boarding operators
+
+Multi-location pet-care businesses
+
+Recommended plans
+
+Partner Pro — ₹999/month
+
+Service-package management
+
+Availability calendar
+
+Earnings and payout reports
+
+Customer rebooking
+
+Portfolio builder
+
+Booking analytics
+
+One staff/provider account
+
+Standard business support
+
+Partner Business — ₹1,999–₹2,999/month
+
+Multiple staff accounts
+
+Staff-specific calendars
+
+Branch or service-area management
+
+Customer CRM
+
+Package and programme tracking
+
+Society-event applications
+
+Advanced financial statements
+
+Team-performance analytics
+
+Priority technical support
+
+API or export access where justified
+
+Keep advertising separate
+
+A partner may optionally purchase:
+
+Sponsored search placement
+
+Society campaign sponsorship
+
+Event promotion
+
+Category-page advertising
+
+Those purchases should be separately priced, clearly labelled and subject to quality eligibility.
+
+6. Organic ranking versus paid exposure
+
+Organic partner ranking
+
+Use:
+
+1. Active account and current documents
+
+2. Required service permission
+
+3. Pet safety and compatibility
+
+4. Location and travel time
+
+5. Availability
+
+6. Existing customer relationship
+
+7. Reliability and performance score
+
+8. Customer preference
+
+9. Price
+
+Subscription status should not appear above these factors.
+
+Sponsored discovery
+
+A separate module may appear:
+
+Sponsored partners available in your area
+
+Requirements:
+
+Clearly labelled
+
+Only verified active partners
+
+No unresolved safety issue
+
+Suitable service permission
+
+Not shown as the automatic “best match”
+
+Does not affect admin assignment
+
+Does not replace safer organic results
+
+7. Pro membership should solve measurable problems
+
+A sitter should subscribe because the tools create financial or operational value.
+
+Example sitter problems
+
+### Table 254
+
+| Problem | Pro solution |
+| --- | --- |
+| Unclear earnings | Earnings dashboard |
+| Missed availability updates | Recurring calendar |
+| Low repeat bookings | One-tap rebooking link |
+| Long payout reconciliation | Detailed statements |
+| Inefficient travel | Cluster-demand map |
+| Weak profile | Guided portfolio builder |
+| Customer communication inconsistency | Templates and service checklists |
+| Difficulty proving skills | Assessed platform learning badges |
+
+Avoid building cosmetic features with no economic impact.
+
+8. Sitter ROI calculator
+
+Before checkout, show the provider whether the membership is likely to make sense.
+
+Example
+
+A sitter completed 12 bookings last month.
+
+### Table 255
+
+| Potential benefit | Estimate |
+| --- | --- |
+| Repeat-booking fee savings | ₹180 |
+| Faster payout value | ₹40 |
+| Reduced scheduling administration | ₹100 |
+| Total estimated benefit | ₹320 |
+| Pro subscription | ₹299 |
+
+Display:
+
+Based on your recent activity, estimated monthly value is approximately ₹320.
+
+Do not claim:
+
+You will earn ₹5,000 more next month.
+
+Eligibility recommendation
+
+Do not actively promote Pro to sitters whose projected benefit is below the fee.
+
+For low-volume sitters, display:
+
+Your current Free plan is probably the better value.
+
+That builds partner trust.
+
+9. End-to-end membership flow
+
+Sitter joins Free
+
+↓
+
+Documents and skills verified
+
+↓
+
+Trial completed
+
+↓
+
+Sitter earns from normal bookings
+
+↓
+
+Pro eligibility reached
+
+↓
+
+Personalised benefit estimate shown
+
+↓
+
+Sitter compares Free and Pro
+
+↓
+
+Billing and renewal terms displayed
+
+↓
+
+Recurring payment authorised
+
+↓
+
+Pro tools activated
+
+↓
+
+Benefit usage tracked
+
+↓
+
+Monthly ROI statement shown
+
+↓
+
+Renew / downgrade / pause / cancel
+
+UPI AutoPay supports recurring e-mandates for subscription-type payments. Use a compliant payment provider and expose clear mandate, renewal and cancellation controls.
+
+10. Subscription cancellation rules
+
+Partners must be able to:
+
+Cancel future renewal
+
+Downgrade to Free
+
+Update payment method
+
+Download invoices
+
+View the next billing date
+
+See used benefits
+
+Dispute a billing error
+
+Reactivate later
+
+Cancellation should not:
+
+Deactivate the sitter’s ordinary work profile
+
+Remove earned verification
+
+Delete reviews
+
+Lower the performance score
+
+Block payout of earned amounts
+
+Remove completed training records
+
+At the end of the paid period, only paid tools should turn off.
+
+11. Failed-payment flow
+
+Renewal payment fails
+
+↓
+
+Sitter notified
+
+↓
+
+Short grace period
+
+↓
+
+Payment method updated or retried
+
+↓
+
+Payment succeeds → Pro continues
+
+Payment fails → Account returns to Free
+
+The sitter’s:
+
+Active verification
+
+Existing bookings
+
+Earned payouts
+
+Reviews
+
+Safety records
+
+must remain intact.
+
+12. Unit economics
+
+Sitter Pro Tools example
+
+### Table 256
+
+| Item | Illustrative amount |
+| --- | --- |
+| Monthly fee | ₹299 |
+| Payment cost | ₹6 |
+| Learning and support allocation | ₹35 |
+| Analytics and infrastructure | ₹20 |
+| Faster-payout provision | ₹25 |
+| Commission benefit cost | ₹40 |
+| Approximate contribution | ₹173 |
+
+This is before fixed overhead.
+
+Business Pro example
+
+### Table 257
+
+| Item | Illustrative amount |
+| --- | --- |
+| Monthly fee | ₹999 |
+| Payment cost | ₹20 |
+| Priority support | ₹80 |
+| CRM and analytics | ₹75 |
+| Payout benefit | ₹50 |
+| Commission benefit | ₹150 |
+| Society-campaign operations | ₹75 |
+| Approximate contribution | ₹549 |
+
+The platform should not judge the product only by subscription margin.
+
+Also measure:
+
+13. Labour and social-security system requirements
+
+A pet-service marketplace should maintain:
+
+Accurate provider identity
+
+Worker engagement dates
+
+Booking and earnings records
+
+Amounts paid or payable
+
+Service category
+
+Active/ceased status
+
+Government-registration identifiers where applicable
+
+Audit history
+
+Because the Code’s aggregator categories include service marketplaces and professional-service providers, the pet-care platform should obtain a formal classification opinion and implement the required eShram data-sharing process if in scope.
+
+Product impact
+
+Add partner fields such as:
+
+worker_classification
+
+esharm_uan
+
+esharm_registration_status
+
+government_reporting_consent_notice
+
+engagement_start_date
+
+engagement_end_date
+
+annual_amount_paid
+
+annual_amount_payable
+
+reporting_sync_status
+
+Government reporting should be explained in the partner privacy notice. Do not expose a sitter’s Aadhaar, UAN, bank details or earnings publicly.
+
+14. Sixty-day pilot plan
+
+Days 1–15: design
+
+Build:
+
+Free versus Pro comparison
+
+Pro eligibility logic
+
+Partner ROI calculator
+
+Benefit ledger
+
+Recurring billing
+
+Downgrade and cancellation
+
+Earnings dashboard
+
+Learning modules
+
+Paid-placement separation
+
+eShram/compliance data model
+
+Days 16–30: controlled pilot
+
+Invite:
+
+20–40 established sitters
+
+At least five completed bookings each
+
+Strong reliability
+
+No active incident review
+
+Keep a matched group of similar Free sitters for comparison.
+
+Days 31–45: value testing
+
+Measure:
+
+Profile improvements
+
+Repeat bookings
+
+Schedule utilisation
+
+Support use
+
+Payout satisfaction
+
+Earnings changes
+
+Cancellation
+
+Free-tier fairness
+
+Days 46–60: renewal decision
+
+Measure first renewal
+
+Remove low-value benefits
+
+Reprice expensive benefits
+
+Interview cancelling sitters
+
+Check whether Pro improved earnings
+
+Confirm Free sitters still receive fair organic access
+
+15. Success targets
+
+### Table 258
+
+| Metric | 60-day target |
+| --- | --- |
+| Eligible sitters invited | 50–100 |
+| Pro subscribers | 20–40 |
+| Eligible-sitter conversion | 15–30% |
+| First renewal rate | 60%+ |
+| Payment success | 90–95%+ |
+| Pro tool usage | 50%+ monthly |
+| Pro sitter earnings uplift | 10–20% versus matched cohort |
+| Repeat-booking uplift | Positive |
+| Partner support satisfaction | 4.5+ |
+| Subscription complaint rate | Below 3% |
+| Billing disputes | Below 2% |
+| Free-tier booking access decline | No material decline |
+| Paid badge confusion | Zero |
+| Guaranteed-lead complaints | Zero |
+| Pro contribution | Positive |
+| Partner retention | Equal to or better than Free |
+
+Because higher-performing sitters are more likely to buy Pro, compare them with similar non-paying sitters rather than attributing every earnings difference to the membership.
+
+16. Go/no-go criteria
+
+Scale Pro when
+
+Free sitters still receive ordinary bookings.
+
+Paying sitters use the tools.
+
+Sitters recover more value than the monthly fee.
+
+Subscription renewal exceeds 60%.
+
+Marketplace quality remains stable.
+
+Organic ranking remains quality-first.
+
+Government worker-reporting obligations are operational.
+
+Pro contribution is positive.
+
+Redesign when
+
+Sitters subscribe mainly because they fear losing visibility.
+
+“More leads” is the only valued benefit.
+
+Tools are rarely used.
+
+Earnings do not improve.
+
+Cancellation is high.
+
+Free sitters receive materially fewer appropriate bookings.
+
+Support costs consume the membership fee.
+
+Stop the plan when
+
+Verification is effectively paywalled.
+
+Paid subscribers bypass quality restrictions.
+
+Earned payouts are delayed unless a sitter subscribes.
+
+Safety badges are sold.
+
+Lead promises are misleading.
+
+The subscription causes significant supply churn.
+
+Final decisions
+
+### Table 259
+
+| Proposal | Decision |
+| --- | --- |
+| Free Sitter at ₹0 | Approve—mandatory permanent tier |
+| Verified Pro at ₹299 | Rename and modify |
+| Charge for verification | Reject |
+| Training certificate | Use course-completion badge unless formally recognised |
+| Higher organic visibility | Reject as an automatic benefit |
+| Premium Sitter at ₹999 | Defer; convert to Business Pro |
+| “More leads” promise | Reject |
+| Paid Premium quality badge | Reject |
+| Trainer/Groomer Pro ₹999–₹2,999 | Approve later as B2B software |
+| Featured listing | Separate, clearly sponsored product |
+| Optional Pro tools after earnings | Approve |
+
+Recommended final product
+
+Free Sitter — ₹0
+
+Full basic work access
+
+Verification
+
+Eligible booking requests
+
+Reviews
+
+Standard payouts
+
+Performance tracking
+
+Sitter Pro Tools — ₹299/month
+
+Advanced calendar
+
+Earnings dashboard
+
+Repeat-booking tools
+
+Learning modules
+
+Course-completion badges
+
+Eligible faster payouts
+
+Route insights
+
+Priority operational support
+
+Business Pro — ₹799–₹999/month, later
+
+Advanced CRM
+
+Route optimisation
+
+Business statements
+
+Reduced repeat-booking fees
+
+Society-route applications
+
+Enhanced analytics
+
+Final win condition
+
+Sitters join Pro because it measurably improves their business—not because the Free tier prevents them from earning.
+
+Sitter Pro Membership: CONDITIONAL GO—free work access first, optional productivity tools second, and no pay-to-verify or pay-to-rank system.
+
+A quarterly gig-worker and partner-subscription compliance watch is worth scheduling while the new 2026 social-security rules are being implemented.
+
+Phase 9.5–9.6: Society and Partner Subscriptions 🏢🤝💰
+
+End-to-End B2B Recurring-Revenue Model
+
+Executive verdict
+
+Both models are viable, but they solve different problems:
+
+Society subscriptions sell local pet-care infrastructure to an RWA, facility manager, developer or township operator.
+
+Partner subscriptions sell business software and growth tools to groomers, trainers, clinics and retailers.
+
+The critical rule is:
+
+Charge societies for measurable operating value and charge partners for useful business tools—not merely for access, verification or artificial ranking.
+
+Approval matrix
+
+### Table 260
+
+| Proposal | Decision |
+| --- | --- |
+| 30-day free society pilot | Approve with limits |
+| Basic Society Partner at ₹9,999/month | Approve as the flagship pilot conversion plan |
+| Premium Pet-Care Desk | Approve when staffing and events justify it |
+| Enterprise Society Plan | Approve as custom pricing |
+| Groomer/Trainer paid tools | Approve after they receive real bookings |
+| Higher organic ranking for payment | Reject |
+| Guaranteed “more bookings” | Reject |
+| Vet appointment lead subscription | Reject and replace with clinic software fee |
+| Pet-shop sponsored placement | Conditional approval with clear disclosure |
+
+Part A — Society Subscriptions
+
+1. What a society subscription actually sells
+
+A society subscription should not be presented as:
+
+Pay ₹9,999 and residents get pet-service discounts.
+
+Discounts alone are rarely enough to justify recurring B2B expenditure.
+
+The society should be buying a managed operating layer containing:
+
+Approved local partner pool
+
+Gate and security protocol
+
+Resident booking page
+
+One escalation contact
+
+Pet-care events
+
+Complaint handling
+
+Emergency veterinary directory
+
+Resident education
+
+Monthly aggregate reporting
+
+Preferential service access
+
+The product is therefore:
+
+Pet-care infrastructure for the residential community.
+
+AWBI guidance recognises both the rights and responsibilities of pet owners and RWAs. It says RWAs should not impose blanket bans on keeping pets, while pet owners should follow responsible practices such as using leashes in common areas. The society product should support responsible coexistence rather than becoming a pet-policing or pet-exclusion system.
+
+2. Recommended society-plan architecture
+
+Free Pilot — ₹0 for 30 days
+
+Purpose
+
+Prove resident demand and the platform’s ability to work with:
+
+Security staff
+
+Facility management
+
+Residents
+
+Local partners
+
+Events
+
+Complaints
+
+Recommended inclusions
+
+Society-specific landing page
+
+Two or three verified local partner categories
+
+Resident registration form
+
+Gate-entry SOP
+
+One resident announcement campaign
+
+One small grooming, training or preventive-care event
+
+One event report
+
+One RWA review meeting
+
+Standard resident support
+
+Limits
+
+One society only
+
+Maximum 30 days
+
+One event
+
+No dedicated full-time coordinator
+
+No unlimited partner entries
+
+No unlimited resident discounts
+
+No automatic extension
+
+Pilot success criteria
+
+### Table 261
+
+| Metric | Target |
+| --- | --- |
+| Registered pet-parent households | 30–100 |
+| Qualified leads | 50+ |
+| Paid bookings | 20+ |
+| Event attendance | 20+ |
+| Rating | 4.6+ |
+| Serious incidents | 0 |
+| RWA satisfaction | 4.5+ |
+| Residents expressing repeat intent | 25%+ |
+| Gate protocol | Working |
+| Paid conversion discussion | Completed |
+
+Do not offer repeated free pilots to the same society.
+
+Basic Society Partner — ₹9,999/month
+
+This is the recommended flagship plan.
+
+Recommended inclusions
+
+Society-branded pet-care page
+
+Verified local sitter, walker and groomer list
+
+Approved partner-entry roster
+
+Gate instructions attached to bookings
+
+Resident-only service offers
+
+Standard support desk
+
+Complaint-escalation contact
+
+Emergency veterinary directory
+
+Monthly aggregate activity report
+
+Quarterly education workshop or event support
+
+Priority access to book paid camps
+
+Important limitation
+
+At ₹9,999, do not include a fully funded monthly grooming or vaccination camp unless the event is separately sponsored or revenue-producing.
+
+A monthly event may cost more than the subscription after:
+
+Event staffing
+
+Partner mobilisation
+
+Venue preparation
+
+Marketing
+
+Support
+
+Cleaning
+
+Clinical governance
+
+The Basic plan should include event coordination access, not unlimited free events.
+
+Recommended commercial model
+
+For veterinary services, avoid a percentage-based referral or lead commission. VCI regulations restrict veterinarians from giving or receiving commissions for procuring or referring clients and also restrict certain forms of solicitation and advertising. Use separate, transparent platform coordination or event-management fees instead.
+
+Premium Pet-Care Desk — ₹15,000–₹50,000/month
+
+The range is valid because service depth can vary considerably.
+
+Suitable inclusions
+
+All Basic benefits
+
+Named society-care coordinator
+
+Faster resident-support SLA
+
+Priority local partner pool
+
+Backup walker and sitter coverage
+
+Monthly or bi-monthly event allowance
+
+Resident onboarding drives
+
+Seasonal workshops
+
+Monthly RWA review
+
+Enhanced activity and complaint report
+
+Pet-parent help desk during defined hours
+
+Custom society care bundles
+
+Priority event booking
+
+Suggested subranges
+
+### Table 262
+
+| Operating model | Suggested test price |
+| --- | --- |
+| Light Premium | ₹15,000–₹24,999 |
+| Managed Desk | ₹25,000–₹39,999 |
+| Dedicated Premium | ₹40,000–₹50,000 |
+
+The upper range requires genuine staffing or service commitments. A platform should not charge ₹50,000 merely for a directory and a dashboard.
+
+Enterprise Society Plan — ₹50,000+/month
+
+Suitable for:
+
+Large integrated townships
+
+Premium developments
+
+Multiple towers or phases
+
+Developer-managed residential portfolios
+
+Several societies under one facility manager
+
+Large pet-parent populations
+
+Possible inclusions
+
+Dedicated account manager
+
+Township-wide partner pool
+
+Multiple society pages
+
+Multi-gate operating protocol
+
+Dedicated event calendar
+
+Custom SLAs
+
+Multi-location reporting
+
+Resident onboarding campaigns
+
+Incident coordination
+
+API or community-app integration
+
+Custom billing
+
+Partner capacity reservation
+
+Dedicated support hours
+
+Pricing formula
+
+Do not use one flat ₹50,000 price for a 600-home society and a 5,000-home township.
+
+3. Is ₹9,999/month economically viable?
+
+Illustrative Basic-plan economics
+
+### Table 263
+
+| Item | Monthly amount |
+| --- | --- |
+| Society subscription | ₹9,999 |
+| Resident bookings: 30 × ₹1,200 GMV | ₹36,000 |
+| Platform take at illustrative 18% | ₹6,480 |
+| Total platform gross revenue | ₹16,479 |
+| Society support allocation | ₹2,500 |
+| Reporting and account management | ₹1,000 |
+| Resident communication | ₹750 |
+| Gate and partner operations | ₹1,250 |
+| Event reserve/amortisation | ₹2,000 |
+| Payment/refund provision | ₹750 |
+| Illustrative contribution | ₹8,229 |
+
+This example assumes the service commissions are already the platform’s retained amount after partner payouts.
+
+The economics become weaker when:
+
+Resident usage is low.
+
+A monthly event is included free.
+
+Support requirements are high.
+
+The society expects large subsidies.
+
+Local partners travel long distances.
+
+Every gate entry requires manual intervention.
+
+The economics become stronger when:
+
+Several residents subscribe to walking plans.
+
+Local partners serve multiple bookings per visit.
+
+Events convert into paid follow-up services.
+
+The society renews with low acquisition cost.
+
+4. Society-subscription pricing formula
+
+Use:
+
+Key pricing variables
+
+Occupied households
+
+Estimated pet households
+
+Number of entry gates
+
+Number of towers
+
+City and neighbourhood
+
+Support hours
+
+Event frequency
+
+Partner availability
+
+Custom reporting
+
+Community-app integration
+
+Dedicated staff
+
+Contract length
+
+5. Pilot-to-paid conversion process
+
+Society identified
+
+↓
+
+RWA discovery meeting
+
+↓
+
+30-day pilot agreement
+
+↓
+
+Resident registration
+
+↓
+
+Partner roster and gate SOP
+
+↓
+
+First event and paid bookings
+
+↓
+
+Pilot report
+
+↓
+
+Commercial review
+
+↓
+
+Basic or Premium proposal
+
+↓
+
+Paid agreement signed
+
+↓
+
+Monthly service begins
+
+Pilot report should show
+
+Pet-parent registrations
+
+Services requested
+
+Paid bookings
+
+Revenue generated
+
+Event attendance
+
+Ratings
+
+Complaints
+
+Gate incidents
+
+Resident repeat intent
+
+Partner coverage
+
+Recommended paid plan
+
+Do not sell the subscription using only vanity metrics such as poster reach or QR scans.
+
+6. Society agreement
+
+Commercial terms
+
+Subscription amount
+
+Billing cycle
+
+Minimum term
+
+Included services
+
+Separately billed activities
+
+Event cancellation
+
+Taxes
+
+Price revision
+
+Renewal
+
+Termination
+
+Operating terms
+
+Partner-entry process
+
+Security verification
+
+Event venues
+
+Water and electricity
+
+Resident communications
+
+Escalation contacts
+
+Complaint ownership
+
+Emergency limitations
+
+Data terms
+
+Data collected
+
+Purpose
+
+Parties receiving it
+
+Resident consent
+
+Reporting level
+
+Retention
+
+Security incidents
+
+Termination handling
+
+The RWA should receive aggregated metrics, not individual health records, pet-behaviour reports, home access instructions or payment histories. The DPDP Act and notified 2025 Rules support purpose-specific processing, access control, security safeguards and grievance mechanisms; major provisions have phased commencement, but the product should be designed to the full standard now.
+
+7. Society subscription KPIs
+
+Commercial
+
+Monthly society recurring revenue
+
+Booking GMV
+
+Platform service revenue
+
+Event revenue
+
+Contribution per society
+
+Acquisition payback
+
+Renewal rate
+
+Resident adoption
+
+Registered pet parents
+
+Active resident customers
+
+Bookings per household
+
+Walking-plan adoption
+
+Add-on adoption
+
+Repeat customers
+
+Quality
+
+Resident rating
+
+RWA rating
+
+Complaint rate
+
+Refund rate
+
+Gate incidents
+
+Partner cancellation
+
+Serious incidents
+
+Renewal
+
+Monthly active usage
+
+Resident participation
+
+Event performance
+
+RWA support requests
+
+Measurable cost or convenience benefit
+
+Renewal intent
+
+Scale criteria
+
+### Table 264
+
+| Metric | Target |
+| --- | --- |
+| Pilot-to-paid conversion | 30–50%+ |
+| Paid societies | 3–5 initial |
+| RWA satisfaction | 4.5+ |
+| Resident paid conversion | 20%+ |
+| Complaint rate | Below 5% |
+| Serious preventable incidents | 0 |
+| Positive contribution | Yes |
+| First renewal | 60%+ starting target |
+
+Part B — Partner Subscriptions
+
+8. Correct operating principle
+
+A partner subscription should begin only after the platform has already provided:
+
+Verified customer demand
+
+Completed bookings
+
+Partner earnings
+
+Reliable payouts
+
+Useful operating data
+
+Repeat-customer opportunities
+
+The correct sequence is:
+
+Free partner access
+
+↓
+
+Verification
+
+↓
+
+Trial services
+
+↓
+
+Completed paid bookings
+
+↓
+
+Stable partner earnings
+
+↓
+
+Optional paid business tools
+
+Do not charge a business merely to discover whether the marketplace has demand.
+
+9. The major problem with the proposed benefits
+
+The proposed plans contain phrases such as:
+
+Higher listing
+
+More bookings
+
+Featured packages
+
+Appointment leads
+
+These are problematic because they can turn the marketplace into pay-to-win ranking.
+
+A paid partner must never outrank another partner when the other partner is:
+
+Safer
+
+More qualified
+
+More suitable for the pet
+
+Closer
+
+Available
+
+Better rated
+
+Previously trusted by the customer
+
+Paid placements should be separate and clearly labelled. CCPA’s dark-pattern rules identify disguised advertising as advertising masked as ordinary content, and consumer advertising rules prohibit misleading presentations.
+
+10. Recommended partner-plan architecture
+
+Free Partner — ₹0
+
+Every approved partner should receive:
+
+Standard profile
+
+Verification status
+
+Organic matching eligibility
+
+Booking requests
+
+Availability calendar
+
+Reviews
+
+Earnings statements
+
+Standard payouts
+
+Performance score
+
+Complaint and appeal process
+
+Basic support
+
+Verification and basic access should never require a subscription.
+
+Partner Pro — ₹999/month
+
+Suitable for individual groomers and trainers receiving regular bookings.
+
+Recommended benefits
+
+Advanced availability rules
+
+Service-package builder
+
+Earnings analytics
+
+Customer rebooking tools
+
+Portfolio manager
+
+Repeat-customer CRM
+
+Downloadable statements
+
+Priority operational support
+
+Advanced training modules
+
+Society-campaign application access
+
+Small repeat-booking commission reduction
+
+Do not include
+
+Automatic top ranking
+
+Guaranteed leads
+
+Purchased quality badge
+
+Removal of negative reviews
+
+Access to unsuitable pets
+
+Bypassing verification requirements
+
+Partner Business — ₹1,999–₹2,999/month
+
+Suitable for:
+
+Grooming teams
+
+Training academies
+
+Boarding businesses
+
+Multi-provider operators
+
+Recommended benefits
+
+Multiple staff accounts
+
+Staff schedules
+
+Branch or service-area management
+
+Team performance
+
+Package and programme management
+
+CRM
+
+Revenue forecasting
+
+Payout reconciliation
+
+Event applications
+
+Data export
+
+Priority technical support
+
+This is a business-software subscription—not a payment for bookings.
+
+11. Groomer Pro
+
+Proposed fee
+
+₹999–₹2,999/month
+
+Decision
+
+Approve with redesigned benefits.
+
+Best benefits
+
+Grooming-package manager
+
+Pet-size and coat pricing
+
+Staff calendar
+
+Before/after portfolio
+
+Repeat-grooming reminders
+
+Grooming reports
+
+Same-groomer rebooking
+
+Consumable-cost tracking
+
+Society grooming-day applications
+
+Revenue and cancellation analytics
+
+Visibility
+
+A groomer may purchase a separately labelled sponsored placement, but only when:
+
+Verification is current.
+
+Service permission matches the search.
+
+No serious incident is open.
+
+The listing says Sponsored.
+
+Organic results remain visible.
+
+12. Trainer Pro
+
+Proposed fee
+
+₹999–₹4,999/month
+
+Decision
+
+Approve later for high-volume trainers and academies.
+
+Best benefits
+
+Assessment intake forms
+
+Training-package builder
+
+Programme and session tracking
+
+Goal reports
+
+Homework distribution
+
+Customer video submissions
+
+Group-class management
+
+Workshop registration
+
+Staff-trainer accounts
+
+Revenue and conversion analytics
+
+Featured packages
+
+Sponsored packages may appear in a labelled promotional section.
+
+They must not claim:
+
+Guaranteed behaviour correction
+
+Guaranteed timelines
+
+Clinical treatment
+
+Superior qualification without proof
+
+High-risk behaviour cases must continue to be assigned by competence and safety, not subscription status.
+
+13. Vet Partner Pro
+
+Proposed model
+
+₹1,999–₹9,999/month for appointment leads
+
+Decision
+
+Reject the appointment-lead model.
+
+VCI’s professional-conduct regulations restrict:
+
+Solicitation that improperly promotes professional superiority
+
+Use of agents or touts to procure patients
+
+Commissions or bonuses for referring or procuring clients
+
+Certain forms of advertising and publicity
+
+Those provisions make paid appointment leads, lead commissions and pay-to-rank veterinary listings particularly sensitive.
+
+Safer replacement
+
+Vet Clinic Software — fixed monthly fee
+
+Possible price:
+
+₹1,999–₹4,999 for a small clinic
+
+₹5,000–₹9,999 for multi-vet or multi-location use
+
+Suitable features
+
+Appointment calendar
+
+Reception dashboard
+
+Vet schedules
+
+Secure intake forms
+
+Pet-record import/export
+
+Reminder tools
+
+Follow-up queue
+
+Consent management
+
+Clinic analytics
+
+Staff accounts
+
+Payment reconciliation
+
+Society-event administration
+
+Listing policy
+
+Clinic discovery should use neutral factual information such as:
+
+Registration
+
+Location
+
+Availability
+
+Services
+
+Languages
+
+Consultation mode
+
+Do not sell:
+
+“Best vet” badges
+
+Paid clinical superiority
+
+Pay-per-patient referrals
+
+Commission-linked treatment
+
+Sponsored ranking disguised as recommendation
+
+Obtain veterinary-ethics counsel before introducing any promotional clinic product.
+
+14. Pet Shop Partner
+
+Proposed fee
+
+₹999–₹4,999/month
+
+Decision
+
+Conditional approval.
+
+Suitable benefits
+
+Verified seller profile
+
+Product catalogue feed
+
+Availability updates
+
+Affiliate attribution
+
+Order analytics
+
+Society bulk-order tools
+
+Campaign participation
+
+Customer-support integration
+
+Sponsored product placements
+
+Recall and complaint dashboard
+
+Conditions
+
+Seller verification
+
+Product authenticity
+
+Clear returns
+
+Accurate prices
+
+No unsupported medical claims
+
+No prescription medicine in the ordinary model
+
+Sponsored placement clearly marked
+
+Retailer identified as the seller
+
+Product referral placement should not be presented as an independent medical or nutritional recommendation merely because the seller paid for it.
+
+15. Partner subscription ROI rule
+
+Do not aggressively market a plan when the fee consumes a large share of the partner’s platform earnings.
+
+Recommended guideline
+
+This is a commercial design guideline—not a legal threshold.
+
+Example
+
+### Table 265
+
+| Partner monthly earnings | Suitable subscription |
+| --- | --- |
+| Below ₹10,000 | Free plan |
+| ₹10,000–₹25,000 | ₹299–₹999 only if clear value |
+| ₹25,000–₹60,000 | ₹999–₹1,999 |
+| Above ₹60,000 | Business tools up to ₹2,999+ may be viable |
+
+Before checkout, show an estimated ROI:
+
+### Table 266
+
+| Potential value | Estimate |
+| --- | --- |
+| Repeat-booking commission savings | ₹600 |
+| Admin time saving | ₹500 |
+| Faster payout benefit | ₹200 |
+| Total estimated value | ₹1,300 |
+| Plan fee | ₹999 |
+
+Never promise guaranteed earnings.
+
+16. Organic versus sponsored ranking
+
+Organic matching order
+
+1. Active status and current documents
+
+2. Required service permission
+
+3. Pet compatibility and risk
+
+4. Location
+
+5. Availability
+
+6. Existing customer relationship
+
+7. Reliability and partner score
+
+8. Price and customer preference
+
+Sponsored section
+
+Sponsored partners in your area
+
+Requirements:
+
+Clearly separated
+
+Labelled Sponsored
+
+Only eligible verified partners
+
+No quality claims without evidence
+
+Cannot override safety matching
+
+Cannot automatically receive admin assignments
+
+ASCI also promotes prominent, understandable disclosure of material commercial relationships in digital advertising.
+
+17. Subscription billing
+
+Society plans
+
+Use:
+
+Monthly invoices
+
+Standing instructions
+
+UPI AutoPay where suitable
+
+NACH for larger B2B arrangements
+
+Annual contracts billed monthly or quarterly
+
+Partner plans
+
+Use:
+
+UPI AutoPay
+
+Card recurring mandates through an authorised provider
+
+Manual monthly renewal as fallback
+
+NPCI’s UPI AutoPay supports recurring e-mandates for regular payment use cases.
+
+Both society and partner customers should be able to:
+
+See the renewal date
+
+Download invoices
+
+Change payment methods
+
+Cancel future renewal
+
+Downgrade
+
+Understand what changes after cancellation
+
+Do not use hidden renewal or difficult cancellation flows.
+
+18. Tax and invoicing structure
+
+The platform must determine:
+
+Who invoices the society
+
+Who invoices residents
+
+Who invoices service partners
+
+Whether the platform is principal or agent
+
+Whether subscription fees and commissions are separately invoiced
+
+How event income is treated
+
+How discounts and credits are allocated
+
+Whether GST e-commerce TCS obligations apply
+
+CBIC guidance states that TCS obligations can apply where taxable supplies are made through an e-commerce operator and the operator collects the consideration, subject to the actual transaction structure. Obtain a written chartered-accountant position before automating society commissions and partner settlements.
+
+19. Recommended rollout
+
+Stage 1 — Society subscriptions
+
+Launch:
+
+Two or three 30-day pilots
+
+Convert one or two into Basic plans
+
+Keep one plan at ₹9,999
+
+Price events separately
+
+Measure resident adoption and contribution
+
+Stage 2 — Partner tools
+
+Launch:
+
+Free partner tier
+
+Partner Pro at ₹999
+
+Only for active groomers/trainers
+
+No paid organic ranking
+
+Compare subscribers against similar free partners
+
+Stage 3 — Business plans
+
+Launch after:
+
+Multi-provider businesses request team tools
+
+Partner Pro renewal is healthy
+
+Features have demonstrable ROI
+
+Stage 4 — Clinic software
+
+Launch as:
+
+Fixed software subscription
+
+Neutral clinic discovery
+
+No pay-per-patient model
+
+Stage 5 — Sponsored advertising
+
+Launch only after:
+
+Marketplace demand is strong
+
+Organic ranking is established
+
+Disclosures are implemented
+
+Safety and eligibility filters cannot be bypassed
+
+20. Success criteria
+
+Society subscriptions
+
+### Table 267
+
+| Metric | Target |
+| --- | --- |
+| Free pilots | 3–5 |
+| Paid conversions | 2–3 |
+| Basic-plan price validation | ₹9,999 |
+| Resident activation | 20%+ of identified pet households |
+| Monthly paid bookings | 20–50 per society |
+| RWA rating | 4.5+ |
+| Complaint rate | Below 5% |
+| Positive contribution | Yes |
+| First renewal | 60%+ |
+| Serious preventable incidents | 0 |
+
+Partner subscriptions
+
+### Table 268
+
+| Metric | Target |
+| --- | --- |
+| Eligible partners invited | 50+ |
+| Paid Pro subscribers | 15–30 |
+| Conversion | 15–30% |
+| First renewal | 60%+ |
+| Feature usage | 50%+ |
+| Partner earnings uplift | Positive versus matched cohort |
+| Organic Free-partner access decline | None material |
+| Subscription complaints | Below 3% |
+| Paid-ranking confusion | 0 |
+| Positive contribution | Yes |
+
+Final recommendations
+
+Society subscriptions
+
+Approve
+
+Thirty-day free pilot
+
+Basic Society Partner at ₹9,999/month
+
+Booking revenue in addition to subscription
+
+Premium managed desk
+
+Custom enterprise township plan
+
+Modify
+
+Basic should include infrastructure, support and reporting—not merely discounts.
+
+Events should generally be separately priced.
+
+Veterinary professional fees should not use ordinary referral commissions.
+
+Society reports must remain aggregated.
+
+The paid plan must have measurable SLAs and outcomes.
+
+Partner subscriptions
+
+Approve
+
+Optional Groomer and Trainer Pro tools
+
+Multi-staff Business plans
+
+Product-partner analytics and sponsored advertising
+
+Fixed clinic-software subscriptions
+
+Reject
+
+Paying for verification
+
+Guaranteed “more bookings”
+
+Automatic higher organic ranking
+
+Purchased quality badges
+
+Pay-per-lead veterinary plans
+
+Commission-linked veterinary referrals
+
+Hiding sponsored placements inside recommendations
+
+Final product structure
+
+Society revenue
+
+├── Basic Partner — ₹9,999/month
+
+├── Premium Desk — ₹15,000–₹50,000/month
+
+├── Enterprise Township — custom
+
+└── Booking/event revenue
+
+Partner revenue
+
+├── Free Partner — ₹0
+
+├── Partner Pro — ₹999/month
+
+├── Business Pro — ₹1,999–₹2,999/month
+
+├── Vet Clinic Software — fixed fee
+
+└── Clearly labelled sponsored advertising
+
+Final win condition
+
+Societies renew because the platform makes community pet care easier and safer, while partners subscribe because the software measurably improves their operations—not because payment is required to receive fair access to customers.
+
+Society Subscriptions: GO.Partner Subscriptions: CONDITIONAL GO—with paid tools, neutral organic ranking and no veterinary lead-selling model.
+
+Phase 9 Subscription Product Architecture
+
+Lifecycle, Credit Ledger, Payments, Database, APIs and Conversion Engine 🐾⚙️
+
+Executive verdict
+
+The proposed architecture is directionally correct, but it needs five major corrections before production:
+
+Do not mix subscription, payment and mandate states in one status field.
+
+RENEWED is an event, not a subscription status.
+
+FAILED belongs to a payment attempt—not the subscription itself.
+
+Do not store remaining_credits as the financial source of truth. Use an append-only credit ledger with reservations.
+
+Plan prices, benefits and terms must be versioned so existing subscribers retain the contract they accepted.
+
+The recommended system is:
+
+Plan and price catalogue
+
+↓
+
+Capacity and eligibility check
+
+↓
+
+Checkout and payment mandate
+
+↓
+
+Subscription activation
+
+↓
+
+Billing period created
+
+↓
+
+Service entitlements granted
+
+↓
+
+Credits reserved by bookings
+
+↓
+
+Credits consumed on completion
+
+↓
+
+Renewal payment
+
+↓
+
+New period and new entitlements
+
+UPI AutoPay supports recurring mandates and gives customers mandate-management actions such as modify, revoke, pause and unpause. Your own app should mirror these controls with clear subscription-management screens.
+
+1. Correct subscription lifecycle
+
+Recommended customer lifecycle
+
+Customer selects a plan
+
+↓
+
+Pet and service area checked
+
+↓
+
+Walker capacity checked
+
+↓
+
+Price and terms displayed
+
+↓
+
+Checkout session created
+
+↓
+
+Payment mandate authorised
+
+↓
+
+Initial payment succeeds
+
+↓
+
+Subscription becomes ACTIVE
+
+↓
+
+Subscription period created
+
+↓
+
+Walk credits granted
+
+↓
+
+Customer books walks
+
+↓
+
+Credits reserved
+
+↓
+
+Walks completed
+
+↓
+
+Credits consumed
+
+↓
+
+Pre-renewal notification
+
+↓
+
+Recurring payment attempted
+
+↓
+
+Payment succeeds
+
+↓
+
+Next period and credits created
+
+Failure branches
+
+Mandate not authorised
+
+→ subscription remains PENDING_ACTIVATION
+
+Renewal payment fails
+
+→ subscription becomes PAST_DUE
+
+Customer pauses
+
+→ subscription becomes PAUSED
+
+Customer turns off renewal
+
+→ cancel_at_period_end = true
+
+Current paid period ends
+
+→ subscription becomes CANCELLED
+
+Fixed-term plan ends without renewal
+
+→ subscription becomes EXPIRED
+
+2. Correct subscription statuses
+
+Your proposed statuses are:
+
+TRIAL
+
+ACTIVE
+
+PAST_DUE
+
+PAUSED
+
+CANCELLED
+
+EXPIRED
+
+RENEWED
+
+FAILED
+
+The problem is that these mix:
+
+Subscription lifecycle
+
+Payment outcomes
+
+Renewal events
+
+Commercial flags
+
+Recommended subscription status
+
+PENDING_ACTIVATION
+
+TRIALING
+
+ACTIVE
+
+PAST_DUE
+
+PAUSED
+
+CANCELLED
+
+EXPIRED
+
+Definitions
+
+### Table 269
+
+| Status | Meaning |
+| --- | --- |
+| PENDING_ACTIVATION | Checkout started, but mandate or initial payment is incomplete |
+| TRIALING | Actual time-limited trial is active |
+| ACTIVE | Current billing period is paid and benefits are usable |
+| PAST_DUE | Renewal failed and the subscription is in a grace or recovery period |
+| PAUSED | Customer-approved temporary suspension |
+| CANCELLED | Subscription relationship ended |
+| EXPIRED | Fixed-term subscription ended without renewal |
+
+Store these separately
+
+auto_renew
+
+cancel_at_period_end
+
+pause_scheduled_at
+
+paused_until
+
+current_period_start
+
+current_period_end
+
+grace_period_ends_at
+
+Remove RENEWED
+
+A renewal is an event:
+
+subscription.renewed
+
+After successful renewal, the subscription remains:
+
+ACTIVE
+
+Remove FAILED
+
+Failure belongs to a payment attempt:
+
+payment_attempt.status = FAILED
+
+The subscription normally becomes:
+
+PAST_DUE
+
+A failed mandate-registration attempt should leave it:
+
+PENDING_ACTIVATION
+
+3. Separate payment and mandate states
+
+Do not rely on one subscription status to answer every billing question.
+
+Mandate status
+
+PENDING
+
+ACTIVE
+
+PAUSED
+
+REVOKED
+
+EXPIRED
+
+FAILED
+
+Invoice status
+
+DRAFT
+
+OPEN
+
+PAID
+
+VOID
+
+UNCOLLECTIBLE
+
+REFUNDED
+
+PARTIALLY_REFUNDED
+
+Payment-attempt status
+
+PENDING
+
+PROCESSING
+
+SUCCEEDED
+
+FAILED
+
+CANCELLED
+
+REFUNDED
+
+Subscription-period status
+
+UPCOMING
+
+ACTIVE
+
+CLOSED
+
+VOID
+
+This prevents contradictions such as:
+
+subscription = ACTIVE
+
+mandate = REVOKED
+
+latest invoice = PAID
+
+cancel_at_period_end = true
+
+That combination is valid: the customer has paid for the current period but cancelled future renewal.
+
+4. Walk-credit architecture
+
+Do not deduct immediately when a booking is created
+
+A booking must first reserve the credit.
+
+Otherwise, two simultaneous booking requests could spend the same remaining credit.
+
+Correct credit flow
+
+20 credits granted
+
+↓
+
+Customer creates booking
+
+↓
+
+1 credit RESERVED
+
+↓
+
+Walk completed
+
+↓
+
+Reserved credit CONSUMED
+
+Eligible customer cancellation
+
+Reserved credit
+
+↓
+
+Booking cancelled within policy
+
+↓
+
+Reservation RELEASED
+
+↓
+
+Credit available again
+
+Customer no-show
+
+Reserved credit
+
+↓
+
+Customer unavailable/no-show
+
+↓
+
+Credit CONSUMED
+
+Sitter cancellation
+
+Reserved credit
+
+↓
+
+Sitter cancels
+
+↓
+
+Backup attempted
+
+↓
+
+No backup available
+
+↓
+
+Credit RELEASED
+
+The platform may also grant a service-recovery credit depending on the policy.
+
+5. Use an append-only ledger
+
+The proposed service_credits table contains:
+
+total_credits
+
+used_credits
+
+remaining_credits
+
+This is vulnerable to:
+
+Concurrent updates
+
+Negative balances
+
+Manual adjustment errors
+
+Difficult audits
+
+Refund inconsistencies
+
+Lost rollover history
+
+Better approach
+
+Use:
+
+entitlement_grants
+
+entitlement_reservations
+
+entitlement_ledger
+
+Credit balance calculation
+
+Do not manually update three counters.
+
+You may maintain a cached balance for fast reads, but it must be derived from or reconciled against the ledger.
+
+6. Credit transaction types
+
+GRANT
+
+RESERVE
+
+RELEASE
+
+CONSUME
+
+RESTORE
+
+ROLLOVER_GRANT
+
+EXPIRE
+
+ADMIN_ADD
+
+ADMIN_REMOVE
+
+REFUND_REVERSAL
+
+Example ledger
+
+### Table 270
+
+| Transaction | Change | Available effect |
+| --- | --- | --- |
+| Monthly grant | +20 | 20 |
+| Reserve Booking A | −1 available | 19 |
+| Consume Booking A | Reservation closed | 19 |
+| Reserve Booking B | −1 available | 18 |
+| Sitter cancellation | +1 release | 19 |
+| Admin goodwill credit | +1 | 20 |
+| Period expiry | −2 | 18 |
+
+Every transaction should include:
+
+Subscription
+
+Billing period
+
+Credit grant
+
+Booking, if relevant
+
+Quantity
+
+Reason
+
+Actor
+
+Idempotency key
+
+Timestamp
+
+Previous transaction reference where applicable
+
+7. Credit validity and rollover
+
+Avoid a hard-coded “30 days”
+
+Monthly billing periods are not always exactly 30 days.
+
+Use:
+
+valid_from = subscription_period.start_at
+
+expires_at = subscription_period.end_at
+
+For example:
+
+July 12 to August 12
+
+February 1 to March 1
+
+Recommended rollover limits
+
+### Table 271
+
+| Plan | Suggested rollover |
+| --- | --- |
+| 8 walks | 1 credit |
+| 12 walks | 2 credits |
+| 20 walks | 2 credits |
+| 30 walks | 2–3 credits |
+
+The proposed range of 2–5 may create excessive service liability on lower-value plans.
+
+Rollover process
+
+At renewal:
+
+Determine unused eligible credits.
+
+Cap the rollover quantity.
+
+Expire the remaining old credits.
+
+Create a separate rollover grant.
+
+Set the rollover grant to expire during the next period.
+
+Grant the normal new-period credits.
+
+New monthly grant: 20
+
+Rollover grant: 2
+
+Total usable: 22
+
+Rollover credits should usually be consumed before new credits.
+
+8. Cancellation rules
+
+Recommended matrix
+
+### Table 272
+
+| Situation | Credit treatment |
+| --- | --- |
+| Customer cancels before permitted cutoff | Release credit |
+| Customer cancels inside late window | Consume credit |
+| Customer no-show | Consume credit |
+| Sitter cancels and backup completes | Consume on completion |
+| Sitter cancels and no backup is available | Release credit |
+| Platform cancels | Release credit and consider service recovery |
+| Unsafe weather | Reschedule, release or replace with approved alternative |
+| Pet illness | Human review under pause/emergency policy |
+| Booking dispute | Hold final consumption pending review if necessary |
+
+Important distinction
+
+A customer cancelling a booking is not the same as cancelling the subscription.
+
+These should use separate endpoints and workflows.
+
+9. Upgrade and downgrade rules
+
+Upgrade
+
+An upgrade may be:
+
+Next-cycle upgrade
+
+Simplest and recommended for the initial release.
+
+Current plan remains active
+
+↓
+
+Upgrade scheduled
+
+↓
+
+New plan begins on renewal date
+
+Immediate upgrade
+
+Allow later when proration is reliable.
+
+Calculate price difference
+
+↓
+
+Collect additional payment
+
+↓
+
+Create incremental credit grant
+
+↓
+
+Update scheduled plan version
+
+Never add upgrade credits before the additional payment succeeds.
+
+Downgrade
+
+Recommended:
+
+Downgrades apply from the next billing period.
+
+This avoids:
+
+Removing already purchased credits
+
+Complex refunds
+
+Negative balances
+
+Partner-capacity disruption
+
+Plan changes should preserve history
+
+Never overwrite the existing plan_id as if the customer had always been on the new plan.
+
+Store:
+
+scheduled_plan_version_id
+
+scheduled_change_at
+
+10. Pause architecture
+
+A pause must define what happens to:
+
+Existing credits
+
+Upcoming bookings
+
+Billing date
+
+Mandate
+
+Walker reservation
+
+Rollover
+
+Recommended walking-plan pause
+
+Cancel or reschedule future bookings.
+
+Freeze unused credits.
+
+Release future walker capacity.
+
+Pause the payment mandate where supported.
+
+Extend the period or set a new restart date.
+
+Show the revised renewal date.
+
+NPCI states that AutoPay mandates can support pause and unpause controls, although the precise integration still depends on the payment provider.
+
+Suggested limits
+
+One pause per billing period
+
+Maximum pause of 7–14 days for ordinary travel
+
+Longer medical pause through support review
+
+No new credits during the pause
+
+No silent automatic reactivation
+
+11. Corrected database architecture
+
+11.1 Subscription products
+
+subscription_products
+
+- id
+
+- code
+
+- product_type
+
+- service_type
+
+- name
+
+- description
+
+- status
+
+- created_at
+
+- updated_at
+
+product_type
+
+SERVICE_PLAN
+
+MEMBERSHIP
+
+CARE_BUNDLE
+
+SOCIETY_PLAN
+
+PARTNER_PLAN
+
+11.2 Immutable plan versions
+
+subscription_plan_versions
+
+- id
+
+- subscription_product_id
+
+- version_number
+
+- billing_interval
+
+- billing_interval_count
+
+- included_entitlements_json
+
+- benefits_json
+
+- terms_snapshot
+
+- cancellation_policy_snapshot
+
+- rollover_policy_snapshot
+
+- effective_from
+
+- effective_until
+
+- status
+
+- created_at
+
+Do not mutate a published version.
+
+Create a new version when:
+
+Price changes
+
+Credit count changes
+
+Benefits change
+
+Cancellation rules change
+
+Rollover changes
+
+Existing subscriptions retain their accepted plan version until migrated or changed with proper notice.
+
+11.3 City and cluster pricing
+
+Do not put one city and one price directly on the plan.
+
+subscription_prices
+
+- id
+
+- plan_version_id
+
+- city_id
+
+- service_cluster_id nullable
+
+- amount_minor
+
+- currency
+
+- tax_inclusive
+
+- tax_rate_snapshot
+
+- valid_from
+
+- valid_until
+
+- is_active
+
+Store currency values in the smallest unit:
+
+₹2,499 = 249900 paise
+
+Do not use floating-point columns for money.
+
+11.4 Customer subscriptions
+
+customer_subscriptions
+
+- id
+
+- public_reference
+
+- customer_id
+
+- pet_id nullable
+
+- plan_version_id
+
+- scheduled_plan_version_id nullable
+
+- status
+
+- auto_renew
+
+- cancel_at_period_end
+
+- current_period_id nullable
+
+- payment_mandate_id nullable
+
+- service_cluster_id
+
+- timezone
+
+- activated_at
+
+- cancelled_at
+
+- cancellation_reason
+
+- paused_at
+
+- paused_until
+
+- created_at
+
+- updated_at
+
+- version
+
+The version field supports optimistic concurrency when several processes attempt to modify a subscription.
+
+11.5 Subscription periods
+
+subscription_periods
+
+- id
+
+- subscription_id
+
+- sequence_number
+
+- starts_at
+
+- ends_at
+
+- status
+
+- invoice_id
+
+- plan_version_id
+
+- price_snapshot_minor
+
+- entitlement_snapshot_json
+
+- created_at
+
+- closed_at
+
+Every renewal creates a new period.
+
+11.6 Payment mandates
+
+payment_mandates
+
+- id
+
+- customer_id
+
+- provider
+
+- provider_mandate_id
+
+- status
+
+- payment_method_type
+
+- maximum_amount_minor
+
+- authorised_at
+
+- paused_at
+
+- revoked_at
+
+- expires_at
+
+- created_at
+
+- updated_at
+
+Do not expose the provider mandate identifier to untrusted clients unless required.
+
+11.7 Subscription invoices
+
+subscription_invoices
+
+- id
+
+- subscription_id
+
+- subscription_period_id
+
+- invoice_number
+
+- subtotal_minor
+
+- discount_minor
+
+- tax_minor
+
+- total_minor
+
+- currency
+
+- status
+
+- due_at
+
+- paid_at
+
+- created_at
+
+11.8 Payment attempts
+
+payment_attempts
+
+- id
+
+- invoice_id
+
+- provider
+
+- provider_payment_id
+
+- attempt_number
+
+- amount_minor
+
+- status
+
+- failure_code
+
+- failure_message
+
+- attempted_at
+
+- succeeded_at
+
+- created_at
+
+11.9 Entitlement grants
+
+entitlement_grants
+
+- id
+
+- subscription_id
+
+- subscription_period_id
+
+- service_type
+
+- quantity_granted
+
+- quantity_rolled_over
+
+- valid_from
+
+- expires_at
+
+- status
+
+- source_type
+
+- created_at
+
+11.10 Credit reservations
+
+entitlement_reservations
+
+- id
+
+- entitlement_grant_id
+
+- booking_id
+
+- quantity
+
+- status
+
+- reserved_at
+
+- released_at
+
+- consumed_at
+
+- expires_at
+
+Reservation status
+
+ACTIVE
+
+RELEASED
+
+CONSUMED
+
+EXPIRED
+
+11.11 Credit ledger
+
+entitlement_ledger
+
+- id
+
+- subscription_id
+
+- entitlement_grant_id
+
+- reservation_id nullable
+
+- booking_id nullable
+
+- transaction_type
+
+- quantity_change
+
+- reason_code
+
+- actor_type
+
+- actor_id
+
+- idempotency_key
+
+- created_at
+
+Use uniqueness constraints to prevent duplicate processing of the same booking completion or webhook. PostgreSQL unique constraints and unique indexes can enforce these invariants at the database level rather than relying only on application code.
+
+11.12 Membership benefits
+
+Membership benefits should be defined against a plan version, not the customer subscription itself.
+
+membership_benefit_definitions
+
+- id
+
+- plan_version_id
+
+- benefit_type
+
+- value_type
+
+- value_amount
+
+- usage_limit
+
+- monetary_cap_minor
+
+- eligible_service_types
+
+- rules_json
+
+membership_benefit_usage
+
+- id
+
+- subscription_id
+
+- benefit_definition_id
+
+- booking_id nullable
+
+- usage_period_id
+
+- quantity_used
+
+- monetary_value_minor
+
+- status
+
+- used_at
+
+- reversed_at
+
+11.13 Provider webhook events
+
+provider_webhook_events
+
+- id
+
+- provider
+
+- provider_event_id
+
+- event_type
+
+- payload_hash
+
+- received_at
+
+- processed_at
+
+- processing_status
+
+- error_message
+
+Add a unique constraint on:
+
+(provider, provider_event_id)
+
+This prevents duplicate webhook delivery from producing duplicate credits or renewals.
+
+12. Database invariants
+
+The database should enforce these rules wherever possible:
+
+One external webhook event can be processed once.
+
+One booking can consume a specific subscription entitlement once.
+
+One period sequence exists per subscription.
+
+A subscription cannot have overlapping active periods.
+
+Credits cannot be reserved after expiry.
+
+A consumed reservation cannot be released.
+
+A cancelled subscription cannot generate a new period unless reactivated.
+
+A payment failure cannot create entitlements.
+
+An admin credit adjustment requires a reason and audit record.
+
+A plan version cannot be edited after publication.
+
+For concurrent credit spending, use a transaction that locks the applicable balance/grant records or applies an appropriate serialisation strategy. PostgreSQL documents serialisable transactions as preventing serialization anomalies; ordinary unique constraints remain useful for preventing duplicate booking consumption.
+
+13. Corrected API design
+
+Plan discovery
+
+GET /v1/subscription-products
+
+GET /v1/subscription-products/{productId}
+
+GET /v1/subscription-products/{productId}/prices
+
+Useful filters:
+
+city_id
+
+service_cluster_id
+
+pet_id
+
+service_type
+
+product_type
+
+The API should return only plans for which:
+
+The customer is eligible
+
+The pet is eligible
+
+The cluster has capacity
+
+Pricing is active
+
+Checkout
+
+Replace:
+
+POST /api/subscriptions/create
+
+POST /api/subscriptions/payment/create
+
+POST /api/subscriptions/payment/verify
+
+with:
+
+POST /v1/subscription-checkout-sessions
+
+GET /v1/subscription-checkout-sessions/{id}
+
+The checkout endpoint should:
+
+Validate plan version.
+
+Validate city price.
+
+Validate pet eligibility.
+
+Check walker capacity.
+
+Create a pending subscription.
+
+Create or request the payment mandate.
+
+Return provider checkout information.
+
+The client should not be able to mark a payment as verified merely by calling an endpoint.
+
+The server should rely on:
+
+Signed provider webhooks
+
+Provider API verification
+
+Reconciliation jobs
+
+Customer subscription APIs
+
+GET /v1/me/subscriptions
+
+GET /v1/me/subscriptions/{subscriptionId}
+
+GET /v1/me/subscriptions/{subscriptionId}/periods
+
+GET /v1/me/subscriptions/{subscriptionId}/entitlements
+
+GET /v1/me/subscriptions/{subscriptionId}/ledger
+
+POST /v1/me/subscriptions/{subscriptionId}/pause
+
+POST /v1/me/subscriptions/{subscriptionId}/resume
+
+POST /v1/me/subscriptions/{subscriptionId}/cancel-renewal
+
+POST /v1/me/subscriptions/{subscriptionId}/reactivate
+
+POST /v1/me/subscriptions/{subscriptionId}/change-plan
+
+POST /v1/me/subscriptions/{subscriptionId}/update-payment-method
+
+Use POST actions for state transitions because they represent commands with validation.
+
+Avoid:
+
+PUT /subscriptions/{id}/status
+
+The customer should never be able to send:
+
+{"status": "ACTIVE"}
+
+Credit APIs
+
+Customer-facing:
+
+GET /v1/me/entitlements
+
+GET /v1/me/entitlements/transactions
+
+Booking creation should reserve the credit internally:
+
+POST /v1/bookings
+
+The server decides whether to use:
+
+Subscription credit
+
+Cash payment
+
+Bundle credit
+
+Membership benefit
+
+Avoid exposing:
+
+POST /api/bookings/use-credit
+
+as an independent client-controlled action. Otherwise, the client may attempt to apply credits after prices or bookings have changed.
+
+Admin credit adjustments
+
+POST /v1/admin/subscriptions/{subscriptionId}/credit-adjustments
+
+Request:
+
+{
+
+"service_type": "DOG_WALK",
+
+"quantity": 1,
+
+"reason_code": "SERVICE_RECOVERY",
+
+"notes": "Walker cancelled and no backup was available",
+
+"expires_at": "2026-09-12T18:30:00+05:30"
+
+}
+
+Require:
+
+Admin permission
+
+Reason code
+
+Audit log
+
+Idempotency key
+
+Optional secondary approval for large adjustments
+
+Plan administration
+
+Replace unrestricted:
+
+PUT /api/admin/subscription-plans/:id
+
+with versioned actions:
+
+POST /v1/admin/subscription-products
+
+POST /v1/admin/subscription-products/{id}/versions
+
+POST /v1/admin/subscription-plan-versions/{id}/publish
+
+POST /v1/admin/subscription-plan-versions/{id}/retire
+
+POST /v1/admin/subscription-plan-versions/{id}/prices
+
+Published plans should not be silently rewritten.
+
+Payment webhook
+
+POST /v1/webhooks/payments/{provider}
+
+The webhook handler must:
+
+Verify the provider signature.
+
+Store the raw event securely.
+
+Deduplicate using provider event ID.
+
+Return quickly.
+
+Process asynchronously.
+
+Create subscription events.
+
+Update mandate/payment/invoice state.
+
+Grant entitlements only once.
+
+Log processing errors.
+
+Reconcile missed events through scheduled jobs.
+
+14. Subscription event architecture
+
+Recommended internal events:
+
+subscription.checkout_started
+
+mandate.created
+
+mandate.activated
+
+initial_payment.succeeded
+
+subscription.activated
+
+subscription_period.started
+
+entitlements.granted
+
+booking.credit_reserved
+
+booking.credit_released
+
+booking.credit_consumed
+
+subscription.renewal_upcoming
+
+renewal_payment.succeeded
+
+subscription.renewed
+
+renewal_payment.failed
+
+subscription.past_due
+
+subscription.recovered
+
+subscription.pause_scheduled
+
+subscription.paused
+
+subscription.resumed
+
+subscription.cancel_scheduled
+
+subscription.cancelled
+
+subscription.expired
+
+Use an outbox or equivalent reliable event-publication mechanism so that database changes and downstream notifications do not drift apart.
+
+15. Customer dashboard
+
+Recommended subscription card
+
+Active Dog Plan 🐾
+
+20 × 30-minute walks per billing period
+
+Available walks: 10
+
+Reserved walks: 2
+
+Completed walks: 8
+
+Rollover walks: 1
+
+Current period ends: 12 August 2026
+
+Next renewal: ₹3,999 on 12 August 2026
+
+Preferred walker: Riya
+
+Approved backup: Arjun
+
+Next walk: Tomorrow at 7:30 AM
+
+Actions:
+
+Book Walk
+
+View Schedule
+
+View Credit Activity
+
+Change Plan
+
+Pause
+
+Cancel Renewal
+
+Show these additional details
+
+Credit expiration
+
+Rollover allowance
+
+Cancellation cutoff
+
+Renewal amount
+
+Payment method
+
+Current payment status
+
+Any pending plan change
+
+Pause restart date
+
+Remaining late-cancellation waivers
+
+Customer-support contact
+
+“Use Same Sitter”
+
+Rename this to:
+
+Book preferred walker
+
+Display:
+
+Subject to availability. An approved backup may be offered.
+
+A preference should not be presented as an unconditional guarantee.
+
+16. Past-due UX
+
+When payment fails:
+
+Plan status
+
+Payment attention required
+
+Show:
+
+Amount due
+
+Failed date
+
+Grace-period end
+
+Update payment method
+
+Retry payment
+
+Cancel renewal
+
+Contact support
+
+Do not immediately delete:
+
+Already-paid reports
+
+Past booking history
+
+Existing invoices
+
+Earned benefits from the previous paid period
+
+Future service access should follow the disclosed grace policy.
+
+17. Subscription conversion flow
+
+The core principle is correct:
+
+Build trust before offering a recurring commitment.
+
+Recommended conversion sequence
+
+Trial walk completed
+
+↓
+
+Report delivered
+
+↓
+
+No unresolved complaint or safety issue
+
+↓
+
+Customer gives positive rating or repeat intent
+
+↓
+
+Offer one-time starter pack
+
+↓
+
+Customer completes starter walks
+
+↓
+
+System analyses frequency and schedule
+
+↓
+
+Recommend appropriate monthly plan
+
+One-time starter pack
+
+The five-walk starter pack should be:
+
+Prepaid
+
+Non-recurring
+
+Valid for 14–21 days
+
+Limited to one per customer/pet
+
+Eligible for preferred-walker testing
+
+Convertible into a monthly plan
+
+Do not attach auto-renewal to the starter pack.
+
+18. Conversion triggers
+
+Improved trigger matrix
+
+### Table 273
+
+| Behaviour | Recommended action |
+| --- | --- |
+| First successful walk | Offer one-time 3- or 5-walk starter pack |
+| Three walks in ten days | Recommend 12-walk plan |
+| Five completed walks in 21 days | Recommend 12- or 20-walk plan based on frequency |
+| Weekday walking pattern | Recommend 20-walk plan |
+| Daily walking pattern | Recommend 26- or 30-walk plan |
+| Preferred walker requested twice | Offer continuity feature if primary and backup capacity exist |
+| Two grooming bookings | Offer monthly care bundle or membership |
+| Travel boarding completed | Offer travel-care membership benefits |
+| Active society resident | Offer society-resident pricing or benefits |
+| Repeated late one-time bookings | Offer flexible-credit plan |
+
+Suppress subscription offers when
+
+Customer has an unresolved complaint.
+
+The last rating was poor.
+
+The pet requires reassessment.
+
+The preferred cluster has no backup supply.
+
+Payment disputes are open.
+
+The customer’s usage is genuinely occasional.
+
+The plan would cost more than recent pay-as-you-go usage.
+
+19. Pricing psychology
+
+Showing effective per-walk value is appropriate, but the calculation must be truthful.
+
+Recommended display
+
+Active Dog Plan
+
+Single 30-minute walk: ₹249
+
+20-walk plan: ₹3,999
+
+Effective price: ₹200 per walk
+
+Monthly saving: ₹981
+
+Calculation:
+
+Also show:
+
+GST inclusion or exclusion
+
+Whether the single-walk comparison is genuinely available
+
+Plan duration
+
+Service window
+
+Any premium-slot charges
+
+Rollover limitations
+
+Do not compare the plan against an artificially inflated single-walk price.
+
+Consumer rules prohibit unfair or misleading e-commerce practices, and the CCPA has specifically highlighted subscription traps and interface manipulation as dark-pattern risks.
+
+20. Review of the proposed pricing examples
+
+Ahmedabad
+
+### Table 274
+
+| Product | Price | Effective |
+| --- | --- | --- |
+| Single | ₹149 | ₹149 |
+| 8 walks | ₹999 | ₹124.88 |
+| 12 walks | ₹1,499 | ₹124.92 |
+| 20 walks | ₹2,499 | ₹124.95 |
+| 30 walks | ₹3,999 | ₹133.30 |
+
+Problem
+
+The 30-walk plan is more expensive per walk than the 8-, 12- and 20-walk plans.
+
+That weakens the commitment incentive.
+
+Better options
+
+Either reduce the 30-walk price:
+
+₹3,599 = ₹120/walk
+
+₹3,749 = ₹125/walk
+
+or explain that the 30-walk product includes:
+
+Reserved exact time
+
+Higher continuity
+
+Weekend availability
+
+Enhanced support
+
+Public Ahmedabad listings currently advertise approximately ₹88 per 20-minute monthly walk, while another current Ahmedabad page shows a monthly daily 20-minute plan at ₹3,119 depending on schedule. These are not directly comparable to a managed 30-minute plan, but they show why duration and frequency must be explicit.
+
+Bengaluru
+
+### Table 275
+
+| Product | Price | Effective |
+| --- | --- | --- |
+| Single | ₹249 | ₹249 |
+| 8 walks | ₹1,699 | ₹212.38 |
+| 12 walks | ₹2,499 | ₹208.25 |
+| 20 walks | ₹3,999 | ₹199.95 |
+| 30 walks | ₹5,999 | ₹199.97 |
+
+Assessment
+
+The progression is logical, although the 20- and 30-walk plans have effectively the same unit price.
+
+You could test:
+
+30 walks at ₹5,799 = ₹193.30/walk
+
+but only when fulfilment economics support it.
+
+Current Bengaluru offerings demonstrate substantial variation by duration and operating model: Sploot advertises ₹125 per monthly 20-minute walk, while PawSpace lists a monthly 30-minute daily plan around ₹4,299.
+
+Your prices therefore position the service above low-cost walking subscriptions and should include stronger managed-service features.
+
+Mumbai and Gurugram
+
+### Table 276
+
+| Product | Price | Effective |
+| --- | --- | --- |
+| Single | ₹299 | ₹299 |
+| 8 walks | ₹1,999 | ₹249.88 |
+| 12 walks | ₹2,999 | ₹249.92 |
+| 20 walks | ₹4,999 | ₹249.95 |
+| 30 walks | ₹7,499 | ₹249.97 |
+
+Problem
+
+Every subscription tier has essentially the same unit price.
+
+That creates no additional unit incentive for selecting a larger plan.
+
+Possible corrected structure
+
+### Table 277
+
+| Plan | Example price | Effective |
+| --- | --- | --- |
+| 8 walks | ₹1,999 | ₹250 |
+| 12 walks | ₹2,949 | ₹246 |
+| 20 walks | ₹4,799 | ₹240 |
+| 30 walks | ₹6,999 | ₹233 |
+
+This is only a pricing hypothesis. Confirm it against:
+
+Sitter payout
+
+Travel time
+
+Peak-slot cost
+
+Backup reserve
+
+Support
+
+City-specific CAC
+
+Current public listings show Mumbai daily 20-minute monthly subscriptions around ₹2,749, while Gurugram monthly per-walk pricing is advertised around ₹102 for 20 minutes and ₹141 for 40 minutes. These are different products and durations, so they should be treated as reference anchors—not direct substitutes.
+
+21. When higher-frequency plans may cost more per walk
+
+A lower unit price is not mandatory when the larger plan contains additional cost.
+
+For example, a Daily Plan may include:
+
+Fixed peak-hour slot
+
+Preferred-walker capacity reservation
+
+Seven-day availability
+
+Weekend walks
+
+Named backup walker
+
+Higher cancellation flexibility
+
+In that case, communicate the distinction clearly:
+
+20-Walk Flexible Plan
+
+₹200 per walk
+
+30-Walk Reserved Routine Plan
+
+₹215 per walk
+
+Includes daily reserved slot and continuity coverage
+
+Do not present the higher unit cost as a volume saving.
+
+22. Privacy and security
+
+Subscription data contains:
+
+Home location
+
+Repeating schedules
+
+Customer absence patterns
+
+Pet behaviour
+
+Sitter assignments
+
+Payment mandate data
+
+Society gate details
+
+The DPDP Rules, 2025 were notified with phased commencement. The product should nevertheless implement clear notices, purpose-based access, security safeguards and grievance processes from launch.
+
+Minimum controls
+
+Do not store card or UPI credentials yourself.
+
+Encrypt sensitive data.
+
+Restrict recurring schedules to assigned staff and walkers.
+
+Do not expose mandate IDs unnecessarily.
+
+Audit admin credit adjustments.
+
+Sign and verify payment webhooks.
+
+Redact sensitive webhook payload data from logs.
+
+Separate finance, support and operations permissions.
+
+Keep RWA reports aggregated.
+
+Provide correction and grievance mechanisms.
+
+23. Notifications
+
+Required events
+
+### Table 278
+
+| Timing | Notification |
+| --- | --- |
+| Activation | Plan, credits and billing confirmation |
+| Booking reservation | Credit reserved |
+| Walk completion | Credit consumed and report available |
+| Three credits remaining | Low-credit reminder |
+| Seven days before renewal | Renewal reminder |
+| Payment success | New period and credits confirmed |
+| Payment failure | Update-payment action |
+| Pause scheduled | Effective date and remaining benefits |
+| Cancellation scheduled | Final service date |
+| Credit expiry | Advance warning |
+| Plan price change | Advance notice and options |
+
+Do not send “credits almost finished” as a renewal message when automatic renewal is already scheduled unless it helps the customer manage usage.
+
+24. Subscription metrics
+
+Product
+
+Plan-page conversion
+
+Starter-pack conversion
+
+Trial-to-plan conversion
+
+Upgrade rate
+
+Downgrade rate
+
+Pause rate
+
+Cancellation rate
+
+Billing
+
+Mandate activation rate
+
+Renewal success
+
+Past-due recovery
+
+Duplicate charges
+
+Refund rate
+
+Payment-provider reconciliation gaps
+
+Credits
+
+Credits granted
+
+Credits reserved
+
+Credits consumed
+
+Credits released
+
+Credits rolled over
+
+Credits expired
+
+Credit utilisation
+
+Admin adjustments
+
+Fulfilment
+
+Walk completion
+
+On-time rate
+
+Preferred-walker fulfilment
+
+Backup fulfilment
+
+Customer no-show rate
+
+Sitter cancellation
+
+Economics
+
+Subscription GMV
+
+Platform recurring revenue
+
+Partner payouts
+
+Contribution per subscriber
+
+Support cost per subscriber
+
+Rollover liability
+
+Service-recovery cost
+
+25. Production acceptance tests
+
+Do not launch until these cases pass:
+
+Initial payment succeeds once.
+
+Initial payment webhook is delivered twice.
+
+Renewal webhook is delivered out of order.
+
+Booking requests occur simultaneously with one credit remaining.
+
+Customer cancels inside the free window.
+
+Customer cancels inside the late window.
+
+Sitter cancels and backup completes.
+
+Sitter cancels and no backup is available.
+
+Customer no-shows.
+
+Customer pauses before renewal.
+
+Customer cancels renewal but uses current benefits.
+
+Renewal payment fails and later recovers.
+
+Customer upgrades immediately.
+
+Customer downgrades for the next period.
+
+Credits expire while bookings are reserved.
+
+Admin grants a service-recovery credit.
+
+Customer receives a partial refund.
+
+Payment mandate is revoked externally.
+
+Plan price changes for new subscribers.
+
+Existing subscriber remains on the accepted plan version.
+
+26. Final recommended architecture
+
+subscription_products
+
+↓
+
+subscription_plan_versions
+
+↓
+
+subscription_prices
+
+↓
+
+customer_subscriptions
+
+↓
+
+subscription_periods
+
+↓
+
+subscription_invoices
+
+↓
+
+payment_attempts
+
+↓
+
+entitlement_grants
+
+↓
+
+entitlement_reservations
+
+↓
+
+entitlement_ledger
+
+Parallel systems:
+
+payment_mandates
+
+provider_webhook_events
+
+membership_benefit_definitions
+
+membership_benefit_usage
+
+subscription_events
+
+audit_logs
+
+capacity_reservations
+
+Final decisions
+
+### Table 279
+
+| Proposal | Decision |
+| --- | --- |
+| Credit-based walking plans | Approve |
+| 30-day credit validity | Use billing-period validity instead |
+| Carry forward 2–5 walks | Reduce and vary by plan |
+| Same sitter as preference | Approve |
+| Early cancellation restores credit | Approve |
+| Customer no-show consumes credit | Approve |
+| Sitter cancellation restores credit | Approve if no replacement fulfils service |
+| Immediate upgrade | Conditional, with successful proration payment |
+| Downgrade next cycle | Approve |
+| RENEWED status | Reject—use event |
+| FAILED subscription status | Reject—use payment status |
+| Mutable remaining-credit counter | Reject as source of truth |
+| Credit ledger | Required |
+| Versioned plans and prices | Required |
+| Webhook-driven billing | Required |
+| Generic client-set status APIs | Reject |
+
+Final product principle
+
+A subscription is not merely a recurring charge. It is a versioned customer contract, a recurring payment mandate, a sequence of paid billing periods, and an auditable ledger of future service obligations.
+
+Phase 9 Subscription Architecture: GO—with separated state machines, an append-only entitlement ledger, immutable plan versions and webhook-authoritative payments.
+
+Phase 9 Payment, Renewal and Churn System 🐾💳
+
+End-to-End India Payment Architecture
+
+Executive verdict
+
+Your payment strategy is correct:
+
+Do not rely exclusively on automatic debits during the early subscription phase. Mandates can fail because of insufficient balance, revoked authorisation, bank-side issues, expired cards or payment-provider errors.
+
+The recommended architecture is:
+
+Primary: UPI AutoPay or card mandate
+
++
+
+Fallback: UPI/card/netbanking checkout
+
++
+
+Recovery: Expiring payment link
+
++
+
+Communication: In-app + WhatsApp + email/SMS
+
+UPI AutoPay supports recurring e-mandates and lets customers modify, revoke, pause and unpause mandates through supported UPI applications. Payment-provider capabilities vary, so every payment method should be enabled only after testing it on the actual merchant account.
+
+1. Recommended payment-method stack
+
+Not every payment method should perform the same role.
+
+### Table 280
+
+| Payment method | Initial purchase | Automatic renewal | Manual renewal |
+| --- | --- | --- | --- |
+| UPI checkout | Yes | No | Yes |
+| UPI AutoPay | Yes | Yes | Not required normally |
+| Credit/debit cards | Yes | Yes, where mandate supported | Yes |
+| Netbanking | Yes | Through eMandate/NACH where supported | Yes |
+| Wallets | Yes, provider-dependent | Do not assume | Yes, where supported |
+| Razorpay Payment Link | Yes | No | Excellent fallback |
+| Manual renewal in app | Yes | No | Required backup |
+
+Razorpay supports payment methods including UPI, cards, netbanking and wallets, while recurring-payment support can include cards, UPI AutoPay and eMandate depending on the integration and enabled gateway configuration.
+
+Important correction
+
+Ordinary netbanking checkout is not the same as a recurring bank mandate.
+
+Use:
+
+Netbanking for one-time/manual renewal
+
+eMandate or NACH for eligible recurring arrangements
+
+UPI AutoPay or supported card mandates for most consumer subscriptions
+
+Do not advertise “automatic netbanking renewal” unless the actual mandate product is enabled and tested.
+
+2. Recommended payment priority
+
+Consumer walking plans
+
+UPI AutoPay
+
+Card mandate
+
+Manual UPI payment
+
+Payment link
+
+Netbanking or wallet fallback
+
+Pet-parent memberships
+
+UPI AutoPay
+
+Card mandate
+
+Manual renewal link
+
+Society subscriptions
+
+Monthly or quarterly invoice
+
+Bank transfer
+
+NACH or standing instruction where appropriate
+
+Payment link for smaller societies
+
+Partner Pro plans
+
+UPI AutoPay
+
+Card mandate
+
+Manual UPI/payment link
+
+Payment Links can be created with customer details, a unique reference, amount and expiry time. Razorpay also supports tracking link states and sending limited automated SMS/email reminders.
+
+3. Complete renewal lifecycle
+
+Seven days before renewal
+
+↓
+
+Create upcoming invoice
+
+↓
+
+Confirm plan, price and benefits
+
+↓
+
+Send upcoming-renewal notification
+
+↓
+
+Payment mandate remains valid?
+
+No → Ask customer to update payment method
+
+Yes → Continue
+
+↓
+
+Renewal debit attempted
+
+↓
+
+Provider webhook received
+
+↓
+
+Payment succeeded?
+
+Yes → Mark invoice paid
+
+Create next subscription period
+
+Grant new credits
+
+Send confirmation
+
+No → Mark invoice open/failed attempt
+
+Subscription enters PAST_DUE
+
+Start grace and recovery flow
+
+↓
+
+Provider retry or manual payment link
+
+↓
+
+Recovered?
+
+Yes → Activate next period and credits
+
+No → Pause future services
+
+Cancel or expire after grace period
+
+Razorpay exposes subscription-payment and failure webhook events and supports retry handling when automated charges fail. The provider can eventually move a repeatedly failing subscription to a halted state after retries are exhausted. Your internal status may map that situation to PAST_DUE, followed by CANCELLED or EXPIRED after your disclosed grace policy.
+
+4. Renewal-reminder schedule
+
+Your proposed sequence is useful, but the message must differ for auto-renew and manual-renewal customers.
+
+Auto-renew subscribers
+
+### Table 281
+
+| Timing | Recommended message |
+| --- | --- |
+| Seven days before | Plan summary, renewal amount and date |
+| Three days before | Payment-method and balance reminder |
+| One day before | Final upcoming-debit notice where useful |
+| Renewal day | Success or payment-failure result |
+| During grace | Recovery action and payment link |
+| After cancellation | Win-back only with appropriate consent |
+
+Correct wording
+
+Do not tell an AutoPay customer:
+
+Renew now.
+
+That makes it appear the customer must manually pay and can produce duplicate payment.
+
+Use:
+
+Your plan is scheduled to renew automatically on 12 August for ₹3,999. No action is needed unless you want to change your plan or payment method.
+
+Manual-renewal subscribers
+
+### Table 282
+
+| Timing | Recommended message |
+| --- | --- |
+| Seven days before | Plan ends soon |
+| Three days before | Renew to retain schedule and preferred walker |
+| One day before | Final pre-expiry reminder |
+| Expiry day | Current period has ended; renewal link remains available |
+| Three to seven days later | Optional win-back offer |
+
+Important status correction
+
+Do not label the plan expired on the debit date when:
+
+The automatic attempt is still processing
+
+Provider retries remain
+
+The customer is inside a grace period
+
+Use:
+
+PAST_DUE
+
+Only use EXPIRED when the fixed term has ended and no valid renewal or recovery remains.
+
+5. WhatsApp renewal strategy
+
+WhatsApp is valuable for renewal recovery, but it requires explicit messaging governance.
+
+Meta requires businesses to obtain user opt-in before sending WhatsApp template messages. The opt-in must identify the business and explain what messages the user is agreeing to receive. Outside the customer-service window, approved template messages are required.
+
+Message classification
+
+Utility message
+
+Appropriate for:
+
+Upcoming payment
+
+Renewal reminder
+
+Payment failure
+
+Plan expiry
+
+Credit balance
+
+Booking or schedule confirmation
+
+Meta’s template guidance specifically includes recurring-payment reminder examples within template categorisation.
+
+Marketing message
+
+Appropriate for:
+
+Win-back discount
+
+Upgrade offer
+
+New membership promotion
+
+Grooming cross-sell
+
+Keep transactional renewal consent and promotional consent separate wherever practicable.
+
+6. Recommended renewal messages
+
+Seven days before automatic renewal
+
+Hi Ananya 🐾Bruno’s Active Dog Plan has 3 walks remaining.
+
+Your plan is scheduled to renew automatically for ₹3,999 on 12 August.
+
+Preferred walker: RiyaNext month’s preferred schedule: Monday–Friday, 7:30 AM
+
+Review your plan or payment method:[Manage Plan]
+
+Three days before manual renewal
+
+Hi Ananya 🐾Bruno’s walking plan ends on 12 August, with 3 walks remaining.
+
+Renew the plan to keep your preferred schedule and walker preference for next month.
+
+Amount: ₹3,999[Renew Plan]
+
+Payment failed
+
+Hi Ananya, we could not renew Bruno’s walking plan.
+
+Your existing plan is now in a grace period until 15 August. No new credits have been added yet.
+
+Update your payment method or pay securely here:[Payment Link]
+
+Win-back message
+
+Bruno’s walking plan has ended.
+
+Resume within the next seven days to request the previous walking schedule, subject to walker availability.
+
+[View Plans]
+
+Do not state that the same sitter or time slot is reserved after expiry unless capacity has actually been held.
+
+7. Manual Payment Link fallback
+
+A payment link should represent one specific unpaid invoice, not the subscription generally.
+
+Correct flow
+
+Renewal payment fails
+
+↓
+
+Unpaid invoice remains open
+
+↓
+
+Create Payment Link for exact invoice amount
+
+↓
+
+Attach unique invoice reference
+
+↓
+
+Set expiry at grace-period end
+
+↓
+
+Send through app/WhatsApp/email
+
+↓
+
+Customer pays
+
+↓
+
+Payment webhook received
+
+↓
+
+Invoice marked paid
+
+↓
+
+Subscription recovered
+
+↓
+
+Payment Link closed or ignored if already paid
+
+Razorpay Payment Links support explicit amounts, customer information, unique reference IDs, expiry dates and automated reminders.
+
+Critical duplicate-payment control
+
+Suppose:
+
+AutoPay fails.
+
+You issue a manual payment link.
+
+AutoPay retry succeeds.
+
+Customer also opens the link.
+
+Before accepting the manual payment, check whether the invoice is still unpaid.
+
+Your system should:
+
+Maintain one invoice ID
+
+Link all payment attempts to that invoice
+
+Reject or refund duplicate settlement
+
+Cancel the payment link when another attempt succeeds
+
+Process provider webhooks idempotently
+
+Provider webhooks can arrive after the underlying payment has already moved to a later state, so your system must retrieve or reconcile the current payment state rather than treating every event snapshot as the final truth.
+
+8. Webhook-authoritative payment handling
+
+The frontend must never activate a subscription merely because it displays a successful payment screen.
+
+Correct activation rule
+
+Provider confirms payment
+
+↓
+
+Signed webhook/API verification
+
+↓
+
+Invoice paid
+
+↓
+
+Subscription period created
+
+↓
+
+Credits granted exactly once
+
+Webhook requirements
+
+Verify provider signature
+
+Use the raw request body where required
+
+Store the provider event ID
+
+Deduplicate repeated events
+
+Return quickly
+
+Process asynchronously
+
+Reconcile missed events
+
+Never grant credits twice
+
+Never log sensitive payment credentials
+
+Razorpay’s webhook documentation warns that signature validation should use the raw webhook body and that older retried events may require the correct historical webhook secret.
+
+9. Failed-payment recovery system
+
+Payment failure is involuntary churn, not necessarily a customer’s decision to leave.
+
+Recommended dunning sequence
+
+### Table 283
+
+| Stage | Internal state | Action |
+| --- | --- | --- |
+| First failure | PAST_DUE | Notify customer and allow provider retry |
+| Day 1 | PAST_DUE | Ask customer to update method |
+| Day 2–3 | PAST_DUE | Send manual payment link |
+| Day 4–5 | PAST_DUE | Final grace-period warning |
+| Grace ends | PAUSED or CANCELLED | Stop new bookings/credits |
+| Payment recovered | ACTIVE | Create paid period and restore access |
+
+Do not independently create aggressive repeated debit attempts outside the payment provider’s configured mandate and retry flow.
+
+Service rules during grace
+
+Recommended:
+
+Previously completed services remain accessible
+
+No new monthly credits until payment succeeds
+
+Existing near-term booking may be honoured once as a grace benefit
+
+Additional bookings remain blocked
+
+Reports and account data remain available
+
+Customer may cancel instead of paying
+
+10. Pause system
+
+Adding pause options is an excellent churn-control mechanism.
+
+However, 7-, 15- and 30-day pauses must have different operational treatment.
+
+Seven-day pause
+
+Suitable for:
+
+Short travel
+
+Minor pet illness
+
+Temporary schedule change
+
+Recommended handling:
+
+Freeze unused credits
+
+Reschedule upcoming walks
+
+Release sitter slots temporarily
+
+Move renewal date by seven days where supported
+
+Fifteen-day pause
+
+Suitable for:
+
+Longer travel
+
+Recovery period
+
+Temporary relocation
+
+Recommended handling:
+
+Freeze credits
+
+Release walker capacity
+
+Do not guarantee the previous schedule on return
+
+Move the renewal date or extend the current period
+
+Thirty-day pause
+
+This is effectively a skip cycle.
+
+Recommended handling:
+
+No recurring debit for the skipped cycle
+
+No new credits
+
+Existing credits frozen or handled according to policy
+
+Preferred walker and time slot not guaranteed
+
+Customer receives reactivation notice before the pause ends
+
+UPI AutoPay allows customer-facing pause and unpause of mandates, although the exact platform workflow depends on the PSP and payment-provider integration.
+
+11. Pause state model
+
+Store pauses independently rather than overwriting dates manually.
+
+subscription_pauses
+
+- id
+
+- subscription_id
+
+- pause_type
+
+- starts_at
+
+- ends_at
+
+- reason_code
+
+- credits_frozen
+
+- billing_shift_days
+
+- sitter_capacity_released
+
+- status
+
+- created_at
+
+Recommended states:
+
+SCHEDULED
+
+ACTIVE
+
+COMPLETED
+
+CANCELLED
+
+Pause rules
+
+Customer chooses a restart date
+
+System displays revised renewal date
+
+Upcoming bookings are addressed before pause activation
+
+Mandate and subscription states remain synchronised
+
+No silent reactivation
+
+Reminder sent 48–72 hours before restart
+
+Safety-related pauses may require pet reassessment
+
+12. Churn-prevention system
+
+Do not treat every cancellation reason with the same discount.
+
+Sitter changed too often
+
+Root cause
+
+Trust and continuity failure.
+
+Correct actions
+
+Offer Preferred Walker Continuity Plan
+
+Introduce primary and backup walkers
+
+Improve leave planning
+
+Track preferred-walker fulfilment
+
+Give advance reassignment notice
+
+Do not promise one permanent sitter indefinitely.
+
+Timing issues
+
+Correct actions
+
+Offer wider service window
+
+Let customer change recurring schedule
+
+Move to flexible-credit plan
+
+Show available time slots before renewal
+
+Analyse cluster capacity
+
+Too expensive
+
+Correct actions
+
+Downgrade from 20 to 12 walks
+
+Offer shorter walk duration
+
+Change from fixed premium slot to flexible window
+
+Offer society-density pricing
+
+Remove optional Premium continuity feature
+
+Do not automatically issue a large discount to every price-sensitive customer.
+
+Unused credits
+
+Correct actions
+
+Recommend a smaller plan
+
+Allow limited rollover
+
+Add pause
+
+Send low-usage notification mid-cycle
+
+Offer flexible scheduling
+
+Example trigger
+
+You have used 4 of 12 walks with seven days remaining. A smaller plan may fit Bruno’s routine better next month.
+
+This is better than allowing the customer to renew into another oversized plan.
+
+Poor report quality
+
+Correct actions
+
+Retrain the walker
+
+Standardise report fields
+
+Audit missing GPS/photo/check-in evidence
+
+Assign a higher-performing walker
+
+Follow up with the customer
+
+Do not solve a service-quality problem with a subscription discount.
+
+Customer travelling
+
+Correct actions
+
+Offer pause
+
+Convert unused walks into sitting or boarding credit only through explicit customer approval
+
+Store return date
+
+Preserve preferred-walker request, not guarantee
+
+Pet-health issue
+
+Correct actions
+
+Pause plan
+
+Suggest contacting a registered vet
+
+Offer shorter relief visits after appropriate approval
+
+Require reactivation confirmation
+
+Do not provide medical diagnosis through support or AI
+
+13. Cancellation experience
+
+Do not “force pause” instead of allowing cancellation.
+
+The correct cancellation page offers:
+
+Pause for 7 days
+
+Pause for 15 days
+
+Skip next month
+
+Choose a smaller plan
+
+Continue to cancellation
+
+The user must always be able to continue and cancel.
+
+Indian dark-pattern guidelines define subscription traps as making cancellation impossible, unnecessarily complex or difficult to discover.
+
+Recommended cancellation process
+
+Display plan and renewal date.
+
+Offer one relevant alternative.
+
+Collect optional cancellation reason.
+
+Confirm whether benefits continue to period end.
+
+Stop future renewal.
+
+Revoke or update the mandate appropriately.
+
+Send written confirmation.
+
+Preserve invoices and past service records.
+
+14. Renewal analytics
+
+Monthly Recurring Revenue
+
+Track both full subscription spending and retained platform revenue.
+
+Subscription GMV MRR
+
+Platform MRR
+
+For walking plans, these numbers are not equal because sitter payouts form part of the customer price.
+
+Annual Recurring Revenue
+
+Use ARR as a run-rate indicator, not a guarantee of future revenue.
+
+Do not include:
+
+One-time grooming
+
+One-time boarding
+
+Society-event tickets
+
+Manual payments with no recurring commitment
+
+Future unpaid invoices
+
+Renewal rate
+
+Only include subscriptions that actually reached their renewal date.
+
+Subscriber churn
+
+Track separately:
+
+Voluntary churn
+
+Payment-failure churn
+
+Service-quality churn
+
+Safety-related closure
+
+Customer relocation
+
+Pet-health churn
+
+Revenue churn
+
+Net revenue retention
+
+NRR shows whether upgrades and additional pets offset losses.
+
+15. ARPU
+
+Subscription ARPU
+
+Use average subscribers:
+
+Track separately:
+
+Walking-plan ARPU
+
+Membership ARPU
+
+Society ARPU
+
+Partner-plan ARPU
+
+Do not combine ₹199 consumer memberships with ₹50,000 society contracts without segment reporting.
+
+16. Lifetime value
+
+A basic contribution-based estimate is:
+
+Example:
+
+Monthly contribution: ₹500
+
+Mature churn: 8%
+
+Use contribution, not total customer payment.
+
+This formula becomes unreliable when:
+
+The cohort is very new
+
+Churn changes sharply by month
+
+Plan prices vary materially
+
+Customers frequently upgrade
+
+Only one renewal cycle exists
+
+Use cohort-based realised LTV once sufficient history exists.
+
+17. CAC payback
+
+Example:
+
+CAC: ₹1,200
+
+Monthly contribution: ₹400
+
+Exclude organic existing customers from paid-CAC calculations or report them separately.
+
+18. Credit utilisation
+
+Track separately:
+
+Granted
+
+Reserved
+
+Consumed
+
+Restored
+
+Rolled over
+
+Expired
+
+Admin-adjusted
+
+Interpretation
+
+### Table 284
+
+| Utilisation | Possible meaning |
+| --- | --- |
+| Below 50% | Plan too large or weak habit |
+| 50–70% | Moderate usage; inspect plan fit |
+| 70–90% | Healthy range for many plans |
+| Above 90% | Strong usage; check capacity and margin |
+| 100% very early | Upgrade opportunity or undersized plan |
+
+Do not optimise the business around customers forgetting to use purchased services.
+
+19. Upgrade and downgrade rates
+
+Upgrade rate
+
+Examples:
+
+12 walks to 20 walks
+
+Plus to Premium
+
+Adding a second pet
+
+Downgrade rate
+
+Downgrades are not always bad.
+
+A customer moving from an oversized 20-walk plan to a sustainable 12-walk plan may be retained for longer.
+
+20. Same-sitter rate
+
+Use:
+
+Also track:
+
+Recommended starting targets:
+
+### Table 285
+
+| Metric | Target |
+| --- | --- |
+| Preferred walker fulfilment | 85%+ |
+| Primary or approved backup | 98%+ |
+| Unintroduced replacement | Below 2% |
+| Walker no-show | Below 1% |
+
+21. Recommended subscription dashboard
+
+Revenue
+
+Subscription GMV MRR
+
+Platform MRR
+
+ARR run rate
+
+New MRR
+
+Upgrade MRR
+
+Downgrade MRR
+
+Churned MRR
+
+NRR
+
+Contribution MRR
+
+Customers
+
+Active subscribers
+
+New subscribers
+
+Renewed subscribers
+
+Paused subscribers
+
+Past-due subscribers
+
+Cancelled subscribers
+
+Win-back subscribers
+
+Payments
+
+Mandate activation rate
+
+First-attempt renewal success
+
+Retry recovery
+
+Manual-link recovery
+
+Duplicate-payment incidents
+
+Failed-payment churn
+
+Operations
+
+Credits granted
+
+Credits consumed
+
+Credit utilisation
+
+Walk completion
+
+Preferred-walker rate
+
+Backup rate
+
+Cancellation rate
+
+Report completion
+
+Economics
+
+ARPU
+
+Contribution per subscriber
+
+CAC
+
+CAC payback
+
+LTV
+
+Discount cost
+
+Service-recovery cost
+
+Support cost per subscriber
+
+22. Recommended launch targets
+
+### Table 286
+
+| Metric | 60-day target |
+| --- | --- |
+| AutoPay mandate activation | 75%+ of eligible subscribers |
+| Overall payment success | 90–95%+ |
+| First-attempt renewal success | 80–90%+ |
+| Past-due recovery | 30–50%+ |
+| Manual-link recovery | Track separately |
+| First renewal | 60–80% |
+| Voluntary mature churn | Below 10% |
+| Total mature churn | Below 12–15% |
+| Walk completion | 95%+ |
+| Credit utilisation | 70–90% |
+| Preferred-walker fulfilment | 85%+ |
+| Average rating | 4.6+ |
+| Subscription complaints | Below 5% |
+| Duplicate charges | Zero |
+| Hidden-renewal complaints | Zero |
+| Positive subscriber contribution | Yes |
+
+These are initial operating hypotheses and should be recalibrated with real customer cohorts.
+
+23. Payment data and privacy
+
+The platform should store:
+
+Payment-provider customer ID
+
+Mandate reference
+
+Mandate status
+
+Payment method type
+
+Limited masked method information
+
+Invoices
+
+Payment attempts
+
+Refunds
+
+Webhook events
+
+Do not store:
+
+Full card number
+
+CVV
+
+UPI PIN
+
+Bank-login credentials
+
+Unnecessary raw provider payloads in ordinary logs
+
+WhatsApp phone numbers, messaging consent, renewal preferences and payment-notification history are personal data. The final DPDP Rules, 2025 have phased commencement, so the platform should already implement clear notices, restricted access, security controls and grievance mechanisms for subscription and messaging data.
+
+Final decisions
+
+### Table 287
+
+| Proposal | Decision |
+| --- | --- |
+| UPI support | Approve—primary payment method |
+| Cards | Approve |
+| Netbanking | Approve mainly for manual checkout; use eMandate/NACH for recurring |
+| Wallets | Approve as optional one-time fallback |
+| Razorpay Payment Links | Approve for invoice-specific recovery |
+| Subscription AutoPay | Approve |
+| Manual renewal backup | Required |
+| WhatsApp renewal reminders | Approve with opt-in and templates |
+| Seven-, three- and one-day reminders | Approve with different AutoPay/manual wording |
+| Mark expired on debit date | Reject when retries or grace remain |
+| Win-back after expiry | Approve with promotional-message consent |
+| Seven-, 15- and 30-day pauses | Approve with defined billing and credit rules |
+| Force pause before cancellation | Reject |
+| Track only MRR and churn | Insufficient—track contribution, credits and fulfilment too |
+
+Final recommended system
+
+UPI AutoPay or card mandate
+
+↓
+
+Upcoming renewal invoice
+
+↓
+
+Clear pre-renewal communication
+
+↓
+
+Automatic payment attempt
+
+↓
+
+Webhook-authoritative confirmation
+
+↓
+
+Successful renewal and new credits
+
+or
+
+PAST_DUE recovery workflow
+
+↓
+
+Provider retry + manual payment link
+
+↓
+
+Recover, pause or cancel transparently
+
+Phase 9 payment win condition
+
+Customers can pay and renew through their preferred method, failed payments are recovered without duplicate charges, cancellation remains easy, and every recurring rupee is connected to a reliably fulfilled service obligation.
+
+Payment and Renewal System: GO—with AutoPay as the primary mechanism and manual payment links as a controlled recovery layer.
+
+A quarterly RBI, NPCI, Razorpay and WhatsApp policy watch would keep this payment stack current; say the word to schedule it.
+
+Phase 9 Dashboard, Capacity and B2B Subscription Architecture 🐾📊
+
+Executive decision
+
+The proposed Phase 9 dashboard and scheduling model are directionally strong, but four structural corrections are necessary:
+
+Capacity must be calculated by cluster, time window and skill—not only by total walker count.
+
+Primary and backup walkers must reserve actual schedule capacity. Naming them in a booking record is insufficient.
+
+Society resident plans and society management subscriptions must remain separate B2C and B2B products.
+
+Corporate pet-care benefits should begin as employer-funded credits or negotiated discounts—not as a complex insurance or unlimited-care product.
+
+The complete Phase 9 operating loop should be:
+
+Subscription demand
+
+↓
+
+Cluster capacity reservation
+
+↓
+
+Primary and backup assignment
+
+↓
+
+Recurring schedule generation
+
+↓
+
+Daily fulfilment monitoring
+
+↓
+
+Credit consumption
+
+↓
+
+Payment and renewal monitoring
+
+↓
+
+Churn intervention
+
+↓
+
+Contribution and capacity review
+
+1. Phase 9 dashboard architecture
+
+Do not build one screen containing large headline numbers without operational context.
+
+Use four dashboard layers:
+
+Executive health
+
+├── Revenue and subscribers
+
+├── Fulfilment and capacity
+
+├── Retention and payment recovery
+
+└── Society and corporate accounts
+
+Essential dashboard widgets
+
+### Table 288
+
+| Widget | What it should answer |
+| --- | --- |
+| Active subscriptions | How many paying plans are currently usable? |
+| Platform MRR | How much recurring platform revenue is being generated? |
+| Subscription GMV MRR | How much total customer subscription spending exists? |
+| Renewals due | Which subscriptions reach renewal soon? |
+| Failed payments | Which renewals need recovery? |
+| Churn-risk customers | Which customers may cancel or fail to renew? |
+| Unused credits | Which customers may be on the wrong plan? |
+| Plan performance | Which plans renew and contribute best? |
+| Sitter capacity | Can sold plans actually be fulfilled? |
+| Today’s subscription walks | What must operations deliver today? |
+| Preferred-walker rate | Are continuity promises being fulfilled? |
+| Backup coverage | Can the platform survive walker cancellation? |
+| Society subscriptions | How is B2B recurring revenue performing? |
+| Subscription contribution | Are plans profitable after fulfilment? |
+| Incidents and complaints | Is recurring scale damaging quality? |
+
+2. Active subscriptions widget
+
+Correct definition
+
+Count subscriptions that:
+
+Have a successfully paid current period
+
+Are within the active billing period
+
+Have not been fully refunded
+
+Are not expired or cancelled
+
+Remain entitled to receive benefits
+
+Recommended breakdown:
+
+### Table 289
+
+| Status | Count |
+| --- | --- |
+| Active |  |
+| Trialing |  |
+| Paused |  |
+| Past due |  |
+| Cancel at period end |  |
+| Cancelled this month |  |
+| Expired |  |
+
+Do not count:
+
+Checkout sessions
+
+Failed mandate attempts
+
+Free plan eligibility
+
+Expired plans still present in the database
+
+Residents merely covered by a society partnership
+
+Drill-down fields
+
+Customer
+
+Pet
+
+Plan
+
+City and cluster
+
+Current period
+
+Remaining credits
+
+Preferred walker
+
+Renewal date
+
+Payment status
+
+Contribution
+
+Risk flag
+
+3. MRR widget
+
+You need two separate recurring-revenue numbers.
+
+Subscription GMV MRR
+
+Total normalised monthly customer payments:
+
+Platform MRR
+
+The platform’s retained recurring revenue:
+
+For example:
+
+### Table 290
+
+| Item | Amount |
+| --- | --- |
+| Walking-plan customer payment | ₹4,000 |
+| Walker payout | ₹2,800 |
+| Platform recurring revenue | ₹1,200 |
+
+The dashboard must not report the entire ₹4,000 as platform revenue.
+
+MRR movement
+
+Starting MRR
+
++ New MRR
+
++ Upgrade MRR
+
++ Reactivation MRR
+
+− Downgrade MRR
+
+− Churned MRR
+
+= Ending MRR
+
+Also display:
+
+MRR growth percentage
+
+MRR by plan
+
+MRR by city
+
+MRR by society
+
+MRR by customer type
+
+Contribution MRR
+
+4. Renewals-due widget
+
+Use time buckets:
+
+### Table 291
+
+| Renewal window | Purpose |
+| --- | --- |
+| Today | Immediate payment monitoring |
+| Next three days | Payment-method and balance intervention |
+| Next seven days | Renewal communication |
+| Next 30 days | Revenue forecasting |
+
+Each renewal record should show:
+
+Renewal amount
+
+Mandate status
+
+Payment method
+
+Credit utilisation
+
+Customer rating
+
+Recent complaints
+
+Preferred-walker availability
+
+Plan-change request
+
+Churn-risk score
+
+UPI AutoPay supports recurring e-mandates, but the dashboard should still expose mandate state, payment failures and manual recovery because an active subscription and an active payment mandate are different system states.
+
+5. Failed-payment recovery widget
+
+Required stages
+
+Initial payment failure
+
+↓
+
+Provider retry pending
+
+↓
+
+Customer action required
+
+↓
+
+Manual payment link sent
+
+↓
+
+Recovered
+
+or
+
+Grace period ending
+
+↓
+
+Paused/cancelled
+
+Widget columns
+
+Customer
+
+Subscription
+
+Invoice amount
+
+Failure reason
+
+Mandate status
+
+First failure
+
+Retry count
+
+Grace-period end
+
+Payment-link state
+
+Last customer contact
+
+Assigned recovery owner
+
+Recovery KPIs
+
+### Table 292
+
+| Metric | Meaning |
+| --- | --- |
+| First-attempt renewal success | Payment quality |
+| Retry recovery | Provider recovery effectiveness |
+| Manual-link recovery | Human fallback performance |
+| Failed-payment churn | Involuntary churn |
+| Duplicate payment count | Billing-control quality |
+
+Payment links should be tied to one specific unpaid invoice and closed when another payment attempt succeeds. Razorpay’s payment-link APIs support exact amounts, references and expiry, making them suitable as an invoice-specific recovery mechanism rather than a general subscription-payment URL.
+
+6. Churn-risk widget
+
+Do not label every low-usage customer as likely to churn.
+
+Use a weighted risk model.
+
+Example churn-risk score
+
+### Table 293
+
+| Signal | Weight |
+| --- | --- |
+| Rating below four | 20 |
+| Complaint in current cycle | 20 |
+| Preferred walker changed repeatedly | 15 |
+| Credit utilisation below 40% | 10 |
+| Two payment failures | 10 |
+| Support contacts above threshold | 10 |
+| Frequent rescheduling | 5 |
+| Plan appears oversized | 5 |
+| Customer viewed cancellation screen | 5 |
+| Total | 100 |
+
+Risk bands
+
+### Table 294
+
+| Score | Risk | Action |
+| --- | --- | --- |
+| 0–24 | Low | Normal service |
+| 25–49 | Medium | Automated check-in |
+| 50–69 | High | Human review |
+| 70+ | Critical | Service-recovery owner |
+
+Correct intervention matching
+
+### Table 295
+
+| Risk reason | Intervention |
+| --- | --- |
+| Low usage | Recommend smaller plan |
+| Travel | Pause plan |
+| Price sensitivity | Downgrade or flexible plan |
+| Walker inconsistency | Primary/backup reset |
+| Scheduling conflict | Change recurring window |
+| Poor reports | Walker coaching or replacement |
+| Payment failure | Update method/payment link |
+| Pet illness | Pause and reassessment |
+| Poor experience | Resolve service issue before retention offer |
+
+Do not use a discount to hide a fulfilment-quality problem.
+
+7. Unused-credit widget
+
+Unused credits represent both:
+
+Customer-engagement risk
+
+Future service liability
+
+Required segmentation
+
+### Table 296
+
+| Segment | Meaning |
+| --- | --- |
+| Healthy usage | 60–90% projected utilisation |
+| Low usage | Below 50% projected |
+| Exhausting early | Above 90% before period end |
+| Expiring soon | Credits expire within seven days |
+| Rolled over | Prior-period credits remain |
+| Reserved | Attached to future bookings |
+| Frozen | Subscription paused |
+
+Useful actions
+
+Recommend smaller plan
+
+Offer rescheduling
+
+Activate pause
+
+Suggest higher plan for early exhaustion
+
+Send expiry warning
+
+Review whether partner capacity prevented usage
+
+A credit should not be treated as “unused by customer” when the customer could not book because the platform lacked availability.
+
+8. Top-plan-performance widget
+
+A plan should not rank first merely because it has the most subscribers.
+
+Score plans using:
+
+### Table 297
+
+| Metric | Suggested weight |
+| --- | --- |
+| First renewal | 20 |
+| Three-month retention | 20 |
+| Contribution per subscriber | 20 |
+| Fulfilment rate | 15 |
+| Complaint/refund rate | 10 |
+| Credit utilisation | 10 |
+| Support cost | 5 |
+
+Display:
+
+Active subscribers
+
+MRR
+
+Renewal
+
+Churn
+
+Usage
+
+Contribution
+
+Fulfilment
+
+Rating
+
+Capacity consumed
+
+A ₹4,999 plan may generate more revenue but be weaker than a ₹2,999 plan if it causes excessive cancellations, support costs and partner overtime.
+
+9. Today’s subscription-operations widget
+
+This should be the main operational queue.
+
+Display
+
+Total walks due
+
+Completed
+
+In progress
+
+Check-in overdue
+
+Unassigned
+
+Primary walker unavailable
+
+Backup required
+
+Customer unavailable
+
+Weather-affected
+
+Incident flagged
+
+Report missing
+
+Alert thresholds
+
+### Table 298
+
+| Condition | Alert |
+| --- | --- |
+| Walk unassigned 12 hours before service | Amber |
+| Primary unavailable without backup | Red |
+| Walker not checked in by tolerance window | Red |
+| Customer unreachable | Amber |
+| Report missing after service | Amber |
+| Safety concern | Critical |
+
+10. Recurring sitter scheduling
+
+Subscription scheduling should use a recurring schedule template plus individual generated bookings.
+
+Assignment structure
+
+### Table 299
+
+| Role | Responsibility |
+| --- | --- |
+| Primary walker | Completes regular scheduled walks |
+| Backup walker | Covers leave, illness and operational disruption |
+| Admin owner | Manages schedule, reassignment and escalations |
+| Customer | Approves recurring pattern and backup rules |
+| Operations system | Generates and tracks bookings |
+
+Weekly schedule example
+
+Customer: RohanPet: BrunoPlan: 20 × 30-minute walksPreferred time: 7:30 AMDays: Monday–FridayPrimary walker: RiyaBackup walker: AmanAdmin owner: NehaService cluster: HSR Sector 2Allowed window: 7:15–8:00 AM
+
+Monday Riya
+
+Tuesday Riya
+
+Wednesday Riya
+
+Thursday Riya
+
+Friday Riya
+
+Riya unavailable
+
+↓
+
+Aman receives assignment
+
+↓
+
+Customer notified
+
+↓
+
+Aman accepts
+
+↓
+
+Booking remains confirmed
+
+11. Scheduling data model
+
+Recurring schedule
+
+recurring_service_schedules
+
+- id
+
+- subscription_id
+
+- pet_id
+
+- service_type
+
+- timezone
+
+- recurrence_rule
+
+- preferred_start_time
+
+- allowed_window_minutes
+
+- duration_minutes
+
+- effective_from
+
+- effective_until
+
+- status
+
+Walker assignments
+
+recurring_schedule_assignments
+
+- id
+
+- recurring_schedule_id
+
+- partner_member_id
+
+- assignment_role
+
+- starts_at
+
+- ends_at
+
+- status
+
+- assigned_at
+
+assignment_role:
+
+PRIMARY
+
+BACKUP
+
+TEMPORARY_REPLACEMENT
+
+Generated booking linkage
+
+subscription_booking_links
+
+- id
+
+- subscription_id
+
+- subscription_period_id
+
+- recurring_schedule_id
+
+- booking_id
+
+- entitlement_reservation_id
+
+Capacity reservation
+
+partner_capacity_reservations
+
+- id
+
+- partner_member_id
+
+- service_cluster_id
+
+- subscription_id
+
+- weekday
+
+- starts_at
+
+- ends_at
+
+- reserved_minutes
+
+- reservation_type
+
+- effective_from
+
+- effective_until
+
+- status
+
+A walker should not be displayed as the “primary” walker unless the platform has actually reserved their recurring time.
+
+12. Primary-walker rules
+
+Recommended continuity targets
+
+### Table 300
+
+| Metric | Target |
+| --- | --- |
+| Preferred-walker fulfilment | 85%+ |
+| Primary or approved backup | 98%+ |
+| Unintroduced replacement | Below 2% |
+| Walker no-show | Below 1% |
+
+Primary walker obligations
+
+Confirm monthly schedule
+
+Keep availability updated
+
+Provide leave notice
+
+Review pet-care instructions
+
+Complete reports
+
+Participate in backup handover
+
+Escalate behaviour or medical concerns
+
+Backup walker requirements
+
+The backup should:
+
+Be verified for the service
+
+Be permitted for the pet’s risk level
+
+Operate in the same cluster
+
+Have met the pet where practical
+
+Have access to approved care instructions
+
+Have actual reserve capacity
+
+Do not assign one backup walker to dozens of subscriptions at the same peak time.
+
+13. Capacity planning
+
+The basic formula is correct but incomplete:
+
+A production formula must also account for:
+
+Existing one-time bookings
+
+Travel time
+
+Peak-window limits
+
+Leave
+
+Breaks
+
+Pet complexity
+
+Backup reserve
+
+Weather disruption
+
+Society gate delays
+
+Report time
+
+Better formula
+
+Recommended utilisation limit
+
+Do not sell 100% of theoretical capacity.
+
+Maintain:
+
+10–15% leave and disruption reserve
+
+5–10% same-day backup reserve
+
+Additional reserve in monsoon, extreme heat or peak travel periods
+
+14. Corrected capacity example
+
+Assume:
+
+20 approved walkers
+
+80 safe monthly walks each
+
+1,600 gross walks
+
+15% backup and leave reserve
+
+200 existing one-time walks expected monthly
+
+With an average 20-walk subscription:
+
+The safe result is approximately 58 subscribers, not 80.
+
+The original 80-subscriber calculation leaves no capacity for:
+
+Existing bookings
+
+Leave
+
+Emergencies
+
+Reassignments
+
+Service recovery
+
+15. Peak-window capacity
+
+Monthly aggregate capacity can be misleading.
+
+Ten walkers may collectively support 800 monthly walks, but only three may be available at 7:30 AM in a particular locality.
+
+Calculate capacity by:
+
+City
+
+↓
+
+Cluster
+
+↓
+
+Day
+
+↓
+
+Time window
+
+↓
+
+Walker permission
+
+↓
+
+Pet compatibility
+
+Example
+
+HSR morning cluster
+
+### Table 301
+
+| Time window | Safe simultaneous capacity |
+| --- | --- |
+| 6:00–7:00 | 4 |
+| 7:00–8:00 | 7 |
+| 8:00–9:00 | 5 |
+| 9:00–10:00 | 3 |
+
+Once seven recurring subscriptions occupy the 7:00–8:00 window, further plans should offer:
+
+Another time
+
+Flexible scheduling
+
+Waitlist
+
+Another cluster
+
+Future capacity
+
+Do not accept payment first and solve capacity later.
+
+16. Daily walker capacity
+
+The proposed range of four to eight 30-minute walks daily can be realistic, but only under appropriate density.
+
+A “30-minute walk” may consume:
+
+### Table 302
+
+| Activity | Minutes |
+| --- | --- |
+| Travel and gate entry | 10–30 |
+| Pet handover | 5 |
+| Walk | 30 |
+| Return and report | 5–10 |
+| Total operational time | 50–75 |
+
+Eight daily walks may require:
+
+Dense society routes
+
+Minimal travel
+
+Reliable gate entry
+
+Flexible customer windows
+
+For scattered home bookings, four to six may be safer.
+
+Capacity classes
+
+### Table 303
+
+| Route type | Safe daily estimate |
+| --- | --- |
+| One large society | 6–10 |
+| Compact neighbourhood | 5–8 |
+| Scattered urban route | 4–6 |
+| Complex/high-risk pets | 3–5 |
+
+Use real completed-service data to calibrate each cluster.
+
+17. Capacity dashboard
+
+Required widgets
+
+Total approved walkers
+
+Active walkers this week
+
+Gross monthly capacity
+
+Reserved subscription capacity
+
+One-time-booking forecast
+
+Backup reserve
+
+Remaining sellable capacity
+
+Capacity by cluster
+
+Capacity by time window
+
+Overbooked slots
+
+Subscriptions without backup
+
+Walker leave in next 30 days
+
+Capacity health
+
+### Table 304
+
+| Utilisation | Interpretation |
+| --- | --- |
+| Below 50% | Supply underused |
+| 50–70% | Healthy growth room |
+| 70–85% | Strong utilisation |
+| 85–90% | Stop aggressive sales |
+| Above 90% | Operational risk |
+
+A walker’s individual utilisation and city-wide utilisation should not be blended into one number.
+
+18. Society model: B2B plus B2C
+
+The society model should have two separate commercial relationships.
+
+Society/RWA
+
+buys
+
+B2B management subscription
+
+Resident
+
+buys
+
+B2C walking or care plan
+
+B2B society management fee
+
+Pays for:
+
+Society page
+
+Partner roster
+
+Gate process
+
+Support
+
+Reports
+
+Events or coordination
+
+Resident offers
+
+B2C resident subscription
+
+Pays for:
+
+Walks
+
+Grooming credits
+
+Care bundles
+
+Membership benefits
+
+Do not merge both into one invoice or one MRR metric.
+
+19. Review of proposed resident pricing
+
+Your proposed plans imply:
+
+### Table 305
+
+| Plan | Price | Effective rate |
+| --- | --- | --- |
+| Society Starter — 8 walks | ₹999 | ₹125 |
+| Society Regular — 12 walks | ₹1,799 | ₹150 |
+| Society Active — 20 walks | ₹2,999 | ₹150 |
+| Society Premium — 20 walks | ₹4,999 | ₹250 |
+
+Problems
+
+The 8-walk plan is substantially cheaper per walk than the 12- and 20-walk plans.
+
+Regular and Active offer no unit-price improvement.
+
+Premium costs ₹2,000 more for the same number of walks.
+
+The pricing cannot work uniformly across Mumbai, Pune, Surat and Bengaluru.
+
+Better pricing logic
+
+Use the city’s standard walking rate and apply a genuine society-density discount.
+
+Illustrative example with ₹199 single-walk price
+
+### Table 306
+
+| Plan | Calculation | Example price |
+| --- | --- | --- |
+| Starter — 8 walks | 5% saving | ₹1,499 |
+| Regular — 12 walks | 8% saving | ₹2,199 |
+| Active — 20 walks | 12% saving | ₹3,499 |
+| Premium — 20 walks | Active + continuity/membership benefits | ₹3,899–₹4,199 |
+
+Actual pricing must be city- and cluster-specific.
+
+20. Recommended society resident plans
+
+Society Starter
+
+Eight 30-minute walks
+
+Flexible scheduling
+
+One rollover credit
+
+Society partner pool
+
+Standard support
+
+Society Regular
+
+Twelve walks
+
+Fixed or flexible schedule
+
+Preferred walker
+
+Two rollover credits
+
+Resident event access
+
+Society Active
+
+Twenty weekday walks
+
+Recurring schedule
+
+Primary and backup walker
+
+Monthly report
+
+Grooming credit where economics permit
+
+Society Premium
+
+Twenty walks
+
+Preferred Walker Continuity
+
+Faster support
+
+Flexible rescheduling
+
+Grooming credit
+
+Early event registration
+
+Membership benefits
+
+Premium should charge for actual incremental service—not simply a label.
+
+21. Society management plans
+
+Basic Partner — ₹9,999/month
+
+Suitable inclusions:
+
+Society page
+
+Verified local provider list
+
+Gate-entry process
+
+Resident offers
+
+Standard support
+
+Monthly aggregate report
+
+Event-booking access
+
+Premium Desk — ₹24,999/month
+
+Suitable inclusions:
+
+Named coordinator
+
+Faster support SLA
+
+Resident onboarding
+
+Priority local partner pool
+
+Monthly RWA review
+
+Defined event allowance
+
+Enhanced reporting
+
+Township Plan — ₹50,000+
+
+Suitable inclusions:
+
+Multiple societies or phases
+
+Multiple gates
+
+Dedicated account owner
+
+Multi-location reporting
+
+Custom event calendar
+
+Partner-capacity reservation
+
+Integration with community application
+
+Custom support SLA
+
+AWBI guidance addresses the responsibilities of pet owners and RWAs and opposes blanket pet restrictions while encouraging responsible practices. The society product should help operationalise coexistence, gate access and resident education rather than function as a system for excluding pet owners.
+
+22. Society subscription dashboard
+
+B2B widgets
+
+Active society accounts
+
+Society MRR
+
+Renewals due
+
+Trial-to-paid conversion
+
+Resident registrations
+
+B2C subscriber adoption
+
+Society booking GMV
+
+Platform contribution
+
+Event attendance
+
+RWA satisfaction
+
+Gate incidents
+
+Complaints
+
+Partner coverage
+
+Account owner
+
+Revenue separation
+
+Report:
+
+### Table 307
+
+| Revenue category | Amount |
+| --- | --- |
+| Society-management subscription revenue | ₹ |
+| Resident subscription GMV | ₹ |
+| Platform resident-service revenue | ₹ |
+| Event revenue | ₹ |
+| Partner payouts | ₹ |
+| Direct society-account cost | ₹ |
+| Society contribution | ₹ |
+
+Do not count resident booking GMV again as society subscription revenue.
+
+Privacy
+
+RWAs should receive aggregate operational reports—not individual home addresses, pet health records, behavioural notes, payment data or walking routes. The notified DPDP Rules have phased commencement, but the system should already use purpose-specific access controls and clear data-sharing notices.
+
+23. Corporate pet-care benefits
+
+Corporate pet-care should remain a controlled extension of Phase 9.
+
+The product is most credible when it reduces an employee’s care burden—not when it promises that pet care directly increases productivity.
+
+Recommended models
+
+### Table 308
+
+| Model | Employer pays | Employee pays | Complexity |
+| --- | --- | --- | --- |
+| Negotiated employee discount | Low/none | Most service cost | Low |
+| Company-sponsored credits | Fixed budget | Excess usage | Medium |
+| Membership benefit | Monthly employee fee | Service purchases | Medium |
+| Flexible-benefit wallet | Defined allowance | Excess usage | Medium-high |
+| Employer-sponsored care plan | Full/partial plan | Optional upgrades | High |
+
+24. Best corporate pilot: sponsored credits
+
+Example
+
+A company provides:
+
+₹1,000 pet-care credits per eligible employee annually or quarterly.
+
+Credits may be used for:
+
+Dog walking
+
+Pet sitting
+
+Boarding
+
+Grooming
+
+Non-clinical emergency coordination
+
+Exclude initially:
+
+Prescription medicines
+
+Unverified product sellers
+
+Veterinary diagnosis by platform staff
+
+Uncapped emergency transport
+
+Cash withdrawal
+
+Why credits are better for the pilot
+
+They provide:
+
+Predictable employer cost
+
+Employee choice
+
+Clear utilisation
+
+Simple reporting
+
+Limited platform liability
+
+Easier tax and invoicing review
+
+25. Corporate product structures
+
+A. Employee discount programme
+
+The employer:
+
+Signs a partnership
+
+Promotes the benefit
+
+Pays a small setup or administration fee, or no fee initially
+
+Employee:
+
+Verifies corporate eligibility
+
+Pays for services
+
+Receives a negotiated discount or membership rate
+
+Best for first pilots.
+
+B. Company-sponsored credits
+
+The employer funds:
+
+₹500, ₹1,000 or ₹2,000 per employee
+
+Quarterly or annual allowance
+
+Defined services
+
+Expiry and usage rules
+
+Employee pays for usage above the allowance.
+
+C. Corporate membership
+
+Employer pays a monthly fee per eligible or activated employee.
+
+Possible benefits:
+
+Priority booking
+
+Reduced platform fee
+
+Care reminders
+
+Backup-care coordination
+
+Employee-specific offers
+
+Dedicated benefit page
+
+D. HR wellness bundle
+
+Potential components:
+
+Pet-parent education session
+
+Puppy-adjustment workshop
+
+Travel-care planning
+
+Emergency preparedness
+
+Employee discounts
+
+Optional sponsored service credits
+
+Do not market clinical sessions as wellness content unless delivered by appropriately registered professionals.
+
+26. Corporate eligibility flow
+
+Employer contract
+
+↓
+
+Eligibility list or domain verification
+
+↓
+
+Employee creates account
+
+↓
+
+Employment eligibility verified
+
+↓
+
+Employee adds pet
+
+↓
+
+Benefit or credit wallet activated
+
+↓
+
+Employee books eligible service
+
+↓
+
+Benefit applied
+
+↓
+
+Employer receives aggregate report
+
+Eligibility methods
+
+Work-email verification
+
+HR eligibility file
+
+Employee ID verification
+
+SSO
+
+Benefit code
+
+HR platform integration
+
+Never send employers:
+
+Individual health records
+
+Exact home address
+
+Pet behaviour details
+
+Walking routes
+
+Complaint content
+
+Personal payment history
+
+27. Corporate dashboard
+
+Employer-facing metrics
+
+Eligible employees
+
+Activated employees
+
+Benefit users
+
+Credits issued
+
+Credits consumed
+
+Service-category utilisation
+
+Aggregate employee satisfaction
+
+Total employer spend
+
+Remaining budget
+
+Renewal forecast
+
+Platform-facing metrics
+
+Corporate MRR
+
+Employee conversion
+
+Incremental bookings
+
+Contribution
+
+Benefit liability
+
+Support load
+
+Service capacity
+
+Corporate account renewal
+
+Privacy rule
+
+Employer reports should be aggregate and thresholded. Avoid reporting categories containing only one or two users where individuals could be inferred.
+
+28. Corporate pricing
+
+Employee-discount partnership
+
+Possible model:
+
+Setup fee
+
+Monthly administration fee
+
+Service commission retained normally
+
+Employee pays service price
+
+Sponsored credits
+
+Corporate subscription
+
+Avoid invoicing every eligible employee when only a small percentage activate unless the contract clearly uses an eligibility-based pricing model.
+
+29. City strategy for corporate pilots
+
+Bengaluru, Pune, Gurugram and Mumbai are reasonable first hypotheses because the platform already intends to build dense service clusters there.
+
+Do not enter a city solely because it has large corporate offices.
+
+A corporate pilot requires:
+
+Active partner supply near employee residential clusters
+
+Reliable walking and sitting capacity
+
+Bilingual or multilingual support where needed
+
+Employer implementation owner
+
+Clear benefit budget
+
+Geographic limitations shown to employees
+
+Recommended sequence:
+
+One employer
+
+100–500 eligible employees
+
+Employee-discount or credit model
+
+Two operational residential clusters
+
+60–90-day pilot
+
+Usage and contribution review
+
+30. Compliance widgets to add
+
+Consumer compliance
+
+Open grievances
+
+Response SLA
+
+Refund disputes
+
+Renewal complaints
+
+Cancellation complaints
+
+Dark-pattern audit issues
+
+E-commerce businesses must maintain consumer disclosures and an adequate grievance mechanism; these protections apply to Free and paid customers alike.
+
+Privacy compliance
+
+Data-access anomalies
+
+RWA/corporate report exports
+
+Consent withdrawals
+
+Data-correction requests
+
+Security incidents
+
+Retention jobs
+
+Gig-worker compliance
+
+If the pet-care platform is classified as an aggregator under the current social-security framework, partner identity, engagement and earnings records may need to support eShram onboarding and government reporting. The Code on Social Security came into force in November 2025, and the Labour Ministry issued 2026 directions concerning aggregator onboarding. Obtain a formal classification opinion and include compliance readiness in the admin dashboard.
+
+Tax reconciliation
+
+If the platform collects consideration for services supplied through third-party partners, GST e-commerce-operator and TCS treatment may depend on the actual transaction structure. Keep society fees, resident service payments, employer benefits and partner settlements in separate ledgers and obtain a written CA position.
+
+31. Recommended Phase 9 dashboard layout
+
+Row 1 — Executive
+
+Active Subscribers
+
+Platform MRR
+
+Contribution MRR
+
+Renewal Rate
+
+Subscriber Churn
+
+Row 2 — Revenue movement
+
+New MRR
+
+Upgrade MRR
+
+Downgrade MRR
+
+Churned MRR
+
+Failed-Payment Recovery
+
+Row 3 — Fulfilment
+
+Walks Due Today
+
+Walk Completion
+
+On-Time Rate
+
+Preferred-Walker Rate
+
+Backup Fulfilment
+
+Row 4 — Capacity
+
+Gross Capacity
+
+Reserved Capacity
+
+Available Capacity
+
+Peak-Time Saturation
+
+Plans Without Backup
+
+Row 5 — Customer health
+
+Churn-Risk Users
+
+Low Credit Utilisation
+
+Credits Expiring
+
+Open Complaints
+
+Paused Plans
+
+Row 6 — B2B
+
+Paid Societies
+
+Society MRR
+
+Resident Adoption
+
+Corporate Accounts
+
+Corporate Benefit Usage
+
+Row 7 — Compliance
+
+Payment Reconciliation
+
+Grievance SLA
+
+Privacy Requests
+
+Partner Documents Expiring
+
+Critical Incidents
+
+32. Dashboard alert rules
+
+### Table 309
+
+| Alert | Threshold |
+| --- | --- |
+| Walking completion risk | Projected below 95% |
+| Peak-window capacity | Above 85% sold |
+| No backup | Any active high-frequency plan |
+| Failed-payment recovery | Past due for more than three days |
+| Low credit use | Below 40% with seven days remaining |
+| Preferred-walker decline | Below 80% |
+| Complaint rate | Above 5% |
+| Plan contribution | Negative for two periods |
+| Society inactivity | Fewer than ten resident bookings/month |
+| Corporate credit breakage | Very low usage without employee awareness |
+| Critical incident | Immediate escalation |
+
+33. Phase 9 go/no-go criteria
+
+Subscription operations
+
+### Table 310
+
+| Requirement | Target |
+| --- | --- |
+| Active paying subscribers | 50–120 base |
+| Walk completion | 95%+ |
+| On-time fulfilment | 95%+ |
+| Primary or backup fulfilment | 98%+ |
+| Preferred-walker fulfilment | 85%+ |
+| Plans with named backup | 95%+ |
+| Complaint/refund rate | Below 5% |
+
+Capacity
+
+### Table 311
+
+| Requirement | Target |
+| --- | --- |
+| Overall sellable-capacity use | Below 85% |
+| Peak-window capacity use | Below 90% |
+| Backup reserve | 10–15% |
+| Overbooked recurring slots | Zero |
+| Subscription walks without assignment | Below 1% |
+
+Society
+
+### Table 312
+
+| Requirement | Target |
+| --- | --- |
+| Paid society plans | 2–5 |
+| Resident paid adoption | 20%+ of engaged pet households |
+| RWA satisfaction | 4.5+ |
+| Contribution-positive societies | At least 2 |
+| Gate protocol | Operational |
+| Serious incidents | Zero |
+
+Corporate pilot
+
+### Table 313
+
+| Requirement | Target |
+| --- | --- |
+| Employer pilots | 1–2 |
+| Eligible employees | 100–500 |
+| Activation | 10–20% starting hypothesis |
+| Employer-funded budget control | Operational |
+| Positive contribution | Yes |
+| Personal data shared with employer | Aggregate only |
+| Employer renewal intent | Positive |
+
+Final decisions
+
+### Table 314
+
+| Proposal | Decision |
+| --- | --- |
+| Phase 9 dashboard widgets | Approve with additional fulfilment and contribution widgets |
+| Primary and backup sitter assignment | Approve—capacity must be reserved |
+| Admin schedule owner | Approve |
+| Four to eight walks daily | Use cluster-specific range |
+| Walkers × monthly capacity formula | Use only as a starting calculation |
+| Sell 80 subscriptions from 1,600 theoretical walks | Reduce after reserves and existing demand |
+| B2B and B2C society combination | Approve with separate contracts and ledgers |
+| Proposed universal society resident prices | Reject—make them city and cluster specific |
+| Basic Society plan ₹9,999 | Approve |
+| Premium Desk ₹24,999 | Approve with measurable coordinator/event service |
+| Township ₹50,000+ | Approve as custom pricing |
+| Corporate employee discount | Approve for pilot |
+| Company-sponsored credits | Recommended first paid corporate model |
+| Corporate pet-care subscription | Pilot later |
+| Unlimited corporate pet care | Reject |
+
+Final Phase 9 operating model
+
+Customer subscription
+
+↓
+
+Capacity reserved
+
+↓
+
+Primary and backup walkers assigned
+
+↓
+
+Recurring bookings generated
+
+↓
+
+Daily fulfilment monitored
+
+↓
+
+Credits consumed
+
+↓
+
+Renewal and churn managed
+
+↓
+
+Society and corporate accounts measured separately
+
+Phase 9 win condition
+
+Every subscription sold has sufficient cluster-level capacity, a dependable primary-and-backup fulfilment plan, positive contribution and transparent renewal—while society and corporate contracts create additional recurring revenue without exposing individual resident or employee data.
+
+Phase 9 Dashboard and Capacity System: GO—with cluster-level capacity controls and separate B2C, society B2B and corporate-benefit ledgers.
+
+Phase 9 Execution Plan
+
+60-Day Subscription Build, Pilot and Scale Blueprint 🐾💰
+
+Executive decision
+
+Approve the 60-day Phase 9 plan, but restructure several tasks before execution.
+
+The overall sequence is correct:
+
+Strategy
+
+↓
+
+Backend
+
+↓
+
+Customer UI
+
+↓
+
+Payments
+
+↓
+
+Existing-customer pilot
+
+↓
+
+Society rollout
+
+↓
+
+Pricing and retention optimisation
+
+↓
+
+Controlled public launch
+
+However, five issues need correction:
+
+Payment architecture cannot begin only on Day 22. Provider selection, mandate behaviour, webhook design and refund rules affect the Week 1 PRD and Week 2 database.
+
+The backend needs more than four basic subscription tables. It requires plan versions, billing periods, payment mandates, invoices, entitlement reservations, an immutable ledger and webhook deduplication.
+
+“100 subscription bookings” is ambiguous. Separate scheduled, completed, cancelled and credit-consumed bookings.
+
+Pricing should not be changed aggressively after one week of data. New prices must use new plan versions and controlled experiments.
+
+The public launch on Day 50 must be conditional. Do not launch publicly if fulfilment, payment recovery, cancellation or capacity gates fail.
+
+UPI AutoPay supports recurring mandates and customer actions such as modification, pause, unpause and revocation. Razorpay’s subscription system uses webhooks and payment-retry states, while Payment Links can provide a manual fallback. These behaviours need to shape the product architecture from the beginning—not only during Week 4.
+
+1. Final 60-day operating model
+
+Phase objectives
+
+### Table 315
+
+| Period | Objective |
+| --- | --- |
+| Days 1–7 | Prove the commercial and operational subscription model |
+| Days 8–14 | Build the subscription and entitlement core |
+| Days 15–21 | Build transparent customer controls |
+| Days 22–28 | Complete payment, renewal and recovery systems |
+| Days 29–35 | Validate with existing trusted customers |
+| Days 36–42 | Test society B2B and B2C recurring products |
+| Days 43–49 | Improve retention, pricing and capacity |
+| Days 50–60 | Conditionally scale and complete Phase 10 readiness |
+
+Recommended launch products
+
+Do not launch the entire Phase 9 catalogue simultaneously.
+
+Launch:
+
+12-Walk Regular Plan
+
+20-Walk Active Plan
+
+Plus Membership, only after walking plans work
+
+Basic Society Partner, as a controlled B2B pilot
+
+Defer:
+
+30-walk daily plan until capacity is proven
+
+Premium membership until support operations are ready
+
+Sitter Pro subscriptions
+
+Partner sponsored listings
+
+Corporate plans beyond one limited experiment
+
+Annual prepaid plans
+
+2. Roles and accountability
+
+Every workstream requires one accountable owner.
+
+### Table 316
+
+| Workstream | Accountable owner |
+| --- | --- |
+| Subscription strategy | Product lead/founder |
+| Pricing and unit economics | Finance/product |
+| Walker capacity | Marketplace operations |
+| Backend architecture | Backend lead |
+| Payment integration | Backend/finance engineering |
+| Customer UX | Product designer/frontend lead |
+| Renewal messaging | CRM/growth lead |
+| Support policies | Customer operations lead |
+| Society sales | Partnerships lead |
+| Partner scheduling | Supply operations |
+| Privacy and consumer controls | Legal/compliance owner |
+| Final Phase 9 decision | Founder + functional leads |
+
+One person may hold multiple roles in a small team, but responsibilities must not remain implicit.
+
+Week 1: Subscription Strategy
+
+Days 1–7
+
+Day 1 — Analyse repeat users
+
+Goal
+
+Identify customers who already demonstrate recurring need and are most likely to subscribe voluntarily.
+
+Data to analyse
+
+Use at least the previous 60–120 days where available:
+
+Customer ID
+
+Pet ID
+
+City and micro-market
+
+Number of completed walks
+
+Walk frequency
+
+Days between walks
+
+Preferred time
+
+Preferred walker
+
+Ratings
+
+Complaints
+
+Cancellation history
+
+Average spend
+
+Other services used
+
+Society membership
+
+Last completed booking
+
+Payment success history
+
+Recommended customer cohorts
+
+Cohort A: High-intent walking users
+
+Five or more completed walks
+
+At least three walks within 30 days
+
+Rating of four or five
+
+No unresolved complaint
+
+Stable neighbourhood coverage
+
+Primary offer:
+
+12- or 20-walk plan
+
+Cohort B: Occasional but increasing users
+
+Two to four completed walks
+
+Increasing frequency
+
+Positive feedback
+
+Primary offer:
+
+Non-recurring five-walk starter pack
+
+Cohort C: Same-walker users
+
+Requested the same walker at least twice
+
+Strong continuity preference
+
+Primary offer:
+
+Walking plan with preferred-walker functionality
+
+Cohort D: Multi-service customers
+
+Walking plus grooming, sitting or boarding
+
+Higher trust in the platform
+
+Primary offer:
+
+Walking plan first; care membership later
+
+Cohort E: Poor-fit users
+
+Repeated complaints
+
+Low ratings
+
+Frequent cancellations
+
+High-risk pet without stable assignment
+
+No active supply coverage
+
+Action:
+
+Resolve service issues before presenting a subscription
+
+Required output
+
+Subscription Target Cohort Report
+
+### Table 317
+
+| Field | Required result |
+| --- | --- |
+| Total eligible customers | Count |
+| High-intent walking users | Count |
+| Starter-pack candidates | Count |
+| Same-walker candidates | Count |
+| Society residents | Count |
+| Excluded because of quality/supply | Count |
+| Estimated conversion range | Low/base/high |
+| Expected first-month MRR | Scenario |
+
+Day 1 acceptance gate
+
+Proceed when:
+
+At least 30–50 realistic pilot customers exist.
+
+Their neighbourhoods overlap with active walker supply.
+
+No unresolved safety issue exists in the cohort.
+
+Plan recommendations can be personalised by usage.
+
+Day 2 — Analyse walking frequency
+
+Goal
+
+Design plans from real customer behaviour rather than arbitrary credit counts.
+
+Analyse frequency distribution
+
+Group customers by:
+
+### Table 318
+
+| Monthly behaviour | Product implication |
+| --- | --- |
+| 1–3 walks | Stay pay-as-you-go |
+| 4–7 walks | Starter pack |
+| 8–11 walks | 8-walk plan |
+| 12–16 walks | 12-walk plan |
+| 17–24 walks | 20-walk plan |
+| 25+ walks | Daily plan candidate |
+
+Analyse scheduling
+
+Measure:
+
+Morning versus evening demand
+
+Weekday versus weekend demand
+
+Exact-slot versus flexible-window demand
+
+Average notice period
+
+Most congested one-hour windows
+
+Walk duration
+
+Society gate time
+
+Average travel time
+
+Primary-walker continuity
+
+Hidden risk
+
+Monthly demand may appear sufficient in aggregate while all customers want the same 7:00–8:00 AM slot.
+
+Capacity must therefore be analysed through:
+
+City
+
+↓
+
+Service cluster
+
+↓
+
+Day of week
+
+↓
+
+Time window
+
+↓
+
+Walker capability
+
+↓
+
+Pet compatibility
+
+Required output
+
+Walking Demand Matrix
+
+### Table 319
+
+| Cluster | Time window | Current walks | Plan candidates | Available supply | Gap |
+| --- | --- | --- | --- | --- | --- |
+| HSR | 7–8 AM |  |  |  |  |
+| Whitefield | 7–8 AM |  |  |  |  |
+| Baner | 6–7 PM |  |  |  |  |
+
+Day 2 acceptance gate
+
+Proceed when at least two compact service clusters show repeatable demand across multiple customers.
+
+Day 3 — Calculate sitter capacity
+
+Goal
+
+Determine how many recurring credits can be sold without overbooking the network.
+
+Do not use only this formula
+
+It ignores:
+
+Existing one-time work
+
+Travel
+
+Leave
+
+Peak-hour concentration
+
+Backup coverage
+
+Society entry
+
+Reporting time
+
+Behaviour complexity
+
+Weather disruption
+
+Recommended formula
+
+Example
+
+Assume:
+
+10 walkers
+
+80 realistic walks each per month
+
+Gross capacity: 800 walks
+
+Existing one-time forecast: 120 walks
+
+Leave and backup reserve: 15%
+
+Operational buffer: 5%
+
+At 20 walks per subscriber:
+
+The safe launch capacity is approximately 26 Active Plan subscribers, not 40.
+
+Capacity reserves
+
+Recommended starting reserve:
+
+10% for leave and illness
+
+5–10% for same-day backup
+
+Additional cluster buffer for peak windows
+
+Required output
+
+Capacity Sales Limit
+
+### Table 320
+
+| Cluster | 12-walk plan capacity | 20-walk plan capacity | Peak slots full? | Backup coverage |
+| --- | --- | --- | --- | --- |
+| Cluster A |  |  |  |  |
+| Cluster B |  |  |  |  |
+
+Day 3 acceptance gate
+
+Do not design sales targets until:
+
+Sellable capacity is known by cluster.
+
+Peak-time capacity is known.
+
+At least one backup exists per primary schedule group.
+
+Existing customers remain protected.
+
+Day 4 — Design subscription plans and pricing
+
+Goal
+
+Create a minimal plan catalogue with healthy unit economics.
+
+Recommended pilot plans
+
+Regular Walk Plan
+
+12 × 30-minute walks
+
+Fixed or flexible schedule
+
+Preferred walker
+
+Approved backup
+
+Two rollover credits
+
+Monthly billing
+
+Active Dog Plan
+
+20 × 30-minute walks
+
+Primarily fixed weekday schedule
+
+Reserved primary walker
+
+Approved backup
+
+Monthly report
+
+Two rollover credits
+
+Optional starter pack
+
+Five walks
+
+Non-recurring
+
+Valid 14–21 days
+
+No AutoPay
+
+Converts trusted users into monthly plans
+
+Price calculation
+
+Required unit economics
+
+For every plan calculate:
+
+Customer price
+
+Effective price per walk
+
+Walker payout
+
+Platform gross revenue
+
+Expected discount
+
+Payment costs
+
+Support costs
+
+Backup reserve
+
+Refund/make-good reserve
+
+Contribution per subscriber
+
+Contribution percentage
+
+Pricing rule
+
+The effective unit price should normally decline as commitment increases unless the larger plan includes additional costly guarantees.
+
+Do not compare plans against an artificial single-walk price. Consumer-facing savings must use a genuine, available pay-as-you-go price.
+
+Required output
+
+Plan Economics Workbook
+
+### Table 321
+
+| Plan | Price | Walker payout | Platform revenue | Direct costs | Contribution |
+| --- | --- | --- | --- | --- | --- |
+| Starter | ₹ | ₹ | ₹ | ₹ | ₹ |
+| Regular | ₹ | ₹ | ₹ | ₹ | ₹ |
+| Active | ₹ | ₹ | ₹ | ₹ | ₹ |
+
+Day 4 acceptance gate
+
+Proceed when both core plans have positive expected contribution without relying on large numbers of unused credits.
+
+Day 5 — Define credit rules
+
+Goal
+
+Create precise, fair and auditable entitlement policies.
+
+Recommended credit policy
+
+### Table 322
+
+| Rule | Recommended policy |
+| --- | --- |
+| Validity | Current billing period |
+| 12-walk rollover | Maximum 2 |
+| 20-walk rollover | Maximum 2 |
+| Rollover expiry | End of following period |
+| Early customer cancellation | Release reserved credit |
+| Late customer cancellation | Consume credit |
+| Customer no-show | Consume credit |
+| Walker cancellation with backup | Consume after completion |
+| Walker cancellation without backup | Restore credit |
+| Platform cancellation | Restore plus possible goodwill credit |
+| Upgrade | Next period initially |
+| Downgrade | Next period |
+| Pause | Freeze or extend according to disclosed policy |
+| Admin adjustment | Reason and audit mandatory |
+
+Critical technical rule
+
+Booking creation should reserve one credit.
+
+Booking completion should consume it.
+
+Cancellation should release or consume it according to policy.
+
+GRANT
+
+↓
+
+RESERVE
+
+↓
+
+CONSUME or RELEASE
+
+Do not immediately deduct permanent credit when a booking request is submitted.
+
+Required output
+
+Credit policy document
+
+Transaction-type list
+
+Cancellation matrix
+
+Rollover policy
+
+Admin-adjustment policy
+
+Service-recovery policy
+
+Day 6 — Define renewal, pause and cancellation
+
+Goal
+
+Document the complete subscription lifecycle before engineering begins.
+
+Subscription lifecycle states
+
+Use:
+
+PENDING_ACTIVATION
+
+TRIALING
+
+ACTIVE
+
+PAST_DUE
+
+PAUSED
+
+CANCELLED
+
+EXPIRED
+
+Do not use:
+
+RENEWED as a status; renewal is an event.
+
+FAILED as a subscription status; failure belongs to a payment attempt.
+
+Required lifecycle decisions
+
+Initial payment activation
+
+Renewal schedule
+
+Pre-renewal notice
+
+Failed-payment grace period
+
+Retry policy
+
+Manual link fallback
+
+Pause length
+
+Credit treatment during pause
+
+Cancel immediately versus period end
+
+Refund treatment
+
+Mandate revocation
+
+Price-change notice
+
+Restart after cancellation
+
+UPI AutoPay allows customer-side pause, unpause, modification and revocation. Your app should expose matching, understandable account controls rather than making customers manage everything outside the platform.
+
+Consumer protection requirement
+
+Cancellation cannot be hidden, unnecessarily lengthy or practically impossible. Indian dark-pattern guidance expressly identifies such behaviour as a subscription trap, and e-commerce entities must maintain adequate consumer disclosures and grievance handling.
+
+Required output
+
+Subscription Lifecycle Specification
+
+State diagram
+
+State transition matrix
+
+Customer actions
+
+Admin actions
+
+System actions
+
+Payment events
+
+Notifications
+
+Refund behaviour
+
+Day 7 — Final review and PRD
+
+Goal
+
+Convert Weeks 1 findings into one build-ready product specification.
+
+Required PRD sections
+
+Business objective
+
+Target customer cohorts
+
+Products and plan versions
+
+Pricing and economics
+
+Eligibility rules
+
+Capacity controls
+
+Subscription lifecycle
+
+Credit ledger
+
+Payment architecture
+
+Pause/cancel/refund rules
+
+Customer UX
+
+Admin operations
+
+Partner scheduling
+
+Notifications
+
+Analytics
+
+Privacy and security
+
+Consumer compliance
+
+Acceptance tests
+
+Launch gates
+
+Phase 10 criteria
+
+Week 1 deliverables
+
+Subscription PRD
+
+Capacity report
+
+Pricing model
+
+Credit policy
+
+Lifecycle specification
+
+Pilot target cohort
+
+Compliance checklist
+
+Initial event catalogue
+
+Week 1 go/no-go gate
+
+Proceed only when:
+
+Plan economics are positive.
+
+At least two clusters have capacity.
+
+30–50 suitable pilot users exist.
+
+Credit and cancellation policies are complete.
+
+Payment-provider feasibility has been checked.
+
+Support and operations owners are assigned.
+
+Week 2: Build the Subscription Backend
+
+Days 8–14
+
+Day 8 — Add product, plan-version and price tables
+
+Original weakness
+
+A single mutable subscription_plans table is not sufficient.
+
+If you change:
+
+Price
+
+Walk count
+
+Rollover
+
+Benefits
+
+Cancellation rules
+
+existing subscriptions must retain the version the customer accepted.
+
+Build
+
+subscription_products
+
+subscription_plan_versions
+
+subscription_prices
+
+Required fields
+
+subscription_products
+
+id
+
+code
+
+product_type
+
+name
+
+status
+
+subscription_plan_versions
+
+product_id
+
+version_number
+
+included_entitlements
+
+benefits
+
+terms snapshot
+
+rollover policy
+
+cancellation policy
+
+effective dates
+
+publication status
+
+subscription_prices
+
+plan_version_id
+
+city
+
+cluster
+
+amount in paise
+
+tax configuration
+
+effective dates
+
+Day 8 acceptance tests
+
+Published version cannot be silently edited.
+
+New prices can be created for new customers.
+
+Existing subscribers remain on their accepted version.
+
+Money is stored in the smallest currency unit.
+
+Day 9 — Add subscriptions and billing periods
+
+Build
+
+customer_subscriptions
+
+subscription_periods
+
+customer_subscriptions
+
+Store:
+
+Customer and pet
+
+Accepted plan version
+
+Status
+
+Auto-renew flag
+
+Cancel-at-period-end flag
+
+Current period
+
+Payment mandate
+
+Cluster
+
+Activation and cancellation timestamps
+
+Scheduled plan change
+
+subscription_periods
+
+Every paid month becomes a separate period:
+
+Start
+
+End
+
+Plan snapshot
+
+Price snapshot
+
+Invoice
+
+Period status
+
+Entitlements granted
+
+Why periods matter
+
+Without periods, it becomes difficult to answer:
+
+Which payment funded which credits?
+
+Which terms applied that month?
+
+What should be refunded?
+
+Which credits should expire?
+
+Did renewal actually occur?
+
+Day 9 acceptance tests
+
+No overlapping active periods.
+
+Cancel-at-period-end keeps current benefits active.
+
+Successful renewal creates exactly one new period.
+
+Failed payment creates no paid period.
+
+Day 10 — Add service entitlements and reservations
+
+Build
+
+entitlement_grants
+
+entitlement_reservations
+
+Grant example
+
+20 DOG_WALK credits
+
+valid from 12 August
+
+valid until 12 September
+
+Reservation example
+
+1 credit reserved for Booking BKG-123
+
+Required rules
+
+Credits cannot be reserved after expiry.
+
+One booking cannot reserve two credits accidentally.
+
+Reserved credits are not available for another booking.
+
+Completion consumes the reservation.
+
+Cancellation releases or consumes according to policy.
+
+Day 10 acceptance tests
+
+Test two simultaneous booking requests when one credit remains.
+
+Expected result:
+
+One succeeds.
+
+One receives an insufficient-credit response.
+
+No negative balance occurs.
+
+Day 11 — Add the append-only credit ledger
+
+Build
+
+entitlement_ledger
+
+Transaction types:
+
+GRANT
+
+RESERVE
+
+RELEASE
+
+CONSUME
+
+RESTORE
+
+ROLLOVER_GRANT
+
+EXPIRE
+
+ADMIN_ADD
+
+ADMIN_REMOVE
+
+REFUND_REVERSAL
+
+Every entry requires:
+
+Subscription
+
+Billing period
+
+Credit grant
+
+Booking
+
+Quantity
+
+Reason
+
+Actor
+
+Timestamp
+
+Idempotency key
+
+Why an immutable ledger is required
+
+Mutable counters such as:
+
+used_credits
+
+remaining_credits
+
+are prone to concurrency bugs and weak auditability.
+
+A cached remaining balance may exist for performance, but the ledger remains the source of truth.
+
+Day 11 acceptance tests
+
+Duplicate booking-completion event does not consume twice.
+
+Admin adjustment is fully audited.
+
+Rollover can be traced to the original period.
+
+Refund reversal does not create unexplained credits.
+
+Day 12 — Build subscription APIs
+
+Customer APIs
+
+GET /v1/subscription-products
+
+GET /v1/subscription-products/{id}
+
+POST /v1/subscription-checkout-sessions
+
+GET /v1/me/subscriptions
+
+GET /v1/me/subscriptions/{id}
+
+GET /v1/me/subscriptions/{id}/periods
+
+GET /v1/me/subscriptions/{id}/entitlements
+
+GET /v1/me/subscriptions/{id}/ledger
+
+POST /v1/me/subscriptions/{id}/pause
+
+POST /v1/me/subscriptions/{id}/resume
+
+POST /v1/me/subscriptions/{id}/change-plan
+
+POST /v1/me/subscriptions/{id}/cancel-renewal
+
+POST /v1/me/subscriptions/{id}/reactivate
+
+Important rule
+
+Do not expose:
+
+PUT /subscriptions/{id}/status
+
+The client must never be able to set:
+
+{"status": "ACTIVE"}
+
+The server controls state transitions.
+
+Booking integration
+
+The normal booking endpoint should determine whether to use:
+
+Subscription credit
+
+Bundle credit
+
+Cash payment
+
+Membership benefit
+
+Avoid a separate client-controlled:
+
+POST /bookings/use-credit
+
+Day 12 acceptance tests
+
+Customer cannot access another customer’s subscription.
+
+Client cannot activate a subscription.
+
+Expired credits cannot be applied.
+
+Plan price comes from the server.
+
+Capacity is checked before checkout.
+
+Day 13 — Add admin controls
+
+Admin functions
+
+View subscriptions
+
+Search by status
+
+View current period
+
+View credit ledger
+
+View payment state
+
+Add service-recovery credit
+
+Schedule plan change
+
+Pause after support request
+
+Cancel future renewal
+
+Review failed payments
+
+View capacity
+
+Export reconciliation report
+
+Admin restrictions
+
+Separate permissions:
+
+### Table 323
+
+| Admin role | Access |
+| --- | --- |
+| Support | Subscription operations, limited adjustment |
+| Finance | Payments, invoices, refunds |
+| Operations | Capacity and walker assignment |
+| Product admin | Plan creation and publication |
+| Super admin | High-risk overrides |
+| Compliance | Audit and grievances |
+
+Large credit adjustments or refunds should require higher-level approval.
+
+Day 13 acceptance tests
+
+Every admin change creates an audit event.
+
+Support cannot edit plan prices.
+
+Operations cannot alter settled payment records.
+
+Finance cannot view unnecessary pet-care details.
+
+Day 14 — Test subscription logic
+
+Required backend tests
+
+Initial payment succeeds.
+
+Initial payment fails.
+
+Renewal succeeds.
+
+Renewal webhook arrives twice.
+
+Payment event arrives out of order.
+
+One credit remains and two bookings race.
+
+Customer cancels early.
+
+Customer cancels late.
+
+Customer no-shows.
+
+Walker cancels and backup fulfils.
+
+Walker cancels without backup.
+
+Subscription pauses before renewal.
+
+Cancel-at-period-end preserves current access.
+
+Upgrade applies next period.
+
+Downgrade applies next period.
+
+Credits roll over correctly.
+
+Credits expire.
+
+Admin restores credit.
+
+Existing customer remains on old plan version.
+
+New customer receives new price.
+
+Week 2 go/no-go gate
+
+Proceed only when:
+
+Ledger reconciliation is exact.
+
+Duplicate events do not create duplicate periods or credits.
+
+State transitions are validated.
+
+Audit logs work.
+
+Object-level authorisation passes.
+
+Plan versioning works.
+
+Week 3: Build the Customer Subscription UI
+
+Days 15–21
+
+Day 15 — Plan-selection page
+
+Goal
+
+Show only plans that the customer can actually buy and the platform can fulfil.
+
+Inputs before displaying plans
+
+Pet eligibility
+
+Service cluster
+
+Walker capacity
+
+Requested time window
+
+Walk duration
+
+Previous usage
+
+Customer’s existing plan
+
+Current plan version and price
+
+Page structure
+
+Hero: predictable monthly care
+
+Pet selector
+
+Plan recommendations
+
+Walk count and duration
+
+Fixed versus flexible schedule
+
+Preferred-walker option
+
+Per-walk price
+
+Renewal information
+
+Rollover and cancellation summary
+
+Full terms
+
+Checkout CTA
+
+Do not show
+
+Plans with no capacity
+
+Guaranteed same walker
+
+Artificial countdown timers
+
+Hidden renewal
+
+Savings against unavailable prices
+
+Day 16 — Plan comparison cards
+
+Recommended comparison
+
+### Table 324
+
+| Feature | Regular | Active |
+| --- | --- | --- |
+| Monthly walks | 12 | 20 |
+| Duration | 30 min | 30 min |
+| Schedule | Fixed/flexible | Weekday fixed |
+| Preferred walker | Yes | Reserved preference |
+| Backup | Approved backup | Named backup |
+| Rollover | 2 | 2 |
+| Monthly report | Basic | Detailed |
+| Price | ₹ | ₹ |
+| Effective per walk | ₹ | ₹ |
+
+Savings calculation
+
+Show:
+
+Single walk: ₹249
+
+20-walk plan: ₹3,999
+
+Effective: ₹200/walk
+
+Saving: ₹981 per full-use month
+
+Also state that savings depend on using the included services.
+
+Day 16 acceptance gate
+
+A user should understand:
+
+What they receive
+
+What renews
+
+When it renews
+
+What expires
+
+What happens if they cancel
+
+within one screen.
+
+Day 17 — My Plan dashboard
+
+Required card
+
+Active Dog Plan
+
+20 walks per period
+
+Available: 10
+
+Reserved: 2
+
+Completed: 8
+
+Rollover: 1
+
+Current period end
+
+Next renewal date
+
+Renewal amount
+
+Preferred walker
+
+Approved backup
+
+Next booking
+
+Payment status
+
+Actions:
+
+Book walk
+
+View schedule
+
+View credit history
+
+Change plan
+
+Pause
+
+Cancel renewal
+
+Do not hide cancellation
+
+Cancellation and pause controls should be accessible from the subscription dashboard—not available only through support.
+
+Day 18 — Remaining-credit interface
+
+Show separate balances
+
+Available credits
+
+Reserved credits
+
+Completed/consumed credits
+
+Rollover credits
+
+Expiring credits
+
+Frozen credits during pause
+
+Credit history
+
+### Table 325
+
+| Date | Action | Booking | Change |
+| --- | --- | --- | --- |
+| Aug 1 | Monthly grant | — | +20 |
+| Aug 3 | Walk reserved | BKG-1 | −1 available |
+| Aug 3 | Walk completed | BKG-1 | Consumed |
+| Aug 5 | Walker cancellation | BKG-2 | Released |
+
+Important language
+
+Use:
+
+Two credits expire on 12 September.
+
+Not:
+
+Use them or lose them!
+
+Avoid manipulative urgency.
+
+Day 19 — Upgrade, pause and cancel UI
+
+Upgrade
+
+During the pilot:
+
+Upgrade next period
+
+Show new monthly price
+
+Show new credit count
+
+Confirm effective date
+
+Downgrade
+
+Applies next cycle
+
+Existing credits remain until period end
+
+Explain which benefits change
+
+Pause
+
+Offer:
+
+7 days
+
+15 days
+
+Skip next billing cycle
+
+Show:
+
+Pause dates
+
+Booking impact
+
+Credit impact
+
+Revised renewal date
+
+Whether preferred schedule is released
+
+Cancellation
+
+Flow:
+
+Show current plan and term end.
+
+Offer one relevant alternative.
+
+Continue-to-cancel remains visible.
+
+Optional reason collection.
+
+Confirm end date.
+
+Confirm mandate treatment.
+
+Send written confirmation.
+
+Do not force the user to pause instead of cancelling.
+
+Day 20 — Renewal reminders
+
+Build separate message journeys
+
+AutoPay customers
+
+Seven days: upcoming debit and amount
+
+Three days: payment-method reminder
+
+Renewal day: success or failure
+
+Grace period: recovery actions
+
+Manual-renewal customers
+
+Seven days: plan ending soon
+
+Three days: renewal CTA
+
+One day: final pre-expiry notice
+
+Expiry: plan ended
+
+Later: optional win-back
+
+WhatsApp requirements
+
+Businesses must obtain user opt-in before sending WhatsApp template messages and clearly identify the business and intended messaging purpose. Keep transactional renewal messages separate from promotional win-back or upgrade messaging.
+
+Day 20 acceptance gate
+
+No AutoPay customer should receive a misleading “pay now” reminder that could produce duplicate payment.
+
+Day 21 — Customer UX QA
+
+Test with real users
+
+Include:
+
+Existing repeat customer
+
+Low-frequency customer
+
+Customer with two pets
+
+Customer with limited digital confidence
+
+Customer on a slow mobile connection
+
+Customer whose preferred slot is full
+
+Customer who wants to cancel
+
+QA questions
+
+Can the user identify auto-renewal?
+
+Can they calculate value?
+
+Can they find credit expiry?
+
+Can they pause?
+
+Can they cancel?
+
+Is the same-walker wording honest?
+
+Does the UI explain payment failure?
+
+Is the mobile layout usable?
+
+Are accessibility labels present?
+
+Does the UI avoid hidden preselection?
+
+Week 3 go/no-go gate
+
+Proceed only if at least 90% of test users can complete:
+
+Plan comparison
+
+Checkout understanding
+
+Credit interpretation
+
+Pause
+
+Cancel renewal
+
+without staff guidance.
+
+Week 4: Payment and Renewal Flow
+
+Days 22–28
+
+Day 22 — Payment setup
+
+Preparation that should already exist
+
+By Day 22, you should already have:
+
+Provider account
+
+Sandbox access
+
+Webhook architecture
+
+Mandate-state model
+
+Invoice model
+
+Refund policy
+
+Data-flow diagram
+
+Implement
+
+Primary:
+
+UPI AutoPay
+
+Supported card recurring mandate
+
+Fallback:
+
+UPI checkout
+
+Card checkout
+
+Netbanking where supported
+
+Payment Link
+
+Manual renewal
+
+UPI AutoPay provides recurring e-mandate functionality, while payment-provider capabilities and supported methods should be confirmed in the actual merchant configuration.
+
+Day 23 — Payment verification
+
+Golden rule
+
+The browser success callback is not the source of truth.
+
+Use:
+
+Customer completes payment
+
+↓
+
+Provider confirmation
+
+↓
+
+Signed webhook/API verification
+
+↓
+
+Invoice marked paid
+
+↓
+
+Subscription activated
+
+↓
+
+Credits granted once
+
+Implement
+
+Signature validation
+
+Raw webhook-body handling where required
+
+Provider event deduplication
+
+Idempotency
+
+Asynchronous processing
+
+Reconciliation job
+
+Secure secret rotation
+
+Minimal payment logging
+
+Razorpay provides subscription and payment webhooks for asynchronous event handling.
+
+Day 24 — Renewal-reminder engine
+
+Scheduler requirements
+
+Timezone-aware
+
+Deduplicated
+
+Customer preference aware
+
+AutoPay/manual distinction
+
+Message-channel fallback
+
+Template versioning
+
+Delivery status
+
+Opt-out handling
+
+Audit log
+
+Required events
+
+renewal.upcoming_7d
+
+renewal.upcoming_3d
+
+renewal.upcoming_1d
+
+renewal.payment_succeeded
+
+renewal.payment_failed
+
+grace_period.ending
+
+subscription.cancelled
+
+Day 25 — Failed-payment recovery
+
+Recommended state flow
+
+Renewal charge fails
+
+↓
+
+Invoice remains OPEN
+
+↓
+
+Subscription becomes PAST_DUE
+
+↓
+
+Provider retry
+
+↓
+
+Customer payment-method prompt
+
+↓
+
+Manual payment fallback
+
+↓
+
+Recovered or grace period ends
+
+Razorpay documents retry handling for failed subscription charges and a halted state when available retries are exhausted. Your internal system should map those provider conditions into its own disclosed recovery and cancellation workflow.
+
+Grace-period recommendation
+
+Start with 3–5 days.
+
+During grace:
+
+No new monthly credits
+
+Existing reports remain accessible
+
+Near-term booking treatment follows policy
+
+Customer can pay, change method or cancel
+
+Day 26 — Manual payment fallback
+
+Correct design
+
+A Payment Link must be linked to one open invoice.
+
+Invoice INV-123
+
+Amount ₹3,999
+
+Expiry: grace-period end
+
+Reference: INV-123
+
+When any payment attempt succeeds:
+
+Mark invoice paid
+
+Cancel or invalidate other payment link
+
+Ignore duplicate webhook processing
+
+Refund any duplicate settlement if needed
+
+Razorpay Payment Links can be created, tracked and cancelled through dashboard or APIs, and support webhooks.
+
+Day 27 — Admin renewal dashboard
+
+Widgets
+
+Renewals due today
+
+Due in seven days
+
+Mandates inactive
+
+First-attempt failure
+
+Provider retry pending
+
+Manual link sent
+
+Grace period ending
+
+Recovered
+
+Cancelled for non-payment
+
+Duplicate-payment alerts
+
+Reconciliation mismatch
+
+Admin actions
+
+Resend secure payment link
+
+Update customer communication status
+
+Extend grace period with approval
+
+Record support outcome
+
+Issue refund
+
+Cancel renewal
+
+Reconcile payment
+
+Admin users should not be able to manually mark an invoice paid without verified settlement or a controlled offline-payment workflow.
+
+Day 28 — Full payment QA
+
+Test cases
+
+UPI mandate activation
+
+Card mandate activation
+
+Initial payment success
+
+Initial payment failure
+
+Renewal success
+
+Renewal failure
+
+Provider retry success
+
+All retries fail
+
+Manual Payment Link succeeds
+
+AutoPay succeeds after link was issued
+
+Duplicate webhook
+
+Out-of-order webhook
+
+Customer pauses mandate externally
+
+Customer revokes mandate externally
+
+Cancel immediately
+
+Cancel at period end
+
+Partial refund
+
+Full refund
+
+Payment reconciliation mismatch
+
+Webhook-secret rotation
+
+Week 4 go/no-go gate
+
+No pilot launch until:
+
+Duplicate charging is prevented.
+
+Subscription activation is webhook-authoritative.
+
+Payment recovery works.
+
+Cancellation works.
+
+Credits are granted exactly once.
+
+Finance can reconcile every payment to one invoice.
+
+Week 5: Soft Launch to Existing Users
+
+Days 29–35
+
+Day 29 — Identify the top 50 eligible users
+
+Do not simply choose the highest-spending customers.
+
+Score:
+
+Repeat need
+
+Positive experience
+
+Service area
+
+Capacity availability
+
+Plan fit
+
+Payment reliability
+
+Stable pet handling
+
+Preferred-walker availability
+
+Required list
+
+### Table 326
+
+| Customer | Pet | Recommended plan | Cluster | Primary capacity | Backup capacity | Risk |
+| --- | --- | --- | --- | --- | --- | --- |
+
+Day 30 — Offer founder plans
+
+Recommended founder offer
+
+Normal product, not a permanently distorted discount
+
+Price lock for three billing cycles
+
+Early feature access
+
+Direct feedback channel
+
+Clear renewal terms
+
+No hidden annual commitment
+
+Example:
+
+Founding Member price locked for your first three monthly renewals.
+
+Avoid:
+
+Lifetime discount
+
+Unlimited walks
+
+Unclear experimental terms
+
+Auto-enrolment without explicit consent
+
+Day 31 — Convert starter users
+
+Conversion sequence
+
+Successful trial walk
+
+↓
+
+Five-walk non-recurring starter pack
+
+↓
+
+At least three completed starter walks
+
+↓
+
+Plan-fit recommendation
+
+↓
+
+Monthly checkout
+
+Do not force high-frequency subscriptions on low-frequency customers.
+
+Day 32 — Assign primary walkers
+
+For every subscriber:
+
+Primary walker
+
+Recurring days
+
+Time window
+
+Effective dates
+
+Service cluster
+
+Capacity reservation
+
+Pet instructions
+
+Leave process
+
+A primary assignment without reserved capacity is only a label.
+
+Day 33 — Assign backup walkers
+
+Backup must be:
+
+Verified
+
+Eligible for the pet
+
+In the same cluster
+
+Available at the required time
+
+Introduced where practical
+
+Not overcommitted across many plans
+
+Target:
+
+95%+ of active high-frequency plans have approved backup coverage.
+
+Day 34 — Monitor first subscription bookings
+
+Daily command centre
+
+Track:
+
+Walks due
+
+Assigned
+
+Confirmed
+
+Checked in
+
+Completed
+
+Late
+
+Backup used
+
+Cancelled
+
+Credit released
+
+Report missing
+
+Incident flagged
+
+Early-support rule
+
+Contact the customer after:
+
+First subscription walk
+
+First backup substitution
+
+Late arrival
+
+Low rating
+
+Missing report
+
+Complaint
+
+Credit dispute
+
+Day 35 — Collect feedback
+
+Customer survey
+
+Was the plan easy to understand?
+
+Was the schedule correct?
+
+Did the preferred-walker model work?
+
+Were credits clear?
+
+Was renewal clear?
+
+What would cause cancellation?
+
+Which plan size fits better?
+
+Walker survey
+
+Was the recurring schedule practical?
+
+Was travel manageable?
+
+Was payout clear?
+
+Were backup expectations realistic?
+
+Were customer instructions complete?
+
+Revised Week 5 target
+
+### Table 327
+
+| Metric | Recommended target |
+| --- | --- |
+| Paying subscribers | 20–50 |
+| Subscription walks scheduled | 150+ |
+| Subscription walks completed | 75–150 |
+| Walk completion | 95%+ |
+| On-time rate | 95%+ |
+| Plans with backup | 95%+ |
+| Average rating | 4.6+ |
+| Serious incidents | 0 |
+| Payment disputes | Below 2% |
+| Plan-understanding complaints | Below 5% |
+
+“Renewal intent” is useful feedback, but it is not a substitute for actual renewal.
+
+Week 6: Society Subscription Push
+
+Days 36–42
+
+Day 36 — Create society resident plans
+
+Separate B2C from B2B
+
+Resident B2C plan
+
+Customer buys actual walks.
+
+Society B2B plan
+
+RWA purchases:
+
+Society page
+
+Partner roster
+
+Gate protocol
+
+Reports
+
+Support
+
+Event access
+
+Do not combine these into one invoice or one MRR calculation.
+
+Society resident pricing
+
+Derive resident prices from:
+
+Do not use one universal ₹999/₹1,799/₹2,999 structure across all cities.
+
+Day 37 — Pitch pilot societies
+
+Pitch content
+
+Pilot results
+
+Resident demand
+
+Safety and verification
+
+Gate protocol
+
+Local capacity
+
+Resident-plan options
+
+Monthly reporting
+
+Event calendar
+
+Complaint ownership
+
+Commercial terms
+
+Recommended target
+
+Pitch only societies where:
+
+Existing resident interest exists.
+
+At least two walkers cover the cluster.
+
+Security cooperation is possible.
+
+Local partner backup exists.
+
+Day 38 — Launch resident offer
+
+Channels
+
+Society app
+
+RWA-approved WhatsApp group
+
+Email
+
+Lobby QR
+
+Resident webinar
+
+Pet-parent champion
+
+Offer
+
+Trial walk or starter pack
+
+Resident plan pricing
+
+Clear service area
+
+Limited slots
+
+No false urgency
+
+Capacity scarcity may be stated only when it is real.
+
+Day 39 — Sell management subscription
+
+Basic Society Partner
+
+Suggested test price:
+
+₹9,999/month
+
+Includes:
+
+Society service page
+
+Approved partner list
+
+Gate process
+
+Resident offers
+
+Standard support
+
+Monthly aggregate report
+
+Event coordination access
+
+Events should normally remain separately priced unless explicitly included.
+
+Day 40 — Run society webinar or camp
+
+Choose one primary objective:
+
+Walking-plan education
+
+Puppy routine workshop
+
+Grooming day
+
+Responsible pet-parent session
+
+Do not combine too many unrelated services.
+
+Required event funnel
+
+Registration
+
+↓
+
+Pet profile
+
+↓
+
+Attendance
+
+↓
+
+Trial/starter booking
+
+↓
+
+Plan recommendation
+
+↓
+
+Subscription conversion
+
+Day 41 — Convert residents
+
+Conversion triggers
+
+Trial completed successfully
+
+Resident requires regular weekday support
+
+Same walker requested
+
+Two or more recent walks
+
+Society route capacity exists
+
+Resident conversion target
+
+Starting hypothesis:
+
+15–25% of qualified, active pet-parent leads.
+
+Day 42 — Analyse society economics
+
+Report separately
+
+### Table 328
+
+| Metric | Result |
+| --- | --- |
+| Society management MRR | ₹ |
+| Resident subscription GMV | ₹ |
+| Platform resident MRR | ₹ |
+| Partner payouts | ₹ |
+| Event revenue | ₹ |
+| Account-management cost | ₹ |
+| Direct contribution | ₹ |
+
+The RWA should receive aggregate reporting only. Individual schedules, access instructions, health records and payment histories should not appear in society reports. The DPDP Rules, 2025 have phased commencement, but subscription systems should already use specific notices, controlled access and grievance mechanisms.
+
+Week 6 go/no-go gate
+
+Continue society sales when:
+
+Resident conversion is measurable.
+
+Gate protocols work.
+
+B2B and B2C ledgers reconcile.
+
+Society contribution is positive or has a credible path.
+
+RWA satisfaction is 4.5+.
+
+No privacy or safety incident occurs.
+
+Week 7: Optimise Pricing and Retention
+
+Days 43–49
+
+Day 43 — Analyse usage
+
+Measure
+
+Credits granted
+
+Reserved
+
+Consumed
+
+Released
+
+Rolled over
+
+Expired
+
+Utilisation by plan
+
+Utilisation by cluster
+
+Completion by walker
+
+Early exhaustion
+
+Interpret
+
+### Table 329
+
+| Pattern | Action |
+| --- | --- |
+| Below 40% usage | Plan may be oversized |
+| 40–70% | Review schedule friction |
+| 70–90% | Healthy |
+| 90% early in period | Upgrade opportunity |
+| Low usage due to no availability | Platform failure, not customer inactivity |
+
+Day 44 — Analyse churn risk
+
+Risk signals
+
+Low rating
+
+Complaint
+
+Repeated walker substitution
+
+Low utilisation
+
+Two payment failures
+
+Cancellation-page visit
+
+Schedule mismatch
+
+High support contacts
+
+Preferred walker leaving
+
+Required output
+
+Churn Action Queue
+
+### Table 330
+
+| Customer | Risk score | Main reason | Recommended intervention | Owner |
+| --- | --- | --- | --- | --- |
+
+Day 45 — Adjust plan pricing
+
+Do not mutate existing plans
+
+Create:
+
+Plan Version 2
+
+with:
+
+New price
+
+Effective date
+
+New-customer eligibility
+
+Migration policy
+
+Notice period for existing customers
+
+Pricing decision inputs
+
+Conversion
+
+Completion
+
+Contribution
+
+Support cost
+
+Walker payout
+
+Capacity use
+
+Credit usage
+
+Churn
+
+Competitor context
+
+Do not change pricing based on five or ten customers unless the original economics are clearly broken.
+
+Day 46 — Improve renewal messages
+
+Personalise by problem
+
+Low usage: smaller plan suggestion
+
+High usage: upgrade suggestion
+
+Stable usage: simple renewal
+
+Payment failure: payment action
+
+Walker issue: service-resolution message
+
+Travel: pause option
+
+Do not combine operational notices and promotional offers in a confusing message.
+
+Day 47 — Add downgrade option
+
+Rules
+
+Effective next cycle
+
+Existing entitlements remain until period end
+
+Revised amount displayed
+
+Capacity released for the following period
+
+Upgrade remains available later
+
+Downgrade is a retention feature—not a failure.
+
+Day 48 — Add pause option
+
+Recommended options
+
+Seven days
+
+Fifteen days
+
+Skip next cycle
+
+Display:
+
+Pause dates
+
+Credit treatment
+
+Booking cancellations
+
+Renewal-date change
+
+Walker-slot impact
+
+Reactivation date
+
+Razorpay supports pause, resume and cancellation actions at subscription level, but your application must maintain its own subscription, credit and scheduling consequences consistently.
+
+Day 49 — Review sitter capacity
+
+Recalculate
+
+New recurring commitments
+
+Walker leave
+
+Backup reserve
+
+Peak-window utilisation
+
+Existing one-time demand
+
+Society growth
+
+Public launch demand forecast
+
+Stop-sales rule
+
+Stop selling a cluster/time window when:
+
+Sellable capacity exceeds 85%
+
+Backup reserve falls below target
+
+Primary schedules lack backups
+
+Completion risk approaches 95% threshold
+
+Operations are manually firefighting
+
+Week 7 go/no-go gate
+
+Public launch is blocked when:
+
+Walk completion is below 95%.
+
+Contribution is negative.
+
+Cancellation flow is incomplete.
+
+Payment recovery is unreliable.
+
+Capacity exceeds safe limits.
+
+Complaint rate exceeds 5%.
+
+Serious unresolved incident exists.
+
+Week 8: Scale Subscription Sales
+
+Days 50–60
+
+Day 50 — Launch public plans conditionally
+
+Public launch requirements
+
+Two stable clusters
+
+95%+ fulfilment
+
+95%+ plans with backup coverage
+
+Positive contribution
+
+Payment reconciliation working
+
+Pause/cancel working
+
+Support trained
+
+No serious unresolved incident
+
+Rollout method
+
+Do not open the whole city.
+
+Launch by:
+
+Supported pin code
+
+Cluster
+
+Available schedule
+
+Capacity
+
+Day 51 — Add plan comparison to homepage
+
+Placement
+
+Existing walking page
+
+Customer dashboard
+
+Post-walk report
+
+Repeat-booking flow
+
+Society landing page
+
+Do not make subscription the only option
+
+Always allow:
+
+Pay-as-you-go
+
+Starter pack
+
+Monthly plan
+
+A subscription should be recommended when it is economically appropriate for the customer.
+
+Day 52 — Train support team
+
+Support curriculum
+
+Plan definitions
+
+Credit rules
+
+Cancellation timing
+
+Rollover
+
+Pause
+
+Upgrade/downgrade
+
+Payment failure
+
+Refunds
+
+Same-walker wording
+
+Society pricing
+
+Incident escalation
+
+Consumer grievances
+
+Support scripts
+
+Avoid:
+
+You cannot cancel.
+
+Use:
+
+You can stop renewal now and retain your current paid benefits until the period end.
+
+Day 53 — Train sitters
+
+Training topics
+
+Recurring schedule obligations
+
+Leave notice
+
+Backup handover
+
+Check-in
+
+Credit completion evidence
+
+Customer communication
+
+Report quality
+
+Missed-service escalation
+
+Preferred-walker expectations
+
+Subscription customer treatment
+
+Sitters should not promise:
+
+Permanent same-walker availability
+
+Unapproved schedule changes
+
+Cash discounts off-platform
+
+Credits outside the app
+
+Day 54 — Launch subscription referral
+
+Recommended pilot
+
+Reward only after:
+
+Referred subscriber pays
+
+First subscription walk completes
+
+Refund window passes
+
+Reward options
+
+Customer:
+
+One service credit
+
+Fixed account credit
+
+Referrer:
+
+One service credit
+
+Fixed discount on next renewal
+
+Avoid cash-heavy referral economics before retention is proven.
+
+Anti-abuse controls
+
+One reward per household/payment identity
+
+No self-referral
+
+No duplicate pet accounts
+
+Reward reversal after refund
+
+Monthly referral cap
+
+Day 55 — Create monthly revenue report
+
+Financial report
+
+Recurring revenue
+
+Subscription GMV MRR
+
+Platform MRR
+
+Society MRR
+
+Membership MRR
+
+New MRR
+
+Upgrade MRR
+
+Downgrade MRR
+
+Churned MRR
+
+Costs
+
+Walker payouts
+
+Payment costs
+
+Discounts
+
+Referral costs
+
+Refunds
+
+Service recovery
+
+Support
+
+Society operations
+
+Output
+
+Do not call subscription GMV platform revenue.
+
+Day 56 — Final subscription report
+
+Required report
+
+Customer
+
+Active subscribers
+
+New subscribers
+
+Renewals
+
+Churn
+
+Pauses
+
+Upgrades
+
+Downgrades
+
+Ratings
+
+Complaints
+
+Operations
+
+Walks scheduled
+
+Walks completed
+
+On-time rate
+
+Preferred-walker rate
+
+Backup rate
+
+Missed walks
+
+Reports completed
+
+Payments
+
+Mandate activation
+
+Payment success
+
+Failed payments
+
+Recovery
+
+Manual-link payments
+
+Refunds
+
+Duplicate-charge incidents
+
+Economics
+
+GMV MRR
+
+Platform MRR
+
+Contribution MRR
+
+Contribution per subscriber
+
+Support cost per subscriber
+
+CAC payback estimate
+
+Society
+
+Paid society plans
+
+Resident subscribers
+
+Society MRR
+
+Event conversion
+
+RWA rating
+
+Contribution
+
+Days 57–60 — Fix, optimise and finalise
+
+These should not be treated as miscellaneous buffer days.
+
+Day 57 — Reliability and defect closure
+
+Resolve P0/P1 bugs
+
+Repair reconciliation gaps
+
+Fix duplicate notifications
+
+Resolve credit discrepancies
+
+Close high-risk support cases
+
+Day 58 — Operational stress test
+
+Simulate:
+
+Walker illness
+
+Ten simultaneous cancellations
+
+Payment-provider delay
+
+Webhook outage
+
+Peak-time overcapacity
+
+Society gate failure
+
+Customer mass rescheduling
+
+Day 59 — Compliance and finance review
+
+Confirm:
+
+Cancellation is accessible
+
+Terms match product behaviour
+
+WhatsApp consent exists
+
+Refund process works
+
+Privacy access is role-controlled
+
+Plan invoices reconcile
+
+DPDP readiness actions are documented
+
+Consumer grievance owner is identified
+
+Day 60 — Phase 10 decision
+
+Final decision:
+
+Move to Phase 10
+
+Continue Phase 9 pilot
+
+Expand only selected clusters
+
+Remove weak plan
+
+Reprice
+
+Pause society sales
+
+Improve supply
+
+Improve payment recovery
+
+3. Final Phase 9 success targets
+
+Customer and revenue
+
+### Table 331
+
+| Metric | 60-day target |
+| --- | --- |
+| Active paying subscribers | 50–120 base |
+| Stretch subscribers | 150–200 |
+| Ending platform MRR | ₹1.5–₹3 lakh base |
+| First renewal | 60–80% |
+| Subscription conversion | 20–35% of eligible repeat walkers |
+| Average rating | 4.6+ |
+| Complaint/refund rate | Below 5% |
+
+Fulfilment
+
+### Table 332
+
+| Metric | Target |
+| --- | --- |
+| Subscription walk completion | 95%+ |
+| On-time arrival | 95%+ |
+| Preferred-walker fulfilment | 85%+ |
+| Primary or approved backup | 98%+ |
+| Walker no-show | Below 1% |
+| Report completion | 95%+ |
+| Plans with backup | 95%+ |
+
+Payment
+
+### Table 333
+
+| Metric | Target |
+| --- | --- |
+| Mandate activation | 75%+ of eligible users |
+| Renewal payment success | 90%+ overall |
+| Failed-payment recovery | 30–50%+ |
+| Duplicate charges | Zero |
+| Unreconciled payments | Zero material |
+| Hidden renewal complaints | Zero |
+
+Credits
+
+### Table 334
+
+| Metric | Target |
+| --- | --- |
+| Credit utilisation | 70–90% |
+| Negative balances | Zero |
+| Duplicate consumption | Zero |
+| Unexplained admin adjustments | Zero |
+| Platform-caused missed-service credits restored | 100% |
+
+Capacity
+
+### Table 335
+
+| Metric | Target |
+| --- | --- |
+| Overall capacity sold | Below 85% |
+| Peak-window capacity | Below 90% |
+| Backup reserve | 10–15% |
+| Unassigned recurring walks | Below 1% |
+| Overbooked slots | Zero |
+
+Society
+
+### Table 336
+
+| Metric | Target |
+| --- | --- |
+| Society pilots | 2–5 |
+| Paid B2B conversions | 1–3 |
+| Resident conversion | 15–25% of qualified leads |
+| RWA satisfaction | 4.5+ |
+| Contribution-positive societies | At least 1–2 |
+| Gate failures | Manageable |
+| Serious incidents | Zero |
+
+4. Required Phase 9 deliverables
+
+### Table 337
+
+| Deliverable | Required |
+| --- | --- |
+| Subscription PRD | Yes |
+| Capacity model | Yes |
+| Plan economics model | Yes |
+| Versioned plan catalogue | Yes |
+| Subscription lifecycle | Yes |
+| Credit ledger | Yes |
+| Entitlement reservations | Yes |
+| Payment mandates | Yes |
+| Invoices and attempts | Yes |
+| Webhook deduplication | Yes |
+| Customer plan pages | Yes |
+| My Plan dashboard | Yes |
+| Pause/cancel UI | Yes |
+| Failed-payment recovery | Yes |
+| Manual Payment Link fallback | Yes |
+| Primary/backup scheduling | Yes |
+| Admin subscription dashboard | Yes |
+| Support SOP | Yes |
+| Sitter SOP | Yes |
+| Society B2B/B2C model | Yes |
+| Finance reconciliation report | Yes |
+| Privacy and consumer checklist | Yes |
+| Final Phase 9 report | Yes |
+
+5. Final Phase 10 go/no-go criteria
+
+Move to Phase 10 only when:
+
+### Table 338
+
+| Requirement | Target |
+| --- | --- |
+| Stable subscription products | At least 2 |
+| Paying subscribers | 50–120+ |
+| First renewal rate | 60%+ |
+| Walk completion | 95%+ |
+| Payment success | 90%+ |
+| Average rating | 4.6+ |
+| Complaint rate | Below 5% |
+| Positive contribution/subscriber | Yes |
+| Primary and backup scheduling | Working |
+| Capacity below risk threshold | Yes |
+| Cancellation and pause | Fully working |
+| Credit ledger reconciled | Yes |
+| Society model tested | Yes |
+| Core-service decline | None material |
+| Serious unresolved incident | Zero |
+
+Three-month retention and mature churn cannot be fully proven in a 60-day programme. Maintain a 30-day post-Phase observation before declaring the subscription model mature.
+
+Final recommendation
+
+Approve the execution sequence with these modifications
+
+Complete payment and mandate architecture during Week 1 planning.
+
+Use versioned plans, billing periods and an append-only credit ledger.
+
+Launch only two monthly walking plans initially.
+
+Sell plans only against cluster-level reserved capacity.
+
+Count completed subscription services—not merely scheduled bookings.
+
+Make pause and cancellation available before the pilot begins.
+
+Separate society-management MRR from resident subscription revenue.
+
+Change prices only through new plan versions.
+
+Make public launch conditional on quality, capacity and payment gates.
+
+Use Days 57–60 for resilience, reconciliation and final approval.
+
+Phase 9 execution win condition
+
+By Day 60, the business can repeatedly sell, bill, schedule, fulfil, renew, pause and cancel monthly walking plans without duplicate payments, credit errors, overloaded walkers or deterioration in customer trust.
+
+Phase 9 Execution Plan: GO—with architecture and payments pulled forward, a smaller initial plan catalogue, and hard weekly launch gates.
+
+Phase 9 Subscription Sales and City Strategy
+
+Conversion Scripts, Offer Design and Six-City Playbook 🐾📈
+
+Executive verdict
+
+Your direction is correct:
+
+Sell a small starter pack after the first successful walk.
+
+Recommend a monthly plan only after repeated positive usage.
+
+Use city-specific pricing and fulfilment models.
+
+Position continuity as a preferred-walker system, not a permanent guarantee.
+
+Separate automatic-renewal messages from manual-renewal sales messages.
+
+The subscription conversion sequence should be:
+
+Successful first walk
+
+↓
+
+Positive report and rating
+
+↓
+
+Non-recurring starter pack
+
+↓
+
+Repeated successful walks
+
+↓
+
+Usage-based monthly recommendation
+
+↓
+
+Capacity and preferred-walker check
+
+↓
+
+Subscription checkout
+
+↓
+
+Renewal, pause or downgrade
+
+The objective is not to pressure every customer into a subscription. It is to identify customers whose actual behaviour already demonstrates recurring need.
+
+1. Subscription sales-script principles
+
+Every sales message should contain five elements:
+
+Evidence of trust — a completed walk, positive report or established routine.
+
+Relevant customer value — consistency, convenience or savings.
+
+A suitable next step — starter pack, 12-walk plan or 20-walk plan.
+
+An honest service promise — preferred walker subject to availability.
+
+One simple CTA — view details, compare plans or renew.
+
+Avoid these tactics
+
+Do not use:
+
+False scarcity
+
+Hidden auto-renewal
+
+Guaranteed same-walker language
+
+Unverified “best price” claims
+
+Aggressive countdowns
+
+Repeated messages after rejection
+
+Cancellation obstruction
+
+A 20-walk recommendation for customers who only need four walks
+
+India’s dark-pattern guidelines identify subscription traps as making cancellation impossible, hidden or unnecessarily complex. Subscription conversion must therefore be based on clear value rather than friction or forced continuation.
+
+WhatsApp rule
+
+Send subscription messages only to customers who have opted in to receive WhatsApp communications from the business. Messages outside the customer-service window generally need an approved template, and promotional win-back messages should be handled separately from transactional renewal messages.
+
+2. Script after the first successful walk
+
+Purpose
+
+The first-walk message should:
+
+Reinforce trust
+
+Confirm that the pet handled the service well
+
+Offer a low-commitment next step
+
+Avoid pushing auto-renewal immediately
+
+Recommended script
+
+Hi [Name] 🐾
+
+Bruno completed his first walk today and settled well with [Walker Name]. His walk report is now available in the app.
+
+For customers who need occasional support, we offer a 5-Walk Starter Pack with a lower effective price per walk. It is a one-time pack—not an automatic monthly subscription.
+
+You can continue requesting [Walker Name] as Bruno’s preferred walker, subject to availability.
+
+View the starter pack:[View Pack]
+
+Why this version is stronger
+
+It makes four points clear:
+
+The recommendation follows a completed service.
+
+The pack is non-recurring.
+
+The preferred walker is not guaranteed.
+
+The customer can review the offer without speaking to sales.
+
+Trigger conditions
+
+Send only when:
+
+The walk was completed.
+
+The report was submitted.
+
+No safety concern remains unresolved.
+
+The customer has not complained.
+
+The walker or cluster has future capacity.
+
+Suppress the offer when:
+
+Rating is below four.
+
+The customer requested a refund.
+
+The pet needs reassessment.
+
+The preferred time window is full.
+
+The customer has already rejected the offer recently.
+
+3. Script after five completed walks
+
+Problem with the original script
+
+Automatically recommending 20 walks after five completed walks may oversell the customer.
+
+The system should evaluate:
+
+Number of walks
+
+Time interval
+
+Weekday pattern
+
+Preferred schedule
+
+Customer cancellations
+
+Cluster capacity
+
+Plan recommendation logic
+
+### Table 339
+
+| Recent usage | Recommended product |
+| --- | --- |
+| Five walks over 30–45 days | 8-walk plan |
+| Three walks weekly | 12-walk plan |
+| Four or five weekday walks weekly | 20-walk plan |
+| Near-daily demand | 26- or 30-walk plan |
+| Irregular usage | Flexible starter pack |
+
+Recommended script
+
+Hi [Name] 🐾
+
+Bruno has now completed five walks with us and appears comfortable with the routine and his preferred walker.
+
+Based on his recent schedule, the [Recommended Plan] may be the best fit:
+
+walks per month
+
+[30]-minute walks
+
+Preferred-walker support
+
+Approved backup coverage
+
+Limited rollover for unused walks
+
+The plan costs ₹[Amount] per month, equivalent to approximately ₹[Amount] per completed walk when fully used.
+
+View the plan and schedule:[View Plan]
+
+Sales rule
+
+Do not send:
+
+“The 20-walk plan is best for you.”
+
+unless the system has verified that the customer’s observed walking frequency supports that recommendation.
+
+4. Renewal scripts
+
+Auto-renewing and manually renewing customers need different messages.
+
+AutoPay renewal reminder
+
+Hi [Name] 🐾
+
+Bruno’s [Plan Name] has [X] available walks remaining.
+
+Your plan is scheduled to renew automatically for ₹[Amount] on [Date]. No action is required unless you want to change the plan, update the payment method or pause next month.
+
+Preferred walker: [Name]Requested schedule: [Schedule]
+
+[Manage Plan]
+
+Do not include a second payment link before the scheduled AutoPay attempt. That can create duplicate-payment risk.
+
+UPI AutoPay supports recurring mandates and customer controls such as pause, unpause, modify and revoke. The platform should expose corresponding pause and cancellation controls in its own dashboard.
+
+Manual-renewal reminder
+
+Hi [Name] 🐾
+
+Bruno’s walking plan has [X] walks remaining and ends on [Date].
+
+Renew before the current period ends to request the same walking schedule and preferred walker for next month, subject to availability.
+
+Renewal amount: ₹[Amount]
+
+[Renew Plan]
+
+Payment-failure recovery
+
+Hi [Name], we could not renew Bruno’s walking plan.
+
+Your plan is in a grace period until [Date]. No new monthly credits have been added yet.
+
+Update your payment method or complete the renewal securely here:[Payment Link]
+
+[Manage Plan]
+
+Expired-plan win-back
+
+Bruno’s walking plan has ended.
+
+You can restart with the previous plan or choose a smaller option. The previous walker and time window will be requested but cannot be guaranteed after expiry.
+
+[View Plans]
+
+A win-back discount is promotional and should be sent only where the customer has appropriate marketing consent.
+
+5. Objection-handling scripts
+
+“It is too expensive”
+
+Based on Bruno’s recent usage, the 20-walk plan may be larger than necessary. The 12-walk plan lowers the monthly commitment while retaining preferred-walker support.
+
+Do not immediately offer an unsustainable discount.
+
+“I am travelling”
+
+You can pause the plan for 7 or 15 days, or skip the next billing cycle. The app will show how the pause affects credits, bookings and the next renewal date.
+
+“I do not use all my credits”
+
+Your current usage suggests a smaller plan may fit better. You can downgrade next month without losing the benefits already paid for in the current period.
+
+“The walker changes too often”
+
+We can review Bruno’s assignment and set a primary walker plus an approved backup. The primary walker will be preferred, while backup coverage protects the schedule during leave or emergencies.
+
+“I do not want automatic renewal”
+
+You can use manual monthly renewal instead. The plan dashboard will display the expiry date and renewal link, and you can switch off future AutoPay at any time.
+
+6. Conversion automation
+
+Event triggers
+
+walk.completed
+
+walk.report_submitted
+
+customer.rating_received
+
+starter_pack.completed
+
+preferred_walker.requested
+
+subscription.offer_eligible
+
+subscription.renewal_upcoming
+
+subscription.payment_failed
+
+subscription.credit_usage_low
+
+Suggested rules
+
+### Table 340
+
+| Trigger | Action |
+| --- | --- |
+| First successful walk | Offer starter pack |
+| Three walks within ten days | Evaluate 12-walk plan |
+| Five walks within 21 days | Evaluate 12- or 20-walk plan |
+| Same walker requested twice | Explain continuity option |
+| Credit usage below 40% | Recommend smaller plan |
+| Credits exhausted early | Recommend upgrade |
+| Customer travelling | Offer pause |
+| Failed renewal | Start recovery flow |
+| Poor rating | Suppress sales and open service recovery |
+
+Contact-frequency control
+
+Recommended maximum:
+
+One sales message after first walk
+
+One plan recommendation after sufficient usage
+
+Renewal communications according to the billing schedule
+
+One optional win-back sequence
+
+Immediate suppression after opt-out
+
+7. City-specific strategy overview
+
+These city strategies should be treated as operating hypotheses and validated in individual micro-markets.
+
+### Table 341
+
+| City | Flagship subscription | Commercial position | Main operating risk |
+| --- | --- | --- | --- |
+| Bengaluru | 20-walk weekday plan | Premium digital convenience | Traffic and fragmented supply |
+| Pune | 12- and 20-walk plans | Value-led recurring care | Price comparison and peak capacity |
+| Mumbai | Premium hyperlocal walking | Convenience and reliability | Travel time and narrow service radii |
+| Gurugram | Premium society membership | Verification and concierge support | High expectations and promise risk |
+| Ahmedabad | 8- and 12-walk plans | Accessible trusted care | Subscription education |
+| Surat | Small plans and society selling | Family-oriented trust | Limited benchmark data and uneven supply |
+
+Current public listings already show recurring walking plans in several of these cities, confirming that customers can encounter subscription-based walking offers. Published pricing varies materially by walk duration, service frequency and operating model, so competitor figures should be used as directional anchors rather than market averages.
+
+8. Bengaluru strategy
+
+Best subscription focus
+
+### Table 342
+
+| Product | Priority |
+| --- | --- |
+| 20-walk weekday plan | Very high |
+| Preferred Walker Continuity | Very high |
+| Corporate employee benefit | High, controlled pilot |
+| Walking plus grooming credit | Medium-high |
+| 12-walk flexible plan | Medium |
+
+Current market signal
+
+Public Bengaluru offers include monthly walking subscriptions. Sploot currently advertises monthly-billed walks at approximately ₹125 for 20 minutes and ₹162 for 40 minutes, while PawSpace lists a monthly 30-minute walking plan around ₹4,299. These are not directly comparable products, but they show that a new premium plan needs to justify itself through continuity, support, tracking and backup coverage—not merely a subscription label.
+
+Bengaluru recorded a 74.4% average congestion level in TomTom’s 2025 index, making neighbourhood-level supply assignment essential.
+
+Best offer
+
+Bengaluru Active Routine
+
+20 × 30-minute weekday walks
+
+Primary and approved backup walker
+
+Broad 45-minute service window
+
+GPS/check-in proof
+
+Monthly activity report
+
+Priority rescheduling
+
+Optional grooming credit
+
+Target customer
+
+Apartment-based working professionals
+
+Customers with weekday demand
+
+Existing high-rating users
+
+Customers living within a dense operational cluster
+
+Sales channels
+
+Post-walk conversion
+
+Apartment partnerships
+
+Employer discount pilots
+
+Existing grooming customers
+
+Referral from active subscribers
+
+Corporate pilot
+
+Begin with:
+
+Employee discount
+
+Employer-sponsored fixed credits
+
+100–500 eligible employees
+
+Two supported residential clusters
+
+No unlimited services
+
+Bengaluru success metrics
+
+Plan conversion from eligible users: 20–30%
+
+Preferred-walker fulfilment: 85%+
+
+Primary-or-backup fulfilment: 98%+
+
+On-time rate: 95%+
+
+Contribution positive by cluster
+
+Peak-window capacity below 85%
+
+Bengaluru verdict
+
+Sell polished weekday routines with dependable primary and backup coverage—not city-wide availability.
+
+9. Pune strategy
+
+Best subscription focus
+
+### Table 343
+
+| Product | Priority |
+| --- | --- |
+| 12-walk Regular Plan | Very high |
+| 20-walk Active Plan | Very high |
+| Walking plus grooming credit | High |
+| Society resident plan | High |
+| Premium continuity add-on | Medium |
+
+Current market signal
+
+Sploot currently advertises Pune walking rates of approximately ₹101 per 20-minute walk and ₹199 per 40-minute walk when billed monthly. This makes value comparison likely, so a managed subscription must clearly explain its additional advantages.
+
+Pune’s 2025 average congestion level was 71.1% in TomTom’s index. Cross-city walker assignments should therefore be avoided even when total monthly capacity appears adequate.
+
+Best offer
+
+Pune Apartment Walk Pack
+
+Choice of 12 or 20 walks
+
+Society-specific pricing
+
+Preferred walker
+
+Limited rollover
+
+Grooming credit on the Active tier
+
+Fixed or flexible schedule
+
+Pricing position
+
+Use accessible managed care, not the cheapest possible service.
+
+Explain the price through:
+
+Verified walker
+
+Backup coverage
+
+Route tracking
+
+Service reports
+
+Resident support
+
+Society gate coordination
+
+Acquisition
+
+Society partnerships
+
+Existing repeat walkers
+
+Grooming-day leads
+
+Resident referrals
+
+Puppy workshops
+
+Do not assume that student walker supply will automatically provide reliable capacity. Validate availability, retention, peak-hour coverage and backup performance before using it in sales forecasts.
+
+Pune success metrics
+
+Society-plan conversion: 15–25% of qualified residents
+
+12-to-20-walk upgrade rate
+
+Credit utilisation: 70–90%
+
+First renewal: 60%+
+
+Peak-window utilisation below 85%
+
+Positive contribution after society discounts
+
+Pune verdict
+
+Lead with transparent value, plan flexibility and dense apartment-cluster fulfilment.
+
+10. Mumbai strategy
+
+Best subscription focus
+
+### Table 344
+
+| Product | Priority |
+| --- | --- |
+| Hyperlocal premium walking | Very high |
+| Preferred locality walker | Very high |
+| At-home grooming bundle | High |
+| Pet-sitting membership | Medium |
+| Flexible walking credits | Medium |
+
+Current market signal
+
+Sploot currently advertises Mumbai monthly subscriptions around ₹2,749 for 20-minute walks and ₹5,499 for 40-minute walks. Mumbai’s average congestion level was 63.2% in TomTom’s 2025 index, with a 10 km drive averaging nearly 29 minutes. These conditions strengthen the case for local fulfilment but weaken any city-wide service promise.
+
+Best offer
+
+Mumbai Local Walker Plan
+
+One defined locality
+
+12- or 20-walk option
+
+Named primary and backup
+
+Narrow but realistic arrival window
+
+Building access instructions
+
+Premium support
+
+Optional grooming-at-home credit
+
+Operating model
+
+Treat these as separate service clusters:
+
+Powai–Chandivali
+
+Bandra–Khar
+
+Andheri–Juhu
+
+Worli–Lower Parel
+
+Thane
+
+Navi Mumbai
+
+Do not schedule low-value walks across clusters.
+
+Premium promise
+
+Charge more only when the service offers:
+
+Short travel radius
+
+Consistent walker
+
+Better arrival reliability
+
+Faster replacement
+
+Strong building-access handling
+
+Mumbai success metrics
+
+Walker travel time per completed service
+
+On-time rate
+
+Same-locality assignment
+
+Support response
+
+Premium-plan contribution
+
+Backup coverage by building cluster
+
+Mumbai verdict
+
+The premium product is locality-level reliability—not a luxury label.
+
+11. Gurugram strategy
+
+Best subscription focus
+
+### Table 345
+
+| Product | Priority |
+| --- | --- |
+| Premium walking plan | Very high |
+| Society premium membership | Very high |
+| Training/grooming bundle | High |
+| Urgent-care coordination | High |
+| Corporate benefit pilot | Medium-high |
+
+Current market signal
+
+Sploot currently advertises Gurugram monthly-billed rates around ₹102 for 20-minute walks and ₹141 for 40-minute walks. A higher-priced product must therefore demonstrate meaningful society integration, safer matching, continuity and concierge service.
+
+Best offer
+
+Premium Society Pet-Care Membership
+
+20-walk recurring plan
+
+Primary and named backup
+
+Priority caregiver matching
+
+Society gate protocol
+
+Grooming credit
+
+Resident support
+
+Urgent veterinary coordination
+
+Monthly pet-care report
+
+Language correction
+
+Use:
+
+Priority urgent-care coordination
+
+Not:
+
+Emergency vet membership
+
+All customers should receive access to emergency clinic information. Paid members may receive faster human coordination, record preparation and appointment assistance, but not preferential clinical treatment.
+
+Sales method
+
+Sell through:
+
+RWA or facility manager
+
+Resident pet champions
+
+Premium society events
+
+Existing grooming and training customers
+
+Employer partnerships
+
+Gurugram success metrics
+
+Paid-society conversion
+
+Resident membership adoption
+
+Preferred-walker fulfilment
+
+Grooming/training cross-sell
+
+RWA rating
+
+Urgent-coordination response SLA
+
+Gurugram verdict
+
+Package recurring walking inside a broader verified society-care desk.
+
+12. Ahmedabad strategy
+
+Best subscription focus
+
+### Table 346
+
+| Product | Priority |
+| --- | --- |
+| 8-walk Starter Plan | Very high |
+| 12-walk Regular Plan | Very high |
+| Society resident plan | High |
+| Multi-pet membership | Medium, later |
+| 20-walk plan | Medium after validation |
+
+Current market signal
+
+Sploot currently advertises Ahmedabad subscriptions around ₹2,400 for 20-minute walks and ₹3,540 for 40-minute walks. This supports testing lower-commitment plans before pushing large premium packages.
+
+Best offer
+
+Ahmedabad Trusted Walker Plan
+
+8- and 12-walk entry options
+
+Verified local walker
+
+Preferred-walker support
+
+One or two rollover credits
+
+WhatsApp service support
+
+Manual renewal option
+
+Society resident discount
+
+Customer journey
+
+Society introduction
+
+↓
+
+Trial walk
+
+↓
+
+Five-walk starter pack
+
+↓
+
+8- or 12-walk plan
+
+↓
+
+20-walk upgrade after proven usage
+
+Communication
+
+Use:
+
+English
+
+Hindi
+
+Gujarati where operationally possible
+
+WhatsApp renewal support
+
+Resident champion referrals
+
+Clear local phone support
+
+Manual renewal should remain available alongside AutoPay, especially during the education phase.
+
+Ahmedabad success metrics
+
+Starter-to-monthly conversion
+
+WhatsApp reminder engagement
+
+Manual renewal success
+
+Referral share
+
+Society conversion
+
+First renewal
+
+Ahmedabad verdict
+
+Build trust through smaller commitments and clear local support before selling high-frequency plans.
+
+13. Surat strategy
+
+Best subscription focus
+
+### Table 347
+
+| Product | Priority |
+| --- | --- |
+| 8-walk introductory plan | Very high |
+| Society family plan | High |
+| Pet-sitting benefits | Medium |
+| Boarding support membership | Medium |
+| 20-walk plan | Later |
+
+Market-data warning
+
+Transparent, like-for-like monthly walking benchmarks are more limited for Surat than for Bengaluru, Pune, Mumbai, Gurugram and Ahmedabad. One national service advertises walking plans starting around ₹999 per month, but the number and duration of included walks are not sufficiently clear for precise benchmarking.
+
+Do not infer that Surat must be cheaper merely because it is not one of the largest metros. Price from:
+
+Local walker payout
+
+Travel time
+
+Society density
+
+Walk duration
+
+Support costs
+
+Customer willingness to pay
+
+Best offer
+
+Surat Family Pet-Care Starter
+
+8 walks
+
+One-time trial before subscription
+
+Local walker and backup
+
+WhatsApp support
+
+Manual renewal
+
+Society event access
+
+Optional sitting or boarding coordination benefits
+
+Acquisition
+
+Society camps
+
+Resident referrals
+
+Local veterinary and grooming partners
+
+Pet shops
+
+Assisted WhatsApp onboarding
+
+Family-oriented local messaging
+
+Education requirements
+
+Explain:
+
+What a subscription includes
+
+Why credits exist
+
+How cancellation works
+
+Whether AutoPay is enabled
+
+How the customer pauses
+
+What “preferred walker” means
+
+Surat success metrics
+
+Trial-to-starter conversion
+
+Starter-to-subscription conversion
+
+Society lead quality
+
+Referral rate
+
+Manual versus AutoPay renewal
+
+Partner consistency
+
+Complaint rate
+
+Surat verdict
+
+Begin with assisted, low-commitment society selling; expand only after local renewal behaviour is proven.
+
+14. City offer matrix
+
+### Table 348
+
+| City | Entry plan | Flagship plan | Premium feature | Primary sales channel |
+| --- | --- | --- | --- | --- |
+| Bengaluru | 12 walks | 20 weekday walks | Continuity + corporate benefit | Digital/post-service |
+| Pune | 12 walks | 20 walks | Grooming credit | Society partnerships |
+| Mumbai | 8–12 walks | 20 hyperlocal walks | Locality-level continuity | Premium referrals |
+| Gurugram | 12 walks | Society premium plan | Concierge coordination | RWA/facility management |
+| Ahmedabad | 8 walks | 12 walks | Local support and reminders | Society/WhatsApp |
+| Surat | 8 walks | Society family starter | Assisted renewal | Camps and referrals |
+
+15. Recommended pricing method
+
+Do not set prices using only the city name.
+
+Use:
+
+Price variables
+
+Walk duration
+
+Number of monthly walks
+
+Exact versus broad time window
+
+Pet-handling complexity
+
+Primary-walker reservation
+
+Weekend coverage
+
+Society density
+
+Cluster congestion
+
+Support level
+
+Backup requirements
+
+Current public offerings vary substantially even within the same city and between 20-, 30- and 40-minute walks. The service duration and fulfilment standard must therefore be shown alongside every public price.
+
+16. City-launch gates
+
+Do not launch a plan merely because the sales message converts.
+
+Each city cluster must pass:
+
+### Table 349
+
+| Requirement | Target |
+| --- | --- |
+| Eligible pilot customers | 30+ |
+| Active primary walkers | 3–5+ |
+| Backup coverage | 95%+ of high-frequency plans |
+| Walk completion | 95%+ |
+| On-time arrival | 95%+ |
+| Primary or approved backup fulfilment | 98%+ |
+| Average rating | 4.6+ |
+| Complaint/refund rate | Below 5% |
+| Capacity sold | Below 85% |
+| Positive contribution | Yes |
+| Duplicate or misleading renewal messages | Zero |
+| Hidden-cancellation complaints | Zero |
+
+Final decisions
+
+### Table 350
+
+| Proposal | Decision |
+| --- | --- |
+| Starter-pack message after first walk | Approve with non-recurring disclosure |
+| Monthly-plan message after five walks | Approve with usage-based recommendation |
+| Same-sitter language | Modify to preferred walker |
+| Renewal reminder | Split into AutoPay and manual versions |
+| Bengaluru 20-walk focus | Approve |
+| Bengaluru corporate benefit | Approve as limited pilot |
+| Pune value and society focus | Approve |
+| Mumbai hyperlocal premium model | Approve |
+| Gurugram premium society membership | Approve |
+| Paid emergency priority | Reject; use coordination priority |
+| Ahmedabad smaller-plan entry | Approve |
+| Surat family and society positioning | Approve as a test hypothesis |
+| One national pricing table | Reject |
+
+Final subscription sales principle
+
+Recommend the smallest plan that reliably matches the customer’s demonstrated routine, then earn the upgrade through fulfilment quality.
+
+Final city strategy
+
+Bengaluru: digital-first weekday routine with continuity.
+
+Pune: value-led apartment plans and grooming bundles.
+
+Mumbai: premium hyperlocal reliability.
+
+Gurugram: verified society concierge care.
+
+Ahmedabad: accessible plans supported by local trust and WhatsApp.
+
+Surat: assisted society-first subscription education.
+
+Subscription Sales and City Strategy: GO—with consent-based messaging, capacity-aware recommendations and city-specific fulfilment models.
+
+A monthly city pricing, competitor and conversion watch would keep these offers current. Want me to schedule it?
+
+Phase 9 Final Approval Report
+
+Subscription Engine, Risks, Deliverables and Phase 10 Gate 🐾💰
+
+Executive decision
+
+Approve Phase 9 with hard fulfilment, payment, credit and capacity controls.
+
+The correct product is:
+
+A subscription engine beginning with monthly dog-walking plans, supported by an auditable service-credit system, preferred-walker continuity, backup walkers, transparent renewals, pause/downgrade controls and cluster-level sales limits.
+
+Final rule decisions
+
+### Table 351
+
+| Rule | Decision | Required interpretation |
+| --- | --- | --- |
+| Dog-walking subscriptions first | Approve | Launch 12- and 20-walk plans before complex memberships |
+| Service-credit system mandatory | Approve | Mandatory for every plan containing fixed services |
+| Pause-plan option mandatory | Approve | Pause must not replace the customer’s right to cancel |
+| Use “preferred sitter” language | Approve | Guarantee only primary-or-approved-backup fulfilment |
+| Subscription sales capped by capacity | Approve | Cap by area, time window, skill and backup availability |
+
+Phase 9 status: APPROVED WITH HARD GATES.
+
+1. Autopsy: What goes wrong in subscription phases
+
+Mistake 1: Selling subscriptions before trust exists
+
+Wrong model
+
+Customer registers
+
+↓
+
+Platform immediately pushes ₹4,999 monthly plan
+
+At this stage, the customer does not know:
+
+Whether the walker will arrive reliably
+
+Whether the dog accepts the walker
+
+Whether reports are useful
+
+Whether support resolves problems
+
+Whether replacement coverage works
+
+The subscription feels like a financial commitment before service proof.
+
+Correct conversion sequence
+
+Trial walk
+
+↓
+
+Walk report
+
+↓
+
+Positive customer experience
+
+↓
+
+Three- or five-walk non-recurring pack
+
+↓
+
+Repeated successful fulfilment
+
+↓
+
+Usage-based monthly plan recommendation
+
+Recommended qualification
+
+Offer a monthly plan only when:
+
+Two to five walks were completed successfully.
+
+No unresolved complaint exists.
+
+The customer has recurring demand.
+
+The pet has a stable handling profile.
+
+Primary and backup capacity exist.
+
+The recommended plan fits actual usage.
+
+Suppress the subscription offer when:
+
+The last rating is below four.
+
+A refund or safety investigation is open.
+
+The pet requires reassessment.
+
+The customer books only occasionally.
+
+The preferred time window is already full.
+
+The principle is:
+
+Subscriptions should formalise an existing routine, not manufacture one before trust exists.
+
+Mistake 2: No credit or entitlement system
+
+Wrong model
+
+The customer pays for 20 walks, but the platform cannot reliably answer:
+
+How many walks remain?
+
+Which walks are reserved?
+
+Which credits rolled over?
+
+Why was a credit deducted?
+
+What should be restored after a cancellation?
+
+Which payment funded the credits?
+
+This leads directly to refund and support disputes.
+
+Correct model
+
+Payment succeeds
+
+↓
+
+Billing period created
+
+↓
+
+20 credits granted
+
+↓
+
+Booking reserves 1 credit
+
+↓
+
+Completed walk consumes it
+
+↓
+
+Eligible cancellation releases it
+
+Required credit states
+
+Available
+
+Reserved
+
+Consumed
+
+Released
+
+Restored
+
+Rolled over
+
+Expired
+
+Frozen during pause
+
+Required transaction ledger
+
+GRANT
+
+RESERVE
+
+CONSUME
+
+RELEASE
+
+RESTORE
+
+ROLLOVER_GRANT
+
+EXPIRE
+
+ADMIN_ADD
+
+ADMIN_REMOVE
+
+The ledger should be append-only. A mutable remaining_credits counter may be cached for speed, but it must not be the audit source of truth.
+
+Important scope correction
+
+Service credits are mandatory for:
+
+Walking plans
+
+Sitting-credit plans
+
+Care bundles
+
+Any subscription containing fixed services
+
+A pure membership—such as priority support plus discounts—needs a benefit-usage ledger, not necessarily walk credits.
+
+Mistake 3: Overpromising the same sitter
+
+Wrong promise
+
+Guaranteed same sitter for every walk.
+
+This promise fails when the sitter:
+
+Is ill
+
+Takes leave
+
+Stops working on the platform
+
+Has an emergency
+
+Becomes unavailable at the selected time
+
+Is restricted after a quality issue
+
+Correct promise
+
+Preferred walker with an approved backup.
+
+Recommended service levels
+
+### Table 352
+
+| Continuity metric | Target |
+| --- | --- |
+| Preferred-walker fulfilment | 85%+ |
+| Primary or approved backup fulfilment | 98%+ |
+| Unintroduced replacement | Below 2% |
+| Walker no-show | Below 1% |
+
+Operational structure
+
+Every high-frequency plan should have:
+
+Primary walker
+
+Approved backup walker
+
+Recurring schedule
+
+Allowed time window
+
+Admin schedule owner
+
+Capacity reservation
+
+Secure care-instruction handover
+
+A backup name in the database is insufficient. The backup must have actual availability in the same cluster and time window.
+
+Mistake 4: No pause functionality
+
+Wrong response
+
+Customer travelling
+
+↓
+
+Customer must cancel
+
+↓
+
+Platform loses subscriber
+
+↓
+
+Customer must restart from zero later
+
+Correct response
+
+Customer travelling
+
+↓
+
+Pause offered
+
+↓
+
+Credits and schedule handled transparently
+
+↓
+
+Customer returns
+
+↓
+
+Plan resumes
+
+NPCI states that UPI AutoPay supports customer actions including pause, unpause, modification and revocation. The platform should mirror those controls in its own subscription interface.
+
+Recommended pause options
+
+### Table 353
+
+| Pause | Best use |
+| --- | --- |
+| 7 days | Short travel or temporary schedule change |
+| 15 days | Longer travel or pet recovery |
+| Skip next cycle | Full-month absence |
+
+Pause policy must explain
+
+What happens to unused credits
+
+Whether upcoming bookings are cancelled
+
+Whether billing shifts
+
+Whether the mandate is paused
+
+Whether walker capacity is released
+
+Whether the previous time slot remains available
+
+Exact reactivation date
+
+Non-negotiable consumer rule
+
+Pause is an alternative—not an obstacle to cancellation.
+
+Indian dark-pattern guidance defines a subscription trap as making cancellation impossible, unnecessarily complex or difficult to discover.
+
+Mistake 5: Selling beyond sitter capacity
+
+Wrong calculation
+
+10 walkers × 100 walks/month
+
+= 1,000 walks
+
+= 50 customers on 20-walk plans
+
+This ignores:
+
+One-time bookings
+
+Peak-hour saturation
+
+Leave
+
+Illness
+
+Travel
+
+Reports
+
+Society gate delays
+
+Backup reserve
+
+Pet complexity
+
+Weather disruption
+
+Correct capacity formula
+
+Example
+
+10 walkers × 80 safe walks = 800
+
+Existing one-time demand = 120
+
+Leave, backup and operating reserve = 20%
+
+The safe capacity is approximately 26 subscribers on 20-walk plans, not 50.
+
+Capacity must be calculated by
+
+City
+
+↓
+
+Area or society cluster
+
+↓
+
+Day
+
+↓
+
+Time window
+
+↓
+
+Walk duration
+
+↓
+
+Walker permission
+
+↓
+
+Pet compatibility
+
+A city may have spare afternoon capacity but no remaining 7:30 AM capacity.
+
+Recommended sales limits
+
+### Table 354
+
+| Capacity condition | Action |
+| --- | --- |
+| Below 70% utilised | Normal sales |
+| 70–85% | Controlled sales |
+| Above 85% | Stop aggressive acquisition |
+| Peak window above 90% | Close that slot |
+| No approved backup | Do not sell high-frequency plan |
+
+2. Phase 9 risk register
+
+### Table 355
+
+| Risk | Early warning | Required prevention |
+| --- | --- | --- |
+| Sitter overload | Capacity above 85%, late walks | Cluster/time-window sales caps |
+| Customer churn | Cancellation-page visits, low rating | Pause, downgrade and service recovery |
+| Unused-credit complaints | Low utilisation near expiry | Clear rollover and smaller-plan suggestions |
+| Failed renewals | Mandate failures, open invoices | AutoPay retries plus manual payment fallback |
+| Same-sitter failure | Frequent substitutions | Primary and approved backup system |
+| Underpricing | Negative contribution per subscriber | Plan-level unit economics |
+| Low usage | Below 40–50% projected utilisation | Mid-cycle engagement and downgrade |
+| Refund disputes | High support contacts | Transparent cancellation and credit ledger |
+| Duplicate billing | AutoPay and payment link both settle | One-invoice reconciliation and idempotency |
+| Oversized plans | Repeated unused credits | Usage-based recommendations |
+| Hidden liability | Excessive rollover | Capped one-cycle rollover |
+| Poor reporting | Missing walk reports | Sitter training and completion enforcement |
+| Data exposure | Excessive sitter/RWA access | Role-based minimum-data access |
+| Subscription trap | Difficult cancellation | Direct pause/cancel controls |
+| Core service decline | Ratings or completion fall | Freeze subscription sales |
+
+UPI AutoPay supports recurring payment mandates, but its availability does not eliminate the need for payment recovery, mandate-state tracking or manual renewal fallback.
+
+Consumer-facing subscription products should also maintain a clear grievance mechanism and accessible redressal process under India’s e-commerce framework.
+
+3. Upgrade decisions
+
+Upgrade 1: Dog-walking subscriptions first
+
+Decision: Approve
+
+Walking should be the first subscription because it has:
+
+Frequent recurring demand
+
+Predictable scheduling
+
+Immediate usage
+
+Strong habit formation
+
+Clear fulfilment evidence
+
+Natural preferred-walker continuity
+
+Grooming and training cross-sell potential
+
+Recommended first catalogue
+
+Regular Walk Plan — 12 walks
+
+Active Dog Plan — 20 walks
+
+Five-Walk Starter Pack — non-recurring
+
+Defer the 30-walk plan until peak-hour and backup capacity are proven.
+
+Upgrade 2: Service credits mandatory
+
+Decision: Approve with scope clarification
+
+Credits or entitlements are mandatory for every subscription containing fixed services.
+
+Required functions
+
+Grant credits after verified payment
+
+Reserve during booking
+
+Consume after completion
+
+Release after eligible cancellation
+
+Restore after platform failure
+
+Expire according to policy
+
+Roll over within a defined cap
+
+Audit all admin adjustments
+
+Never grant new-period credits merely because the checkout page says “success.” Credits should follow verified payment-provider confirmation.
+
+Upgrade 3: Pause functionality mandatory
+
+Decision: Approve
+
+The minimum plan-management interface should provide:
+
+Pause
+
+Resume
+
+Cancel future renewal
+
+Upgrade
+
+Downgrade
+
+Change payment method
+
+View renewal date
+
+View remaining credits
+
+Payment providers such as Razorpay also support pausing, resuming and cancelling subscriptions, including cancellation immediately or at the end of the current billing cycle. Your internal credit and scheduling state must remain synchronised with the provider state.
+
+Upgrade 4: Preferred sitter—not guaranteed sitter
+
+Decision: Approve
+
+Recommended wording:
+
+Preferred walker with approved backup coverage.
+
+Reserve “guaranteed” only for a narrowly defined SLA the business can actually meet.
+
+Do not guarantee a person indefinitely. Guarantee the operating outcome:
+
+The platform will attempt the primary walker first and use an approved backup when necessary.
+
+Upgrade 5: Area-wise capacity limits
+
+Decision: Approve—non-negotiable
+
+Plan availability should be controlled through:
+
+City
+
+Service area
+
+Society
+
+Time window
+
+Plan frequency
+
+Walker capacity
+
+Backup capacity
+
+Pet eligibility
+
+Checkout should reject or waitlist a plan when the required capacity is unavailable.
+
+The correct sequence is:
+
+Customer selects plan
+
+↓
+
+Pet eligibility checked
+
+↓
+
+Area capacity checked
+
+↓
+
+Time window checked
+
+↓
+
+Primary and backup supply checked
+
+↓
+
+Payment setup allowed
+
+Do not collect payment and discover the supply shortage afterward.
+
+4. Phase 9 final deliverables
+
+P0 — Mandatory before the paid pilot
+
+### Table 356
+
+| Deliverable | Requirement |
+| --- | --- |
+| Subscription strategy and PRD | Required |
+| 12- and 20-walk plans | Required |
+| Plan pricing and contribution model | Required |
+| Versioned plan catalogue | Required |
+| Subscription lifecycle | Required |
+| Service-credit ledger | Required |
+| Credit reservation logic | Required |
+| Recurring payment flow | Required |
+| Payment webhook verification | Required |
+| Failed-payment recovery | Required |
+| Pause/cancel/downgrade | Required |
+| Customer subscription dashboard | Required |
+| Admin subscription dashboard | Required |
+| Primary/backup assignment | Required |
+| Area capacity engine | Required |
+| Refund and complaint policy | Required |
+| Audit logging | Required |
+
+P1 — Required during Phase 9
+
+### Table 357
+
+| Deliverable | Requirement |
+| --- | --- |
+| Renewal reminder system | Required |
+| Manual renewal/payment link | Required |
+| Churn-risk dashboard | Required |
+| Unused-credit alerts | Required |
+| Support SOP | Required |
+| Sitter subscription SOP | Required |
+| Finance reconciliation report | Required |
+| Society resident plan pilot | Recommended |
+| Basic Society Partner pilot | Recommended |
+| Pet-parent Plus membership | Recommended after walking validation |
+
+P2 — Later
+
+### Table 358
+
+| Deliverable | Decision |
+| --- | --- |
+| Sitter Pro plan | Optional later |
+| Groomer/trainer business plan | Optional later |
+| Partner sponsored listings | Defer |
+| Corporate benefit programme | Limited experiment only |
+| Annual prepaid plans | Defer |
+| Unlimited plans | Reject |
+
+Privacy requirement
+
+Subscription operations process addresses, recurring schedules, payment references, pet profiles and provider assignments. The Digital Personal Data Protection Rules, 2025 have phased commencement; the system should nevertheless implement purpose-specific notices, access control, security, correction and grievance processes from launch.
+
+5. Corrected Phase 9 final report format
+
+Phase 9 Subscription & Membership Report
+
+Project information
+
+Project name:City:Service areas/clusters:Pilot societies:Start date:End date:Duration:Report owner:
+
+Product summary
+
+### Table 359
+
+| Metric | Result |
+| --- | --- |
+| Subscription plans launched |  |
+| Starter packs sold |  |
+| Active paying subscribers |  |
+| Paused subscribers |  |
+| Past-due subscribers |  |
+| Cancel-at-period-end subscribers |  |
+| Paid society subscriptions |  |
+
+Revenue
+
+Separate the following:
+
+### Table 360
+
+| Metric | Result |
+| --- | --- |
+| Subscription GMV MRR | ₹ |
+| Platform MRR | ₹ |
+| Contribution MRR | ₹ |
+| Society-management MRR | ₹ |
+| Membership MRR | ₹ |
+| Recurring platform-revenue share |  |
+| Average customer plan price | ₹ |
+| Platform ARPU | ₹ |
+| Contribution per subscriber | ₹ |
+
+Definitions
+
+Subscription GMV MRR
+
+Total normalised monthly customer subscription payments.
+
+Platform MRR
+
+The platform’s retained monthly recurring revenue after partner pass-through amounts.
+
+Contribution MRR
+
+Platform MRR after direct recurring costs such as payment processing, support, service recovery and discounts.
+
+Do not report the entire walking-plan payment as platform revenue when a substantial amount is owed to the walker.
+
+Acquisition and conversion
+
+### Table 361
+
+| Metric | Result |
+| --- | --- |
+| Eligible repeat users |  |
+| Subscription offers shown |  |
+| Starter-pack conversion |  |
+| Monthly-plan conversion |  |
+| Best acquisition source |  |
+| Most popular plan |  |
+| Top upgrade trigger |  |
+
+Renewal and churn
+
+### Table 362
+
+| Metric | Result |
+| --- | --- |
+| Subscribers reaching renewal |  |
+| Successful first renewals |  |
+| First-renewal rate |  |
+| Voluntary cancellations |  |
+| Payment-failure cancellations |  |
+| Mature monthly churn |  |
+| Pause requests |  |
+| Downgrade requests |  |
+| Reactivations |  |
+| Top churn reason |  |
+
+Critical definition
+
+Do not mix first-renewal failure and mature monthly churn.
+
+A 60% first-renewal rate means 40% did not reach Month 2. That cannot simultaneously be reported as 10% churn for the same cohort.
+
+Credit performance
+
+### Table 363
+
+| Metric | Result |
+| --- | --- |
+| Credits granted |  |
+| Credits reserved |  |
+| Credits consumed |  |
+| Credits released/restored |  |
+| Credits rolled over |  |
+| Credits expired |  |
+| Credit utilisation |  |
+| Negative credit balances |  |
+| Manual adjustments |  |
+
+Recommended range:
+
+70–90%
+
+Very low utilisation suggests oversized plans. Very high early utilisation may signal an upgrade opportunity or under-sized entitlement.
+
+Fulfilment and quality
+
+### Table 364
+
+| Metric | Result |
+| --- | --- |
+| Subscription walks scheduled |  |
+| Subscription walks completed |  |
+| Completion rate |  |
+| On-time rate |  |
+| Preferred-walker fulfilment |  |
+| Primary-or-backup fulfilment |  |
+| Walker cancellations |  |
+| Walker no-shows |  |
+| Reports completed |  |
+| Subscriber rating |  |
+| Complaints/refunds |  |
+| Serious preventable incidents |  |
+
+Capacity
+
+### Table 365
+
+| Metric | Result |
+| --- | --- |
+| Gross walking capacity |  |
+| Existing non-subscription demand |  |
+| Reserved subscription capacity |  |
+| Backup reserve |  |
+| Sellable capacity |  |
+| Capacity utilisation |  |
+| Peak-slot utilisation |  |
+| Plans without approved backup |  |
+| Unassigned recurring walks |  |
+
+Society results
+
+### Table 366
+
+| Metric | Result |
+| --- | --- |
+| Society pilots |  |
+| Paid society conversions |  |
+| Resident subscription customers |  |
+| Society-management MRR | ₹ |
+| Resident subscription GMV | ₹ |
+| RWA rating |  |
+| Gate incidents |  |
+| Society contribution | ₹ |
+
+Final findings
+
+Most popular plan:Highest-contribution plan:Lowest-performing plan:Top churn reason:Top upgrade reason:Top customer complaint:Top fulfilment failure:Most constrained area/time:Best-performing sitter cluster:Most effective renewal channel:
+
+Final decision
+
+Move to Phase 10
+
+Continue Phase 9
+
+Improve retention
+
+Adjust pricing
+
+Increase sitter capacity
+
+Remove weak plan
+
+Restrict overloaded area
+
+Improve payment recovery
+
+Improve primary/backup coverage
+
+6. Corrected Phase 10 go/no-go criteria
+
+Product and system gate
+
+### Table 367
+
+| Requirement | Target |
+| --- | --- |
+| Subscription lifecycle stable | Yes |
+| Duplicate charges | Zero |
+| Negative credit balances | Zero |
+| Duplicate credit consumption | Zero |
+| Payment reconciliation | Complete |
+| Pause/cancel/downgrade | Fully operational |
+| Customer credit history | Visible |
+| Admin audit trail | Operational |
+
+Subscriber gate
+
+### Table 368
+
+| Requirement | Target |
+| --- | --- |
+| Active paying subscribers | 50 minimum |
+| Base success range | 50–120 |
+| Stretch range | 120–200 |
+| Eligible-user conversion | 20–35% |
+| First-renewal rate | 60%+ |
+| Average subscriber rating | 4.6+ |
+| Complaint/refund rate | Below 5% |
+
+Revenue gate
+
+The original “MRR ₹1 lakh” target must specify the type of MRR.
+
+Recommended minimum:
+
+### Table 369
+
+| Metric | Target |
+| --- | --- |
+| Subscription GMV MRR | ₹1 lakh+ |
+| Platform MRR | Positive and growing |
+| Contribution MRR | Positive |
+| Contribution per subscriber | Positive |
+| Heavy-discount dependency | No |
+| Partner payouts | On time |
+
+For example, 50 subscribers averaging ₹2,000 produce ₹1 lakh of subscription GMV MRR. That does not mean the platform retains ₹1 lakh.
+
+Fulfilment gate
+
+### Table 370
+
+| Requirement | Target |
+| --- | --- |
+| Walk completion | 95%+ |
+| On-time fulfilment | 95%+ |
+| Preferred-walker fulfilment | 85%+ |
+| Primary or approved backup | 98%+ |
+| Reports completed | 95%+ |
+| Walker no-show | Below 1% |
+| Serious preventable incidents | Zero |
+
+Credit gate
+
+### Table 371
+
+| Requirement | Target |
+| --- | --- |
+| Service credits working | Yes |
+| Credit utilisation | 70–90% |
+| Platform-caused cancellations restored | 100% |
+| Unexplained adjustments | Zero |
+| Rollover liability controlled | Yes |
+
+Capacity gate
+
+### Table 372
+
+| Requirement | Target |
+| --- | --- |
+| Overall sellable capacity used | Below 85% |
+| Peak-time capacity used | Below 90% |
+| Backup reserve | 10–15% |
+| High-frequency plans with backup | 95%+ |
+| Overbooked recurring slots | Zero |
+| Unassigned walks | Below 1% |
+
+Retention gate
+
+### Table 373
+
+| Requirement | Target |
+| --- | --- |
+| First-renewal rate | 60–80% |
+| Pause functioning | Yes |
+| Downgrade functioning | Yes |
+| Payment-failure recovery | 30–50%+ |
+| Mature monthly churn | Below 10–15% when measurable |
+| Repeat plan usage | Demonstrated |
+
+A 60-day phase may not provide enough history to validate mature churn. Maintain a further 30-day cohort observation before claiming long-term subscription-market fit.
+
+Society gate
+
+### Table 374
+
+| Requirement | Target |
+| --- | --- |
+| Society plans tested | At least 2 pilots |
+| Paid society conversion | At least 1 |
+| Resident paid conversion | 15–25% of qualified leads |
+| RWA rating | 4.5+ |
+| B2B and B2C ledgers separated | Yes |
+| Serious society incidents | Zero |
+
+Core-protection gate
+
+Block Phase 10 when:
+
+Core walking ratings decline materially.
+
+Existing one-time customers lose availability.
+
+Partner payouts become late.
+
+Support backlog increases materially.
+
+A critical safety or privacy incident remains unresolved.
+
+Subscription growth depends on manually repairing every schedule.
+
+7. Final Phase 9 recommendation
+
+Build:
+
+A capacity-controlled subscription engine centred on 12- and 20-walk monthly plans, with verified payments, service entitlements, an append-only credit ledger, transparent renewal communication, pause/downgrade controls, preferred-walker continuity and approved backup coverage.
+
+Do
+
+Convert customers after successful service history.
+
+Recommend plans from demonstrated usage.
+
+Reserve capacity before collecting payment.
+
+Show available, reserved and consumed credits.
+
+Restore credits after platform failure.
+
+Make pause and cancellation easy.
+
+Keep AutoPay and manual-renewal options.
+
+Report platform MRR separately from subscription GMV.
+
+Track contribution per subscriber.
+
+Preserve 10–15% backup capacity.
+
+Do not
+
+Sell subscriptions before trust exists.
+
+Push a 20-walk plan to an occasional customer.
+
+Use mutable credit counters as the only record.
+
+Guarantee one sitter permanently.
+
+make pause the only exit route.
+
+Hide expiry, renewal or cancellation terms.
+
+sell plans in saturated time windows.
+
+Report customer spending as platform revenue.
+
+Scale to multiple cities with unresolved subscription defects.
+
+Build corporate and partner plans before consumer walking subscriptions work.
+
+Final approval table
+
+### Table 375
+
+| Phase 9 rule | Final decision |
+| --- | --- |
+| Dog-walking subscriptions first | APPROVED |
+| Service-credit system mandatory | APPROVED for service plans and bundles |
+| Pause-plan option mandatory | APPROVED |
+| Preferred sitter instead of guaranteed sitter | APPROVED |
+| Area-wise capacity sales caps | APPROVED—NON-NEGOTIABLE |
+
+Phase 9 win condition
+
+Customers stop booking walks randomly and begin maintaining a dependable monthly pet-care routine because scheduling, walker continuity, payments, credits and customer control all work reliably.
+
+Decision before Phase 10
+
+Move to Phase 10 only after subscriptions are operationally repeatable—not merely after reaching an attractive subscriber count.
+
+The true Phase 10 readiness signal is:
+
+Final Phase 9 decision: GO—subject to the complete go/no-go gates above.
+
+A quarterly subscription-compliance watch would keep NPCI, payment-provider, CCPA and DPDP requirements current. Want me to schedule it?
+
+## Representative rendered pages
+
+- Page 1: `analysis/specs/PetSaathi_Phase_8_and_9/pages/page-1.png`
+
+- Page 2: `analysis/specs/PetSaathi_Phase_8_and_9/pages/page-2.png`
+
+- Page 3: `analysis/specs/PetSaathi_Phase_8_and_9/pages/page-3.png`
+
+- Page 4: `analysis/specs/PetSaathi_Phase_8_and_9/pages/page-4.png`
+
+- Page 5: `analysis/specs/PetSaathi_Phase_8_and_9/pages/page-5.png`
+
+- Page 41: `analysis/specs/PetSaathi_Phase_8_and_9/pages/page-41.png`
+
+- Page 81: `analysis/specs/PetSaathi_Phase_8_and_9/pages/page-81.png`
+
+- Page 121: `analysis/specs/PetSaathi_Phase_8_and_9/pages/page-121.png`
+
+- Page 161: `analysis/specs/PetSaathi_Phase_8_and_9/pages/page-161.png`
+
+- Page 201: `analysis/specs/PetSaathi_Phase_8_and_9/pages/page-201.png`
+
+- Page 241: `analysis/specs/PetSaathi_Phase_8_and_9/pages/page-241.png`
+
+- Page 281: `analysis/specs/PetSaathi_Phase_8_and_9/pages/page-281.png`
+
+- Page 321: `analysis/specs/PetSaathi_Phase_8_and_9/pages/page-321.png`
+
+- Page 361: `analysis/specs/PetSaathi_Phase_8_and_9/pages/page-361.png`
+
+- Page 401: `analysis/specs/PetSaathi_Phase_8_and_9/pages/page-401.png`
+
+- Page 441: `analysis/specs/PetSaathi_Phase_8_and_9/pages/page-441.png`
+
+- Page 481: `analysis/specs/PetSaathi_Phase_8_and_9/pages/page-481.png`
+
+- Page 521: `analysis/specs/PetSaathi_Phase_8_and_9/pages/page-521.png`
+
+- Page 561: `analysis/specs/PetSaathi_Phase_8_and_9/pages/page-561.png`
+
+- Page 601: `analysis/specs/PetSaathi_Phase_8_and_9/pages/page-601.png`
+
+- Page 641: `analysis/specs/PetSaathi_Phase_8_and_9/pages/page-641.png`
+
+- Page 681: `analysis/specs/PetSaathi_Phase_8_and_9/pages/page-681.png`
+
+- Page 721: `analysis/specs/PetSaathi_Phase_8_and_9/pages/page-721.png`
+
+- Page 761: `analysis/specs/PetSaathi_Phase_8_and_9/pages/page-761.png`
+
+- Page 801: `analysis/specs/PetSaathi_Phase_8_and_9/pages/page-801.png`
+
+- Page 841: `analysis/specs/PetSaathi_Phase_8_and_9/pages/page-841.png`
+
+- Page 881: `analysis/specs/PetSaathi_Phase_8_and_9/pages/page-881.png`
+
+- Page 921: `analysis/specs/PetSaathi_Phase_8_and_9/pages/page-921.png`
+
+- Page 936: `analysis/specs/PetSaathi_Phase_8_and_9/pages/page-936.png`
+
+- Page 937: `analysis/specs/PetSaathi_Phase_8_and_9/pages/page-937.png`
+
+- Page 938: `analysis/specs/PetSaathi_Phase_8_and_9/pages/page-938.png`

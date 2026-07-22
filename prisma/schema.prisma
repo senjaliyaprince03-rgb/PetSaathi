@@ -1,0 +1,3162 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum Role {
+  CUSTOMER
+  SITTER
+  OPERATIONS_ADMIN
+  VERIFICATION_ADMIN
+  SAFETY_ADMIN
+  FINANCE_ADMIN
+  CONTENT_ADMIN
+  SOCIETY_MANAGER
+  PARTNER_MANAGER
+  CITY_MANAGER
+  OPERATOR
+  SUPER_ADMIN
+}
+
+enum AccountStatus {
+  ACTIVE
+  PENDING
+  SUSPENDED
+  DEACTIVATED
+  DELETION_REQUESTED
+}
+
+enum SitterStatus {
+  APPLICANT
+  UNDER_REVIEW
+  TRAINING
+  APPROVED
+  PAUSED
+  SUSPENDED
+  REJECTED
+}
+
+enum RiskLevel {
+  GREEN
+  YELLOW
+  RED
+  UNASSESSED
+}
+
+enum ServiceCode {
+  DOG_WALK_30
+  DOG_WALK_60
+  HOME_VISIT
+  HOME_SITTING_60
+  TRAVEL_SITTING
+  BOARDING_BETA
+  GROOMING_HOME
+  VET_SUPPORT
+  TRAINING_ASSESSMENT
+  PET_TAXI
+}
+
+enum PermissionStatus {
+  PENDING
+  ACTIVE
+  SUSPENDED
+  REVOKED
+  EXPIRED
+}
+
+enum BookingStatus {
+  DRAFT
+  REQUESTED
+  RISK_REVIEW
+  MATCHING
+  SITTER_PROPOSED
+  CUSTOMER_APPROVAL_PENDING
+  PAYMENT_PENDING
+  CONFIRMED
+  SITTER_EN_ROUTE
+  IN_PROGRESS
+  REPORT_PENDING
+  COMPLETED
+  CLOSED
+  DECLINED
+  CUSTOMER_CANCELLED
+  SITTER_CANCELLED
+  REPLACEMENT_REQUIRED
+  NO_SHOW
+  INCIDENT_HOLD
+}
+
+enum AssignmentType {
+  PRIMARY
+  BACKUP
+  REPLACEMENT
+}
+
+enum AssignmentStatus {
+  OFFERED
+  ACCEPTED
+  DECLINED
+  CUSTOMER_APPROVED
+  ACTIVE
+  COMPLETED
+  CANCELLED
+  NO_SHOW
+}
+
+enum PaymentStatus {
+  CREATED
+  PENDING
+  AUTHORIZED
+  CAPTURED
+  FAILED
+  CANCELLED
+  PARTIALLY_REFUNDED
+  REFUNDED
+  DISPUTED
+}
+
+enum RefundStatus {
+  REQUESTED
+  APPROVED
+  PROCESSING
+  COMPLETED
+  FAILED
+  REJECTED
+}
+
+enum PayoutStatus {
+  PENDING
+  APPROVED
+  PROCESSING
+  PAID
+  HELD
+  FAILED
+  CANCELLED
+}
+
+enum VerificationStatus {
+  PENDING
+  PASSED
+  FAILED
+  EXPIRED
+  REVOKED
+}
+
+enum IncidentStatus {
+  REPORTED
+  TRIAGING
+  ACTIVE_RESPONSE
+  VET_CONTACTED
+  TRANSPORTING
+  MONITORING
+  IMMEDIATE_RISK_RESOLVED
+  REVIEW_PENDING
+  CORRECTIVE_ACTION_OPEN
+  CLOSED
+}
+
+enum IncidentSeverity {
+  LOW
+  MODERATE
+  HIGH
+  CRITICAL
+}
+
+enum NotificationChannel {
+  IN_APP
+  EMAIL
+  WHATSAPP
+  SMS
+  PUSH
+  PHONE
+}
+
+enum NotificationStatus {
+  QUEUED
+  SENDING
+  SENT
+  DELIVERED
+  READ
+  FAILED
+  CANCELLED
+}
+
+enum SubscriptionStatus {
+  INCOMPLETE
+  ACTIVE
+  PAUSED
+  GRACE
+  PAST_DUE
+  CANCELLED
+  EXPIRED
+}
+
+enum ContentStatus {
+  DRAFT
+  IN_REVIEW
+  APPROVED
+  PUBLISHED
+  ARCHIVED
+}
+
+enum LeadType {
+  GENERAL
+  BOOKING_HELP
+  SITTER_INTEREST
+  SOCIETY
+  PARTNER
+  SAFETY
+}
+
+enum LeadStatus {
+  NEW
+  CONTACTED
+  QUALIFIED
+  PILOT_PROPOSED
+  CONVERTED
+  DISQUALIFIED
+}
+
+enum UploadStatus {
+  QUARANTINED
+  CLEAN
+  REJECTED
+  PROMOTED
+  DELETED
+}
+
+enum AccountRequestType {
+  CORRECTION
+  EXPORT
+  DELETION
+}
+
+enum AccountRequestStatus {
+  RECEIVED
+  IDENTITY_VERIFIED
+  IN_REVIEW
+  APPROVED
+  FULFILLED
+  REJECTED
+  CANCELLED
+}
+
+enum ConsentPurpose {
+  PHOTO_USAGE
+  TESTIMONIAL
+  MARKETING_EMAIL
+  MARKETING_WHATSAPP
+  MARKETING_SMS
+  SOCIAL_MEDIA_FEATURE
+  PAID_AD
+  THIRD_PARTY_SHARE
+  ANALYTICS
+}
+
+enum DataRequestType {
+  EXPORT
+  DELETION
+  CORRECTION
+  ACCESS_LOG
+}
+
+enum DataRequestStatus {
+  PENDING_DSR
+  IN_PROGRESS_DSR
+  COMPLETED_DSR
+  REJECTED_DSR
+}
+
+enum OperatorStatus {
+  PROSPECT_OP
+  ONBOARDING_OP
+  PILOT
+  ACTIVE_OP
+  SUSPENDED_OP
+  TERMINATED
+}
+
+enum TerritoryType {
+  EXCLUSIVE
+  NON_EXCLUSIVE
+  MANAGED
+}
+
+enum CityLaunchStage {
+  RESEARCH
+  WAITLIST
+  SUPPLY_BUILD
+  CLOSED_BETA
+  PUBLIC_LIMITED
+  VALIDATED
+  GROWTH
+  MATURE
+  PAUSED
+  EXITED
+}
+
+enum ZoneLaunchStage {
+  RESEARCH
+  WAITLIST
+  BETA
+  ACTIVE_LIMITED
+  ACTIVE
+  CAPACITY_PAUSED
+  SERVICE_PAUSED
+  CLOSED
+}
+
+enum ServiceStatus {
+  DISABLED
+  WAITLIST
+  MANUAL_BETA
+  ACTIVE_LIMITED
+  ACTIVE
+  CAPACITY_PAUSED
+  SAFETY_PAUSED
+}
+
+enum GateStatus {
+  DRAFT
+  REVIEW
+  ACTIVE
+  PAUSED
+  CLOSED
+  ARCHIVED
+}
+
+enum PartnerOrderStatus {
+  REQUESTED
+  ACCEPTED
+  SCHEDULED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+  DISPUTED
+}
+
+enum JobStatus {
+  QUEUED
+  RUNNING
+  SUCCEEDED
+  FAILED
+  CANCELLED
+}
+
+enum ComplaintStatus {
+  RECEIVED
+  TRIAGING
+  IN_REVIEW
+  ACTION_REQUIRED
+  RESOLVED
+  CLOSED
+  REJECTED
+}
+
+enum SupportCaseStatus {
+  OPEN
+  WAITING_CUSTOMER
+  WAITING_OPERATIONS
+  ESCALATED
+  RESOLVED
+  CLOSED
+}
+
+enum LedgerEntryType {
+  PAYMENT
+  REFUND
+  PAYOUT
+  ADJUSTMENT
+  TAX
+  FEE
+  CREDIT
+  DEBIT
+}
+
+enum SitterHoldStatus {
+  ACTIVE
+  RELEASED
+  EXPIRED
+}
+
+enum CapacityReservationStatus {
+  HELD
+  CONSUMED
+  RELEASED
+}
+
+enum ReportReviewStatus {
+  PENDING
+  APPROVED
+  CORRECTION_REQUIRED
+  ESCALATED
+}
+
+// ═══════════════════════════════════════════════════════════════
+// Phase 13 — B2B & Enterprise Partnership Enums
+// ═══════════════════════════════════════════════════════════════
+
+enum OrganizationType {
+  CORPORATE
+  DEVELOPER
+  SOCIETY
+  VET_CLINIC
+  PET_BRAND
+  HOTEL
+  RELOCATION
+  TRAINING_CHAIN
+  OTHER
+}
+
+enum OrgStatus {
+  PROSPECT
+  ACTIVE
+  PAUSED
+  CHURNED
+}
+
+enum OpportunityStage {
+  TARGET_ACCOUNT
+  CONTACT_IDENTIFIED
+  CONTACTED
+  DISCOVERY_SCHEDULED
+  QUALIFIED
+  SOLUTION_DESIGNED
+  PROPOSAL_SENT
+  PILOT_NEGOTIATION
+  PILOT_CONTRACTED
+  PILOT_ACTIVE
+  PILOT_REVIEW
+  COMMERCIAL_NEGOTIATION
+  PAID_CONTRACT
+  ONBOARDING
+  ACTIVE_ACCOUNT
+  RENEWAL
+  DISQUALIFIED
+  LOST
+  PAUSED_OPP
+  CHURNED_OPP
+}
+
+enum ContractStatus {
+  DRAFT_CONTRACT
+  ACTIVE_CONTRACT
+  EXPIRED_CONTRACT
+  TERMINATED
+  RENEWED
+}
+
+enum ProgrammeStatus {
+  DRAFT_PROGRAMME
+  ACTIVE_PROGRAMME
+  PAUSED_PROGRAMME
+  COMPLETED_PROGRAMME
+  CANCELLED_PROGRAMME
+}
+
+enum ProgrammeType {
+  CORPORATE_ACCESS
+  CORPORATE_MANAGED
+  CORPORATE_WALLET
+  SOCIETY_LAUNCH
+  MANAGED_SOCIETY
+  TOWNSHIP_DESK
+  VET_REFERRAL
+  BRAND_CAMPAIGN
+  RELOCATION_SUPPORT
+}
+
+enum EligibilityMethod {
+  DOMAIN_EMAIL
+  OTP_VERIFY
+  EMPLOYEE_ID
+  HR_FILE
+  INVITATION_TOKEN
+  SOCIETY_APPROVAL
+  OPEN_ACCESS
+}
+
+enum MemberVerificationStatus {
+  PENDING_VERIFICATION
+  VERIFIED
+  REJECTED_VERIFICATION
+  EXPIRED_VERIFICATION
+}
+
+enum WalletStatus {
+  ACTIVE_WALLET
+  FROZEN
+  EXPIRED_WALLET
+  CLOSED
+}
+
+enum BenefitEntryType {
+  CREDIT_ISSUED
+  CREDIT_REDEEMED
+  CREDIT_EXPIRED
+  CREDIT_REFUNDED
+  CREDIT_ADJUSTMENT
+}
+
+enum InvoiceStatus {
+  DRAFT_INVOICE
+  SENT
+  PARTIALLY_PAID
+  PAID
+  OVERDUE
+  CANCELLED_INVOICE
+  CREDIT_NOTED
+}
+
+enum OrgContactRole {
+  PRIMARY_CONTACT
+  PROGRAMME_OWNER
+  HR_CONTACT
+  FINANCE_CONTACT
+  FACILITY_MANAGER
+  TECHNICAL_CONTACT
+  DECISION_MAKER
+  OTHER_CONTACT
+}
+
+model User {
+  id                       String                    @id @default(uuid()) @db.Uuid
+  authUserId               String                    @unique @map("auth_user_id") @db.Uuid
+  email                    String?                   @unique
+  phoneE164                String?                   @unique @map("phone_e164")
+  displayName              String                    @map("display_name")
+  avatarPath               String?                   @map("avatar_path")
+  status                   AccountStatus             @default(PENDING)
+  locale                   String                    @default("en-IN")
+  timezone                 String                    @default("Asia/Kolkata")
+  lastLoginAt              DateTime?                 @map("last_login_at")
+  createdAt                DateTime                  @default(now()) @map("created_at")
+  updatedAt                DateTime                  @updatedAt @map("updated_at")
+  roles                    UserRole[]
+  customer                 CustomerProfile?
+  sitter                   SitterProfile?
+  addresses                Address[]
+  pets                     Pet[]
+  bookings                 Booking[]                 @relation("CustomerBookings")
+  reviews                  Review[]
+  consents                 Consent[]
+  notifications            NotificationOutbox[]
+  accountRequests          AccountRequest[]
+  partnerOrders            PartnerOrder[]            @relation("PartnerOrderCustomer")
+  loyaltyEntries           LoyaltyLedger[]
+  referralsMade            Referral[]                @relation("ReferralReferrer")
+  referralReceived         Referral?                 @relation("ReferralReferred")
+  testimonials             Testimonial[]
+  testimonialConsents      TestimonialConsent[]
+  permissionsHeld          AdminPermission[]         @relation("PermissionHolder")
+  householdsOwned          HouseholdMember[]         @relation("HouseholdOwner")
+  householdMemberships     HouseholdMember[]         @relation("HouseholdMember")
+  complaints               Complaint[]
+  communicationPreferences CommunicationPreference[]
+  supportCases             SupportCase[]
+  reportsReviewed          BookingReport[]           @relation("ReportReviewer")
+  serviceCredits           ServiceCredit[]
+
+  // Phase 13 B2B relations
+  ownedOrganizations   Organization[]        @relation("OrgAccountOwner")
+  ownedOpportunities   B2bOpportunity[]      @relation("OpportunityOwner")
+  managedProgrammes    PartnerProgramme[]    @relation("ProgrammeManager")
+  programmeMemberships ProgrammeMembership[]
+
+  // Phase 14 Scale & Ops
+  managedCities CityManager[]
+
+  // Phase 14 Sprint 4 — DPDP Privacy
+  consentRecords          ContentConsentRecord[] @relation("UserConsents")
+  dataSubjectRequests     DataSubjectRequest[]   @relation("UserDataRequests")
+  handledDataRequests     DataSubjectRequest[]   @relation("HandledDataRequests")
+  // Phase 14 Sprint 3
+  operatingPartnerContact OperatingPartner[]     @relation("OperatorContact")
+  // Phase 14 Sprint 2
+  suspensions             ProviderSuspension[]   @relation("SitterSuspensions")
+  liftedSuspensions       ProviderSuspension[]   @relation("SuspensionLifter")
+  auditsReceived          SafetyAudit[]          @relation("SitterAudits")
+  auditsPerformed         SafetyAudit[]          @relation("AuditorUsers")
+
+  @@map("users")
+}
+
+model AccountRequest {
+  id          String               @id @default(uuid()) @db.Uuid
+  reference   String               @unique
+  userId      String               @map("user_id") @db.Uuid
+  type        AccountRequestType
+  status      AccountRequestStatus @default(RECEIVED)
+  details     Json
+  handledBy   String?              @map("handled_by") @db.Uuid
+  resolution  String?
+  requestedAt DateTime             @default(now()) @map("requested_at")
+  verifiedAt  DateTime?            @map("verified_at")
+  fulfilledAt DateTime?            @map("fulfilled_at")
+  updatedAt   DateTime             @updatedAt @map("updated_at")
+  user        User                 @relation(fields: [userId], references: [id], onDelete: Restrict)
+
+  @@index([userId, requestedAt])
+  @@index([type, status, requestedAt])
+  @@map("account_requests")
+}
+
+model UserRole {
+  userId    String   @map("user_id") @db.Uuid
+  role      Role
+  grantedAt DateTime @default(now()) @map("granted_at")
+  grantedBy String?  @map("granted_by") @db.Uuid
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, role])
+  @@map("user_roles")
+}
+
+model Consent {
+  id            String    @id @default(uuid()) @db.Uuid
+  userId        String    @map("user_id") @db.Uuid
+  purpose       String
+  policyVersion String    @map("policy_version")
+  granted       Boolean
+  capturedAt    DateTime  @default(now()) @map("captured_at")
+  withdrawnAt   DateTime? @map("withdrawn_at")
+  evidence      Json?
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, purpose])
+  @@map("consents")
+}
+
+model CustomerProfile {
+  id                    String  @id @default(uuid()) @db.Uuid
+  userId                String  @unique @map("user_id") @db.Uuid
+  preferredLanguage     String  @default("en") @map("preferred_language")
+  emergencyContactName  String? @map("emergency_contact_name")
+  emergencyContactPhone String? @map("emergency_contact_phone")
+  user                  User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("customer_profiles")
+}
+
+model SitterProfile {
+  id                     String                    @id @default(uuid()) @db.Uuid
+  userId                 String                    @unique @map("user_id") @db.Uuid
+  status                 SitterStatus              @default(APPLICANT)
+  bio                    String?
+  yearsExperience        Int                       @default(0) @map("years_experience")
+  serviceLocality        String?                   @map("service_locality")
+  serviceRadiusKm        Decimal                   @default(5) @map("service_radius_km") @db.Decimal(5, 2)
+  reliabilityScore       Decimal?                  @map("reliability_score") @db.Decimal(5, 2)
+  applicationAt          DateTime                  @default(now()) @map("application_at")
+  approvedAt             DateTime?                 @map("approved_at")
+  suspendedAt            DateTime?                 @map("suspended_at")
+  user                   User                      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  permissions            SitterServicePermission[]
+  availabilityRules      AvailabilityRule[]
+  availabilityExceptions AvailabilityException[]
+  verifications          SitterVerification[]
+  trainingAttempts       TrainingAttempt[]
+  assignments            BookingAssignment[]
+  payouts                Payout[]
+  societyPools           SocietySitterPool[]
+  applications           SitterApplication[]
+  practicalAssessments   PracticalAssessment[]
+  boardingProperties     BoardingProperty[]
+  reliabilityHistory     ReliabilityScore[]
+  complaints             Complaint[]
+  holds                  SitterHold[]
+  matchScores            MatchScore[]
+
+  @@index([status])
+  @@map("sitter_profiles")
+}
+
+model Address {
+  id                 String             @id @default(uuid()) @db.Uuid
+  userId             String?            @map("user_id") @db.Uuid
+  label              String
+  line1              String
+  line2              String?
+  landmark           String?
+  locality           String
+  city               String
+  state              String
+  postalCode         String             @map("postal_code")
+  countryCode        String             @default("IN") @map("country_code")
+  latitude           Decimal?           @db.Decimal(10, 7)
+  longitude          Decimal?           @db.Decimal(10, 7)
+  geocodeProvider    String?            @map("geocode_provider")
+  geocodeRef         String?            @map("geocode_ref")
+  accessNotes        String?            @map("access_notes")
+  createdAt          DateTime           @default(now()) @map("created_at")
+  updatedAt          DateTime           @updatedAt @map("updated_at")
+  user               User?              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  bookings           Booking[]
+  boardingProperties BoardingProperty[]
+
+  // Phase 13 B2B relations
+  orgBillingFor Organization[]
+
+  @@index([city, locality])
+  @@map("addresses")
+}
+
+model Pet {
+  id                   String                @id @default(uuid()) @db.Uuid
+  ownerId              String                @map("owner_id") @db.Uuid
+  name                 String
+  species              String
+  breed                String?
+  sex                  String?
+  birthDate            DateTime?             @map("birth_date") @db.Date
+  weightKg             Decimal?              @map("weight_kg") @db.Decimal(6, 2)
+  sterilised           Boolean?
+  photoPath            String?               @map("photo_path")
+  active               Boolean               @default(true)
+  createdAt            DateTime              @default(now()) @map("created_at")
+  updatedAt            DateTime              @updatedAt @map("updated_at")
+  owner                User                  @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  medicalProfile       PetMedicalProfile?
+  emergencyContacts    PetEmergencyContact[]
+  riskAssessments      PetRiskAssessment[]
+  bookings             Booking[]
+  partnerOrders        PartnerOrder[]
+  media                PetMedia[]
+  careInstructions     CareInstruction[]
+  medications          Medication[]
+  vaccinations         Vaccination[]
+  healthEvents         PetHealthEvent[]
+  healthTimelineEvents HealthTimelineEvent[]
+
+  @@index([ownerId, active])
+  @@map("pets")
+}
+
+model PetMedicalProfile {
+  id                   String   @id @default(uuid()) @db.Uuid
+  petId                String   @unique @map("pet_id") @db.Uuid
+  allergies            String?
+  conditions           String?
+  medications          String?
+  veterinarianName     String?  @map("veterinarian_name")
+  veterinarianPhone    String?  @map("veterinarian_phone")
+  emergencyClinicName  String?  @map("emergency_clinic_name")
+  emergencyClinicPhone String?  @map("emergency_clinic_phone")
+  updatedAt            DateTime @updatedAt @map("updated_at")
+  pet                  Pet      @relation(fields: [petId], references: [id], onDelete: Cascade)
+
+  @@map("pet_medical_profiles")
+}
+
+model PetEmergencyContact {
+  id       String  @id @default(uuid()) @db.Uuid
+  petId    String  @map("pet_id") @db.Uuid
+  name     String
+  phone    String
+  relation String?
+  priority Int     @default(1)
+  pet      Pet     @relation(fields: [petId], references: [id], onDelete: Cascade)
+
+  @@index([petId, priority])
+  @@map("pet_emergency_contacts")
+}
+
+model PetRiskAssessment {
+  id             String          @id @default(uuid()) @db.Uuid
+  petId          String          @map("pet_id") @db.Uuid
+  serviceCode    ServiceCode     @map("service_code")
+  suggestedLevel RiskLevel       @default(UNASSESSED) @map("suggested_level")
+  finalLevel     RiskLevel       @default(UNASSESSED) @map("final_level")
+  factorSnapshot Json            @map("factors")
+  reviewedBy     String?         @map("reviewed_by") @db.Uuid
+  reviewedAt     DateTime?       @map("reviewed_at")
+  expiresAt      DateTime?       @map("expires_at")
+  createdAt      DateTime        @default(now()) @map("created_at")
+  pet            Pet             @relation(fields: [petId], references: [id], onDelete: Cascade)
+  factors        PetRiskFactor[]
+
+  @@index([petId, serviceCode, createdAt])
+  @@map("pet_risk_assessments")
+}
+
+model ServiceType {
+  id                        String                     @id @default(uuid()) @db.Uuid
+  code                      ServiceCode                @unique
+  name                      String
+  description               String
+  durationMinutes           Int?                       @map("duration_minutes")
+  active                    Boolean                    @default(false)
+  requiresManualMatch       Boolean                    @default(true) @map("requires_manual_match")
+  requiresProperty          Boolean                    @default(false) @map("requires_property")
+  basePricePaise            Int                        @map("base_price_paise")
+  currency                  String                     @default("INR")
+  permissions               SitterServicePermission[]
+  bookings                  Booking[]
+  variants                  ServiceVariant[]
+  prices                    ServicePrice[]
+  cityServiceConfigurations CityServiceConfiguration[]
+  zoneServiceConfigurations ZoneServiceConfiguration[]
+
+  @@map("service_types")
+}
+
+model SitterServicePermission {
+  id            String           @id @default(uuid()) @db.Uuid
+  sitterId      String           @map("sitter_id") @db.Uuid
+  serviceTypeId String           @map("service_type_id") @db.Uuid
+  status        PermissionStatus @default(PENDING)
+  riskLimit     RiskLevel        @default(GREEN) @map("risk_limit")
+  grantedBy     String?          @map("granted_by") @db.Uuid
+  grantedAt     DateTime?        @map("granted_at")
+  expiresAt     DateTime?        @map("expires_at")
+  revokedAt     DateTime?        @map("revoked_at")
+  reason        String?
+  sitter        SitterProfile    @relation(fields: [sitterId], references: [id], onDelete: Cascade)
+  serviceType   ServiceType      @relation(fields: [serviceTypeId], references: [id], onDelete: Restrict)
+
+  @@unique([sitterId, serviceTypeId])
+  @@index([serviceTypeId, status])
+  @@map("sitter_service_permissions")
+}
+
+model AvailabilityRule {
+  id        String        @id @default(uuid()) @db.Uuid
+  sitterId  String        @map("sitter_id") @db.Uuid
+  weekday   Int
+  startTime String        @map("start_time")
+  endTime   String        @map("end_time")
+  timezone  String        @default("Asia/Kolkata")
+  active    Boolean       @default(true)
+  sitter    SitterProfile @relation(fields: [sitterId], references: [id], onDelete: Cascade)
+
+  @@index([sitterId, weekday])
+  @@map("availability_rules")
+}
+
+model AvailabilityException {
+  id        String        @id @default(uuid()) @db.Uuid
+  sitterId  String        @map("sitter_id") @db.Uuid
+  startsAt  DateTime      @map("starts_at")
+  endsAt    DateTime      @map("ends_at")
+  available Boolean
+  reason    String?
+  sitter    SitterProfile @relation(fields: [sitterId], references: [id], onDelete: Cascade)
+
+  @@index([sitterId, startsAt, endsAt])
+  @@map("availability_exceptions")
+}
+
+model SitterVerification {
+  id           String             @id @default(uuid()) @db.Uuid
+  sitterId     String             @map("sitter_id") @db.Uuid
+  type         String
+  status       VerificationStatus @default(PENDING)
+  provider     String?
+  evidencePath String?            @map("evidence_path")
+  checkedBy    String?            @map("checked_by") @db.Uuid
+  checkedAt    DateTime?          @map("checked_at")
+  expiresAt    DateTime?          @map("expires_at")
+  revokedAt    DateTime?          @map("revoked_at")
+  publicLabel  String?            @map("public_label")
+  sitter       SitterProfile      @relation(fields: [sitterId], references: [id], onDelete: Cascade)
+
+  @@index([sitterId, type, status])
+  @@map("sitter_verifications")
+}
+
+model TrainingModule {
+  id           String            @id @default(uuid()) @db.Uuid
+  slug         String            @unique
+  title        String
+  version      Int
+  passingScore Int               @map("passing_score")
+  active       Boolean           @default(true)
+  attempts     TrainingAttempt[]
+
+  @@unique([slug, version])
+  @@map("training_modules")
+}
+
+model TrainingAttempt {
+  id          String         @id @default(uuid()) @db.Uuid
+  sitterId    String         @map("sitter_id") @db.Uuid
+  moduleId    String         @map("module_id") @db.Uuid
+  score       Int
+  passed      Boolean
+  attemptedAt DateTime       @default(now()) @map("attempted_at")
+  sitter      SitterProfile  @relation(fields: [sitterId], references: [id], onDelete: Cascade)
+  module      TrainingModule @relation(fields: [moduleId], references: [id], onDelete: Restrict)
+
+  @@index([sitterId, moduleId, attemptedAt])
+  @@map("training_attempts")
+}
+
+model Booking {
+  id                      String                   @id @default(uuid()) @db.Uuid
+  reference               String                   @unique
+  customerId              String                   @map("customer_id") @db.Uuid
+  petId                   String                   @map("pet_id") @db.Uuid
+  serviceTypeId           String                   @map("service_type_id") @db.Uuid
+  addressId               String                   @map("address_id") @db.Uuid
+  status                  BookingStatus            @default(DRAFT)
+  scheduledStart          DateTime                 @map("scheduled_start")
+  scheduledEnd            DateTime                 @map("scheduled_end")
+  timezone                String                   @default("Asia/Kolkata")
+  customerNotes           String?                  @map("customer_notes")
+  quoteAmountPaise        Int                      @map("quote_amount_paise")
+  currency                String                   @default("INR")
+  matchingNotes           String?                  @map("matching_notes")
+  customerApprovedAt      DateTime?                @map("customer_approved_at")
+  createdAt               DateTime                 @default(now()) @map("created_at")
+  updatedAt               DateTime                 @updatedAt @map("updated_at")
+  customer                User                     @relation("CustomerBookings", fields: [customerId], references: [id], onDelete: Restrict)
+  pet                     Pet                      @relation(fields: [petId], references: [id], onDelete: Restrict)
+  serviceType             ServiceType              @relation(fields: [serviceTypeId], references: [id], onDelete: Restrict)
+  address                 Address                  @relation(fields: [addressId], references: [id], onDelete: Restrict)
+  assignments             BookingAssignment[]
+  statusHistory           BookingStatusHistory[]
+  serviceEvents           ServiceEvent[]
+  trackingSessions        TrackingSession[]
+  matchScores             MatchScore[]
+  payments                Payment[]
+  reports                 BookingReport[]
+  review                  Review?
+  incidents               Incident[]
+  payouts                 Payout[]
+  entitlementConsumptions EntitlementConsumption[]
+  instructions            BookingInstruction[]
+  priceQuotes             PriceQuote[]
+  complaints              Complaint[]
+  supportCases            SupportCase[]
+  capacityReservation     CapacityReservation?
+
+  @@index([customerId, createdAt])
+  @@index([status, scheduledStart])
+  @@index([serviceTypeId, scheduledStart])
+  @@map("bookings")
+}
+
+model BookingAssignment {
+  id            String           @id @default(uuid()) @db.Uuid
+  bookingId     String           @map("booking_id") @db.Uuid
+  sitterId      String           @map("sitter_id") @db.Uuid
+  type          AssignmentType   @default(PRIMARY)
+  status        AssignmentStatus @default(OFFERED)
+  offeredAt     DateTime         @default(now()) @map("offered_at")
+  responseDueAt DateTime?        @map("response_due_at")
+  respondedAt   DateTime?        @map("responded_at")
+  activatedAt   DateTime?        @map("activated_at")
+  completedAt   DateTime?        @map("completed_at")
+  payoutPaise   Int              @map("payout_paise")
+  booking       Booking          @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  sitter        SitterProfile    @relation(fields: [sitterId], references: [id], onDelete: Restrict)
+
+  @@index([bookingId, type, status])
+  @@index([sitterId, status])
+  @@map("booking_assignments")
+}
+
+model BookingStatusHistory {
+  id        String         @id @default(uuid()) @db.Uuid
+  bookingId String         @map("booking_id") @db.Uuid
+  fromState BookingStatus? @map("from_state")
+  toState   BookingStatus  @map("to_state")
+  actorId   String?        @map("actor_id") @db.Uuid
+  reason    String?
+  metadata  Json?
+  createdAt DateTime       @default(now()) @map("created_at")
+  booking   Booking        @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+
+  @@index([bookingId, createdAt])
+  @@map("booking_status_history")
+}
+
+model ServiceEvent {
+  id         String   @id @default(uuid()) @db.Uuid
+  bookingId  String   @map("booking_id") @db.Uuid
+  actorId    String   @map("actor_id") @db.Uuid
+  type       String
+  occurredAt DateTime @default(now()) @map("occurred_at")
+  latitude   Decimal? @db.Decimal(10, 7)
+  longitude  Decimal? @db.Decimal(10, 7)
+  notes      String?
+  evidence   Json?
+  booking    Booking  @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+
+  @@index([bookingId, occurredAt])
+  @@map("service_events")
+}
+
+model TrackingSession {
+  id           String          @id @default(uuid()) @db.Uuid
+  bookingId    String          @map("booking_id") @db.Uuid
+  startedAt    DateTime        @map("started_at")
+  endedAt      DateTime?       @map("ended_at")
+  expiresAt    DateTime        @map("expires_at")
+  consentBasis String          @map("consent_basis")
+  status       String
+  distanceM    Int?            @map("distance_m")
+  booking      Booking         @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  points       TrackingPoint[]
+
+  @@index([bookingId, startedAt])
+  @@map("tracking_sessions")
+}
+
+model TrackingPoint {
+  id         BigInt          @id @default(autoincrement())
+  sessionId  String          @map("session_id") @db.Uuid
+  latitude   Decimal         @db.Decimal(10, 7)
+  longitude  Decimal         @db.Decimal(10, 7)
+  accuracyM  Decimal?        @map("accuracy_m") @db.Decimal(7, 2)
+  recordedAt DateTime        @map("recorded_at")
+  session    TrackingSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@index([sessionId, recordedAt])
+  @@map("tracking_points")
+}
+
+model Payment {
+  id                String        @id @default(uuid()) @db.Uuid
+  bookingId         String        @map("booking_id") @db.Uuid
+  provider          String        @default("razorpay")
+  providerOrderId   String        @unique @map("provider_order_id")
+  providerPaymentId String?       @unique @map("provider_payment_id")
+  amountPaise       Int           @map("amount_paise")
+  currency          String        @default("INR")
+  status            PaymentStatus @default(CREATED)
+  signatureVerified Boolean       @default(false) @map("signature_verified")
+  capturedAt        DateTime?     @map("captured_at")
+  failureCode       String?       @map("failure_code")
+  failureReason     String?       @map("failure_reason")
+  createdAt         DateTime      @default(now()) @map("created_at")
+  updatedAt         DateTime      @updatedAt @map("updated_at")
+  booking           Booking       @relation(fields: [bookingId], references: [id], onDelete: Restrict)
+  refunds           Refund[]
+
+  @@index([bookingId, status])
+  @@map("payments")
+}
+
+model PaymentEvent {
+  id              String    @id @default(uuid()) @db.Uuid
+  provider        String
+  providerEventId String    @unique @map("provider_event_id")
+  eventType       String    @map("event_type")
+  payload         Json
+  payloadHash     String    @map("payload_hash")
+  receivedAt      DateTime  @default(now()) @map("received_at")
+  processedAt     DateTime? @map("processed_at")
+  processingError String?   @map("processing_error")
+  attempts        Int       @default(0)
+
+  @@index([processedAt, receivedAt])
+  @@map("payment_events")
+}
+
+model Refund {
+  id               String       @id @default(uuid()) @db.Uuid
+  paymentId        String       @map("payment_id") @db.Uuid
+  providerRefundId String?      @unique @map("provider_refund_id")
+  amountPaise      Int          @map("amount_paise")
+  reason           String
+  status           RefundStatus @default(REQUESTED)
+  requestedBy      String       @map("requested_by") @db.Uuid
+  approvedBy       String?      @map("approved_by") @db.Uuid
+  createdAt        DateTime     @default(now()) @map("created_at")
+  completedAt      DateTime?    @map("completed_at")
+  payment          Payment      @relation(fields: [paymentId], references: [id], onDelete: Restrict)
+
+  @@index([paymentId, status])
+  @@map("refunds")
+}
+
+model Payout {
+  id              String             @id @default(uuid()) @db.Uuid
+  bookingId       String             @map("booking_id") @db.Uuid
+  sitterId        String             @map("sitter_id") @db.Uuid
+  amountPaise     Int                @map("amount_paise")
+  adjustmentPaise Int                @default(0) @map("adjustment_paise")
+  status          PayoutStatus       @default(PENDING)
+  providerRef     String?            @map("provider_ref")
+  approvedBy      String?            @map("approved_by") @db.Uuid
+  approvedAt      DateTime?          @map("approved_at")
+  paidAt          DateTime?          @map("paid_at")
+  createdAt       DateTime           @default(now()) @map("created_at")
+  booking         Booking            @relation(fields: [bookingId], references: [id], onDelete: Restrict)
+  sitter          SitterProfile      @relation(fields: [sitterId], references: [id], onDelete: Restrict)
+  adjustments     PayoutAdjustment[]
+
+  @@unique([bookingId, sitterId])
+  @@index([sitterId, status])
+  @@map("payouts")
+}
+
+model BookingReport {
+  id           String             @id @default(uuid()) @db.Uuid
+  bookingId    String             @map("booking_id") @db.Uuid
+  submittedBy  String             @map("submitted_by") @db.Uuid
+  version      Int                @default(1)
+  fields       Json
+  concernFlag  Boolean            @default(false) @map("concern_flag")
+  reviewStatus ReportReviewStatus @default(PENDING) @map("review_status")
+  reviewedBy   String?            @map("reviewed_by") @db.Uuid
+  reviewNote   String?            @map("review_note")
+  submittedAt  DateTime           @default(now()) @map("submitted_at")
+  reviewedAt   DateTime?          @map("reviewed_at")
+  booking      Booking            @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  reviewer     User?              @relation("ReportReviewer", fields: [reviewedBy], references: [id], onDelete: Restrict)
+  media        ReportMedia[]
+
+  @@unique([bookingId, version])
+  @@index([reviewStatus, submittedAt])
+  @@map("booking_reports")
+}
+
+model ReportMedia {
+  id         String        @id @default(uuid()) @db.Uuid
+  reportId   String        @map("report_id") @db.Uuid
+  objectPath String        @map("object_path")
+  mediaType  String        @map("media_type")
+  capturedAt DateTime?     @map("captured_at")
+  report     BookingReport @relation(fields: [reportId], references: [id], onDelete: Cascade)
+
+  @@map("report_media")
+}
+
+model Review {
+  id          String    @id @default(uuid()) @db.Uuid
+  bookingId   String    @unique @map("booking_id") @db.Uuid
+  customerId  String    @map("customer_id") @db.Uuid
+  rating      Int
+  body        String?
+  public      Boolean   @default(false)
+  consentedAt DateTime? @map("consented_at")
+  createdAt   DateTime  @default(now()) @map("created_at")
+  booking     Booking   @relation(fields: [bookingId], references: [id], onDelete: Restrict)
+  customer    User      @relation(fields: [customerId], references: [id], onDelete: Restrict)
+
+  @@index([customerId, createdAt])
+  @@map("reviews")
+}
+
+model Incident {
+  id                  String                 @id @default(uuid()) @db.Uuid
+  reference           String                 @unique
+  bookingId           String                 @map("booking_id") @db.Uuid
+  petId               String                 @map("pet_id") @db.Uuid
+  sitterId            String?                @map("sitter_id") @db.Uuid
+  customerId          String                 @map("customer_id") @db.Uuid
+  category            String
+  severity            IncidentSeverity
+  status              IncidentStatus         @default(REPORTED)
+  description         String
+  observedSymptoms    String?                @map("observed_symptoms")
+  detectedAt          DateTime               @map("detected_at")
+  resolvedAt          DateTime?              @map("resolved_at")
+  closedAt            DateTime?              @map("closed_at")
+  closedBy            String?                @map("closed_by") @db.Uuid
+  rootCauseAnalysis   Json?                  @map("root_cause_analysis")
+  financialImpact     Int?                   @map("financial_impact")
+  providerSuspensions ProviderSuspension[]
+  booking             Booking                @relation(fields: [bookingId], references: [id], onDelete: Restrict)
+  events              IncidentEvent[]
+  correctiveActions   CorrectiveAction[]
+  evidence            IncidentEvidence[]
+  notifications       IncidentNotification[]
+  sitterHolds         SitterHold[]
+
+  @@index([status, severity, detectedAt])
+  @@index([bookingId])
+  @@map("incidents")
+}
+
+model IncidentEvent {
+  id         String   @id @default(uuid()) @db.Uuid
+  incidentId String   @map("incident_id") @db.Uuid
+  actorId    String?  @map("actor_id") @db.Uuid
+  type       String
+  details    Json
+  occurredAt DateTime @default(now()) @map("occurred_at")
+  incident   Incident @relation(fields: [incidentId], references: [id], onDelete: Cascade)
+
+  @@index([incidentId, occurredAt])
+  @@map("incident_events")
+}
+
+model CorrectiveAction {
+  id          String    @id @default(uuid()) @db.Uuid
+  incidentId  String    @map("incident_id") @db.Uuid
+  title       String
+  ownerId     String    @map("owner_id") @db.Uuid
+  dueAt       DateTime? @map("due_at")
+  completedAt DateTime? @map("completed_at")
+  evidence    Json?
+  incident    Incident  @relation(fields: [incidentId], references: [id], onDelete: Cascade)
+
+  @@index([incidentId, completedAt])
+  @@map("corrective_actions")
+}
+
+model NotificationOutbox {
+  id             String                 @id @default(uuid()) @db.Uuid
+  userId         String?                @map("user_id") @db.Uuid
+  channel        NotificationChannel
+  templateKey    String                 @map("template_key")
+  destination    String
+  payload        Json
+  status         NotificationStatus     @default(QUEUED)
+  idempotencyKey String                 @unique @map("idempotency_key")
+  scheduledAt    DateTime               @default(now()) @map("scheduled_at")
+  sentAt         DateTime?              @map("sent_at")
+  attempts       Int                    @default(0)
+  lastError      String?                @map("last_error")
+  user           User?                  @relation(fields: [userId], references: [id], onDelete: SetNull)
+  deliveries     NotificationDelivery[]
+
+  @@index([status, scheduledAt])
+  @@map("notification_outbox")
+}
+
+model NotificationDelivery {
+  id                String             @id @default(uuid()) @db.Uuid
+  notificationId    String             @map("notification_id") @db.Uuid
+  providerMessageId String?            @map("provider_message_id")
+  status            NotificationStatus
+  providerPayload   Json?              @map("provider_payload")
+  occurredAt        DateTime           @default(now()) @map("occurred_at")
+  notification      NotificationOutbox @relation(fields: [notificationId], references: [id], onDelete: Cascade)
+
+  @@index([notificationId, occurredAt])
+  @@map("notification_deliveries")
+}
+
+model RateLimitBucket {
+  key         String   @id
+  windowStart DateTime @map("window_start")
+  count       Int
+  expiresAt   DateTime @map("expires_at")
+
+  @@index([expiresAt])
+  @@map("rate_limit_buckets")
+}
+
+model UploadObject {
+  id                String             @id @default(uuid()) @db.Uuid
+  ownerId           String             @map("owner_id") @db.Uuid
+  purpose           String
+  resourceId        String             @map("resource_id") @db.Uuid
+  quarantinePath    String             @unique @map("quarantine_path")
+  destinationBucket String?            @map("destination_bucket")
+  destinationPath   String?            @unique @map("destination_path")
+  mimeType          String             @map("mime_type")
+  sizeBytes         Int                @map("size_bytes")
+  sha256            String?
+  status            UploadStatus       @default(QUARANTINED)
+  scannerProvider   String?            @map("scanner_provider")
+  scanResult        Json?              @map("scan_result")
+  scannedAt         DateTime?          @map("scanned_at")
+  promotedAt        DateTime?          @map("promoted_at")
+  createdAt         DateTime           @default(now()) @map("created_at")
+  updatedAt         DateTime           @updatedAt @map("updated_at")
+  petMedia          PetMedia[]
+  incidentEvidence  IncidentEvidence[]
+
+  @@index([status, createdAt])
+  @@index([ownerId, purpose, resourceId])
+  @@map("upload_objects")
+}
+
+model FeatureFlag {
+  key         String   @id
+  enabled     Boolean  @default(false)
+  description String
+  rules       Json?
+  updatedBy   String?  @map("updated_by") @db.Uuid
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("feature_flags")
+}
+
+model Lead {
+  id               String     @id @default(uuid()) @db.Uuid
+  type             LeadType
+  status           LeadStatus @default(NEW)
+  name             String
+  email            String?
+  phoneE164        String?    @map("phone_e164")
+  organisationName String?    @map("organisation_name")
+  city             String     @default("Ahmedabad")
+  locality         String?
+  message          String
+  source           String
+  consentToContact Boolean    @map("consent_to_contact")
+  assignedTo       String?    @map("assigned_to") @db.Uuid
+  metadata         Json?
+  createdAt        DateTime   @default(now()) @map("created_at")
+  updatedAt        DateTime   @updatedAt @map("updated_at")
+
+  @@index([type, status, createdAt])
+  @@index([city, locality, status])
+  @@map("leads")
+}
+
+model Society {
+  id            String               @id @default(uuid()) @db.Uuid
+  slug          String               @unique
+  name          String
+  city          String
+  locality      String
+  status        String
+  contactName   String?              @map("contact_name")
+  contactPhone  String?              @map("contact_phone")
+  agreementAt   DateTime?            @map("agreement_at")
+  pilotStartsAt DateTime?            @map("pilot_starts_at")
+  pilotEndsAt   DateTime?            @map("pilot_ends_at")
+  createdAt     DateTime             @default(now()) @map("created_at")
+  members       SocietyMember[]
+  sitterPools   SocietySitterPool[]
+  events        SocietyEvent[]
+  partnerships  SocietyPartnership[]
+
+  @@index([city, locality, status])
+  @@map("societies")
+}
+
+model SocietyMember {
+  societyId  String    @map("society_id") @db.Uuid
+  userId     String    @map("user_id") @db.Uuid
+  unitRef    String?   @map("unit_ref")
+  verifiedAt DateTime? @map("verified_at")
+  status     String
+  society    Society   @relation(fields: [societyId], references: [id], onDelete: Cascade)
+
+  @@id([societyId, userId])
+  @@map("society_members")
+}
+
+model PlanVersion {
+  id                 String         @id @default(uuid()) @db.Uuid
+  planKey            String         @map("plan_key")
+  version            Int
+  name               String
+  audience           String
+  pricePaise         Int            @map("price_paise")
+  billingInterval    String         @map("billing_interval")
+  providerPlanId     String?        @unique @map("provider_plan_id")
+  totalBillingCycles Int            @default(12) @map("total_billing_cycles")
+  entitlements       Json
+  active             Boolean        @default(false)
+  createdAt          DateTime       @default(now()) @map("created_at")
+  subscriptions      Subscription[]
+
+  @@unique([planKey, version])
+  @@map("plan_versions")
+}
+
+model Subscription {
+  id                     String                   @id @default(uuid()) @db.Uuid
+  userId                 String                   @map("user_id") @db.Uuid
+  planVersionId          String                   @map("plan_version_id") @db.Uuid
+  providerSubscriptionId String?                  @unique @map("provider_subscription_id")
+  status                 SubscriptionStatus       @default(INCOMPLETE)
+  currentPeriodStart     DateTime?                @map("current_period_start")
+  currentPeriodEnd       DateTime?                @map("current_period_end")
+  cancelAtPeriodEnd      Boolean                  @default(false) @map("cancel_at_period_end")
+  createdAt              DateTime                 @default(now()) @map("created_at")
+  updatedAt              DateTime                 @updatedAt @map("updated_at")
+  planVersion            PlanVersion              @relation(fields: [planVersionId], references: [id], onDelete: Restrict)
+  ledger                 EntitlementLedger[]
+  consumption            EntitlementConsumption[]
+  events                 SubscriptionEvent[]
+
+  @@index([userId, status])
+  @@map("subscriptions")
+}
+
+model EntitlementLedger {
+  id             String       @id @default(uuid()) @db.Uuid
+  subscriptionId String       @map("subscription_id") @db.Uuid
+  entitlementKey String       @map("entitlement_key")
+  delta          Int
+  balanceAfter   Int          @map("balance_after")
+  reason         String
+  referenceType  String?      @map("reference_type")
+  referenceId    String?      @map("reference_id")
+  createdAt      DateTime     @default(now()) @map("created_at")
+  subscription   Subscription @relation(fields: [subscriptionId], references: [id], onDelete: Restrict)
+
+  @@index([subscriptionId, entitlementKey, createdAt])
+  @@map("entitlement_ledger")
+}
+
+model ContentEntry {
+  id             String           @id @default(uuid()) @db.Uuid
+  slug           String           @unique
+  type           String
+  title          String
+  excerpt        String?
+  body           Json
+  status         ContentStatus    @default(DRAFT)
+  primaryJob     String           @map("primary_job")
+  city           String?
+  serviceCode    ServiceCode?     @map("service_code")
+  authorId       String           @map("author_id") @db.Uuid
+  expertReviewId String?          @map("expert_review_id") @db.Uuid
+  expertReview   ExpertReview?    @relation(fields: [expertReviewId], references: [id], onDelete: Restrict)
+  publishedAt    DateTime?        @map("published_at")
+  createdAt      DateTime         @default(now()) @map("created_at")
+  updatedAt      DateTime         @updatedAt @map("updated_at")
+  versions       ContentVersion[]
+  cityPage       CityPage?
+
+  @@index([status, publishedAt])
+  @@index([city, serviceCode])
+  @@map("content_entries")
+}
+
+model ExpertReview {
+  id           String         @id @default(uuid()) @db.Uuid
+  reviewerId   String         @map("reviewer_id") @db.Uuid
+  reviewerName String         @map("reviewer_name")
+  credentials  String
+  scope        String
+  verdict      String
+  notes        String
+  reviewedAt   DateTime       @default(now()) @map("reviewed_at")
+  entries      ContentEntry[]
+
+  @@index([reviewerId, reviewedAt])
+  @@map("expert_reviews")
+}
+
+model ContentVersion {
+  id        String        @id @default(uuid()) @db.Uuid
+  contentId String        @map("content_id") @db.Uuid
+  version   Int
+  title     String
+  excerpt   String?
+  body      Json
+  status    ContentStatus
+  authorId  String        @map("author_id") @db.Uuid
+  createdAt DateTime      @default(now()) @map("created_at")
+  content   ContentEntry  @relation(fields: [contentId], references: [id], onDelete: Restrict)
+
+  @@unique([contentId, version])
+  @@index([contentId, createdAt])
+  @@map("content_versions")
+}
+
+model AuditLog {
+  id           BigInt   @id @default(autoincrement())
+  actorId      String?  @map("actor_id") @db.Uuid
+  actorRole    Role?    @map("actor_role")
+  action       String
+  resourceType String   @map("resource_type")
+  resourceId   String   @map("resource_id")
+  before       Json?
+  after        Json?
+  reason       String?
+  ipHash       String?  @map("ip_hash")
+  requestId    String?  @map("request_id")
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  @@index([resourceType, resourceId, createdAt])
+  @@index([actorId, createdAt])
+  @@map("audit_logs")
+}
+
+// Later-phase records are deliberately private and inert until their server-side
+// feature gates and operating policies are approved.
+model City {
+  id                 String                     @id @default(uuid()) @db.Uuid
+  slug               String                     @unique
+  name               String
+  state              String
+  timezone           String                     @default("Asia/Kolkata")
+  status             CityLaunchStage            @default(RESEARCH)
+  launchCriteria     Json?                      @map("launch_criteria")
+  launchedAt         DateTime?                  @map("launched_at")
+  createdAt          DateTime                   @default(now()) @map("created_at")
+  updatedAt          DateTime                   @updatedAt @map("updated_at")
+  serviceZones       ServiceZone[]
+  cityServiceConfigs CityServiceConfiguration[]
+  serviceAreas       ServiceArea[]
+  partnerLocations   PartnerLocation[]
+  cityPages          CityPage[]
+
+  // Phase 13 B2B relations
+  organizations Organization[]
+
+  // Phase 14 Scale & Ops
+  financialRecords CityFinancialRecord[]
+  healthScores     CityHealthScore[]
+  cityManagers     CityManager[]
+  territories      Territory[]
+
+  @@index([status, name])
+  @@map("cities")
+}
+
+model ServiceZone {
+  id                 String                     @id @default(uuid()) @db.Uuid
+  cityId             String                     @map("city_id") @db.Uuid
+  slug               String
+  name               String
+  status             ZoneLaunchStage            @default(RESEARCH)
+  metadata           Json?
+  boundary           Json?                      @map("boundary")
+  centroid           Json?                      @map("centroid")
+  createdAt          DateTime                   @default(now()) @map("created_at")
+  updatedAt          DateTime                   @updatedAt @map("updated_at")
+  city               City                       @relation(fields: [cityId], references: [id], onDelete: Restrict)
+  serviceAreas       ServiceArea[]
+  zoneServiceConfigs ZoneServiceConfiguration[]
+  territories        Territory[]
+
+  @@unique([cityId, slug])
+  @@index([cityId, status])
+  @@map("service_zones")
+}
+
+model ServiceArea {
+  id             String          @id @default(uuid()) @db.Uuid
+  cityId         String          @map("city_id") @db.Uuid
+  serviceZoneId  String?         @map("service_zone_id") @db.Uuid
+  slug           String
+  name           String
+  postalCodes    String[]        @default([]) @map("postal_codes")
+  boundary       Json?
+  status         GateStatus      @default(DRAFT)
+  createdAt      DateTime        @default(now()) @map("created_at")
+  updatedAt      DateTime        @updatedAt @map("updated_at")
+  city           City            @relation(fields: [cityId], references: [id], onDelete: Restrict)
+  serviceZone    ServiceZone?    @relation(fields: [serviceZoneId], references: [id], onDelete: Restrict)
+  capacityLimits CapacityLimit[]
+  prices         ServicePrice[]
+
+  @@unique([cityId, slug])
+  @@index([cityId, serviceZoneId, status])
+  @@map("service_areas")
+}
+
+model CapacityLimit {
+  id            String                @id @default(uuid()) @db.Uuid
+  serviceAreaId String                @map("service_area_id") @db.Uuid
+  serviceCode   ServiceCode           @map("service_code")
+  serviceDate   DateTime              @map("service_date") @db.Date
+  maximum       Int
+  reserved      Int                   @default(0)
+  reason        String?
+  createdAt     DateTime              @default(now()) @map("created_at")
+  updatedAt     DateTime              @updatedAt @map("updated_at")
+  serviceArea   ServiceArea           @relation(fields: [serviceAreaId], references: [id], onDelete: Restrict)
+  reservations  CapacityReservation[]
+
+  @@unique([serviceAreaId, serviceCode, serviceDate])
+  @@index([serviceDate, serviceCode])
+  @@map("capacity_limits")
+}
+
+model SocietySitterPool {
+  societyId  String        @map("society_id") @db.Uuid
+  sitterId   String        @map("sitter_id") @db.Uuid
+  status     GateStatus    @default(DRAFT)
+  approvedBy String?       @map("approved_by") @db.Uuid
+  approvedAt DateTime?     @map("approved_at")
+  expiresAt  DateTime?     @map("expires_at")
+  notes      String?
+  society    Society       @relation(fields: [societyId], references: [id], onDelete: Cascade)
+  sitter     SitterProfile @relation(fields: [sitterId], references: [id], onDelete: Restrict)
+
+  @@id([societyId, sitterId])
+  @@index([societyId, status])
+  @@map("society_sitter_pools")
+}
+
+model SocietyEvent {
+  id          String     @id @default(uuid()) @db.Uuid
+  societyId   String     @map("society_id") @db.Uuid
+  title       String
+  description String
+  startsAt    DateTime   @map("starts_at")
+  endsAt      DateTime   @map("ends_at")
+  capacity    Int?
+  status      GateStatus @default(DRAFT)
+  metadata    Json?
+  createdAt   DateTime   @default(now()) @map("created_at")
+  updatedAt   DateTime   @updatedAt @map("updated_at")
+  society     Society    @relation(fields: [societyId], references: [id], onDelete: Cascade)
+
+  @@index([societyId, status, startsAt])
+  @@map("society_events")
+}
+
+model SocietyPartnership {
+  id                String     @id @default(uuid()) @db.Uuid
+  societyId         String     @map("society_id") @db.Uuid
+  agreementVersion  String     @map("agreement_version")
+  status            GateStatus @default(DRAFT)
+  startsAt          DateTime?  @map("starts_at")
+  endsAt            DateTime?  @map("ends_at")
+  commercialTerms   Json?      @map("commercial_terms")
+  signedDocumentRef String?    @map("signed_document_ref")
+  approvedBy        String?    @map("approved_by") @db.Uuid
+  createdAt         DateTime   @default(now()) @map("created_at")
+  updatedAt         DateTime   @updatedAt @map("updated_at")
+  society           Society    @relation(fields: [societyId], references: [id], onDelete: Restrict)
+
+  @@index([societyId, status])
+  @@map("society_partnerships")
+}
+
+model Partner {
+  id            String                @id @default(uuid()) @db.Uuid
+  slug          String                @unique
+  legalName     String                @map("legal_name")
+  displayName   String                @map("display_name")
+  category      String
+  status        GateStatus            @default(DRAFT)
+  contactEmail  String?               @map("contact_email")
+  contactPhone  String?               @map("contact_phone")
+  metadata      Json?
+  createdAt     DateTime              @default(now()) @map("created_at")
+  updatedAt     DateTime              @updatedAt @map("updated_at")
+  locations     PartnerLocation[]
+  verifications PartnerVerification[]
+  services      PartnerService[]
+
+  @@index([category, status])
+  @@map("partners")
+}
+
+model PartnerLocation {
+  id          String     @id @default(uuid()) @db.Uuid
+  partnerId   String     @map("partner_id") @db.Uuid
+  name        String
+  cityId      String?    @map("city_id") @db.Uuid
+  address     Json
+  coordinates Json?
+  status      GateStatus @default(DRAFT)
+  createdAt   DateTime   @default(now()) @map("created_at")
+  updatedAt   DateTime   @updatedAt @map("updated_at")
+  partner     Partner    @relation(fields: [partnerId], references: [id], onDelete: Restrict)
+  city        City?      @relation(fields: [cityId], references: [id], onDelete: Restrict)
+
+  @@index([partnerId, status])
+  @@index([cityId, status])
+  @@map("partner_locations")
+}
+
+model PartnerVerification {
+  id          String             @id @default(uuid()) @db.Uuid
+  partnerId   String             @map("partner_id") @db.Uuid
+  type        String
+  status      VerificationStatus @default(PENDING)
+  evidenceRef String?            @map("evidence_ref")
+  verifiedBy  String?            @map("verified_by") @db.Uuid
+  verifiedAt  DateTime?          @map("verified_at")
+  expiresAt   DateTime?          @map("expires_at")
+  createdAt   DateTime           @default(now()) @map("created_at")
+  partner     Partner            @relation(fields: [partnerId], references: [id], onDelete: Restrict)
+
+  @@index([partnerId, type, status])
+  @@map("partner_verifications")
+}
+
+model PartnerService {
+  id          String         @id @default(uuid()) @db.Uuid
+  partnerId   String         @map("partner_id") @db.Uuid
+  serviceCode ServiceCode    @map("service_code")
+  status      GateStatus     @default(DRAFT)
+  terms       Json?
+  createdAt   DateTime       @default(now()) @map("created_at")
+  updatedAt   DateTime       @updatedAt @map("updated_at")
+  partner     Partner        @relation(fields: [partnerId], references: [id], onDelete: Restrict)
+  orders      PartnerOrder[]
+
+  @@unique([partnerId, serviceCode])
+  @@index([serviceCode, status])
+  @@map("partner_services")
+}
+
+model PartnerOrder {
+  id               String             @id @default(uuid()) @db.Uuid
+  reference        String             @unique
+  partnerServiceId String             @map("partner_service_id") @db.Uuid
+  customerId       String             @map("customer_id") @db.Uuid
+  petId            String?            @map("pet_id") @db.Uuid
+  status           PartnerOrderStatus @default(REQUESTED)
+  scheduledAt      DateTime?          @map("scheduled_at")
+  amountPaise      Int?               @map("amount_paise")
+  instructions     String?
+  metadata         Json?
+  createdAt        DateTime           @default(now()) @map("created_at")
+  updatedAt        DateTime           @updatedAt @map("updated_at")
+  partnerService   PartnerService     @relation(fields: [partnerServiceId], references: [id], onDelete: Restrict)
+  customer         User               @relation("PartnerOrderCustomer", fields: [customerId], references: [id], onDelete: Restrict)
+  pet              Pet?               @relation(fields: [petId], references: [id], onDelete: Restrict)
+
+  @@index([customerId, createdAt])
+  @@index([partnerServiceId, status, scheduledAt])
+  @@map("partner_orders")
+}
+
+model EntitlementConsumption {
+  id             String       @id @default(uuid()) @db.Uuid
+  subscriptionId String       @map("subscription_id") @db.Uuid
+  entitlementKey String       @map("entitlement_key")
+  quantity       Int          @default(1)
+  bookingId      String?      @map("booking_id") @db.Uuid
+  idempotencyKey String       @unique @map("idempotency_key")
+  consumedAt     DateTime     @default(now()) @map("consumed_at")
+  subscription   Subscription @relation(fields: [subscriptionId], references: [id], onDelete: Restrict)
+  booking        Booking?     @relation(fields: [bookingId], references: [id], onDelete: Restrict)
+
+  @@index([subscriptionId, entitlementKey, consumedAt])
+  @@map("entitlement_consumption")
+}
+
+model LoyaltyLedger {
+  id             String   @id @default(uuid()) @db.Uuid
+  userId         String   @map("user_id") @db.Uuid
+  delta          Int
+  balanceAfter   Int      @map("balance_after")
+  reason         String
+  referenceType  String?  @map("reference_type")
+  referenceId    String?  @map("reference_id")
+  idempotencyKey String   @unique @map("idempotency_key")
+  createdAt      DateTime @default(now()) @map("created_at")
+  user           User     @relation(fields: [userId], references: [id], onDelete: Restrict)
+
+  @@index([userId, createdAt])
+  @@map("loyalty_ledger")
+}
+
+model Referral {
+  id          String     @id @default(uuid()) @db.Uuid
+  code        String     @unique
+  referrerId  String     @map("referrer_id") @db.Uuid
+  referredId  String?    @unique @map("referred_id") @db.Uuid
+  status      GateStatus @default(DRAFT)
+  qualifiedAt DateTime?  @map("qualified_at")
+  rewardedAt  DateTime?  @map("rewarded_at")
+  createdAt   DateTime   @default(now()) @map("created_at")
+  referrer    User       @relation("ReferralReferrer", fields: [referrerId], references: [id], onDelete: Restrict)
+  referred    User?      @relation("ReferralReferred", fields: [referredId], references: [id], onDelete: Restrict)
+
+  @@index([referrerId, status, createdAt])
+  @@map("referrals")
+}
+
+model Testimonial {
+  id          String              @id @default(uuid()) @db.Uuid
+  userId      String?             @map("user_id") @db.Uuid
+  displayName String              @map("display_name")
+  quote       String
+  context     String?
+  city        String?
+  status      ContentStatus       @default(DRAFT)
+  consentId   String?             @unique @map("consent_id") @db.Uuid
+  publishedAt DateTime?           @map("published_at")
+  createdAt   DateTime            @default(now()) @map("created_at")
+  updatedAt   DateTime            @updatedAt @map("updated_at")
+  user        User?               @relation(fields: [userId], references: [id], onDelete: SetNull)
+  consent     TestimonialConsent? @relation(fields: [consentId], references: [id], onDelete: Restrict)
+
+  @@index([status, publishedAt])
+  @@map("testimonials")
+}
+
+model TestimonialConsent {
+  id          String       @id @default(uuid()) @db.Uuid
+  userId      String       @map("user_id") @db.Uuid
+  scope       String
+  evidenceRef String       @map("evidence_ref")
+  grantedAt   DateTime     @map("granted_at")
+  withdrawnAt DateTime?    @map("withdrawn_at")
+  expiresAt   DateTime?    @map("expires_at")
+  createdAt   DateTime     @default(now()) @map("created_at")
+  user        User         @relation(fields: [userId], references: [id], onDelete: Restrict)
+  testimonial Testimonial?
+
+  @@index([userId, grantedAt])
+  @@map("testimonial_consents")
+}
+
+model Campaign {
+  id          String     @id @default(uuid()) @db.Uuid
+  key         String     @unique
+  name        String
+  channel     String
+  status      GateStatus @default(DRAFT)
+  audience    Json
+  startsAt    DateTime?  @map("starts_at")
+  endsAt      DateTime?  @map("ends_at")
+  budgetPaise Int?       @map("budget_paise")
+  metadata    Json?
+  createdAt   DateTime   @default(now()) @map("created_at")
+  updatedAt   DateTime   @updatedAt @map("updated_at")
+
+  @@index([status, startsAt])
+  @@map("campaigns")
+}
+
+model Experiment {
+  id            String     @id @default(uuid()) @db.Uuid
+  key           String     @unique
+  hypothesis    String
+  status        GateStatus @default(DRAFT)
+  allocation    Json
+  successMetric String     @map("success_metric")
+  startsAt      DateTime?  @map("starts_at")
+  endsAt        DateTime?  @map("ends_at")
+  result        Json?
+  createdAt     DateTime   @default(now()) @map("created_at")
+  updatedAt     DateTime   @updatedAt @map("updated_at")
+
+  @@index([status, startsAt])
+  @@map("experiments")
+}
+
+model PolicyVersion {
+  id          String     @id @default(uuid()) @db.Uuid
+  policyKey   String     @map("policy_key")
+  version     Int
+  contentHash String     @map("content_hash")
+  documentRef String     @map("document_ref")
+  status      GateStatus @default(DRAFT)
+  approvedBy  String?    @map("approved_by") @db.Uuid
+  effectiveAt DateTime?  @map("effective_at")
+  retiredAt   DateTime?  @map("retired_at")
+  createdAt   DateTime   @default(now()) @map("created_at")
+
+  @@unique([policyKey, version])
+  @@index([policyKey, status, effectiveAt])
+  @@map("policy_versions")
+}
+
+model DataAccessLog {
+  id           BigInt   @id @default(autoincrement())
+  actorId      String?  @map("actor_id") @db.Uuid
+  actorRole    Role?    @map("actor_role")
+  purpose      String
+  resourceType String   @map("resource_type")
+  resourceId   String   @map("resource_id")
+  fields       String[] @default([])
+  requestId    String?  @map("request_id")
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  @@index([resourceType, resourceId, createdAt])
+  @@index([actorId, createdAt])
+  @@map("data_access_logs")
+}
+
+model RetentionJob {
+  id          String    @id @default(uuid()) @db.Uuid
+  policyKey   String    @map("policy_key")
+  status      JobStatus @default(QUEUED)
+  cutoffAt    DateTime  @map("cutoff_at")
+  scanned     Int       @default(0)
+  affected    Int       @default(0)
+  error       String?
+  startedAt   DateTime? @map("started_at")
+  completedAt DateTime? @map("completed_at")
+  createdAt   DateTime  @default(now()) @map("created_at")
+
+  @@index([policyKey, status, createdAt])
+  @@map("retention_jobs")
+}
+
+model WebhookEvent {
+  id              String    @id @default(uuid()) @db.Uuid
+  provider        String
+  providerEventId String    @map("provider_event_id")
+  eventType       String    @map("event_type")
+  payloadHash     String    @map("payload_hash")
+  status          JobStatus @default(QUEUED)
+  attempts        Int       @default(0)
+  processedAt     DateTime? @map("processed_at")
+  error           String?
+  createdAt       DateTime  @default(now()) @map("created_at")
+
+  @@unique([provider, providerEventId])
+  @@index([status, createdAt])
+  @@map("webhook_events")
+}
+
+model JobRun {
+  id             String    @id @default(uuid()) @db.Uuid
+  jobKey         String    @map("job_key")
+  idempotencyKey String    @unique @map("idempotency_key")
+  status         JobStatus @default(QUEUED)
+  input          Json?
+  result         Json?
+  error          String?
+  startedAt      DateTime? @map("started_at")
+  completedAt    DateTime? @map("completed_at")
+  createdAt      DateTime  @default(now()) @map("created_at")
+
+  @@index([jobKey, status, createdAt])
+  @@map("job_runs")
+}
+
+model AdminPermission {
+  id         String     @id @default(uuid()) @db.Uuid
+  userId     String     @map("user_id") @db.Uuid
+  permission String
+  scope      Json?
+  status     GateStatus @default(ACTIVE)
+  grantedBy  String     @map("granted_by") @db.Uuid
+  grantedAt  DateTime   @default(now()) @map("granted_at")
+  expiresAt  DateTime?  @map("expires_at")
+  revokedAt  DateTime?  @map("revoked_at")
+  reason     String
+  user       User       @relation("PermissionHolder", fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, permission])
+  @@index([permission, status])
+  @@map("admin_permissions")
+}
+
+model HouseholdMember {
+  customerId String     @map("customer_id") @db.Uuid
+  memberId   String     @map("member_id") @db.Uuid
+  role       String
+  status     GateStatus @default(DRAFT)
+  invitedAt  DateTime   @default(now()) @map("invited_at")
+  acceptedAt DateTime?  @map("accepted_at")
+  revokedAt  DateTime?  @map("revoked_at")
+  customer   User       @relation("HouseholdOwner", fields: [customerId], references: [id], onDelete: Cascade)
+  member     User       @relation("HouseholdMember", fields: [memberId], references: [id], onDelete: Cascade)
+
+  @@id([customerId, memberId])
+  @@index([memberId, status])
+  @@map("household_members")
+}
+
+model PetMedia {
+  id         String       @id @default(uuid()) @db.Uuid
+  petId      String       @map("pet_id") @db.Uuid
+  uploadId   String       @map("upload_id") @db.Uuid
+  mediaType  String       @map("media_type")
+  caption    String?
+  status     UploadStatus @default(QUARANTINED)
+  capturedAt DateTime?    @map("captured_at")
+  createdAt  DateTime     @default(now()) @map("created_at")
+  pet        Pet          @relation(fields: [petId], references: [id], onDelete: Cascade)
+  upload     UploadObject @relation(fields: [uploadId], references: [id], onDelete: Restrict)
+
+  @@index([petId, status, createdAt])
+  @@map("pet_media")
+}
+
+model CareInstruction {
+  id           String    @id @default(uuid()) @db.Uuid
+  petId        String    @map("pet_id") @db.Uuid
+  version      Int
+  instructions Json
+  activeFrom   DateTime  @default(now()) @map("active_from")
+  activeUntil  DateTime? @map("active_until")
+  createdBy    String    @map("created_by") @db.Uuid
+  createdAt    DateTime  @default(now()) @map("created_at")
+  pet          Pet       @relation(fields: [petId], references: [id], onDelete: Restrict)
+
+  @@unique([petId, version])
+  @@index([petId, activeFrom, activeUntil])
+  @@map("care_instructions")
+}
+
+model Medication {
+  id             String    @id @default(uuid()) @db.Uuid
+  petId          String    @map("pet_id") @db.Uuid
+  name           String
+  dosage         String
+  schedule       String
+  administration String?
+  prescribedBy   String?   @map("prescribed_by")
+  startsAt       DateTime? @map("starts_at")
+  endsAt         DateTime? @map("ends_at")
+  active         Boolean   @default(true)
+  notes          String?
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime  @updatedAt @map("updated_at")
+  pet            Pet       @relation(fields: [petId], references: [id], onDelete: Restrict)
+
+  @@index([petId, active])
+  @@map("medications")
+}
+
+model Vaccination {
+  id             String    @id @default(uuid()) @db.Uuid
+  petId          String    @map("pet_id") @db.Uuid
+  vaccine        String
+  administeredAt DateTime  @map("administered_at") @db.Date
+  nextDueAt      DateTime? @map("next_due_at") @db.Date
+  clinic         String?
+  evidenceRef    String?   @map("evidence_ref")
+  verifiedAt     DateTime? @map("verified_at")
+  createdAt      DateTime  @default(now()) @map("created_at")
+  pet            Pet       @relation(fields: [petId], references: [id], onDelete: Restrict)
+
+  @@index([petId, administeredAt])
+  @@map("vaccinations")
+}
+
+model PetHealthEvent {
+  id          String   @id @default(uuid()) @db.Uuid
+  petId       String   @map("pet_id") @db.Uuid
+  eventType   String   @map("event_type")
+  occurredAt  DateTime @map("occurred_at")
+  source      String
+  summary     String
+  details     Json?
+  providerRef String?  @map("provider_ref")
+  createdBy   String   @map("created_by") @db.Uuid
+  createdAt   DateTime @default(now()) @map("created_at")
+  pet         Pet      @relation(fields: [petId], references: [id], onDelete: Restrict)
+
+  @@index([petId, occurredAt])
+  @@map("pet_health_events")
+}
+
+model PetRiskFactor {
+  id           String            @id @default(uuid()) @db.Uuid
+  assessmentId String            @map("assessment_id") @db.Uuid
+  code         String
+  severity     RiskLevel
+  evidence     Json?
+  mitigation   String?
+  createdAt    DateTime          @default(now()) @map("created_at")
+  assessment   PetRiskAssessment @relation(fields: [assessmentId], references: [id], onDelete: Cascade)
+
+  @@unique([assessmentId, code])
+  @@index([code, severity])
+  @@map("pet_risk_factors")
+}
+
+model SitterApplication {
+  id            String        @id @default(uuid()) @db.Uuid
+  sitterId      String        @map("sitter_id") @db.Uuid
+  version       Int
+  answers       Json
+  status        SitterStatus  @default(APPLICANT)
+  submittedAt   DateTime      @default(now()) @map("submitted_at")
+  reviewedBy    String?       @map("reviewed_by") @db.Uuid
+  reviewedAt    DateTime?     @map("reviewed_at")
+  decisionNotes String?       @map("decision_notes")
+  sitter        SitterProfile @relation(fields: [sitterId], references: [id], onDelete: Cascade)
+
+  @@unique([sitterId, version])
+  @@index([status, submittedAt])
+  @@map("sitter_applications")
+}
+
+model PracticalAssessment {
+  id          String             @id @default(uuid()) @db.Uuid
+  sitterId    String             @map("sitter_id") @db.Uuid
+  assessorId  String             @map("assessor_id") @db.Uuid
+  serviceCode ServiceCode        @map("service_code")
+  rubric      Json
+  score       Int
+  status      VerificationStatus @default(PENDING)
+  assessedAt  DateTime           @default(now()) @map("assessed_at")
+  expiresAt   DateTime?          @map("expires_at")
+  notes       String?
+  sitter      SitterProfile      @relation(fields: [sitterId], references: [id], onDelete: Restrict)
+
+  @@index([sitterId, serviceCode, assessedAt])
+  @@map("practical_assessments")
+}
+
+model BoardingProperty {
+  id         String             @id @default(uuid()) @db.Uuid
+  sitterId   String             @map("sitter_id") @db.Uuid
+  addressId  String             @map("address_id") @db.Uuid
+  status     VerificationStatus @default(PENDING)
+  capacity   Int                @default(1)
+  assessment Json
+  evidence   Json?
+  assessedBy String?            @map("assessed_by") @db.Uuid
+  assessedAt DateTime?          @map("assessed_at")
+  expiresAt  DateTime?          @map("expires_at")
+  sitter     SitterProfile      @relation(fields: [sitterId], references: [id], onDelete: Restrict)
+  address    Address            @relation(fields: [addressId], references: [id], onDelete: Restrict)
+
+  @@unique([sitterId, addressId])
+  @@index([status, expiresAt])
+  @@map("boarding_properties")
+}
+
+model ReliabilityScore {
+  id           String        @id @default(uuid()) @db.Uuid
+  sitterId     String        @map("sitter_id") @db.Uuid
+  score        Decimal       @db.Decimal(5, 2)
+  components   Json
+  windowStart  DateTime      @map("window_start")
+  windowEnd    DateTime      @map("window_end")
+  calculatedAt DateTime      @default(now()) @map("calculated_at")
+  sitter       SitterProfile @relation(fields: [sitterId], references: [id], onDelete: Cascade)
+
+  @@unique([sitterId, windowStart, windowEnd])
+  @@index([sitterId, calculatedAt])
+  @@map("reliability_scores")
+}
+
+model ServiceVariant {
+  id              String         @id @default(uuid()) @db.Uuid
+  serviceTypeId   String         @map("service_type_id") @db.Uuid
+  key             String
+  name            String
+  durationMinutes Int?           @map("duration_minutes")
+  attributes      Json?
+  status          GateStatus     @default(DRAFT)
+  createdAt       DateTime       @default(now()) @map("created_at")
+  updatedAt       DateTime       @updatedAt @map("updated_at")
+  serviceType     ServiceType    @relation(fields: [serviceTypeId], references: [id], onDelete: Restrict)
+  prices          ServicePrice[]
+
+  @@unique([serviceTypeId, key])
+  @@index([serviceTypeId, status])
+  @@map("service_variants")
+}
+
+model ServicePrice {
+  id             String          @id @default(uuid()) @db.Uuid
+  serviceTypeId  String          @map("service_type_id") @db.Uuid
+  variantId      String?         @map("variant_id") @db.Uuid
+  serviceAreaId  String?         @map("service_area_id") @db.Uuid
+  version        Int
+  amountPaise    Int             @map("amount_paise")
+  sitterPaise    Int             @map("sitter_paise")
+  taxBasisPoints Int             @default(0) @map("tax_basis_points")
+  currency       String          @default("INR")
+  effectiveAt    DateTime        @map("effective_at")
+  expiresAt      DateTime?       @map("expires_at")
+  approvedBy     String          @map("approved_by") @db.Uuid
+  createdAt      DateTime        @default(now()) @map("created_at")
+  serviceType    ServiceType     @relation(fields: [serviceTypeId], references: [id], onDelete: Restrict)
+  variant        ServiceVariant? @relation(fields: [variantId], references: [id], onDelete: Restrict)
+  serviceArea    ServiceArea?    @relation(fields: [serviceAreaId], references: [id], onDelete: Restrict)
+  quotes         PriceQuote[]
+
+  @@unique([serviceTypeId, variantId, serviceAreaId, version])
+  @@index([serviceTypeId, effectiveAt, expiresAt])
+  @@map("service_prices")
+}
+
+model BookingInstruction {
+  id           String   @id @default(uuid()) @db.Uuid
+  bookingId    String   @map("booking_id") @db.Uuid
+  version      Int
+  instructions Json
+  createdBy    String   @map("created_by") @db.Uuid
+  createdAt    DateTime @default(now()) @map("created_at")
+  booking      Booking  @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+
+  @@unique([bookingId, version])
+  @@index([bookingId, createdAt])
+  @@map("booking_instructions")
+}
+
+model PriceQuote {
+  id             String        @id @default(uuid()) @db.Uuid
+  bookingId      String        @map("booking_id") @db.Uuid
+  servicePriceId String?       @map("service_price_id") @db.Uuid
+  subtotalPaise  Int           @map("subtotal_paise")
+  taxPaise       Int           @map("tax_paise")
+  totalPaise     Int           @map("total_paise")
+  currency       String        @default("INR")
+  breakdown      Json
+  expiresAt      DateTime      @map("expires_at")
+  acceptedAt     DateTime?     @map("accepted_at")
+  createdAt      DateTime      @default(now()) @map("created_at")
+  booking        Booking       @relation(fields: [bookingId], references: [id], onDelete: Restrict)
+  servicePrice   ServicePrice? @relation(fields: [servicePriceId], references: [id], onDelete: Restrict)
+
+  @@index([bookingId, createdAt])
+  @@index([expiresAt, acceptedAt])
+  @@map("price_quotes")
+}
+
+model Complaint {
+  id          String           @id @default(uuid()) @db.Uuid
+  reference   String           @unique
+  bookingId   String?          @map("booking_id") @db.Uuid
+  customerId  String           @map("customer_id") @db.Uuid
+  sitterId    String?          @map("sitter_id") @db.Uuid
+  category    String
+  description String
+  severity    IncidentSeverity
+  status      ComplaintStatus  @default(RECEIVED)
+  assignedTo  String?          @map("assigned_to") @db.Uuid
+  resolution  String?
+  createdAt   DateTime         @default(now()) @map("created_at")
+  updatedAt   DateTime         @updatedAt @map("updated_at")
+  resolvedAt  DateTime?        @map("resolved_at")
+  booking     Booking?         @relation(fields: [bookingId], references: [id], onDelete: Restrict)
+  customer    User             @relation(fields: [customerId], references: [id], onDelete: Restrict)
+  sitter      SitterProfile?   @relation(fields: [sitterId], references: [id], onDelete: Restrict)
+
+  @@index([status, severity, createdAt])
+  @@index([customerId, createdAt])
+  @@map("complaints")
+}
+
+model CommunicationPreference {
+  userId     String              @map("user_id") @db.Uuid
+  channel    NotificationChannel
+  purpose    String
+  enabled    Boolean             @default(true)
+  quietHours Json?               @map("quiet_hours")
+  updatedAt  DateTime            @updatedAt @map("updated_at")
+  user       User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, channel, purpose])
+  @@map("communication_preferences")
+}
+
+model NotificationTemplate {
+  id         String              @id @default(uuid()) @db.Uuid
+  key        String
+  version    Int
+  channel    NotificationChannel
+  locale     String              @default("en-IN")
+  subject    String?
+  body       String
+  variables  Json
+  status     GateStatus          @default(DRAFT)
+  approvedBy String?             @map("approved_by") @db.Uuid
+  createdAt  DateTime            @default(now()) @map("created_at")
+
+  @@unique([key, version, channel, locale])
+  @@index([key, status])
+  @@map("templates")
+}
+
+model SupportCase {
+  id          String            @id @default(uuid()) @db.Uuid
+  reference   String            @unique
+  userId      String?           @map("user_id") @db.Uuid
+  bookingId   String?           @map("booking_id") @db.Uuid
+  category    String
+  subject     String
+  description String
+  priority    IncidentSeverity  @default(LOW)
+  status      SupportCaseStatus @default(OPEN)
+  assignedTo  String?           @map("assigned_to") @db.Uuid
+  resolution  String?
+  createdAt   DateTime          @default(now()) @map("created_at")
+  updatedAt   DateTime          @updatedAt @map("updated_at")
+  resolvedAt  DateTime?         @map("resolved_at")
+  user        User?             @relation(fields: [userId], references: [id], onDelete: SetNull)
+  booking     Booking?          @relation(fields: [bookingId], references: [id], onDelete: Restrict)
+
+  @@index([status, priority, createdAt])
+  @@index([userId, createdAt])
+  @@map("support_cases")
+}
+
+model PayoutAdjustment {
+  id          String   @id @default(uuid()) @db.Uuid
+  payoutId    String   @map("payout_id") @db.Uuid
+  amountPaise Int      @map("amount_paise")
+  reason      String
+  approvedBy  String   @map("approved_by") @db.Uuid
+  createdAt   DateTime @default(now()) @map("created_at")
+  payout      Payout   @relation(fields: [payoutId], references: [id], onDelete: Restrict)
+
+  @@index([payoutId, createdAt])
+  @@map("payout_adjustments")
+}
+
+model LedgerEntry {
+  id             String          @id @default(uuid()) @db.Uuid
+  entryType      LedgerEntryType @map("entry_type")
+  account        String
+  amountPaise    Int             @map("amount_paise")
+  currency       String          @default("INR")
+  referenceType  String          @map("reference_type")
+  referenceId    String          @map("reference_id")
+  idempotencyKey String          @unique @map("idempotency_key")
+  metadata       Json?
+  postedAt       DateTime        @default(now()) @map("posted_at")
+
+  @@index([account, postedAt])
+  @@index([referenceType, referenceId])
+  @@map("ledger_entries")
+}
+
+model ReconciliationRun {
+  id          String    @id @default(uuid()) @db.Uuid
+  provider    String
+  periodStart DateTime  @map("period_start")
+  periodEnd   DateTime  @map("period_end")
+  status      JobStatus @default(QUEUED)
+  expected    Json?
+  actual      Json?
+  differences Json?
+  startedAt   DateTime? @map("started_at")
+  completedAt DateTime? @map("completed_at")
+  approvedBy  String?   @map("approved_by") @db.Uuid
+  createdAt   DateTime  @default(now()) @map("created_at")
+
+  @@unique([provider, periodStart, periodEnd])
+  @@index([status, periodEnd])
+  @@map("reconciliation_runs")
+}
+
+model IncidentEvidence {
+  id           String       @id @default(uuid()) @db.Uuid
+  incidentId   String       @map("incident_id") @db.Uuid
+  uploadId     String       @map("upload_id") @db.Uuid
+  evidenceType String       @map("evidence_type")
+  description  String?
+  status       UploadStatus @default(QUARANTINED)
+  collectedBy  String       @map("collected_by") @db.Uuid
+  collectedAt  DateTime     @default(now()) @map("collected_at")
+  incident     Incident     @relation(fields: [incidentId], references: [id], onDelete: Restrict)
+  upload       UploadObject @relation(fields: [uploadId], references: [id], onDelete: Restrict)
+
+  @@index([incidentId, status, collectedAt])
+  @@map("incident_evidence")
+}
+
+model IncidentNotification {
+  id             String              @id @default(uuid()) @db.Uuid
+  incidentId     String              @map("incident_id") @db.Uuid
+  recipientType  String              @map("recipient_type")
+  recipientRef   String              @map("recipient_ref")
+  channel        NotificationChannel
+  status         NotificationStatus  @default(QUEUED)
+  notificationId String?             @map("notification_id") @db.Uuid
+  sentAt         DateTime?           @map("sent_at")
+  acknowledgedAt DateTime?           @map("acknowledged_at")
+  createdAt      DateTime            @default(now()) @map("created_at")
+  incident       Incident            @relation(fields: [incidentId], references: [id], onDelete: Cascade)
+
+  @@unique([notificationId])
+  @@index([incidentId, status, createdAt])
+  @@map("incident_notifications")
+}
+
+model SitterHold {
+  id            String           @id @default(uuid()) @db.Uuid
+  sitterId      String           @map("sitter_id") @db.Uuid
+  incidentId    String?          @map("incident_id") @db.Uuid
+  status        SitterHoldStatus @default(ACTIVE)
+  reason        String
+  placedBy      String           @map("placed_by") @db.Uuid
+  placedAt      DateTime         @default(now()) @map("placed_at")
+  expiresAt     DateTime?        @map("expires_at")
+  releasedBy    String?          @map("released_by") @db.Uuid
+  releasedAt    DateTime?        @map("released_at")
+  releaseReason String?          @map("release_reason")
+  sitter        SitterProfile    @relation(fields: [sitterId], references: [id], onDelete: Restrict)
+  incident      Incident?        @relation(fields: [incidentId], references: [id], onDelete: Restrict)
+
+  @@index([sitterId, status, placedAt])
+  @@index([incidentId, status])
+  @@map("sitter_holds")
+}
+
+model SubscriptionEvent {
+  id              String              @id @default(uuid()) @db.Uuid
+  subscriptionId  String              @map("subscription_id") @db.Uuid
+  providerEventId String?             @unique @map("provider_event_id")
+  eventType       String              @map("event_type")
+  statusBefore    SubscriptionStatus? @map("status_before")
+  statusAfter     SubscriptionStatus  @map("status_after")
+  payloadHash     String?             @map("payload_hash")
+  occurredAt      DateTime            @map("occurred_at")
+  recordedAt      DateTime            @default(now()) @map("recorded_at")
+  subscription    Subscription        @relation(fields: [subscriptionId], references: [id], onDelete: Restrict)
+
+  @@index([subscriptionId, occurredAt])
+  @@map("subscription_events")
+}
+
+model Author {
+  id          String     @id @default(uuid()) @db.Uuid
+  userId      String?    @unique @map("user_id") @db.Uuid
+  slug        String     @unique
+  displayName String     @map("display_name")
+  bio         String?
+  credentials String?
+  avatarPath  String?    @map("avatar_path")
+  status      GateStatus @default(DRAFT)
+  createdAt   DateTime   @default(now()) @map("created_at")
+  updatedAt   DateTime   @updatedAt @map("updated_at")
+
+  @@index([status, displayName])
+  @@map("authors")
+}
+
+model CityPage {
+  id             String        @id @default(uuid()) @db.Uuid
+  cityId         String        @map("city_id") @db.Uuid
+  contentEntryId String        @unique @map("content_entry_id") @db.Uuid
+  pageType       String        @map("page_type")
+  status         ContentStatus @default(DRAFT)
+  publishedAt    DateTime?     @map("published_at")
+  city           City          @relation(fields: [cityId], references: [id], onDelete: Restrict)
+  contentEntry   ContentEntry  @relation(fields: [contentEntryId], references: [id], onDelete: Restrict)
+
+  @@unique([cityId, pageType])
+  @@index([status, publishedAt])
+  @@map("city_pages")
+}
+
+model CapacityReservation {
+  id              String                    @id @default(uuid()) @db.Uuid
+  bookingId       String                    @unique @map("booking_id") @db.Uuid
+  capacityLimitId String                    @map("capacity_limit_id") @db.Uuid
+  quantity        Int                       @default(1)
+  status          CapacityReservationStatus @default(HELD)
+  releaseReason   String?                   @map("release_reason")
+  releasedAt      DateTime?                 @map("released_at")
+  createdAt       DateTime                  @default(now()) @map("created_at")
+  updatedAt       DateTime                  @updatedAt @map("updated_at")
+  booking         Booking                   @relation(fields: [bookingId], references: [id], onDelete: Restrict)
+  capacityLimit   CapacityLimit             @relation(fields: [capacityLimitId], references: [id], onDelete: Restrict)
+
+  @@index([capacityLimitId, status, createdAt])
+  @@map("capacity_reservations")
+}
+
+model PaymentMandate {
+  id                String   @id @default(uuid()) @db.Uuid
+  userId            String   @map("user_id") @db.Uuid
+  providerMandateId String   @unique @map("provider_mandate_id")
+  providerName      String   @default("RAZORPAY")
+  maxAmountPaise    Int      @map("max_amount_paise")
+  status            String
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+
+  @@index([userId])
+  @@map("payment_mandates")
+}
+
+model CityServiceConfiguration {
+  id                   String        @id @default(uuid()) @db.Uuid
+  cityId               String        @map("city_id") @db.Uuid
+  serviceTypeId        String        @map("service_type_id") @db.Uuid
+  status               ServiceStatus @default(DISABLED)
+  bookingMode          String?       @map("booking_mode")
+  minimumNoticeMinutes Int?          @map("minimum_notice_minutes")
+  maximumAdvanceDays   Int?          @map("maximum_advance_days")
+  operatingHours       Json?         @map("operating_hours")
+  cancellationPolicyId String?       @map("cancellation_policy_id") @db.Uuid
+  supportPolicyId      String?       @map("support_policy_id") @db.Uuid
+  createdAt            DateTime      @default(now()) @map("created_at")
+
+  city        City        @relation(fields: [cityId], references: [id], onDelete: Restrict)
+  serviceType ServiceType @relation(fields: [serviceTypeId], references: [id], onDelete: Restrict)
+
+  @@unique([cityId, serviceTypeId])
+  @@map("city_service_configurations")
+}
+
+model ZoneServiceConfiguration {
+  id               String        @id @default(uuid()) @db.Uuid
+  serviceZoneId    String        @map("service_zone_id") @db.Uuid
+  serviceTypeId    String        @map("service_type_id") @db.Uuid
+  status           ServiceStatus @default(DISABLED)
+  bookingMode      String?       @map("booking_mode")
+  capacityPolicyId String?       @map("capacity_policy_id") @db.Uuid
+  waitlistEnabled  Boolean       @default(false) @map("waitlist_enabled")
+  launchLimit      Int?          @map("launch_limit")
+  createdAt        DateTime      @default(now()) @map("created_at")
+
+  serviceZone ServiceZone @relation(fields: [serviceZoneId], references: [id], onDelete: Restrict)
+  serviceType ServiceType @relation(fields: [serviceTypeId], references: [id], onDelete: Restrict)
+
+  @@unique([serviceZoneId, serviceTypeId])
+  @@map("zone_service_configurations")
+}
+
+// ──────────────────────────────────────────────────────────
+// Phase 11: Service Credits
+// ──────────────────────────────────────────────────────────
+
+enum CreditType {
+  SUBSCRIPTION
+  PROMOTIONAL
+  REFUND
+  LOYALTY
+  SERVICE_RECOVERY
+}
+
+enum CreditAction {
+  ISSUED
+  CONSUMED
+  EXPIRED
+  REVERSED
+  ADJUSTED
+}
+
+model ServiceCredit {
+  id           String                     @id @default(uuid()) @db.Uuid
+  userId       String                     @map("user_id") @db.Uuid
+  type         CreditType
+  amountPaise  Int                        @map("amount_paise")
+  balancePaise Int                        @map("balance_paise")
+  currency     String                     @default("INR")
+  issuedReason String                     @map("issued_reason")
+  referenceId  String?                    @map("reference_id") @db.Uuid
+  expiresAt    DateTime?                  @map("expires_at")
+  isActive     Boolean                    @default(true) @map("is_active")
+  createdAt    DateTime                   @default(now()) @map("created_at")
+  updatedAt    DateTime                   @updatedAt @map("updated_at")
+  user         User                       @relation(fields: [userId], references: [id], onDelete: Restrict)
+  transactions ServiceCreditTransaction[]
+
+  @@index([userId, isActive, expiresAt])
+  @@map("service_credits")
+}
+
+model ServiceCreditTransaction {
+  id             String        @id @default(uuid()) @db.Uuid
+  creditId       String        @map("credit_id") @db.Uuid
+  bookingId      String?       @map("booking_id") @db.Uuid
+  action         CreditAction
+  amountPaise    Int           @map("amount_paise")
+  balanceAfter   Int           @map("balance_after")
+  idempotencyKey String        @unique @map("idempotency_key")
+  createdAt      DateTime      @default(now()) @map("created_at")
+  credit         ServiceCredit @relation(fields: [creditId], references: [id], onDelete: Restrict)
+
+  @@index([creditId, createdAt])
+  @@map("service_credit_transactions")
+}
+
+// ──────────────────────────────────────────────────────────
+// Phase 11: AI-Assisted Matching
+// ──────────────────────────────────────────────────────────
+
+enum MatchStatus {
+  PENDING
+  RECOMMENDED
+  APPROVED
+  REJECTED
+  EXPIRED
+}
+
+model MatchScore {
+  id                    String        @id @default(uuid()) @db.Uuid
+  bookingId             String        @map("booking_id") @db.Uuid
+  sitterId              String        @map("sitter_id") @db.Uuid
+  totalScore            Float         @map("total_score")
+  factors               Json
+  rank                  Int
+  requiresHumanApproval Boolean       @default(false) @map("requires_human_approval")
+  approvalReasons       String[]      @default([]) @map("approval_reasons")
+  status                MatchStatus   @default(PENDING)
+  approvedBy            String?       @map("approved_by") @db.Uuid
+  approvedAt            DateTime?     @map("approved_at")
+  createdAt             DateTime      @default(now()) @map("created_at")
+  booking               Booking       @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  sitter                SitterProfile @relation(fields: [sitterId], references: [id], onDelete: Restrict)
+
+  @@unique([bookingId, sitterId])
+  @@index([bookingId, rank])
+  @@map("match_scores")
+}
+
+// ──────────────────────────────────────────────────────────
+// Phase 11: Pet Health Timeline
+// ──────────────────────────────────────────────────────────
+
+enum HealthEventType {
+  VACCINATION
+  MEDICATION
+  VET_VISIT
+  INCIDENT
+  NOTE
+  SERVICE_COMPLETED
+}
+
+model HealthTimelineEvent {
+  id          String          @id @default(uuid()) @db.Uuid
+  petId       String          @map("pet_id") @db.Uuid
+  type        HealthEventType
+  title       String
+  description String?         @db.Text
+  eventDate   DateTime        @map("event_date")
+  createdAt   DateTime        @default(now()) @map("created_at")
+  updatedAt   DateTime        @updatedAt @map("updated_at")
+  documentUrl String?         @map("document_url")
+  metadata    Json? // Flexible payload for specific event types (e.g., vet name, medication dosage)
+  pet         Pet             @relation(fields: [petId], references: [id], onDelete: Cascade)
+
+  @@index([petId, eventDate(sort: Desc)])
+  @@map("health_timeline_events")
+}
+
+model Contact {
+  id                   String                @id @default(uuid()) @db.Uuid
+  email                String?               @unique
+  phoneE164            String?               @unique @map("phone_e164")
+  firstName            String?               @map("first_name")
+  lastName             String?               @map("last_name")
+  source               String                @default("ORGANIC")
+  createdAt            DateTime              @default(now()) @map("created_at")
+  updatedAt            DateTime              @updatedAt @map("updated_at")
+  leadRequests         LeadMagnetRequest[]
+  communityMemberships CommunityMembership[]
+
+  @@map("contacts")
+}
+
+model LeadMagnetRequest {
+  id          String   @id @default(uuid()) @db.Uuid
+  contactId   String   @map("contact_id") @db.Uuid
+  magnetSlug  String   @map("magnet_slug")
+  requestedAt DateTime @default(now()) @map("requested_at")
+  metadata    Json?
+  contact     Contact  @relation(fields: [contactId], references: [id], onDelete: Cascade)
+
+  @@index([contactId, magnetSlug])
+  @@map("lead_magnet_requests")
+}
+
+model CommunityGroup {
+  id          String                @id @default(uuid()) @db.Uuid
+  slug        String                @unique
+  name        String
+  description String?
+  platform    String                @default("WHATSAPP")
+  joinLink    String?               @map("join_link")
+  active      Boolean               @default(true)
+  createdAt   DateTime              @default(now()) @map("created_at")
+  updatedAt   DateTime              @updatedAt @map("updated_at")
+  memberships CommunityMembership[]
+
+  @@map("community_groups")
+}
+
+enum MembershipStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  LEFT
+  BANNED
+}
+
+model CommunityMembership {
+  id        String           @id @default(uuid()) @db.Uuid
+  groupId   String           @map("group_id") @db.Uuid
+  contactId String           @map("contact_id") @db.Uuid
+  status    MembershipStatus @default(PENDING)
+  joinedAt  DateTime?        @map("joined_at")
+  createdAt DateTime         @default(now()) @map("created_at")
+  updatedAt DateTime         @updatedAt @map("updated_at")
+  group     CommunityGroup   @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  contact   Contact          @relation(fields: [contactId], references: [id], onDelete: Cascade)
+
+  @@unique([groupId, contactId])
+  @@index([status])
+  @@map("community_memberships")
+}
+
+// ═══════════════════════════════════════════════════════════════
+// Phase 13 — B2B & Enterprise Partnership Models
+// ═══════════════════════════════════════════════════════════════
+
+model Organization {
+  id               String           @id @default(uuid()) @db.Uuid
+  legalName        String           @map("legal_name")
+  displayName      String           @map("display_name")
+  organizationType OrganizationType @map("organization_type")
+  website          String?
+  primaryCityId    String?          @map("primary_city_id") @db.Uuid
+  gstin            String?
+  panEncrypted     String?          @map("pan_encrypted")
+  billingAddressId String?          @map("billing_address_id") @db.Uuid
+  status           OrgStatus        @default(PROSPECT)
+  accountOwnerId   String?          @map("account_owner_id") @db.Uuid
+  notes            String?
+  createdAt        DateTime         @default(now()) @map("created_at")
+  updatedAt        DateTime         @updatedAt @map("updated_at")
+
+  primaryCity    City?                 @relation(fields: [primaryCityId], references: [id])
+  billingAddress Address?              @relation(fields: [billingAddressId], references: [id])
+  accountOwner   User?                 @relation("OrgAccountOwner", fields: [accountOwnerId], references: [id])
+  contacts       OrganizationContact[]
+  opportunities  B2bOpportunity[]
+  contracts      B2bContract[]
+  programmes     PartnerProgramme[]
+  invoices       EnterpriseInvoice[]
+
+  @@index([organizationType, status])
+  @@index([primaryCityId])
+  @@map("organizations")
+}
+
+model OrganizationContact {
+  id              String         @id @default(uuid()) @db.Uuid
+  organizationId  String         @map("organization_id") @db.Uuid
+  name            String
+  title           String?
+  department      String?
+  email           String?
+  phone           String?
+  roleType        OrgContactRole @default(OTHER_CONTACT) @map("role_type")
+  isDecisionMaker Boolean        @default(false) @map("is_decision_maker")
+  active          Boolean        @default(true)
+  createdAt       DateTime       @default(now()) @map("created_at")
+  updatedAt       DateTime       @updatedAt @map("updated_at")
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId])
+  @@map("organization_contacts")
+}
+
+model B2bOpportunity {
+  id                String           @id @default(uuid()) @db.Uuid
+  organizationId    String           @map("organization_id") @db.Uuid
+  programmeType     ProgrammeType    @map("programme_type")
+  pipelineStage     OpportunityStage @default(TARGET_ACCOUNT) @map("pipeline_stage")
+  estimatedValue    Int?             @map("estimated_value")
+  probability       Int?             @default(0)
+  expectedCloseDate DateTime?        @map("expected_close_date")
+  leadSource        String?          @map("lead_source")
+  nextAction        String?          @map("next_action")
+  nextActionAt      DateTime?        @map("next_action_at")
+  ownerId           String?          @map("owner_id") @db.Uuid
+  lossReason        String?          @map("loss_reason")
+  notes             String?
+  createdAt         DateTime         @default(now()) @map("created_at")
+  updatedAt         DateTime         @updatedAt @map("updated_at")
+
+  organization Organization  @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  owner        User?         @relation("OpportunityOwner", fields: [ownerId], references: [id])
+  contracts    B2bContract[]
+
+  @@index([organizationId])
+  @@index([pipelineStage])
+  @@index([ownerId])
+  @@map("b2b_opportunities")
+}
+
+model B2bContract {
+  id               String         @id @default(uuid()) @db.Uuid
+  organizationId   String         @map("organization_id") @db.Uuid
+  opportunityId    String?        @map("opportunity_id") @db.Uuid
+  contractType     ProgrammeType  @map("contract_type")
+  startDate        DateTime       @map("start_date")
+  endDate          DateTime?      @map("end_date")
+  renewalDate      DateTime?      @map("renewal_date")
+  billingFrequency String?        @map("billing_frequency")
+  contractedValue  Int?           @map("contracted_value")
+  currency         String         @default("INR")
+  paymentTermsDays Int            @default(30) @map("payment_terms_days")
+  status           ContractStatus @default(DRAFT_CONTRACT)
+  signedDocumentId String?        @map("signed_document_id") @db.Uuid
+  notes            String?
+  createdAt        DateTime       @default(now()) @map("created_at")
+  updatedAt        DateTime       @updatedAt @map("updated_at")
+
+  organization Organization        @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  opportunity  B2bOpportunity?     @relation(fields: [opportunityId], references: [id])
+  programmes   PartnerProgramme[]
+  invoices     EnterpriseInvoice[]
+
+  @@index([organizationId])
+  @@index([status])
+  @@map("b2b_contracts")
+}
+
+model PartnerProgramme {
+  id                String            @id @default(uuid()) @db.Uuid
+  organizationId    String            @map("organization_id") @db.Uuid
+  contractId        String?           @map("contract_id") @db.Uuid
+  name              String
+  slug              String            @unique
+  programmeType     ProgrammeType     @map("programme_type")
+  cityScope         String[]          @map("city_scope")
+  eligibilityMethod EligibilityMethod @default(INVITATION_TOKEN) @map("eligibility_method")
+  eligibilityDomain String?           @map("eligibility_domain")
+  startDate         DateTime?         @map("start_date")
+  endDate           DateTime?         @map("end_date")
+  status            ProgrammeStatus   @default(DRAFT_PROGRAMME)
+  supportTier       String?           @map("support_tier")
+  accountManagerId  String?           @map("account_manager_id") @db.Uuid
+  metadata          Json?
+  createdAt         DateTime          @default(now()) @map("created_at")
+  updatedAt         DateTime          @updatedAt @map("updated_at")
+
+  organization   Organization          @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  contract       B2bContract?          @relation(fields: [contractId], references: [id])
+  accountManager User?                 @relation("ProgrammeManager", fields: [accountManagerId], references: [id])
+  memberships    ProgrammeMembership[]
+  promotionCodes PromotionCode[]
+
+  @@index([organizationId])
+  @@index([status])
+  @@map("partner_programmes")
+}
+
+model ProgrammeMembership {
+  id                 String                   @id @default(uuid()) @db.Uuid
+  programmeId        String                   @map("programme_id") @db.Uuid
+  customerId         String                   @map("customer_id") @db.Uuid
+  verificationMethod EligibilityMethod?       @map("verification_method")
+  verificationStatus MemberVerificationStatus @default(PENDING_VERIFICATION) @map("verification_status")
+  verifiedAt         DateTime?                @map("verified_at")
+  eligibilityExpiry  DateTime?                @map("eligibility_expiry")
+  active             Boolean                  @default(true)
+  createdAt          DateTime                 @default(now()) @map("created_at")
+  updatedAt          DateTime                 @updatedAt @map("updated_at")
+
+  programme PartnerProgramme @relation(fields: [programmeId], references: [id], onDelete: Cascade)
+  customer  User             @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  wallet    BenefitWallet?
+
+  @@unique([programmeId, customerId])
+  @@index([customerId])
+  @@index([verificationStatus])
+  @@map("programme_memberships")
+}
+
+model BenefitWallet {
+  id                    String       @id @default(uuid()) @db.Uuid
+  programmeMembershipId String       @unique @map("programme_membership_id") @db.Uuid
+  currency              String       @default("INR")
+  status                WalletStatus @default(ACTIVE_WALLET)
+  expiresAt             DateTime?    @map("expires_at")
+  createdAt             DateTime     @default(now()) @map("created_at")
+  updatedAt             DateTime     @updatedAt @map("updated_at")
+
+  membership ProgrammeMembership  @relation(fields: [programmeMembershipId], references: [id], onDelete: Cascade)
+  entries    BenefitLedgerEntry[]
+
+  @@map("benefit_wallets")
+}
+
+model BenefitLedgerEntry {
+  id             String           @id @default(uuid()) @db.Uuid
+  walletId       String           @map("wallet_id") @db.Uuid
+  entryType      BenefitEntryType @map("entry_type")
+  amountPaise    Int              @map("amount_paise")
+  balanceAfter   Int              @map("balance_after")
+  bookingId      String?          @map("booking_id") @db.Uuid
+  invoiceId      String?          @map("invoice_id") @db.Uuid
+  reference      String?
+  idempotencyKey String?          @unique @map("idempotency_key")
+  createdAt      DateTime         @default(now()) @map("created_at")
+
+  wallet BenefitWallet @relation(fields: [walletId], references: [id], onDelete: Cascade)
+
+  @@index([walletId])
+  @@map("benefit_ledger_entries")
+}
+
+model PromotionCode {
+  id              String   @id @default(uuid()) @db.Uuid
+  programmeId     String?  @map("programme_id") @db.Uuid
+  code            String   @unique
+  discountType    String   @map("discount_type")
+  discountValue   Int      @map("discount_value")
+  maximumDiscount Int?     @map("maximum_discount")
+  minimumOrder    Int?     @map("minimum_order")
+  totalUsageLimit Int?     @map("total_usage_limit")
+  perMemberLimit  Int?     @default(1) @map("per_member_limit")
+  serviceScope    String[] @map("service_scope")
+  cityScope       String[] @map("city_scope")
+  validFrom       DateTime @map("valid_from")
+  validUntil      DateTime @map("valid_until")
+  active          Boolean  @default(true)
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  programme PartnerProgramme? @relation(fields: [programmeId], references: [id])
+
+  @@index([programmeId])
+  @@map("promotion_codes")
+}
+
+model EnterpriseInvoice {
+  id             String        @id @default(uuid()) @db.Uuid
+  invoiceNumber  String        @unique @map("invoice_number")
+  organizationId String        @map("organization_id") @db.Uuid
+  contractId     String?       @map("contract_id") @db.Uuid
+  supplierGstin  String?       @map("supplier_gstin")
+  customerGstin  String?       @map("customer_gstin")
+  placeOfSupply  String?       @map("place_of_supply")
+  billingAddress String?       @map("billing_address")
+  serviceAddress String?       @map("service_address")
+  sacCode        String?       @map("sac_code")
+  taxableValue   Int           @map("taxable_value")
+  cgst           Int           @default(0)
+  sgst           Int           @default(0)
+  igst           Int           @default(0)
+  totalAmount    Int           @map("total_amount")
+  amountPaid     Int           @default(0) @map("amount_paid")
+  currency       String        @default("INR")
+  status         InvoiceStatus @default(DRAFT_INVOICE)
+  dueDate        DateTime      @map("due_date")
+  paidAt         DateTime?     @map("paid_at")
+  poReference    String?       @map("po_reference")
+  notes          String?
+  creditNoteOf   String?       @map("credit_note_of") @db.Uuid
+  irnNumber      String?       @map("irn_number")
+  createdAt      DateTime      @default(now()) @map("created_at")
+  updatedAt      DateTime      @updatedAt @map("updated_at")
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  contract     B2bContract? @relation(fields: [contractId], references: [id])
+
+  @@index([organizationId])
+  @@index([status])
+  @@index([dueDate])
+  @@map("enterprise_invoices")
+}
+
+// ═══════════════════════════════════════════════════════════════
+// Phase 14 — Scale, Funding, & Franchise Operating System
+// ═══════════════════════════════════════════════════════════════
+
+model CityFinancialRecord {
+  id          String @id @default(uuid()) @db.Uuid
+  cityId      String @map("city_id") @db.Uuid
+  periodMonth Int    @map("period_month")
+  periodYear  Int    @map("period_year")
+
+  // GBV and Revenue
+  gbvPaise        BigInt @default(0) @map("gbv_paise")
+  netRevenuePaise BigInt @default(0) @map("net_revenue_paise")
+
+  // Margins
+  cm1Paise BigInt @default(0) @map("cm1_paise")
+  cm2Paise BigInt @default(0) @map("cm2_paise")
+
+  // Customer Acquisition
+  blendedCacPaise Int    @default(0) @map("blended_cac_paise")
+  marketingSpend  BigInt @default(0) @map("marketing_spend")
+
+  // Activity metrics
+  totalBookings   Int @default(0) @map("total_bookings")
+  activeCustomers Int @default(0) @map("active_customers")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  city City @relation(fields: [cityId], references: [id], onDelete: Restrict)
+
+  @@unique([cityId, periodMonth, periodYear])
+  @@map("city_financial_records")
+}
+
+model CityHealthScore {
+  id         String   @id @default(uuid()) @db.Uuid
+  cityId     String   @map("city_id") @db.Uuid
+  periodDate DateTime @map("period_date") @db.Date
+
+  // Scores (0-100)
+  overallScore    Int @map("overall_score")
+  safetyScore     Int @map("safety_score")
+  supplyScore     Int @map("supply_score")
+  demandScore     Int @map("demand_score")
+  operationsScore Int @map("operations_score")
+
+  // Hard Gates
+  hasUnresolvedSevere Boolean @default(false) @map("has_unresolved_severe")
+  cm2Deterioration    Boolean @default(false) @map("cm2_deterioration")
+
+  notes     String?
+  createdAt DateTime @default(now()) @map("created_at")
+
+  city City @relation(fields: [cityId], references: [id], onDelete: Cascade)
+
+  @@index([cityId, periodDate])
+  @@map("city_health_scores")
+}
+
+model CityManager {
+  id         String    @id @default(uuid()) @db.Uuid
+  cityId     String    @map("city_id") @db.Uuid
+  userId     String    @map("user_id") @db.Uuid
+  status     String    @default("ACTIVE") // ACTIVE, INACTIVE
+  assignedAt DateTime  @default(now()) @map("assigned_at")
+  revokedAt  DateTime? @map("revoked_at")
+
+  city City @relation(fields: [cityId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Restrict)
+
+  @@index([cityId, status])
+  @@map("city_managers")
+}
+
+// ═══════════════════════════════════════════════════════════════
+// Phase 14 Sprint 2 — Trust & Safety Command Center
+// ═══════════════════════════════════════════════════════════════
+
+enum SuspensionReason {
+  SAFETY_INCIDENT
+  QUALITY_VIOLATION
+  NO_SHOW
+  BACKGROUND_CHECK_FAIL
+  FRAUD
+  OTHER
+}
+
+model ProviderSuspension {
+  id          String           @id @default(uuid()) @db.Uuid
+  sitterId    String           @map("sitter_id") @db.Uuid
+  incidentId  String?          @map("incident_id") @db.Uuid
+  reason      SuspensionReason
+  description String
+  issuedAt    DateTime         @default(now()) @map("issued_at")
+  expiresAt   DateTime?        @map("expires_at") // null if permanent
+  isAppealed  Boolean          @default(false) @map("is_appealed")
+  appealNotes String?          @map("appeal_notes")
+  liftedAt    DateTime?        @map("lifted_at")
+  liftedBy    String?          @map("lifted_by") @db.Uuid
+  createdAt   DateTime         @default(now()) @map("created_at")
+  updatedAt   DateTime         @updatedAt @map("updated_at")
+
+  sitter       User      @relation("SitterSuspensions", fields: [sitterId], references: [id], onDelete: Cascade)
+  incident     Incident? @relation(fields: [incidentId], references: [id])
+  liftedByUser User?     @relation("SuspensionLifter", fields: [liftedBy], references: [id])
+
+  @@index([sitterId])
+  @@map("provider_suspensions")
+}
+
+model SafetyAudit {
+  id             String   @id @default(uuid()) @db.Uuid
+  sitterId       String   @map("sitter_id") @db.Uuid
+  auditorId      String   @map("auditor_id") @db.Uuid
+  auditDate      DateTime @map("audit_date")
+  score          Int // 0-100
+  passed         Boolean
+  notes          String?
+  actionRequired Boolean  @default(false) @map("action_required")
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+
+  sitter  User @relation("SitterAudits", fields: [sitterId], references: [id], onDelete: Cascade)
+  auditor User @relation("AuditorUsers", fields: [auditorId], references: [id])
+
+  @@index([sitterId])
+  @@map("safety_audits")
+}
+
+// ═══════════════════════════════════════════════════════════════
+// Phase 14 Sprint 3 — Franchise & Operator Controls
+// ═══════════════════════════════════════════════════════════════
+
+model OperatingPartner {
+  id                String         @id @default(uuid()) @db.Uuid
+  legalName         String         @map("legal_name")
+  displayName       String         @map("display_name")
+  contactPersonId   String         @map("contact_person_id") @db.Uuid
+  email             String
+  phone             String?
+  gstin             String?
+  panEncrypted      String?        @map("pan_encrypted")
+  status            OperatorStatus @default(PROSPECT_OP)
+  onboardedAt       DateTime?      @map("onboarded_at")
+  pilotStartedAt    DateTime?      @map("pilot_started_at")
+  terminatedAt      DateTime?      @map("terminated_at")
+  terminationReason String?        @map("termination_reason")
+  notes             String?
+  createdAt         DateTime       @default(now()) @map("created_at")
+  updatedAt         DateTime       @updatedAt @map("updated_at")
+
+  contactPerson User        @relation("OperatorContact", fields: [contactPersonId], references: [id])
+  territories   Territory[]
+
+  @@index([status])
+  @@map("operating_partners")
+}
+
+model Territory {
+  id                 String        @id @default(uuid()) @db.Uuid
+  operatingPartnerId String        @map("operating_partner_id") @db.Uuid
+  cityId             String        @map("city_id") @db.Uuid
+  serviceZoneId      String?       @map("service_zone_id") @db.Uuid
+  territoryType      TerritoryType @default(MANAGED)
+  name               String
+  isActive           Boolean       @default(true) @map("is_active")
+  agreedRevShareBps  Int           @default(0) @map("agreed_rev_share_bps")
+  startDate          DateTime      @map("start_date")
+  endDate            DateTime?     @map("end_date")
+  notes              String?
+  createdAt          DateTime      @default(now()) @map("created_at")
+  updatedAt          DateTime      @updatedAt @map("updated_at")
+
+  operatingPartner OperatingPartner @relation(fields: [operatingPartnerId], references: [id], onDelete: Cascade)
+  city             City             @relation(fields: [cityId], references: [id])
+  serviceZone      ServiceZone?     @relation(fields: [serviceZoneId], references: [id])
+
+  @@unique([operatingPartnerId, cityId, serviceZoneId])
+  @@index([cityId])
+  @@map("territories")
+}
+
+// ═══════════════════════════════════════════════════════════════
+// Phase 14 Sprint 4 — Privacy & DPDP Compliance
+// ═══════════════════════════════════════════════════════════════
+
+model ContentConsentRecord {
+  id             String         @id @default(uuid()) @db.Uuid
+  userId         String         @map("user_id") @db.Uuid
+  purpose        ConsentPurpose
+  consentVersion String         @map("consent_version")
+  grantedAt      DateTime       @default(now()) @map("granted_at")
+  expiresAt      DateTime?      @map("expires_at")
+  revokedAt      DateTime?      @map("revoked_at")
+  revokedReason  String?        @map("revoked_reason")
+  ipAddress      String?        @map("ip_address")
+  userAgent      String?        @map("user_agent")
+  createdAt      DateTime       @default(now()) @map("created_at")
+
+  user User @relation("UserConsents", fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, purpose])
+  @@map("content_consent_records")
+}
+
+model DataSubjectRequest {
+  id            String            @id @default(uuid()) @db.Uuid
+  userId        String            @map("user_id") @db.Uuid
+  requestType   DataRequestType   @map("request_type")
+  status        DataRequestStatus @default(PENDING_DSR)
+  description   String?
+  handledById   String?           @map("handled_by_id") @db.Uuid
+  completedAt   DateTime?         @map("completed_at")
+  responseNotes String?           @map("response_notes")
+  dueDate       DateTime          @map("due_date")
+  createdAt     DateTime          @default(now()) @map("created_at")
+  updatedAt     DateTime          @updatedAt @map("updated_at")
+
+  user      User  @relation("UserDataRequests", fields: [userId], references: [id], onDelete: Cascade)
+  handledBy User? @relation("HandledDataRequests", fields: [handledById], references: [id])
+
+  @@index([userId])
+  @@index([status])
+  @@map("data_subject_requests")
+}
+
+model DataRetentionPolicy {
+  id            String    @id @default(uuid()) @db.Uuid
+  entityType    String    @map("entity_type") // e.g., "User", "Booking", "Incident"
+  retentionDays Int       @map("retention_days")
+  action        String // ANONYMIZE, DELETE
+  isActive      Boolean   @default(true) @map("is_active")
+  lastRunAt     DateTime? @map("last_run_at")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+
+  @@unique([entityType])
+  @@map("data_retention_policies")
+}

@@ -1,0 +1,19 @@
+import { CalendarDays, ChevronRight, ClipboardCheck, Clock3, PawPrint } from "lucide-react";
+import Link from "next/link";
+import { redirect } from "next/navigation";
+
+import { PortalShell } from "@/components/portal/portal-shell";
+import { prisma } from "@/lib/db";
+import { getCurrentIdentity } from "@/modules/auth/session";
+
+const activeStates = ["REQUESTED", "RISK_REVIEW", "MATCHING", "SITTER_PROPOSED", "CUSTOMER_APPROVAL_PENDING", "PAYMENT_PENDING", "CONFIRMED", "SITTER_EN_ROUTE", "IN_PROGRESS", "REPORT_PENDING", "COMPLETED"] as const;
+
+export default async function CareProtocolsPage() {
+  const identity = await getCurrentIdentity();
+  if (!identity?.roles.includes("CUSTOMER")) redirect("/login?returnTo=/customer/protocols");
+  const bookings = await prisma.booking.findMany({ where: { customerId: identity.id }, orderBy: { scheduledStart: "desc" }, take: 40, select: { id: true, reference: true, status: true, scheduledStart: true, serviceType: { select: { name: true } }, pet: { select: { name: true, species: true } }, reports: { select: { id: true } }, assignments: { where: { status: { in: ["CUSTOMER_APPROVED", "ACTIVE", "COMPLETED"] } }, take: 1, select: { sitter: { select: { user: { select: { displayName: true } } } } } } } });
+  const active = bookings.filter((item) => (activeStates as readonly string[]).includes(item.status)).length;
+  const completed = bookings.filter((item) => ["COMPLETED", "CLOSED"].includes(item.status)).length;
+  const reports = bookings.reduce((sum, item) => sum + item.reports.length, 0);
+  return <PortalShell mode="customer" displayName={identity.displayName} metrics={[`${active} active`, `${completed} completed`, `${reports} care report${reports === 1 ? "" : "s"}`]}><section className="mt-5 rounded-4xl border border-indigo/10 bg-paper p-6 shadow-lifted"><p className="eyebrow">My care protocols</p><h2 className="mt-3 font-display text-4xl font-semibold tracking-[-0.04em]">Every care journey, in order.</h2><p className="mt-3 max-w-2xl text-sm leading-6 text-ink/50">Open any protocol to review its match, payment gate, live milestones, report card, feedback and support trail.</p><div className="mt-6 grid gap-3">{bookings.length ? bookings.map((booking) => <Link key={booking.id} href={`/bookings/${booking.id}`} className="group grid gap-4 rounded-3xl border border-indigo/10 bg-cream/45 p-5 transition hover:-translate-y-0.5 hover:bg-indigo/[0.04] sm:grid-cols-[1fr_auto] sm:items-center"><div><p className="text-xs font-bold uppercase tracking-[0.14em] text-coral">{booking.reference} · {booking.status.replaceAll("_", " ")}</p><h3 className="mt-2 font-display text-2xl font-semibold">{booking.serviceType.name} for {booking.pet.name}</h3><div className="mt-3 flex flex-wrap gap-4 text-xs text-ink/48"><span className="flex items-center gap-1.5"><PawPrint className="h-3.5 w-3.5 text-leaf" />{booking.pet.species.toLowerCase()}</span><span className="flex items-center gap-1.5"><CalendarDays className="h-3.5 w-3.5 text-leaf" />{booking.scheduledStart.toLocaleDateString("en-IN", { dateStyle: "medium" })}</span><span className="flex items-center gap-1.5"><Clock3 className="h-3.5 w-3.5 text-leaf" />{booking.scheduledStart.toLocaleTimeString("en-IN", { timeStyle: "short" })}</span>{booking.assignments[0] && <span>{booking.assignments[0].sitter.user.displayName}</span>}</div></div><span className="flex h-11 w-11 items-center justify-center rounded-full bg-paper text-indigo shadow-sm transition group-hover:bg-indigo group-hover:text-paper"><ChevronRight className="h-5 w-5" /></span></Link>) : <div className="rounded-4xl border border-dashed border-indigo/15 p-10 text-center"><ClipboardCheck className="mx-auto h-10 w-10 text-indigo/35" /><h3 className="mt-4 font-display text-3xl font-semibold">No care protocols yet.</h3><p className="mt-2 text-sm text-ink/48">Your first request will create a traceable care journey here.</p></div>}</div></section></PortalShell>;
+}

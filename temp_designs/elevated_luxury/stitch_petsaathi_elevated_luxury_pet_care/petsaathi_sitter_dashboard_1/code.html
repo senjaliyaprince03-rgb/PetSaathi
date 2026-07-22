@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sitter Dashboard | PetSaathi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Playfair+Display:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline": "#747878",
+                    "primary": "#000000",
+                    "secondary-container": "#e5e2dd",
+                    "surface-container": "#f6ece3",
+                    "surface-bright": "#fff8f3",
+                    "on-primary-fixed": "#1c1b1b",
+                    "surface-tint": "#5f5e5e",
+                    "on-primary-fixed-variant": "#474746",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed-variant": "#474743",
+                    "on-tertiary-fixed-variant": "#78310c",
+                    "on-background": "#1f1b15",
+                    "surface-container-low": "#fcf2e8",
+                    "on-tertiary-container": "#c56c43",
+                    "surface-dim": "#e2d9cf",
+                    "on-surface": "#1f1b15",
+                    "background": "#fff8f3",
+                    "on-primary": "#ffffff",
+                    "outline-variant": "#c4c7c7",
+                    "primary-fixed": "#e5e2e1",
+                    "surface-variant": "#eae1d8",
+                    "tertiary-container": "#360f00",
+                    "on-secondary-container": "#656461",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "secondary": "#5f5e5b",
+                    "tertiary": "#000000",
+                    "on-secondary-fixed": "#1c1c19",
+                    "primary-container": "#1c1b1b",
+                    "surface-container-high": "#f0e7dd",
+                    "inverse-surface": "#343029",
+                    "tertiary-fixed": "#ffdbcd",
+                    "tertiary-fixed-dim": "#ffb597",
+                    "on-tertiary-fixed": "#360f00",
+                    "surface": "#fff8f3",
+                    "inverse-on-surface": "#f9efe6",
+                    "on-surface-variant": "#444748",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#c9c6c2",
+                    "on-primary-container": "#858383",
+                    "inverse-primary": "#c8c6c5",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed": "#e5e2dd",
+                    "surface-container-highest": "#eae1d8",
+                    "error-container": "#ffdad6",
+                    "primary-fixed-dim": "#c8c6c5",
+                    "on-error": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "section-gap": "120px",
+                    "base-unit": "8px",
+                    "gutter": "24px",
+                    "margin-mobile": "20px",
+                    "container-max": "1280px",
+                    "margin-desktop": "64px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Playfair Display"],
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Playfair Display"],
+                    "body-lg": ["Inter"],
+                    "display-lg-mobile": ["Playfair Display"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(32px);
+            -webkit-backdrop-filter: blur(32px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-dark {
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(32px);
+            -webkit-backdrop-filter: blur(32px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .ambient-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e5e2dd; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full bg-white/10 dark:bg-black/10 backdrop-blur-xl border-b border-white/10 shadow-sm z-50">
+<div class="flex justify-between items-center px-margin-desktop py-4 w-full max-w-container-max mx-auto">
+<div class="font-display-lg text-display-lg tracking-tighter text-primary dark:text-on-primary-fixed">PetSaathi</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" href="#">Concierge</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" href="#">Suites</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" href="#">Wellness</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1" href="#">Journal</a>
+</div>
+<div class="flex items-center gap-6">
+<button class="material-symbols-outlined text-primary scale-95 duration-200 transition-transform">notifications</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional portrait of a warm, smiling luxury pet concierge in India. The person has a polished appearance, wearing a tailored charcoal vest over a crisp white shirt. The background is a soft-focus minimalist interior with warm, high-end wood paneling and soft ambient lighting, creating an atmosphere of trust and premium service." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSSZS7EhW14fOGGkG9y4Xj2bdhaNJ8uBCDjklfKD06WSF-L8OiW81IyjQO-RLEgw2KFyBN2UAObJhqT-Spyx1LoA57EYtHlV7ZoBx-Rk2JiUPl4kFe9ePYfBPf41oSTAWSdNY1fBRTfhTr3SqpCPlnaTwbs6XhcA7q5N_2fh1SYg58NaYhY1FbawRSAqYlvFICR8RubXjkATYgSNV2bHBL9iUjrHOCazRZpWrnmq3zdNRS_MwBcGa0TSv-4Su3bQuQfuFDYksVWw"/>
+</div>
+</div>
+</div>
+</nav>
+<main class="pt-32 pb-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<!-- Header & Quick Stats -->
+<header class="mb-12">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-2">Welcome back, Ananya</h1>
+<p class="text-on-surface-variant max-w-xl">Your luxury concierge dashboard is ready. You have 3 active bookings and 2 report cards pending for today.</p>
+</div>
+<div class="flex items-center gap-3 bg-surface-container-low px-6 py-3 rounded-xl border border-outline-variant/20">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface">Verified Platinum Sitter</span>
+</div>
+</div>
+</header>
+<!-- Main Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Earnings Overview (Column 1-8) -->
+<section class="md:col-span-8 glass p-8 rounded-xl ambient-shadow flex flex-col gap-8">
+<div class="flex justify-between items-center">
+<div>
+<h2 class="font-headline-md text-headline-md">Earnings Overview</h2>
+<p class="text-on-surface-variant font-label-sm">Performance for September 2024</p>
+</div>
+<div class="text-right">
+<div class="font-display-lg text-4xl">₹84,200</div>
+<div class="text-tertiary-fixed-dim text-sm font-bold flex items-center justify-end gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span> +12% vs last month
+                        </div>
+</div>
+</div>
+<!-- Simple Elegant Chart Placeholder -->
+<div class="h-64 w-full flex items-end justify-between gap-2 px-2">
+<div class="w-full bg-surface-container rounded-t-lg transition-all duration-500 hover:bg-primary" style="height: 40%;"></div>
+<div class="w-full bg-surface-container rounded-t-lg transition-all duration-500 hover:bg-primary" style="height: 65%;"></div>
+<div class="w-full bg-surface-container rounded-t-lg transition-all duration-500 hover:bg-primary" style="height: 50%;"></div>
+<div class="w-full bg-surface-container rounded-t-lg transition-all duration-500 hover:bg-primary" style="height: 85%;"></div>
+<div class="w-full bg-surface-container rounded-t-lg transition-all duration-500 hover:bg-primary" style="height: 70%;"></div>
+<div class="w-full bg-primary rounded-t-lg transition-all duration-500" style="height: 95%;"></div>
+<div class="w-full bg-surface-container rounded-t-lg transition-all duration-500 hover:bg-primary" style="height: 60%;"></div>
+</div>
+<div class="flex justify-between text-on-surface-variant font-label-sm px-2">
+<span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span class="font-bold text-primary">Sat</span><span>Sun</span>
+</div>
+</section>
+<!-- Verification & Modules (Column 9-12) -->
+<section class="md:col-span-4 flex flex-col gap-gutter">
+<div class="bg-primary text-on-primary p-8 rounded-xl ambient-shadow">
+<h3 class="font-headline-md text-2xl mb-4">Training Modules</h3>
+<div class="space-y-4">
+<div class="flex items-center justify-between border-b border-on-primary/10 pb-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary-fixed">emergency_home</span>
+<span class="text-sm">Advanced Pet First Aid</span>
+</div>
+<span class="text-xs bg-white/10 px-2 py-1 rounded">100%</span>
+</div>
+<div class="flex items-center justify-between border-b border-on-primary/10 pb-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined">psychology</span>
+<span class="text-sm">Canine Ethology</span>
+</div>
+<span class="text-xs bg-white/10 px-2 py-1 rounded">65%</span>
+</div>
+<button class="w-full py-3 border border-white/20 rounded-lg text-sm hover:bg-white/5 transition-all">Resume Training</button>
+</div>
+</div>
+<div class="glass p-8 rounded-xl ambient-shadow">
+<h3 class="font-headline-md text-2xl mb-4">Availability</h3>
+<div class="grid grid-cols-7 gap-2 text-center mb-4">
+<span class="text-[10px] text-on-surface-variant uppercase">M</span>
+<span class="text-[10px] text-on-surface-variant uppercase">T</span>
+<span class="text-[10px] text-on-surface-variant uppercase">W</span>
+<span class="text-[10px] text-on-surface-variant uppercase">T</span>
+<span class="text-[10px] text-on-surface-variant uppercase">F</span>
+<span class="text-[10px] text-on-surface-variant uppercase">S</span>
+<span class="text-[10px] text-on-surface-variant uppercase">S</span>
+<div class="w-8 h-8 rounded-full border border-outline-variant flex items-center justify-center text-xs opacity-30">12</div>
+<div class="w-8 h-8 rounded-full border border-outline-variant flex items-center justify-center text-xs opacity-30">13</div>
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-xs font-bold">14</div>
+<div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold">15</div>
+<div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold">16</div>
+<div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold">17</div>
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-xs font-bold">18</div>
+</div>
+<button class="w-full py-2 bg-secondary-container text-primary rounded-lg text-xs font-bold">Manage Calendar</button>
+</div>
+</section>
+<!-- Active Bookings (Column 1-12) -->
+<section class="md:col-span-12">
+<div class="flex justify-between items-center mb-8">
+<h2 class="font-headline-md text-headline-md">Active Bookings</h2>
+<button class="text-primary font-bold flex items-center gap-2">View History <span class="material-symbols-outlined">arrow_forward</span></button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Booking Card 1 -->
+<div class="glass rounded-xl overflow-hidden ambient-shadow flex flex-col group cursor-pointer">
+<div class="h-48 overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A high-resolution, editorial-style photograph of a golden retriever sitting gracefully in a sunlit, modern apartment in Mumbai. The lighting is soft and golden, highlighting the texture of the dog's fur. The background features minimalist, high-end furniture like a velvet sofa and a designer floor lamp, maintaining the luxury pet care brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2BYVoR4DaIsp4t8ZfPmUbLhmoeGqWGAXeelTrYsWy6nll7lGqaXgumBE9xD1CShyLC04fDdl5UcTIhV87--CytfLi4dtpdD3mcr9FEgrdRcLqHOiLbdiTKn5PTbQWzbFTcvCNY-GBBUBE5mu1ZJgNevtFlpgcIoD73nLKvbLmH7zN1AZkw2ZXvSRlbUztW2G-WKFhsaLbSyuj9qZjJ_0dFa6IqkEBQGUy1fDeU_O5G7AyP3gJka2Ig12018Vu8XU9SZyvkQ0QMw"/>
+<div class="absolute top-4 left-4 bg-white/80 backdrop-blur px-3 py-1 rounded-full font-label-sm text-xs">Daycare</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h4 class="font-bold text-lg">Milo</h4>
+<p class="text-on-surface-variant text-sm">Golden Retriever • 3 years</p>
+</div>
+<div class="bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">On Watch</div>
+</div>
+<div class="flex items-center gap-4 text-sm text-on-surface-variant mb-6">
+<div class="flex items-center gap-1"><span class="material-symbols-outlined text-base">schedule</span> 09:00 - 18:00</div>
+<div class="flex items-center gap-1"><span class="material-symbols-outlined text-base">location_on</span> Bandra West</div>
+</div>
+<button class="w-full py-3 bg-primary text-white rounded-lg text-sm font-medium hover:bg-opacity-90 transition-all">Send Update</button>
+</div>
+</div>
+<!-- Booking Card 2 -->
+<div class="glass rounded-xl overflow-hidden ambient-shadow flex flex-col group cursor-pointer">
+<div class="h-48 overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A sophisticated close-up of a Siamese cat with striking blue eyes, lounging on a luxurious silk cushion. The aesthetic is clean and high-key, with a focus on elegant textures and a neutral color palette. The light is diffused and soft, coming from a large window just out of frame, characteristic of a high-end editorial shoot." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDB9FSOovjFIp9WNkNikPTp26NWBBpiGNHasHzYXSBWqpKuHEZN07QcNAA9BrJSnQ1PQ5YD6ei7HQk9tyy2cMDWWAsPXi6Ca-VfqswZTY23PlffKknFcJlJ3O904hLiFIiU8RHfsRVqdCh9Oknq3Bpj12KLU7zftuCQq-XlXctaFzz5eniNDiEtuBkk_qlUWsnd40RoTWpVoBKHwTF2QjC0ifzrb5JtVFiFcu61HjDC0kT57n8PRrVDpwYyH9e_AK23VO0l_-xkIg"/>
+<div class="absolute top-4 left-4 bg-white/80 backdrop-blur px-3 py-1 rounded-full font-label-sm text-xs">Pet Sitting</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h4 class="font-bold text-lg">Zara</h4>
+<p class="text-on-surface-variant text-sm">Siamese Cat • 5 years</p>
+</div>
+<div class="bg-surface-container-highest text-on-surface-variant px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">Check-in Pending</div>
+</div>
+<div class="flex items-center gap-4 text-sm text-on-surface-variant mb-6">
+<div class="flex items-center gap-1"><span class="material-symbols-outlined text-base">calendar_today</span> Oct 12 - Oct 15</div>
+<div class="flex items-center gap-1"><span class="material-symbols-outlined text-base">location_on</span> Juhu</div>
+</div>
+<button class="w-full py-3 bg-white border border-primary text-primary rounded-lg text-sm font-medium hover:bg-primary hover:text-white transition-all">Start Service</button>
+</div>
+</div>
+<!-- Booking Card 3 (Empty State / Call to action) -->
+<div class="border-2 border-dashed border-outline-variant/50 rounded-xl flex flex-col items-center justify-center p-8 text-center group hover:border-primary/30 transition-all cursor-pointer">
+<div class="w-16 h-16 bg-surface-container-low rounded-full flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110">
+<span class="material-symbols-outlined text-3xl text-outline">add_circle</span>
+</div>
+<h4 class="font-bold mb-2">New Inquiry</h4>
+<p class="text-on-surface-variant text-sm max-w-[200px]">You have a pending request for a Labradoodle in South Delhi.</p>
+<button class="mt-6 text-primary text-xs font-bold uppercase tracking-widest border-b border-primary">View Request</button>
+</div>
+</div>
+</section>
+<!-- Report Card Tool (Column 1-12) -->
+<section class="md:col-span-12 glass p-10 rounded-xl ambient-shadow overflow-hidden relative">
+<div class="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+<div>
+<div class="flex items-center gap-4 mb-6">
+<div class="w-12 h-12 bg-tertiary-fixed rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-on-tertiary-fixed">auto_awesome</span>
+</div>
+<h2 class="font-headline-md text-headline-md">Pet Report Card</h2>
+</div>
+<p class="text-on-surface-variant mb-8 text-lg">Generate an elegant summary for Milo’s stay. Include mood tracking, feeding logs, and high-res photo moments for the owner.</p>
+<div class="space-y-6">
+<div class="flex gap-4">
+<div class="flex-1">
+<label class="block text-[10px] uppercase tracking-widest text-on-surface-variant mb-2">Overall Mood</label>
+<div class="flex gap-2">
+<button class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center hover:bg-primary hover:text-white transition-colors">😊</button>
+<button class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center hover:bg-primary hover:text-white transition-colors">😴</button>
+<button class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center hover:bg-primary hover:text-white transition-colors">🎾</button>
+<button class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center hover:bg-primary hover:text-white transition-colors">🍽️</button>
+</div>
+</div>
+</div>
+<div>
+<label class="block text-[10px] uppercase tracking-widest text-on-surface-variant mb-2">Concierge Notes</label>
+<textarea class="w-full bg-transparent border-0 border-b border-outline-variant focus:ring-0 focus:border-primary text-sm p-0 pb-4 resize-none" placeholder="Milo enjoyed his afternoon walk and was particularly fond of the salmon treats today..."></textarea>
+</div>
+<div class="flex gap-4 pt-4">
+<button class="flex-1 py-4 bg-primary text-white rounded-lg text-sm font-bold shadow-xl shadow-primary/10">Generate & Send</button>
+<button class="w-14 h-14 border border-outline-variant rounded-lg flex items-center justify-center hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined">attachment</span>
+</button>
+</div>
+</div>
+</div>
+<div class="hidden md:block">
+<!-- Preview Card -->
+<div class="bg-white rounded-2xl shadow-2xl p-8 transform rotate-2 hover:rotate-0 transition-transform duration-500">
+<div class="flex justify-between items-center mb-6">
+<div class="font-display-lg text-xl tracking-tighter">PetSaathi</div>
+<div class="text-[10px] text-on-surface-variant font-bold">DAILY JOURNAL</div>
+</div>
+<div class="w-full h-40 bg-surface-container rounded-xl mb-6 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A joyful, crisp photo of a dog's smiling face looking directly into the camera lens. The lighting is bright and high-key, with a clean, luxury home background. The image style is polished and evocative of a premium pet lifestyle brand, showcasing high-quality pet care experiences." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJt9VKmc75grxLd5A1ECanaTFrQSo6teYNqAQhVUK9TukXzbuxr9IDyyJOiTMAERUkiNf_-kOfyFD8Ker4JhfgSedaqaH-_Vs4DSdwJKyUPv_LYwgv34qvW8zcd1LrPC09jNKwSqWayN8JZQmR-q1UWaYnHXpOSWcvMcfRYPAILAcYvdlbZI71RVj2KdEksje9LnWkczkO7XEco5i44mvWhKF-6Dv71unHTkROzUSE-L9tQz4mZ7HrSn7lyM06vw6A-ZtYPVgsNA"/>
+</div>
+<div class="space-y-4">
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary w-3/4"></div>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary w-1/2"></div>
+</div>
+<div class="grid grid-cols-2 gap-4 mt-6">
+<div class="h-12 bg-surface-container-low rounded-lg"></div>
+<div class="h-12 bg-surface-container-low rounded-lg"></div>
+</div>
+</div>
+<div class="mt-8 flex justify-center">
+<div class="w-16 h-1 bg-outline-variant/30 rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Decorative background elements -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-surface-container/50 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2"></div>
+<div class="absolute bottom-0 left-0 w-96 h-96 bg-tertiary-fixed/20 rounded-full blur-3xl -z-10 -translate-x-1/4 translate-y-1/4"></div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-section-gap bg-surface-container-lowest dark:bg-on-primary-fixed">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop max-w-container-max mx-auto">
+<div class="md:col-span-1">
+<div class="font-display-lg text-display-lg text-primary mb-6">PetSaathi</div>
+<p class="text-on-surface-variant text-sm mb-8">Redefining luxury pet care for the modern caretaker.</p>
+</div>
+<div>
+<h5 class="font-bold text-sm mb-6 text-primary">Explore</h5>
+<ul class="space-y-4">
+<li><a class="text-on-surface-variant hover:underline transition-all opacity-80 hover:opacity-100" href="#">Our Story</a></li>
+<li><a class="text-on-surface-variant hover:underline transition-all opacity-80 hover:opacity-100" href="#">Partner Program</a></li>
+<li><a class="text-on-surface-variant hover:underline transition-all opacity-80 hover:opacity-100" href="#">Contact Us</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold text-sm mb-6 text-primary">Legal</h5>
+<ul class="space-y-4">
+<li><a class="text-on-surface-variant hover:underline transition-all opacity-80 hover:opacity-100" href="#">Privacy Policy</a></li>
+<li><a class="text-on-surface-variant hover:underline transition-all opacity-80 hover:opacity-100" href="#">Terms of Service</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold text-sm mb-6 text-primary">Join Our Newsletter</h5>
+<p class="text-on-surface-variant text-sm mb-4">Receive curated updates on pet wellness and luxury living.</p>
+<div class="flex gap-2">
+<input class="bg-surface-container border-0 focus:ring-1 focus:ring-primary text-sm rounded-lg flex-1" placeholder="Email address" type="email"/>
+<button class="bg-primary text-white p-2 rounded-lg"><span class="material-symbols-outlined">arrow_forward</span></button>
+</div>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-desktop mt-20 pt-8 border-t border-outline-variant/30 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-on-surface-variant">
+<p>© 2024 PetSaathi Luxury Care. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="hover:text-primary" href="#">Instagram</a>
+<a class="hover:text-primary" href="#">LinkedIn</a>
+<a class="hover:text-primary" href="#">Twitter</a>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interaction for report card tool mood buttons
+        const moodButtons = document.querySelectorAll('button.hover\\:bg-primary');
+        moodButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                moodButtons.forEach(b => {
+                    b.classList.remove('bg-primary', 'text-white');
+                    b.classList.add('border-outline-variant');
+                });
+                btn.classList.remove('border-outline-variant');
+                btn.classList.add('bg-primary', 'text-white');
+                
+                // Haptic-like visual feedback
+                btn.classList.add('scale-90');
+                setTimeout(() => btn.classList.remove('scale-90'), 150);
+            });
+        });
+
+        // Animation for chart bars on load
+        document.addEventListener('DOMContentLoaded', () => {
+            const bars = document.querySelectorAll('div[style*="height"]');
+            bars.forEach(bar => {
+                const targetHeight = bar.style.height;
+                bar.style.height = '0%';
+                setTimeout(() => {
+                    bar.style.transition = 'height 1.5s cubic-bezier(0.22, 1, 0.36, 1)';
+                    bar.style.height = targetHeight;
+                }, 200);
+            });
+        });
+    </script>
+</body></html>
