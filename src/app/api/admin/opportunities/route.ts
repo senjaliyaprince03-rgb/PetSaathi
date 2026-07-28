@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
     programmeType: body.programmeType,
     estimatedValue: body.estimatedValue,
     leadSource: body.leadSource,
-    ownerId: body.ownerId ?? identity.userId,
+    ownerId: body.ownerId ?? identity.id,
     notes: body.notes,
   });
   return NextResponse.json(opp, { status: 201 });

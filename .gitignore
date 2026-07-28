@@ -35,3 +35,22 @@ next-env.d.ts
 # local specification rendering output
 /analysis/tmp/
 /analysis/tmp-elevated/
+# Logs
+*.log
+
+# Temp build scripts
+build_*.py
+fill_*.py
+create_*.py
+scripts/build_*.py
+scripts/fill_*.py
+scripts/fix_*.py
+scripts/create_*.py
+scripts/simplify_*.py
+
+# Temp output
+output/
+tmp/
+extracted_images/
+test_*.pdf
+videos/

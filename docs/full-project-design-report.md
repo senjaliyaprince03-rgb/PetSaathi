@@ -33,9 +33,9 @@ This audit supersedes any earlier statement that the full project design was com
 | Layout scale | Shared container, spacing, radii, shadow, and typography tokens in `tailwind.config.ts` | Done |
 | Public shell | Header, desktop navigation, CTA, footer in `src/components/marketing/public-shell.tsx` | Partial — mobile navigation is missing |
 | Authenticated shell | Customer, Saathi, admin, and society workspace system in `src/components/portal/portal-shell.tsx` | Partial — many admin routes do not use it and mobile access is incomplete |
-| Brand identity | Supplied dog-and-cat logo, exact wordmark, responsive mark, dark-footer variant in `src/components/brand/logo.tsx` | Done for web headers |
+| Brand identity | The exact supplied dog-and-cat `PET SAATHI / SINCE 2026` master image is rendered unchanged by `src/components/brand/logo.tsx` | Done for web headers |
 | Buttons and fields | Shared button variants and `.form-control` system | Done |
-| Motion | Homepage reveals, custom cursor, route transition, and reduced-motion CSS | Partial |
+| Motion | Global Animos-inspired reveal/focus system, homepage choreography, route transitions, and reduced-motion handling | Done; documented in `docs/motion-system.md` |
 | Loading and error states | `src/app/loading.tsx`, `src/app/global-error.tsx`, `src/app/(portal)/error.tsx` | Done |
 | Responsive foundations | Mobile/desktop grid and typography utilities across migrated surfaces | Partial — authenticated QA is incomplete |
 | Content integrity | Real records and honest empty states replace fabricated dashboard/provider content | Done on migrated surfaces |
@@ -156,8 +156,7 @@ This audit supersedes any earlier statement that the full project design was com
 
 ### Done
 
-- Responsive web logo component using the supplied dog-and-cat artwork.
-- Exact `PET SAATHI / SINCE 2026` wordmark asset.
+- Shared web logo component rendering the exact supplied `PET SAATHI / SINCE 2026` master image without cropping, recoloring, filtering, or reconstruction.
 - Homepage marketing experience and local editorial imagery.
 - Shared button variants, form-control class, focus-visible outline, and touch highlight handling.
 - Public information shell and role-based portal shell.
@@ -177,8 +176,8 @@ This audit supersedes any earlier statement that the full project design was com
 3. **Admin shell adoption**  
    Most specialist admin pages use the correct visual tokens but bypass `PortalShell`, causing navigation and hierarchy drift.
 
-4. **Motion accessibility**  
-   Homepage motion checks `useReducedMotion`, and global CSS reduces CSS animation. The Framer Motion route transition in `src/app/template.tsx` does not directly read the user preference.
+4. **Motion browser QA**
+   The global observer, homepage choreography, scroll primitives, and route transition now respect reduced motion. Authenticated cross-browser visual QA is still pending.
 
 5. **Responsive data tables**  
    Legacy B2B/operator tables do not have a documented mobile card, column-priority, or horizontal-scroll treatment.
@@ -204,9 +203,8 @@ This audit supersedes any earlier statement that the full project design was com
 
 | Asset area | Status | Notes |
 | --- | --- | --- |
-| Web header logo | Done | Uses supplied animal artwork plus exact wordmark. |
-| Compact mark | Done | `public/images/petsaathi-logo-mark.png`. |
-| Full transparent lockup | Done | `public/images/petsaathi-logo-lockup.png`. |
+| Official web logo | Done | `public/images/petsaathi-logo-official.png` is byte-identical to the user-supplied image and is used directly by every shared web header/footer. |
+| Earlier derived logo assets | Cleanup pending | Mark, wordmark, and transparent derivatives remain stored but are no longer rendered by the shared logo component. |
 | App Router icon | Done | `src/app/icon.png` uses the supplied dog-and-cat artwork. |
 | PWA icons | **Not done** | `public/icons/icon-192.svg` and `icon-512.svg` still contain the removed generic pet-face mark. |
 | Web manifest colors | Partial | Still uses older `#fffaf1` / `#f4b134` identity values rather than the current logo-led palette. |
@@ -222,11 +220,11 @@ This audit supersedes any earlier statement that the full project design was com
 | Authenticated accessibility | No role-authenticated Axe coverage | Not done |
 | Desktop browser E2E | Chromium configuration exists | Partial |
 | Mobile browser E2E | Pixel 7 project exists | Partial |
-| Homepage E2E assertions | Test copy still expects an older hero (`Their world stays warm`, `Find my PetSaathi`) | **Outdated / failing risk** |
+| Homepage E2E assertions | Current hero, finder, care films, proposal preview, report card, journey explorer, ecosystem links, and booking-prefill paths are covered | Updated; live browser execution pending |
 | Visual regression | Screenshots only on failure; no approved baselines | Not done |
 | Mobile overflow | Homepage-only overflow assertion | Partial |
 | Keyboard navigation | No complete route-by-route automated test | Not done |
-| Reduced motion | CSS fallback plus homepage hook | Partial |
+| Reduced motion | CSS fallback plus direct hooks in homepage, route transition, scroll, parallax, scale, rotation, and floating primitives | Done |
 
 ## 7. Unused or obsolete design code
 
@@ -251,9 +249,9 @@ These should be deliberately integrated, migrated, or removed. They should not r
 - All 80 routed page files were enumerated from `src/app/**/page.tsx`.
 - 55 TSX component files, 31 portal components, 9 form components, 22 public assets, and 16 image assets were included in the source inventory.
 - The new logo integration passes targeted ESLint.
-- A full TypeScript pass still fails in older B2B/API/reporting code. No current failure points to the new logo component.
-- The production bundler previously reached **Compiled successfully** before repository-wide lint/type gates stopped the build on older admin/B2B/API issues.
-- This checkout is **not a Git repository**, so the saved report and design files are present on local disk but cannot be committed from this directory.
+- The full strict TypeScript pass is clean as of 23 July 2026.
+- ESLint completes with zero warnings, all 61 unit tests pass, and the production build generates all 80 pages successfully.
+- This checkout has Git metadata; the saved report and design files remain local and uncommitted until the user requests a commit.
 - No current public deployment was verified in this audit. Local source completion must not be presented as proof that a separately hosted URL shows the same design.
 
 ## 9. Prioritized completion backlog
@@ -282,7 +280,6 @@ These should be deliberately integrated, migrated, or removed. They should not r
 | --- | ---: | --- |
 | Add branded 404 and route-level skeletons | 4–6 hours | Edge states feel less intentional. |
 | Add toast/dialog/drawer primitives | 1 day | Action feedback remains inconsistent. |
-| Update stale homepage E2E assertions | 1–2 hours | CI may report false failures. |
 | Add authenticated Axe and visual-regression coverage | 1–2 days | Regressions remain difficult to detect. |
 | Document component states/tokens | 1 day | Future screens may drift from the design system. |
 
@@ -297,3 +294,94 @@ These should be deliberately integrated, migrated, or removed. They should not r
 ## 11. Final truth statement
 
 The primary PetSaathi marketing, customer, Saathi, booking, society, safety, support, and moderation experiences now have a distinctive premium light-luxury direction. The project is **not yet fully design-complete** because 24 routes remain partially integrated and 11 routes have not been migrated from legacy styling. The files are saved locally in the audited checkout, and this report is the authoritative full-project design status until those remaining surfaces are completed and re-audited.
+
+## 12. Homepage expansion addendum — 23 July 2026
+
+The PetBacker-inspired discovery work has been expanded without copying PetBacker branding, page structure, customer claims, or proprietary assets.
+
+### Added and complete
+
+- Interactive four-path care journey explorer for dog walking, home visits, at-home grooming, and veterinary support.
+- Accessible tab and tab-panel semantics with selected-state feedback.
+- Reduced-motion-aware panel transitions.
+- Service-specific previews for the information a family shares, the checks PetSaathi performs, and the record the family receives.
+- Booking deep links that preserve the selected service code.
+- Three premium ecosystem pathways for membership, residential societies, and the care journal.
+- Responsive two-column mobile and four-column desktop journey controls.
+- Original PetSaathi copy and existing project-owned image assets throughout.
+- Updated Playwright coverage for journey switching, selected-state semantics, content changes, and service-intent preservation.
+
+### Current validation
+
+- `npm run typecheck` — passed.
+- `npm run lint` — passed with zero warnings.
+- `npm run test` — 25 files and 61 tests passed.
+- `npm run build` — passed; all 80 pages generated.
+- Live browser and 375px visual verification remain pending because the instructed production server on `127.0.0.1:3110` was not listening and was not restarted.
+
+## 13. Care concierge and original editorial imagery — 23 July 2026
+
+### Added and complete
+
+- Three-step guided care recommender with pet selection, care-need selection, and a service-specific result.
+- Safe recommendation mapping for dog walking, home visits, at-home grooming, and non-emergency veterinary support.
+- Emergency limitation copy shown when veterinary support is selected.
+- Booking deep links preserve both the recommended service code and selected pet type.
+- Restartable recommender flow with progress feedback, `aria-pressed` states, an `aria-live` result, and reduced-motion-aware transitions.
+- New animated editorial story explaining staged access, meaningful updates, and traceable exceptions.
+- Two original PetSaathi editorial images generated specifically for this project and visually inspected after conversion.
+- Optimized WebP delivery: approximately 4.5 MB of generated PNG source reduced to approximately 350 KB of project assets.
+- Playwright coverage for home-visit recommendations, pet-context preservation, and veterinary emergency limitations.
+
+### New project assets
+
+- `public/images/care-handover-editorial-v2.webp`
+- `public/images/care-observation-editorial-v2.webp`
+
+## 14. Image-led hero, service rail and consent-safe story carousel — 23 July 2026
+
+### Added and complete
+
+- Full-width homepage hero image layer using the original PetSaathi handover editorial image.
+- Normal document-scroll behavior matching the reference site, without fixed-background rendering.
+- A substantially lighter directional cream gradient preserves text and finder contrast while keeping the image clearly visible.
+- Six-item service shortcut rail overlapping the hero/content boundary.
+- Direct service-prefilled booking links for walking, home visits, grooming, veterinary support and training.
+- Previous/next care-story carousel with animated transitions and one-card mobile presentation.
+- Public testimonial reader that returns only `PUBLISHED` stories with a current, non-withdrawn consent record.
+- `public_testimonials` feature flag enforcement and graceful empty/degraded responses.
+- Clearly labelled preview stories when public testimonials are disabled; the project does not fabricate customer ratings or reviews.
+- Playwright assertions for the service rail, service deep links and carousel controls.
+
+### Live verification
+
+- The existing server on `127.0.0.1:3110` rendered the current source without being restarted.
+- The hero now uses a real optimized full-bleed Next.js image layer, matching the reference site’s scroll behavior.
+- Six service shortcuts render in the overlapping rail with the expected booking URLs.
+- The care-story carousel renders three desktop cards, and the next control changes the leading card.
+- The 375px accessibility snapshot renders one visible story card and all six service shortcuts.
+- Browser runtime logs contained zero warnings and zero errors during this focused check.
+
+### Build boundary
+
+- Strict TypeScript, zero-warning ESLint and all 61 unit tests pass.
+- An isolated offline build reached `Compiled successfully`.
+- Full post-compile route generation remains blocked in this Windows environment by `spawn EPERM`.
+- The normal `npm run build` cannot replace Prisma's query-engine DLL while the existing production process holds it open; that process was deliberately not stopped.
+
+## 15. Hero visibility and duplicate-image correction — 23 July 2026
+
+### Corrected
+
+- `care-handover-editorial-v2.webp` is now referenced only once: the homepage hero.
+- Removed the same handover image from the Care Concierge and story carousel.
+- Removed the care-observation image from the story carousel so it remains exclusive to the care-detail section.
+- Replaced CSS fixed-background rendering with a full-bleed optimized image layer that scrolls normally like the reference site.
+- Reduced the hero overlay opacity and decorative grid strength so the photograph remains clearly visible.
+- Added three dedicated, non-reused story-card images for home care, dog walking and at-home grooming.
+
+### New unique assets
+
+- `public/images/care-story-home-v1.webp`
+- `public/images/care-story-walk-v1.webp`
+- `public/images/care-story-grooming-v1.webp`

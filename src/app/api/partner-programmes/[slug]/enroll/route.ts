@@ -24,7 +24,7 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ slu
     // For MVP, we just create the pending membership
     const method = (body.verificationMethod as EligibilityMethod) || programme.eligibilityMethod;
     
-    const membership = await enrollMember(programme.id, identity.userId, method);
+    const membership = await enrollMember(programme.id, identity.id, method);
     return NextResponse.json(membership, { status: 201 });
   } catch (err) {
     const message = err instanceof Error ? err.message : "Enrollment failed";

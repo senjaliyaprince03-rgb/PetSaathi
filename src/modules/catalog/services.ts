@@ -6,56 +6,62 @@ export type CoreServiceCode = (typeof coreServiceCodes)[number];
 export const services = [
   {
     slug: "dog-walking",
-    name: "Dog walking",
-    kicker: "30 or 60 minutes",
-    description: "A familiar Saathi, a controlled service window and a clear walk report when your pet is back home.",
+    name: "Dog Walking",
+    kicker: "30 or 60-Minute Outings",
+    description: "Assigned local Saathi, GPS-tracked routes, timed pee/poop logs, and a complete post-walk report.",
     tone: "saffron",
-    icon: MapPinned
+    icon: MapPinned,
+    image: "/images/service_dog_walking_v2.jpg"
   },
   {
     slug: "home-pet-sitting",
-    name: "Home pet sitting",
-    kicker: "Comfort in their own space",
-    description: "Feeding, water, play and calm company—guided by the care instructions you choose to share.",
+    name: "Home Pet Sitting",
+    kicker: "In-Home Companionship & Care",
+    description: "Nutritional feeding, fresh water, playful interaction, and home safety checks tailored to your pet's routine.",
     tone: "coral",
-    icon: Home
+    icon: Home,
+    image: "/images/service_pet_sitting_v2.jpg"
   },
   {
     slug: "boarding-beta",
-    name: "Boarding beta",
-    kicker: "Availability confirmed manually",
-    description: "A carefully controlled beta for assessed hosts, compatible pets and administrator-approved stays.",
+    name: "Boarding Beta",
+    kicker: "Verified Host Residences",
+    description: "Exclusive, hand-assessed host homes with pet compatibility matching and 24/7 supervisor check-ins.",
     tone: "leaf",
-    icon: ShieldCheck
+    icon: ShieldCheck,
+    image: "/images/service-pet-boarding.jpg"
   },
   {
     slug: "grooming",
-    name: "Grooming-at-Home",
-    kicker: "Verified groomers at your doorstep",
-    description: "Transparent packages, hygienic equipment, and before-and-after reports without leaving your house.",
+    name: "In-Home Grooming",
+    kicker: "Sanitized Mobile Spa",
+    description: "Professional groomers, hypoallergenic coat treatments, sanitized tools, and photo report cards.",
     tone: "blue",
-    icon: PawPrint
+    icon: PawPrint,
+    image: "/images/service-pet-grooming.jpg"
   },
   {
     slug: "veterinary",
-    name: "Veterinary Support",
-    kicker: "Records, routing, and physical care",
-    description: "Connect with registered veterinary professionals. We route emergencies straight to the clinic.",
+    name: "Veterinary Care",
+    kicker: "Certified Health Professionals",
+    description: "In-person wellness checkups, digital pet health passports, and priority clinic emergency routing.",
     tone: "teal",
-    icon: ShieldCheck
+    icon: ShieldCheck,
+    image: "/images/service-vet-care.jpg"
   },
   {
     slug: "training",
-    name: "Dog Training",
-    kicker: "Reward-based learning",
-    description: "Humane, rewards-based coaching from verified trainers to help you and your pet communicate better.",
+    name: "Positivity Training",
+    kicker: "Certified Positive Reinforcement",
+    description: "Gentle, science-based behavioral coaching designed to strengthen trust and communication.",
     tone: "indigo",
-    icon: HeartHandshake
+    icon: HeartHandshake,
+    image: "/images/service-dog-training.jpg"
   }
 ] as const;
 
 export const trustSignals = [
-  { label: "Service-approved caregivers", icon: PawPrint },
-  { label: "Structured updates and reports", icon: Clock3 },
-  { label: "Human support for exceptions", icon: HeartHandshake }
+  { label: "100% Background-Checked Saathis", icon: PawPrint },
+  { label: "Real-Time Telemetry & Photo Reports", icon: Clock3 },
+  { label: "24/7 Human Exception Support", icon: HeartHandshake }
 ] as const;

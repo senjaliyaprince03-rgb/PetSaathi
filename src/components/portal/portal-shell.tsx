@@ -127,7 +127,7 @@ export function PortalShell({ mode, displayName, metrics, children }: { mode: Po
         <section className="min-w-0">
           <nav className="mb-5 flex gap-2 overflow-x-auto pb-2 lg:hidden" aria-label="Mobile workspace navigation">{portalNavigation[mode].slice(0, 6).map(({ icon: NavIcon, label, href }, index) => <Link key={label} href={href} className={cn("flex shrink-0 items-center gap-2 rounded-full border px-4 py-2.5 text-xs font-bold", index === 0 ? "border-ink bg-ink text-paper" : "border-indigo/10 bg-paper text-ink/60")}><NavIcon className="h-3.5 w-3.5" />{label}</Link>)}</nav>
 
-          <div className="luxury-grid relative overflow-hidden rounded-5xl border border-indigo/10 bg-gradient-to-br from-[#f3eafa] via-paper to-[#fff1e8] p-7 shadow-soft sm:p-10 xl:p-12">
+          <div className="luxury-grid relative overflow-hidden rounded-5xl border border-indigo/10 bg-gradient-to-br from-[#f3eafa] via-paper to-[#fff1e8] p-7 shadow-soft sm:p-10 xl:p-12" data-motion="rise">
             <div className="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-indigo/10 blur-3xl" />
             <div className="absolute -bottom-28 right-1/4 h-56 w-56 rounded-full bg-coral/10 blur-3xl" />
             <div className="relative max-w-3xl"><p className="eyebrow">{copy.eyebrow}</p><h1 className="mt-5 max-w-[13ch] font-display text-5xl font-semibold leading-[0.98] tracking-[-0.055em] text-ink sm:text-6xl xl:text-7xl">{copy.title}</h1><p className="mt-6 max-w-2xl text-base leading-7 text-ink/58 sm:text-lg">{copy.description}</p><Link href={copy.href} className={cn(buttonVariants({ variant: "accent" }), "mt-7")}>{copy.primary}<ArrowUpRight className="h-4 w-4" /></Link></div>

@@ -18,7 +18,7 @@ export default defineConfig({
     { name: "mobile", use: { ...devices["Pixel 7"] } }
   ],
   webServer: {
-    command: "npm run dev -- --hostname 127.0.0.1 --port 3110",
+    command: "npm run dev",
     url: "http://127.0.0.1:3110/api/health",
     reuseExistingServer: false,
     timeout: 120_000

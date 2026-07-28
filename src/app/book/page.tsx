@@ -10,9 +10,21 @@ import { calculateQuote } from "@/modules/pricing/economics";
 
 export const metadata: Metadata = { title: "Find pet care" };
 
-export default async function BookPage() {
+type BookSearchParams = Promise<Record<string, string | string[] | undefined>>;
+
+function firstParam(value: string | string[] | undefined) {
+  return Array.isArray(value) ? value[0] : value;
+}
+
+export default async function BookPage({ searchParams }: { searchParams: BookSearchParams }) {
+  const query = await searchParams;
+  const requestedService = firstParam(query.service);
+  const requestedPetType = firstParam(query.petType);
+  const requestedLocality = firstParam(query.locality)?.trim().slice(0, 120);
+  const initialService = coreServiceCodes.includes(requestedService as CoreServiceCode) ? requestedService as CoreServiceCode : undefined;
+  const initialPetType = requestedPetType === "DOG" || requestedPetType === "CAT" || requestedPetType === "OTHER" ? requestedPetType : undefined;
   const identity = await getCurrentIdentity();
-  if (!identity?.roles.includes("CUSTOMER")) return <PublicShell><PageIntro eyebrow="care protocol request" title="Let’s plan the right kind of care." description="Start with the service, your pet and the time. A suitable Saathi is proposed only after eligibility and local availability are checked." /><div className="container-shell"><CareProtocolGuide /><BookingWizard /></div></PublicShell>;
+  if (!identity?.roles.includes("CUSTOMER")) return <PublicShell><PageIntro eyebrow="care protocol request" title="Let’s plan the right kind of care." description="Start with the service, your pet and the time. A suitable Saathi is proposed only after eligibility and local availability are checked." /><div className="container-shell"><CareProtocolGuide /><BookingWizard initialValues={{ service: initialService, petType: initialPetType, locality: requestedLocality }} /></div></PublicShell>;
 
   const now = new Date();
   const [pets, addresses, serviceRows, serviceAreas, priceRows] = await Promise.all([
@@ -35,7 +47,7 @@ export default async function BookPage() {
   });
   const activeServices = serviceRows.map(({ id: _id, ...service }) => ({ ...service, code: service.code as CoreServiceCode }));
   const addressOptions = addresses.map(({ state: _state, postalCode: _postalCode, ...address }) => address);
-  return <PublicShell><PageIntro eyebrow="private care protocol" title="Let’s plan their care." description="Only approved prices and open service-area capacity can become a confirmed request." /><div className="container-shell"><CareProtocolGuide /><AuthenticatedBookingForm pets={pets} addresses={addressOptions} services={activeServices} prices={priceOptions} /></div></PublicShell>;
+  return <PublicShell><PageIntro eyebrow="private care protocol" title="Let’s plan their care." description="Only approved prices and open service-area capacity can become a confirmed request." /><div className="container-shell"><CareProtocolGuide /><AuthenticatedBookingForm pets={pets} addresses={addressOptions} services={activeServices} prices={priceOptions} initialService={initialService} /></div></PublicShell>;
 }
 
 function CareProtocolGuide() {

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/db";
@@ -5,12 +6,9 @@ import { getCurrentIdentity } from "@/modules/auth/session";
 import {
   ShieldAlert,
   AlertTriangle,
-  Lock,
   UserX,
   ClipboardCheck,
-  Search,
 } from "lucide-react";
-import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 

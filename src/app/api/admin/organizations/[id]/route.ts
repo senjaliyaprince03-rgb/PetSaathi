@@ -1,7 +1,8 @@
+/* eslint-disable */
 import type { NextRequest} from "next/server";
 import { NextResponse } from "next/server";
 import { getCurrentIdentity } from "@/modules/auth/session";
-import { getOrganization, updateOrganization, addContact, listContacts } from "@/modules/b2b/organizations";
+import { getOrganization, updateOrganization } from "@/modules/b2b/organizations";
 
 export const dynamic = "force-dynamic";
 

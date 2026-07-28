@@ -21,11 +21,12 @@ type AddressOption = { id: string; label: string; locality: string; city: string
 type ServiceOption = { code: CoreServiceCode; name: string; durationMinutes: number | null };
 type PriceOption = { addressId: string; serviceCode: CoreServiceCode; servicePriceId: string; subtotalPaise: number; taxPaise: number; totalPaise: number; currency: string };
 
-export function AuthenticatedBookingForm({ pets, addresses, services, prices }: { pets: PetOption[]; addresses: AddressOption[]; services: ServiceOption[]; prices: PriceOption[] }) {
+export function AuthenticatedBookingForm({ pets, addresses, services, prices, initialService }: { pets: PetOption[]; addresses: AddressOption[]; services: ServiceOption[]; prices: PriceOption[]; initialService?: CoreServiceCode }) {
   const [reference, setReference] = useState<string | null>(null);
   const [serverError, setServerError] = useState<string | null>(null);
   const [assessmentData, setAssessmentData] = useState<Record<string, unknown>>({});
-  const form = useForm<RequestInput>({ resolver: zodResolver(requestSchema), defaultValues: { petId: pets[0]?.id ?? "", addressId: addresses[0]?.id ?? "", serviceCode: services[0]?.code ?? "DOG_WALK_30", scheduledStart: "", customerNotes: "" } });
+  const availableInitialService = services.some((service) => service.code === initialService) ? initialService : undefined;
+  const form = useForm<RequestInput>({ resolver: zodResolver(requestSchema), defaultValues: { petId: pets[0]?.id ?? "", addressId: addresses[0]?.id ?? "", serviceCode: availableInitialService ?? services[0]?.code ?? "DOG_WALK_30", scheduledStart: "", customerNotes: "" } });
 
   if (!pets.length || !addresses.length) return <div className="glass-panel mx-auto max-w-2xl rounded-5xl p-8 text-center sm:p-12"><PawPrint className="mx-auto h-10 w-10 text-coral" /><h2 className="mt-5 font-display text-4xl font-semibold">Add the care essentials first.</h2><p className="mt-4 leading-7 text-ink/60">A booking needs one private pet profile and one service address before matching can begin.</p><div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">{!pets.length && <Link href="/pets/new" className={buttonVariants({ variant: "accent" })}>Add a pet</Link>}{!addresses.length && <Link href="/addresses/new" className={buttonVariants({ variant: "outline" })}>Add an address</Link>}</div></div>;
 

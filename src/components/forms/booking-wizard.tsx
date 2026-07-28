@@ -23,6 +23,7 @@ const bookingSchema = z.object({
 });
 
 type BookingInput = z.infer<typeof bookingSchema>;
+type BookingPrefill = Partial<Pick<BookingInput, "service" | "petType" | "locality">>;
 
 const stepFields: Array<Array<keyof BookingInput>> = [
   ["service"],
@@ -42,13 +43,23 @@ const services = [
   ["PET_TAXI", "Pet taxi", "Safe transport for your pet"]
 ] as const;
 
-export function BookingWizard() {
+export function BookingWizard({ initialValues = {} }: { initialValues?: BookingPrefill }) {
   const [step, setStep] = useState(0);
   const [attemptedStep, setAttemptedStep] = useState<number | null>(null);
   const [submitted, setSubmitted] = useState(false);
   const form = useForm<BookingInput>({
     resolver: zodResolver(bookingSchema),
-    defaultValues: { service: "DOG_WALK_30", petType: "DOG", petName: "", date: "", time: "", locality: "", parentName: "", phone: "", notes: "" }
+    defaultValues: {
+      service: initialValues.service ?? "DOG_WALK_30",
+      petType: initialValues.petType ?? "DOG",
+      petName: "",
+      date: "",
+      time: "",
+      locality: initialValues.locality ?? "",
+      parentName: "",
+      phone: "",
+      notes: ""
+    }
   });
 
   const next = async () => {

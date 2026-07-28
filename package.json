@@ -6,7 +6,7 @@
     "node": ">=20.18.0"
   },
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --hostname 127.0.0.1 --port 3110",
     "build": "prisma generate && next build",
     "start": "next start",
     "lint": "eslint . --max-warnings=0",

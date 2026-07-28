@@ -24,7 +24,7 @@ const serverSchema = z.object({
 });
 
 const publicSchema = z.object({
-  NEXT_PUBLIC_APP_URL: z.string().url().default("http://localhost:3000"),
+  NEXT_PUBLIC_APP_URL: z.string().url().default("http://127.0.0.1:3110"),
   NEXT_PUBLIC_SUPABASE_URL: z.string().url().optional(),
   NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string().min(1).optional(),
   NEXT_PUBLIC_RAZORPAY_KEY_ID: z.string().min(1).optional(),

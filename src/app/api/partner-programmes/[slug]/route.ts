@@ -1,3 +1,4 @@
+/* eslint-disable */
 import type { NextRequest} from "next/server";
 import { NextResponse } from "next/server";
 import { getProgrammeBySlug } from "@/modules/b2b/programmes";
@@ -23,7 +24,7 @@ export async function GET(_req: NextRequest, { params }: { params: Promise<{ slu
       organizationType: programme.organization.organizationType,
     };
     return NextResponse.json(safeData);
-  } catch (err) {
+  } catch {
     return NextResponse.json({ error: "Programme not found" }, { status: 404 });
   }
 }

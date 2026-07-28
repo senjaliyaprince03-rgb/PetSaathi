@@ -93,6 +93,22 @@
     @apply min-h-14 w-full rounded-2xl border border-ink/15 bg-paper/85 px-4 text-sm text-ink shadow-sm outline-none transition placeholder:text-ink/35 focus:border-indigo/45 focus:ring-4 focus:ring-indigo/10;
   }
 
+  .hero-film-control {
+    @apply inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-paper/20 bg-ink/35 text-paper backdrop-blur-xl transition hover:scale-105 hover:bg-paper hover:text-ink focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-saffron/45;
+  }
+
+  .care-finder-field {
+    @apply rounded-2xl border border-indigo/10 bg-cream/[0.65] px-3 py-2.5 transition focus-within:border-indigo/[0.35] focus-within:bg-paper focus-within:ring-4 focus-within:ring-indigo/[0.07];
+  }
+
+  .care-finder-label {
+    @apply flex items-center gap-1.5 text-[0.6rem] font-bold uppercase tracking-[0.16em] text-ink/[0.38];
+  }
+
+  .care-finder-input {
+    @apply mt-1.5 min-h-7 w-full appearance-none border-0 bg-transparent p-0 text-sm font-bold text-ink outline-none placeholder:font-medium placeholder:text-ink/30 focus:ring-0;
+  }
+
   .status-dot {
     @apply inline-block h-2 w-2 rounded-full bg-leaf shadow-[0_0_0_4px_rgb(var(--leaf)/0.12)];
   }
@@ -151,6 +167,111 @@
   50% { background-position: 100% 50%; }
 }
 
+/* Animos-inspired motion language: split reveal, depth stack, grid stagger and focus shift. */
+html[data-motion="ready"] [data-motion-auto] {
+  --motion-delay: 0ms;
+  opacity: 0;
+  transition:
+    opacity 720ms cubic-bezier(0.16, 1, 0.3, 1) var(--motion-delay),
+    translate 820ms cubic-bezier(0.16, 1, 0.3, 1) var(--motion-delay),
+    scale 820ms cubic-bezier(0.16, 1, 0.3, 1) var(--motion-delay),
+    rotate 820ms cubic-bezier(0.16, 1, 0.3, 1) var(--motion-delay),
+    filter 720ms cubic-bezier(0.16, 1, 0.3, 1) var(--motion-delay),
+    clip-path 900ms cubic-bezier(0.16, 1, 0.3, 1) var(--motion-delay);
+  will-change: opacity, translate, scale, filter, clip-path;
+}
+
+html[data-motion="ready"] [data-motion-auto="rise"] {
+  translate: 0 1.65rem;
+  scale: 0.992;
+}
+
+html[data-motion="ready"] [data-motion-auto="depth"] {
+  translate: 0 2rem;
+  scale: 0.975;
+  rotate: x 3deg;
+  transform-origin: center bottom;
+}
+
+html[data-motion="ready"] [data-motion-auto="focus"] {
+  translate: 0 1.1rem;
+  scale: 0.985;
+  filter: blur(6px);
+}
+
+html[data-motion="ready"] [data-motion-auto="wipe"] {
+  translate: -1.25rem 0;
+  clip-path: inset(0 100% 0 0);
+}
+
+html[data-motion="ready"] [data-motion-auto="split"] {
+  translate: 0 0.75rem;
+  clip-path: inset(0 0 100% 0);
+}
+
+html[data-motion="ready"] [data-motion-auto][data-motion-visible="true"] {
+  opacity: 1;
+  translate: 0 0;
+  scale: 1;
+  rotate: x 0deg;
+  filter: none;
+  clip-path: inset(0 0 0 0);
+  will-change: auto;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  main article,
+  main .surface-card,
+  main .glass-panel {
+    transition-property: opacity, translate, scale, box-shadow, border-color, background-color;
+    transition-duration: 360ms;
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  main article:hover,
+  main .surface-card:hover {
+    translate: 0 -0.28rem;
+    scale: 1.006;
+  }
+
+  main :is(.grid, .flex):has(> article:hover) > article:not(:hover) {
+    opacity: 0.82;
+    scale: 0.99;
+  }
+
+  main article img {
+    transition: transform 900ms cubic-bezier(0.16, 1, 0.3, 1), filter 500ms ease;
+  }
+
+  main article:hover img {
+    transform: scale(1.025);
+  }
+
+  :is(a, button):active {
+    scale: 0.985;
+  }
+}
+
+/* Animos Spring Physics & Kinetic Utilities */
+.animos-spring-ease {
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animos-magnetic-active {
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.animos-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background-size: 200% 100%;
+  animation: animosShimmer 2.5s infinite;
+}
+
+@keyframes animosShimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -172,5 +293,14 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  [data-motion-auto] {
+    opacity: 1 !important;
+    translate: none !important;
+    scale: 1 !important;
+    rotate: none !important;
+    filter: none !important;
+    clip-path: none !important;
   }
 }

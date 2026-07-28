@@ -94,13 +94,14 @@ const config: Config = {
       },
       "fontFamily": {
         "display": ["var(--font-playfair)", "Georgia", "serif"],
-        "sans": ["var(--font-manrope)", "var(--font-inter)", "sans-serif"],
+        "sans": ["var(--font-jakarta)", "var(--font-manrope)", "var(--font-inter)", "sans-serif"],
+        "outfit": ["var(--font-outfit)", "var(--font-jakarta)", "sans-serif"],
         "display-lg": ["var(--font-playfair)", "serif"],
-        "label-sm": ["var(--font-inter)", "sans-serif"],
+        "label-sm": ["var(--font-jakarta)", "sans-serif"],
         "headline-md": ["var(--font-playfair)", "serif"],
-        "body-lg": ["var(--font-inter)", "sans-serif"],
+        "body-lg": ["var(--font-jakarta)", "sans-serif"],
         "display-lg-mobile": ["var(--font-playfair)", "serif"],
-        "body-md": ["var(--font-inter)", "sans-serif"]
+        "body-md": ["var(--font-jakarta)", "sans-serif"]
       },
       "fontSize": {
         "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],

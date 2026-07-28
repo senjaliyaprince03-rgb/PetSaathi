@@ -3,24 +3,212 @@ import { expect, test } from "@playwright/test";
 test("public homepage exposes the core conversion paths", async ({ page }) => {
   await page.goto("/");
 
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("Their world stays warm");
-  await expect(page.getByRole("link", { name: /find my petsaathi/i })).toBeVisible();
-  const careThread = page.getByRole("heading", { name: "Care you can follow." });
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Care That Feels Like Family.");
+  await expect(page.getByRole("button", { name: "Find My Verified Saathi" })).toBeVisible();
+  await expect(page.getByRole("navigation", { name: "Quick service shortcuts" })).toBeVisible();
+  const careStories = page.getByRole("heading", { name: "See the details families can compare." });
+  await careStories.scrollIntoViewIfNeeded();
+  await expect(careStories).toBeVisible();
+  const careThread = page.getByRole("heading", { name: "Four clear moments. One accountable thread." });
   await careThread.scrollIntoViewIfNeeded();
   await expect(careThread).toBeVisible();
-  const handover = page.getByRole("heading", { name: "Trust begins before the door closes." });
-  await handover.scrollIntoViewIfNeeded();
-  await expect(handover).toBeVisible();
-  await expect(page.getByRole("img", { name: "A pet parent, her golden retriever and a PetSaathi caregiver sharing a calm handover in a sunlit courtyard" })).toBeVisible();
-  const safety = page.getByRole("heading", { name: "Proof over promises." });
-  await safety.scrollIntoViewIfNeeded();
-  await expect(safety).toBeVisible();
+  const trust = page.getByRole("heading", { name: "No single badge can promise perfect care." });
+  await trust.scrollIntoViewIfNeeded();
+  await expect(trust).toBeVisible();
+  await expect(page.getByRole("img", { name: "A pet parent reviewing a protected PetSaathi care record beside her resting dog" })).toBeVisible();
+  const proposals = page.getByRole("heading", { name: "Compare care evidence, not an endless directory." });
+  await proposals.scrollIntoViewIfNeeded();
+  await expect(proposals).toBeVisible();
+  const reportCard = page.getByRole("heading", { name: "Every important moment stays attached to the care." });
+  await reportCard.scrollIntoViewIfNeeded();
+  await expect(reportCard).toBeVisible();
+  const journeyExplorer = page.getByRole("heading", { name: "Choose the care rhythm that fits the day." });
+  await journeyExplorer.scrollIntoViewIfNeeded();
+  await expect(journeyExplorer).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Build a calmer care ecosystem." })).toBeVisible();
+  const concierge = page.getByRole("heading", { name: "Who needs care?" });
+  await concierge.scrollIntoViewIfNeeded();
+  await expect(concierge).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Care should feel considered before, during and after." })).toBeVisible();
+  const clarity = page.getByRole("heading", { name: "Clarity is part of care." });
+  await clarity.scrollIntoViewIfNeeded();
+  await expect(clarity).toBeVisible();
+});
+
+test("homepage uses the unified colored logo and favicon family", async ({ page }) => {
+  await page.goto("/");
+
+  const logo = page.getByRole("img", { name: "PetSaathi — Since 2026" });
+  await expect(logo).toBeVisible();
+  expect(await logo.evaluate((image: HTMLImageElement) => image.currentSrc)).toContain(
+    "petsaathi-logo-horizontal-brand.png"
+  );
+
+  const iconHref = await page.locator('link[rel="icon"][type="image/png"]').getAttribute("href");
+  expect(iconHref).toBe("/icons/petsaathi-favicon-v2.png");
+});
+
+test("homepage content imagery is unique, topic-specific, and includes cats", async ({ page }) => {
+  await page.goto("/");
+
+  const contentImages = page.locator("main img");
+  const sources = await contentImages.evaluateAll((images) =>
+    images
+      .filter((image) => image.getAttribute("alt") !== "PetSaathi — Since 2026")
+      .map((image) => {
+        const currentSource = (image as HTMLImageElement).currentSrc || image.getAttribute("src") || "";
+        const sourceUrl = new URL(currentSource, window.location.href);
+        return sourceUrl.searchParams.get("url") ?? sourceUrl.pathname;
+      })
+  );
+
+  expect(new Set(sources).size).toBe(sources.length);
+  await expect(page.getByRole("img", { name: "Home care story setting" })).toHaveAttribute(
+    "src",
+    /care-story-home-v1\.webp/
+  );
+  await expect(page.getByRole("img", { name: "Home Pet Sitting" })).toHaveAttribute(
+    "src",
+    /service_pet_sitting_v2\.jpg/
+  );
+
+  const journeyImages = [
+    ["Workday walk", "dog-walking-3d.png"],
+    ["Home visit", "service-pet-sitting.jpg"],
+    ["At-home grooming", "care-journey-cat-grooming-v1.webp"],
+    ["Veterinary support", "care-journey-cat-vet-v1.webp"]
+  ] as const;
+
+  for (const [label, fileName] of journeyImages) {
+    await page.getByRole("tab", { name: label, exact: true }).click();
+    const image = page.getByRole("img", { name: `${label} PetSaathi care journey illustration` });
+    await expect(image).toHaveAttribute("src", new RegExp(fileName.replace(".", "\\.")));
+    await expect(image).toBeVisible();
+  }
+});
+
+test("service shortcut rail and care story carousel remain functional", async ({ page }) => {
+  await page.goto("/");
+
+  const shortcuts = page.getByRole("navigation", { name: "Quick service shortcuts" });
+  await expect(shortcuts).toBeVisible();
+  await expect(shortcuts.getByRole("link")).toHaveCount(6);
+  await expect(shortcuts.getByRole("link", { name: "Grooming" })).toHaveAttribute("href", "/book?service=GROOMING_HOME");
+
+  const storiesHeading = page.getByRole("heading", { name: "See the details families can compare." });
+  await storiesHeading.scrollIntoViewIfNeeded();
+  const firstStoryBefore = page.locator('[aria-live="polite"] article').first();
+  const firstStoryText = await firstStoryBefore.textContent();
+  await page.getByRole("button", { name: "Show next care stories" }).click();
+  await expect(page.locator('[aria-live="polite"] article').first()).not.toHaveText(firstStoryText ?? "");
+});
+
+test("care concierge recommends a safe service and preserves pet context", async ({ page }) => {
+  await page.goto("/");
+
+  const concierge = page.getByRole("heading", { name: "Who needs care?" });
+  await concierge.scrollIntoViewIfNeeded();
+  await page.getByRole("button", { name: "Cat", exact: true }).click();
+  await page.getByRole("button", { name: "Continue", exact: true }).click();
+  await page.getByRole("button", { name: /home routine support/i }).click();
+  await page.getByRole("button", { name: "See suggestion" }).click();
+
+  await expect(page.getByRole("heading", { name: "Start with a home visit" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Continue with this care" })).toHaveAttribute("href", "/book?service=HOME_VISIT&petType=CAT");
+});
+
+test("care concierge routes urgent health intent away from emergency claims", async ({ page }) => {
+  await page.goto("/");
+
+  const concierge = page.getByRole("heading", { name: "Who needs care?" });
+  await concierge.scrollIntoViewIfNeeded();
+  await page.getByRole("button", { name: "Continue", exact: true }).click();
+  await page.getByRole("button", { name: /veterinary coordination/i }).click();
+  await page.getByRole("button", { name: "See suggestion" }).click();
+
+  await expect(page.getByText("PetSaathi is not an emergency service.", { exact: false })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Continue with this care" })).toHaveAttribute("href", "/book?service=VET_SUPPORT&petType=DOG");
+});
+
+test("care journey explorer changes context and preserves service intent", async ({ page }) => {
+  await page.goto("/");
+
+  const groomingTab = page.getByRole("tab", { name: "At-home grooming", exact: true });
+  await groomingTab.scrollIntoViewIfNeeded();
+  await groomingTab.click();
+
+  await expect(groomingTab).toHaveAttribute("aria-selected", "true");
+  await expect(page.getByRole("heading", { name: "You share" })).toBeVisible();
+  await expect(page.getByText("Pet size and coat", { exact: true })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Plan this care" })).toHaveAttribute("href", "/book?service=GROOMING_HOME");
 });
 
 test("homepage has no horizontal overflow on mobile", async ({ page }) => {
   await page.goto("/");
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
   expect(overflow).toBeLessThanOrEqual(1);
+});
+
+test("luxury cursor halo stays viewport-anchored through scroll", async ({ page }) => {
+  await page.goto("/");
+
+  const hasFinePointer = await page.evaluate(() => matchMedia("(pointer: fine)").matches);
+  const halo = page.getByTestId("luxury-cursor-halo");
+
+  if (!hasFinePointer) {
+    await expect(halo).toHaveCount(0);
+    return;
+  }
+
+  await page.mouse.move(320, 240);
+  await expect(halo).toBeVisible();
+  expect(await halo.evaluate((element) => element.parentElement === document.body)).toBe(true);
+
+  const beforeScroll = await halo.boundingBox();
+  await page.mouse.wheel(0, 700);
+  const afterScroll = await halo.boundingBox();
+
+  expect(beforeScroll?.x).toBeCloseTo(afterScroll?.x ?? -1, 0);
+  expect(beforeScroll?.y).toBeCloseTo(afterScroll?.y ?? -1, 0);
+});
+
+test("hero care films stream and remain selectable", async ({ page, request }) => {
+  await page.goto("/");
+
+  const film = page.locator("#hero-care-film");
+  const walkingTab = page.getByRole("tab", { name: "Premium dog walking", exact: true });
+  const trainingTab = page.getByRole("tab", { name: "Dog training", exact: true });
+
+  await expect(film).toBeVisible();
+  await expect(film).toHaveAttribute("poster", "/videos/dog-walking.jpg");
+  await expect(walkingTab).toHaveAttribute("aria-selected", "true");
+
+  await trainingTab.click();
+  await expect(trainingTab).toHaveAttribute("aria-selected", "true");
+  await expect(film.locator("source")).toHaveAttribute("src", "/videos/dog-training.mp4");
+
+  const rangeResponse = await request.get("/videos/dog-training.mp4", {
+    headers: { Range: "bytes=0-1023" }
+  });
+  expect(rangeResponse.status()).toBe(206);
+  expect(rangeResponse.headers()["content-type"]).toContain("video/mp4");
+});
+
+test("quick care match carries safe selections into the booking wizard", async ({ page }) => {
+  await page.goto("/");
+
+  await page.getByLabel("Care service").selectOption("GROOMING_HOME");
+  await page.getByLabel("Pet type").selectOption("CAT");
+  await page.getByLabel("City or locality").fill("Ahmedabad");
+  await page.getByRole("button", { name: "Start private matching" }).click();
+
+  await expect(page).toHaveURL(/\/book\?.*service=GROOMING_HOME.*petType=CAT.*locality=Ahmedabad/);
+  await expect(page.locator('input[type="radio"][value="GROOMING_HOME"]')).toBeChecked();
+  await page.getByRole("button", { name: "Continue" }).click();
+  await expect(page.getByLabel("Pet type")).toHaveValue("CAT");
+  await page.getByLabel("Pet name").fill("Milo");
+  await page.getByRole("button", { name: "Continue" }).click();
+  await expect(page.getByLabel("Locality")).toHaveValue("Ahmedabad");
 });
 
 test("anonymous care request validates locally and hands off to secure sign-in", async ({ page }) => {

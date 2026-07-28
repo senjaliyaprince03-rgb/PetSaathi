@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import { isDatabaseConfigured, prisma } from "@/lib/db";
 import { submitTestimonial } from "@/modules/marketing/testimonials";
 
 const schema = z.object({
@@ -17,6 +18,44 @@ const schema = z.object({
   consentLevel: z.enum(["TEXT_ONLY", "FIRST_NAME_CITY", "PET_PHOTO", "FULL_MARKETING"]),
   bookingId: z.string().optional(),
 });
+
+export async function GET() {
+  if (!isDatabaseConfigured()) return NextResponse.json({ stories: [], enabled: false });
+
+  try {
+    const flag = await prisma.featureFlag.findUnique({
+      where: { key: "public_testimonials" },
+      select: { enabled: true },
+    });
+    if (!flag?.enabled) return NextResponse.json({ stories: [], enabled: false });
+
+    const now = new Date();
+    const stories = await prisma.testimonial.findMany({
+      where: {
+        status: "PUBLISHED",
+        publishedAt: { not: null },
+        consent: {
+          grantedAt: { lte: now },
+          withdrawnAt: null,
+          OR: [{ expiresAt: null }, { expiresAt: { gt: now } }],
+        },
+      },
+      orderBy: { publishedAt: "desc" },
+      take: 8,
+      select: {
+        id: true,
+        displayName: true,
+        quote: true,
+        context: true,
+        city: true,
+      },
+    });
+
+    return NextResponse.json({ stories, enabled: true });
+  } catch {
+    return NextResponse.json({ stories: [], enabled: false, degraded: true });
+  }
+}
 
 export async function POST(request: Request) {
   try {

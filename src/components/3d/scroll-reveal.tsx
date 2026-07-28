@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import type { ReactNode } from "react";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { motion, useInView, useReducedMotion, useScroll, useTransform } from "framer-motion";
 
 interface ScrollRevealProps {
   children: ReactNode;
@@ -20,7 +20,8 @@ export function ScrollReveal({
   className = ""
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: false, amount: 0.3 });
+  const reduceMotion = useReducedMotion();
+  const isInView = useInView(ref, { once: true, amount: 0.18 });
 
   const variants = {
     up: {
@@ -52,10 +53,10 @@ export function ScrollReveal({
   return (
     <motion.div
       ref={ref}
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
+      initial={reduceMotion ? false : "hidden"}
+      animate={reduceMotion || isInView ? "visible" : "hidden"}
       variants={variants[direction]}
-      transition={{ duration, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
+      transition={{ duration: reduceMotion ? 0 : duration, delay: reduceMotion ? 0 : delay, ease: [0.16, 1, 0.3, 1] }}
       className={className}
     >
       {children}
@@ -71,6 +72,7 @@ interface ParallaxScrollProps {
 
 export function ParallaxScroll({ children, speed = 0.5, className = "" }: ParallaxScrollProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const reduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"]
@@ -79,7 +81,7 @@ export function ParallaxScroll({ children, speed = 0.5, className = "" }: Parall
   const y = useTransform(scrollYProgress, [0, 1], [0, speed * 100]);
 
   return (
-    <motion.div ref={ref} style={{ y }} className={className}>
+    <motion.div ref={ref} style={reduceMotion ? undefined : { y }} className={className}>
       {children}
     </motion.div>
   );
@@ -92,6 +94,7 @@ interface Scale3DProps {
 
 export function Scale3D({ children, className = "" }: Scale3DProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const reduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"]
@@ -103,11 +106,7 @@ export function Scale3D({ children, className = "" }: Scale3DProps) {
   return (
     <motion.div
       ref={ref}
-      style={{ 
-        scale,
-        rotateX,
-        transformPerspective: "1000px"
-      }}
+      style={reduceMotion ? undefined : { scale, rotateX, transformPerspective: "1000px" }}
       className={className}
     >
       {children}
@@ -122,6 +121,7 @@ interface RotateOnScrollProps {
 
 export function RotateOnScroll({ children, className = "" }: RotateOnScrollProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const reduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"]
@@ -132,7 +132,7 @@ export function RotateOnScroll({ children, className = "" }: RotateOnScrollProps
   return (
     <motion.div
       ref={ref}
-      style={{ rotate }}
+      style={reduceMotion ? undefined : { rotate }}
       className={className}
     >
       {children}
@@ -146,19 +146,21 @@ interface Float3DProps {
 }
 
 export function Float3D({ children, className = "" }: Float3DProps) {
+  const reduceMotion = useReducedMotion();
+
   return (
     <motion.div
-      animate={{
+      animate={reduceMotion ? undefined : {
         y: [0, -10, 0],
         rotateX: [0, 2, 0],
         rotateY: [0, 2, 0]
       }}
       transition={{
-        duration: 6,
-        repeat: Infinity,
+        duration: reduceMotion ? 0 : 6,
+        repeat: reduceMotion ? 0 : Infinity,
         ease: "easeInOut"
       }}
-      style={{ transformPerspective: "1000px" }}
+      style={reduceMotion ? undefined : { transformPerspective: "1000px" }}
       className={className}
     >
       {children}

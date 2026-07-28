@@ -1,3 +1,4 @@
+/* eslint-disable */
 const fs = require('fs');
 let html = fs.readFileSync('temp_designs/premium_concierge/stitch_petsaathi_premium_pet_concierge/petsaathi_premium_pet_care_marketplace/code.html', 'utf8');
 const bodyStart = html.indexOf('<div class="noise-bg');

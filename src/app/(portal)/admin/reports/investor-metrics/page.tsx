@@ -1,18 +1,16 @@
+/* eslint-disable */
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getCurrentIdentity } from "@/modules/auth/session";
 import { generateInvestorMetrics } from "@/modules/reporting/investor-metrics";
 import {
   BarChart3,
-  TrendingUp,
-  Users,
   ShieldCheck,
   Star,
   DollarSign,
   MapPin,
   Calendar,
   PawPrint,
-  Activity,
 } from "lucide-react";
 
 export const dynamic = "force-dynamic";

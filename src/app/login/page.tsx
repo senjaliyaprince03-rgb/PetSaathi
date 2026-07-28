@@ -14,7 +14,7 @@ export default function LoginPage() {
       <section className="container-shell pb-10 pt-8 sm:pb-20 sm:pt-14">
         <div className="grid overflow-hidden rounded-5xl border border-indigo/10 bg-paper shadow-soft lg:grid-cols-[1.06fr_0.94fr]">
           <div className="relative hidden min-h-[720px] overflow-hidden bg-indigo lg:block">
-            <Image src="/images/auth-pet-companion.png" alt="A pet parent sharing a calm moment with her golden retriever" fill priority sizes="(min-width: 1024px) 53vw, 0px" className="object-cover" />
+            <Image src="/images/login-pet-companion.png" alt="A pet parent sharing a calm moment with her golden retriever" fill priority sizes="(min-width: 1024px) 53vw, 0px" className="object-cover object-[center_25%]" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#2f2032]/90 via-[#2f2032]/10 to-transparent" />
             <div className="absolute inset-x-0 bottom-0 p-10 text-paper xl:p-14">
               <p className="text-[0.65rem] font-bold uppercase tracking-[0.24em] text-saffron">Private by design</p>

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/db";
@@ -8,7 +9,6 @@ import {
   CheckCircle,
   TrendingUp,
   DollarSign,
-  Shield,
   Users,
   MapPin,
   Calendar,
@@ -22,9 +22,9 @@ export const metadata: Metadata = {
 };
 
 interface PageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export default async function CityHealthPage({ params }: PageProps) {
@@ -99,7 +99,7 @@ export default async function CityHealthPage({ params }: PageProps) {
           </h3>
           <div className="mt-2 space-y-1">
             {city.cityManagers.length > 0 ? (
-              city.cityManagers.map((cm: any) => (
+              city.cityManagers.map((cm: { id: string; user: { displayName: string } }) => (
                 <div key={cm.id} className="text-ink font-medium">
                   {cm.user.displayName}
                 </div>

@@ -7,12 +7,12 @@ export default function manifest(): MetadataRoute.Manifest {
     description: "Managed local pet care with structured service proof and human support.",
     start_url: "/",
     display: "standalone",
-    background_color: "#fffaf1",
-    theme_color: "#f4b134",
+    background_color: "#fffdf8",
+    theme_color: "#5b3d7a",
     orientation: "portrait-primary",
     icons: [
-      { src: "/icons/icon-192.svg", sizes: "192x192", type: "image/svg+xml" },
-      { src: "/icons/icon-512.svg", sizes: "512x512", type: "image/svg+xml" }
+      { src: "/icons/petsaathi-favicon-v2.png", sizes: "192x192", type: "image/png" },
+      { src: "/icons/petsaathi-app-icon-v2.png", sizes: "512x512", type: "image/png" }
     ]
   };
 }

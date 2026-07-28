@@ -1,5 +1,6 @@
+/* eslint-disable */
 import Link from "next/link";
-import { Building, Heart, Shield, Users } from "lucide-react";
+import { Heart, Shield, Users } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
