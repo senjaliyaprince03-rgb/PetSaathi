@@ -22,7 +22,7 @@ export default async function BookPage({ searchParams }: { searchParams: BookSea
   const requestedPetType = firstParam(query.petType);
   const requestedLocality = firstParam(query.locality)?.trim().slice(0, 120);
   const initialService = coreServiceCodes.includes(requestedService as CoreServiceCode) ? requestedService as CoreServiceCode : undefined;
-  const initialPetType = requestedPetType === "DOG" || requestedPetType === "CAT" || requestedPetType === "OTHER" ? requestedPetType : undefined;
+  const initialPetType = ["DOG", "CAT", "RABBIT", "BIRD", "FISH", "TURTLE", "RAT"].includes(requestedPetType as string) ? requestedPetType : undefined;
   const identity = await getCurrentIdentity();
   if (!identity?.roles.includes("CUSTOMER")) return <PublicShell><PageIntro eyebrow="care protocol request" title="Let’s plan the right kind of care." description="Start with the service, your pet and the time. A suitable Saathi is proposed only after eligibility and local availability are checked." /><div className="container-shell"><CareProtocolGuide /><BookingWizard initialValues={{ service: initialService, petType: initialPetType, locality: requestedLocality }} /></div></PublicShell>;
 

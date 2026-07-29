@@ -12,6 +12,7 @@ import {
   MapPin,
   MapPinned,
   MoreHorizontal,
+  Palette,
   PawPrint,
   Scissors,
   ShieldCheck,
@@ -190,7 +191,7 @@ export function DiscoveryReviewRail() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent" />
                       <span className="absolute bottom-4 left-4 inline-flex items-center gap-1.5 rounded-full border border-paper/25 bg-ink/48 px-3 py-2 text-[0.62rem] font-bold text-paper backdrop-blur-xl">
-                        {story.isPreview ? <Sparkles className="h-3.5 w-3.5 text-saffron" /> : <ShieldCheck className="h-3.5 w-3.5 text-leaf" />}
+                        {story.isPreview ? <Palette className="h-3.5 w-3.5 text-saffron" /> : <ShieldCheck className="h-3.5 w-3.5 text-leaf" />}
                         {story.isPreview ? "Design preview" : "Published with active consent"}
                       </span>
                     </div>

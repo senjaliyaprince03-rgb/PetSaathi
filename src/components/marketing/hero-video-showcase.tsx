@@ -2,7 +2,8 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { ChevronLeft, ChevronRight, Pause, Play, Sparkles, Volume2, VolumeX } from "lucide-react";
+import { ChevronLeft, ChevronRight, Pause, Play, PawPrint, Volume2, VolumeX } from "lucide-react";
+import { ParallaxScroll, RotateOnScroll } from "@/components/3d/scroll-reveal";
 
 const careFilms = [
   {
@@ -67,19 +68,38 @@ export function HeroVideoShowcase() {
     selectFilm((activeIndex - 1 + careFilms.length) % careFilms.length);
   }, [activeIndex, selectFilm]);
 
+  // Handle changing videos
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    video.muted = isMuted;
     if (reduceMotion || userPaused.current) {
       video.pause();
       setIsPlaying(false);
       return;
     }
 
-    void video.play().then(() => setIsPlaying(true)).catch(() => setIsPlaying(false));
-  }, [activeIndex, isMuted, reduceMotion]);
+    try {
+      video.load();
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => setIsPlaying(true)).catch(() => setIsPlaying(false));
+      }
+    } catch {
+      setIsPlaying(false);
+    }
+  }, [activeIndex, reduceMotion]);
+
+  // Handle muting dynamically without reloading the video
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      video.muted = isMuted;
+      if (!isMuted) {
+        video.volume = 1.0;
+      }
+    }
+  }, [isMuted]);
 
   const togglePlayback = () => {
     const video = videoRef.current;
@@ -87,7 +107,10 @@ export function HeroVideoShowcase() {
 
     if (video.paused) {
       userPaused.current = false;
-      void video.play().then(() => setIsPlaying(true)).catch(() => setIsPlaying(false));
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => setIsPlaying(true)).catch(() => setIsPlaying(false));
+      }
     } else {
       userPaused.current = true;
       video.pause();
@@ -105,95 +128,100 @@ export function HeroVideoShowcase() {
       initial={reduceMotion ? false : { opacity: 0, x: 48, scale: 0.985 }}
       animate={{ opacity: 1, x: 0, scale: 1 }}
       transition={{ duration: reduceMotion ? 0 : 0.85, ease: [0.16, 1, 0.3, 1] }}
-      className="relative mx-auto w-full max-w-3xl lg:mr-0"
+      className="relative mx-auto w-full max-w-xl lg:max-w-2xl lg:mr-0"
       data-motion-skip
     >
-      <div className="absolute -inset-8 -z-10 rounded-[4rem] bg-gradient-to-br from-saffron/20 via-coral/10 to-indigo/20 blur-3xl" />
+      <RotateOnScroll className="absolute -inset-8 -z-10 h-[calc(100%+4rem)] w-[calc(100%+4rem)]">
+        <div className="h-full w-full rounded-[4rem] bg-gradient-to-br from-saffron/10 via-coral/5 to-indigo/10 blur-3xl" />
+      </RotateOnScroll>
 
-      <div className="relative overflow-hidden rounded-[2.25rem] border-[8px] border-paper/75 bg-ink shadow-soft sm:rounded-[3rem] sm:border-[10px]">
-        <div className="relative">
-          <video
-            key={activeFilm.slug}
-            ref={videoRef}
-            id="hero-care-film"
-            className="aspect-video w-full object-cover"
-            poster={`/videos/${activeFilm.slug}.jpg`}
-            preload="metadata"
-            playsInline
-            muted={isMuted}
-            onPlay={() => setIsPlaying(true)}
-            onPause={() => setIsPlaying(false)}
-            onEnded={handleEnded}
-            onTimeUpdate={(event) => {
-              const video = event.currentTarget;
-              setProgress(video.duration ? (video.currentTime / video.duration) * 100 : 0);
-            }}
-            aria-label={`${activeFilm.title} care film`}
-            aria-describedby="hero-care-film-description"
-          >
-            <source src={`/videos/${activeFilm.slug}.mp4`} type="video/mp4" />
-            Your browser does not support embedded video.
-          </video>
-
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-ink/30 via-transparent to-ink/15" />
-          <div className="pointer-events-none absolute inset-x-0 top-0 flex items-center justify-between p-4 sm:p-6">
-            <span className="inline-flex items-center gap-2 rounded-full border border-paper/20 bg-ink/35 px-3 py-2 text-[0.58rem] font-bold uppercase tracking-[0.2em] text-paper backdrop-blur-xl sm:text-[0.62rem]">
-              <Sparkles className="h-3.5 w-3.5 text-saffron" /> Six moments of care
-            </span>
-            <span className="rounded-full border border-paper/20 bg-ink/35 px-3 py-2 text-[0.62rem] font-bold tracking-[0.16em] text-paper/80 backdrop-blur-xl">
-              {String(activeIndex + 1).padStart(2, "0")} / {String(careFilms.length).padStart(2, "0")}
-            </span>
-          </div>
-
-          {!isPlaying ? (
-            <button
-              type="button"
-              onClick={togglePlayback}
-              className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-paper/30 bg-paper/90 text-ink shadow-soft transition hover:scale-105 hover:bg-paper focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-saffron/50"
-              aria-label={`Play ${activeFilm.title} film`}
+      <ParallaxScroll speed={0.05}>
+        <div className="relative overflow-hidden rounded-[2rem] border border-white/20 bg-ink shadow-2xl sm:rounded-[2.5rem]">
+          <div className="relative">
+            <video
+              key={activeFilm.slug}
+              ref={videoRef}
+              id="hero-care-film"
+              className="block aspect-video h-auto w-full object-cover rounded-t-[2rem] sm:rounded-t-[2.5rem]"
+              poster={`/videos/${activeFilm.slug}.jpg?v=clean2026_v3`}
+              preload="auto"
+              autoPlay
+              muted={isMuted}
+              playsInline
+              onPlay={() => setIsPlaying(true)}
+              onPause={() => setIsPlaying(false)}
+              onEnded={handleEnded}
+              onTimeUpdate={(event) => {
+                const video = event.currentTarget;
+                setProgress(video.duration ? (video.currentTime / video.duration) * 100 : 0);
+              }}
+              aria-label={`${activeFilm.title} care film`}
+              aria-describedby="hero-care-film-description"
             >
-              <Play className="ml-1 h-6 w-6 fill-current" />
-            </button>
-          ) : null}
-        </div>
+              <source src={`/videos/${activeFilm.slug}.mp4?v=clean2026_v3`} type="video/mp4" />
+              Your browser does not support embedded video.
+            </video>
 
-        <div className="border-t border-paper/10 bg-ink p-4 sm:p-5">
-          <motion.div
-            key={activeFilm.slug}
-            initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: reduceMotion ? 0 : 0.42 }}
-            className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
-          >
-            <div className="max-w-md text-paper">
-              <p className="text-[0.6rem] font-bold uppercase tracking-[0.2em] text-saffron">{activeFilm.eyebrow}</p>
-              <h2 className="mt-1.5 font-display text-2xl font-semibold leading-none sm:text-3xl">{activeFilm.title}</h2>
-              <p id="hero-care-film-description" className="mt-2 hidden max-w-sm text-xs leading-5 text-paper/65 sm:block">
-                {activeFilm.description}
-              </p>
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-ink/30 via-transparent to-ink/15" />
+            <div className="pointer-events-none absolute inset-x-0 top-0 flex items-center justify-between p-4 sm:p-6">
+              <span className="flex items-center gap-2 rounded-2xl bg-ink/75 px-4 py-2 text-[0.62rem] font-bold uppercase tracking-[0.18em] text-paper shadow-sm backdrop-blur-md">
+                <PawPrint className="h-4 w-4 text-saffron" /> Six moments of care
+              </span>
+              <span className="rounded-full border border-paper/20 bg-ink/35 px-3 py-2 text-[0.62rem] font-bold tracking-[0.16em] text-paper/80 backdrop-blur-xl">
+                {String(activeIndex + 1).padStart(2, "0")} / {String(careFilms.length).padStart(2, "0")}
+              </span>
             </div>
 
-            <div className="flex items-center gap-2">
-              <button type="button" onClick={showPrevious} className="hero-film-control" aria-label="Show previous care film">
-                <ChevronLeft className="h-4 w-4" />
+            {!isPlaying ? (
+              <button
+                type="button"
+                onClick={togglePlayback}
+                className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-paper/30 bg-paper/90 text-ink shadow-soft transition hover:scale-105 hover:bg-paper focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-saffron/50"
+                aria-label={`Play ${activeFilm.title} film`}
+              >
+                <Play className="ml-1 h-6 w-6 fill-current" />
               </button>
-              <button type="button" onClick={togglePlayback} className="hero-film-control" aria-label={isPlaying ? "Pause care film" : "Play care film"}>
-                {isPlaying ? <Pause className="h-4 w-4 fill-current" /> : <Play className="ml-0.5 h-4 w-4 fill-current" />}
-              </button>
-              <button type="button" onClick={() => setIsMuted((muted) => !muted)} className="hero-film-control" aria-label={isMuted ? "Turn care film sound on" : "Mute care film"}>
-                {isMuted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
-              </button>
-              <button type="button" onClick={showNext} className="hero-film-control" aria-label="Show next care film">
-                <ChevronRight className="h-4 w-4" />
-              </button>
-            </div>
-          </motion.div>
+            ) : null}
+          </div>
 
-          <div className="mt-4 h-0.5 overflow-hidden rounded-full bg-paper/15" aria-hidden="true">
-            <span className="block h-full rounded-full bg-saffron transition-[width] duration-150" style={{ width: `${progress}%` }} />
+          <div className="border-t border-paper/10 bg-ink p-4 sm:p-5">
+            <motion.div
+              key={activeFilm.slug}
+              initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: reduceMotion ? 0 : 0.42 }}
+              className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
+            >
+              <div className="max-w-md text-paper">
+                <p className="text-[0.6rem] font-bold uppercase tracking-[0.2em] text-saffron">{activeFilm.eyebrow}</p>
+                <h2 className="mt-1.5 font-display text-2xl font-semibold leading-none sm:text-3xl">{activeFilm.title}</h2>
+                <p id="hero-care-film-description" className="mt-2 hidden max-w-sm text-xs leading-5 text-paper/65 sm:block">
+                  {activeFilm.description}
+                </p>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <button type="button" onClick={showPrevious} className="hero-film-control" aria-label="Show previous care film">
+                  <ChevronLeft className="h-4 w-4" />
+                </button>
+                <button type="button" onClick={togglePlayback} className="hero-film-control" aria-label={isPlaying ? "Pause care film" : "Play care film"}>
+                  {isPlaying ? <Pause className="h-4 w-4 fill-current" /> : <Play className="ml-0.5 h-4 w-4 fill-current" />}
+                </button>
+                <button type="button" onClick={() => setIsMuted((muted) => !muted)} className="hero-film-control" aria-label={isMuted ? "Turn care film sound on" : "Mute care film"}>
+                  {isMuted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
+                </button>
+                <button type="button" onClick={showNext} className="hero-film-control" aria-label="Show next care film">
+                  <ChevronRight className="h-4 w-4" />
+                </button>
+              </div>
+            </motion.div>
+
+            <div className="mt-4 h-0.5 overflow-hidden rounded-full bg-paper/15" aria-hidden="true">
+              <span className="block h-full rounded-full bg-saffron transition-[width] duration-150" style={{ width: `${progress}%` }} />
+            </div>
           </div>
         </div>
-      </div>
+      </ParallaxScroll>
 
       <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3" role="tablist" aria-label="Choose a PetSaathi care film">
         {careFilms.map((film, index) => {
@@ -206,10 +234,10 @@ export function HeroVideoShowcase() {
               aria-selected={selected}
               aria-controls="hero-care-film"
               onClick={() => selectFilm(index)}
-              className={`group flex min-h-12 items-center gap-3 rounded-2xl border px-3 py-2 text-left transition focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-saffron/35 ${
+              className={`group flex min-h-12 items-center gap-3 rounded-[1.25rem] border px-4 py-2.5 text-left transition focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-saffron/35 ${
                 selected
-                  ? "border-indigo/20 bg-paper text-ink shadow-lifted"
-                  : "border-indigo/10 bg-paper/55 text-ink/48 hover:border-indigo/20 hover:bg-paper/85 hover:text-ink"
+                  ? "border-transparent bg-surface-container-lowest text-on-surface shadow-md"
+                  : "border-transparent bg-surface-container-lowest/50 text-on-surface-variant hover:bg-surface-container-lowest/80"
               }`}
             >
               <span className={`h-2 w-2 shrink-0 rounded-full ${selected ? "bg-coral shadow-[0_0_0_5px_rgba(227,102,79,0.12)]" : "bg-ink/20 group-hover:bg-coral/60"}`} />

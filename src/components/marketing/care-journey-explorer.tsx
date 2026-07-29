@@ -170,25 +170,24 @@ export function CareJourneyExplorer() {
             className="mt-5 overflow-hidden rounded-[3rem] border border-indigo/10 bg-paper shadow-soft"
           >
             <div className="grid lg:grid-cols-[0.78fr_1.22fr]">
-              <div className="relative min-h-[23rem] overflow-hidden bg-gradient-to-br from-[#f3eafa] to-[#fff0e8] sm:min-h-[30rem]">
+              <div className="relative min-h-[18rem] sm:min-h-[24rem] lg:min-h-full overflow-hidden bg-gradient-to-br from-[#f3eafa] to-[#fff0e8]">
                 <Image
                   src={activeJourney.image}
                   alt={`${activeJourney.label} PetSaathi care journey illustration`}
                   fill
                   sizes="(min-width: 1024px) 40vw, 100vw"
-                  className="object-cover object-[center_50%] sm:object-center"
+                  className="object-cover object-bottom"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/48 via-transparent to-transparent" />
-                <div className="absolute bottom-5 left-5 right-5 rounded-3xl border border-paper/25 bg-ink/52 p-5 text-paper backdrop-blur-xl sm:bottom-7 sm:left-7 sm:right-7">
-                  <span className="inline-flex items-center gap-2 text-[0.62rem] font-bold uppercase tracking-[0.18em] text-saffron">
-                    <JourneyIcon className="h-4 w-4" /> {activeJourney.label}
-                  </span>
-                  <p className="mt-2 font-display text-2xl font-semibold sm:text-3xl">{activeJourney.title}</p>
-                </div>
               </div>
 
-              <div className="p-6 sm:p-9 lg:p-11">
-                <p className="max-w-2xl text-base leading-8 text-ink/54">{activeJourney.description}</p>
+              <div className="flex flex-col justify-center p-6 sm:p-9 lg:p-12 lg:pl-14">
+                <div className="mb-8">
+                  <span className={cn("inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.18em]", activeJourney.accent)}>
+                    <JourneyIcon className="h-4 w-4" /> {activeJourney.label}
+                  </span>
+                  <h3 className="mt-5 max-w-[15ch] font-display text-3xl font-semibold leading-[1.1] tracking-[-0.03em] text-ink sm:text-4xl lg:text-[2.75rem]">{activeJourney.title}</h3>
+                  <p className="mt-5 max-w-xl text-base leading-8 text-ink/60 sm:text-lg">{activeJourney.description}</p>
+                </div>
 
                 <div className="mt-8 grid gap-4 md:grid-cols-3">
                   {[

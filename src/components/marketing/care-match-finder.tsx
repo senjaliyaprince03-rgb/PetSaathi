@@ -19,7 +19,7 @@ const careOptions = [
 
 const citySuggestions = ["Bengaluru", "Pune", "Mumbai", "Gurugram", "Ahmedabad", "Surat"];
 
-type PetType = "DOG" | "CAT" | "OTHER";
+type PetType = "DOG" | "CAT" | "RABBIT" | "BIRD" | "FISH" | "TURTLE" | "RAT";
 
 export function CareMatchFinder() {
   const router = useRouter();
@@ -50,7 +50,7 @@ export function CareMatchFinder() {
   return (
     <form
       onSubmit={submit}
-      className="relative mt-9 overflow-hidden rounded-[2rem] border border-indigo/[0.12] bg-paper/90 p-4 shadow-soft backdrop-blur-2xl sm:p-5"
+      className="relative mt-9 overflow-hidden rounded-[2rem] border border-white/70 bg-white/60 p-5 shadow-2xl backdrop-blur-xl sm:p-6"
       aria-label="Start a PetSaathi care match"
       noValidate
     >
@@ -60,7 +60,7 @@ export function CareMatchFinder() {
           <p className="text-[0.62rem] font-bold uppercase tracking-[0.22em] text-indigo/70 font-outfit">Instant Care Match</p>
           <p className="mt-1 text-sm font-bold text-ink">Find verified, trusted pet care in under 60 seconds.</p>
         </div>
-        <span className="hidden items-center gap-1.5 rounded-full bg-leaf/10 px-3 py-1.5 text-[0.65rem] font-bold text-leaf sm:inline-flex">
+        <span className="hidden items-center gap-1.5 rounded-full bg-secondary-container/50 px-3 py-1.5 text-[0.65rem] font-bold text-on-secondary-container sm:inline-flex">
           <ShieldCheck className="h-3.5 w-3.5" /> 100% Verified Saathis
         </span>
       </div>
@@ -78,7 +78,11 @@ export function CareMatchFinder() {
           <select value={petType} onChange={(event) => setPetType(event.target.value as PetType)} className="care-finder-input">
             <option value="DOG">Dog</option>
             <option value="CAT">Cat</option>
-            <option value="OTHER">Another pet</option>
+            <option value="RABBIT">Rabbit</option>
+            <option value="BIRD">Bird</option>
+            <option value="FISH">Fish</option>
+            <option value="TURTLE">Turtle</option>
+            <option value="RAT">Rat / Mouse</option>
           </select>
         </label>
 
@@ -106,21 +110,21 @@ export function CareMatchFinder() {
               setLocality(city);
               setError(null);
             }}
-            className="rounded-full border border-indigo/10 bg-cream/80 px-3 py-1.5 text-[0.65rem] font-bold text-ink/48 transition hover:border-indigo/30 hover:bg-indigo/[0.06] hover:text-indigo"
+            className="rounded-full border border-surface-variant bg-surface-container-low px-3 py-1.5 text-[0.65rem] font-bold text-on-surface-variant transition hover:border-secondary hover:bg-secondary-container hover:text-on-secondary-container"
           >
             {city}
           </button>
         ))}
       </div>
 
-      {error ? <p className="relative mt-3 text-xs font-semibold text-coral" role="alert">{error}</p> : null}
+      {error ? <p className="relative mt-3 text-xs font-semibold text-[#301F30]" role="alert">{error}</p> : null}
 
       <div className="relative mt-5 flex flex-col gap-3 border-t border-indigo/10 pt-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="text-xs font-bold text-ink">{selectedService.label}</p>
           <p className="mt-0.5 text-[0.68rem] text-ink/45">{selectedService.note}</p>
         </div>
-        <Button type="submit" variant="accent" size="lg" disabled={isPending} className="shrink-0 font-outfit">
+        <Button type="submit" size="lg" disabled={isPending} className="shrink-0 font-outfit bg-[#301F30] hover:bg-[#301F30]/90 text-white border-transparent">
           {isPending ? <Search className="h-4 w-4 animate-pulse" /> : null}
           {isPending ? "Finding Saathis..." : "Find My Verified Saathi"}
           <ArrowRight className="h-4 w-4" />

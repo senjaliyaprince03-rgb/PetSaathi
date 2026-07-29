@@ -7,34 +7,46 @@ import { useMemo, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
   ArrowRight,
+  Bird,
   Camera,
+  Cat,
   CheckCircle2,
   ChevronLeft,
   ClipboardCheck,
   Clock3,
+  Dog,
+  Fish,
   HeartPulse,
   Home,
   MapPinned,
   PawPrint,
+  Rabbit,
+  Rat,
   RotateCcw,
   Scissors,
   ShieldAlert,
   ShieldCheck,
+  Snail,
   Sparkles,
-  Stethoscope
+  Stethoscope,
+  Turtle
 } from "lucide-react";
 
 import { ScrollReveal } from "@/components/3d/scroll-reveal";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
 
-type PetChoice = "DOG" | "CAT" | "OTHER";
+type PetChoice = "DOG" | "CAT" | "RABBIT" | "BIRD" | "FISH" | "TURTLE" | "RAT";
 type CareNeed = "movement" | "routine" | "grooming" | "health";
 
 const petChoices = [
-  { value: "DOG", label: "Dog", icon: PawPrint },
-  { value: "CAT", label: "Cat", icon: Sparkles },
-  { value: "OTHER", label: "Another pet", icon: HeartPulse }
+  { value: "DOG", label: "Dog", icon: Dog },
+  { value: "CAT", label: "Cat", icon: Cat },
+  { value: "RABBIT", label: "Rabbit", icon: Rabbit },
+  { value: "BIRD", label: "Bird", icon: Bird },
+  { value: "FISH", label: "Fish", icon: Fish },
+  { value: "TURTLE", label: "Turtle", icon: Turtle },
+  { value: "RAT", label: "Rat / Mouse", icon: Rat }
 ] as const;
 
 const careNeeds = [
