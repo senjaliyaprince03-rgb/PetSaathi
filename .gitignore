@@ -54,3 +54,4 @@ tmp/
 extracted_images/
 test_*.pdf
 videos/
+.originkit/

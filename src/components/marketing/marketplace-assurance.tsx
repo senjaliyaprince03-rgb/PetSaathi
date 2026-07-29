@@ -15,6 +15,7 @@ import {
 
 import { ScrollReveal, Float3D, Scale3D } from "@/components/3d/scroll-reveal";
 import { AnimosCard, ScrollStaggerContainer, ScrollStaggerItem } from "@/components/effects/animos-motion";
+import ScrollTextReveal from "@/components/originkit/ui/scroll-text-reveal";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
 
@@ -61,9 +62,13 @@ export function MarketplaceAssurance() {
             <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
               <div>
                 <p className="eyebrow">The useful parts of discovery</p>
-                <h2 id="proposal-preview-title" className="section-title mt-5 max-w-[13ch]">
-                  Compare care evidence, not an endless directory.
-                </h2>
+                <ScrollTextReveal 
+                  text="Compare care evidence, not an endless directory." 
+                  tag="h2" 
+                  className="section-title mt-5 max-w-[13ch]" 
+                  color="inherit" 
+                  font={{ fontSize: "inherit", fontWeight: "inherit", lineHeight: "inherit" }} 
+                />
               </div>
               <div className="max-w-xl">
                 <p className="text-sm leading-7 text-ink/52">
@@ -147,9 +152,13 @@ export function MarketplaceAssurance() {
               <ScrollReveal direction="left">
                 <div>
                   <p className="eyebrow !text-saffron">A report card families can actually use</p>
-                  <h2 id="care-report-title" className="mt-5 max-w-[11ch] font-display text-5xl font-semibold leading-[0.98] tracking-[-0.055em] sm:text-6xl">
-                    Every important moment stays attached to the care.
-                  </h2>
+                  <ScrollTextReveal 
+                    text="Every important moment stays attached to the care." 
+                    tag="h2" 
+                    className="mt-5 max-w-[11ch] font-display text-5xl font-semibold leading-[0.98] tracking-[-0.055em] sm:text-6xl" 
+                    color="inherit" 
+                    font={{ fontSize: "inherit", fontWeight: "inherit", lineHeight: "inherit" }} 
+                  />
                   <p className="mt-6 max-w-xl text-sm leading-7 text-paper/56">
                     Photos, routine notes, timing and exceptions belong to one private booking record—so reassurance does not depend on scattered chat messages.
                   </p>
