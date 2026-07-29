@@ -122,7 +122,6 @@ export function MarketingExperience() {
                 <TextEmerge 
                   text="Care That Feels Like Family." 
                   className="max-w-[10ch] font-display text-[3.7rem] font-semibold leading-[0.91] tracking-[-0.065em] text-[#301F30] drop-shadow-2xl sm:text-[5.4rem] xl:text-[6.6rem]" 
-                  color="#301F30"
                 />
               </div>
             </ScrollReveal>
@@ -297,7 +296,7 @@ export function MarketingExperience() {
       <section className="relative overflow-hidden bg-[#2f2032] py-24 text-paper sm:py-32">
         <div className="absolute inset-0 luxury-grid opacity-[0.08]" />
         <div className="container-shell relative">
-          <ScrollReveal direction="up"><div className="max-w-3xl"><p className="eyebrow !text-saffron">A care protocol, not a loose transaction</p><ScrollTextReveal text="Four clear moments. One accountable thread." tag="h2" className="mt-5 font-display text-5xl font-semibold leading-[0.98] tracking-[-0.055em] sm:text-7xl" color="inherit" font={{ fontSize: "inherit", fontWeight: "inherit", lineHeight: "inherit" }} /></div></ScrollReveal>
+          <ScrollReveal direction="up"><div className="max-w-3xl"><p className="eyebrow !text-saffron">A care protocol, not a loose transaction</p><ScrollTextReveal text="Four clear moments. One accountable thread." tag="h2" className="mt-5 font-display text-5xl font-semibold leading-[0.98] tracking-[-0.055em] sm:text-7xl" /></div></ScrollReveal>
 
           <ScrollStaggerContainer className="mt-14 grid gap-4 lg:grid-cols-4">
             {careSteps.map(({ number, title, copy, icon: Icon }) => (

@@ -51,15 +51,8 @@ const mapEase = (ease: TransitionValue["ease"]): string => {
 
 export default function InkdropSpread({
     text = "Text bleeds outward from the center, spreading like ink on paper. Each word radiates from the middle.",
-    font = {
-        fontFamily: "inherit",
-        fontSize: "inherit",
-        fontWeight: "inherit",
-        letterSpacing: "inherit",
-        lineHeight: "inherit",
-        textAlign: "inherit",
-    },
-    color = "inherit",
+    font,
+    color,
     className = "",
     staggerFrom = "center",
     tag = "p",
@@ -74,8 +67,7 @@ export default function InkdropSpread({
 }: Props) {
     const containerRef = useRef<HTMLElement>(null);
     const words = text.trim().split(/\s+/).filter(Boolean);
-    const textAlign =
-        (font.textAlign as React.CSSProperties["textAlign"]) ?? "inherit";
+    const textAlign = (font?.textAlign as React.CSSProperties["textAlign"]) ?? "inherit";
 
     useEffect(() => {
         if (!containerRef.current) return;
