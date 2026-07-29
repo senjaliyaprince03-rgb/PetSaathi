@@ -42,8 +42,9 @@ import { ScrollReveal, ParallaxScroll, Scale3D, RotateOnScroll, Float3D } from "
 import TextEmerge from "@/components/originkit/ui/text-emerge";
 import ScrollTextReveal from "@/components/originkit/ui/scroll-text-reveal";
 import MagneticHoverButton from "@/components/originkit/ui/magnetic-hover-button";
-import Sparkles from "@/components/originkit/ui/stardust";
+import StardustBackground from "@/components/originkit/ui/stardust";
 import ShinyPill from "@/components/originkit/ui/shiny-pill";
+import { AnimosCard, ScrollStaggerContainer, ScrollStaggerItem } from "@/components/effects/animos-motion";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
 import { services, trustSignals } from "@/modules/catalog/services";
@@ -99,8 +100,8 @@ export function MarketingExperience() {
         </ParallaxScroll>
         <div className="absolute inset-0 bg-white/40" aria-hidden="true" />
         <div className="absolute inset-0 z-0">
-          <Sparkles 
-            background="transparent" 
+          <StardustBackground 
+            background="rgba(0,0,0,0)" 
             particleColor="#301F30" 
             particleDensity={6} 
             speed={4} 

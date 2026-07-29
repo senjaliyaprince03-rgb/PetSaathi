@@ -16,9 +16,9 @@ function parseColorToRgba(input: string): Rgba {
         /rgba?\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)\s*(?:,\s*([\d.]+)\s*)?\)/i
     );
     if (rgbaMatch) {
-        const r = Math.max(0, Math.min(255, parseFloat(rgbaMatch[1]))) / 255;
-        const g = Math.max(0, Math.min(255, parseFloat(rgbaMatch[2]))) / 255;
-        const b = Math.max(0, Math.min(255, parseFloat(rgbaMatch[3]))) / 255;
+        const r = Math.max(0, Math.min(255, parseFloat(rgbaMatch[1] || "0"))) / 255;
+        const g = Math.max(0, Math.min(255, parseFloat(rgbaMatch[2] || "0"))) / 255;
+        const b = Math.max(0, Math.min(255, parseFloat(rgbaMatch[3] || "0"))) / 255;
         const a =
             rgbaMatch[4] !== undefined
                 ? Math.max(0, Math.min(1, parseFloat(rgbaMatch[4])))
