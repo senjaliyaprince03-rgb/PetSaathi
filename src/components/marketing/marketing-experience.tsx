@@ -99,15 +99,7 @@ export function MarketingExperience() {
           />
         </ParallaxScroll>
         <div className="absolute inset-0 bg-white/40" aria-hidden="true" />
-        <div className="absolute inset-0 z-0">
-          <StardustBackground 
-            background="rgba(0,0,0,0)" 
-            particleColor="#301F30" 
-            particleDensity={6} 
-            speed={4} 
-          />
-        </div>
-        
+
         <div className="container-shell relative grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:min-h-[60vh] z-10">
           <div className="relative z-10 max-w-xl self-center">
             <ScrollReveal direction="up">
@@ -187,8 +179,16 @@ export function MarketingExperience() {
         </div>
       </section>
 
-      <section className="bg-cream py-24 sm:py-32 border-b border-indigo/10 overflow-hidden">
-        <div className="container-shell grid items-start gap-16 lg:grid-cols-[1.15fr_0.85fr]">
+      <section className="bg-cream py-24 sm:py-32 border-b border-indigo/10 overflow-hidden relative">
+        <div className="absolute inset-0 z-0 pointer-events-none opacity-50">
+          <StardustBackground 
+            background="rgba(0,0,0,0)" 
+            particleColor="#301F30" 
+            particleDensity={5} 
+            speed={3} 
+          />
+        </div>
+        <div className="container-shell grid items-start gap-16 lg:grid-cols-[1.15fr_0.85fr] relative z-10">
           <HeroVideoShowcase />
           
           <ScrollReveal direction="right">
