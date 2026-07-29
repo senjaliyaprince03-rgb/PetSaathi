@@ -15,10 +15,10 @@ function parseColorToRgba(input: string): Rgba {
     const rgbaMatch = str.match(
         /rgba?\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)\s*(?:,\s*([\d.]+)\s*)?\)/i
     );
-    if (rgbaMatch) {
-        const r = Math.max(0, Math.min(255, parseFloat(rgbaMatch[1] || "0"))) / 255;
-        const g = Math.max(0, Math.min(255, parseFloat(rgbaMatch[2] || "0"))) / 255;
-        const b = Math.max(0, Math.min(255, parseFloat(rgbaMatch[3] || "0"))) / 255;
+    if (rgbaMatch && rgbaMatch[1] !== undefined && rgbaMatch[2] !== undefined && rgbaMatch[3] !== undefined) {
+        const r = Math.max(0, Math.min(255, parseFloat(rgbaMatch[1]))) / 255;
+        const g = Math.max(0, Math.min(255, parseFloat(rgbaMatch[2]))) / 255;
+        const b = Math.max(0, Math.min(255, parseFloat(rgbaMatch[3]))) / 255;
         const a =
             rgbaMatch[4] !== undefined
                 ? Math.max(0, Math.min(1, parseFloat(rgbaMatch[4])))
@@ -44,17 +44,17 @@ function parseColorToRgba(input: string): Rgba {
     }
     if (hex.length === 4) {
         return {
-            r: parseInt(hex[0] + hex[0], 16) / 255,
-            g: parseInt(hex[1] + hex[1], 16) / 255,
-            b: parseInt(hex[2] + hex[2], 16) / 255,
-            a: parseInt(hex[3] + hex[3], 16) / 255,
+            r: parseInt((hex[0] || "0") + (hex[0] || "0"), 16) / 255,
+            g: parseInt((hex[1] || "0") + (hex[1] || "0"), 16) / 255,
+            b: parseInt((hex[2] || "0") + (hex[2] || "0"), 16) / 255,
+            a: parseInt((hex[3] || "0") + (hex[3] || "0"), 16) / 255,
         };
     }
     if (hex.length === 3) {
         return {
-            r: parseInt(hex[0] + hex[0], 16) / 255,
-            g: parseInt(hex[1] + hex[1], 16) / 255,
-            b: parseInt(hex[2] + hex[2], 16) / 255,
+            r: parseInt((hex[0] || "0") + (hex[0] || "0"), 16) / 255,
+            g: parseInt((hex[1] || "0") + (hex[1] || "0"), 16) / 255,
+            b: parseInt((hex[2] || "0") + (hex[2] || "0"), 16) / 255,
             a: 1,
         };
     }
