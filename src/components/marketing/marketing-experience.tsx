@@ -42,7 +42,7 @@ import { ScrollReveal, ParallaxScroll, Scale3D, RotateOnScroll, Float3D } from "
 import TextEmerge from "@/components/originkit/ui/text-emerge";
 import ScrollTextReveal from "@/components/originkit/ui/scroll-text-reveal";
 import MagneticHoverButton from "@/components/originkit/ui/magnetic-hover-button";
-import KineticGrid from "@/components/originkit/ui/kineticgrid";
+import ASCIIWaves from "@/components/originkit/ui/character-waves";
 import ShinyPill from "@/components/originkit/ui/shiny-pill";
 import { AnimosCard, ScrollStaggerContainer, ScrollStaggerItem } from "@/components/effects/animos-motion";
 import { buttonVariants } from "@/components/ui/button";
@@ -180,16 +180,19 @@ export function MarketingExperience() {
       </section>
 
       <section className="bg-cream py-24 sm:py-32 border-b border-indigo/10 overflow-hidden relative">
-        <div className="absolute inset-0 z-0 opacity-50">
-          <KineticGrid 
-            background="rgba(0,0,0,0)"
-            dotColor="#301F30"
-            lineColor="#301F30"
-            trailColor="#D4AF37"
-            spacing={40}
-            radius={300}
-            strength={3}
-            trail={true}
+        <div className="absolute inset-0 z-0 opacity-30">
+          <ASCIIWaves
+            characters=" 🐾.+"
+            elementSize={20}
+            color="#301F30"
+            background="transparent"
+            direction="bottom"
+            speed={15}
+            noiseScale={15}
+            intensity={12}
+            hasCursorInteraction={true}
+            interactionRadius={180}
+            interactionIntensity={20}
           />
         </div>
         <div className="container-shell grid items-start gap-16 lg:grid-cols-[1.15fr_0.85fr] relative z-10">
