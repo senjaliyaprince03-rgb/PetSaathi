@@ -28,6 +28,9 @@ jobs:
       RAZORPAY_KEY_SECRET: ci-only-razorpay-secret
       RAZORPAY_WEBHOOK_SECRET: ci-only-webhook-secret
       CRON_SECRET: ci-only-cron-secret-0000000000000000
+      RESEND_API_KEY: ci-only-resend-key
+      WHATSAPP_ACCESS_TOKEN: ci-only-whatsapp-token
+      SENTRY_DSN: ci-only-sentry-dsn
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -63,6 +66,14 @@ jobs:
     env:
       DATABASE_URL: postgresql://petsaathi_ci:petsaathi_ci@127.0.0.1:5432/petsaathi_ci
       DIRECT_URL: postgresql://petsaathi_ci:petsaathi_ci@127.0.0.1:5432/petsaathi_ci
+      NEXT_PUBLIC_SUPABASE_URL: http://127.0.0.1:54321
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: ci-only-anon-key
+      SUPABASE_SERVICE_ROLE_KEY: ci-only-service-role-key
+      NEXT_PUBLIC_RAZORPAY_KEY_ID: rzp_test_ci_only
+      RAZORPAY_KEY_SECRET: ci-only-razorpay-secret
+      RESEND_API_KEY: ci-only-resend-key
+      WHATSAPP_ACCESS_TOKEN: ci-only-whatsapp-token
+      SENTRY_DSN: ci-only-sentry-dsn
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -108,6 +119,9 @@ jobs:
       RAZORPAY_KEY_SECRET: ci-only-razorpay-secret
       RAZORPAY_WEBHOOK_SECRET: ci-only-webhook-secret
       CRON_SECRET: ci-only-cron-secret-0000000000000000
+      RESEND_API_KEY: ci-only-resend-key
+      WHATSAPP_ACCESS_TOKEN: ci-only-whatsapp-token
+      SENTRY_DSN: ci-only-sentry-dsn
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
