@@ -1,71 +1,245 @@
-/* eslint-disable */
+import type { Metadata } from "next";
 import Link from "next/link";
-import { Heart, Shield, Users } from "lucide-react";
+import {
+  ArrowRight,
+  BadgeCheck,
+  Building2,
+  ChartNoAxesCombined,
+  FileCheck2,
+  ShieldCheck,
+  WalletCards,
+  Workflow,
+} from "lucide-react";
 
-export const dynamic = "force-dynamic";
+import { PublicShell } from "@/components/marketing/public-shell";
+import { buttonVariants } from "@/components/ui/button";
+
+export const metadata: Metadata = {
+  title: "Employee Pet-Care Programmes | PetSaathi",
+  description:
+    "Explore controlled employee pet-care programmes with verified eligibility, auditable service credits, and operations-led activation.",
+};
+
+const programmeControls = [
+  {
+    icon: BadgeCheck,
+    title: "Eligibility is explicit",
+    body: "Employee access is tied to an active programme and a controlled verification method. Enrollment alone never grants benefits.",
+  },
+  {
+    icon: WalletCards,
+    title: "Credits remain traceable",
+    body: "Approved programme credits move through a dedicated ledger, preserving the reason, amount, and related service context.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Care gates still apply",
+    body: "A benefit never bypasses city availability, service permissions, capacity, pricing, pet risk, or human review.",
+  },
+] as const;
+
+const activationSteps = [
+  {
+    number: "01",
+    title: "Define the programme",
+    body: "PetSaathi and the organisation agree scope, dates, city coverage, eligibility, service rules, and commercial terms.",
+  },
+  {
+    number: "02",
+    title: "Activate controlled access",
+    body: "Authorised managers activate the programme only after its organisation and contract controls are current.",
+  },
+  {
+    number: "03",
+    title: "Verify each member",
+    body: "Eligible employees authenticate and complete the configured verification path before a wallet can be used.",
+  },
+  {
+    number: "04",
+    title: "Review real outcomes",
+    body: "Operations can review programme enrollment, service usage, credits, complaints, and capacity using auditable records.",
+  },
+] as const;
 
 export default function CorporateBenefitsPage() {
   return (
-    <div className="container-shell mx-auto px-4 py-8">
-      {/* Hero Section */}
-      <section className="text-center py-16 bg-blue-50 rounded-2xl mb-12">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">Pet Care Benefits for Modern Teams</h1>
-        <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
-          Attract and retain top talent by offering comprehensive pet care benefits. Show your employees you care about their whole family, furry members included.
-        </p>
-        <Link href="#contact" className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
-          Partner With Us
-        </Link>
+    <PublicShell>
+      <section className="relative overflow-hidden border-b border-indigo/10 bg-cream pb-24 pt-32 sm:pt-40">
+        <div className="pointer-events-none absolute -right-28 top-8 h-96 w-96 rounded-full bg-saffron/25 blur-3xl" />
+        <div className="pointer-events-none absolute -left-32 bottom-0 h-80 w-80 rounded-full bg-indigo/10 blur-3xl" />
+
+        <div className="container-shell relative grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+          <div>
+            <span className="inline-flex items-center gap-2 rounded-full border border-leaf/20 bg-leaf/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-leaf">
+              <Building2 className="h-4 w-4" />
+              Employer and association programmes
+            </span>
+            <h1 className="mt-7 max-w-[12ch] font-display text-5xl font-semibold tracking-[-0.055em] text-ink sm:text-7xl">
+              Pet-care benefits with accountable controls.
+            </h1>
+            <p className="mt-6 max-w-2xl text-base leading-8 text-ink/65">
+              Create a structured route for eligible members to request local
+              pet care. Every programme stays bounded by its contract,
+              verification method, city scope, active dates, and available
+              provider capacity.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href="/contact"
+                className={buttonVariants({
+                  variant: "accent",
+                  size: "lg",
+                })}
+              >
+                Discuss a programme <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/safety"
+                className={buttonVariants({
+                  variant: "outline",
+                  size: "lg",
+                })}
+              >
+                Review safety controls
+              </Link>
+            </div>
+          </div>
+
+          <div className="rounded-[2.5rem] border border-paper/80 bg-paper/90 p-6 shadow-lifted backdrop-blur sm:p-8">
+            <div className="flex items-center justify-between gap-4 border-b border-ink/10 pb-5">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.16em] text-coral">
+                  Programme control plane
+                </p>
+                <h2 className="mt-2 font-display text-3xl font-semibold">
+                  Designed to fail closed.
+                </h2>
+              </div>
+              <Workflow className="h-9 w-9 text-indigo" />
+            </div>
+            <div className="mt-6 grid gap-3">
+              {[
+                ["Contract", "Current and organisation-bound"],
+                ["Membership", "Authenticated and verified"],
+                ["Service access", "Permission and capacity checked"],
+                ["Benefits", "Ledger-backed and auditable"],
+              ].map(([label, value]) => (
+                <div
+                  key={label}
+                  className="flex items-center justify-between gap-4 rounded-2xl bg-cream/60 px-4 py-3"
+                >
+                  <span className="text-sm font-semibold text-ink/55">
+                    {label}
+                  </span>
+                  <span className="text-right text-sm font-bold text-ink">
+                    {value}
+                  </span>
+                </div>
+              ))}
+            </div>
+            <p className="mt-5 text-xs leading-5 text-ink/45">
+              Programme activation is contractual and operational. This page
+              does not create eligibility, pricing, or a service guarantee.
+            </p>
+          </div>
+        </div>
       </section>
 
-      {/* Problem & Solution */}
-      <section className="grid md:grid-cols-2 gap-12 mb-16">
-        <div>
-          <h2 className="text-2xl font-bold mb-4">The Challenge</h2>
-          <p className="text-gray-600 text-lg leading-relaxed">
-            As remote and hybrid work becomes the norm, pet ownership has surged among professionals. Finding reliable, trusted pet care during work trips, long office days, or emergencies is a significant stressor for employees, impacting their productivity and well-being.
-          </p>
-        </div>
-        <div>
-          <h2 className="text-2xl font-bold mb-4">The PetSaathi Solution</h2>
-          <p className="text-gray-600 text-lg leading-relaxed">
-            PetSaathi partners with enterprises to provide subsidized, on-demand, and premium pet care services. From verified pet sitters to emergency boarding, we ensure your employees have peace of mind while they focus on work.
-          </p>
-        </div>
-      </section>
-
-      {/* Supported Services */}
-      <section className="mb-16">
-        <h2 className="text-3xl font-bold text-center mb-10">What We Offer</h2>
-        <div className="grid md:grid-cols-3 gap-8">
-          <div className="bg-paper p-6 rounded-xl shadow text-center">
-            <Heart className="w-12 h-12 text-pink-500 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Subsidized Pet Sitting</h3>
-            <p className="text-gray-600">Company-sponsored credits for daily pet sitting and dog walking services.</p>
+      <section className="bg-paper py-24">
+        <div className="container-shell">
+          <div className="max-w-3xl">
+            <p className="eyebrow">What the platform enforces</p>
+            <h2 className="mt-4 font-display text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">
+              Benefits never sit outside the care workflow.
+            </h2>
           </div>
-          <div className="bg-paper p-6 rounded-xl shadow text-center">
-            <Shield className="w-12 h-12 text-blue-500 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Emergency Boarding</h3>
-            <p className="text-gray-600">Priority access to trusted boarding facilities during unexpected business travel.</p>
-          </div>
-          <div className="bg-paper p-6 rounded-xl shadow text-center">
-            <Users className="w-12 h-12 text-green-500 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Dedicated Concierge</h3>
-            <p className="text-gray-600">A personalized support channel to handle employee requests and last-minute bookings.</p>
+          <div className="mt-10 grid gap-5 lg:grid-cols-3">
+            {programmeControls.map(({ icon: Icon, title, body }) => (
+              <article
+                key={title}
+                className="rounded-[2rem] border border-indigo/10 bg-cream/45 p-7"
+              >
+                <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-indigo/10 text-indigo">
+                  <Icon className="h-5 w-5" />
+                </span>
+                <h3 className="mt-5 font-display text-2xl font-semibold">
+                  {title}
+                </h3>
+                <p className="mt-3 text-sm leading-7 text-ink/60">{body}</p>
+              </article>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* How to Apply */}
-      <section id="contact" className="bg-gray-900 text-white p-12 rounded-2xl text-center">
-        <h2 className="text-3xl font-bold mb-4">Ready to Enhance Your Benefits?</h2>
-        <p className="text-gray-300 max-w-2xl mx-auto mb-8">
-          Join leading companies in providing the most sought-after lifestyle benefit. Our partner team will help you design a program that fits your company&apos;s size and budget.
-        </p>
-        <button className="bg-white text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
-          Contact Sales Team
-        </button>
+      <section className="bg-indigo py-24 text-paper">
+        <div className="container-shell grid gap-12 lg:grid-cols-[0.75fr_1.25fr]">
+          <div>
+            <FileCheck2 className="h-10 w-10 text-saffron" />
+            <p className="mt-6 text-xs font-bold uppercase tracking-[0.18em] text-saffron">
+              Controlled activation
+            </p>
+            <h2 className="mt-4 font-display text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">
+              Four stages from agreement to evidence.
+            </h2>
+            <p className="mt-5 text-sm leading-7 text-paper/65">
+              The recommended implementation keeps commercial approval,
+              member eligibility, service operations, and reporting as
+              separate auditable decisions.
+            </p>
+          </div>
+          <ol className="grid gap-4 sm:grid-cols-2">
+            {activationSteps.map((step) => (
+              <li
+                key={step.number}
+                className="rounded-[2rem] border border-paper/10 bg-paper/[0.06] p-6"
+              >
+                <span className="text-xs font-bold tracking-[0.18em] text-saffron">
+                  {step.number}
+                </span>
+                <h3 className="mt-4 font-display text-2xl font-semibold">
+                  {step.title}
+                </h3>
+                <p className="mt-3 text-sm leading-7 text-paper/65">
+                  {step.body}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </div>
       </section>
-    </div>
+
+      <section className="bg-cream py-24">
+        <div className="container-shell">
+          <div className="rounded-[2.75rem] border border-indigo/10 bg-paper p-8 shadow-lifted sm:p-12">
+            <ChartNoAxesCombined className="h-10 w-10 text-coral" />
+            <div className="mt-6 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+              <div className="max-w-3xl">
+                <p className="eyebrow">Start with operational fit</p>
+                <h2 className="mt-4 font-display text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">
+                  Explore a programme without making premature promises.
+                </h2>
+                <p className="mt-5 text-sm leading-7 text-ink/60">
+                  Share the organisation, intended member group, cities, and
+                  desired care context. PetSaathi will record the enquiry for
+                  a human review; no programme or booking is created from an
+                  enquiry alone.
+                </p>
+              </div>
+              <Link
+                href="/contact"
+                className={buttonVariants({
+                  variant: "accent",
+                  size: "lg",
+                  className: "shrink-0",
+                })}
+              >
+                Contact the partner team <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+    </PublicShell>
   );
 }

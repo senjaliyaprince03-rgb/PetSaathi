@@ -22,11 +22,10 @@ Secrets belong in Vercel Environment Variables and GitHub Secrets. They must nev
 | `REQUIRED_SITTER_TRAINING_MODULES` | Comma-separated training module slugs required for approval |
 | `RESEND_API_KEY`, `RESEND_FROM_EMAIL` | Transactional email and verified sender |
 | `WHATSAPP_ACCESS_TOKEN`, `WHATSAPP_PHONE_NUMBER_ID`, `WHATSAPP_BUSINESS_ACCOUNT_ID` | WhatsApp notifications |
-| `CRON_SECRET` | Authenticates notification and reconciliation jobs |
+| `CRON_SECRET` | Authenticates notification and retention jobs; Vercel sends it as `Authorization: Bearer <secret>` |
 | `SCANNER_CALLBACK_SECRET` | Authenticates malware-scanner verdict callbacks |
 | `SENTRY_DSN`, `NEXT_PUBLIC_SENTRY_DSN`, `SENTRY_ORG`, `SENTRY_PROJECT`, `SENTRY_AUTH_TOKEN` | Error reporting and release source maps; DSNs may be public but auth token remains secret |
 | `TRACKING_RETENTION_DAYS` | Location-point retention window; defaults to 30 days |
-| `SENTRY_AUTH_TOKEN` | Production source-map upload |
 | `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Consent-aware analytics |
 | `NEXT_PUBLIC_MAP_PROVIDER` | `mappls`, `google`, or `disabled` |
 
@@ -34,7 +33,19 @@ Secrets belong in Vercel Environment Variables and GitHub Secrets. They must nev
 
 1. Run Prisma migrations through a reviewed CI job using `DIRECT_URL`.
 2. Run `npm run check`; deploy a Vercel preview and execute Playwright smoke tests.
-3. Promote the immutable build to production, verify `/api/health`, then enable feature flags gradually.
+3. Promote the immutable build to production, verify `/api/health` (liveness) and `/api/ready` (database readiness), then enable feature flags gradually.
+
+## Scheduled jobs
+
+`vercel.json` registers authenticated `GET` invocations:
+
+| UTC schedule | Route | Responsibility |
+| --- | --- | --- |
+| Every 5 minutes | `/api/jobs/notifications` | Claims and delivers retryable outbox records |
+| 02:15 daily | `/api/jobs/tracking-retention` | Removes location points beyond the configured retention window |
+| 03:15 daily | `/api/jobs/upload-retention` | Removes expired private-upload records |
+
+Confirm that the selected Vercel plan supports the required cron frequency before production promotion. Each job fails closed when `CRON_SECRET` is absent or incorrect; never put the secret in the URL.
 
 ## Rollback
 

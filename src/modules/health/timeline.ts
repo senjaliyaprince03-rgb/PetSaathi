@@ -1,6 +1,5 @@
-/* eslint-disable */
 import { prisma } from "@/lib/db";
-import type { HealthEventType } from "@prisma/client";
+import type { HealthEventType, Prisma } from "@prisma/client";
 
 export interface TimelineEvent {
   id: string;
@@ -35,7 +34,7 @@ export async function getPetTimeline(petId: string): Promise<TimelineEvent[]> {
       description: e.description,
       date: e.eventDate,
       documentUrl: e.documentUrl,
-      metadata: e.metadata as any,
+      metadata: e.metadata as Prisma.JsonValue,
       source: "MANUAL" as const,
     })),
     ...services.map((s) => ({

@@ -6,7 +6,7 @@ interface ShinyPillProps {
     textColor: string
     shineColor: string
     speed: number
-    font: any
+    font?: React.CSSProperties
     style?: CSSProperties
 }
 
@@ -99,7 +99,7 @@ export default function ShinyPill(props: ShinyPillProps) {
     return content
 }
 
-const COMPONENT_DEFAULTS = {
+const COMPONENT_DEFAULTS: Partial<ShinyPillProps> = {
     text: "SHINY PILL",
     textColor: "#FFFFFF",
     shineColor: "#78FF83",
@@ -110,5 +110,5 @@ const COMPONENT_DEFAULTS = {
         fontSize: "120px",
         letterSpacing: "-0.01em",
         lineHeight: "1em",
-    } as any,
+    } as React.CSSProperties,
 }

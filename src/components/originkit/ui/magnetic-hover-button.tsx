@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { motion, useMotionValue, useSpring, type Transition } from "framer-motion";
 import { useRef, useState, useEffect, type CSSProperties } from "react";
 
 const RANGE_PER_POINT = 18;
@@ -24,7 +24,7 @@ interface MagneticButtonProps {
   magnet?: number;
   paddingX?: number;
   paddingY?: number;
-  transition?: any;
+  transition?: Transition;
   border?: boolean;
   borderOptions?: BorderOptions;
   style?: CSSProperties;

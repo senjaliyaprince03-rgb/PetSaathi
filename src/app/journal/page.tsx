@@ -39,10 +39,7 @@ export default async function JournalPage() {
           src="/images/journal-hero-luxury-banner.jpg"
           alt="PetSaathi care journal study with pet parent and Golden Retriever"
           fill
-          priority
-          unoptimized
-          quality={100}
-          sizes="100vw"
+          priority          sizes="100vw"
           className="object-cover object-[75%_center] sm:object-[center_35%]"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/60 to-transparent md:w-3/4" />
@@ -107,7 +104,7 @@ export default async function JournalPage() {
                 <BookOpen className="mx-auto h-12 w-12 text-indigo" />
                 <h2 className="mt-4 font-display text-3xl font-bold text-ink">Journal Guides Coming Soon</h2>
                 <p className="mt-3 text-sm leading-7 text-ink/65">
-                  Our veterinary advisors and certified Saathi leads are finalizing the next edition of local care handbooks.
+                  The editorial team is preparing structured guides for review before anything is published.
                 </p>
               </div>
             )}

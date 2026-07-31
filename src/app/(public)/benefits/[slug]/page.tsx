@@ -1,7 +1,17 @@
-/* eslint-disable */
+import {
+  BadgeCheck,
+  Building2,
+  CalendarRange,
+  MapPinned,
+  ShieldCheck,
+} from "lucide-react";
 import { notFound } from "next/navigation";
-import { getProgrammeBySlug } from "@/modules/b2b/programmes";
-import { Building, ShieldCheck, CheckCircle2 } from "lucide-react";
+
+import { ProgrammeEnrollment } from "@/components/b2b/programme-enrollment";
+import { PublicShell } from "@/components/marketing/public-shell";
+import { logger } from "@/lib/logger";
+import { getAvailableProgrammeBySlug } from "@/modules/b2b/programmes";
+import { recordProgrammePageView } from "@/modules/b2b/reporting";
 
 export const dynamic = "force-dynamic";
 
@@ -11,77 +21,97 @@ export default async function CompanyBenefitProgrammePage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  let programme;
-  try {
-    programme = await getProgrammeBySlug(slug);
-  } catch {
-    notFound();
-  }
+  const programme = await getAvailableProgrammeBySlug(slug).catch(() => null);
+  if (!programme) notFound();
 
-  if (programme.status !== "ACTIVE_PROGRAMME") {
-    notFound();
-  }
+  await recordProgrammePageView(programme.id).catch((error: unknown) => {
+    logger.warn("partner_programme.page_view_failed", {
+      programmeId: programme.id,
+      error,
+    });
+  });
+
+  const eligibilityLabel = programme.eligibilityMethod
+    .replaceAll("_", " ")
+    .toLowerCase();
 
   return (
-    <div className="container-shell mx-auto px-4 py-12 max-w-4xl">
-      <div className="text-center mb-10">
-        <div className="inline-flex items-center justify-center w-20 h-20 bg-blue-100 text-blue-600 rounded-full mb-6">
-          <Building className="w-10 h-10" />
-        </div>
-        <h1 className="text-4xl font-bold text-gray-900 mb-2">
-          {programme.organization.displayName} Pet Care Benefits
-        </h1>
-        <p className="text-xl text-gray-600">
-          Powered by PetSaathi
-        </p>
-      </div>
+    <PublicShell>
+      <section className="relative overflow-hidden border-b border-indigo/10 bg-cream pb-20 pt-32 sm:pt-40">
+        <div className="pointer-events-none absolute -right-24 top-12 h-80 w-80 rounded-full bg-saffron/20 blur-3xl" />
+        <div className="pointer-events-none absolute -left-32 bottom-0 h-72 w-72 rounded-full bg-indigo/10 blur-3xl" />
+        <div className="container-shell relative grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+          <div>
+            <span className="inline-flex items-center gap-2 rounded-full border border-leaf/20 bg-leaf/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.15em] text-leaf">
+              <ShieldCheck className="h-4 w-4" /> Active partner programme
+            </span>
+            <p className="mt-7 flex items-center gap-2 text-sm font-bold text-coral">
+              <Building2 className="h-4 w-4" />
+              {programme.organization.displayName}
+            </p>
+            <h1 className="mt-3 max-w-[12ch] font-display text-5xl font-semibold tracking-[-0.055em] sm:text-7xl">
+              {programme.name}
+            </h1>
+            <p className="mt-5 max-w-2xl text-base leading-8 text-ink/62">
+              Controlled access to PetSaathi services through an authenticated,
+              auditable eligibility workflow. Enrollment never bypasses service
+              permissions, capacity, safety review, or verified pricing.
+            </p>
 
-      <div className="bg-paper shadow-lg rounded-2xl p-8 mb-8 border border-gray-100">
-        <h2 className="text-2xl font-semibold mb-6 flex items-center gap-2">
-          <ShieldCheck className="w-6 h-6 text-green-500" /> Programme Overview
-        </h2>
-        
-        <div className="space-y-4">
-          <div className="flex items-start gap-3">
-            <CheckCircle2 className="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" />
-            <div>
-              <h3 className="font-medium">Programme Name</h3>
-              <p className="text-gray-600">{programme.name}</p>
+            <div className="mt-8 grid gap-3 sm:grid-cols-3">
+              <ProgrammeFact
+                icon={BadgeCheck}
+                label="Programme type"
+                value={programme.programmeType.replaceAll("_", " ")}
+              />
+              <ProgrammeFact
+                icon={MapPinned}
+                label="City scope"
+                value={
+                  programme.cityScope.length
+                    ? programme.cityScope.join(", ")
+                    : "Configured by programme"
+                }
+              />
+              <ProgrammeFact
+                icon={CalendarRange}
+                label="Access window"
+                value={
+                  programme.endDate
+                    ? `Until ${programme.endDate.toLocaleDateString("en-IN", { dateStyle: "medium" })}`
+                    : "While programme is active"
+                }
+              />
             </div>
           </div>
-          <div className="flex items-start gap-3">
-            <CheckCircle2 className="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" />
-            <div>
-              <h3 className="font-medium">Benefit Type</h3>
-              <p className="text-gray-600">{programme.programmeType.replace(/_/g, " ")}</p>
-            </div>
-          </div>
-          <div className="flex items-start gap-3">
-            <CheckCircle2 className="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" />
-            <div>
-              <h3 className="font-medium">Eligibility Method</h3>
-              <p className="text-gray-600">{programme.eligibilityMethod.replace(/_/g, " ")}</p>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <div className="bg-blue-50 rounded-2xl p-8 text-center">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Verify Your Employment</h2>
-        <p className="text-gray-600 mb-6 max-w-xl mx-auto">
-          To access these benefits, you must verify your employment with {programme.organization.displayName}. 
-          {programme.eligibilityMethod === "DOMAIN_EMAIL" && " Please use your corporate email address to verify."}
-          {programme.eligibilityMethod === "OTP_VERIFY" && " Please complete the one-time verification step sent to your registered contact details."}
-          {programme.eligibilityMethod === "EMPLOYEE_ID" && " Please share your employee identifier as part of the verification flow."}
-          {programme.eligibilityMethod === "HR_FILE" && " Your organisation will validate the request using the submitted HR documentation."}
-          {programme.eligibilityMethod === "INVITATION_TOKEN" && " Please use the invitation token shared with you by your employer or programme admin."}
-          {programme.eligibilityMethod === "SOCIETY_APPROVAL" && " Your eligibility will be confirmed after the relevant society approval step is completed."}
-          {programme.eligibilityMethod === "OPEN_ACCESS" && " You can continue with the open-access eligibility flow for this programme."}
-        </p>
-        <button className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
-          Verify Eligibility
-        </button>
-      </div>
+          <ProgrammeEnrollment
+            slug={slug}
+            eligibilityLabel={eligibilityLabel}
+            openAccess={programme.eligibilityMethod === "OPEN_ACCESS"}
+          />
+        </div>
+      </section>
+    </PublicShell>
+  );
+}
+
+function ProgrammeFact({
+  icon: Icon,
+  label,
+  value,
+}: {
+  icon: typeof BadgeCheck;
+  label: string;
+  value: string;
+}) {
+  return (
+    <div className="rounded-3xl border border-paper/80 bg-paper/85 p-4 shadow-sm backdrop-blur">
+      <Icon className="h-5 w-5 text-indigo" />
+      <p className="mt-3 text-[0.62rem] font-bold uppercase tracking-[0.14em] text-ink/40">
+        {label}
+      </p>
+      <p className="mt-1 text-sm font-semibold capitalize text-ink">{value}</p>
     </div>
   );
 }

@@ -50,7 +50,7 @@ export function CareMatchFinder() {
   return (
     <form
       onSubmit={submit}
-      className="relative mt-9 overflow-hidden rounded-[2rem] border border-white/70 bg-white/60 p-5 shadow-2xl backdrop-blur-xl sm:p-6"
+      className="relative mt-9 overflow-hidden rounded-[2rem] border border-paper/90 bg-paper/[0.92] p-5 shadow-2xl backdrop-blur-xl sm:p-6"
       aria-label="Start a PetSaathi care match"
       noValidate
     >
@@ -58,10 +58,10 @@ export function CareMatchFinder() {
       <div className="relative flex items-center justify-between gap-4">
         <div>
           <p className="text-[0.62rem] font-bold uppercase tracking-[0.22em] text-indigo/70 font-outfit">Instant Care Match</p>
-          <p className="mt-1 text-sm font-bold text-ink">Find verified, trusted pet care in under 60 seconds.</p>
+          <p className="mt-1 text-sm font-bold text-ink">Share the care context in under a minute.</p>
         </div>
         <span className="hidden items-center gap-1.5 rounded-full bg-secondary-container/50 px-3 py-1.5 text-[0.65rem] font-bold text-on-secondary-container sm:inline-flex">
-          <ShieldCheck className="h-3.5 w-3.5" /> 100% Verified Saathis
+          <ShieldCheck className="h-3.5 w-3.5" /> Checked per service
         </span>
       </div>
 
@@ -126,13 +126,13 @@ export function CareMatchFinder() {
         </div>
         <Button type="submit" size="lg" disabled={isPending} className="shrink-0 font-outfit bg-[#301F30] hover:bg-[#301F30]/90 text-white border-transparent">
           {isPending ? <Search className="h-4 w-4 animate-pulse" /> : null}
-          {isPending ? "Finding Saathis..." : "Find My Verified Saathi"}
+          {isPending ? "Opening request..." : "Start Assisted Matching"}
           <ArrowRight className="h-4 w-4" />
         </Button>
       </div>
 
       <p className="relative mt-3 text-[0.65rem] font-medium leading-5 text-ink/50">
-        No payment required to search. Real-time availability, safety clearance, and transparent rates are verified upfront.
+        No payment is requested here. Availability, permissions, capacity, and the current quote are checked before confirmation.
       </p>
     </form>
   );

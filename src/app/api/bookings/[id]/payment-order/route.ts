@@ -1,49 +1,154 @@
-import { randomUUID } from "node:crypto";
-
 import { NextResponse } from "next/server";
+import { z } from "zod";
 
-import { prisma } from "@/lib/db";
-import { getCurrentIdentity } from "@/modules/auth/session";
+import { logger } from "@/lib/logger";
+import { authorizeApi } from "@/modules/auth/authorization";
+import {
+  createOrReusePaymentOrder,
+  PaymentOrderError,
+  type PaymentProviderOrder,
+} from "@/modules/payments/payment-order";
 import { createRazorpayClient } from "@/modules/payments/razorpay";
+import { consumeRateLimit } from "@/modules/security/rate-limit";
 
 export const dynamic = "force-dynamic";
 
-export async function POST(_request: Request, context: { params: Promise<{ id: string }> }) {
-  const identity = await getCurrentIdentity();
-  if (!identity?.roles.includes("CUSTOMER")) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
-  const { id } = await context.params;
+const resourceIdSchema = z.string().uuid();
 
-  const booking = await prisma.booking.findFirst({
-    where: { id, customerId: identity.id },
-    select: { id: true, reference: true, status: true, quoteAmountPaise: true, currency: true, payments: { where: { status: { in: ["CREATED", "PENDING", "AUTHORIZED", "CAPTURED"] } }, orderBy: { createdAt: "desc" }, take: 1 } }
-  });
-  if (!booking) return NextResponse.json({ error: "not_found" }, { status: 404 });
-  if (booking.status !== "PAYMENT_PENDING") return NextResponse.json({ error: "invalid_booking_state", message: "Payment is not available in the current booking state." }, { status: 409 });
+export async function POST(
+  _request: Request,
+  context: { params: Promise<{ id: string }> },
+) {
+  const authorization = await authorizeApi(["CUSTOMER"]);
+  if (!authorization.authorized) return authorization.response;
+
+  const bookingId = resourceIdSchema.safeParse((await context.params).id);
+  if (!bookingId.success) {
+    return NextResponse.json(
+      { error: "invalid_resource_id" },
+      { status: 422, headers: { "Cache-Control": "no-store" } },
+    );
+  }
+
+  const rate = await consumeRateLimit(
+    "customer-payment-order",
+    authorization.identity.id,
+    20,
+    15 * 60_000,
+  );
+  if (!rate.allowed) {
+    return NextResponse.json(
+      { error: "too_many_requests" },
+      {
+        status: 429,
+        headers: {
+          "Retry-After": String(rate.retryAfterSeconds),
+          "Cache-Control": "no-store",
+        },
+      },
+    );
+  }
 
   const keyId = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
-  const existing = booking.payments[0];
-  if (existing?.providerOrderId.startsWith("creating-")) return NextResponse.json({ error: "order_in_progress", message: "Payment setup is already in progress. Try again in a moment." }, { status: 409 });
-  if (existing && keyId) return NextResponse.json({ order: { ...publicOrder(existing.providerOrderId, existing.amountPaise, existing.currency), keyId }, reused: true });
-
   const razorpay = createRazorpayClient();
-  if (!razorpay || !keyId) return NextResponse.json({ error: "payments_not_configured" }, { status: 503 });
-
-  const placeholderOrderId = `creating-${randomUUID()}`;
-  const payment = await prisma.payment.create({ data: { bookingId: booking.id, providerOrderId: placeholderOrderId, amountPaise: booking.quoteAmountPaise, currency: booking.currency, status: "CREATED" } });
+  if (!razorpay || !keyId) {
+    return NextResponse.json(
+      { error: "payments_not_configured" },
+      { status: 503, headers: { "Cache-Control": "no-store" } },
+    );
+  }
 
   try {
-    const order = await razorpay.orders.create({
-      amount: booking.quoteAmountPaise,
-      currency: booking.currency,
-      receipt: booking.reference,
-      notes: { bookingId: booking.id, paymentRecordId: payment.id }
+    const result = await createOrReusePaymentOrder({
+      bookingId: bookingId.data,
+      customerId: authorization.identity.id,
+      provider: {
+        async createOrder(input) {
+          const order = await razorpay.orders.create({
+            amount: input.amount,
+            currency: input.currency,
+            receipt: input.receipt,
+            notes: input.notes,
+          });
+          return normalizeProviderOrder(order);
+        },
+        async listOrdersByReceipt(receipt) {
+          const collection = await razorpay.orders.all({
+            receipt,
+            count: 10,
+          });
+          return collection.items.map(normalizeProviderOrder);
+        },
+      },
     });
-    await prisma.payment.update({ where: { id: payment.id }, data: { providerOrderId: order.id, status: "PENDING" } });
-    return NextResponse.json({ order: { ...publicOrder(order.id, booking.quoteAmountPaise, booking.currency), keyId } }, { status: 201 });
-  } catch {
-    await prisma.payment.update({ where: { id: payment.id }, data: { status: "FAILED", failureCode: "ORDER_CREATE_FAILED", failureReason: "Provider order creation failed" } });
-    return NextResponse.json({ error: "provider_unavailable", message: "Payment setup could not be completed. No charge was made." }, { status: 502 });
+
+    return NextResponse.json(
+      {
+        order: {
+          ...publicOrder(
+            result.payment.providerOrderId,
+            result.payment.amountPaise,
+            result.payment.currency,
+          ),
+          keyId,
+        },
+        reused: !result.created,
+      },
+      {
+        status: result.created ? 201 : 200,
+        headers: { "Cache-Control": "no-store" },
+      },
+    );
+  } catch (error) {
+    if (error instanceof PaymentOrderError) {
+      return NextResponse.json(
+        { error: error.code, message: error.message },
+        {
+          status: error.status,
+          headers: { "Cache-Control": "no-store" },
+        },
+      );
+    }
+    logger.error(
+      error instanceof Error ? error : "PaymentOrderCreationError",
+      {
+        event: "payment.order_creation_failed",
+        actorId: authorization.identity.id,
+        bookingId: bookingId.data,
+      },
+    );
+    return NextResponse.json(
+      {
+        error: "internal_error",
+        message: "Payment setup could not be completed.",
+      },
+      { status: 500, headers: { "Cache-Control": "no-store" } },
+    );
   }
+}
+
+function normalizeProviderOrder(order: {
+  id: string;
+  amount: number | string;
+  currency: string;
+  receipt?: string | null;
+  notes?: unknown;
+}): PaymentProviderOrder {
+  return {
+    id: order.id,
+    amount: Number(order.amount),
+    currency: order.currency,
+    receipt: order.receipt,
+    notes: isRecord(order.notes) ? order.notes : null,
+  };
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return (
+    value !== null &&
+    typeof value === "object" &&
+    !Array.isArray(value)
+  );
 }
 
 function publicOrder(id: string, amount: number, currency: string) {

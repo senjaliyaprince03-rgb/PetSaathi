@@ -1,3 +1,5 @@
+import type { Role as PrismaRole } from "@prisma/client";
+
 export const roles = [
   "CUSTOMER",
   "SITTER",
@@ -8,10 +10,12 @@ export const roles = [
   "CONTENT_ADMIN",
   "SOCIETY_MANAGER",
   "PARTNER_MANAGER",
+  "CITY_MANAGER",
+  "OPERATOR",
   "SUPER_ADMIN"
-] as const;
+] as const satisfies readonly PrismaRole[];
 
-export type Role = (typeof roles)[number];
+export type Role = PrismaRole;
 
 export const permissions = [
   "pet:read:own",
@@ -43,9 +47,11 @@ export const rolePermissions: Record<Role, readonly Permission[]> = {
   CONTENT_ADMIN: ["content:operate"],
   SOCIETY_MANAGER: ["society:operate"],
   PARTNER_MANAGER: ["partner:operate"],
+  CITY_MANAGER: ["booking:operate", "matching:decide"],
+  OPERATOR: ["booking:operate"],
   SUPER_ADMIN: permissions
 };
 
 export function hasPermission(userRoles: readonly Role[], permission: Permission) {
-  return userRoles.some((role) => rolePermissions[role].includes(permission));
+  return userRoles.some((role) => rolePermissions[role]?.includes(permission) ?? false);
 }

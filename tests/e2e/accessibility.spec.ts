@@ -1,7 +1,17 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test, type Page } from "@playwright/test";
 
-const publicPages = ["/", "/services", "/safety", "/societies", "/membership", "/journal", "/contact"];
+const publicPages = [
+  "/",
+  "/services",
+  "/safety",
+  "/societies",
+  "/membership",
+  "/journal",
+  "/contact",
+  "/corporate/pet-care-benefits",
+  "/resources/new-pet-checklist",
+];
 
 async function gotoWithTransportRetry(page: Page, path: string) {
   for (let attempt = 1; attempt <= 3; attempt += 1) {
@@ -26,4 +36,21 @@ test("public surfaces have no serious or critical automated accessibility violat
     const violations = results.violations.filter(({ impact }) => impact === "serious" || impact === "critical");
     expect(violations, `${path}: ${violations.map(({ id, help }) => `${id} — ${help}`).join("; ")}`).toEqual([]);
   }
+});
+
+test("custom cursor hides on touch screens and respects reduced motion", async ({ page, isMobile }) => {
+  await page.emulateMedia({ colorScheme: "light", reducedMotion: "no-preference" });
+  await page.goto("/", { waitUntil: "domcontentloaded" });
+
+  if (isMobile) {
+    await expect(page.getByTestId("luxury-cursor-halo")).toHaveCount(0);
+    return;
+  }
+
+  const cursor = page.getByTestId("luxury-cursor-halo");
+  await page.mouse.move(320, 240);
+  await expect(cursor).toHaveAttribute("data-ready", "true", { timeout: 30_000 });
+
+  await page.emulateMedia({ colorScheme: "light", reducedMotion: "reduce" });
+  await expect(page.getByTestId("luxury-cursor-halo")).toHaveCount(0);
 });

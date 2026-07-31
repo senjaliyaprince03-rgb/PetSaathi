@@ -6,6 +6,14 @@ import { prisma } from "@/lib/db";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 
 export async function POST(request: Request) {
+  return enforceUploadRetention(request);
+}
+
+export async function GET(request: Request) {
+  return enforceUploadRetention(request);
+}
+
+async function enforceUploadRetention(request: Request) {
   const secret = process.env.CRON_SECRET;
   const token = request.headers.get("authorization")?.replace(/^Bearer\s+/i, "");
   if (!secret || !token || !sameSecret(secret, token)) return NextResponse.json({ error: "unauthorized" }, { status: 401 });

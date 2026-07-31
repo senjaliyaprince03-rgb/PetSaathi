@@ -16,7 +16,6 @@ import {
   PawPrint,
   Scissors,
   ShieldCheck,
-  Sparkles,
   Stethoscope
 } from "lucide-react";
 

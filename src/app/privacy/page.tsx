@@ -2,8 +2,34 @@ import type { Metadata } from "next";
 
 import { PageIntro, PublicShell } from "@/components/marketing/public-shell";
 
-export const metadata: Metadata = { title: "Privacy notice", robots: { index: false, follow: false } };
+export const metadata: Metadata = {
+  title: "Privacy Notice",
+  robots: {
+    index: false,
+    follow: false
+  }
+};
 
 export default function PrivacyPage() {
-  return <PublicShell><PageIntro eyebrow="legal review required" title="Privacy notice placeholder" description="The production privacy notice must be approved with the final legal entity, vendors, retention periods, data-contact details and India DPDP compliance process. The product architecture already separates essential processing, marketing, public media and testimonial consent." /><section className="container-shell"><div className="mx-auto max-w-3xl rounded-5xl border border-coral/25 bg-coral/10 p-8 leading-7 text-ink/68">This page is intentionally not presented as final legal advice or production policy. It remains excluded from search indexing until owner-approved copy is supplied.</div></section></PublicShell>;
+  return (
+    <PublicShell>
+      <PageIntro
+        eyebrow="Commitment to Privacy"
+        title="Privacy Notice"
+        description="Pending legal review."
+      />
+      <section className="container-shell">
+        <div className="mx-auto max-w-4xl space-y-8 rounded-5xl border border-ink/10 bg-paper p-8 text-ink/80 shadow-lifted sm:p-12">
+
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+            <h2 className="font-display text-xl font-semibold text-yellow-800">Pending Legal Review</h2>
+            <p className="mt-4 leading-7 text-yellow-700">
+              This page is currently under review by our legal counsel. The Privacy Notice will be published prior to our public launch.
+            </p>
+          </div>
+
+        </div>
+      </section>
+    </PublicShell>
+  );
 }

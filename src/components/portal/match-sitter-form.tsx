@@ -15,7 +15,7 @@ export function MatchSitterForm({ bookingId, sitters, replacement = false }: { b
   async function offer() {
     setPending(true);
     setMessage(null);
-    const response = await fetch(`/api/admin/bookings/${bookingId}/assignments`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ sitterId, type: replacement ? "REPLACEMENT" : "PRIMARY" }) });
+    const response = await fetch(`/api/admin/bookings/${bookingId}/assignments`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ sitterId }) });
     const result = await response.json().catch(() => null) as { reasons?: string[]; error?: string } | null;
     setPending(false);
     if (!response.ok) return setMessage(result?.reasons?.join(", ").replaceAll("_", " ") ?? result?.error?.replaceAll("_", " ") ?? "Offer could not be created");

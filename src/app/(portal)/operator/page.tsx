@@ -1,18 +1,19 @@
-/* eslint-disable */
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { prisma } from "@/lib/db";
-import { getCurrentIdentity } from "@/modules/auth/session";
-import {
-  resolveTerritoryScope,
-  cityWhereFilter,
-} from "@/modules/rbac/territory-scope";
 import {
   MapPin,
   BarChart3,
   Building2,
   Lock,
 } from "lucide-react";
+
+import { PortalShell } from "@/components/portal/portal-shell";
+import { prisma } from "@/lib/db";
+import { getCurrentIdentity } from "@/modules/auth/session";
+import {
+  resolveTerritoryScope,
+  cityWhereFilter,
+} from "@/modules/rbac/territory-scope";
 
 export const dynamic = "force-dynamic";
 
@@ -35,12 +36,14 @@ export default async function OperatorDashboard() {
 
   if (!hasAccess) {
     return (
-      <div className="container-shell p-8">
-        <h1 className="section-title text-coral">Access Denied</h1>
-        <p className="text-ink/60">
-          This dashboard is only available to operating partners and city managers.
-        </p>
-      </div>
+      <PortalShell mode="operator" displayName={identity.displayName}>
+        <div className="mt-5 max-w-3xl">
+          <h1 className="font-display text-4xl font-semibold tracking-[-0.04em] text-coral">Access Denied</h1>
+          <p className="mt-3 text-sm leading-6 text-ink/60">
+            This dashboard is only available to operating partners and city managers.
+          </p>
+        </div>
+      </PortalShell>
     );
   }
 
@@ -97,168 +100,183 @@ export default async function OperatorDashboard() {
   );
 
   return (
-    <div className="container-shell p-6 md:p-10 space-y-8">
-      {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
-        <div>
-          <span className="eyebrow flex items-center gap-2">
-            <Building2 className="w-4 h-4" />
-            {scope.unrestricted ? "Central Operations" : "Operator Portal"}
-          </span>
-          <h1 className="section-title font-display mt-2">Operations Dashboard</h1>
-          <p className="text-ink/60 mt-2">
-            {scope.unrestricted
-              ? "Full platform view — all cities and territories."
-              : `Viewing ${scope.cityIds.length} assigned ${scope.cityIds.length === 1 ? "city" : "cities"}.`}
-          </p>
-        </div>
+    <PortalShell mode="operator" displayName={identity.displayName}>
+      <div className="mt-5 space-y-12 pb-12">
+        {/* Header */}
+        <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+          <div>
+            <span className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-ink/50">
+              <Building2 className="h-3 w-3" />
+              {scope.unrestricted ? "Central Operations" : "Operator Portal"}
+            </span>
+            <h1 className="mt-2 font-display text-4xl font-semibold tracking-[-0.04em]">Operations Dashboard</h1>
+            <p className="mt-3 text-sm leading-6 text-ink/60">
+              {scope.unrestricted
+                ? "Full platform view — all cities and territories."
+                : `Viewing ${scope.cityIds.length} assigned ${scope.cityIds.length === 1 ? "city" : "cities"}.`}
+            </p>
+          </div>
 
-        {!scope.unrestricted && (
-          <div className="bg-cream/50 p-4 rounded-4xl shadow-lifted border border-ink/5 flex items-center gap-3">
-            <Lock className="w-5 h-5 text-ink/40" />
-            <div>
-              <div className="text-xs text-ink/50 uppercase tracking-wider">Data Scope</div>
-              <div className="font-semibold text-sm text-ink">
-                Territory-Restricted
+          {!scope.unrestricted && (
+            <div className="flex items-center gap-4 rounded-3xl border border-indigo/10 bg-paper p-4 shadow-lifted">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo/5 text-indigo">
+                <Lock className="h-5 w-5" />
+              </div>
+              <div>
+                <div className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink/40">Data Scope</div>
+                <div className="text-sm font-semibold text-ink">Territory-Restricted</div>
               </div>
             </div>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
 
-      {/* Territory Assignments (for operators) */}
-      {territories.length > 0 && (
-        <section className="bg-paper p-6 rounded-4xl shadow-lifted border border-ink/5">
-          <h2 className="text-xl font-display font-bold flex items-center gap-2 border-b border-ink/10 pb-4 mb-6">
-            <MapPin className="w-5 h-5 text-leaf" />
-            Your Territories
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {territories.map((t) => (
-              <div
-                key={t.id}
-                className="p-4 bg-cream/50 rounded-2xl border border-ink/5"
-              >
-                <div className="font-semibold">{t.name}</div>
-                <div className="text-sm text-ink/60 mt-1">
-                  {t.city.name}, {t.city.state}
-                </div>
-                {t.serviceZone && (
-                  <div className="text-xs text-ink/50 mt-1">
-                    Zone: {t.serviceZone.name}
+        {/* Territory Assignments (for operators) */}
+        {territories.length > 0 && (
+          <section>
+            <div className="flex items-center gap-3 border-b border-indigo/5 pb-4">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-leaf/10 text-leaf">
+                <MapPin className="h-5 w-5" />
+              </span>
+              <h2 className="font-display text-2xl font-semibold text-ink">
+                Your Territories
+              </h2>
+            </div>
+            
+            <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {territories.map((t) => (
+                <div
+                  key={t.id}
+                  className="rounded-4xl border border-indigo/10 bg-paper p-6 shadow-lifted"
+                >
+                  <div className="font-semibold text-ink">{t.name}</div>
+                  <div className="mt-1 text-sm text-ink/60">
+                    {t.city.name}, {t.city.state}
                   </div>
-                )}
-                <div className="flex items-center gap-2 mt-3">
-                  <span
-                    className={`text-xs font-bold px-2 py-1 rounded-full ${
-                      t.territoryType === "EXCLUSIVE"
-                        ? "bg-leaf/10 text-leaf"
-                        : t.territoryType === "MANAGED"
-                          ? "bg-blue-500/10 text-blue-600"
-                          : "bg-ink/10 text-ink/60"
-                    }`}
-                  >
-                    {t.territoryType}
-                  </span>
-                  {t.agreedRevShareBps > 0 && (
-                    <span className="text-xs text-ink/50">
-                      Rev share: {(t.agreedRevShareBps / 100).toFixed(1)}%
-                    </span>
+                  {t.serviceZone && (
+                    <div className="mt-2 text-xs font-medium text-ink/50">
+                      Zone: {t.serviceZone.name}
+                    </div>
                   )}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* City Economics Grid */}
-      <section className="bg-paper p-6 rounded-4xl shadow-lifted border border-ink/5">
-        <h2 className="text-xl font-display font-bold flex items-center gap-2 border-b border-ink/10 pb-4 mb-6">
-          <BarChart3 className="w-5 h-5 text-leaf" />
-          City Performance
-        </h2>
-
-        {scopedCities.length === 0 ? (
-          <p className="text-ink/50 text-center py-8">
-            No cities assigned to your territory.
-          </p>
-        ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-ink/10 text-left text-ink/50 uppercase tracking-wider text-xs">
-                  <th className="pb-3 pr-4">City</th>
-                  <th className="pb-3 pr-4">Status</th>
-                  <th className="pb-3 pr-4 text-right">GBV</th>
-                  <th className="pb-3 pr-4 text-right">CM2</th>
-                  <th className="pb-3 pr-4 text-right">Bookings</th>
-                  <th className="pb-3 text-right">Health</th>
-                </tr>
-              </thead>
-              <tbody>
-                {scopedCities.map((city) => {
-                  const fin = financialByCity.get(city.id);
-                  const health = healthByCity.get(city.id);
-                  return (
-                    <tr
-                      key={city.id}
-                      className="border-b border-ink/5 hover:bg-cream/30 transition-colors"
+                  <div className="mt-6 flex items-center gap-3">
+                    <span
+                      className={`inline-flex rounded-full px-3 py-1 text-xs font-bold ${
+                        t.territoryType === "EXCLUSIVE"
+                          ? "bg-leaf/10 text-leaf"
+                          : t.territoryType === "MANAGED"
+                            ? "bg-indigo/10 text-indigo"
+                            : "bg-ink/10 text-ink/60"
+                      }`}
                     >
-                      <td className="py-3 pr-4 font-semibold">{city.name}</td>
-                      <td className="py-3 pr-4">
-                        <span className="text-xs font-bold px-2 py-1 rounded-full bg-leaf/10 text-leaf">
-                          {city.status}
-                        </span>
-                      </td>
-                      <td className="py-3 pr-4 text-right font-mono">
-                        {fin
-                          ? `₹${(Number(fin.gbvPaise) / 100).toLocaleString()}`
-                          : "—"}
-                      </td>
-                      <td className="py-3 pr-4 text-right font-mono">
-                        {fin ? (
-                          <span
-                            className={
-                              Number(fin.cm2Paise) >= 0
-                                ? "text-leaf"
-                                : "text-coral"
-                            }
-                          >
-                            ₹{(Number(fin.cm2Paise) / 100).toLocaleString()}
-                          </span>
-                        ) : (
-                          "—"
-                        )}
-                      </td>
-                      <td className="py-3 pr-4 text-right font-mono">
-                        {fin ? fin.totalBookings.toLocaleString() : "—"}
-                      </td>
-                      <td className="py-3 text-right">
-                        {health ? (
-                          <span
-                            className={`font-bold ${
-                              health.overallScore >= 80
-                                ? "text-leaf"
-                                : health.overallScore >= 60
-                                  ? "text-yellow-600"
-                                  : "text-coral"
-                            }`}
-                          >
-                            {health.overallScore}/100
-                          </span>
-                        ) : (
-                          "—"
-                        )}
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
+                      {t.territoryType}
+                    </span>
+                    {t.agreedRevShareBps > 0 && (
+                      <span className="text-xs font-medium text-ink/50">
+                        Rev share: {(t.agreedRevShareBps / 100).toFixed(1)}%
+                      </span>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
         )}
-      </section>
-    </div>
+
+        {/* City Economics Grid */}
+        <section>
+          <div className="flex items-center gap-3 border-b border-indigo/5 pb-4">
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-leaf/10 text-leaf">
+              <BarChart3 className="h-5 w-5" />
+            </span>
+            <h2 className="font-display text-2xl font-semibold text-ink">
+              City Performance
+            </h2>
+          </div>
+
+          {scopedCities.length === 0 ? (
+            <div className="mt-6 rounded-4xl border border-indigo/10 bg-paper py-12 text-center shadow-lifted">
+              <p className="text-sm font-medium text-ink/60">
+                No cities assigned to your territory.
+              </p>
+            </div>
+          ) : (
+            <div className="mt-6 overflow-hidden rounded-4xl border border-indigo/10 bg-paper shadow-lifted">
+              <div className="overflow-x-auto">
+                <table className="w-full text-left">
+                  <thead>
+                    <tr className="border-b border-indigo/10 bg-cream/30">
+                      <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-ink/50">City</th>
+                      <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-ink/50">Status</th>
+                      <th className="px-6 py-4 text-right text-xs font-bold uppercase tracking-[0.16em] text-ink/50">GBV</th>
+                      <th className="px-6 py-4 text-right text-xs font-bold uppercase tracking-[0.16em] text-ink/50">CM2</th>
+                      <th className="px-6 py-4 text-right text-xs font-bold uppercase tracking-[0.16em] text-ink/50">Bookings</th>
+                      <th className="px-6 py-4 text-right text-xs font-bold uppercase tracking-[0.16em] text-ink/50">Health</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-indigo/5">
+                    {scopedCities.map((city) => {
+                      const fin = financialByCity.get(city.id);
+                      const health = healthByCity.get(city.id);
+                      return (
+                        <tr
+                          key={city.id}
+                          className="transition-colors hover:bg-cream/20"
+                        >
+                          <td className="px-6 py-5 font-semibold text-ink">{city.name}</td>
+                          <td className="px-6 py-5">
+                            <span className="inline-flex rounded-full bg-leaf/10 px-3 py-1 text-xs font-bold text-leaf">
+                              {city.status}
+                            </span>
+                          </td>
+                          <td className="px-6 py-5 text-right font-mono text-sm text-ink/75">
+                            {fin
+                              ? `₹${(Number(fin.gbvPaise) / 100).toLocaleString()}`
+                              : "—"}
+                          </td>
+                          <td className="px-6 py-5 text-right font-mono text-sm">
+                            {fin ? (
+                              <span
+                                className={
+                                  Number(fin.cm2Paise) >= 0
+                                    ? "text-leaf"
+                                    : "text-coral"
+                                }
+                              >
+                                ₹{(Number(fin.cm2Paise) / 100).toLocaleString()}
+                              </span>
+                            ) : (
+                              <span className="text-ink/30">—</span>
+                            )}
+                          </td>
+                          <td className="px-6 py-5 text-right font-mono text-sm text-ink/75">
+                            {fin ? fin.totalBookings.toLocaleString() : "—"}
+                          </td>
+                          <td className="px-6 py-5 text-right">
+                            {health ? (
+                              <span
+                                className={`inline-flex rounded-full px-3 py-1 text-xs font-bold ${
+                                  health.overallScore >= 80
+                                    ? "bg-leaf/10 text-leaf"
+                                    : health.overallScore >= 60
+                                      ? "bg-saffron/20 text-saffron-dark"
+                                      : "bg-coral/10 text-coral"
+                                }`}
+                              >
+                                {health.overallScore}/100
+                              </span>
+                            ) : (
+                              <span className="text-ink/30">—</span>
+                            )}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+        </section>
+      </div>
+    </PortalShell>
   );
 }

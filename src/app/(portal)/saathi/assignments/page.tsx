@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { AssignmentActions } from "@/components/portal/assignment-actions";
 import { SitterCancellationAction } from "@/components/portal/booking-recovery-actions";
 import { IncidentReportForm } from "@/components/portal/incident-report-form";
+import { PortalShell } from "@/components/portal/portal-shell";
 import { ReportForm, ServiceActions } from "@/components/portal/service-actions";
 import { prisma } from "@/lib/db";
 import { getCurrentIdentity } from "@/modules/auth/session";
@@ -26,8 +27,16 @@ export default async function SaathiAssignmentsPage() {
   const releasedAddresses = releasedBookingIds.length ? await prisma.booking.findMany({ where: { id: { in: releasedBookingIds } }, select: { id: true, address: { select: { line1: true, line2: true, landmark: true, locality: true, city: true } } } }) : [];
   const addressByBooking = new Map(releasedAddresses.map(({ id, address }) => [id, address]));
 
-  return <main className="min-h-screen bg-cream/50 py-10"><div className="container-shell">
-    <p className="eyebrow">authorised work only</p><h1 className="section-title mt-5">Assignments</h1><p className="mt-5 max-w-2xl text-lg leading-8 text-ink/60">Offers show only the information needed to decide. Exact care instructions and address remain hidden until approval and confirmation.</p>
+  return (
+    <PortalShell mode="saathi" displayName={identity.displayName}>
+      <div className="mt-5 max-w-5xl pb-12">
+        <p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-ink/50">
+          <PawPrint className="h-3 w-3" /> authorised work only
+        </p>
+        <h1 className="mt-2 font-display text-4xl font-semibold tracking-[-0.04em]">Assignments</h1>
+        <p className="mt-3 text-sm leading-6 text-ink/60 max-w-2xl">
+          Offers show only the information needed to decide. Exact care instructions and address remain hidden until approval and confirmation.
+        </p>
     <div className="mt-10 grid gap-5">{assignments.length ? assignments.map((assignment) => {
       const releasedAddress = addressByBooking.get(assignment.bookingId);
       const payout = assignment.booking.payouts.find(({ sitterId }) => sitterId === assignment.sitterId);
@@ -42,6 +51,8 @@ export default async function SaathiAssignmentsPage() {
         {assignment.status === "ACTIVE" && assignment.booking.status === "REPORT_PENDING" && <ReportForm assignmentId={assignment.id} />}
         {assignment.status === "COMPLETED" && assignment.booking.status === "COMPLETED" && assignment.booking.reports[0]?.reviewStatus === "CORRECTION_REQUIRED" && <ReportForm assignmentId={assignment.id} correctionNote={assignment.booking.reports[0].reviewNote ?? undefined} />}
       </article>;
-    }) : <div className="glass-panel rounded-5xl p-10 text-center"><PawPrint className="mx-auto h-10 w-10 text-saffron" /><h2 className="mt-5 font-display text-3xl font-semibold">No assignments yet.</h2><p className="mt-3 text-ink/55">Eligible offers will appear here.</p></div>}</div>
-  </div></main>;
+    }) : <div className="mt-6 rounded-4xl border border-indigo/10 bg-paper py-16 text-center shadow-lifted"><PawPrint className="mx-auto h-10 w-10 text-saffron" /><h2 className="mt-5 font-display text-3xl font-semibold text-ink">No assignments yet.</h2><p className="mt-3 text-sm text-ink/55">Eligible offers will appear here.</p></div>}</div>
+      </div>
+    </PortalShell>
+  );
 }

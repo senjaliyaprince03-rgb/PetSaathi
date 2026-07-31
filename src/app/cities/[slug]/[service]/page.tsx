@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { Route } from "next";
 import { notFound } from "next/navigation";
 import { ShieldCheck, ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -6,6 +7,7 @@ import Link from "next/link";
 import { PageIntro, PublicShell } from "@/components/marketing/public-shell";
 import { isDatabaseConfigured, prisma } from "@/lib/db";
 import { publicEnv } from "@/lib/env";
+import { serviceCodeSchema } from "@/modules/pricing/input";
 
 type Props = { params: Promise<{ slug: string; service: string }> };
 
@@ -16,8 +18,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const city = await prisma.city.findUnique({ where: { slug }, select: { name: true, state: true } });
   if (!city) return { title: "Service not found", robots: { index: false } };
 
-  const serviceCode = service.toUpperCase().replaceAll("-", "_");
-  const serviceType = await prisma.serviceType.findUnique({ where: { code: serviceCode as never }, select: { name: true, description: true } });
+  const parsedServiceCode = serviceCodeSchema.safeParse(
+    service.toUpperCase().replaceAll("-", "_"),
+  );
+  const serviceType = parsedServiceCode.success
+    ? await prisma.serviceType.findUnique({
+        where: { code: parsedServiceCode.data },
+        select: { name: true, description: true },
+      })
+    : null;
   const serviceName = serviceType?.name ?? service.replaceAll("-", " ");
 
   return {
@@ -42,8 +51,13 @@ export default async function CityServicePage({ params }: Props) {
   const city = await prisma.city.findUnique({ where: { slug }, select: { id: true, name: true, state: true, slug: true } });
   if (!city) notFound();
 
-  const serviceCode = service.toUpperCase().replaceAll("-", "_");
-  const serviceType = await prisma.serviceType.findFirst({ where: { code: serviceCode as never } });
+  const parsedServiceCode = serviceCodeSchema.safeParse(
+    service.toUpperCase().replaceAll("-", "_"),
+  );
+  if (!parsedServiceCode.success) notFound();
+  const serviceType = await prisma.serviceType.findUnique({
+    where: { code: parsedServiceCode.data },
+  });
   if (!serviceType) notFound();
 
   // Fetch testimonials for this city (approved ones)
@@ -140,8 +154,7 @@ export default async function CityServicePage({ params }: Props) {
               Book a trial <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              href={`/cities/${city.slug}` as any}
+              href={`/cities/${city.slug}` as Route<string>}
               className="inline-flex items-center gap-2 rounded-full border border-ink/15 px-6 py-4 text-sm font-bold"
             >
               Explore all services in {city.name}

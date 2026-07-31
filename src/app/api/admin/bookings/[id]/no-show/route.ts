@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
+import { logger } from "@/lib/logger";
 import { getCurrentIdentity, hasAnyRole } from "@/modules/auth/session";
 import { BookingRecoveryError, markSitterNoShow } from "@/modules/bookings/recovery";
 import { consumeRateLimit } from "@/modules/security/rate-limit";
@@ -20,7 +21,10 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
     return NextResponse.json({ recovery }, { headers: { "Cache-Control": "no-store" } });
   } catch (error) {
     if (error instanceof BookingRecoveryError) return problem(error.status, error.code, error.message);
-    console.error("booking.no_show_failed", { bookingId: id, actorId: identity.id, error });
+    logger.exception("booking.no_show_failed", error, {
+      bookingId: id,
+      actorId: identity.id,
+    });
     return problem(500, "no_show_failed", "The no-show recovery could not be committed safely.");
   }
 }

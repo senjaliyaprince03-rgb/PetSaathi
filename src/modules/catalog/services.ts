@@ -8,7 +8,7 @@ export const services = [
     slug: "dog-walking",
     name: "Dog Walking",
     kicker: "30 or 60-Minute Outings",
-    description: "Assigned local Saathi, GPS-tracked routes, timed pee/poop logs, and a complete post-walk report.",
+    description: "Assisted local matching with structured start, completion and care-report events. Live tracking appears only when the gated service is eligible and consented.",
     tone: "saffron",
     icon: MapPinned,
     image: "/images/service_dog_walking_v2.jpg"
@@ -25,8 +25,8 @@ export const services = [
   {
     slug: "boarding-beta",
     name: "Boarding Beta",
-    kicker: "Verified Host Residences",
-    description: "Exclusive, hand-assessed host homes with pet compatibility matching and 24/7 supervisor check-ins.",
+    kicker: "Controlled Host Pilot",
+    description: "Request-only boarding for property-assessed hosts and compatible pets, enabled only after the pilot gate and operating controls are approved.",
     tone: "leaf",
     icon: ShieldCheck,
     image: "/images/service-pet-boarding.jpg"
@@ -34,26 +34,26 @@ export const services = [
   {
     slug: "grooming",
     name: "In-Home Grooming",
-    kicker: "Sanitized Mobile Spa",
-    description: "Professional groomers, hypoallergenic coat treatments, sanitized tools, and photo report cards.",
+    kicker: "Request-Only Home Grooming",
+    description: "Partner-delivered grooming requested for the pet's home, with exact service scope and provider availability confirmed before an order proceeds.",
     tone: "blue",
     icon: PawPrint,
     image: "/images/service-pet-grooming.jpg"
   },
   {
     slug: "veterinary",
-    name: "Veterinary Care",
-    kicker: "Certified Health Professionals",
-    description: "In-person wellness checkups, digital pet health passports, and priority clinic emergency routing.",
+    name: "Veterinary Support",
+    kicker: "Non-Emergency Coordination",
+    description: "Request-only coordination with approved veterinary partners. PetSaathi does not diagnose, promise clinic availability or replace emergency services.",
     tone: "teal",
     icon: ShieldCheck,
     image: "/images/service-vet-care.jpg"
   },
   {
     slug: "training",
-    name: "Positivity Training",
-    kicker: "Certified Positive Reinforcement",
-    description: "Gentle, science-based behavioral coaching designed to strengthen trust and communication.",
+    name: "Training Assessment",
+    kicker: "Specialist Intake",
+    description: "A request for reward-led behaviour and training intake with an approved specialist, subject to fit, scope and availability.",
     tone: "indigo",
     icon: HeartHandshake,
     image: "/images/service-dog-training.jpg"
@@ -61,7 +61,7 @@ export const services = [
 ] as const;
 
 export const trustSignals = [
-  { label: "100% Background-Checked Saathis", icon: PawPrint },
-  { label: "Real-Time Telemetry & Photo Reports", icon: Clock3 },
-  { label: "24/7 Human Exception Support", icon: HeartHandshake }
+  { label: "Service-Specific Permission Checks", icon: PawPrint },
+  { label: "Structured Milestones and Reports", icon: Clock3 },
+  { label: "Human Exception Workflows", icon: HeartHandshake }
 ] as const;

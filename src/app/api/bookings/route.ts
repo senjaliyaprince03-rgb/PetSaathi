@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
 import { isDatabaseConfigured, prisma } from "@/lib/db";
+import { logger } from "@/lib/logger";
 import { getCurrentIdentity } from "@/modules/auth/session";
 import { BookingGateError, createBookingWithQuote } from "@/modules/bookings/create-booking";
 import { createBookingSchema } from "@/modules/bookings/input";
@@ -49,7 +50,9 @@ export async function POST(request: Request) {
     return NextResponse.json({ booking }, { status: 201, headers: { "Cache-Control": "no-store" } });
   } catch (error) {
     if (error instanceof BookingGateError) return problem(error.status, error.code, error.message);
-    console.error("booking.create_failed", { customerId: identity.id, error });
+    logger.exception("booking.create_failed", error, {
+      customerId: identity.id,
+    });
     return problem(500, "booking_failed", "The booking could not be committed safely. No capacity was reserved; please try again.");
   }
 }

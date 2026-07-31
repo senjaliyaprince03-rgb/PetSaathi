@@ -1,6 +1,7 @@
 import { MessageSquare } from "lucide-react";
 import { redirect } from "next/navigation";
 
+import { PortalShell } from "@/components/portal/portal-shell";
 import { TestimonialActions } from "@/components/portal/testimonial-actions";
 import { prisma } from "@/lib/db";
 import { getCurrentIdentity, hasAnyRole } from "@/modules/auth/session";
@@ -14,17 +15,17 @@ export default async function AdminTestimonialsPage() {
   }
 
   const testimonials = await prisma.testimonial.findMany({
-    where: { status: { in: ["DRAFT", "IN_REVIEW"] } },
+    where: { status: { in: ["DRAFT", "IN_REVIEW", "APPROVED"] } },
     orderBy: { createdAt: "asc" },
     take: 100,
   });
 
   return (
-    <main className="min-h-screen bg-cream/50 py-10">
-      <div className="container-shell">
-        <p className="eyebrow">content moderation</p>
-        <h1 className="section-title mt-5">Testimonial Review</h1>
-        <p className="mt-5 max-w-3xl text-lg leading-8 text-ink/60">
+    <PortalShell mode="admin" displayName={identity.displayName}>
+      <div className="max-w-7xl pb-12">
+        <p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-ink/50">content moderation</p>
+        <h1 className="mt-2 font-display text-4xl font-semibold tracking-[-0.04em]">Testimonial Review</h1>
+        <p className="mt-3 max-w-3xl text-sm leading-6 text-ink/60 mb-10">
           Review and approve customer stories before they appear on the public website.
         </p>
 
@@ -61,6 +62,6 @@ export default async function AdminTestimonialsPage() {
           )}
         </div>
       </div>
-    </main>
+    </PortalShell>
   );
 }

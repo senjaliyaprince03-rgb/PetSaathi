@@ -23,10 +23,7 @@ export default function SocietiesPage() {
           src="/images/societies-hero-luxury-banner.jpg"
           alt="Luxury gated residential society pet care in India"
           fill
-          priority
-          unoptimized
-          quality={100}
-          sizes="100vw"
+          priority          sizes="100vw"
           className="object-cover object-[75%_center] sm:object-[center_55%]"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/60 to-transparent md:w-3/4" />

@@ -1,0 +1,1 @@
+import fs from "fs"; const f = "src/modules/matching/persist-scores.ts"; let c = fs.readFileSync(f, "utf8"); c = c.replace("if (snapshotUnchanged && canPreserveStatus) continue;", "if (!snapshotUnchanged) { console.log(\"SNAPSHOT CHANGED!\", JSON.stringify({current, candidate}, null, 2)); }\nif (snapshotUnchanged && canPreserveStatus) continue;"); fs.writeFileSync(f, c);

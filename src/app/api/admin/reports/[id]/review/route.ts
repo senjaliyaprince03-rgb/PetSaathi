@@ -1,6 +1,7 @@
 import type { Role } from "@prisma/client";
 import { NextResponse } from "next/server";
 
+import { logger } from "@/lib/logger";
 import { getCurrentIdentity, hasAnyRole } from "@/modules/auth/session";
 import { reportReviewInputSchema } from "@/modules/reports/review";
 import { ReportReviewError, reviewBookingReport } from "@/modules/reports/review-report";
@@ -22,7 +23,10 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
     return NextResponse.json(result, { headers: { "Cache-Control": "no-store" } });
   } catch (error) {
     if (error instanceof ReportReviewError) return NextResponse.json({ error: error.code, message: error.message }, { status: error.status });
-    console.error("report.review_failed", { reportId: id, actorId: identity.id, error });
+    logger.exception("report.review_failed", error, {
+      reportId: id,
+      actorId: identity.id,
+    });
     return NextResponse.json({ error: "report_review_failed", message: "The report decision could not be committed safely." }, { status: 500 });
   }
 }

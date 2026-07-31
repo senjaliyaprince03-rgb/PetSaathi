@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
+import { logger } from "@/lib/logger";
 import { getCurrentIdentity, hasAnyRole } from "@/modules/auth/session";
 import { completeIncidentCorrectiveAction, IncidentWorkflowError } from "@/modules/incidents/workflow";
 import { consumeRateLimit } from "@/modules/security/rate-limit";
@@ -20,7 +21,11 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
     return NextResponse.json({ action }, { headers: { "Cache-Control": "no-store" } });
   } catch (error) {
     if (error instanceof IncidentWorkflowError) return problem(error.status, error.code, error.message);
-    console.error("incident.corrective_complete_failed", { incidentId: id, actionId, actorId: identity.id, error });
+    logger.exception("incident.corrective_complete_failed", error, {
+      incidentId: id,
+      actionId,
+      actorId: identity.id,
+    });
     return problem(500, "corrective_action_completion_failed", "The completion evidence could not be committed safely.");
   }
 }

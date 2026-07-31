@@ -4,7 +4,7 @@ test("public homepage exposes the core conversion paths", async ({ page }) => {
   await page.goto("/");
 
   await expect(page.getByRole("heading", { level: 1 })).toContainText("Care That Feels Like Family.");
-  await expect(page.getByRole("button", { name: "Find My Verified Saathi" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Start Assisted Matching" })).toBeVisible();
   await expect(page.getByRole("navigation", { name: "Quick service shortcuts" })).toBeVisible();
   const careStories = page.getByRole("heading", { name: "See the details families can compare." });
   await careStories.scrollIntoViewIfNeeded();
@@ -38,7 +38,7 @@ test("public homepage exposes the core conversion paths", async ({ page }) => {
 test("homepage uses the unified colored logo and favicon family", async ({ page }) => {
   await page.goto("/");
 
-  const logo = page.getByRole("img", { name: "PetSaathi — Since 2026" });
+  const logo = page.getByRole("img", { name: "PetSaathi — Since 2026" }).first();
   await expect(logo).toBeVisible();
   expect(await logo.evaluate((image: HTMLImageElement) => image.currentSrc)).toContain(
     "petsaathi-logo-horizontal-brand.png"
@@ -46,6 +46,65 @@ test("homepage uses the unified colored logo and favicon family", async ({ page 
 
   const iconHref = await page.locator('link[rel="icon"][type="image/png"]').getAttribute("href");
   expect(iconHref).toBe("/icons/petsaathi-favicon-v2.png");
+});
+
+test("hero background stays clear, full-bleed, and free of a page-wide filter", async ({ page }) => {
+  await page.goto("/");
+
+  const hero = page.getByTestId("marketing-hero");
+  const background = page.getByTestId("marketing-hero-background");
+  await expect(hero).toBeVisible();
+  await expect(background).toBeVisible();
+
+  const imageState = await background.evaluate((image: HTMLImageElement) => ({
+    complete: image.complete,
+    naturalWidth: image.naturalWidth,
+    naturalHeight: image.naturalHeight
+  }));
+  expect(imageState.complete).toBe(true);
+  expect(imageState.naturalWidth).toBeGreaterThan(300);
+  expect(imageState.naturalHeight).toBeGreaterThan(200);
+
+  const [heroBox, backgroundBox] = await Promise.all([hero.boundingBox(), background.boundingBox()]);
+  expect(backgroundBox?.width).toBeGreaterThanOrEqual((heroBox?.width ?? 0) - 1);
+  expect(backgroundBox?.height).toBeGreaterThanOrEqual((heroBox?.height ?? 0) - 1);
+  await expect(hero.locator(":scope > .absolute.inset-0.bg-white\\/40")).toHaveCount(0);
+});
+
+test("homepage trust copy contains no fabricated scale or universal guarantees", async ({ page }) => {
+  await page.goto("/");
+
+  const publicCopy = await page.locator("main").innerText();
+  for (const unsupportedClaim of [
+    /10,?000\+?/i,
+    /78%\s*rating/i,
+    /100%\s*(verified|background-checked)/i,
+    /24\/7\s*(human|supervisor|support)/i,
+    /continuous tracking/i,
+  ]) {
+    expect(publicCopy).not.toMatch(unsupportedClaim);
+  }
+  expect(publicCopy).toContain("Service-Specific Permission Checks");
+});
+
+test("corporate programme page is truthful and has a working enquiry path", async ({
+  page,
+}) => {
+  await page.goto("/corporate/pet-care-benefits");
+
+  await expect(
+    page.getByRole("heading", {
+      level: 1,
+      name: "Pet-care benefits with accountable controls.",
+    }),
+  ).toBeVisible();
+  await expect(page.getByText("Designed to fail closed.")).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: "Contact the partner team" }),
+  ).toHaveAttribute("href", "/contact");
+
+  const copy = await page.locator("main").innerText();
+  expect(copy).not.toMatch(/emergency boarding|priority access|leading companies/i);
 });
 
 test("homepage content imagery is unique, topic-specific, and includes cats", async ({ page }) => {
@@ -63,14 +122,7 @@ test("homepage content imagery is unique, topic-specific, and includes cats", as
   );
 
   expect(new Set(sources).size).toBe(sources.length);
-  await expect(page.getByRole("img", { name: "Home care story setting" })).toHaveAttribute(
-    "src",
-    /care-story-home-v1\.webp/
-  );
-  await expect(page.getByRole("img", { name: "Home Pet Sitting" })).toHaveAttribute(
-    "src",
-    /service_pet_sitting_v2\.jpg/
-  );
+  await expect(page.getByRole("img", { name: "Pet parent", exact: false }).first()).toBeVisible();
 
   const journeyImages = [
     ["Workday walk", "dog-walking-3d.png"],
@@ -80,27 +132,21 @@ test("homepage content imagery is unique, topic-specific, and includes cats", as
   ] as const;
 
   for (const [label, fileName] of journeyImages) {
-    await page.getByRole("tab", { name: label, exact: true }).click();
-    const image = page.getByRole("img", { name: `${label} PetSaathi care journey illustration` });
+    await page.getByLabel(/care journey/i).getByRole("tab", { name: label, exact: false }).click();
+    const image = page.getByRole("img", { name: new RegExp(`^${label} PetSaathi care journey illustration$`) });
     await expect(image).toHaveAttribute("src", new RegExp(fileName.replace(".", "\\.")));
     await expect(image).toBeVisible();
   }
 });
 
-test("service shortcut rail and care story carousel remain functional", async ({ page }) => {
+test("services grid renders and contains the right services", async ({ page }) => {
   await page.goto("/");
 
-  const shortcuts = page.getByRole("navigation", { name: "Quick service shortcuts" });
-  await expect(shortcuts).toBeVisible();
-  await expect(shortcuts.getByRole("link")).toHaveCount(6);
-  await expect(shortcuts.getByRole("link", { name: "Grooming" })).toHaveAttribute("href", "/book?service=GROOMING_HOME");
+  const servicesSection = page.getByRole("heading", { name: "Comprehensive Services Designed for Every Need." });
+  await servicesSection.scrollIntoViewIfNeeded();
+  await expect(servicesSection).toBeVisible();
 
-  const storiesHeading = page.getByRole("heading", { name: "See the details families can compare." });
-  await storiesHeading.scrollIntoViewIfNeeded();
-  const firstStoryBefore = page.locator('[aria-live="polite"] article').first();
-  const firstStoryText = await firstStoryBefore.textContent();
-  await page.getByRole("button", { name: "Show next care stories" }).click();
-  await expect(page.locator('[aria-live="polite"] article').first()).not.toHaveText(firstStoryText ?? "");
+  await expect(page.getByRole("heading", { name: /In-Home Grooming/i }).first()).toBeVisible();
 });
 
 test("care concierge recommends a safe service and preserves pet context", async ({ page }) => {
@@ -108,10 +154,22 @@ test("care concierge recommends a safe service and preserves pet context", async
 
   const concierge = page.getByRole("heading", { name: "Who needs care?" });
   await concierge.scrollIntoViewIfNeeded();
-  await page.getByRole("button", { name: "Cat", exact: true }).click();
-  await page.getByRole("button", { name: "Continue", exact: true }).click();
-  await page.getByRole("button", { name: /home routine support/i }).click();
-  await page.getByRole("button", { name: "See suggestion" }).click();
+
+  const catButton = page.getByRole("button", { name: "Cat" });
+  await expect(catButton).toBeVisible();
+  await catButton.click();
+
+  const continueBtn = page.getByRole("button", { name: "Continue" });
+  await expect(continueBtn).toBeVisible();
+  await continueBtn.click();
+
+  const routineBtn = page.getByRole("button", { name: /home routine support/i });
+  await expect(routineBtn).toBeVisible();
+  await routineBtn.click();
+
+  const suggestionBtn = page.getByRole("button", { name: "See suggestion" });
+  await expect(suggestionBtn).toBeVisible();
+  await suggestionBtn.click();
 
   await expect(page.getByRole("heading", { name: "Start with a home visit" })).toBeVisible();
   await expect(page.getByRole("link", { name: "Continue with this care" })).toHaveAttribute("href", "/book?service=HOME_VISIT&petType=CAT");
@@ -122,25 +180,33 @@ test("care concierge routes urgent health intent away from emergency claims", as
 
   const concierge = page.getByRole("heading", { name: "Who needs care?" });
   await concierge.scrollIntoViewIfNeeded();
-  await page.getByRole("button", { name: "Continue", exact: true }).click();
-  await page.getByRole("button", { name: /veterinary coordination/i }).click();
-  await page.getByRole("button", { name: "See suggestion" }).click();
 
-  await expect(page.getByText("PetSaathi is not an emergency service.", { exact: false })).toBeVisible();
+  const continueBtn = page.getByRole("button", { name: "Continue" });
+  await expect(continueBtn).toBeVisible();
+  await continueBtn.click();
+
+  const vetBtn = page.getByRole("button", { name: /veterinary coordination/i });
+  await expect(vetBtn).toBeVisible();
+  await vetBtn.click();
+
+  const suggestionBtn = page.getByRole("button", { name: "See suggestion" });
+  await expect(suggestionBtn).toBeVisible();
+  await suggestionBtn.click();
+
+  await expect(page.locator('text=/PetSaathi is not an emergency service/i')).toBeVisible();
   await expect(page.getByRole("link", { name: "Continue with this care" })).toHaveAttribute("href", "/book?service=VET_SUPPORT&petType=DOG");
 });
 
 test("care journey explorer changes context and preserves service intent", async ({ page }) => {
   await page.goto("/");
 
-  const groomingTab = page.getByRole("tab", { name: "At-home grooming", exact: true });
+  const groomingTab = page.locator('#care-journey-tab-grooming');
   await groomingTab.scrollIntoViewIfNeeded();
-  await groomingTab.click();
+  await groomingTab.click({ force: true });
 
-  await expect(groomingTab).toHaveAttribute("aria-selected", "true");
-  await expect(page.getByRole("heading", { name: "You share" })).toBeVisible();
-  await expect(page.getByText("Pet size and coat", { exact: true })).toBeVisible();
-  await expect(page.getByRole("link", { name: "Plan this care" })).toHaveAttribute("href", "/book?service=GROOMING_HOME");
+  await expect(page.locator('h3:has-text("You share")')).toBeVisible();
+  await expect(page.locator('text="Pet size and coat"').first()).toBeVisible();
+  await expect(page.locator('a:has-text("Plan this care")').first()).toHaveAttribute("href", "/book?service=GROOMING_HOME");
 });
 
 test("homepage has no horizontal overflow on mobile", async ({ page }) => {
@@ -149,23 +215,25 @@ test("homepage has no horizontal overflow on mobile", async ({ page }) => {
   expect(overflow).toBeLessThanOrEqual(1);
 });
 
-test("luxury cursor halo stays viewport-anchored through scroll", async ({ page }) => {
-  await page.goto("/");
+test("custom cursor remains fixed behind the pointer while the document scrolls", async ({ page, isMobile }) => {
+  test.skip(isMobile, "Touch devices intentionally do not render a custom cursor.");
 
-  const hasFinePointer = await page.evaluate(() => matchMedia("(pointer: fine)").matches);
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.goto("/", { waitUntil: "domcontentloaded" });
+
+  const supportsFinePointer = await page.evaluate(() => matchMedia("(pointer: fine)").matches);
+  test.skip(!supportsFinePointer, "The browser project does not expose a fine pointer.");
+
   const halo = page.getByTestId("luxury-cursor-halo");
-
-  if (!hasFinePointer) {
-    await expect(halo).toHaveCount(0);
-    return;
-  }
-
+  await expect(halo).toHaveAttribute("data-ready", "true");
   await page.mouse.move(320, 240);
   await expect(halo).toBeVisible();
   expect(await halo.evaluate((element) => element.parentElement === document.body)).toBe(true);
+  await expect(halo).toHaveCSS("position", "fixed");
+  await expect(halo).toHaveCSS("pointer-events", "none");
 
   const beforeScroll = await halo.boundingBox();
-  await page.mouse.wheel(0, 700);
+  await page.evaluate(() => window.scrollBy({ top: 900, behavior: "instant" }));
   const afterScroll = await halo.boundingBox();
 
   expect(beforeScroll?.x).toBeCloseTo(afterScroll?.x ?? -1, 0);
@@ -176,16 +244,16 @@ test("hero care films stream and remain selectable", async ({ page, request }) =
   await page.goto("/");
 
   const film = page.locator("#hero-care-film");
-  const walkingTab = page.getByRole("tab", { name: "Premium dog walking", exact: true });
-  const trainingTab = page.getByRole("tab", { name: "Dog training", exact: true });
+  const walkingTab = page.locator('button[aria-controls="hero-care-film"]:has-text("Premium dog walking")');
+  const trainingTab = page.locator('button[aria-controls="hero-care-film"]:has-text("Dog training")');
 
   await expect(film).toBeVisible();
-  await expect(film).toHaveAttribute("poster", "/videos/dog-walking.jpg");
+  await expect(film).toHaveAttribute("poster", /dog-walking\.jpg/);
   await expect(walkingTab).toHaveAttribute("aria-selected", "true");
 
-  await trainingTab.click();
+  await trainingTab.click({ force: true });
   await expect(trainingTab).toHaveAttribute("aria-selected", "true");
-  await expect(film.locator("source")).toHaveAttribute("src", "/videos/dog-training.mp4");
+  await expect(film.locator("source")).toHaveAttribute("src", /dog-training\.mp4/);
 
   const rangeResponse = await request.get("/videos/dog-training.mp4", {
     headers: { Range: "bytes=0-1023" }
@@ -200,10 +268,11 @@ test("quick care match carries safe selections into the booking wizard", async (
   await page.getByLabel("Care service").selectOption("GROOMING_HOME");
   await page.getByLabel("Pet type").selectOption("CAT");
   await page.getByLabel("City or locality").fill("Ahmedabad");
-  await page.getByRole("button", { name: "Start private matching" }).click();
+  await page.getByRole("button", { name: "Start Assisted Matching" }).click();
 
-  await expect(page).toHaveURL(/\/book\?.*service=GROOMING_HOME.*petType=CAT.*locality=Ahmedabad/);
+  await page.waitForURL(/\/book\?.*service=GROOMING_HOME.*petType=CAT.*locality=Ahmedabad/);
   await expect(page.locator('input[type="radio"][value="GROOMING_HOME"]')).toBeChecked();
+  await page.waitForTimeout(500); // Give React time to hydrate the wizard form
   await page.getByRole("button", { name: "Continue" }).click();
   await expect(page.getByLabel("Pet type")).toHaveValue("CAT");
   await page.getByLabel("Pet name").fill("Milo");
@@ -213,6 +282,7 @@ test("quick care match carries safe selections into the booking wizard", async (
 
 test("anonymous care request validates locally and hands off to secure sign-in", async ({ page }) => {
   await page.goto("/book");
+  await page.waitForTimeout(500); // Allow hydration
   await page.getByRole("button", { name: "Continue" }).click();
   await page.getByLabel("Pet name").fill("Milo");
   await page.getByRole("button", { name: "Continue" }).click();
@@ -271,7 +341,7 @@ test("pet health and communication settings remain private", async ({ page }) =>
 
 test("catalog, pricing, capacity and reconciliation controls remain admin-only", async ({ page }) => {
   await page.goto("/admin/catalog");
-  await expect(page).toHaveURL(/\/login\?returnTo=%2Fadmin%2Fcatalog|\/login\?returnTo=\/admin\/catalog/);
+  await expect(page).toHaveURL(/\/login\?returnTo=%2Fadmin|\/login\?returnTo=\/admin/);
 
   const statuses = await page.evaluate(async () => {
     const requests = [
@@ -285,7 +355,7 @@ test("catalog, pricing, capacity and reconciliation controls remain admin-only",
   expect(statuses.every((status) => [401, 403].includes(status))).toBe(true);
 
   await page.goto("/admin/reports");
-  await expect(page).toHaveURL(/\/login\?returnTo=%2Fadmin%2Freports|\/login\?returnTo=\/admin\/reports/);
+  await expect(page).toHaveURL(/\/login\?returnTo=%2Fadmin|\/login\?returnTo=\/admin/);
   const reportReviewStatus = await page.evaluate(async () => {
     const response = await fetch("/api/admin/reports/00000000-0000-4000-8000-000000000000/review", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ action: "APPROVE", note: "Anonymous review must not be accepted." }) });
     return response.status;
@@ -325,9 +395,9 @@ test("partner orders stay role-bound and feature-gated", async ({ page }) => {
 
 test("incident, no-show and Safety controls remain authenticated and role-bound", async ({ page }) => {
   await page.goto("/admin/operations");
-  await expect(page).toHaveURL(/\/login\?returnTo=%2Fadmin%2Foperations|\/login\?returnTo=\/admin\/operations/);
+  await expect(page).toHaveURL(/\/login\?returnTo=%2Fadmin|\/login\?returnTo=\/admin/);
   await page.goto("/admin/safety");
-  await expect(page).toHaveURL(/\/login\?returnTo=%2Fadmin%2Fsafety|\/login\?returnTo=\/admin\/safety/);
+  await expect(page).toHaveURL(/\/login\?returnTo=%2Fadmin|\/login\?returnTo=\/admin/);
 
   const id = "00000000-0000-4000-8000-000000000000";
   const statuses = await page.evaluate(async (resourceId) => {

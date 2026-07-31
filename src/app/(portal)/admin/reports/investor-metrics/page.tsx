@@ -1,4 +1,3 @@
-/* eslint-disable */
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getCurrentIdentity } from "@/modules/auth/session";
@@ -12,6 +11,7 @@ import {
   Calendar,
   PawPrint,
 } from "lucide-react";
+import { PortalShell } from "@/components/portal/portal-shell";
 
 export const dynamic = "force-dynamic";
 
@@ -38,33 +38,36 @@ export default async function InvestorMetricsPage() {
 
   if (!isAuthorized) {
     return (
-      <div className="container-shell p-8">
-        <h1 className="section-title text-coral">Access Denied</h1>
-        <p className="text-ink/60">
-          This report is restricted to senior leadership and finance.
-        </p>
-      </div>
+      <PortalShell mode="admin" displayName={identity.displayName}>
+        <div className="max-w-7xl pb-12">
+          <h1 className="mt-2 font-display text-4xl font-semibold tracking-[-0.04em] text-coral">Access Denied</h1>
+          <p className="mt-3 max-w-3xl text-sm leading-6 text-ink/60 mb-10">
+            This report is restricted to senior leadership and finance.
+          </p>
+        </div>
+      </PortalShell>
     );
   }
 
   const metrics = await generateInvestorMetrics();
 
   return (
-    <div className="container-shell p-6 md:p-10 space-y-8">
-      {/* Header */}
-      <div>
-        <span className="eyebrow flex items-center gap-2">
-          <BarChart3 className="w-4 h-4" />
-          Funding Data Room
-        </span>
-        <h1 className="section-title font-display mt-2">
-          Investor KPI Dashboard
-        </h1>
-        <p className="text-ink/60 mt-2 flex items-center gap-2">
-          <Calendar className="w-4 h-4" />
-          Generated: {new Date(metrics.generatedAt).toLocaleString()}
-        </p>
-      </div>
+    <PortalShell mode="admin" displayName={identity.displayName}>
+      <div className="max-w-7xl pb-12 space-y-8">
+        {/* Header */}
+        <div>
+          <span className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-ink/50">
+            <BarChart3 className="w-3 h-3" />
+            Funding Data Room
+          </span>
+          <h1 className="mt-2 font-display text-4xl font-semibold tracking-[-0.04em]">
+            Investor KPI Dashboard
+          </h1>
+          <p className="text-sm leading-6 text-ink/60 mt-2 flex items-center gap-2">
+            <Calendar className="w-4 h-4" />
+            Generated: {new Date(metrics.generatedAt).toLocaleString()}
+          </p>
+        </div>
 
       {/* Scale */}
       <section className="bg-paper p-6 rounded-4xl shadow-lifted border border-ink/5">
@@ -151,6 +154,7 @@ export default async function InvestorMetricsPage() {
         </div>
       </section>
     </div>
+    </PortalShell>
   );
 }
 

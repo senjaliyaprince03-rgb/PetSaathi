@@ -23,36 +23,36 @@ export default async function AdminCitiesPage() {
 
   return (
     <PortalShell mode="admin" displayName={identity.displayName}>
-      <div className="space-y-6 max-w-5xl mx-auto p-6">
+      <div className="space-y-6 max-w-5xl p-6">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-white">City Network Command Center</h1>
-          <p className="text-gray-400">Manage city lifecycle stages and zone capacities.</p>
+          <h1 className="font-display text-4xl font-semibold tracking-[-0.04em] text-ink">City Network Command Center</h1>
+          <p className="mt-3 text-sm leading-6 text-ink/60">Manage city lifecycle stages and zone capacities.</p>
         </div>
 
         <div className="grid gap-6">
           {cities.map((city) => (
-            <div key={city.id} className="rounded-xl border border-white/10 bg-black p-6">
+            <div key={city.id} className="rounded-4xl border border-indigo/10 bg-paper p-6 shadow-lifted">
               <div className="flex items-center justify-between mb-4">
                 <div>
-                  <h2 className="text-xl font-semibold text-white">{city.name}</h2>
-                  <p className="text-sm text-gray-400">{city.state}</p>
+                  <h2 className="font-display text-2xl font-semibold text-ink">{city.name}</h2>
+                  <p className="text-sm text-ink/60">{city.state}</p>
                 </div>
-                <div className="px-3 py-1 rounded-full text-xs font-medium border border-blue-500/20 bg-blue-500/10 text-blue-400">
+                <div className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-[0.16em] border border-blue-500/20 bg-blue-500/10 text-blue-700">
                   {city.status}
                 </div>
               </div>
 
               <div className="grid gap-4 md:grid-cols-2">
                 <div className="space-y-3">
-                  <h3 className="text-sm font-medium text-gray-300 border-b border-white/5 pb-2">Service Zones</h3>
+                  <h3 className="text-xs font-bold uppercase tracking-[0.18em] text-ink/45 border-b border-ink/5 pb-2">Service Zones</h3>
                   {city.serviceZones.length === 0 ? (
-                    <p className="text-sm text-gray-500">No zones configured.</p>
+                    <p className="text-sm text-ink/50">No zones configured.</p>
                   ) : (
                     <div className="space-y-2">
                       {city.serviceZones.map(zone => (
-                        <div key={zone.id} className="flex justify-between text-sm bg-white/5 p-2 rounded">
-                          <span className="text-gray-300">{zone.name}</span>
-                          <span className={`text-xs ${zone.status === "ACTIVE" ? "text-emerald-400" : "text-amber-400"}`}>
+                        <div key={zone.id} className="flex justify-between text-sm bg-cream/30 p-3 rounded-2xl">
+                          <span className="text-ink/80 font-medium">{zone.name}</span>
+                          <span className={`text-[10px] font-bold uppercase tracking-[0.16em] ${zone.status === "ACTIVE" ? "text-leaf" : "text-saffron"}`}>
                             {zone.status}
                           </span>
                         </div>
@@ -62,15 +62,15 @@ export default async function AdminCitiesPage() {
                 </div>
 
                 <div className="space-y-3">
-                  <h3 className="text-sm font-medium text-gray-300 border-b border-white/5 pb-2">Service Statuses</h3>
+                  <h3 className="text-xs font-bold uppercase tracking-[0.18em] text-ink/45 border-b border-ink/5 pb-2">Service Statuses</h3>
                   {city.cityServiceConfigs.length === 0 ? (
-                    <p className="text-sm text-gray-500">No services configured.</p>
+                    <p className="text-sm text-ink/50">No services configured.</p>
                   ) : (
                     <div className="space-y-2">
                       {city.cityServiceConfigs.map(config => (
-                        <div key={config.id} className="flex justify-between text-sm bg-white/5 p-2 rounded">
-                          <span className="text-gray-300">{config.serviceType.name}</span>
-                          <span className={`text-xs ${config.status === "ACTIVE" ? "text-emerald-400" : "text-gray-400"}`}>
+                        <div key={config.id} className="flex justify-between text-sm bg-cream/30 p-3 rounded-2xl">
+                          <span className="text-ink/80 font-medium">{config.serviceType.name}</span>
+                          <span className={`text-[10px] font-bold uppercase tracking-[0.16em] ${config.status === "ACTIVE" ? "text-leaf" : "text-ink/45"}`}>
                             {config.status}
                           </span>
                         </div>
@@ -83,8 +83,8 @@ export default async function AdminCitiesPage() {
           ))}
 
           {cities.length === 0 && (
-            <div className="text-center py-12 border border-white/5 border-dashed rounded-xl">
-              <p className="text-gray-400">No cities have been configured in the system yet.</p>
+            <div className="text-center py-12 border border-ink/10 border-dashed rounded-4xl bg-paper">
+              <p className="text-sm text-ink/60">No cities have been configured in the system yet.</p>
             </div>
           )}
         </div>

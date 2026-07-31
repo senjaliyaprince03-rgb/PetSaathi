@@ -1,4 +1,3 @@
-/* eslint-disable */
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/db";
@@ -9,6 +8,7 @@ import {
   UserX,
   ClipboardCheck,
 } from "lucide-react";
+import { PortalShell } from "@/components/portal/portal-shell";
 
 export const dynamic = "force-dynamic";
 
@@ -27,14 +27,17 @@ export default async function TrustSafetyCommandCenter() {
   // Check roles (SUPER_ADMIN, OPERATIONS_ADMIN)
   const isAuthorized =
     identity.roles.includes("SUPER_ADMIN") ||
+    identity.roles.includes("SAFETY_ADMIN") ||
     identity.roles.includes("OPERATIONS_ADMIN");
 
   if (!isAuthorized) {
     return (
-      <div className="container-shell p-8">
-        <h1 className="section-title text-coral">Access Denied</h1>
-        <p className="text-ink/60">You do not have permission to view Trust & Safety metrics.</p>
-      </div>
+      <PortalShell mode="admin" displayName={identity.displayName}>
+        <div className="max-w-7xl pb-12">
+          <h1 className="mt-2 font-display text-4xl font-semibold tracking-[-0.04em] text-coral">Access Denied</h1>
+          <p className="mt-3 max-w-3xl text-sm leading-6 text-ink/60 mb-10">You do not have permission to view Trust & Safety metrics.</p>
+        </div>
+      </PortalShell>
     );
   }
 
@@ -82,18 +85,19 @@ export default async function TrustSafetyCommandCenter() {
   });
 
   return (
-    <div className="container-shell p-6 md:p-10 space-y-8">
-      {/* Header */}
-      <div>
-        <span className="eyebrow flex items-center gap-2">
-          <ShieldAlert className="w-4 h-4 text-coral" />
-          Trust & Safety
-        </span>
-        <h1 className="section-title font-display mt-2">Command Center</h1>
-        <p className="text-ink/60 mt-2">
-          Monitor and manage platform integrity, incidents, and provider interventions.
-        </p>
-      </div>
+    <PortalShell mode="admin" displayName={identity.displayName}>
+      <div className="max-w-7xl pb-12 space-y-8">
+        {/* Header */}
+        <div>
+          <span className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-ink/50">
+            <ShieldAlert className="w-3 h-3 text-coral" />
+            Trust & Safety
+          </span>
+          <h1 className="mt-2 font-display text-4xl font-semibold tracking-[-0.04em]">Command Center</h1>
+          <p className="mt-3 max-w-3xl text-sm leading-6 text-ink/60 mb-10">
+            Monitor and manage platform integrity, incidents, and provider interventions.
+          </p>
+        </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         
@@ -198,6 +202,7 @@ export default async function TrustSafetyCommandCenter() {
           </section>
         </div>
       </div>
-    </div>
+      </div>
+    </PortalShell>
   );
 }

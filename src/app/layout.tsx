@@ -1,8 +1,8 @@
-/* eslint-disable @next/next/no-page-custom-font -- Material Symbols is loaded once in the App Router root layout. */
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Manrope, Playfair_Display, Inter, Plus_Jakarta_Sans, Outfit } from "next/font/google";
 
 import { SiteMotion } from "@/components/motion/site-motion";
+import { CustomCursor } from "@/components/marketing/custom-cursor";
 
 import "./globals.css";
 
@@ -36,6 +36,13 @@ const inter = Inter({
   weight: ["300", "400", "500", "600", "700"],
 });
 
+export const viewport: Viewport = {
+  themeColor: "#fffdf8",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+};
+
 export const metadata: Metadata = {
   title: "PetSaathi | Trust Pet Care Services",
   description: "Elevating the standard of trusted pet care in India.",
@@ -53,11 +60,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <head>
-        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
-      </head>
       <body className={`${jakarta.variable} ${outfit.variable} ${manrope.variable} ${inter.variable} ${playfair.variable} relative overflow-x-hidden bg-background font-sans text-on-background selection:bg-saffron/35`}>
         <SiteMotion />
+        <CustomCursor />
         {children}
       </body>
     </html>

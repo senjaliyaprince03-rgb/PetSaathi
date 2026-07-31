@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
+import { logger } from "@/lib/logger";
 import { getCurrentIdentity, hasAnyRole } from "@/modules/auth/session";
 import { IncidentWorkflowError, placeIncidentSitterHold, releaseIncidentSitterHold } from "@/modules/incidents/workflow";
 import { consumeRateLimit } from "@/modules/security/rate-limit";
@@ -25,7 +26,10 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
     return NextResponse.json({ hold }, { headers: { "Cache-Control": "no-store" } });
   } catch (error) {
     if (error instanceof IncidentWorkflowError) return problem(error.status, error.code, error.message);
-    console.error("incident.sitter_hold_failed", { incidentId: id, actorId: identity.id, error });
+    logger.exception("incident.sitter_hold_failed", error, {
+      incidentId: id,
+      actorId: identity.id,
+    });
     return problem(500, "sitter_hold_failed", "The safety hold could not be committed safely.");
   }
 }

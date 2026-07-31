@@ -125,10 +125,6 @@
     box-shadow: 0 24px 80px -38px rgb(var(--ink) / 0.28);
   }
 
-  .material-symbols-outlined {
-    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
-  }
-
   .animate-float {
     animation: float 6s ease-in-out infinite;
   }
@@ -302,5 +298,33 @@ html[data-motion="ready"] [data-motion-auto][data-motion-visible="true"] {
     rotate: none !important;
     filter: none !important;
     clip-path: none !important;
+  }
+}
+
+@media print {
+  body {
+    background: transparent !important;
+    color: black !important;
+  }
+
+  /* Hide navigation elements on print */
+  header, nav, footer, button, .no-print {
+    display: none !important;
+  }
+
+  /* Ensure background colors print correctly if supported */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .shadow-lifted, .shadow-soft {
+    box-shadow: none !important;
+  }
+
+  .container-shell {
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 }

@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { revalidateTag } from "next/cache";
 
+import { logger } from "@/lib/logger";
+
 export async function POST(request: Request) {
   const secret = request.headers.get("x-sanity-webhook-secret");
 
@@ -28,11 +30,11 @@ export async function POST(request: Request) {
       revalidateTag(tag);
     }
 
-    console.log("[Webhook] Sanity publish revalidation", { contentType, slug, tags });
+    logger.info("sanity.publish_revalidation", { contentType, slug, tags });
 
     return NextResponse.json({ revalidated: true, tags });
   } catch (error) {
-    console.error("Sanity webhook error:", error);
+    logger.exception("sanity.publish_failed", error);
     return NextResponse.json({ error: "INTERNAL_ERROR" }, { status: 500 });
   }
 }

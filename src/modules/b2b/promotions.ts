@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { prisma } from "@/lib/db";
 
 export async function createPromotionCode(data: {
@@ -67,7 +66,7 @@ export async function validateCode(
   }
 
   if (promotion.totalUsageLimit !== null) {
-    const totalUsage = await (prisma as any).benefitLedgerEntry.count({
+    const totalUsage = await prisma.benefitLedgerEntry.count({
       where: { reference: code }
     });
     if (totalUsage >= promotion.totalUsageLimit) {
@@ -76,8 +75,11 @@ export async function validateCode(
   }
 
   if (promotion.perMemberLimit !== null) {
-    const memberUsage = await (prisma as any).benefitLedgerEntry.count({
-      where: { reference: code, customerId: context.customerId }
+    const memberUsage = await prisma.benefitLedgerEntry.count({
+      where: {
+        reference: code,
+        wallet: { membership: { customerId: context.customerId } }
+      }
     });
     if (memberUsage >= promotion.perMemberLimit) {
       return { valid: false, discountPaise: 0, reason: "Per member usage limit reached" };

@@ -1,9 +1,12 @@
 import { prisma } from "@/lib/db";
+import { logger } from "@/lib/logger";
+import {
+  getLeadMagnetResource,
+  type LeadMagnetSlug,
+} from "@/modules/marketing/resources";
 
 /**
- * Queues a testimonial request after a booking is completed.
- * In production this would send an email or WhatsApp message.
- * For now it logs the intent for the operations team to act on manually.
+ * Queues an idempotent in-app testimonial request after a booking closes.
  */
 export async function triggerTestimonialRequest(bookingId: string): Promise<void> {
   const booking = await prisma.booking.findUnique({
@@ -12,25 +15,36 @@ export async function triggerTestimonialRequest(bookingId: string): Promise<void
   });
 
   if (!booking) {
-    console.warn("[Automation] Booking not found for testimonial trigger:", bookingId);
+    logger.warn("testimonial_request.booking_not_found", { bookingId });
     return;
   }
 
-  console.log("[Automation] Testimonial request queued", {
-    bookingId,
-    customerEmail: booking.customer.email,
-    customerName: booking.customer.displayName,
-    petName: booking.pet.name,
-    service: booking.serviceType.name,
+  await prisma.notificationOutbox.upsert({
+    where: { idempotencyKey: `testimonial-request:${booking.id}` },
+    update: {},
+    create: {
+      userId: booking.customerId,
+      channel: "IN_APP",
+      templateKey: "testimonial.request",
+      destination: booking.customerId,
+      payload: {
+        bookingId: booking.id,
+        bookingReference: booking.reference,
+        petName: booking.pet.name,
+        serviceName: booking.serviceType.name,
+      },
+      idempotencyKey: `testimonial-request:${booking.id}`,
+    },
   });
 }
 
 /**
- * Delivers the downloadable resource for a lead magnet request.
- * In production this would email the file or generate a signed download URL.
- * For now it generates a placeholder URL and logs the delivery.
+ * Queues an idempotent email containing the real resource URL.
  */
-export async function deliverLeadMagnetResource(requestId: string): Promise<{ downloadUrl: string }> {
+export async function deliverLeadMagnetResource(
+  requestId: string,
+  slug: LeadMagnetSlug,
+): Promise<{ downloadUrl: string }> {
   const request = await prisma.leadMagnetRequest.findUnique({
     where: { id: requestId },
     include: { contact: true },
@@ -39,15 +53,30 @@ export async function deliverLeadMagnetResource(requestId: string): Promise<{ do
   if (!request) {
     throw new Error(`LeadMagnetRequest not found: ${requestId}`);
   }
+  if (request.magnetSlug !== slug) {
+    throw new Error("Lead magnet request does not match the requested resource");
+  }
+  if (!request.contact.email) {
+    throw new Error("An email address is required to deliver this resource");
+  }
 
-  const downloadUrl = `/downloads/lead-magnets/${request.magnetSlug}.pdf`;
+  const resource = getLeadMagnetResource(slug);
 
-  console.log("[Automation] Resource delivery", {
-    requestId,
-    magnetSlug: request.magnetSlug,
-    contactEmail: request.contact.email,
-    downloadUrl,
+  await prisma.notificationOutbox.upsert({
+    where: { idempotencyKey: `lead-magnet:${request.id}` },
+    update: {},
+    create: {
+      channel: "EMAIL",
+      templateKey: "lead-magnet.delivery",
+      destination: request.contact.email,
+      payload: {
+        requestId: request.id,
+        resourceTitle: resource.title,
+        resourceUrl: resource.url,
+      },
+      idempotencyKey: `lead-magnet:${request.id}`,
+    },
   });
 
-  return { downloadUrl };
+  return { downloadUrl: resource.url };
 }

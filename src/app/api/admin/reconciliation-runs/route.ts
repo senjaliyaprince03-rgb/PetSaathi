@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
 import { prisma } from "@/lib/db";
+import { logger } from "@/lib/logger";
 import { getCurrentIdentity, hasAnyRole } from "@/modules/auth/session";
 import { reconciliationTotals } from "@/modules/pricing/economics";
 import { createReconciliationRunSchema } from "@/modules/pricing/input";
@@ -31,7 +32,9 @@ export async function POST(request: Request) {
     return NextResponse.json({ run }, { status: 201, headers: { "Cache-Control": "no-store" } });
   } catch (error) {
     if (typeof error === "object" && error && "code" in error && error.code === "P2002") return NextResponse.json({ error: "duplicate_period", message: "This provider period already has a reconciliation run." }, { status: 409 });
-    console.error("reconciliation.create_failed", { actorId: identity.id, error });
+    logger.exception("reconciliation.create_failed", error, {
+      actorId: identity.id,
+    });
     return NextResponse.json({ error: "reconciliation_failed", message: "Expected finance totals could not be snapshotted safely." }, { status: 500 });
   }
 }

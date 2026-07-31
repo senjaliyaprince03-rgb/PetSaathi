@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useEffect, useState } from "react";
-import { animate } from "framer-motion";
+import { animate, type AnimationPlaybackControls } from "framer-motion";
 import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -78,18 +78,18 @@ export default function LineMaskSplit({
   const blurInitial = blurEnabled ? blurIntensity : 0;
   const textRef = useRef<HTMLElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const animationControlsRef = useRef<any[]>([]);
+  const animationControlsRef = useRef<AnimationPlaybackControls[]>([]);
   const hasAnimatedRef = useRef(false);
-  const currentLineSplitRef = useRef<any>(null);
+  const currentLineSplitRef = useRef<SplitText | null>(null);
   const resizeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const isFirstResizeRef = useRef(true);
-  const scrollElementsRef = useRef<any[] | null>(null);
+  const scrollElementsRef = useRef<HTMLElement[] | null>(null);
   const [isInView, setIsInView] = useState(false);
   const [isOutOfView, setIsOutOfView] = useState(false);
   const TAG = tag;
 
   const buildTransitionConfig = (transitionValue: TransitionConfig) => {
-    const config: any = {};
+    const config: Record<string, string | number> = {};
     if (transitionValue?.type === "spring") {
       config.type = "spring";
       if (transitionValue.stiffness !== undefined)
@@ -122,37 +122,37 @@ export default function LineMaskSplit({
     const lineSplit = SplitText.create(textRef.current, { type: "lines" });
     const lines = lineSplit.lines;
     currentLineSplitRef.current = lineSplit;
-    lines.forEach((line: any) => {
+    lines.forEach((line: Element) => {
       const wrapper = document.createElement("div");
       wrapper.style.overflow = maskLines ? "hidden" : "visible";
       wrapper.style.display = "block";
       line.parentNode?.insertBefore(wrapper, line);
       wrapper.appendChild(line);
     });
-    let elements: any[] = [];
+    let elements: HTMLElement[] = [];
     if (splitMode === "chars") {
-      lines.forEach((line: any) => {
+      lines.forEach((line: Element) => {
         const charSplit = SplitText.create(line, {
           type: "chars",
           charsClass: "char",
         });
-        elements.push(...charSplit.chars);
+        elements.push(...(charSplit.chars as HTMLElement[]));
       });
     } else if (splitMode === "words") {
-      lines.forEach((line: any) => {
+      lines.forEach((line: Element) => {
         const wordSplit = SplitText.create(line, {
           type: "words",
           wordsClass: "word",
         });
-        elements.push(...wordSplit.words);
+        elements.push(...(wordSplit.words as HTMLElement[]));
       });
     } else {
-      elements = lines;
+      elements = lines as HTMLElement[];
     }
     return { lineSplit, elements };
   };
 
-  const animateElements = (elements: any[], forward = true) => {
+  const animateElements = (elements: HTMLElement[], forward = true) => {
     animationControlsRef.current.forEach((control) => control.stop());
     animationControlsRef.current = [];
     const transitionConfig = buildTransitionConfig(transition);
@@ -171,7 +171,7 @@ export default function LineMaskSplit({
     const stagger =
       count > 1 ? Math.max(0, (total - perDuration) / (count - 1)) : 0;
 
-    elements.forEach((element: any, index: number) => {
+    elements.forEach((element: HTMLElement, index: number) => {
       const elementDelay = baseDelay + index * stagger;
       const onUpdate = (progress: number) => {
         const x = translateXInitial * (1 - progress);
@@ -213,7 +213,7 @@ export default function LineMaskSplit({
     if (!result) return;
     const { elements } = result;
     scrollElementsRef.current = elements;
-    elements.forEach((el: any) => {
+    elements.forEach((el: HTMLElement) => {
       el.style.opacity = opacityInitial.toString();
       el.style.transform = `translate(${translateXInitial}px, ${translateYInitial}px) rotate(${rotateInitial}deg) scale(${scaleInitial})`;
       el.style.filter = `blur(${blurInitial}px)`;
@@ -273,9 +273,10 @@ export default function LineMaskSplit({
     };
   }, [scrollTriggerPosition]);
 
-  const areElementsInInitialState = (elements: any[]) => {
+  const areElementsInInitialState = (elements: HTMLElement[]) => {
     if (elements.length === 0) return false;
     const firstEl = elements[0];
+    if (!firstEl) return false;
     const currentOpacity = parseFloat(firstEl.style.opacity) || 1;
     const currentTransform = firstEl.style.transform || "";
     const currentFilter = firstEl.style.filter || "";
@@ -299,7 +300,7 @@ export default function LineMaskSplit({
     animationControlsRef.current = [];
     if (isOutOfView) {
       if (reverse) {
-        elements.forEach((el: any) => {
+        elements.forEach((el: HTMLElement) => {
           el.style.opacity = opacityInitial.toString();
           el.style.transform = `translate(${translateXInitial}px, ${translateYInitial}px) rotate(${rotateInitial}deg) scale(${scaleInitial})`;
           el.style.filter = `blur(${blurInitial}px)`;
@@ -341,7 +342,7 @@ export default function LineMaskSplit({
         const result = setupSplit(true);
         if (result) {
           scrollElementsRef.current = result.elements;
-          result.elements.forEach((el: any) => {
+          result.elements.forEach((el: HTMLElement) => {
             el.style.opacity = "1";
             el.style.transform = "translate(0px, 0px) rotate(0deg) scale(1)";
             el.style.filter = "blur(0px)";
@@ -356,6 +357,7 @@ export default function LineMaskSplit({
         clearTimeout(resizeTimeoutRef.current);
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

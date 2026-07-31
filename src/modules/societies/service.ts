@@ -9,14 +9,64 @@ export async function registerSociety(data: {
   name: string;
   city: string;
   locality: string;
+  address?: string;
+  geofence?: any;
+  partnershipModel?: string;
   contactName?: string;
   contactPhone?: string;
+  facilityContact?: string;
+  securityContact?: string;
+  emergencyContact?: string;
+  bookingCap?: number;
 }) {
   return await prisma.society.create({
     data: {
       ...data,
       status: "DRAFT",
     },
+  });
+}
+
+/**
+ * Upsert society access rules
+ */
+export async function upsertSocietyAccessRule(societyId: string, data: {
+  visitorApprovalRequired?: boolean;
+  sitterRegistrationRequired?: boolean;
+  identityDocumentRequired?: boolean;
+  allowedEntryTimes?: any;
+  approvedGates?: string[];
+  petLiftRules?: string;
+  replacementSitterProcess?: string;
+  emergencyEntryProcess?: string;
+}) {
+  return await prisma.societyAccessRule.upsert({
+    where: { societyId },
+    create: {
+      societyId,
+      ...data,
+    },
+    update: {
+      ...data,
+      lastVerifiedAt: new Date(),
+    },
+  });
+}
+
+/**
+ * Update society partnership details
+ */
+export async function updateSocietyPartnershipDetails(societyId: string, data: {
+  partnershipModel?: string;
+  facilityContact?: string;
+  securityContact?: string;
+  emergencyContact?: string;
+  bookingCap?: number;
+  status?: string;
+}) {
+  return await prisma.society.update({
+    where: { id: societyId },
+    data,
   });
 }
 

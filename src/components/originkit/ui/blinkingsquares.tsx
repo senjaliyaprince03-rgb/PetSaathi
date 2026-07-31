@@ -20,7 +20,25 @@ import { useEffect, useRef } from "react"
  * @framerIntrinsicWidth 600
  * @framerIntrinsicHeight 400
  */
-export default function BlinkingSquares(props: any) {
+interface BlinkingSquaresProps {
+    gridSize?: number;
+    fillPercent?: number;
+    colorMode?: "single" | "multiple";
+    squareColor?: string;
+    colors?: string[];
+    twinkleSpeed?: number;
+    opacity?: number;
+    fadeDirection?: "left" | "right" | "top" | "bottom" | "none";
+    fadePercent?: number;
+    fadeIntensity?: number;
+    hasCursorInteraction?: boolean;
+    cursorRadius?: number;
+    cursorBoost?: number;
+    style?: React.CSSProperties;
+    [key: string]: unknown;
+}
+
+export default function BlinkingSquares(props: BlinkingSquaresProps) {
     props = { ...COMPONENT_DEFAULTS, ...props }
     const {
         gridSize,
@@ -132,7 +150,7 @@ export default function BlinkingSquares(props: any) {
 
         // Layout: square cells across the shorter dimension determines cell size,
         // then fill the area with cols/rows derived from gridSize on the long axis.
-        const cells = Math.max(2, Math.floor(gridSize))
+        const cells = Math.max(2, Math.floor(gridSize ?? 40))
         const longSide = Math.max(w, h)
         const cellSize = longSide / cells
         const cols = Math.max(1, Math.ceil(w / cellSize))
@@ -148,13 +166,13 @@ export default function BlinkingSquares(props: any) {
             Array.isArray(colors) &&
             colors.length > 0
                 ? colors.slice(0, 5).map((c: string) => parseColor(c))
-                : [parseColor(squareColor)]
+                : [parseColor(squareColor ?? "#BB29FF")]
 
         const t = (now - startRef.current) / 1000
         // Speed control is 1–100; scale to ~0.05–5 cycles/sec.
-        const speed = Math.max(0, twinkleSpeed) * 0.05
+        const speed = Math.max(0, twinkleSpeed ?? 30) * 0.05
         const strength = 1 // full blink
-        const masterOpacity = Math.max(0, Math.min(1, opacity))
+        const masterOpacity = Math.max(0, Math.min(1, opacity ?? 1))
         // fillPercent is 10–100 (%); convert to 0.1–1.0 square-size fraction.
         const fill = Math.max(0.1, Math.min(1, (fillPercent ?? 70) / 100))
         const inset = (1 - fill) * 0.5
@@ -173,9 +191,9 @@ export default function BlinkingSquares(props: any) {
 
         const cursor = pointerRef.current
         const hasCursor = hasCursorInteraction && cursor.active
-        const cr = Math.max(1, cursorRadius)
+        const cr = Math.max(1, cursorRadius ?? 140)
         // Halo Boost control is 1–100; scale to a 0.01–1.0 brightness add.
-        const cb = Math.max(0, cursorBoost) / 100
+        const cb = Math.max(0, cursorBoost ?? 60) / 100
         const cr2 = cr * cr
 
         for (let y = 0; y < rows; y++) {
@@ -375,7 +393,7 @@ export default function BlinkingSquares(props: any) {
     )
 }
 
-const COMPONENT_DEFAULTS = {
+const COMPONENT_DEFAULTS: Partial<BlinkingSquaresProps> = {
     gridSize: 40,
     fillPercent: 70,
     colorMode: "single",

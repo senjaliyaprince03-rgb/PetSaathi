@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { prisma } from "@/lib/db";
 import type { InvoiceStatus } from "@prisma/client";
 

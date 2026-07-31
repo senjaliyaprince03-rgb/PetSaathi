@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 
 import { PetSaathiLogo } from "@/components/brand/logo";
 import { buttonVariants } from "@/components/ui/button";
+import { MobileNav } from "@/components/marketing/mobile-nav";
 
 export function PublicShell({ children }: { children: ReactNode }) {
   return (
@@ -20,7 +21,10 @@ export function PublicShell({ children }: { children: ReactNode }) {
               <Link href="/membership" className="text-sm font-semibold text-ink/75 transition hover:text-indigo">Membership</Link>
               <Link href="/journal" className="text-sm font-semibold text-ink/75 transition hover:text-indigo">Journal</Link>
             </nav>
-            <Link href="/book" className={buttonVariants({ variant: "primary", size: "sm" })}>Find care</Link>
+            <div className="flex items-center gap-3">
+              <Link href="/book" className={buttonVariants({ variant: "primary", size: "sm" })}>Find care</Link>
+              <MobileNav />
+            </div>
           </div>
         </div>
       </header>

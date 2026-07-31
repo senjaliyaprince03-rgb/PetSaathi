@@ -21,9 +21,9 @@ describe("care report to closure lifecycle", () => {
     ]);
     const sitter = await prisma.sitterProfile.create({ data: { userId: sitterUser.id, status: "APPROVED", approvedAt: new Date() } });
     const pet = await prisma.pet.create({ data: { ownerId: customer.id, name: "Milo", species: "DOG", active: true } });
-    const address = await prisma.address.create({ data: { userId: customer.id, label: "Home", line1: "14 Review Street", locality: `Bopal ${suffix}`, city: "Ahmedabad", state: "Gujarat", postalCode: "380058" } });
-    const city = await prisma.city.create({ data: { slug: `care-city-${suffix}`, name: "Ahmedabad", state: "Gujarat", status: "PUBLIC_LIMITED", launchedAt: new Date() } });
-    const area = await prisma.serviceArea.create({ data: { cityId: city.id, slug: `care-area-${suffix}`, name: `Bopal ${suffix}`, postalCodes: ["380058"], status: "ACTIVE" } });
+    const address = await prisma.address.create({ data: { userId: customer.id, label: "Home", line1: "14 Review Street", locality: `Locality ${suffix}`, city: `City ${suffix}`, state: "Gujarat", postalCode: "999000" } });
+    const city = await prisma.city.create({ data: { slug: `care-city-${suffix}`, name: `City ${suffix}`, state: "Gujarat", status: "PUBLIC_LIMITED", launchedAt: new Date() } });
+    const area = await prisma.serviceArea.create({ data: { cityId: city.id, slug: `care-area-${suffix}`, name: `Area ${suffix}`, postalCodes: ["999000"], status: "ACTIVE" } });
     const service = await prisma.serviceType.findUniqueOrThrow({ where: { code: "DOG_WALK_30" } });
     const price = await prisma.servicePrice.create({ data: { serviceTypeId: service.id, serviceAreaId: area.id, version: 1, amountPaise: 10_000, sitterPaise: 7_000, taxBasisPoints: 1_800, effectiveAt: new Date(Date.now() - 60_000), approvedBy: admin.id } });
     const capacity = await prisma.capacityLimit.create({ data: { serviceAreaId: area.id, serviceCode: service.code, serviceDate: indiaServiceDate(scheduledStart), maximum: 2, reason: "Care lifecycle integration roster" } });
@@ -35,23 +35,32 @@ describe("care report to closure lifecycle", () => {
 
   afterAll(async () => {
     await prisma.notificationOutbox.deleteMany({ where: { OR: [{ destination: { in: [ids.customer, ids.sitterUser, "operations-queue", "safety-queue"] } }, { idempotencyKey: { contains: ids.booking } }] } });
-    await prisma.auditLog.deleteMany({ where: { OR: [{ actorId: ids.admin }, { resourceId: { in: [ids.firstReport, ids.correctedReport, ids.booking] } }] } });
-    await prisma.payoutAdjustment.deleteMany({ where: { payout: { bookingId: ids.booking } } });
-    await prisma.payout.deleteMany({ where: { bookingId: ids.booking } });
-    await prisma.bookingReport.deleteMany({ where: { bookingId: ids.booking } });
-    await prisma.bookingAssignment.deleteMany({ where: { bookingId: ids.booking } });
-    await prisma.capacityReservation.deleteMany({ where: { bookingId: ids.booking } });
-    await prisma.priceQuote.deleteMany({ where: { bookingId: ids.booking } });
-    await prisma.bookingStatusHistory.deleteMany({ where: { bookingId: ids.booking } });
-    await prisma.booking.deleteMany({ where: { id: ids.booking } });
-    await prisma.capacityLimit.deleteMany({ where: { id: ids.capacity } });
-    await prisma.servicePrice.deleteMany({ where: { id: ids.price } });
-    await prisma.serviceArea.deleteMany({ where: { id: ids.area } });
-    await prisma.city.deleteMany({ where: { id: ids.city } });
-    await prisma.pet.deleteMany({ where: { id: ids.pet } });
-    await prisma.address.deleteMany({ where: { id: ids.address } });
-    await prisma.sitterProfile.deleteMany({ where: { id: ids.sitter } });
-    await prisma.user.deleteMany({ where: { id: { in: [ids.customer, ids.sitterUser, ids.admin] } } });
+    const resourceIds = [ids.firstReport, ids.correctedReport, ids.booking].filter(Boolean);
+    if (ids.admin || resourceIds.length > 0) {
+      await prisma.auditLog.deleteMany({ where: { OR: [
+        ...(ids.admin ? [{ actorId: ids.admin }] : []),
+        ...(resourceIds.length > 0 ? [{ resourceId: { in: resourceIds } }] : [])
+      ] } });
+    }
+    if (ids.booking) {
+      await prisma.payoutAdjustment.deleteMany({ where: { payout: { bookingId: ids.booking } } });
+      await prisma.payout.deleteMany({ where: { bookingId: ids.booking } });
+      await prisma.bookingReport.deleteMany({ where: { bookingId: ids.booking } });
+      await prisma.bookingAssignment.deleteMany({ where: { bookingId: ids.booking } });
+      await prisma.capacityReservation.deleteMany({ where: { bookingId: ids.booking } });
+      await prisma.priceQuote.deleteMany({ where: { bookingId: ids.booking } });
+      await prisma.bookingStatusHistory.deleteMany({ where: { bookingId: ids.booking } });
+      await prisma.booking.deleteMany({ where: { id: ids.booking } });
+    }
+    if (ids.capacity) await prisma.capacityLimit.deleteMany({ where: { id: ids.capacity } });
+    if (ids.price) await prisma.servicePrice.deleteMany({ where: { id: ids.price } });
+    if (ids.area) await prisma.serviceArea.deleteMany({ where: { id: ids.area } });
+    if (ids.city) await prisma.city.deleteMany({ where: { id: ids.city } });
+    if (ids.pet) await prisma.pet.deleteMany({ where: { id: ids.pet } });
+    if (ids.address) await prisma.address.deleteMany({ where: { id: ids.address } });
+    if (ids.sitter) await prisma.sitterProfile.deleteMany({ where: { id: ids.sitter } });
+    const userIds = [ids.customer, ids.sitterUser, ids.admin].filter(Boolean);
+    if (userIds.length > 0) await prisma.user.deleteMany({ where: { id: { in: userIds } } });
     await prisma.$disconnect();
   });
 

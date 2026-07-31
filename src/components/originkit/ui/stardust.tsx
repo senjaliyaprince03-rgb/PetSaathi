@@ -246,6 +246,7 @@ export default function Sparkles({
             if (animationRef.current) cancelAnimationFrame(animationRef.current);
             window.removeEventListener("resize", resize);
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [
         background,
         particleColor,

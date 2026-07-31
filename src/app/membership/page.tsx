@@ -32,10 +32,7 @@ export default async function MembershipPage() {
           src="/images/membership-hero-luxury-banner.jpg"
           alt="Luxury pet lounge membership experience"
           fill
-          priority
-          unoptimized
-          quality={100}
-          sizes="100vw"
+          priority          sizes="100vw"
           className="object-cover object-[75%_center] sm:object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/60 to-transparent md:w-3/4" />

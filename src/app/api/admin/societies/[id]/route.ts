@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
+import { logger } from "@/lib/logger";
 import { getCurrentIdentity } from "@/modules/auth/session";
 
 export async function GET(
@@ -17,6 +18,7 @@ export async function GET(
     const society = await prisma.society.findUnique({
       where: { id },
       include: {
+        accessRule: true,
         members: true,
         sitterPools: {
           include: {
@@ -42,7 +44,7 @@ export async function GET(
 
     return NextResponse.json(society);
   } catch (error) {
-    console.error("[SOCIETY_GET_ERROR]", error);
+    logger.exception("society.read_failed", error);
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }
@@ -60,21 +62,45 @@ export async function PATCH(
     const { id } = await params;
     const data = await request.json();
 
-    const updated = await prisma.society.update({
-      where: { id },
-      data: {
-        status: data.status,
-        contactName: data.contactName,
-        contactPhone: data.contactPhone,
-        pilotStartsAt: data.pilotStartsAt ? new Date(data.pilotStartsAt) : undefined,
-        pilotEndsAt: data.pilotEndsAt ? new Date(data.pilotEndsAt) : undefined,
-        agreementAt: data.agreementAt ? new Date(data.agreementAt) : undefined,
+    const { accessRule, ...societyData } = data;
+
+    const updated = await prisma.$transaction(async (tx) => {
+      const society = await tx.society.update({
+        where: { id },
+        data: {
+          status: societyData.status,
+          contactName: societyData.contactName,
+          contactPhone: societyData.contactPhone,
+          partnershipModel: societyData.partnershipModel,
+          facilityContact: societyData.facilityContact,
+          securityContact: societyData.securityContact,
+          emergencyContact: societyData.emergencyContact,
+          bookingCap: societyData.bookingCap,
+          address: societyData.address,
+          geofence: societyData.geofence,
+          pilotStartsAt: societyData.pilotStartsAt ? new Date(societyData.pilotStartsAt) : undefined,
+          pilotEndsAt: societyData.pilotEndsAt ? new Date(societyData.pilotEndsAt) : undefined,
+          agreementAt: societyData.agreementAt ? new Date(societyData.agreementAt) : undefined,
+        },
+        include: {
+          accessRule: true,
+        }
+      });
+
+      if (accessRule) {
+        await tx.societyAccessRule.upsert({
+          where: { societyId: id },
+          update: { ...accessRule, lastVerifiedAt: new Date() },
+          create: { societyId: id, ...accessRule },
+        });
+        society.accessRule = await tx.societyAccessRule.findUnique({ where: { societyId: id } });
       }
+      return society;
     });
 
     return NextResponse.json(updated);
   } catch (error) {
-    console.error("[SOCIETY_PATCH_ERROR]", error);
+    logger.exception("society.update_failed", error);
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }

@@ -32,10 +32,11 @@ export default async function LiveOperationsPage() {
 
   return (
     <PortalShell mode="admin" displayName={identity.displayName}>
-      <div className="space-y-6 max-w-6xl mx-auto p-6">
+      <div className="space-y-6 max-w-7xl pb-12">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-white">Live Operations</h1>
-          <p className="text-gray-400">Real-time service execution and matching across all cities.</p>
+          <p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-ink/50">operations</p>
+          <h1 className="mt-2 font-display text-4xl font-semibold tracking-[-0.04em]">Live Operations</h1>
+          <p className="mt-3 max-w-3xl text-sm leading-6 text-ink/60 mb-10">Real-time service execution and matching across all cities.</p>
         </div>
 
         {/* KPI Cards */}

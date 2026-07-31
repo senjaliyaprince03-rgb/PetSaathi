@@ -162,7 +162,7 @@ export function HeroVideoShowcase() {
               Your browser does not support embedded video.
             </video>
 
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-ink/30 via-transparent to-ink/15" />
+            <div className="pointer-events-none absolute inset-0" />
             <div className="pointer-events-none absolute inset-x-0 top-0 flex items-center justify-between p-4 sm:p-6">
               <span className="flex items-center gap-2 rounded-2xl bg-ink/75 px-4 py-2 text-[0.62rem] font-bold uppercase tracking-[0.18em] text-paper shadow-sm backdrop-blur-md">
                 <PawPrint className="h-4 w-4 text-saffron" /> Six moments of care

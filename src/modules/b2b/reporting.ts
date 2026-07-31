@@ -1,14 +1,19 @@
-/* eslint-disable */
-// @ts-nocheck
+import "server-only";
+
 import { prisma } from "@/lib/db";
+import {
+  averageResolutionHours,
+  percentage,
+} from "@/modules/b2b/reporting-metrics";
+
+type ProgrammeSummary = {
+  name: string;
+  organizationId: string;
+  status: string;
+};
 
 export interface CorporateReport {
-  programme: {
-    name: string;
-    organizationId: string;
-    status: string;
-    startDate: Date;
-  };
+  programme: ProgrammeSummary & { startDate: Date };
   enrollment: {
     eligible: number;
     verified: number;
@@ -36,11 +41,7 @@ export interface CorporateReport {
 }
 
 export interface SocietyReport {
-  programme: {
-    name: string;
-    organizationId: string;
-    status: string;
-  };
+  programme: ProgrammeSummary;
   households: {
     registered: number;
     active: number;
@@ -57,11 +58,7 @@ export interface SocietyReport {
 }
 
 export interface BrandReport {
-  programme: {
-    name: string;
-    organizationId: string;
-    status: string;
-  };
+  programme: ProgrammeSummary;
   reach: {
     membersReached: number;
     landingPageViews: number;
@@ -74,204 +71,262 @@ export interface BrandReport {
   generatedAt: Date;
 }
 
-export async function generateCorporateReport(programmeId: string): Promise<CorporateReport> {
-  const programme = await prisma.partnerProgramme.findUniqueOrThrow({
-    where: { id: programmeId },
-  });
+const verifiedMemberFilter = (programmeId: string) => ({
+  programmeId,
+  verificationStatus: "VERIFIED" as const,
+});
 
-  const eligible = await prisma.programmeMembership.count({
-    where: { programmeId },
-  });
-  
-  const verified = await prisma.programmeMembership.count({
-    where: { programmeId, verificationStatus: 'VERIFIED' },
-  });
+const activeVerifiedMemberFilter = (programmeId: string) => ({
+  ...verifiedMemberFilter(programmeId),
+  active: true,
+});
 
-  const active = await prisma.programmeMembership.count({
-    where: { programmeId, active: true },
-  });
+const bookingForProgrammeMembers = (programmeId: string) => ({
+  customer: {
+    programmeMemberships: {
+      some: activeVerifiedMemberFilter(programmeId),
+    },
+  },
+});
 
-  const totalBookings = await prisma.booking.count({
-    where: {
-      customer: {
-        programmeMemberships: {
-          some: { programmeId, verificationStatus: 'VERIFIED' }
-        }
-      }
-    }
-  });
-
-  const completedBookings = await prisma.booking.count({
-    where: {
-      status: 'COMPLETED',
-      customer: {
-        programmeMemberships: {
-          some: { programmeId, verificationStatus: 'VERIFIED' }
-        }
-      }
-    }
-  });
-
-  const reviewStats = await prisma.review.aggregate({
-    where: {
-      booking: {
+export async function generateCorporateReport(
+  programmeId: string,
+): Promise<CorporateReport> {
+  const memberBookings = bookingForProgrammeMembers(programmeId);
+  const [
+    programme,
+    eligible,
+    verified,
+    active,
+    totalBookings,
+    completedBookings,
+    reviewStats,
+    issuedCredits,
+    redeemedCredits,
+    expiredCredits,
+    complaints,
+  ] = await Promise.all([
+    prisma.partnerProgramme.findUniqueOrThrow({ where: { id: programmeId } }),
+    prisma.programmeMembership.count({ where: { programmeId } }),
+    prisma.programmeMembership.count({
+      where: verifiedMemberFilter(programmeId),
+    }),
+    prisma.programmeMembership.count({
+      where: activeVerifiedMemberFilter(programmeId),
+    }),
+    prisma.booking.count({ where: memberBookings }),
+    prisma.booking.count({
+      where: { ...memberBookings, status: "COMPLETED" },
+    }),
+    prisma.review.aggregate({
+      where: { booking: memberBookings },
+      _avg: { rating: true },
+    }),
+    prisma.benefitLedgerEntry.aggregate({
+      where: {
+        wallet: { membership: { programmeId } },
+        entryType: "CREDIT_ISSUED",
+      },
+      _sum: { amountPaise: true },
+    }),
+    prisma.benefitLedgerEntry.aggregate({
+      where: {
+        wallet: { membership: { programmeId } },
+        entryType: "CREDIT_REDEEMED",
+      },
+      _sum: { amountPaise: true },
+    }),
+    prisma.benefitLedgerEntry.aggregate({
+      where: {
+        wallet: { membership: { programmeId } },
+        entryType: "CREDIT_EXPIRED",
+      },
+      _sum: { amountPaise: true },
+    }),
+    prisma.complaint.findMany({
+      where: {
         customer: {
           programmeMemberships: {
-            some: { programmeId, verificationStatus: 'VERIFIED' }
-          }
-        }
-      }
-    },
-    _avg: {
-      rating: true
-    }
-  });
+            some: activeVerifiedMemberFilter(programmeId),
+          },
+        },
+      },
+      select: { createdAt: true, resolvedAt: true },
+    }),
+  ]);
 
-  const issuedCredits = await prisma.benefitLedgerEntry.aggregate({
-    where: { programmeId, type: 'ISSUED' },
-    _sum: { amountPaise: true }
-  });
-  const redeemedCredits = await prisma.benefitLedgerEntry.aggregate({
-    where: { programmeId, type: 'REDEEMED' },
-    _sum: { amountPaise: true }
-  });
-  const expiredCredits = await prisma.benefitLedgerEntry.aggregate({
-    where: { programmeId, type: 'EXPIRED' },
-    _sum: { amountPaise: true }
-  });
-
-  const totalComplaints = await prisma.complaint.count({
-    where: { programmeId }
-  });
-  const resolvedComplaints = await prisma.complaint.count({
-    where: { programmeId, status: 'RESOLVED' }
-  });
-
-  const enrollmentRate = eligible > 0 ? (verified / eligible) * 100 : 0;
-  const completionRate = totalBookings > 0 ? (completedBookings / totalBookings) * 100 : 0;
-  const averageRating = reviewStats._avg.rating || 0;
-
-  const issued = issuedCredits._sum.amountPaise || 0;
-  const redeemed = redeemedCredits._sum.amountPaise || 0;
-  const expired = expiredCredits._sum.amountPaise || 0;
-  const balance = issued - redeemed - expired;
+  const issued = issuedCredits._sum.amountPaise ?? 0;
+  const redeemed = redeemedCredits._sum.amountPaise ?? 0;
+  const expired = expiredCredits._sum.amountPaise ?? 0;
+  const resolved = complaints.filter((complaint) => complaint.resolvedAt);
 
   return {
     programme: {
       name: programme.name,
-      organizationId: programme.organizationName,
+      organizationId: programme.organizationId,
       status: programme.status,
-      startDate: programme.createdAt,
+      startDate: programme.startDate ?? programme.createdAt,
     },
     enrollment: {
       eligible,
       verified,
       active,
-      enrollmentRate,
+      enrollmentRate: percentage(verified, eligible),
     },
     bookings: {
       total: totalBookings,
       completed: completedBookings,
-      completionRate,
-      averageRating,
+      completionRate: percentage(completedBookings, totalBookings),
+      averageRating: reviewStats._avg.rating ?? 0,
     },
     credits: {
       issued,
       redeemed,
       expired,
-      balance,
+      balance: issued - redeemed - expired,
     },
     complaints: {
-      total: totalComplaints,
-      resolved: resolvedComplaints,
-      avgResolutionHours: 0, // Placeholder
+      total: complaints.length,
+      resolved: resolved.length,
+      avgResolutionHours: averageResolutionHours(complaints),
     },
     generatedAt: new Date(),
   };
 }
 
-export async function generateSocietyReport(programmeId: string): Promise<SocietyReport> {
-  const programme = await prisma.partnerProgramme.findUniqueOrThrow({
-    where: { id: programmeId },
-  });
+export async function generateSocietyReport(
+  programmeId: string,
+): Promise<SocietyReport> {
+  const memberBookings = bookingForProgrammeMembers(programmeId);
+  const [
+    programme,
+    registered,
+    active,
+    totalBookings,
+    completedBookings,
+    groupedBookings,
+    activeSitterAssignments,
+  ] = await Promise.all([
+    prisma.partnerProgramme.findUniqueOrThrow({ where: { id: programmeId } }),
+    prisma.programmeMembership.count({ where: { programmeId } }),
+    prisma.programmeMembership.count({
+      where: activeVerifiedMemberFilter(programmeId),
+    }),
+    prisma.booking.count({ where: memberBookings }),
+    prisma.booking.count({
+      where: { ...memberBookings, status: "COMPLETED" },
+    }),
+    prisma.booking.groupBy({
+      by: ["serviceTypeId"],
+      where: memberBookings,
+      _count: { _all: true },
+    }),
+    prisma.bookingAssignment.findMany({
+      where: {
+        booking: memberBookings,
+        sitter: { status: "APPROVED" },
+      },
+      select: { sitterId: true },
+      distinct: ["sitterId"],
+    }),
+  ]);
 
-  const registered = await prisma.user.count({
-    where: { programmeId }
+  const serviceTypes = await prisma.serviceType.findMany({
+    where: {
+      id: { in: groupedBookings.map((group) => group.serviceTypeId) },
+    },
+    select: { id: true, name: true },
   });
-  const active = await prisma.user.count({
-    where: { programmeId, status: 'ACTIVE' }
-  });
-
-  const totalBookings = await prisma.booking.count({
-    where: { programmeId }
-  });
-  const completedBookings = await prisma.booking.count({
-    where: { programmeId, status: 'COMPLETED' }
-  });
-  
-  const completionRate = totalBookings > 0 ? (completedBookings / totalBookings) * 100 : 0;
-
-  const activeSitters = await prisma.user.count({
-    where: { programmeId, status: 'ACTIVE' }
-  });
+  const serviceNames = new Map(
+    serviceTypes.map((service) => [service.id, service.name]),
+  );
 
   return {
     programme: {
       name: programme.name,
-      organizationId: programme.organizationName,
+      organizationId: programme.organizationId,
       status: programme.status,
     },
-    households: {
-      registered,
-      active,
-    },
+    households: { registered, active },
     services: {
-      bookingsByType: [], // Placeholder, can be aggregated using group by
+      bookingsByType: groupedBookings
+        .map((group) => ({
+          serviceType:
+            serviceNames.get(group.serviceTypeId) ?? group.serviceTypeId,
+          count: group._count._all,
+        }))
+        .sort(
+          (left, right) =>
+            right.count - left.count ||
+            left.serviceType.localeCompare(right.serviceType),
+        ),
       totalBookings,
-      completionRate,
+      completionRate: percentage(completedBookings, totalBookings),
     },
-    capacity: {
-      activeSitters,
+    capacity: { activeSitters: activeSitterAssignments.length },
+    generatedAt: new Date(),
+  };
+}
+
+export async function generateBrandReport(
+  programmeId: string,
+): Promise<BrandReport> {
+  const [programme, membersReached, promotionCodes, landingPageViews] =
+    await Promise.all([
+      prisma.partnerProgramme.findUniqueOrThrow({ where: { id: programmeId } }),
+      prisma.programmeMembership.count({ where: { programmeId } }),
+      prisma.promotionCode.findMany({
+        where: { programmeId },
+        select: { code: true },
+      }),
+      prisma.auditLog.count({
+        where: {
+          resourceType: "partner_programme",
+          resourceId: programmeId,
+          action: "partner_programme.page_view",
+        },
+      }),
+    ]);
+
+  const codes = promotionCodes.map((promotion) => promotion.code);
+  const redemptionWhere = {
+    entryType: "CREDIT_REDEEMED" as const,
+    reference: { in: codes },
+    wallet: { membership: { programmeId } },
+  };
+  const [codesRedeemed, totalDiscount] = codes.length
+    ? await Promise.all([
+        prisma.benefitLedgerEntry.count({ where: redemptionWhere }),
+        prisma.benefitLedgerEntry.aggregate({
+          where: redemptionWhere,
+          _sum: { amountPaise: true },
+        }),
+      ])
+    : [0, { _sum: { amountPaise: null } }];
+
+  return {
+    programme: {
+      name: programme.name,
+      organizationId: programme.organizationId,
+      status: programme.status,
+    },
+    reach: { membersReached, landingPageViews },
+    redemptions: {
+      codesIssued: promotionCodes.length,
+      codesRedeemed,
+      totalDiscountPaise: totalDiscount._sum.amountPaise ?? 0,
     },
     generatedAt: new Date(),
   };
 }
 
-export async function generateBrandReport(programmeId: string): Promise<BrandReport> {
-  const programme = await prisma.partnerProgramme.findUniqueOrThrow({
-    where: { id: programmeId },
-  });
-
-  const membersReached = await prisma.programmeMembership.count({
-    where: { programmeId }
-  });
-
-  const codesIssued = await prisma.promotionCode.count({
-    where: { programmeId }
-  });
-  const codesRedeemed = await prisma.promotionCode.count({
-    where: { programmeId, status: 'REDEEMED' }
-  });
-  const totalDiscount = await prisma.promotionCode.aggregate({
-    where: { programmeId, status: 'REDEEMED' },
-    _sum: { discountPaise: true }
-  });
-
-  return {
-    programme: {
-      name: programme.name,
-      organizationId: programme.organizationName,
-      status: programme.status,
+export async function recordProgrammePageView(programmeId: string) {
+  await prisma.auditLog.create({
+    data: {
+      action: "partner_programme.page_view",
+      resourceType: "partner_programme",
+      resourceId: programmeId,
+      after: { source: "public_benefits_page" },
     },
-    reach: {
-      membersReached,
-      landingPageViews: 0, // For MVP, landingPageViews can be 0
-    },
-    redemptions: {
-      codesIssued,
-      codesRedeemed,
-      totalDiscountPaise: totalDiscount._sum.discountPaise || 0,
-    },
-    generatedAt: new Date(),
-  };
+  });
 }

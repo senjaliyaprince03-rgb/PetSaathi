@@ -29,10 +29,6 @@ export interface TerritoryScope {
 const CENTRAL_ROLES: Role[] = [
   "SUPER_ADMIN",
   "OPERATIONS_ADMIN",
-  "FINANCE_ADMIN",
-  "SAFETY_ADMIN",
-  "VERIFICATION_ADMIN",
-  "CONTENT_ADMIN",
 ];
 
 /* ─── Core resolver ───────────────────────────────────────── */

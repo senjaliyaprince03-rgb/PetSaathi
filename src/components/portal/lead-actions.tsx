@@ -14,7 +14,7 @@ export function LeadActions({ id, status }: { id: string; status: string }) {
   if (!actions.length) return null;
   async function transition(toState: string) {
     setPending(true); setError(null);
-    const response = await fetch(`/api/admin/leads/${id}/transition`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ toState, note }) });
+    const response = await fetch(`/api/admin/leads/${id}`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ status: toState, reason: note }) });
     const result = await response.json() as { error?: string };
     setPending(false);
     if (!response.ok) return setError(result.error ?? "Lead update failed");

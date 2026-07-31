@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
 import { prisma } from "@/lib/db";
+import { logger } from "@/lib/logger";
 import { getCurrentIdentity, hasAnyRole } from "@/modules/auth/session";
 import { reconciliationDifference, reconciliationMatches, reconciliationTotals, type ReconciliationTotals } from "@/modules/pricing/economics";
 import { completeReconciliationRunSchema } from "@/modules/pricing/input";
@@ -34,7 +35,10 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
     return NextResponse.json({ run }, { headers: { "Cache-Control": "no-store" } });
   } catch (error) {
     if (error instanceof ReconciliationError) return NextResponse.json({ error: error.code, message: error.message }, { status: error.status });
-    console.error("reconciliation.complete_failed", { runId: id, actorId: identity.id, error });
+    logger.exception("reconciliation.complete_failed", error, {
+      runId: id,
+      actorId: identity.id,
+    });
     return NextResponse.json({ error: "reconciliation_failed", message: "Provider totals could not be reconciled safely." }, { status: 500 });
   }
 }

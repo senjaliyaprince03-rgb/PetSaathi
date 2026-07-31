@@ -2,6 +2,7 @@ import { Prisma } from "@prisma/client";
 import { NextResponse } from "next/server";
 
 import { prisma } from "@/lib/db";
+import { logger } from "@/lib/logger";
 import { getCurrentIdentity, hasAnyRole } from "@/modules/auth/session";
 import { indiaServiceDate, serviceDateFromInput } from "@/modules/pricing/economics";
 import { upsertCapacityLimitSchema } from "@/modules/pricing/input";
@@ -34,7 +35,9 @@ export async function POST(request: Request) {
     return NextResponse.json({ capacityLimit }, { status: 201, headers: { "Cache-Control": "no-store" } });
   } catch (error) {
     if (error instanceof CapacityError) return NextResponse.json({ error: error.code, message: error.message }, { status: error.status });
-    console.error("capacity_limit.write_failed", { actorId: identity.id, error });
+    logger.exception("capacity_limit.write_failed", error, {
+      actorId: identity.id,
+    });
     return NextResponse.json({ error: "capacity_limit_failed", message: "The capacity limit could not be saved safely." }, { status: 500 });
   }
 }

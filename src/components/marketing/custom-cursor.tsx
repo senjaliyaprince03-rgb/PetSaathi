@@ -19,40 +19,74 @@ const INTERACTIVE_SELECTOR = [
 
 export function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
+  const animationFrameRef = useRef<number | null>(null);
+  const nextPositionRef = useRef({ x: -100, y: -100 });
+  const visibilityRef = useRef(false);
   const [isEnabled, setIsEnabled] = useState(false);
   const [isInteractive, setIsInteractive] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const finePointer = window.matchMedia("(pointer: fine)");
+    const coarsePointer = window.matchMedia("(pointer: coarse)");
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     const syncAvailability = () => {
-      setIsEnabled(finePointer.matches && !reducedMotion.matches);
+      const desktopFallback =
+        !coarsePointer.matches &&
+        navigator.maxTouchPoints === 0 &&
+        window.innerWidth >= 768;
+      const enabled =
+        (finePointer.matches || desktopFallback) && !reducedMotion.matches;
+      setIsEnabled(enabled);
+
+      if (!enabled) {
+        visibilityRef.current = false;
+        setIsVisible(false);
+        setIsInteractive(false);
+      }
     };
 
     syncAvailability();
     finePointer.addEventListener("change", syncAvailability);
+    coarsePointer.addEventListener("change", syncAvailability);
     reducedMotion.addEventListener("change", syncAvailability);
+    window.addEventListener("resize", syncAvailability, { passive: true });
 
     return () => {
       finePointer.removeEventListener("change", syncAvailability);
+      coarsePointer.removeEventListener("change", syncAvailability);
       reducedMotion.removeEventListener("change", syncAvailability);
+      window.removeEventListener("resize", syncAvailability);
     };
   }, []);
 
   useEffect(() => {
     if (!isEnabled) return;
+    const cursorElement = cursorRef.current;
+
+    const commitPosition = () => {
+      animationFrameRef.current = null;
+      const { x, y } = nextPositionRef.current;
+      cursorRef.current?.style.setProperty(
+        "transform",
+        `translate3d(${x}px, ${y}px, 0)`
+      );
+    };
 
     const updatePosition = (event: PointerEvent) => {
       if (event.pointerType !== "mouse") return;
 
       // Viewport coordinates and a body portal keep the halo locked to the OS pointer during scroll.
-      cursorRef.current?.style.setProperty(
-        "transform",
-        `translate3d(${event.clientX}px, ${event.clientY}px, 0)`
-      );
-      setIsVisible(true);
+      nextPositionRef.current = { x: event.clientX, y: event.clientY };
+      if (animationFrameRef.current === null) {
+        animationFrameRef.current = window.requestAnimationFrame(commitPosition);
+      }
+
+      if (!visibilityRef.current) {
+        visibilityRef.current = true;
+        setIsVisible(true);
+      }
     };
 
     const updateInteraction = (event: PointerEvent) => {
@@ -62,18 +96,29 @@ export function CustomCursor() {
       );
     };
 
-    const hideCursor = () => setIsVisible(false);
+    const hideCursor = () => {
+      visibilityRef.current = false;
+      setIsVisible(false);
+      setIsInteractive(false);
+    };
 
     window.addEventListener("pointermove", updatePosition, { passive: true });
     document.addEventListener("pointerover", updateInteraction, { passive: true });
     document.documentElement.addEventListener("mouseleave", hideCursor);
     window.addEventListener("blur", hideCursor);
+    cursorElement?.setAttribute("data-ready", "true");
 
     return () => {
+      if (animationFrameRef.current !== null) {
+        window.cancelAnimationFrame(animationFrameRef.current);
+        animationFrameRef.current = null;
+      }
       window.removeEventListener("pointermove", updatePosition);
       document.removeEventListener("pointerover", updateInteraction);
       document.documentElement.removeEventListener("mouseleave", hideCursor);
       window.removeEventListener("blur", hideCursor);
+      cursorElement?.removeAttribute("data-ready");
+      hideCursor();
     };
   }, [isEnabled]);
 
@@ -84,7 +129,7 @@ export function CustomCursor() {
       ref={cursorRef}
       aria-hidden="true"
       data-testid="luxury-cursor-halo"
-      className={`pointer-events-none fixed left-0 top-0 z-[9999] hidden transition-opacity duration-200 md:block ${
+      className={`pointer-events-none fixed left-0 top-0 z-[9999] hidden h-px w-px will-change-transform transition-opacity duration-200 md:block ${
         isVisible ? "opacity-100" : "opacity-0"
       }`}
     >

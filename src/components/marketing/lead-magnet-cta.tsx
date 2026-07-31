@@ -19,18 +19,29 @@ export function LeadMagnetCta({
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!email) return;
     setLoading(true);
+    setError("");
     try {
-      await fetch("/api/public/lead-magnets", {
+      const response = await fetch("/api/public/lead-magnets", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, magnetSlug, source: "BLOG_CTA" }),
       });
+      if (!response.ok) {
+        throw new Error(
+          response.status === 429
+            ? "Too many requests. Please wait and try again."
+            : "We could not queue the resource. Please try again.",
+        );
+      }
       setSubmitted(true);
+    } catch (cause) {
+      setError(cause instanceof Error ? cause.message : "Please try again.");
     } finally {
       setLoading(false);
     }
@@ -70,6 +81,11 @@ export function LeadMagnetCta({
           {loading ? "Sending…" : "Get it free"}
         </button>
       </form>
+      {error && (
+        <p className="mt-3 text-sm font-semibold text-coral" role="alert">
+          {error}
+        </p>
+      )}
       <p className="mt-3 text-xs text-ink/40">No spam. Unsubscribe anytime.</p>
     </div>
   );

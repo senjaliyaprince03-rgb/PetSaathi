@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
+import { logger } from "@/lib/logger";
 import { getCurrentIdentity } from "@/modules/auth/session";
 import { cancelBookingBeforePayment, CancellationError } from "@/modules/bookings/cancel-booking";
 import { consumeRateLimit } from "@/modules/security/rate-limit";
@@ -21,7 +22,10 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
     return NextResponse.json({ booking }, { headers: { "Cache-Control": "no-store" } });
   } catch (error) {
     if (error instanceof CancellationError) return problem(error.status, error.code, error.message);
-    console.error("booking.cancel_failed", { bookingId: id, customerId: identity.id, error });
+    logger.exception("booking.cancel_failed", error, {
+      bookingId: id,
+      customerId: identity.id,
+    });
     return problem(500, "cancellation_failed", "Cancellation could not be committed safely. No status was changed.");
   }
 }

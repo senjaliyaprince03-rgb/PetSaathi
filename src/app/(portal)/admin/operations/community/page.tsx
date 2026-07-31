@@ -2,6 +2,7 @@ import { Users, Globe, Link2 } from "lucide-react";
 import { redirect } from "next/navigation";
 
 import { MembershipActions } from "@/components/portal/membership-actions";
+import { PortalShell } from "@/components/portal/portal-shell";
 import { prisma } from "@/lib/db";
 import { getCurrentIdentity, hasAnyRole } from "@/modules/auth/session";
 
@@ -9,7 +10,7 @@ export const dynamic = "force-dynamic";
 
 export default async function AdminCommunityPage() {
   const identity = await getCurrentIdentity();
-  if (!identity || !hasAnyRole(identity, ["OPERATIONS_ADMIN", "CONTENT_ADMIN", "SUPER_ADMIN"])) {
+  if (!identity || !hasAnyRole(identity, ["SOCIETY_MANAGER", "OPERATIONS_ADMIN", "SUPER_ADMIN"])) {
     redirect("/login?returnTo=/admin/operations/community");
   }
 
@@ -24,11 +25,11 @@ export default async function AdminCommunityPage() {
   });
 
   return (
-    <main className="min-h-screen bg-cream/50 py-10">
-      <div className="container-shell">
-        <p className="eyebrow">community operations</p>
-        <h1 className="section-title mt-5">Community Groups</h1>
-        <p className="mt-5 max-w-3xl text-lg leading-8 text-ink/60">
+    <PortalShell mode="admin" displayName={identity.displayName}>
+      <div className="max-w-7xl pb-12">
+        <p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-ink/50">community operations</p>
+        <h1 className="mt-2 font-display text-4xl font-semibold tracking-[-0.04em]">Community Groups</h1>
+        <p className="mt-3 max-w-3xl text-sm leading-6 text-ink/60 mb-10">
           Manage local pet-parent communities and process membership requests.
         </p>
 
@@ -106,6 +107,6 @@ export default async function AdminCommunityPage() {
           )}
         </div>
       </div>
-    </main>
+    </PortalShell>
   );
 }

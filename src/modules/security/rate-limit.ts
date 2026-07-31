@@ -1,6 +1,7 @@
 import "server-only";
 
 import { createHash } from "node:crypto";
+import { isIP } from "node:net";
 
 import { Prisma } from "@prisma/client";
 
@@ -27,5 +28,15 @@ export async function consumeRateLimit(scope: string, identifier: string, limit:
 }
 
 export function requestIp(request: Request) {
-  return request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || request.headers.get("x-real-ip") || "unknown";
+  const candidates = [
+    ...(request.headers.get("x-forwarded-for")?.split(",") ?? []),
+    request.headers.get("x-real-ip"),
+  ];
+
+  for (const candidate of candidates) {
+    const value = candidate?.trim();
+    if (value && isIP(value)) return value;
+  }
+
+  return "unknown";
 }

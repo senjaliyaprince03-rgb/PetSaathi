@@ -1,133 +1,84 @@
+import { notFound, redirect } from 'next/navigation';
 import React from 'react';
-import { Button } from '@/components/ui/button';
-import type { PartnerProfile } from '@/lib/types/partner';
 
-// Mock data for Phase 8 testing
-const mockPartners: PartnerProfile[] = [
-  {
-    id: 'p1',
-    userId: 'u1',
-    firstName: 'Aarav',
-    lastName: 'Patel',
-    email: 'aarav.groomer@example.com',
-    phone: '+919876543210',
-    serviceCategories: ['GROOMING_HOME'],
-    verificationLevel: 'SKILLS_ASSESSED',
-    specialistBadges: ['CAT_GROOMING'],
-    isVerified: true,
-    bio: 'Professional pet groomer with 5 years experience.',
-    rating: 4.8,
-    completedBookings: 120,
-    joinedAt: '2023-01-15'
-  },
-  {
-    id: 'p2',
-    userId: 'u2',
-    firstName: 'Dr. Priya',
-    lastName: 'Sharma',
-    email: 'dr.priya@example.com',
-    phone: '+919876543211',
-    serviceCategories: ['VET_SUPPORT'],
-    verificationLevel: 'SPECIALIST_APPROVED',
-    specialistBadges: [],
-    isVerified: true,
-    registrationNumber: 'VCI-98765',
-    stateCouncil: 'Gujarat Veterinary Council',
-    bio: 'Licensed veterinarian focusing on preventive care.',
-    rating: 4.9,
-    completedBookings: 45,
-    joinedAt: '2024-02-10'
-  },
-  {
-    id: 'p3',
-    userId: 'u3',
-    firstName: 'Rohan',
-    lastName: 'Desai',
-    email: 'rohan.trainer@example.com',
-    phone: '+919876543212',
-    serviceCategories: ['TRAINING_ASSESSMENT'],
-    verificationLevel: 'BACKGROUND_CHECKED',
-    specialistBadges: [],
-    isVerified: false,
-    bio: 'Dog trainer specializing in reward-based puppy foundations.',
-    rating: 0,
-    completedBookings: 0,
-    joinedAt: '2024-07-01'
-  }
-];
+import { PortalShell } from '@/components/portal/portal-shell';
+import { prisma } from '@/lib/db';
+import { getCurrentIdentity, hasAnyRole } from '@/modules/auth/session';
 
-export default function AdminPartnersPage() {
+export const dynamic = "force-dynamic";
+
+export default async function AdminPartnersPage() {
+  const identity = await getCurrentIdentity();
+  if (!identity) redirect("/login?returnTo=/admin/partners");
+  if (!hasAnyRole(identity, ["PARTNER_MANAGER", "SUPER_ADMIN"])) notFound();
+
+  const partners = await prisma.partner.findMany({
+    orderBy: { createdAt: "desc" }
+  });
+
   return (
-    <div className="max-w-6xl mx-auto py-8 px-4">
-      <div className="flex items-center justify-between mb-8">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900">Partner Verification & Registry</h1>
-          <p className="text-gray-500 mt-2">Manage service partners for Grooming, Vet, and Training.</p>
+    <PortalShell mode="admin" displayName={identity.displayName}>
+      <div className="mt-5">
+        <h1 className="font-display text-4xl font-semibold tracking-[-0.04em]">Partner Verification & Registry</h1>
+        <p className="mt-3 text-sm leading-6 text-ink/60">
+          Review the current partner registry. Operational partner changes are handled through the verified onboarding workflow.
+        </p>
+        
+        <div className="mt-8 overflow-hidden rounded-4xl border border-indigo/10 bg-paper shadow-lifted">
+          <div className="overflow-x-auto">
+            <table className="w-full text-left">
+              <thead>
+                <tr className="border-b border-indigo/10 bg-cream/30">
+                  <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-ink/50">Partner</th>
+                  <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-ink/50">Category</th>
+                  <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-ink/50">Status</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-indigo/5">
+                {partners.map((partner) => {
+                  const meta = (partner.metadata || {}) as { registrationNumber?: string };
+                  return (
+                    <tr key={partner.id} className="transition-colors hover:bg-cream/20">
+                      <td className="px-6 py-5">
+                        <div className="font-semibold text-ink">
+                          {partner.displayName}
+                        </div>
+                        <div className="mt-1 text-sm text-ink/60">{partner.contactEmail}</div>
+                        {meta.registrationNumber && (
+                          <div className="mt-2 inline-flex rounded-md bg-indigo/5 px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.16em] text-indigo">
+                            Reg: {meta.registrationNumber}
+                          </div>
+                        )}
+                      </td>
+                      <td className="px-6 py-5">
+                        <span className="text-sm font-medium text-ink/75">
+                          {partner.category.replace(/_/g, " ")}
+                        </span>
+                      </td>
+                      <td className="px-6 py-5">
+                        <span className={`inline-flex rounded-full px-3 py-1 text-xs font-bold ${
+                          partner.status === "ACTIVE" 
+                            ? "bg-leaf/10 text-leaf" 
+                            : "bg-saffron/20 text-saffron-dark"
+                        }`}>
+                          {partner.status}
+                        </span>
+                      </td>
+                    </tr>
+                  );
+                })}
+                {partners.length === 0 && (
+                  <tr>
+                    <td colSpan={3} className="px-6 py-12 text-center text-sm font-medium text-ink/60">
+                      No partners found.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
-        <Button>Onboard New Partner</Button>
       </div>
-
-      <div className="bg-white shadow rounded-lg overflow-hidden">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
-            <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Partner</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Categories</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Verification Level</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-            </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
-            {mockPartners.map((partner) => (
-              <tr key={partner.id}>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="flex items-center">
-                    <div>
-                      <div className="text-sm font-medium text-gray-900">
-                        {partner.firstName} {partner.lastName}
-                      </div>
-                      <div className="text-sm text-gray-500">{partner.email}</div>
-                      {partner.registrationNumber && (
-                        <div className="text-xs text-blue-600 mt-1">Reg: {partner.registrationNumber}</div>
-                      )}
-                    </div>
-                  </div>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="flex gap-1 flex-wrap">
-                    {partner.serviceCategories.map(cat => (
-                      <span key={cat} className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                        {cat}
-                      </span>
-                    ))}
-                  </div>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">
-                    {partner.verificationLevel.replace('_', ' ')}
-                  </span>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  {partner.isVerified ? (
-                    <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                      Active
-                    </span>
-                  ) : (
-                    <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                      Pending Approval
-                    </span>
-                  )}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                  <button className="text-indigo-600 hover:text-indigo-900 mr-4">Review</button>
-                  <button className="text-red-600 hover:text-red-900">Suspend</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
+    </PortalShell>
   );
 }

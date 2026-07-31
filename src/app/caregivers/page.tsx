@@ -11,7 +11,7 @@ export const metadata: Metadata = { title: "Find a trusted Saathi | PetSaathi" }
 const profileViews = [
   { image: "/images/sitter-woman-cinematic.png", label: "Home care", detail: "Routine-led companionship, feeding and careful handovers" },
   { image: "/images/sitter-park-cinematic.png", label: "Neighbourhood walks", detail: "Service-specific permissions with recorded milestones" },
-  { image: "/images/auth-pet-companion.png", label: "Day care", detail: "Local capacity, pet fit and human-reviewed matching" }
+  { image: "/images/care-handover-editorial-v2.webp", label: "Day care", detail: "Local capacity, pet fit and human-reviewed matching" }
 ];
 
 export default function CaregiversPage() {
@@ -24,8 +24,6 @@ export default function CaregiversPage() {
           alt="Verified PetSaathi woman caregiver cuddling a happy cat"
           fill
           priority
-          unoptimized
-          quality={100}
           sizes="100vw"
           className="object-cover object-[80%_center] sm:object-[center_45%]"
         />

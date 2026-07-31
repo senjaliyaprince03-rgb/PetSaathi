@@ -1,54 +1,85 @@
-/* eslint-disable */
-import type { NextRequest} from "next/server";
 import { NextResponse } from "next/server";
-import { getCurrentIdentity } from "@/modules/auth/session";
-import { getProgrammeBySlug } from "@/modules/b2b/programmes";
-import { getBalance } from "@/modules/b2b/wallets";
+import { z } from "zod";
+
 import { prisma } from "@/lib/db";
+import { logger } from "@/lib/logger";
+import { authorizeApi } from "@/modules/auth/authorization";
+import {
+  getCurrentProgrammeEntitlement,
+  ProgrammeEntitlementError,
+} from "@/modules/b2b/programme-entitlement";
 
 export const dynamic = "force-dynamic";
 
-export async function GET(_req: NextRequest, { params }: { params: Promise<{ slug: string }> }) {
-  const identity = await getCurrentIdentity();
-  if (!identity) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+const slugSchema = z
+  .string()
+  .trim()
+  .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/)
+  .max(120);
+
+export async function GET(
+  _request: Request,
+  { params }: { params: Promise<{ slug: string }> },
+) {
+  const authorization = await authorizeApi(["CUSTOMER"]);
+  if (!authorization.authorized) return authorization.response;
+
+  const slug = slugSchema.safeParse((await params).slug);
+  if (!slug.success) {
+    return NextResponse.json(
+      { error: "programme_not_found" },
+      { status: 404, headers: { "Cache-Control": "no-store" } },
+    );
   }
-  const { slug } = await params;
 
   try {
-    const programme = await getProgrammeBySlug(slug);
-    
-    const membership = await prisma.programmeMembership.findUnique({
-      where: {
-        programmeId_customerId: {
-          programmeId: programme.id,
-          customerId: identity.id,
+    const entitlement = await getCurrentProgrammeEntitlement(
+      slug.data,
+      authorization.identity.id,
+    );
+    const wallet = entitlement.membership.wallet;
+    const latestEntry = wallet
+      ? await prisma.benefitLedgerEntry.findFirst({
+          where: { walletId: wallet.id },
+          orderBy: [{ createdAt: "desc" }, { id: "desc" }],
+          select: { balanceAfter: true },
+        })
+      : null;
+
+    return NextResponse.json(
+      {
+        status: entitlement.membership.verificationStatus,
+        joinedAt: entitlement.membership.createdAt,
+        eligibilityExpiry: entitlement.membership.eligibilityExpiry,
+        wallet: wallet
+          ? {
+              id: wallet.id,
+              status: wallet.status,
+              expiresAt: wallet.expiresAt,
+              balancePaise: latestEntry?.balanceAfter ?? 0,
+            }
+          : null,
+      },
+      { headers: { "Cache-Control": "no-store" } },
+    );
+  } catch (error) {
+    if (error instanceof ProgrammeEntitlementError) {
+      return NextResponse.json(
+        { error: error.code, message: error.message },
+        {
+          status: error.status,
+          headers: { "Cache-Control": "no-store" },
         },
-      },
-      include: {
-        wallet: true,
-      },
-    });
-
-    if (!membership) {
-      return NextResponse.json({ error: "Not enrolled" }, { status: 404 });
+      );
     }
-
-    let walletBalance = 0;
-    if (membership.wallet) {
-      walletBalance = await getBalance(membership.wallet.id);
-    }
-
-    return NextResponse.json({
-      status: membership.verificationStatus,
-      joinedAt: membership.createdAt,
-      wallet: membership.wallet ? {
-        id: membership.wallet.id,
-        status: membership.wallet.status,
-        balancePaise: walletBalance,
-      } : null,
+    logger.error(error instanceof Error ? error : "ProgrammeBenefitsError", {
+      event: "programme.benefits_lookup_failed",
+      actorId: authorization.identity.id,
+      programmeSlug: slug.data,
     });
-  } catch {
-    return NextResponse.json({ error: "Failed to fetch benefits" }, { status: 400 });
+    return NextResponse.json(
+      { error: "internal_error" },
+      { status: 500, headers: { "Cache-Control": "no-store" } },
+    );
   }
 }

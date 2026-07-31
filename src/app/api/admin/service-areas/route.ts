@@ -2,6 +2,7 @@ import { Prisma } from "@prisma/client";
 import { NextResponse } from "next/server";
 
 import { prisma } from "@/lib/db";
+import { logger } from "@/lib/logger";
 import { getCurrentIdentity, hasAnyRole } from "@/modules/auth/session";
 import { createServiceAreaSchema } from "@/modules/pricing/input";
 import { toSlug } from "@/modules/pricing/economics";
@@ -33,7 +34,9 @@ export async function POST(request: Request) {
     return NextResponse.json({ serviceArea }, { status: 201, headers: { "Cache-Control": "no-store" } });
   } catch (error) {
     if (error instanceof CatalogError) return NextResponse.json({ error: error.code, message: error.message }, { status: error.status });
-    console.error("service_area.write_failed", { actorId: identity.id, error });
+    logger.exception("service_area.write_failed", error, {
+      actorId: identity.id,
+    });
     return NextResponse.json({ error: "service_area_failed", message: "The service area could not be saved safely." }, { status: 500 });
   }
 }

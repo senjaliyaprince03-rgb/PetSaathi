@@ -1,4 +1,6 @@
 import { redirect } from "next/navigation";
+
+import { PortalShell } from "@/components/portal/portal-shell";
 import { getCurrentIdentity, hasAnyRole } from "@/modules/auth/session";
 import { listProgrammes } from "@/modules/b2b/programmes";
 
@@ -13,52 +15,62 @@ export default async function ProgrammesPage() {
   const result = await listProgrammes({ page: 1, pageSize: 50 });
 
   return (
-    <div className="container-shell">
-      <h1 className="section-title mb-6">Active Programmes</h1>
-      <div className="bg-paper shadow rounded-lg overflow-hidden">
-        <table className="w-full text-left border-collapse">
-          <thead>
-            <tr className="bg-gray-50 border-b">
-              <th className="p-4 font-semibold text-gray-700">Programme Name</th>
-              <th className="p-4 font-semibold text-gray-700">Type / Method</th>
-              <th className="p-4 font-semibold text-gray-700">Status</th>
-              <th className="p-4 font-semibold text-gray-700">Members</th>
-            </tr>
-          </thead>
-          <tbody>
-            {result.items.map((prog) => (
-              <tr key={prog.id} className="border-b last:border-0 hover:bg-gray-50">
-                <td className="p-4">
-                  <div className="font-medium text-gray-900">{prog.name}</div>
-                  <div className="text-sm text-gray-500">/{prog.slug}</div>
-                  <div className="text-xs text-gray-400">Org: {prog.organization.displayName}</div>
-                </td>
-                <td className="p-4">
-                  <div className="text-sm text-gray-800">{prog.programmeType}</div>
-                  <div className="text-xs text-gray-500 mt-1">{prog.eligibilityMethod}</div>
-                </td>
-                <td className="p-4">
-                  <span className={`px-2 py-1 text-xs rounded-full ${
-                    prog.status === "ACTIVE_PROGRAMME" ? "bg-green-100 text-green-800" : "bg-gray-100 text-gray-800"
-                  }`}>
-                    {prog.status}
-                  </span>
-                </td>
-                <td className="p-4 text-gray-600 font-medium">
-                  {prog._count.memberships}
-                </td>
-              </tr>
-            ))}
-            {result.items.length === 0 && (
-              <tr>
-                <td colSpan={4} className="p-4 text-center text-gray-500">
-                  No programmes found.
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+    <PortalShell mode="admin" displayName={identity.displayName}>
+      <div className="mt-5">
+        <h1 className="font-display text-4xl font-semibold tracking-[-0.04em]">Active Programmes</h1>
+        
+        <div className="mt-8 overflow-hidden rounded-4xl border border-indigo/10 bg-paper shadow-lifted">
+          <div className="overflow-x-auto">
+            <table className="w-full text-left">
+              <thead>
+                <tr className="border-b border-indigo/10 bg-cream/30">
+                  <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-ink/50">Programme Name</th>
+                  <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-ink/50">Type / Method</th>
+                  <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-ink/50">Status</th>
+                  <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-ink/50">Members</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-indigo/5">
+                {result.items.map((prog) => (
+                  <tr key={prog.id} className="transition-colors hover:bg-cream/20">
+                    <td className="px-6 py-5">
+                      <div className="font-semibold text-ink">{prog.name}</div>
+                      <div className="mt-1 flex items-center gap-2">
+                        <span className="text-xs font-bold text-ink/50">/{prog.slug}</span>
+                        <span className="text-xs text-ink/40">•</span>
+                        <span className="text-xs text-ink/60">{prog.organization.displayName}</span>
+                      </div>
+                    </td>
+                    <td className="px-6 py-5">
+                      <div className="text-sm font-medium text-ink/75">{prog.programmeType.replace(/_/g, " ")}</div>
+                      <div className="mt-1 text-xs text-ink/50">{prog.eligibilityMethod.replace(/_/g, " ")}</div>
+                    </td>
+                    <td className="px-6 py-5">
+                      <span className={`inline-flex rounded-full px-3 py-1 text-xs font-bold ${
+                        prog.status === "ACTIVE_PROGRAMME" ? "bg-leaf/10 text-leaf" : "bg-ink/10 text-ink/60"
+                      }`}>
+                        {prog.status.replace(/_/g, " ")}
+                      </span>
+                    </td>
+                    <td className="px-6 py-5">
+                      <span className="rounded-full bg-indigo/5 px-3 py-1 text-sm font-semibold text-indigo">
+                        {prog._count.memberships}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+                {result.items.length === 0 && (
+                  <tr>
+                    <td colSpan={4} className="px-6 py-12 text-center text-sm font-medium text-ink/60">
+                      No programmes found.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
-    </div>
+    </PortalShell>
   );
 }

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ChevronRight, Sparkles, PawPrint } from "lucide-react";
+import { ArrowRight, ChevronRight, PawPrint } from "lucide-react";
 
 import { PublicShell } from "@/components/marketing/public-shell";
 import { buttonVariants } from "@/components/ui/button";
@@ -18,10 +18,7 @@ export default function ServicesPage() {
           src="/images/services-hero-luxury-banner.jpg"
           alt="Luxury pet care outing with verified Saathi"
           fill
-          priority
-          unoptimized
-          quality={100}
-          sizes="100vw"
+          priority          sizes="100vw"
           className="object-cover object-[70%_center] sm:object-[center_85%]"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/60 to-transparent md:w-3/4" />
@@ -36,7 +33,7 @@ export default function ServicesPage() {
               PET CARE SERVICES MADE EASY
             </h1>
             <p className="mt-4 max-w-xl text-sm sm:text-base font-semibold leading-7 text-white drop-shadow-md">
-              Find verified, background-checked Saathis nearby with transparent pricing, real-time telemetry, and 24/7 supervisor care.
+              Request local care through assisted matching, service-specific permission checks, structured updates, and server-verified pricing.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-4">

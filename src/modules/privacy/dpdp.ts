@@ -20,28 +20,44 @@ export async function grantConsent(params: {
   ipAddress?: string;
   userAgent?: string;
 }) {
-  // Revoke any existing active consent for same purpose first
-  await prisma.contentConsentRecord.updateMany({
-    where: {
-      userId: params.userId,
-      purpose: params.purpose,
-      revokedAt: null,
-    },
-    data: {
-      revokedAt: new Date(),
-      revokedReason: "Superseded by new consent",
-    },
-  });
+  return prisma.$transaction(async (tx) => {
+    await tx.contentConsentRecord.updateMany({
+      where: {
+        userId: params.userId,
+        purpose: params.purpose,
+        revokedAt: null,
+      },
+      data: {
+        revokedAt: new Date(),
+        revokedReason: "Superseded by new consent",
+      },
+    });
 
-  return prisma.contentConsentRecord.create({
-    data: {
-      userId: params.userId,
-      purpose: params.purpose,
-      consentVersion: params.consentVersion,
-      expiresAt: params.expiresAt,
-      ipAddress: params.ipAddress,
-      userAgent: params.userAgent,
-    },
+    const consent = await tx.contentConsentRecord.create({
+      data: {
+        userId: params.userId,
+        purpose: params.purpose,
+        consentVersion: params.consentVersion,
+        expiresAt: params.expiresAt,
+        ipAddress: params.ipAddress,
+        userAgent: params.userAgent,
+      },
+    });
+    await tx.auditLog.create({
+      data: {
+        actorId: params.userId,
+        action: "privacy.consent_granted",
+        resourceType: "content_consent",
+        resourceId: consent.id,
+        after: {
+          purpose: params.purpose,
+          consentVersion: params.consentVersion,
+          expiresAt: params.expiresAt?.toISOString() ?? null,
+        },
+      },
+    });
+
+    return consent;
   });
 }
 
@@ -50,16 +66,34 @@ export async function revokeConsent(params: {
   purpose: ConsentPurpose;
   reason?: string;
 }) {
-  return prisma.contentConsentRecord.updateMany({
-    where: {
-      userId: params.userId,
-      purpose: params.purpose,
-      revokedAt: null,
-    },
-    data: {
-      revokedAt: new Date(),
-      revokedReason: params.reason ?? "User revoked",
-    },
+  return prisma.$transaction(async (tx) => {
+    const revokedAt = new Date();
+    const result = await tx.contentConsentRecord.updateMany({
+      where: {
+        userId: params.userId,
+        purpose: params.purpose,
+        revokedAt: null,
+      },
+      data: {
+        revokedAt,
+        revokedReason: params.reason ?? "User revoked",
+      },
+    });
+    await tx.auditLog.create({
+      data: {
+        actorId: params.userId,
+        action: "privacy.consent_revoked",
+        resourceType: "user",
+        resourceId: params.userId,
+        reason: params.reason ?? "User revoked",
+        after: {
+          purpose: params.purpose,
+          revokedAt: revokedAt.toISOString(),
+          recordsRevoked: result.count,
+        },
+      },
+    });
+    return result;
   });
 }
 

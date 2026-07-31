@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
+import { logger } from "@/lib/logger";
 import { getCurrentIdentity, hasAnyRole } from "@/modules/auth/session";
 import { IncidentWorkflowError, incidentEventTypes, recordIncidentEvent } from "@/modules/incidents/workflow";
 import { consumeRateLimit } from "@/modules/security/rate-limit";
@@ -20,7 +21,10 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
     return NextResponse.json({ event }, { status: 201, headers: { "Cache-Control": "no-store" } });
   } catch (error) {
     if (error instanceof IncidentWorkflowError) return problem(error.status, error.code, error.message);
-    console.error("incident.event_failed", { incidentId: id, actorId: identity.id, error });
+    logger.exception("incident.event_failed", error, {
+      incidentId: id,
+      actorId: identity.id,
+    });
     return problem(500, "incident_event_failed", "The timeline event could not be recorded safely.");
   }
 }

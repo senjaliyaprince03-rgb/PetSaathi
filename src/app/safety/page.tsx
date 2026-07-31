@@ -24,10 +24,7 @@ export default function SafetyPage() {
           src="/images/safety-hero-luxury-banner.jpg"
           alt="Veterinary safety & wellness check for PetSaathi pets"
           fill
-          priority
-          unoptimized
-          quality={100}
-          sizes="100vw"
+          priority          sizes="100vw"
           className="object-cover object-[80%_center] sm:object-[center_65%]"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/60 to-transparent md:w-3/4" />

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
+import { logger } from "@/lib/logger";
 import { getCurrentIdentity, hasAnyRole } from "@/modules/auth/session";
 import { incidentStatuses } from "@/modules/incidents/state-machine";
 import { IncidentWorkflowError, incidentBookingResolutions, incidentEventTypes, transitionIncident } from "@/modules/incidents/workflow";
@@ -26,7 +27,10 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
     return NextResponse.json({ transitioned: true, status: result.incident.status, bookingStatus: result.bookingStatus }, { headers: { "Cache-Control": "no-store" } });
   } catch (error) {
     if (error instanceof IncidentWorkflowError) return problem(error.status, error.code, error.message);
-    console.error("incident.transition_failed", { incidentId: id, actorId: identity.id, error });
+    logger.exception("incident.transition_failed", error, {
+      incidentId: id,
+      actorId: identity.id,
+    });
     return problem(500, "incident_transition_failed", "The incident transition could not be committed safely.");
   }
 }

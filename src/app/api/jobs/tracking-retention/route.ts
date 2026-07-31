@@ -6,6 +6,14 @@ import { prisma } from "@/lib/db";
 import { readServerEnv } from "@/lib/env";
 
 export async function POST(request: Request) {
+  return enforceTrackingRetention(request);
+}
+
+export async function GET(request: Request) {
+  return enforceTrackingRetention(request);
+}
+
+async function enforceTrackingRetention(request: Request) {
   const env = readServerEnv();
   const token = request.headers.get("authorization")?.replace(/^Bearer\s+/i, "");
   if (!env.CRON_SECRET || !token || !sameSecret(env.CRON_SECRET, token)) return NextResponse.json({ error: "unauthorized" }, { status: 401 });

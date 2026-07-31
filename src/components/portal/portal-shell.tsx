@@ -2,19 +2,21 @@ import Link from "next/link";
 import type { Route } from "next";
 import type { ReactNode } from "react";
 import type { LucideIcon } from "lucide-react";
-import { ArrowUpRight, BadgeCheck, Bell, BookOpen, CalendarDays, CheckCircle2, ClipboardCheck, Clock3, FileLock2, Flag, Handshake, Headphones, Heart, Home, Inbox, LogOut, Megaphone, Menu, PawPrint, Settings2, ShieldCheck, SlidersHorizontal, Sparkles, UserRound, Users, WalletCards } from "lucide-react";
+import { Activity, ArrowUpRight, BadgeCheck, Bell, BookOpen, CalendarDays, CheckCircle2, ClipboardCheck, Clock3, DollarSign, FileLock2, Flag, Handshake, Headphones, Heart, Home, Inbox, LogOut, MapPin, Megaphone, Menu, PawPrint, Settings2, ShieldCheck, SlidersHorizontal, Sparkles, UserRound, Users, WalletCards } from "lucide-react";
 
 import { PetSaathiLogo } from "@/components/brand/logo";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
+import { PortalMobileNav } from "@/components/portal/portal-mobile-nav";
 
-type PortalMode = "customer" | "saathi" | "admin" | "society";
+type PortalMode = "customer" | "saathi" | "admin" | "society" | "operator";
 
 const portalCopy: Record<PortalMode, { eyebrow: string; title: string; description: string; primary: string; href: Route }> = {
   customer: { eyebrow: "Pet parent home", title: "Good care starts with a calm plan.", description: "Bookings, pet passports and every reassuring update stay together in one private, beautifully simple place.", primary: "Plan new care", href: "/book" },
   saathi: { eyebrow: "Saathi mission control", title: "Care, beautifully organised.", description: "See today’s responsibilities, upcoming visits and the details that help every pet feel understood.", primary: "View assignments", href: "/saathi/assignments" },
   admin: { eyebrow: "Operations command", title: "Clarity for every critical decision.", description: "Matching, service health and safety queues are prioritised in a focused, privacy-aware command centre.", primary: "Open operations", href: "/admin/operations" },
-  society: { eyebrow: "Society administration", title: "A kinder community for every resident pet.", description: "Resident access, community events and approved local care stay organised without turning society teams into medical or safety authorities.", primary: "View community", href: "/society" as Route }
+  society: { eyebrow: "Society administration", title: "A kinder community for every resident pet.", description: "Resident access, community events and approved local care stay organised without turning society teams into medical or safety authorities.", primary: "View community", href: "/society" as Route },
+  operator: { eyebrow: "Operator dashboard", title: "Local operations, scaled.", description: "Monitor city economics, trust and safety, and ensure operational excellence across your assigned territories.", primary: "View cities", href: "/operator" as Route }
 };
 
 const cards: Record<PortalMode, Array<{ label: string; value: string; hint: string; icon: LucideIcon; tone: string }>> = {
@@ -37,6 +39,11 @@ const cards: Record<PortalMode, Array<{ label: string; value: string; hint: stri
     { label: "Residents", value: "No residents yet", hint: "Verified member records", icon: Users, tone: "bg-indigo/10 text-indigo" },
     { label: "Saathi pool", value: "No approved pool", hint: "Society-scoped caregiver access", icon: PawPrint, tone: "bg-saffron/35 text-ink" },
     { label: "Community events", value: "No upcoming events", hint: "Pet-friendly community programming", icon: CalendarDays, tone: "bg-coral/10 text-coral" }
+  ],
+  operator: [
+    { label: "Territories", value: "Active", hint: "Assigned local territories", icon: MapPin, tone: "bg-indigo/10 text-indigo" },
+    { label: "City Health", value: "Monitoring", hint: "Operational metrics", icon: Activity, tone: "bg-leaf/10 text-leaf" },
+    { label: "Economics", value: "Live", hint: "Financial performance", icon: DollarSign, tone: "bg-saffron/35 text-ink" }
   ]
 };
 
@@ -94,10 +101,17 @@ const portalNavigation: Record<PortalMode, Array<{ icon: LucideIcon; label: stri
     { icon: Megaphone, label: "Events & notices", href: "/society" as Route },
     { icon: ShieldCheck, label: "Safety centre", href: "/safety" },
     { icon: Headphones, label: "Support", href: "/support" }
+  ],
+  operator: [
+    { icon: Home, label: "Overview", href: "/operator" as Route },
+    { icon: MapPin, label: "Territories", href: "/operator" as Route },
+    { icon: Activity, label: "City health", href: "/operator" as Route },
+    { icon: DollarSign, label: "Economics", href: "/operator" as Route },
+    { icon: Settings2, label: "Settings", href: "/settings/notifications" as Route }
   ]
 };
 
-export function PortalShell({ mode, displayName, metrics, children }: { mode: PortalMode; displayName: string; metrics?: readonly [string, string, string]; children?: ReactNode }) {
+export function PortalShell({ mode, displayName, metrics, showSummaryCards = true, children }: { mode: PortalMode; displayName: string; metrics?: readonly [string, string, string]; showSummaryCards?: boolean; children?: ReactNode }) {
   const copy = portalCopy[mode];
   const firstName = displayName.trim().split(/\s+/)[0] || "there";
 
@@ -105,7 +119,10 @@ export function PortalShell({ mode, displayName, metrics, children }: { mode: Po
     <main className="min-h-screen bg-cream/70">
       <header className="sticky top-0 z-40 border-b border-indigo/10 bg-paper/80 backdrop-blur-2xl">
         <div className="container-shell flex min-h-20 items-center justify-between gap-4">
-          <div className="flex items-center gap-3"><button type="button" aria-label="Open workspace menu" className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/10 bg-paper lg:hidden"><Menu className="h-4 w-4" /></button><PetSaathiLogo /></div>
+          <div className="flex items-center gap-3">
+            <PortalMobileNav links={portalNavigation[mode]} mode={mode} />
+            <PetSaathiLogo />
+          </div>
           <div className="flex items-center gap-2">
             <span className="mr-2 hidden text-right sm:block"><span className="block text-[0.6rem] font-bold uppercase tracking-[0.18em] text-ink/40">Signed in as</span><span className="mt-0.5 block text-sm font-bold">{displayName}</span></span>
             <Link href="/notifications" aria-label="Notifications" className="relative flex h-11 w-11 items-center justify-center rounded-full border border-indigo/10 bg-paper shadow-sm transition hover:-translate-y-0.5 hover:border-coral/35 hover:text-coral"><Bell className="h-[18px] w-[18px]" /><span className="absolute right-2.5 top-2.5 h-1.5 w-1.5 rounded-full bg-coral" /></Link>
@@ -133,7 +150,7 @@ export function PortalShell({ mode, displayName, metrics, children }: { mode: Po
             <div className="relative max-w-3xl"><p className="eyebrow">{copy.eyebrow}</p><h1 className="mt-5 max-w-[13ch] font-display text-5xl font-semibold leading-[0.98] tracking-[-0.055em] text-ink sm:text-6xl xl:text-7xl">{copy.title}</h1><p className="mt-6 max-w-2xl text-base leading-7 text-ink/58 sm:text-lg">{copy.description}</p><Link href={copy.href} className={cn(buttonVariants({ variant: "accent" }), "mt-7")}>{copy.primary}<ArrowUpRight className="h-4 w-4" /></Link></div>
           </div>
 
-          <div className="mt-5 grid gap-4 md:grid-cols-3">{cards[mode].map(({ label, value, hint, icon: Icon, tone }, index) => <article key={label} className="group rounded-4xl border border-indigo/10 bg-paper/90 p-5 shadow-lifted transition duration-300 hover:-translate-y-1 hover:border-indigo/20 hover:shadow-soft sm:p-6"><div className="flex items-start justify-between"><span className={cn("flex h-12 w-12 items-center justify-center rounded-2xl", tone)}><Icon className="h-5 w-5" /></span><ArrowUpRight className="h-4 w-4 text-ink/20 transition group-hover:text-coral" /></div><p className="mt-7 text-[0.62rem] font-bold uppercase tracking-[0.2em] text-ink/38">{label}</p><h2 className="mt-2 font-display text-2xl font-semibold leading-tight tracking-[-0.035em]">{metrics?.[index] ?? value}</h2><p className="mt-2 text-sm leading-6 text-ink/48">{hint}</p></article>)}</div>
+          {showSummaryCards && <div className="mt-5 grid gap-4 md:grid-cols-3">{cards[mode].map(({ label, value, hint, icon: Icon, tone }, index) => <article key={label} className="group rounded-4xl border border-indigo/10 bg-paper/90 p-5 shadow-lifted transition duration-300 hover:-translate-y-1 hover:border-indigo/20 hover:shadow-soft sm:p-6"><div className="flex items-start justify-between"><span className={cn("flex h-12 w-12 items-center justify-center rounded-2xl", tone)}><Icon className="h-5 w-5" /></span><ArrowUpRight className="h-4 w-4 text-ink/20 transition group-hover:text-coral" /></div><p className="mt-7 text-[0.62rem] font-bold uppercase tracking-[0.2em] text-ink/38">{label}</p><h2 className="mt-2 font-display text-2xl font-semibold leading-tight tracking-[-0.035em]">{metrics?.[index] ?? value}</h2><p className="mt-2 text-sm leading-6 text-ink/48">{hint}</p></article>)}</div>}
 
           <div className="mt-5 flex items-start gap-3 rounded-3xl border border-leaf/15 bg-leaf/[0.06] p-5"><CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-leaf" /><p className="text-sm leading-6 text-ink/58"><strong className="text-ink">Live and private.</strong> This workspace reads authenticated server data; genuine empty states remain visible until real records exist.</p></div>
           {children}

@@ -1,21 +1,30 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { upsertContact, recordLeadMagnetRequest } from "@/modules/marketing/crm";
+import { deliverLeadMagnetResource } from "@/modules/marketing/automation";
+import { leadMagnetSlugs } from "@/modules/marketing/resources";
+import { consumeRateLimit, requestIp } from "@/modules/security/rate-limit";
+import { logger } from "@/lib/logger";
 
 const schema = z.object({
-  email: z.string().email().optional(),
-  phoneE164: z.string().optional(),
+  email: z.string().trim().email(),
   firstName: z.string().optional(),
   lastName: z.string().optional(),
-  magnetSlug: z.string().min(1),
+  magnetSlug: z.enum(leadMagnetSlugs),
   source: z.string().optional(),
-}).refine(data => data.email || data.phoneE164, {
-  message: "Either email or phone is required",
-  path: ["email"],
 });
 
 export async function POST(request: Request) {
   try {
+    const ip = requestIp(request);
+    const { allowed, retryAfterSeconds } = await consumeRateLimit("public_lead_magnets", ip, 30, 60000);
+    if (!allowed) {
+      return NextResponse.json(
+        { error: "too_many_requests" },
+        { status: 429, headers: { "Retry-After": retryAfterSeconds.toString() } }
+      );
+    }
+
     const body = await request.json();
     const parsed = schema.safeParse(body);
     
@@ -29,17 +38,20 @@ export async function POST(request: Request) {
     const data = parsed.data;
     const contact = await upsertContact({
       email: data.email,
-      phoneE164: data.phoneE164,
       firstName: data.firstName,
       lastName: data.lastName,
       source: data.source ?? "LEAD_MAGNET",
     });
 
     const requestRecord = await recordLeadMagnetRequest(contact.id, data.magnetSlug);
+    await deliverLeadMagnetResource(requestRecord.id, data.magnetSlug);
     
-    return NextResponse.json({ id: requestRecord.id, status: "success" }, { status: 201 });
+    return NextResponse.json(
+      { id: requestRecord.id, status: "queued" },
+      { status: 201 },
+    );
   } catch (error) {
-    console.error("Lead magnet error:", error);
+    logger.exception("lead_magnet.request_failed", error);
     return NextResponse.json({ error: "INTERNAL_ERROR" }, { status: 500 });
   }
 }

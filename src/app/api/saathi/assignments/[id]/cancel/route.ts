@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
+import { logger } from "@/lib/logger";
 import { getCurrentIdentity } from "@/modules/auth/session";
 import { BookingRecoveryError, cancelConfirmedAssignment } from "@/modules/bookings/recovery";
 import { consumeRateLimit } from "@/modules/security/rate-limit";
@@ -20,7 +21,10 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
     return NextResponse.json({ recovery }, { headers: { "Cache-Control": "no-store" } });
   } catch (error) {
     if (error instanceof BookingRecoveryError) return problem(error.status, error.code, error.message);
-    console.error("assignment.cancel_failed", { assignmentId: id, sitterUserId: identity.id, error });
+    logger.exception("assignment.cancel_failed", error, {
+      assignmentId: id,
+      sitterUserId: identity.id,
+    });
     return problem(500, "assignment_cancel_failed", "The replacement request could not be committed safely.");
   }
 }

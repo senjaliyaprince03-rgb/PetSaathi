@@ -2,6 +2,7 @@ import { Prisma } from "@prisma/client";
 import { NextResponse } from "next/server";
 
 import { prisma } from "@/lib/db";
+import { logger } from "@/lib/logger";
 import { getCurrentIdentity, hasAnyRole } from "@/modules/auth/session";
 import { createServicePriceSchema } from "@/modules/pricing/input";
 import { consumeRateLimit } from "@/modules/security/rate-limit";
@@ -33,7 +34,9 @@ export async function POST(request: Request) {
     } catch (error) {
       if (error instanceof PriceError) return NextResponse.json({ error: error.code, message: error.message }, { status: error.status });
       if (error instanceof Prisma.PrismaClientKnownRequestError && ["P2002", "P2034"].includes(error.code) && attempt < 2) continue;
-      console.error("service_price.create_failed", { actorId: identity.id, error });
+      logger.exception("service_price.create_failed", error, {
+        actorId: identity.id,
+      });
       return NextResponse.json({ error: "service_price_failed", message: "The immutable price version could not be approved safely." }, { status: 500 });
     }
   }

@@ -1,4 +1,3 @@
-/* eslint-disable */
 import type { NextRequest} from "next/server";
 import { NextResponse } from "next/server";
 import { getCurrentIdentity } from "@/modules/auth/session";

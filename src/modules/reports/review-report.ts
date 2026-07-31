@@ -39,6 +39,21 @@ export async function reviewBookingReport(reportId: string, reviewer: { id: stri
       await tx.capacityReservation.update({ where: { id: report.booking.capacityReservation.id }, data: { status: "CONSUMED" } });
       await tx.booking.update({ where: { id: report.booking.id }, data: { status: "CLOSED", statusHistory: { create: { fromState: "COMPLETED", toState: "CLOSED", actorId: reviewer.id, reason: `Report v${report.version} approved` } } } });
       await tx.notificationOutbox.create({ data: { userId: report.booking.customerId, channel: "IN_APP", templateKey: "booking.closed", destination: report.booking.customerId, payload: { bookingId: report.booking.id, reference: report.booking.reference, reportId: report.id }, idempotencyKey: `booking-closed:${report.booking.id}:${report.id}` } });
+      await tx.notificationOutbox.upsert({
+        where: { idempotencyKey: `testimonial-request:${report.booking.id}` },
+        update: {},
+        create: {
+          userId: report.booking.customerId,
+          channel: "IN_APP",
+          templateKey: "testimonial.request",
+          destination: report.booking.customerId,
+          payload: {
+            bookingId: report.booking.id,
+            bookingReference: report.booking.reference,
+          },
+          idempotencyKey: `testimonial-request:${report.booking.id}`,
+        },
+      });
       if (sitterUserId) await tx.notificationOutbox.create({ data: { userId: sitterUserId, channel: "IN_APP", templateKey: "report.approved", destination: sitterUserId, payload: { bookingId: report.booking.id, reference: report.booking.reference, reportId: report.id }, idempotencyKey: `report-approved:${report.id}:${sitterUserId}` } });
     } else {
       await tx.payout.updateMany({ where: { bookingId: report.booking.id, status: { in: ["PENDING", "APPROVED", "PROCESSING", "FAILED"] } }, data: { status: "HELD" } });

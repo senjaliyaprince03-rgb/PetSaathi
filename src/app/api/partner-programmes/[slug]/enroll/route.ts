@@ -1,33 +1,103 @@
-import type { NextRequest} from "next/server";
 import { NextResponse } from "next/server";
-import { getCurrentIdentity } from "@/modules/auth/session";
-import { enrollMember, getProgrammeBySlug } from "@/modules/b2b/programmes";
-import type { EligibilityMethod } from "@prisma/client";
+import { z } from "zod";
+
+import { logger } from "@/lib/logger";
+import { authorizeApi } from "@/modules/auth/authorization";
+import {
+  enrollMember,
+  getAvailableProgrammeBySlug,
+  ProgrammeEnrollmentError,
+  ProgrammeLookupError,
+} from "@/modules/b2b/programmes";
+import { consumeRateLimit } from "@/modules/security/rate-limit";
 
 export const dynamic = "force-dynamic";
 
-export async function POST(req: NextRequest, { params }: { params: Promise<{ slug: string }> }) {
-  const identity = await getCurrentIdentity();
-  if (!identity) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+const slugSchema = z.string().trim().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/).max(120);
+const inputSchema = z.object({}).strict();
+
+export async function POST(
+  request: Request,
+  { params }: { params: Promise<{ slug: string }> },
+) {
+  const authorization = await authorizeApi(["CUSTOMER"]);
+  if (!authorization.authorized) return authorization.response;
+
+  const slug = slugSchema.safeParse((await params).slug);
+  const rawBody = await request.text();
+  let body: unknown = {};
+  if (rawBody.trim()) {
+    try {
+      body = JSON.parse(rawBody) as unknown;
+    } catch {
+      body = null;
+    }
   }
-  const { slug } = await params;
-  const body = await req.json();
+  const input = inputSchema.safeParse(body);
+  if (!slug.success || !input.success) {
+    return NextResponse.json(
+      { error: "invalid_request" },
+      { status: 422, headers: { "Cache-Control": "no-store" } },
+    );
+  }
+
+  const rate = await consumeRateLimit(
+    "programme-enrollment",
+    authorization.identity.id,
+    10,
+    60 * 60_000,
+  );
+  if (!rate.allowed) {
+    return NextResponse.json(
+      { error: "too_many_requests" },
+      {
+        status: 429,
+        headers: { "Retry-After": String(rate.retryAfterSeconds) },
+      },
+    );
+  }
 
   try {
-    const programme = await getProgrammeBySlug(slug);
-    if (programme.status !== "ACTIVE_PROGRAMME") {
-      return NextResponse.json({ error: "Programme is not active" }, { status: 400 });
+    const programme = await getAvailableProgrammeBySlug(slug.data);
+    const result = await enrollMember(
+      programme.id,
+      authorization.identity.id,
+    );
+    return NextResponse.json(
+      {
+        membershipId: result.membership.id,
+        verificationStatus: result.membership.verificationStatus,
+        created: result.created,
+      },
+      {
+        status: result.created ? 201 : 200,
+        headers: { "Cache-Control": "no-store" },
+      },
+    );
+  } catch (error) {
+    if (error instanceof ProgrammeLookupError) {
+      return NextResponse.json(
+        { error: error.code, message: error.message },
+        { status: error.status, headers: { "Cache-Control": "no-store" } },
+      );
     }
-    
-    // In a real implementation, you would validate domain emails here or trigger OTP
-    // For MVP, we just create the pending membership
-    const method = (body.verificationMethod as EligibilityMethod) || programme.eligibilityMethod;
-    
-    const membership = await enrollMember(programme.id, identity.id, method);
-    return NextResponse.json(membership, { status: 201 });
-  } catch (err) {
-    const message = err instanceof Error ? err.message : "Enrollment failed";
-    return NextResponse.json({ error: message }, { status: 400 });
+    if (error instanceof ProgrammeEnrollmentError) {
+      return NextResponse.json(
+        { error: error.code, message: error.message },
+        { status: error.status, headers: { "Cache-Control": "no-store" } },
+      );
+    }
+    logger.error(
+      error instanceof Error ? error : "ProgrammeEnrollmentError",
+      {
+        event: "programme.enrollment_failed",
+        actorId: authorization.identity.id,
+        programmeSlug: slug.data,
+      },
+    );
+    return NextResponse.json(
+      { error: "enrollment_failed" },
+      { status: 500, headers: { "Cache-Control": "no-store" } },
+    );
   }
 }

@@ -34,7 +34,10 @@ export async function createBookingWithQuote(customerId: string, input: CreateBo
             status: "ACTIVE",
             postalCodes: { has: address.postalCode },
             city: { status: { in: ["CLOSED_BETA", "PUBLIC_LIMITED", "VALIDATED", "GROWTH", "MATURE"] }, name: { equals: address.city, mode: "insensitive" }, state: { equals: address.state, mode: "insensitive" } },
-            serviceZone: { status: { in: ["BETA", "ACTIVE_LIMITED", "ACTIVE"] } }
+            OR: [
+              { serviceZoneId: null },
+              { serviceZone: { status: { in: ["BETA", "ACTIVE_LIMITED", "ACTIVE"] } } }
+            ]
           },
           select: { id: true, name: true, city: { select: { name: true } } }
         });

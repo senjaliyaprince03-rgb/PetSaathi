@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { Route } from "next";
 import { notFound } from "next/navigation";
 import { MapPin, Users, ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -81,8 +82,7 @@ export default async function CityHubPage({ params }: Props) {
             activeServices.map((config) => (
               <Link
                 key={config.id}
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                href={`/cities/${slug}/${config.serviceType.code.toLowerCase().replaceAll("_", "-")}` as any}
+                href={`/cities/${slug}/${config.serviceType.code.toLowerCase().replaceAll("_", "-")}` as Route<string>}
                 className="group rounded-5xl border border-ink/10 bg-paper p-7 shadow-lifted transition hover:-translate-y-1"
               >
                 <p className="text-xs font-bold uppercase tracking-[0.17em] text-coral">

@@ -1,28 +1,28 @@
 import { NextResponse } from "next/server";
+import { getLoyaltyBalance, getLoyaltyHistory } from "@/modules/loyalty/service";
 
-import { getCurrentIdentity } from "@/modules/auth/session";
-import { getLoyaltySummary } from "@/modules/loyalty/rewards";
-import { getUserTier } from "@/modules/loyalty/tiers";
-import { getUserBenefits } from "@/modules/loyalty/benefits";
+export async function GET(req: Request) {
+  try {
+    const userId = req.headers.get("x-user-id");
+    if (!userId) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
 
-export async function GET() {
-  const identity = await getCurrentIdentity();
-  if (!identity) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+    const { searchParams } = new URL(req.url);
+    const limit = parseInt(searchParams.get("limit") || "50", 10);
 
-  const summary = await getLoyaltySummary(identity.id);
-  const tierInfo = await getUserTier(identity.id);
-  const benefits = await getUserBenefits(identity.id);
+    const balance = await getLoyaltyBalance(userId);
+    const history = await getLoyaltyHistory(userId, limit);
 
-  return NextResponse.json({
-    balancePaise: summary.balancePaise,
-    totalEarned: summary.totalEarned,
-    totalSpent: summary.totalSpent,
-    rewardCount: summary.rewardCount,
-    tier: {
-      current: tierInfo.currentTier,
-      next: tierInfo.nextTier,
-      pointsToNext: tierInfo.pointsToNextTier,
-    },
-    benefits,
-  });
+    return NextResponse.json({
+      balance,
+      history
+    }, { status: 200 });
+  } catch (error) {
+    console.error("Error in GET loyalty API:", error);
+    return NextResponse.json(
+      { error: "internal_error", message: "An unexpected error occurred" },
+      { status: 500 }
+    );
+  }
 }

@@ -5,13 +5,29 @@ on:
   push:
     branches: [main]
 
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
 jobs:
   quality:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+      DATABASE_URL: postgresql://petsaathi_ci:petsaathi_ci@127.0.0.1:55432/petsaathi_ci
+      DIRECT_URL: postgresql://petsaathi_ci:petsaathi_ci@127.0.0.1:55432/petsaathi_ci
+      NEXT_PUBLIC_SUPABASE_URL: http://127.0.0.1:54321
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: ci-only-anon-key
+      SUPABASE_SERVICE_ROLE_KEY: ci-only-service-role-key
+      NEXT_PUBLIC_APP_URL: https://ci.petsaathi.invalid
+      NEXT_PUBLIC_RAZORPAY_KEY_ID: rzp_test_ci_only
+      RAZORPAY_KEY_SECRET: ci-only-razorpay-secret
+      RAZORPAY_WEBHOOK_SECRET: ci-only-webhook-secret
+      CRON_SECRET: ci-only-cron-secret-0000000000000000
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -19,31 +35,34 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - run: npx prisma validate
       - run: npm run lint
       - run: npm run typecheck
-      - run: npm run test
+      - run: npm run test:coverage
       - run: npm run build
+      - run: npm audit --omit=dev --audit-level=high
+      - run: npm ls --omit=dev --depth=0
 
   database:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     services:
       postgres:
         image: postgres:16
         env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: petsaathi_ci
+          POSTGRES_PASSWORD: petsaathi_ci
           POSTGRES_DB: petsaathi_ci
         ports:
           - 5432:5432
         options: >-
-          --health-cmd "pg_isready -U postgres -d petsaathi_ci"
+          --health-cmd "pg_isready -U petsaathi_ci -d petsaathi_ci"
           --health-interval 5s
           --health-timeout 5s
           --health-retries 10
     env:
-      DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:5432/petsaathi_ci
-      DIRECT_URL: postgresql://postgres:postgres@127.0.0.1:5432/petsaathi_ci
+      DATABASE_URL: postgresql://petsaathi_ci:petsaathi_ci@127.0.0.1:5432/petsaathi_ci
+      DIRECT_URL: postgresql://petsaathi_ci:petsaathi_ci@127.0.0.1:5432/petsaathi_ci
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -51,15 +70,44 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npx prisma migrate deploy
-      - run: npm run prisma:seed
-      - run: npm run test:integration
+      - run: npx prisma generate
       - run: npx prisma validate
+      - run: npx prisma migrate deploy
+      - run: npx prisma migrate status
+      - run: npm run prisma:seed
+      - run: npm run test:integration:verify-db
+      - run: npm run test:integration
 
   e2e:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 35
     needs: [quality, database]
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: petsaathi_ci
+          POSTGRES_PASSWORD: petsaathi_ci
+          POSTGRES_DB: petsaathi_ci
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U petsaathi_ci -d petsaathi_ci"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+      DATABASE_URL: postgresql://petsaathi_ci:petsaathi_ci@127.0.0.1:5432/petsaathi_ci
+      DIRECT_URL: postgresql://petsaathi_ci:petsaathi_ci@127.0.0.1:5432/petsaathi_ci
+      NEXT_PUBLIC_SUPABASE_URL: http://127.0.0.1:54321
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: ci-only-anon-key
+      SUPABASE_SERVICE_ROLE_KEY: ci-only-service-role-key
+      NEXT_PUBLIC_APP_URL: https://ci.petsaathi.invalid
+      NEXT_PUBLIC_RAZORPAY_KEY_ID: rzp_test_ci_only
+      RAZORPAY_KEY_SECRET: ci-only-razorpay-secret
+      RAZORPAY_WEBHOOK_SECRET: ci-only-webhook-secret
+      CRON_SECRET: ci-only-cron-secret-0000000000000000
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -67,11 +115,17 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - run: npx prisma generate
+      - run: npx prisma migrate deploy
+      - run: npm run prisma:seed
+      - run: npm run test:integration:verify-db
       - run: npx playwright install --with-deps chromium
-      - run: npm run test:e2e -- --project=chromium
+      - run: npm run test:e2e
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: playwright-report
-          path: playwright-report/
+          path: |
+            playwright-report/
+            test-results/
           retention-days: 7

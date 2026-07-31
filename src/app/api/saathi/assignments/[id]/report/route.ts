@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 
+import { logger } from "@/lib/logger";
 import { getCurrentIdentity } from "@/modules/auth/session";
 import { bookingReportSchema } from "@/modules/reports/input";
 import { ReportSubmissionError, submitBookingReport } from "@/modules/reports/submit-report";
@@ -18,7 +19,10 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
     return NextResponse.json({ report: { id: report.id, version: report.version, submittedAt: report.submittedAt } }, { status: 201 });
   } catch (error) {
     if (error instanceof ReportSubmissionError) return NextResponse.json({ error: error.code, message: error.message }, { status: error.status });
-    console.error("report.submit_failed", { assignmentId: id, sitterUserId: identity.id, error });
+    logger.exception("report.submit_failed", error, {
+      assignmentId: id,
+      sitterUserId: identity.id,
+    });
     return NextResponse.json({ error: "report_submission_failed", message: "The report could not be committed safely." }, { status: 500 });
   }
 }

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
+import { logger } from "@/lib/logger";
 import { getCurrentIdentity } from "@/modules/auth/session";
 import { approveCustomerAssignment, AssignmentApprovalError } from "@/modules/bookings/approve-assignment";
 import { consumeRateLimit } from "@/modules/security/rate-limit";
@@ -20,7 +21,11 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
     return NextResponse.json(result, { headers: { "Cache-Control": "no-store" } });
   } catch (error) {
     if (error instanceof AssignmentApprovalError) return problem(error.status, error.code, error.message);
-    console.error("assignment.approval_failed", { bookingId: id, assignmentId: parsed.data.assignmentId, customerId: identity.id, error });
+    logger.exception("assignment.approval_failed", error, {
+      bookingId: id,
+      assignmentId: parsed.data.assignmentId,
+      customerId: identity.id,
+    });
     return problem(500, "assignment_approval_failed", "The assignment approval could not be committed safely.");
   }
 }
