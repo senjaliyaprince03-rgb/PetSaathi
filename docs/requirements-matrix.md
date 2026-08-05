@@ -238,8 +238,8 @@ Individual evidence records have type, issuer/provider, result, issue/expiry tim
 - Next.js 15 App Router, strict TypeScript and React Server Components.
 - Tailwind CSS and a local shadcn-compatible component system.
 - Modular monolith with domain modules and server-only business logic.
-- Supabase Auth, PostgreSQL and private Storage.
-- Prisma migrations under version control; pooled runtime connection and direct migration connection.
+- MongoDB Atlas for application data, authentication records, sessions and private GridFS objects.
+- Prisma MongoDB schema under version control; reviewed indexes applied with `prisma db push`.
 - Zod validation at every server boundary.
 - Server Actions for authenticated internal mutations; Route Handlers for webhooks, callbacks and integration endpoints.
 - Razorpay Orders/Checkout/signature verification/webhooks.
@@ -251,7 +251,7 @@ Individual evidence records have type, issuer/provider, result, issue/expiry tim
 
 ## 11. Security, privacy and safety controls
 
-- Deny-by-default server authorization and Supabase RLS defence in depth.
+- Deny-by-default server authorization, ownership predicates, role gates and transaction-backed invariants.
 - Private buckets, random object keys, MIME/size validation, malware-scanning hook and expiring signed URLs.
 - Separate service processing, terms, marketing, media-publication and testimonial consents.
 - No PII, medical narrative, identity data, home-access details or payment secrets in logs/analytics.
@@ -279,11 +279,11 @@ The interface should combine the strongest patterns observed across the competit
 
 ## 13. Required integrations and environment inventory
 
-No secret values belong in source control or `.env.example`. Deployment documentation must list secret names and configure them in Vercel/GitHub/Supabase only.
+No secret values belong in source control or `.env.example`. Deployment documentation must list secret names and configure them in Vercel, GitHub, and MongoDB Atlas only.
 
 Integration groups:
 
-- Supabase project URL, anon key, service-role secret and database URLs.
+- MongoDB Atlas URI, database name, least-privilege database user, auth secret and GridFS upload-signing secret.
 - Razorpay key ID/secret and webhook secret.
 - WhatsApp phone number ID, business account ID, token and verification secret.
 - Resend API key and verified sender domain.
@@ -315,7 +315,7 @@ The architecture can proceed without these, but production activation cannot:
 - Final logo files, brand font licences and approved photography/illustration assets.
 - Final customer prices, sitter payouts, cancellation/refund windows and tax treatment.
 - Final legal entity, terms, privacy, cancellation, safety and partner-contract text.
-- Supabase, Razorpay, WhatsApp, Resend, map, analytics and monitoring credentials.
+- MongoDB Atlas, Razorpay, WhatsApp, Resend, map, analytics and monitoring credentials.
 - Mappls versus Google Maps result for the pilot-area address benchmark.
 - Final phone OTP provider and sender setup.
 - Verified sitter evidence types available in the launch city.

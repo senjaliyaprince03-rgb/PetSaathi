@@ -2,8 +2,14 @@ import type { NextRequest} from "next/server";
 import { NextResponse } from "next/server";
 import { findEligibleSitters, proposeSitter, MatchingError } from "@/modules/matching/service";
 import { z } from "zod";
+import { authorizeApi } from "@/modules/auth/authorization";
+
+const allowedRoles = ["OPERATIONS_ADMIN", "SUPER_ADMIN"] as const;
 
 export async function GET(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  const authorization = await authorizeApi(allowedRoles);
+  if (!authorization.authorized) return authorization.response;
+
   try {
     const sitters = await findEligibleSitters((await params).id);
     return NextResponse.json({ sitters }, { status: 200 });
@@ -18,10 +24,12 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ id: 
 
 const proposeSchema = z.object({
   sitterId: z.string().uuid(),
-  adminId: z.string().uuid(), // Ideally from session
 });
 
 export async function POST(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  const authorization = await authorizeApi(allowedRoles);
+  if (!authorization.authorized) return authorization.response;
+
   try {
     const body = await req.json();
     const parsed = proposeSchema.safeParse(body);
@@ -29,8 +37,8 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
       return NextResponse.json({ error: "invalid_data", details: parsed.error.issues }, { status: 422 });
     }
 
-    const { sitterId, adminId } = parsed.data;
-    const booking = await proposeSitter((await params).id, sitterId, adminId);
+    const { sitterId } = parsed.data;
+    const booking = await proposeSitter((await params).id, sitterId, authorization.identity.id);
     return NextResponse.json({ booking }, { status: 200 });
   } catch (error: any) {
     if (error instanceof MatchingError) {

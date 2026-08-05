@@ -1,9 +1,8 @@
 import { NextResponse } from "next/server";
 
-import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { revokeCurrentSession } from "@/modules/auth/mongodb-auth";
 
 export async function GET(request: Request) {
-  const supabase = await createSupabaseServerClient();
-  if (supabase) await supabase.auth.signOut();
+  await revokeCurrentSession();
   return NextResponse.redirect(new URL("/", request.url), { status: 303 });
 }

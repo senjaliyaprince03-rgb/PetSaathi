@@ -126,8 +126,14 @@ export async function issueProgrammeVerificationToken(
       await tx.programmeVerificationToken.updateMany({
         where: {
           membershipId: membership.id,
-          consumedAt: null,
-          revokedAt: null,
+          AND: [
+            {
+              OR: [{ consumedAt: null }, { consumedAt: { isSet: false } }],
+            },
+            {
+              OR: [{ revokedAt: null }, { revokedAt: { isSet: false } }],
+            },
+          ],
         },
         data: { revokedAt: now },
       });
@@ -175,7 +181,6 @@ export async function issueProgrammeVerificationToken(
       return created;
     },
     {
-      isolationLevel: Prisma.TransactionIsolationLevel.Serializable,
       maxWait: 5_000,
       timeout: 15_000,
     },
@@ -247,8 +252,20 @@ export async function consumeProgrammeVerificationToken(
             where: {
               id: tokenRecord.id,
               attemptCount: tokenRecord.attemptCount,
-              consumedAt: null,
-              revokedAt: null,
+              AND: [
+                {
+                  OR: [
+                    { consumedAt: null },
+                    { consumedAt: { isSet: false } },
+                  ],
+                },
+                {
+                  OR: [
+                    { revokedAt: null },
+                    { revokedAt: { isSet: false } },
+                  ],
+                },
+              ],
             },
             data: { attemptCount: { increment: 1 } },
           });
@@ -262,9 +279,15 @@ export async function consumeProgrammeVerificationToken(
         where: {
           id: tokenRecord.id,
           attemptCount: tokenRecord.attemptCount,
-          consumedAt: null,
-          revokedAt: null,
           expiresAt: { gt: now },
+          AND: [
+            {
+              OR: [{ consumedAt: null }, { consumedAt: { isSet: false } }],
+            },
+            {
+              OR: [{ revokedAt: null }, { revokedAt: { isSet: false } }],
+            },
+          ],
         },
         data: {
           attemptCount: { increment: 1 },
@@ -293,8 +316,14 @@ export async function consumeProgrammeVerificationToken(
         where: {
           membershipId: tokenRecord.membership.id,
           id: { not: tokenRecord.id },
-          consumedAt: null,
-          revokedAt: null,
+          AND: [
+            {
+              OR: [{ consumedAt: null }, { consumedAt: { isSet: false } }],
+            },
+            {
+              OR: [{ revokedAt: null }, { revokedAt: { isSet: false } }],
+            },
+          ],
         },
         data: { revokedAt: now },
       });
@@ -332,7 +361,6 @@ export async function consumeProgrammeVerificationToken(
       };
     },
     {
-      isolationLevel: Prisma.TransactionIsolationLevel.Serializable,
       maxWait: 5_000,
       timeout: 15_000,
     },

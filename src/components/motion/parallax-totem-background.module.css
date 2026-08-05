@@ -1,0 +1,165 @@
+.root {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: #1a1118;
+  perspective: 1200px;
+  isolation: isolate;
+}
+
+.ambientGlow {
+  position: absolute;
+  inset: -25%;
+  background:
+    radial-gradient(circle at 18% 28%, rgb(91 61 122 / 0.28), transparent 26%),
+    radial-gradient(circle at 82% 68%, rgb(225 102 73 / 0.18), transparent 25%);
+  filter: blur(44px);
+}
+
+.stage {
+  position: absolute;
+  inset: -40vh -8vw;
+  min-width: 116vw;
+  transform: rotateX(2deg) rotateZ(-1.5deg);
+  transform-style: preserve-3d;
+}
+
+.column {
+  position: absolute;
+  top: 0;
+  height: 180vh;
+  width: min(30vw, 430px);
+  transform-style: preserve-3d;
+}
+
+.left {
+  left: 12%;
+}
+
+.right {
+  left: 61%;
+}
+
+.track {
+  height: 360vh;
+  transform-style: preserve-3d;
+  will-change: transform;
+  animation: parallax-totem-rise 20s linear infinite;
+  animation-delay: var(--totem-delay);
+}
+
+.group {
+  display: grid;
+  height: 180vh;
+  grid-template-rows: repeat(4, minmax(0, 1fr));
+}
+
+.slot {
+  display: grid;
+  min-height: 0;
+  place-items: center;
+  padding-block: clamp(12px, 2vh, 28px);
+  transform-style: preserve-3d;
+}
+
+.card {
+  position: relative;
+  width: var(--card-width);
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 0.12);
+  border-radius: clamp(10px, 1.2vw, 18px);
+  background: #e8e8e2;
+  box-shadow:
+    0 34px 70px rgb(0 0 0 / 0.5),
+    0 8px 22px rgb(0 0 0 / 0.34);
+  transform:
+    translate3d(var(--card-x), 0, var(--card-depth))
+    rotateY(var(--card-rotate-y))
+    rotateZ(var(--card-rotate-z));
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.card::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  background: linear-gradient(125deg, rgb(255 255 255 / 0.12), transparent 34%, rgb(0 0 0 / 0.08));
+  mix-blend-mode: soft-light;
+}
+
+.image {
+  object-fit: cover;
+  transform: scale(1.015);
+}
+
+.readabilityVeil {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 46% 58% at 50% 50%, rgb(26 17 24 / 0.75), rgb(26 17 24 / 0.22) 68%, transparent),
+    linear-gradient(90deg, rgb(26 17 24 / 0.2), rgb(26 17 24 / 0.38) 50%, rgb(26 17 24 / 0.2));
+  backdrop-filter: blur(1.5px);
+}
+
+.vignette {
+  position: absolute;
+  inset: -1px;
+  background: radial-gradient(ellipse at center, transparent 38%, rgb(26 17 24 / 0.66) 100%);
+  box-shadow: inset 0 0 150px rgb(26 17 24 / 0.52);
+}
+
+@keyframes parallax-totem-rise {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(0, -50%, 0);
+  }
+}
+
+@media (max-width: 767px) {
+  .stage {
+    inset: -35vh -52vw;
+    min-width: 204vw;
+    transform: rotateX(2deg) rotateZ(-2deg) scale(1.02);
+  }
+
+  .column {
+    width: 47vw;
+  }
+
+  .left {
+    left: 16%;
+  }
+
+  .right {
+    left: 64%;
+  }
+
+  .card {
+    border-radius: 12px;
+  }
+
+  .readabilityVeil {
+    background:
+      radial-gradient(ellipse 84% 62% at 50% 50%, rgb(26 17 24 / 0.82), rgb(26 17 24 / 0.44) 76%, transparent),
+      rgb(26 17 24 / 0.14);
+    backdrop-filter: blur(2.5px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+    transform: translate3d(0, -24%, 0);
+  }
+
+  .right .track {
+    transform: translate3d(0, -38%, 0);
+  }
+}

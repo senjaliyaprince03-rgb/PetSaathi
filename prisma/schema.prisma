@@ -3,9 +3,9 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  provider = "mongodb"
+  url      = env("MONGODB_URI")
+  relationMode = "prisma"
 }
 
 enum Role {
@@ -525,8 +525,7 @@ enum OrgContactRole {
 }
 
 model User {
-  id                       String                    @id @default(uuid()) @db.Uuid
-  authUserId               String                    @unique @map("auth_user_id") @db.Uuid
+  id                       String                    @id @default(uuid()) @map("_id")
   email                    String?                   @unique
   phoneE164                String?                   @unique @map("phone_e164")
   displayName              String                    @map("display_name")
@@ -588,13 +587,13 @@ model User {
 }
 
 model AccountRequest {
-  id          String               @id @default(uuid()) @db.Uuid
+  id          String               @id @default(uuid()) @map("_id")
   reference   String               @unique
-  userId      String               @map("user_id") @db.Uuid
+  userId      String               @map("user_id")
   type        AccountRequestType
   status      AccountRequestStatus @default(RECEIVED)
   details     Json
-  handledBy   String?              @map("handled_by") @db.Uuid
+  handledBy   String?              @map("handled_by")
   resolution  String?
   requestedAt DateTime             @default(now()) @map("requested_at")
   verifiedAt  DateTime?            @map("verified_at")
@@ -608,19 +607,20 @@ model AccountRequest {
 }
 
 model UserRole {
-  userId    String   @map("user_id") @db.Uuid
+  id        String   @id @default(uuid()) @map("_id")
+  userId    String   @map("user_id")
   role      Role
   grantedAt DateTime @default(now()) @map("granted_at")
-  grantedBy String?  @map("granted_by") @db.Uuid
+  grantedBy String?  @map("granted_by")
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@id([userId, role])
+  @@unique([userId, role])
   @@map("user_roles")
 }
 
 model Consent {
-  id            String    @id @default(uuid()) @db.Uuid
-  userId        String    @map("user_id") @db.Uuid
+  id            String    @id @default(uuid()) @map("_id")
+  userId        String    @map("user_id")
   purpose       String
   policyVersion String    @map("policy_version")
   granted       Boolean
@@ -634,8 +634,8 @@ model Consent {
 }
 
 model CustomerProfile {
-  id                    String  @id @default(uuid()) @db.Uuid
-  userId                String  @unique @map("user_id") @db.Uuid
+  id                    String  @id @default(uuid()) @map("_id")
+  userId                String  @unique @map("user_id")
   preferredLanguage     String  @default("en") @map("preferred_language")
   emergencyContactName  String? @map("emergency_contact_name")
   emergencyContactPhone String? @map("emergency_contact_phone")
@@ -645,14 +645,14 @@ model CustomerProfile {
 }
 
 model SitterProfile {
-  id                     String                    @id @default(uuid()) @db.Uuid
-  userId                 String                    @unique @map("user_id") @db.Uuid
+  id                     String                    @id @default(uuid()) @map("_id")
+  userId                 String                    @unique @map("user_id")
   status                 SitterStatus              @default(APPLICANT)
   bio                    String?
   yearsExperience        Int                       @default(0) @map("years_experience")
   serviceLocality        String?                   @map("service_locality")
-  serviceRadiusKm        Decimal                   @default(5) @map("service_radius_km") @db.Decimal(5, 2)
-  reliabilityScore       Decimal?                  @map("reliability_score") @db.Decimal(5, 2)
+  serviceRadiusKm        Float                   @default(5) @map("service_radius_km")
+  reliabilityScore       Float?                  @map("reliability_score")
   applicationAt          DateTime                  @default(now()) @map("application_at")
   approvedAt             DateTime?                 @map("approved_at")
   suspendedAt            DateTime?                 @map("suspended_at")
@@ -678,8 +678,8 @@ model SitterProfile {
 }
 
 model Address {
-  id                 String             @id @default(uuid()) @db.Uuid
-  userId             String?            @map("user_id") @db.Uuid
+  id                 String             @id @default(uuid()) @map("_id")
+  userId             String?            @map("user_id")
   label              String
   line1              String
   line2              String?
@@ -689,8 +689,8 @@ model Address {
   state              String
   postalCode         String             @map("postal_code")
   countryCode        String             @default("IN") @map("country_code")
-  latitude           Decimal?           @db.Decimal(10, 7)
-  longitude          Decimal?           @db.Decimal(10, 7)
+  latitude           Float?
+  longitude          Float?
   geocodeProvider    String?            @map("geocode_provider")
   geocodeRef         String?            @map("geocode_ref")
   accessNotes        String?            @map("access_notes")
@@ -708,14 +708,14 @@ model Address {
 }
 
 model Pet {
-  id                   String                @id @default(uuid()) @db.Uuid
-  ownerId              String                @map("owner_id") @db.Uuid
+  id                   String                @id @default(uuid()) @map("_id")
+  ownerId              String                @map("owner_id")
   name                 String
   species              String
   breed                String?
   sex                  String?
-  birthDate            DateTime?             @map("birth_date") @db.Date
-  weightKg             Decimal?              @map("weight_kg") @db.Decimal(6, 2)
+  birthDate            DateTime?             @map("birth_date")
+  weightKg             Float?              @map("weight_kg")
   sterilised           Boolean?
   photoPath            String?               @map("photo_path")
   active               Boolean               @default(true)
@@ -739,8 +739,8 @@ model Pet {
 }
 
 model PetMedicalProfile {
-  id                   String   @id @default(uuid()) @db.Uuid
-  petId                String   @unique @map("pet_id") @db.Uuid
+  id                   String   @id @default(uuid()) @map("_id")
+  petId                String   @unique @map("pet_id")
   allergies            String?
   conditions           String?
   medications          String?
@@ -755,8 +755,8 @@ model PetMedicalProfile {
 }
 
 model PetEmergencyContact {
-  id       String  @id @default(uuid()) @db.Uuid
-  petId    String  @map("pet_id") @db.Uuid
+  id       String  @id @default(uuid()) @map("_id")
+  petId    String  @map("pet_id")
   name     String
   phone    String
   relation String?
@@ -768,13 +768,13 @@ model PetEmergencyContact {
 }
 
 model PetRiskAssessment {
-  id             String          @id @default(uuid()) @db.Uuid
-  petId          String          @map("pet_id") @db.Uuid
+  id             String          @id @default(uuid()) @map("_id")
+  petId          String          @map("pet_id")
   serviceCode    ServiceCode     @map("service_code")
   suggestedLevel RiskLevel       @default(UNASSESSED) @map("suggested_level")
   finalLevel     RiskLevel       @default(UNASSESSED) @map("final_level")
   factorSnapshot Json            @map("factors")
-  reviewedBy     String?         @map("reviewed_by") @db.Uuid
+  reviewedBy     String?         @map("reviewed_by")
   reviewedAt     DateTime?       @map("reviewed_at")
   expiresAt      DateTime?       @map("expires_at")
   createdAt      DateTime        @default(now()) @map("created_at")
@@ -786,7 +786,7 @@ model PetRiskAssessment {
 }
 
 model ServiceType {
-  id                        String                     @id @default(uuid()) @db.Uuid
+  id                        String                     @id @default(uuid()) @map("_id")
   code                      ServiceCode                @unique
   name                      String
   description               String
@@ -807,12 +807,12 @@ model ServiceType {
 }
 
 model SitterServicePermission {
-  id            String           @id @default(uuid()) @db.Uuid
-  sitterId      String           @map("sitter_id") @db.Uuid
-  serviceTypeId String           @map("service_type_id") @db.Uuid
+  id            String           @id @default(uuid()) @map("_id")
+  sitterId      String           @map("sitter_id")
+  serviceTypeId String           @map("service_type_id")
   status        PermissionStatus @default(PENDING)
   riskLimit     RiskLevel        @default(GREEN) @map("risk_limit")
-  grantedBy     String?          @map("granted_by") @db.Uuid
+  grantedBy     String?          @map("granted_by")
   grantedAt     DateTime?        @map("granted_at")
   expiresAt     DateTime?        @map("expires_at")
   revokedAt     DateTime?        @map("revoked_at")
@@ -826,8 +826,8 @@ model SitterServicePermission {
 }
 
 model AvailabilityRule {
-  id        String        @id @default(uuid()) @db.Uuid
-  sitterId  String        @map("sitter_id") @db.Uuid
+  id        String        @id @default(uuid()) @map("_id")
+  sitterId  String        @map("sitter_id")
   weekday   Int
   startTime String        @map("start_time")
   endTime   String        @map("end_time")
@@ -840,8 +840,8 @@ model AvailabilityRule {
 }
 
 model AvailabilityException {
-  id        String        @id @default(uuid()) @db.Uuid
-  sitterId  String        @map("sitter_id") @db.Uuid
+  id        String        @id @default(uuid()) @map("_id")
+  sitterId  String        @map("sitter_id")
   startsAt  DateTime      @map("starts_at")
   endsAt    DateTime      @map("ends_at")
   available Boolean
@@ -853,13 +853,13 @@ model AvailabilityException {
 }
 
 model SitterVerification {
-  id           String             @id @default(uuid()) @db.Uuid
-  sitterId     String             @map("sitter_id") @db.Uuid
+  id           String             @id @default(uuid()) @map("_id")
+  sitterId     String             @map("sitter_id")
   type         String
   status       VerificationStatus @default(PENDING)
   provider     String?
   evidencePath String?            @map("evidence_path")
-  checkedBy    String?            @map("checked_by") @db.Uuid
+  checkedBy    String?            @map("checked_by")
   checkedAt    DateTime?          @map("checked_at")
   expiresAt    DateTime?          @map("expires_at")
   revokedAt    DateTime?          @map("revoked_at")
@@ -871,7 +871,7 @@ model SitterVerification {
 }
 
 model TrainingModule {
-  id           String            @id @default(uuid()) @db.Uuid
+  id           String            @id @default(uuid()) @map("_id")
   slug         String            @unique
   title        String
   version      Int
@@ -884,9 +884,9 @@ model TrainingModule {
 }
 
 model TrainingAttempt {
-  id          String         @id @default(uuid()) @db.Uuid
-  sitterId    String         @map("sitter_id") @db.Uuid
-  moduleId    String         @map("module_id") @db.Uuid
+  id          String         @id @default(uuid()) @map("_id")
+  sitterId    String         @map("sitter_id")
+  moduleId    String         @map("module_id")
   score       Int
   passed      Boolean
   attemptedAt DateTime       @default(now()) @map("attempted_at")
@@ -898,12 +898,12 @@ model TrainingAttempt {
 }
 
 model Booking {
-  id                      String                   @id @default(uuid()) @db.Uuid
+  id                      String                   @id @default(uuid()) @map("_id")
   reference               String                   @unique
-  customerId              String                   @map("customer_id") @db.Uuid
-  petId                   String                   @map("pet_id") @db.Uuid
-  serviceTypeId           String                   @map("service_type_id") @db.Uuid
-  addressId               String                   @map("address_id") @db.Uuid
+  customerId              String                   @map("customer_id")
+  petId                   String                   @map("pet_id")
+  serviceTypeId           String                   @map("service_type_id")
+  addressId               String                   @map("address_id")
   status                  BookingStatus            @default(DRAFT)
   scheduledStart          DateTime                 @map("scheduled_start")
   scheduledEnd            DateTime                 @map("scheduled_end")
@@ -944,9 +944,9 @@ model Booking {
 }
 
 model BookingAssignment {
-  id            String           @id @default(uuid()) @db.Uuid
-  bookingId     String           @map("booking_id") @db.Uuid
-  sitterId      String           @map("sitter_id") @db.Uuid
+  id            String           @id @default(uuid()) @map("_id")
+  bookingId     String           @map("booking_id")
+  sitterId      String           @map("sitter_id")
   type          AssignmentType   @default(PRIMARY)
   status        AssignmentStatus @default(OFFERED)
   offeredAt     DateTime         @default(now()) @map("offered_at")
@@ -964,11 +964,11 @@ model BookingAssignment {
 }
 
 model BookingStatusHistory {
-  id        String         @id @default(uuid()) @db.Uuid
-  bookingId String         @map("booking_id") @db.Uuid
+  id        String         @id @default(uuid()) @map("_id")
+  bookingId String         @map("booking_id")
   fromState BookingStatus? @map("from_state")
   toState   BookingStatus  @map("to_state")
-  actorId   String?        @map("actor_id") @db.Uuid
+  actorId   String?        @map("actor_id")
   reason    String?
   metadata  Json?
   createdAt DateTime       @default(now()) @map("created_at")
@@ -979,13 +979,13 @@ model BookingStatusHistory {
 }
 
 model ServiceEvent {
-  id         String   @id @default(uuid()) @db.Uuid
-  bookingId  String   @map("booking_id") @db.Uuid
-  actorId    String   @map("actor_id") @db.Uuid
+  id         String   @id @default(uuid()) @map("_id")
+  bookingId  String   @map("booking_id")
+  actorId    String   @map("actor_id")
   type       String
   occurredAt DateTime @default(now()) @map("occurred_at")
-  latitude   Decimal? @db.Decimal(10, 7)
-  longitude  Decimal? @db.Decimal(10, 7)
+  latitude   Float?
+  longitude  Float?
   notes      String?
   evidence   Json?
   booking    Booking  @relation(fields: [bookingId], references: [id], onDelete: Cascade)
@@ -995,8 +995,8 @@ model ServiceEvent {
 }
 
 model TrackingSession {
-  id           String          @id @default(uuid()) @db.Uuid
-  bookingId    String          @map("booking_id") @db.Uuid
+  id           String          @id @default(uuid()) @map("_id")
+  bookingId    String          @map("booking_id")
   startedAt    DateTime        @map("started_at")
   endedAt      DateTime?       @map("ended_at")
   expiresAt    DateTime        @map("expires_at")
@@ -1011,11 +1011,11 @@ model TrackingSession {
 }
 
 model TrackingPoint {
-  id         BigInt          @id @default(autoincrement())
-  sessionId  String          @map("session_id") @db.Uuid
-  latitude   Decimal         @db.Decimal(10, 7)
-  longitude  Decimal         @db.Decimal(10, 7)
-  accuracyM  Decimal?        @map("accuracy_m") @db.Decimal(7, 2)
+  id         String          @id @default(uuid()) @map("_id")
+  sessionId  String          @map("session_id")
+  latitude   Float
+  longitude  Float
+  accuracyM  Float?        @map("accuracy_m")
   recordedAt DateTime        @map("recorded_at")
   session    TrackingSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
 
@@ -1024,8 +1024,8 @@ model TrackingPoint {
 }
 
 model Payment {
-  id                String        @id @default(uuid()) @db.Uuid
-  bookingId         String        @map("booking_id") @db.Uuid
+  id                String        @id @default(uuid()) @map("_id")
+  bookingId         String        @map("booking_id")
   provider          String        @default("razorpay")
   providerOrderId   String        @unique @map("provider_order_id")
   providerPaymentId String?       @unique @map("provider_payment_id")
@@ -1046,7 +1046,7 @@ model Payment {
 }
 
 model PaymentEvent {
-  id              String    @id @default(uuid()) @db.Uuid
+  id              String    @id @default(uuid()) @map("_id")
   provider        String
   providerEventId String    @unique @map("provider_event_id")
   eventType       String    @map("event_type")
@@ -1062,14 +1062,14 @@ model PaymentEvent {
 }
 
 model Refund {
-  id               String       @id @default(uuid()) @db.Uuid
-  paymentId        String       @map("payment_id") @db.Uuid
+  id               String       @id @default(uuid()) @map("_id")
+  paymentId        String       @map("payment_id")
   providerRefundId String?      @unique @map("provider_refund_id")
   amountPaise      Int          @map("amount_paise")
   reason           String
   status           RefundStatus @default(REQUESTED)
-  requestedBy      String       @map("requested_by") @db.Uuid
-  approvedBy       String?      @map("approved_by") @db.Uuid
+  requestedBy      String       @map("requested_by")
+  approvedBy       String?      @map("approved_by")
   createdAt        DateTime     @default(now()) @map("created_at")
   completedAt      DateTime?    @map("completed_at")
   payment          Payment      @relation(fields: [paymentId], references: [id], onDelete: Restrict)
@@ -1079,14 +1079,14 @@ model Refund {
 }
 
 model Payout {
-  id              String             @id @default(uuid()) @db.Uuid
-  bookingId       String             @map("booking_id") @db.Uuid
-  sitterId        String             @map("sitter_id") @db.Uuid
+  id              String             @id @default(uuid()) @map("_id")
+  bookingId       String             @map("booking_id")
+  sitterId        String             @map("sitter_id")
   amountPaise     Int                @map("amount_paise")
   adjustmentPaise Int                @default(0) @map("adjustment_paise")
   status          PayoutStatus       @default(PENDING)
   providerRef     String?            @map("provider_ref")
-  approvedBy      String?            @map("approved_by") @db.Uuid
+  approvedBy      String?            @map("approved_by")
   approvedAt      DateTime?          @map("approved_at")
   paidAt          DateTime?          @map("paid_at")
   createdAt       DateTime           @default(now()) @map("created_at")
@@ -1100,14 +1100,14 @@ model Payout {
 }
 
 model BookingReport {
-  id           String             @id @default(uuid()) @db.Uuid
-  bookingId    String             @map("booking_id") @db.Uuid
-  submittedBy  String             @map("submitted_by") @db.Uuid
+  id           String             @id @default(uuid()) @map("_id")
+  bookingId    String             @map("booking_id")
+  submittedBy  String             @map("submitted_by")
   version      Int                @default(1)
   fields       Json
   concernFlag  Boolean            @default(false) @map("concern_flag")
   reviewStatus ReportReviewStatus @default(PENDING) @map("review_status")
-  reviewedBy   String?            @map("reviewed_by") @db.Uuid
+  reviewedBy   String?            @map("reviewed_by")
   reviewNote   String?            @map("review_note")
   submittedAt  DateTime           @default(now()) @map("submitted_at")
   reviewedAt   DateTime?          @map("reviewed_at")
@@ -1121,8 +1121,8 @@ model BookingReport {
 }
 
 model ReportMedia {
-  id         String        @id @default(uuid()) @db.Uuid
-  reportId   String        @map("report_id") @db.Uuid
+  id         String        @id @default(uuid()) @map("_id")
+  reportId   String        @map("report_id")
   objectPath String        @map("object_path")
   mediaType  String        @map("media_type")
   capturedAt DateTime?     @map("captured_at")
@@ -1132,9 +1132,9 @@ model ReportMedia {
 }
 
 model Review {
-  id          String    @id @default(uuid()) @db.Uuid
-  bookingId   String    @unique @map("booking_id") @db.Uuid
-  customerId  String    @map("customer_id") @db.Uuid
+  id          String    @id @default(uuid()) @map("_id")
+  bookingId   String    @unique @map("booking_id")
+  customerId  String    @map("customer_id")
   rating      Int
   body        String?
   public      Boolean   @default(false)
@@ -1148,12 +1148,12 @@ model Review {
 }
 
 model Incident {
-  id                  String                 @id @default(uuid()) @db.Uuid
+  id                  String                 @id @default(uuid()) @map("_id")
   reference           String                 @unique
-  bookingId           String                 @map("booking_id") @db.Uuid
-  petId               String                 @map("pet_id") @db.Uuid
-  sitterId            String?                @map("sitter_id") @db.Uuid
-  customerId          String                 @map("customer_id") @db.Uuid
+  bookingId           String                 @map("booking_id")
+  petId               String                 @map("pet_id")
+  sitterId            String?                @map("sitter_id")
+  customerId          String                 @map("customer_id")
   category            String
   severity            IncidentSeverity
   status              IncidentStatus         @default(REPORTED)
@@ -1162,7 +1162,7 @@ model Incident {
   detectedAt          DateTime               @map("detected_at")
   resolvedAt          DateTime?              @map("resolved_at")
   closedAt            DateTime?              @map("closed_at")
-  closedBy            String?                @map("closed_by") @db.Uuid
+  closedBy            String?                @map("closed_by")
   rootCauseAnalysis   Json?                  @map("root_cause_analysis")
   financialImpact     Int?                   @map("financial_impact")
   providerSuspensions ProviderSuspension[]
@@ -1179,9 +1179,9 @@ model Incident {
 }
 
 model IncidentEvent {
-  id         String   @id @default(uuid()) @db.Uuid
-  incidentId String   @map("incident_id") @db.Uuid
-  actorId    String?  @map("actor_id") @db.Uuid
+  id         String   @id @default(uuid()) @map("_id")
+  incidentId String   @map("incident_id")
+  actorId    String?  @map("actor_id")
   type       String
   details    Json
   occurredAt DateTime @default(now()) @map("occurred_at")
@@ -1192,10 +1192,10 @@ model IncidentEvent {
 }
 
 model CorrectiveAction {
-  id          String    @id @default(uuid()) @db.Uuid
-  incidentId  String    @map("incident_id") @db.Uuid
+  id          String    @id @default(uuid()) @map("_id")
+  incidentId  String    @map("incident_id")
   title       String
-  ownerId     String    @map("owner_id") @db.Uuid
+  ownerId     String    @map("owner_id")
   dueAt       DateTime? @map("due_at")
   completedAt DateTime? @map("completed_at")
   evidence    Json?
@@ -1206,8 +1206,8 @@ model CorrectiveAction {
 }
 
 model NotificationOutbox {
-  id             String                 @id @default(uuid()) @db.Uuid
-  userId         String?                @map("user_id") @db.Uuid
+  id             String                 @id @default(uuid()) @map("_id")
+  userId         String?                @map("user_id")
   channel        NotificationChannel
   templateKey    String                 @map("template_key")
   destination    String
@@ -1226,8 +1226,8 @@ model NotificationOutbox {
 }
 
 model NotificationDelivery {
-  id                String             @id @default(uuid()) @db.Uuid
-  notificationId    String             @map("notification_id") @db.Uuid
+  id                String             @id @default(uuid()) @map("_id")
+  notificationId    String             @map("notification_id")
   providerMessageId String?            @map("provider_message_id")
   status            NotificationStatus
   providerPayload   Json?              @map("provider_payload")
@@ -1239,7 +1239,7 @@ model NotificationDelivery {
 }
 
 model RateLimitBucket {
-  key         String   @id
+  key         String   @id @map("_id")
   windowStart DateTime @map("window_start")
   count       Int
   expiresAt   DateTime @map("expires_at")
@@ -1249,10 +1249,10 @@ model RateLimitBucket {
 }
 
 model UploadObject {
-  id                String             @id @default(uuid()) @db.Uuid
-  ownerId           String             @map("owner_id") @db.Uuid
+  id                String             @id @default(uuid()) @map("_id")
+  ownerId           String             @map("owner_id")
   purpose           String
-  resourceId        String             @map("resource_id") @db.Uuid
+  resourceId        String             @map("resource_id")
   quarantinePath    String             @unique @map("quarantine_path")
   destinationBucket String?            @map("destination_bucket")
   destinationPath   String?            @unique @map("destination_path")
@@ -1275,18 +1275,18 @@ model UploadObject {
 }
 
 model FeatureFlag {
-  key         String   @id
+  key         String   @id @map("_id")
   enabled     Boolean  @default(false)
   description String
   rules       Json?
-  updatedBy   String?  @map("updated_by") @db.Uuid
+  updatedBy   String?  @map("updated_by")
   updatedAt   DateTime @updatedAt @map("updated_at")
 
   @@map("feature_flags")
 }
 
 model Lead {
-  id               String     @id @default(uuid()) @db.Uuid
+  id               String     @id @default(uuid()) @map("_id")
   type             LeadType
   status           LeadStatus @default(NEW)
   name             String
@@ -1298,7 +1298,7 @@ model Lead {
   message          String
   source           String
   consentToContact Boolean    @map("consent_to_contact")
-  assignedTo       String?    @map("assigned_to") @db.Uuid
+  assignedTo       String?    @map("assigned_to")
   metadata         Json?
   createdAt        DateTime   @default(now()) @map("created_at")
   updatedAt        DateTime   @updatedAt @map("updated_at")
@@ -1309,7 +1309,7 @@ model Lead {
 }
 
 model Society {
-  id               String               @id @default(uuid()) @db.Uuid
+  id               String               @id @default(uuid()) @map("_id")
   slug             String               @unique
   name             String
   city             String
@@ -1339,7 +1339,7 @@ model Society {
 }
 
 model SocietyAccessRule {
-  societyId                  String    @id @map("society_id") @db.Uuid
+  societyId                  String    @id @map("_id")
   visitorApprovalRequired    Boolean   @default(true) @map("visitor_approval_required")
   sitterRegistrationRequired Boolean   @default(true) @map("sitter_registration_required")
   identityDocumentRequired   Boolean   @default(true) @map("identity_document_required")
@@ -1355,19 +1355,20 @@ model SocietyAccessRule {
 }
 
 model SocietyMember {
-  societyId  String    @map("society_id") @db.Uuid
-  userId     String    @map("user_id") @db.Uuid
+  id        String   @id @default(uuid()) @map("_id")
+  societyId  String    @map("society_id")
+  userId     String    @map("user_id")
   unitRef    String?   @map("unit_ref")
   verifiedAt DateTime? @map("verified_at")
   status     String
   society    Society   @relation(fields: [societyId], references: [id], onDelete: Cascade)
 
-  @@id([societyId, userId])
+  @@unique([societyId, userId])
   @@map("society_members")
 }
 
 model PlanVersion {
-  id                 String         @id @default(uuid()) @db.Uuid
+  id                 String         @id @default(uuid()) @map("_id")
   planKey            String         @map("plan_key")
   version            Int
   name               String
@@ -1386,9 +1387,9 @@ model PlanVersion {
 }
 
 model Subscription {
-  id                     String                   @id @default(uuid()) @db.Uuid
-  userId                 String                   @map("user_id") @db.Uuid
-  planVersionId          String                   @map("plan_version_id") @db.Uuid
+  id                     String                   @id @default(uuid()) @map("_id")
+  userId                 String                   @map("user_id")
+  planVersionId          String                   @map("plan_version_id")
   providerSubscriptionId String?                  @unique @map("provider_subscription_id")
   status                 SubscriptionStatus       @default(INCOMPLETE)
   currentPeriodStart     DateTime?                @map("current_period_start")
@@ -1406,8 +1407,8 @@ model Subscription {
 }
 
 model EntitlementLedger {
-  id             String       @id @default(uuid()) @db.Uuid
-  subscriptionId String       @map("subscription_id") @db.Uuid
+  id             String       @id @default(uuid()) @map("_id")
+  subscriptionId String       @map("subscription_id")
   entitlementKey String       @map("entitlement_key")
   delta          Int
   balanceAfter   Int          @map("balance_after")
@@ -1422,7 +1423,7 @@ model EntitlementLedger {
 }
 
 model ContentEntry {
-  id             String           @id @default(uuid()) @db.Uuid
+  id             String           @id @default(uuid()) @map("_id")
   slug           String           @unique
   type           String
   title          String
@@ -1432,8 +1433,8 @@ model ContentEntry {
   primaryJob     String           @map("primary_job")
   city           String?
   serviceCode    ServiceCode?     @map("service_code")
-  authorId       String           @map("author_id") @db.Uuid
-  expertReviewId String?          @map("expert_review_id") @db.Uuid
+  authorId       String           @map("author_id")
+  expertReviewId String?          @map("expert_review_id")
   expertReview   ExpertReview?    @relation(fields: [expertReviewId], references: [id], onDelete: Restrict)
   publishedAt    DateTime?        @map("published_at")
   createdAt      DateTime         @default(now()) @map("created_at")
@@ -1447,8 +1448,8 @@ model ContentEntry {
 }
 
 model ExpertReview {
-  id           String         @id @default(uuid()) @db.Uuid
-  reviewerId   String         @map("reviewer_id") @db.Uuid
+  id           String         @id @default(uuid()) @map("_id")
+  reviewerId   String         @map("reviewer_id")
   reviewerName String         @map("reviewer_name")
   credentials  String
   scope        String
@@ -1462,14 +1463,14 @@ model ExpertReview {
 }
 
 model ContentVersion {
-  id        String        @id @default(uuid()) @db.Uuid
-  contentId String        @map("content_id") @db.Uuid
+  id        String        @id @default(uuid()) @map("_id")
+  contentId String        @map("content_id")
   version   Int
   title     String
   excerpt   String?
   body      Json
   status    ContentStatus
-  authorId  String        @map("author_id") @db.Uuid
+  authorId  String        @map("author_id")
   createdAt DateTime      @default(now()) @map("created_at")
   content   ContentEntry  @relation(fields: [contentId], references: [id], onDelete: Restrict)
 
@@ -1479,8 +1480,8 @@ model ContentVersion {
 }
 
 model AuditLog {
-  id           BigInt   @id @default(autoincrement())
-  actorId      String?  @map("actor_id") @db.Uuid
+  id           String   @id @default(uuid()) @map("_id")
+  actorId      String?  @map("actor_id")
   actorRole    Role?    @map("actor_role")
   action       String
   resourceType String   @map("resource_type")
@@ -1500,7 +1501,7 @@ model AuditLog {
 // Later-phase records are deliberately private and inert until their server-side
 // feature gates and operating policies are approved.
 model City {
-  id                 String                     @id @default(uuid()) @db.Uuid
+  id                 String                     @id @default(uuid()) @map("_id")
   slug               String                     @unique
   name               String
   state              String
@@ -1530,8 +1531,8 @@ model City {
 }
 
 model ServiceZone {
-  id                 String                     @id @default(uuid()) @db.Uuid
-  cityId             String                     @map("city_id") @db.Uuid
+  id                 String                     @id @default(uuid()) @map("_id")
+  cityId             String                     @map("city_id")
   slug               String
   name               String
   status             ZoneLaunchStage            @default(RESEARCH)
@@ -1551,9 +1552,9 @@ model ServiceZone {
 }
 
 model ServiceArea {
-  id             String          @id @default(uuid()) @db.Uuid
-  cityId         String          @map("city_id") @db.Uuid
-  serviceZoneId  String?         @map("service_zone_id") @db.Uuid
+  id             String          @id @default(uuid()) @map("_id")
+  cityId         String          @map("city_id")
+  serviceZoneId  String?         @map("service_zone_id")
   slug           String
   name           String
   postalCodes    String[]        @default([]) @map("postal_codes")
@@ -1572,10 +1573,10 @@ model ServiceArea {
 }
 
 model CapacityLimit {
-  id            String                @id @default(uuid()) @db.Uuid
-  serviceAreaId String                @map("service_area_id") @db.Uuid
+  id            String                @id @default(uuid()) @map("_id")
+  serviceAreaId String                @map("service_area_id")
   serviceCode   ServiceCode           @map("service_code")
-  serviceDate   DateTime              @map("service_date") @db.Date
+  serviceDate   DateTime              @map("service_date")
   maximum       Int
   reserved      Int                   @default(0)
   reason        String?
@@ -1590,24 +1591,25 @@ model CapacityLimit {
 }
 
 model SocietySitterPool {
-  societyId  String        @map("society_id") @db.Uuid
-  sitterId   String        @map("sitter_id") @db.Uuid
+  id        String   @id @default(uuid()) @map("_id")
+  societyId  String        @map("society_id")
+  sitterId   String        @map("sitter_id")
   status     GateStatus    @default(DRAFT)
-  approvedBy String?       @map("approved_by") @db.Uuid
+  approvedBy String?       @map("approved_by")
   approvedAt DateTime?     @map("approved_at")
   expiresAt  DateTime?     @map("expires_at")
   notes      String?
   society    Society       @relation(fields: [societyId], references: [id], onDelete: Cascade)
   sitter     SitterProfile @relation(fields: [sitterId], references: [id], onDelete: Restrict)
 
-  @@id([societyId, sitterId])
+  @@unique([societyId, sitterId])
   @@index([societyId, status])
   @@map("society_sitter_pools")
 }
 
 model SocietyEvent {
-  id          String     @id @default(uuid()) @db.Uuid
-  societyId   String     @map("society_id") @db.Uuid
+  id          String     @id @default(uuid()) @map("_id")
+  societyId   String     @map("society_id")
   title       String
   description String
   startsAt    DateTime   @map("starts_at")
@@ -1624,15 +1626,15 @@ model SocietyEvent {
 }
 
 model SocietyPartnership {
-  id                String     @id @default(uuid()) @db.Uuid
-  societyId         String     @map("society_id") @db.Uuid
+  id                String     @id @default(uuid()) @map("_id")
+  societyId         String     @map("society_id")
   agreementVersion  String     @map("agreement_version")
   status            GateStatus @default(DRAFT)
   startsAt          DateTime?  @map("starts_at")
   endsAt            DateTime?  @map("ends_at")
   commercialTerms   Json?      @map("commercial_terms")
   signedDocumentRef String?    @map("signed_document_ref")
-  approvedBy        String?    @map("approved_by") @db.Uuid
+  approvedBy        String?    @map("approved_by")
   createdAt         DateTime   @default(now()) @map("created_at")
   updatedAt         DateTime   @updatedAt @map("updated_at")
   society           Society    @relation(fields: [societyId], references: [id], onDelete: Restrict)
@@ -1642,7 +1644,7 @@ model SocietyPartnership {
 }
 
 model Partner {
-  id            String                @id @default(uuid()) @db.Uuid
+  id            String                @id @default(uuid()) @map("_id")
   slug          String                @unique
   legalName     String                @map("legal_name")
   displayName   String                @map("display_name")
@@ -1662,10 +1664,10 @@ model Partner {
 }
 
 model PartnerLocation {
-  id          String     @id @default(uuid()) @db.Uuid
-  partnerId   String     @map("partner_id") @db.Uuid
+  id          String     @id @default(uuid()) @map("_id")
+  partnerId   String     @map("partner_id")
   name        String
-  cityId      String?    @map("city_id") @db.Uuid
+  cityId      String?    @map("city_id")
   address     Json
   coordinates Json?
   status      GateStatus @default(DRAFT)
@@ -1680,12 +1682,12 @@ model PartnerLocation {
 }
 
 model PartnerVerification {
-  id          String             @id @default(uuid()) @db.Uuid
-  partnerId   String             @map("partner_id") @db.Uuid
+  id          String             @id @default(uuid()) @map("_id")
+  partnerId   String             @map("partner_id")
   type        String
   status      VerificationStatus @default(PENDING)
   evidenceRef String?            @map("evidence_ref")
-  verifiedBy  String?            @map("verified_by") @db.Uuid
+  verifiedBy  String?            @map("verified_by")
   verifiedAt  DateTime?          @map("verified_at")
   expiresAt   DateTime?          @map("expires_at")
   createdAt   DateTime           @default(now()) @map("created_at")
@@ -1696,8 +1698,8 @@ model PartnerVerification {
 }
 
 model PartnerService {
-  id          String         @id @default(uuid()) @db.Uuid
-  partnerId   String         @map("partner_id") @db.Uuid
+  id          String         @id @default(uuid()) @map("_id")
+  partnerId   String         @map("partner_id")
   serviceCode ServiceCode    @map("service_code")
   status      GateStatus     @default(DRAFT)
   terms       Json?
@@ -1712,11 +1714,11 @@ model PartnerService {
 }
 
 model PartnerOrder {
-  id               String             @id @default(uuid()) @db.Uuid
+  id               String             @id @default(uuid()) @map("_id")
   reference        String             @unique
-  partnerServiceId String             @map("partner_service_id") @db.Uuid
-  customerId       String             @map("customer_id") @db.Uuid
-  petId            String?            @map("pet_id") @db.Uuid
+  partnerServiceId String             @map("partner_service_id")
+  customerId       String             @map("customer_id")
+  petId            String?            @map("pet_id")
   status           PartnerOrderStatus @default(REQUESTED)
   scheduledAt      DateTime?          @map("scheduled_at")
   amountPaise      Int?               @map("amount_paise")
@@ -1734,11 +1736,11 @@ model PartnerOrder {
 }
 
 model EntitlementConsumption {
-  id             String       @id @default(uuid()) @db.Uuid
-  subscriptionId String       @map("subscription_id") @db.Uuid
+  id             String       @id @default(uuid()) @map("_id")
+  subscriptionId String       @map("subscription_id")
   entitlementKey String       @map("entitlement_key")
   quantity       Int          @default(1)
-  bookingId      String?      @map("booking_id") @db.Uuid
+  bookingId      String?      @map("booking_id")
   idempotencyKey String       @unique @map("idempotency_key")
   consumedAt     DateTime     @default(now()) @map("consumed_at")
   subscription   Subscription @relation(fields: [subscriptionId], references: [id], onDelete: Restrict)
@@ -1749,8 +1751,8 @@ model EntitlementConsumption {
 }
 
 model LoyaltyLedger {
-  id             String   @id @default(uuid()) @db.Uuid
-  userId         String   @map("user_id") @db.Uuid
+  id             String   @id @default(uuid()) @map("_id")
+  userId         String   @map("user_id")
   delta          Int
   balanceAfter   Int      @map("balance_after")
   reason         String
@@ -1765,10 +1767,10 @@ model LoyaltyLedger {
 }
 
 model Referral {
-  id          String     @id @default(uuid()) @db.Uuid
+  id          String     @id @default(uuid()) @map("_id")
   code        String     @unique
-  referrerId  String     @map("referrer_id") @db.Uuid
-  referredId  String?    @unique @map("referred_id") @db.Uuid
+  referrerId  String     @map("referrer_id")
+  referredId  String?    @unique @map("referred_id")
   status      GateStatus @default(DRAFT)
   qualifiedAt DateTime?  @map("qualified_at")
   rewardedAt  DateTime?  @map("rewarded_at")
@@ -1781,15 +1783,15 @@ model Referral {
 }
 
 model Testimonial {
-  id          String              @id @default(uuid()) @db.Uuid
-  userId      String?             @map("user_id") @db.Uuid
-  bookingId   String?             @unique @map("booking_id") @db.Uuid
+  id          String              @id @default(uuid()) @map("_id")
+  userId      String?             @map("user_id")
+  bookingId   String?             @unique @map("booking_id")
   displayName String              @map("display_name")
   quote       String
   context     String?
   city        String?
   status      ContentStatus       @default(DRAFT)
-  consentId   String?             @unique @map("consent_id") @db.Uuid
+  consentId   String?             @unique @map("consent_id")
   publishedAt DateTime?           @map("published_at")
   createdAt   DateTime            @default(now()) @map("created_at")
   updatedAt   DateTime            @updatedAt @map("updated_at")
@@ -1802,8 +1804,8 @@ model Testimonial {
 }
 
 model TestimonialConsent {
-  id          String       @id @default(uuid()) @db.Uuid
-  userId      String       @map("user_id") @db.Uuid
+  id          String       @id @default(uuid()) @map("_id")
+  userId      String       @map("user_id")
   scope       String
   evidenceRef String       @map("evidence_ref")
   grantedAt   DateTime     @map("granted_at")
@@ -1818,7 +1820,7 @@ model TestimonialConsent {
 }
 
 model Campaign {
-  id          String     @id @default(uuid()) @db.Uuid
+  id          String     @id @default(uuid()) @map("_id")
   key         String     @unique
   name        String
   channel     String
@@ -1836,7 +1838,7 @@ model Campaign {
 }
 
 model Experiment {
-  id            String     @id @default(uuid()) @db.Uuid
+  id            String     @id @default(uuid()) @map("_id")
   key           String     @unique
   hypothesis    String
   status        GateStatus @default(DRAFT)
@@ -1853,13 +1855,13 @@ model Experiment {
 }
 
 model PolicyVersion {
-  id          String     @id @default(uuid()) @db.Uuid
+  id          String     @id @default(uuid()) @map("_id")
   policyKey   String     @map("policy_key")
   version     Int
   contentHash String     @map("content_hash")
   documentRef String     @map("document_ref")
   status      GateStatus @default(DRAFT)
-  approvedBy  String?    @map("approved_by") @db.Uuid
+  approvedBy  String?    @map("approved_by")
   effectiveAt DateTime?  @map("effective_at")
   retiredAt   DateTime?  @map("retired_at")
   createdAt   DateTime   @default(now()) @map("created_at")
@@ -1870,8 +1872,8 @@ model PolicyVersion {
 }
 
 model DataAccessLog {
-  id           BigInt   @id @default(autoincrement())
-  actorId      String?  @map("actor_id") @db.Uuid
+  id           String   @id @default(uuid()) @map("_id")
+  actorId      String?  @map("actor_id")
   actorRole    Role?    @map("actor_role")
   purpose      String
   resourceType String   @map("resource_type")
@@ -1886,7 +1888,7 @@ model DataAccessLog {
 }
 
 model RetentionJob {
-  id          String    @id @default(uuid()) @db.Uuid
+  id          String    @id @default(uuid()) @map("_id")
   policyKey   String    @map("policy_key")
   status      JobStatus @default(QUEUED)
   cutoffAt    DateTime  @map("cutoff_at")
@@ -1902,7 +1904,7 @@ model RetentionJob {
 }
 
 model WebhookEvent {
-  id              String    @id @default(uuid()) @db.Uuid
+  id              String    @id @default(uuid()) @map("_id")
   provider        String
   providerEventId String    @map("provider_event_id")
   eventType       String    @map("event_type")
@@ -1919,7 +1921,7 @@ model WebhookEvent {
 }
 
 model JobRun {
-  id             String    @id @default(uuid()) @db.Uuid
+  id             String    @id @default(uuid()) @map("_id")
   jobKey         String    @map("job_key")
   idempotencyKey String    @unique @map("idempotency_key")
   status         JobStatus @default(QUEUED)
@@ -1935,12 +1937,12 @@ model JobRun {
 }
 
 model AdminPermission {
-  id         String     @id @default(uuid()) @db.Uuid
-  userId     String     @map("user_id") @db.Uuid
+  id         String     @id @default(uuid()) @map("_id")
+  userId     String     @map("user_id")
   permission String
   scope      Json?
   status     GateStatus @default(ACTIVE)
-  grantedBy  String     @map("granted_by") @db.Uuid
+  grantedBy  String     @map("granted_by")
   grantedAt  DateTime   @default(now()) @map("granted_at")
   expiresAt  DateTime?  @map("expires_at")
   revokedAt  DateTime?  @map("revoked_at")
@@ -1953,8 +1955,9 @@ model AdminPermission {
 }
 
 model HouseholdMember {
-  customerId String     @map("customer_id") @db.Uuid
-  memberId   String     @map("member_id") @db.Uuid
+  id        String   @id @default(uuid()) @map("_id")
+  customerId String     @map("customer_id")
+  memberId   String     @map("member_id")
   role       String
   status     GateStatus @default(DRAFT)
   invitedAt  DateTime   @default(now()) @map("invited_at")
@@ -1963,15 +1966,15 @@ model HouseholdMember {
   customer   User       @relation("HouseholdOwner", fields: [customerId], references: [id], onDelete: Cascade)
   member     User       @relation("HouseholdMember", fields: [memberId], references: [id], onDelete: Cascade)
 
-  @@id([customerId, memberId])
+  @@unique([customerId, memberId])
   @@index([memberId, status])
   @@map("household_members")
 }
 
 model PetMedia {
-  id         String       @id @default(uuid()) @db.Uuid
-  petId      String       @map("pet_id") @db.Uuid
-  uploadId   String       @map("upload_id") @db.Uuid
+  id         String       @id @default(uuid()) @map("_id")
+  petId      String       @map("pet_id")
+  uploadId   String       @map("upload_id")
   mediaType  String       @map("media_type")
   caption    String?
   status     UploadStatus @default(QUARANTINED)
@@ -1985,13 +1988,13 @@ model PetMedia {
 }
 
 model CareInstruction {
-  id           String    @id @default(uuid()) @db.Uuid
-  petId        String    @map("pet_id") @db.Uuid
+  id           String    @id @default(uuid()) @map("_id")
+  petId        String    @map("pet_id")
   version      Int
   instructions Json
   activeFrom   DateTime  @default(now()) @map("active_from")
   activeUntil  DateTime? @map("active_until")
-  createdBy    String    @map("created_by") @db.Uuid
+  createdBy    String    @map("created_by")
   createdAt    DateTime  @default(now()) @map("created_at")
   pet          Pet       @relation(fields: [petId], references: [id], onDelete: Restrict)
 
@@ -2001,8 +2004,8 @@ model CareInstruction {
 }
 
 model Medication {
-  id             String    @id @default(uuid()) @db.Uuid
-  petId          String    @map("pet_id") @db.Uuid
+  id             String    @id @default(uuid()) @map("_id")
+  petId          String    @map("pet_id")
   name           String
   dosage         String
   schedule       String
@@ -2021,11 +2024,11 @@ model Medication {
 }
 
 model Vaccination {
-  id             String    @id @default(uuid()) @db.Uuid
-  petId          String    @map("pet_id") @db.Uuid
+  id             String    @id @default(uuid()) @map("_id")
+  petId          String    @map("pet_id")
   vaccine        String
-  administeredAt DateTime  @map("administered_at") @db.Date
-  nextDueAt      DateTime? @map("next_due_at") @db.Date
+  administeredAt DateTime  @map("administered_at")
+  nextDueAt      DateTime? @map("next_due_at")
   clinic         String?
   evidenceRef    String?   @map("evidence_ref")
   verifiedAt     DateTime? @map("verified_at")
@@ -2037,15 +2040,15 @@ model Vaccination {
 }
 
 model PetHealthEvent {
-  id          String   @id @default(uuid()) @db.Uuid
-  petId       String   @map("pet_id") @db.Uuid
+  id          String   @id @default(uuid()) @map("_id")
+  petId       String   @map("pet_id")
   eventType   String   @map("event_type")
   occurredAt  DateTime @map("occurred_at")
   source      String
   summary     String
   details     Json?
   providerRef String?  @map("provider_ref")
-  createdBy   String   @map("created_by") @db.Uuid
+  createdBy   String   @map("created_by")
   createdAt   DateTime @default(now()) @map("created_at")
   pet         Pet      @relation(fields: [petId], references: [id], onDelete: Restrict)
 
@@ -2054,8 +2057,8 @@ model PetHealthEvent {
 }
 
 model PetRiskFactor {
-  id           String            @id @default(uuid()) @db.Uuid
-  assessmentId String            @map("assessment_id") @db.Uuid
+  id           String            @id @default(uuid()) @map("_id")
+  assessmentId String            @map("assessment_id")
   code         String
   severity     RiskLevel
   evidence     Json?
@@ -2069,13 +2072,13 @@ model PetRiskFactor {
 }
 
 model SitterApplication {
-  id            String        @id @default(uuid()) @db.Uuid
-  sitterId      String        @map("sitter_id") @db.Uuid
+  id            String        @id @default(uuid()) @map("_id")
+  sitterId      String        @map("sitter_id")
   version       Int
   answers       Json
   status        SitterStatus  @default(APPLICANT)
   submittedAt   DateTime      @default(now()) @map("submitted_at")
-  reviewedBy    String?       @map("reviewed_by") @db.Uuid
+  reviewedBy    String?       @map("reviewed_by")
   reviewedAt    DateTime?     @map("reviewed_at")
   decisionNotes String?       @map("decision_notes")
   sitter        SitterProfile @relation(fields: [sitterId], references: [id], onDelete: Cascade)
@@ -2086,9 +2089,9 @@ model SitterApplication {
 }
 
 model PracticalAssessment {
-  id          String             @id @default(uuid()) @db.Uuid
-  sitterId    String             @map("sitter_id") @db.Uuid
-  assessorId  String             @map("assessor_id") @db.Uuid
+  id          String             @id @default(uuid()) @map("_id")
+  sitterId    String             @map("sitter_id")
+  assessorId  String             @map("assessor_id")
   serviceCode ServiceCode        @map("service_code")
   rubric      Json
   score       Int
@@ -2103,14 +2106,14 @@ model PracticalAssessment {
 }
 
 model BoardingProperty {
-  id         String             @id @default(uuid()) @db.Uuid
-  sitterId   String             @map("sitter_id") @db.Uuid
-  addressId  String             @map("address_id") @db.Uuid
+  id         String             @id @default(uuid()) @map("_id")
+  sitterId   String             @map("sitter_id")
+  addressId  String             @map("address_id")
   status     VerificationStatus @default(PENDING)
   capacity   Int                @default(1)
   assessment Json
   evidence   Json?
-  assessedBy String?            @map("assessed_by") @db.Uuid
+  assessedBy String?            @map("assessed_by")
   assessedAt DateTime?          @map("assessed_at")
   expiresAt  DateTime?          @map("expires_at")
   sitter     SitterProfile      @relation(fields: [sitterId], references: [id], onDelete: Restrict)
@@ -2122,9 +2125,9 @@ model BoardingProperty {
 }
 
 model ReliabilityScore {
-  id           String        @id @default(uuid()) @db.Uuid
-  sitterId     String        @map("sitter_id") @db.Uuid
-  score        Decimal       @db.Decimal(5, 2)
+  id           String        @id @default(uuid()) @map("_id")
+  sitterId     String        @map("sitter_id")
+  score        Float
   components   Json
   windowStart  DateTime      @map("window_start")
   windowEnd    DateTime      @map("window_end")
@@ -2137,8 +2140,8 @@ model ReliabilityScore {
 }
 
 model ServiceVariant {
-  id              String         @id @default(uuid()) @db.Uuid
-  serviceTypeId   String         @map("service_type_id") @db.Uuid
+  id              String         @id @default(uuid()) @map("_id")
+  serviceTypeId   String         @map("service_type_id")
   key             String
   name            String
   durationMinutes Int?           @map("duration_minutes")
@@ -2155,10 +2158,10 @@ model ServiceVariant {
 }
 
 model ServicePrice {
-  id             String          @id @default(uuid()) @db.Uuid
-  serviceTypeId  String          @map("service_type_id") @db.Uuid
-  variantId      String?         @map("variant_id") @db.Uuid
-  serviceAreaId  String?         @map("service_area_id") @db.Uuid
+  id             String          @id @default(uuid()) @map("_id")
+  serviceTypeId  String          @map("service_type_id")
+  variantId      String?         @map("variant_id")
+  serviceAreaId  String?         @map("service_area_id")
   version        Int
   amountPaise    Int             @map("amount_paise")
   sitterPaise    Int             @map("sitter_paise")
@@ -2166,7 +2169,7 @@ model ServicePrice {
   currency       String          @default("INR")
   effectiveAt    DateTime        @map("effective_at")
   expiresAt      DateTime?       @map("expires_at")
-  approvedBy     String          @map("approved_by") @db.Uuid
+  approvedBy     String          @map("approved_by")
   createdAt      DateTime        @default(now()) @map("created_at")
   serviceType    ServiceType     @relation(fields: [serviceTypeId], references: [id], onDelete: Restrict)
   variant        ServiceVariant? @relation(fields: [variantId], references: [id], onDelete: Restrict)
@@ -2179,11 +2182,11 @@ model ServicePrice {
 }
 
 model BookingInstruction {
-  id           String   @id @default(uuid()) @db.Uuid
-  bookingId    String   @map("booking_id") @db.Uuid
+  id           String   @id @default(uuid()) @map("_id")
+  bookingId    String   @map("booking_id")
   version      Int
   instructions Json
-  createdBy    String   @map("created_by") @db.Uuid
+  createdBy    String   @map("created_by")
   createdAt    DateTime @default(now()) @map("created_at")
   booking      Booking  @relation(fields: [bookingId], references: [id], onDelete: Cascade)
 
@@ -2193,9 +2196,9 @@ model BookingInstruction {
 }
 
 model PriceQuote {
-  id             String        @id @default(uuid()) @db.Uuid
-  bookingId      String        @map("booking_id") @db.Uuid
-  servicePriceId String?       @map("service_price_id") @db.Uuid
+  id             String        @id @default(uuid()) @map("_id")
+  bookingId      String        @map("booking_id")
+  servicePriceId String?       @map("service_price_id")
   subtotalPaise  Int           @map("subtotal_paise")
   taxPaise       Int           @map("tax_paise")
   totalPaise     Int           @map("total_paise")
@@ -2213,16 +2216,16 @@ model PriceQuote {
 }
 
 model Complaint {
-  id          String           @id @default(uuid()) @db.Uuid
+  id          String           @id @default(uuid()) @map("_id")
   reference   String           @unique
-  bookingId   String?          @map("booking_id") @db.Uuid
-  customerId  String           @map("customer_id") @db.Uuid
-  sitterId    String?          @map("sitter_id") @db.Uuid
+  bookingId   String?          @map("booking_id")
+  customerId  String           @map("customer_id")
+  sitterId    String?          @map("sitter_id")
   category    String
   description String
   severity    IncidentSeverity
   status      ComplaintStatus  @default(RECEIVED)
-  assignedTo  String?          @map("assigned_to") @db.Uuid
+  assignedTo  String?          @map("assigned_to")
   resolution  String?
   createdAt   DateTime         @default(now()) @map("created_at")
   updatedAt   DateTime         @updatedAt @map("updated_at")
@@ -2237,7 +2240,8 @@ model Complaint {
 }
 
 model CommunicationPreference {
-  userId     String              @map("user_id") @db.Uuid
+  id        String   @id @default(uuid()) @map("_id")
+  userId     String              @map("user_id")
   channel    NotificationChannel
   purpose    String
   enabled    Boolean             @default(true)
@@ -2245,12 +2249,12 @@ model CommunicationPreference {
   updatedAt  DateTime            @updatedAt @map("updated_at")
   user       User                @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@id([userId, channel, purpose])
+  @@unique([userId, channel, purpose])
   @@map("communication_preferences")
 }
 
 model NotificationTemplate {
-  id         String              @id @default(uuid()) @db.Uuid
+  id         String              @id @default(uuid()) @map("_id")
   key        String
   version    Int
   channel    NotificationChannel
@@ -2259,7 +2263,7 @@ model NotificationTemplate {
   body       String
   variables  Json
   status     GateStatus          @default(DRAFT)
-  approvedBy String?             @map("approved_by") @db.Uuid
+  approvedBy String?             @map("approved_by")
   createdAt  DateTime            @default(now()) @map("created_at")
 
   @@unique([key, version, channel, locale])
@@ -2268,16 +2272,16 @@ model NotificationTemplate {
 }
 
 model SupportCase {
-  id          String            @id @default(uuid()) @db.Uuid
+  id          String            @id @default(uuid()) @map("_id")
   reference   String            @unique
-  userId      String?           @map("user_id") @db.Uuid
-  bookingId   String?           @map("booking_id") @db.Uuid
+  userId      String?           @map("user_id")
+  bookingId   String?           @map("booking_id")
   category    String
   subject     String
   description String
   priority    IncidentSeverity  @default(LOW)
   status      SupportCaseStatus @default(OPEN)
-  assignedTo  String?           @map("assigned_to") @db.Uuid
+  assignedTo  String?           @map("assigned_to")
   resolution  String?
   createdAt   DateTime          @default(now()) @map("created_at")
   updatedAt   DateTime          @updatedAt @map("updated_at")
@@ -2291,11 +2295,11 @@ model SupportCase {
 }
 
 model PayoutAdjustment {
-  id          String   @id @default(uuid()) @db.Uuid
-  payoutId    String   @map("payout_id") @db.Uuid
+  id          String   @id @default(uuid()) @map("_id")
+  payoutId    String   @map("payout_id")
   amountPaise Int      @map("amount_paise")
   reason      String
-  approvedBy  String   @map("approved_by") @db.Uuid
+  approvedBy  String   @map("approved_by")
   createdAt   DateTime @default(now()) @map("created_at")
   payout      Payout   @relation(fields: [payoutId], references: [id], onDelete: Restrict)
 
@@ -2304,7 +2308,7 @@ model PayoutAdjustment {
 }
 
 model LedgerEntry {
-  id             String          @id @default(uuid()) @db.Uuid
+  id             String          @id @default(uuid()) @map("_id")
   entryType      LedgerEntryType @map("entry_type")
   account        String
   amountPaise    Int             @map("amount_paise")
@@ -2321,7 +2325,7 @@ model LedgerEntry {
 }
 
 model ReconciliationRun {
-  id          String    @id @default(uuid()) @db.Uuid
+  id          String    @id @default(uuid()) @map("_id")
   provider    String
   periodStart DateTime  @map("period_start")
   periodEnd   DateTime  @map("period_end")
@@ -2331,7 +2335,7 @@ model ReconciliationRun {
   differences Json?
   startedAt   DateTime? @map("started_at")
   completedAt DateTime? @map("completed_at")
-  approvedBy  String?   @map("approved_by") @db.Uuid
+  approvedBy  String?   @map("approved_by")
   createdAt   DateTime  @default(now()) @map("created_at")
 
   @@unique([provider, periodStart, periodEnd])
@@ -2340,13 +2344,13 @@ model ReconciliationRun {
 }
 
 model IncidentEvidence {
-  id           String       @id @default(uuid()) @db.Uuid
-  incidentId   String       @map("incident_id") @db.Uuid
-  uploadId     String       @map("upload_id") @db.Uuid
+  id           String       @id @default(uuid()) @map("_id")
+  incidentId   String       @map("incident_id")
+  uploadId     String       @map("upload_id")
   evidenceType String       @map("evidence_type")
   description  String?
   status       UploadStatus @default(QUARANTINED)
-  collectedBy  String       @map("collected_by") @db.Uuid
+  collectedBy  String       @map("collected_by")
   collectedAt  DateTime     @default(now()) @map("collected_at")
   incident     Incident     @relation(fields: [incidentId], references: [id], onDelete: Restrict)
   upload       UploadObject @relation(fields: [uploadId], references: [id], onDelete: Restrict)
@@ -2356,13 +2360,13 @@ model IncidentEvidence {
 }
 
 model IncidentNotification {
-  id             String              @id @default(uuid()) @db.Uuid
-  incidentId     String              @map("incident_id") @db.Uuid
+  id             String              @id @default(uuid()) @map("_id")
+  incidentId     String              @map("incident_id")
   recipientType  String              @map("recipient_type")
   recipientRef   String              @map("recipient_ref")
   channel        NotificationChannel
   status         NotificationStatus  @default(QUEUED)
-  notificationId String?             @map("notification_id") @db.Uuid
+  notificationId String?             @map("notification_id")
   sentAt         DateTime?           @map("sent_at")
   acknowledgedAt DateTime?           @map("acknowledged_at")
   createdAt      DateTime            @default(now()) @map("created_at")
@@ -2374,15 +2378,15 @@ model IncidentNotification {
 }
 
 model SitterHold {
-  id            String           @id @default(uuid()) @db.Uuid
-  sitterId      String           @map("sitter_id") @db.Uuid
-  incidentId    String?          @map("incident_id") @db.Uuid
+  id            String           @id @default(uuid()) @map("_id")
+  sitterId      String           @map("sitter_id")
+  incidentId    String?          @map("incident_id")
   status        SitterHoldStatus @default(ACTIVE)
   reason        String
-  placedBy      String           @map("placed_by") @db.Uuid
+  placedBy      String           @map("placed_by")
   placedAt      DateTime         @default(now()) @map("placed_at")
   expiresAt     DateTime?        @map("expires_at")
-  releasedBy    String?          @map("released_by") @db.Uuid
+  releasedBy    String?          @map("released_by")
   releasedAt    DateTime?        @map("released_at")
   releaseReason String?          @map("release_reason")
   sitter        SitterProfile    @relation(fields: [sitterId], references: [id], onDelete: Restrict)
@@ -2394,8 +2398,8 @@ model SitterHold {
 }
 
 model SubscriptionEvent {
-  id              String              @id @default(uuid()) @db.Uuid
-  subscriptionId  String              @map("subscription_id") @db.Uuid
+  id              String              @id @default(uuid()) @map("_id")
+  subscriptionId  String              @map("subscription_id")
   providerEventId String?             @unique @map("provider_event_id")
   eventType       String              @map("event_type")
   statusBefore    SubscriptionStatus? @map("status_before")
@@ -2410,8 +2414,8 @@ model SubscriptionEvent {
 }
 
 model Author {
-  id          String     @id @default(uuid()) @db.Uuid
-  userId      String?    @unique @map("user_id") @db.Uuid
+  id          String     @id @default(uuid()) @map("_id")
+  userId      String?    @unique @map("user_id")
   slug        String     @unique
   displayName String     @map("display_name")
   bio         String?
@@ -2426,9 +2430,9 @@ model Author {
 }
 
 model CityPage {
-  id             String        @id @default(uuid()) @db.Uuid
-  cityId         String        @map("city_id") @db.Uuid
-  contentEntryId String        @unique @map("content_entry_id") @db.Uuid
+  id             String        @id @default(uuid()) @map("_id")
+  cityId         String        @map("city_id")
+  contentEntryId String        @unique @map("content_entry_id")
   pageType       String        @map("page_type")
   status         ContentStatus @default(DRAFT)
   publishedAt    DateTime?     @map("published_at")
@@ -2441,9 +2445,9 @@ model CityPage {
 }
 
 model CapacityReservation {
-  id              String                    @id @default(uuid()) @db.Uuid
-  bookingId       String                    @unique @map("booking_id") @db.Uuid
-  capacityLimitId String                    @map("capacity_limit_id") @db.Uuid
+  id              String                    @id @default(uuid()) @map("_id")
+  bookingId       String                    @unique @map("booking_id")
+  capacityLimitId String                    @map("capacity_limit_id")
   quantity        Int                       @default(1)
   status          CapacityReservationStatus @default(HELD)
   releaseReason   String?                   @map("release_reason")
@@ -2458,8 +2462,8 @@ model CapacityReservation {
 }
 
 model PaymentMandate {
-  id                String   @id @default(uuid()) @db.Uuid
-  userId            String   @map("user_id") @db.Uuid
+  id                String   @id @default(uuid()) @map("_id")
+  userId            String   @map("user_id")
   providerMandateId String   @unique @map("provider_mandate_id")
   providerName      String   @default("RAZORPAY")
   maxAmountPaise    Int      @map("max_amount_paise")
@@ -2472,16 +2476,16 @@ model PaymentMandate {
 }
 
 model CityServiceConfiguration {
-  id                   String        @id @default(uuid()) @db.Uuid
-  cityId               String        @map("city_id") @db.Uuid
-  serviceTypeId        String        @map("service_type_id") @db.Uuid
+  id                   String        @id @default(uuid()) @map("_id")
+  cityId               String        @map("city_id")
+  serviceTypeId        String        @map("service_type_id")
   status               ServiceStatus @default(DISABLED)
   bookingMode          String?       @map("booking_mode")
   minimumNoticeMinutes Int?          @map("minimum_notice_minutes")
   maximumAdvanceDays   Int?          @map("maximum_advance_days")
   operatingHours       Json?         @map("operating_hours")
-  cancellationPolicyId String?       @map("cancellation_policy_id") @db.Uuid
-  supportPolicyId      String?       @map("support_policy_id") @db.Uuid
+  cancellationPolicyId String?       @map("cancellation_policy_id")
+  supportPolicyId      String?       @map("support_policy_id")
   createdAt            DateTime      @default(now()) @map("created_at")
 
   city        City        @relation(fields: [cityId], references: [id], onDelete: Restrict)
@@ -2492,12 +2496,12 @@ model CityServiceConfiguration {
 }
 
 model ZoneServiceConfiguration {
-  id               String        @id @default(uuid()) @db.Uuid
-  serviceZoneId    String        @map("service_zone_id") @db.Uuid
-  serviceTypeId    String        @map("service_type_id") @db.Uuid
+  id               String        @id @default(uuid()) @map("_id")
+  serviceZoneId    String        @map("service_zone_id")
+  serviceTypeId    String        @map("service_type_id")
   status           ServiceStatus @default(DISABLED)
   bookingMode      String?       @map("booking_mode")
-  capacityPolicyId String?       @map("capacity_policy_id") @db.Uuid
+  capacityPolicyId String?       @map("capacity_policy_id")
   waitlistEnabled  Boolean       @default(false) @map("waitlist_enabled")
   launchLimit      Int?          @map("launch_limit")
   createdAt        DateTime      @default(now()) @map("created_at")
@@ -2530,14 +2534,14 @@ enum CreditAction {
 }
 
 model ServiceCredit {
-  id           String                     @id @default(uuid()) @db.Uuid
-  userId       String                     @map("user_id") @db.Uuid
+  id           String                     @id @default(uuid()) @map("_id")
+  userId       String                     @map("user_id")
   type         CreditType
   amountPaise  Int                        @map("amount_paise")
   balancePaise Int                        @map("balance_paise")
   currency     String                     @default("INR")
   issuedReason String                     @map("issued_reason")
-  referenceId  String?                    @map("reference_id") @db.Uuid
+  referenceId  String?                    @map("reference_id")
   expiresAt    DateTime?                  @map("expires_at")
   isActive     Boolean                    @default(true) @map("is_active")
   createdAt    DateTime                   @default(now()) @map("created_at")
@@ -2550,9 +2554,9 @@ model ServiceCredit {
 }
 
 model ServiceCreditTransaction {
-  id             String        @id @default(uuid()) @db.Uuid
-  creditId       String        @map("credit_id") @db.Uuid
-  bookingId      String?       @map("booking_id") @db.Uuid
+  id             String        @id @default(uuid()) @map("_id")
+  creditId       String        @map("credit_id")
+  bookingId      String?       @map("booking_id")
   action         CreditAction
   amountPaise    Int           @map("amount_paise")
   balanceAfter   Int           @map("balance_after")
@@ -2577,16 +2581,16 @@ enum MatchStatus {
 }
 
 model MatchScore {
-  id                    String        @id @default(uuid()) @db.Uuid
-  bookingId             String        @map("booking_id") @db.Uuid
-  sitterId              String        @map("sitter_id") @db.Uuid
+  id                    String        @id @default(uuid()) @map("_id")
+  bookingId             String        @map("booking_id")
+  sitterId              String        @map("sitter_id")
   totalScore            Float         @map("total_score")
   factors               Json
   rank                  Int
   requiresHumanApproval Boolean       @default(false) @map("requires_human_approval")
   approvalReasons       String[]      @default([]) @map("approval_reasons")
   status                MatchStatus   @default(PENDING)
-  approvedBy            String?       @map("approved_by") @db.Uuid
+  approvedBy            String?       @map("approved_by")
   approvedAt            DateTime?     @map("approved_at")
   createdAt             DateTime      @default(now()) @map("created_at")
   booking               Booking       @relation(fields: [bookingId], references: [id], onDelete: Cascade)
@@ -2611,11 +2615,11 @@ enum HealthEventType {
 }
 
 model HealthTimelineEvent {
-  id          String          @id @default(uuid()) @db.Uuid
-  petId       String          @map("pet_id") @db.Uuid
+  id          String          @id @default(uuid()) @map("_id")
+  petId       String          @map("pet_id")
   type        HealthEventType
   title       String
-  description String?         @db.Text
+  description String?
   eventDate   DateTime        @map("event_date")
   createdAt   DateTime        @default(now()) @map("created_at")
   updatedAt   DateTime        @updatedAt @map("updated_at")
@@ -2628,7 +2632,7 @@ model HealthTimelineEvent {
 }
 
 model Contact {
-  id                   String                @id @default(uuid()) @db.Uuid
+  id                   String                @id @default(uuid()) @map("_id")
   email                String?               @unique
   phoneE164            String?               @unique @map("phone_e164")
   firstName            String?               @map("first_name")
@@ -2643,8 +2647,8 @@ model Contact {
 }
 
 model LeadMagnetRequest {
-  id          String   @id @default(uuid()) @db.Uuid
-  contactId   String   @map("contact_id") @db.Uuid
+  id          String   @id @default(uuid()) @map("_id")
+  contactId   String   @map("contact_id")
   magnetSlug  String   @map("magnet_slug")
   requestedAt DateTime @default(now()) @map("requested_at")
   metadata    Json?
@@ -2655,7 +2659,7 @@ model LeadMagnetRequest {
 }
 
 model CommunityGroup {
-  id          String                @id @default(uuid()) @db.Uuid
+  id          String                @id @default(uuid()) @map("_id")
   slug        String                @unique
   name        String
   description String?
@@ -2678,9 +2682,9 @@ enum MembershipStatus {
 }
 
 model CommunityMembership {
-  id        String           @id @default(uuid()) @db.Uuid
-  groupId   String           @map("group_id") @db.Uuid
-  contactId String           @map("contact_id") @db.Uuid
+  id        String           @id @default(uuid()) @map("_id")
+  groupId   String           @map("group_id")
+  contactId String           @map("contact_id")
   status    MembershipStatus @default(PENDING)
   joinedAt  DateTime?        @map("joined_at")
   createdAt DateTime         @default(now()) @map("created_at")
@@ -2698,17 +2702,17 @@ model CommunityMembership {
 // ═══════════════════════════════════════════════════════════════
 
 model Organization {
-  id               String           @id @default(uuid()) @db.Uuid
+  id               String           @id @default(uuid()) @map("_id")
   legalName        String           @map("legal_name")
   displayName      String           @map("display_name")
   organizationType OrganizationType @map("organization_type")
   website          String?
-  primaryCityId    String?          @map("primary_city_id") @db.Uuid
+  primaryCityId    String?          @map("primary_city_id")
   gstin            String?
   panEncrypted     String?          @map("pan_encrypted")
-  billingAddressId String?          @map("billing_address_id") @db.Uuid
+  billingAddressId String?          @map("billing_address_id")
   status           OrgStatus        @default(PROSPECT)
-  accountOwnerId   String?          @map("account_owner_id") @db.Uuid
+  accountOwnerId   String?          @map("account_owner_id")
   notes            String?
   createdAt        DateTime         @default(now()) @map("created_at")
   updatedAt        DateTime         @updatedAt @map("updated_at")
@@ -2728,8 +2732,8 @@ model Organization {
 }
 
 model OrganizationContact {
-  id              String         @id @default(uuid()) @db.Uuid
-  organizationId  String         @map("organization_id") @db.Uuid
+  id              String         @id @default(uuid()) @map("_id")
+  organizationId  String         @map("organization_id")
   name            String
   title           String?
   department      String?
@@ -2748,8 +2752,8 @@ model OrganizationContact {
 }
 
 model B2bOpportunity {
-  id                String           @id @default(uuid()) @db.Uuid
-  organizationId    String           @map("organization_id") @db.Uuid
+  id                String           @id @default(uuid()) @map("_id")
+  organizationId    String           @map("organization_id")
   programmeType     ProgrammeType    @map("programme_type")
   pipelineStage     OpportunityStage @default(TARGET_ACCOUNT) @map("pipeline_stage")
   estimatedValue    Int?             @map("estimated_value")
@@ -2758,7 +2762,7 @@ model B2bOpportunity {
   leadSource        String?          @map("lead_source")
   nextAction        String?          @map("next_action")
   nextActionAt      DateTime?        @map("next_action_at")
-  ownerId           String?          @map("owner_id") @db.Uuid
+  ownerId           String?          @map("owner_id")
   lossReason        String?          @map("loss_reason")
   notes             String?
   createdAt         DateTime         @default(now()) @map("created_at")
@@ -2775,9 +2779,9 @@ model B2bOpportunity {
 }
 
 model B2bContract {
-  id               String         @id @default(uuid()) @db.Uuid
-  organizationId   String         @map("organization_id") @db.Uuid
-  opportunityId    String?        @map("opportunity_id") @db.Uuid
+  id               String         @id @default(uuid()) @map("_id")
+  organizationId   String         @map("organization_id")
+  opportunityId    String?        @map("opportunity_id")
   contractType     ProgrammeType  @map("contract_type")
   startDate        DateTime       @map("start_date")
   endDate          DateTime?      @map("end_date")
@@ -2787,7 +2791,7 @@ model B2bContract {
   currency         String         @default("INR")
   paymentTermsDays Int            @default(30) @map("payment_terms_days")
   status           ContractStatus @default(DRAFT_CONTRACT)
-  signedDocumentId String?        @map("signed_document_id") @db.Uuid
+  signedDocumentId String?        @map("signed_document_id")
   notes            String?
   createdAt        DateTime       @default(now()) @map("created_at")
   updatedAt        DateTime       @updatedAt @map("updated_at")
@@ -2803,9 +2807,9 @@ model B2bContract {
 }
 
 model PartnerProgramme {
-  id                String            @id @default(uuid()) @db.Uuid
-  organizationId    String            @map("organization_id") @db.Uuid
-  contractId        String?           @map("contract_id") @db.Uuid
+  id                String            @id @default(uuid()) @map("_id")
+  organizationId    String            @map("organization_id")
+  contractId        String?           @map("contract_id")
   name              String
   slug              String            @unique
   programmeType     ProgrammeType     @map("programme_type")
@@ -2816,7 +2820,7 @@ model PartnerProgramme {
   endDate           DateTime?         @map("end_date")
   status            ProgrammeStatus   @default(DRAFT_PROGRAMME)
   supportTier       String?           @map("support_tier")
-  accountManagerId  String?           @map("account_manager_id") @db.Uuid
+  accountManagerId  String?           @map("account_manager_id")
   metadata          Json?
   createdAt         DateTime          @default(now()) @map("created_at")
   updatedAt         DateTime          @updatedAt @map("updated_at")
@@ -2834,9 +2838,9 @@ model PartnerProgramme {
 }
 
 model ProgrammeMembership {
-  id                 String                   @id @default(uuid()) @db.Uuid
-  programmeId        String                   @map("programme_id") @db.Uuid
-  customerId         String                   @map("customer_id") @db.Uuid
+  id                 String                   @id @default(uuid()) @map("_id")
+  programmeId        String                   @map("programme_id")
+  customerId         String                   @map("customer_id")
   verificationMethod EligibilityMethod?       @map("verification_method")
   verificationStatus MemberVerificationStatus @default(PENDING_VERIFICATION) @map("verification_status")
   verifiedAt         DateTime?                @map("verified_at")
@@ -2858,16 +2862,16 @@ model ProgrammeMembership {
 }
 
 model ProgrammeVerificationToken {
-  id           String    @id @default(uuid()) @db.Uuid
-  programmeId  String    @map("programme_id") @db.Uuid
-  membershipId String    @map("membership_id") @db.Uuid
-  tokenHash    String    @unique @map("token_hash") @db.VarChar(64)
+  id           String    @id @default(uuid()) @map("_id")
+  programmeId  String    @map("programme_id")
+  membershipId String    @map("membership_id")
+  tokenHash    String    @unique @map("token_hash")
   expiresAt    DateTime  @map("expires_at")
   attemptCount Int       @default(0) @map("attempt_count")
   maxAttempts  Int       @default(5) @map("max_attempts")
   consumedAt   DateTime? @map("consumed_at")
   revokedAt    DateTime? @map("revoked_at")
-  issuedBy     String    @map("issued_by") @db.Uuid
+  issuedBy     String    @map("issued_by")
   createdAt    DateTime  @default(now()) @map("created_at")
 
   programme  PartnerProgramme    @relation(fields: [programmeId], references: [id], onDelete: Cascade)
@@ -2881,8 +2885,8 @@ model ProgrammeVerificationToken {
 }
 
 model BenefitWallet {
-  id                    String       @id @default(uuid()) @db.Uuid
-  programmeMembershipId String       @unique @map("programme_membership_id") @db.Uuid
+  id                    String       @id @default(uuid()) @map("_id")
+  programmeMembershipId String       @unique @map("programme_membership_id")
   currency              String       @default("INR")
   status                WalletStatus @default(ACTIVE_WALLET)
   expiresAt             DateTime?    @map("expires_at")
@@ -2896,13 +2900,13 @@ model BenefitWallet {
 }
 
 model BenefitLedgerEntry {
-  id             String           @id @default(uuid()) @db.Uuid
-  walletId       String           @map("wallet_id") @db.Uuid
+  id             String           @id @default(uuid()) @map("_id")
+  walletId       String           @map("wallet_id")
   entryType      BenefitEntryType @map("entry_type")
   amountPaise    Int              @map("amount_paise")
   balanceAfter   Int              @map("balance_after")
-  bookingId      String?          @map("booking_id") @db.Uuid
-  invoiceId      String?          @map("invoice_id") @db.Uuid
+  bookingId      String?          @map("booking_id")
+  invoiceId      String?          @map("invoice_id")
   reference      String?
   idempotencyKey String?          @unique @map("idempotency_key")
   createdAt      DateTime         @default(now()) @map("created_at")
@@ -2914,8 +2918,8 @@ model BenefitLedgerEntry {
 }
 
 model PromotionCode {
-  id              String   @id @default(uuid()) @db.Uuid
-  programmeId     String?  @map("programme_id") @db.Uuid
+  id              String   @id @default(uuid()) @map("_id")
+  programmeId     String?  @map("programme_id")
   code            String   @unique
   discountType    String   @map("discount_type")
   discountValue   Int      @map("discount_value")
@@ -2938,10 +2942,10 @@ model PromotionCode {
 }
 
 model EnterpriseInvoice {
-  id             String        @id @default(uuid()) @db.Uuid
+  id             String        @id @default(uuid()) @map("_id")
   invoiceNumber  String        @unique @map("invoice_number")
-  organizationId String        @map("organization_id") @db.Uuid
-  contractId     String?       @map("contract_id") @db.Uuid
+  organizationId String        @map("organization_id")
+  contractId     String?       @map("contract_id")
   supplierGstin  String?       @map("supplier_gstin")
   customerGstin  String?       @map("customer_gstin")
   placeOfSupply  String?       @map("place_of_supply")
@@ -2960,7 +2964,7 @@ model EnterpriseInvoice {
   paidAt         DateTime?     @map("paid_at")
   poReference    String?       @map("po_reference")
   notes          String?
-  creditNoteOf   String?       @map("credit_note_of") @db.Uuid
+  creditNoteOf   String?       @map("credit_note_of")
   irnNumber      String?       @map("irn_number")
   createdAt      DateTime      @default(now()) @map("created_at")
   updatedAt      DateTime      @updatedAt @map("updated_at")
@@ -2979,8 +2983,8 @@ model EnterpriseInvoice {
 // ═══════════════════════════════════════════════════════════════
 
 model CityFinancialRecord {
-  id          String @id @default(uuid()) @db.Uuid
-  cityId      String @map("city_id") @db.Uuid
+  id          String @id @default(uuid()) @map("_id")
+  cityId      String @map("city_id")
   periodMonth Int    @map("period_month")
   periodYear  Int    @map("period_year")
 
@@ -3010,9 +3014,9 @@ model CityFinancialRecord {
 }
 
 model CityHealthScore {
-  id         String   @id @default(uuid()) @db.Uuid
-  cityId     String   @map("city_id") @db.Uuid
-  periodDate DateTime @map("period_date") @db.Date
+  id         String   @id @default(uuid()) @map("_id")
+  cityId     String   @map("city_id")
+  periodDate DateTime @map("period_date")
 
   // Scores (0-100)
   overallScore    Int @map("overall_score")
@@ -3035,9 +3039,9 @@ model CityHealthScore {
 }
 
 model CityManager {
-  id         String    @id @default(uuid()) @db.Uuid
-  cityId     String    @map("city_id") @db.Uuid
-  userId     String    @map("user_id") @db.Uuid
+  id         String    @id @default(uuid()) @map("_id")
+  cityId     String    @map("city_id")
+  userId     String    @map("user_id")
   status     String    @default("ACTIVE") // ACTIVE, INACTIVE
   assignedAt DateTime  @default(now()) @map("assigned_at")
   revokedAt  DateTime? @map("revoked_at")
@@ -3063,9 +3067,9 @@ enum SuspensionReason {
 }
 
 model ProviderSuspension {
-  id          String           @id @default(uuid()) @db.Uuid
-  sitterId    String           @map("sitter_id") @db.Uuid
-  incidentId  String?          @map("incident_id") @db.Uuid
+  id          String           @id @default(uuid()) @map("_id")
+  sitterId    String           @map("sitter_id")
+  incidentId  String?          @map("incident_id")
   reason      SuspensionReason
   description String
   issuedAt    DateTime         @default(now()) @map("issued_at")
@@ -3073,7 +3077,7 @@ model ProviderSuspension {
   isAppealed  Boolean          @default(false) @map("is_appealed")
   appealNotes String?          @map("appeal_notes")
   liftedAt    DateTime?        @map("lifted_at")
-  liftedBy    String?          @map("lifted_by") @db.Uuid
+  liftedBy    String?          @map("lifted_by")
   createdAt   DateTime         @default(now()) @map("created_at")
   updatedAt   DateTime         @updatedAt @map("updated_at")
 
@@ -3086,9 +3090,9 @@ model ProviderSuspension {
 }
 
 model SafetyAudit {
-  id             String   @id @default(uuid()) @db.Uuid
-  sitterId       String   @map("sitter_id") @db.Uuid
-  auditorId      String   @map("auditor_id") @db.Uuid
+  id             String   @id @default(uuid()) @map("_id")
+  sitterId       String   @map("sitter_id")
+  auditorId      String   @map("auditor_id")
   auditDate      DateTime @map("audit_date")
   score          Int // 0-100
   passed         Boolean
@@ -3109,10 +3113,10 @@ model SafetyAudit {
 // ═══════════════════════════════════════════════════════════════
 
 model OperatingPartner {
-  id                String         @id @default(uuid()) @db.Uuid
+  id                String         @id @default(uuid()) @map("_id")
   legalName         String         @map("legal_name")
   displayName       String         @map("display_name")
-  contactPersonId   String         @map("contact_person_id") @db.Uuid
+  contactPersonId   String         @map("contact_person_id")
   email             String
   phone             String?
   gstin             String?
@@ -3134,10 +3138,10 @@ model OperatingPartner {
 }
 
 model Territory {
-  id                 String        @id @default(uuid()) @db.Uuid
-  operatingPartnerId String        @map("operating_partner_id") @db.Uuid
-  cityId             String        @map("city_id") @db.Uuid
-  serviceZoneId      String?       @map("service_zone_id") @db.Uuid
+  id                 String        @id @default(uuid()) @map("_id")
+  operatingPartnerId String        @map("operating_partner_id")
+  cityId             String        @map("city_id")
+  serviceZoneId      String?       @map("service_zone_id")
   territoryType      TerritoryType @default(MANAGED)
   name               String
   isActive           Boolean       @default(true) @map("is_active")
@@ -3162,8 +3166,8 @@ model Territory {
 // ═══════════════════════════════════════════════════════════════
 
 model ContentConsentRecord {
-  id             String         @id @default(uuid()) @db.Uuid
-  userId         String         @map("user_id") @db.Uuid
+  id             String         @id @default(uuid()) @map("_id")
+  userId         String         @map("user_id")
   purpose        ConsentPurpose
   consentVersion String         @map("consent_version")
   grantedAt      DateTime       @default(now()) @map("granted_at")
@@ -3181,12 +3185,12 @@ model ContentConsentRecord {
 }
 
 model DataSubjectRequest {
-  id            String            @id @default(uuid()) @db.Uuid
-  userId        String            @map("user_id") @db.Uuid
+  id            String            @id @default(uuid()) @map("_id")
+  userId        String            @map("user_id")
   requestType   DataRequestType   @map("request_type")
   status        DataRequestStatus @default(PENDING_DSR)
   description   String?
-  handledById   String?           @map("handled_by_id") @db.Uuid
+  handledById   String?           @map("handled_by_id")
   completedAt   DateTime?         @map("completed_at")
   responseNotes String?           @map("response_notes")
   dueDate       DateTime          @map("due_date")
@@ -3202,7 +3206,7 @@ model DataSubjectRequest {
 }
 
 model DataRetentionPolicy {
-  id            String    @id @default(uuid()) @db.Uuid
+  id            String    @id @default(uuid()) @map("_id")
   entityType    String    @map("entity_type") // e.g., "User", "Booking", "Incident"
   retentionDays Int       @map("retention_days")
   action        String // ANONYMIZE, DELETE

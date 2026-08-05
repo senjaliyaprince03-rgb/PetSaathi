@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 
 import { prisma } from "@/lib/db";
-import { createSupabaseAdminClient } from "@/lib/supabase/admin";
+import { deleteGridFsObject, promoteGridFsObject } from "@/modules/storage/gridfs";
 
 const scanSchema = z.object({ uploadId: z.string().uuid(), verdict: z.enum(["CLEAN", "MALICIOUS", "UNSCANNABLE"]), detectedMime: z.enum(["image/jpeg", "image/png", "image/webp", "application/pdf"]).optional(), sha256: z.string().regex(/^[a-f0-9]{64}$/i).optional(), provider: z.string().trim().min(2).max(80), details: z.record(z.unknown()).optional() });
 
@@ -20,23 +20,18 @@ export async function POST(request: Request) {
   const upload = await prisma.uploadObject.findUnique({ where: { id: parsed.data.uploadId } });
   if (!upload) return NextResponse.json({ error: "not_found" }, { status: 404 });
   if (upload.status === "PROMOTED" || upload.status === "REJECTED" || upload.status === "DELETED") return NextResponse.json({ accepted: true, duplicate: true, status: upload.status });
-  const supabase = createSupabaseAdminClient();
-  if (!supabase) return NextResponse.json({ error: "storage_not_configured" }, { status: 503 });
   const clean = parsed.data.verdict === "CLEAN" && parsed.data.detectedMime === upload.mimeType;
   const scanResult = { verdict: parsed.data.verdict, detectedMime: parsed.data.detectedMime, details: parsed.data.details } as Prisma.InputJsonValue;
   if (!clean) {
-    await supabase.storage.from("upload-quarantine").remove([upload.quarantinePath]);
+    await deleteGridFsObject(upload.id, "upload-quarantine");
     await prisma.uploadObject.update({ where: { id: upload.id }, data: { status: "REJECTED", scannerProvider: parsed.data.provider, scanResult, sha256: parsed.data.sha256, scannedAt: new Date() } });
     return NextResponse.json({ accepted: true, status: "REJECTED" });
   }
   const destinationBucket = destinationByPurpose[upload.purpose];
   if (!destinationBucket) return NextResponse.json({ error: "unsupported_purpose" }, { status: 422 });
   const destinationPath = upload.quarantinePath.replace(`${upload.purpose.toLowerCase()}/`, "");
-  const download = await supabase.storage.from("upload-quarantine").download(upload.quarantinePath);
-  if (download.error || !download.data) return NextResponse.json({ error: "quarantine_object_unavailable" }, { status: 409 });
-  const promoted = await supabase.storage.from(destinationBucket).upload(destinationPath, download.data, { contentType: upload.mimeType, upsert: false });
-  if (promoted.error) return NextResponse.json({ error: "promotion_failed" }, { status: 502 });
-  await supabase.storage.from("upload-quarantine").remove([upload.quarantinePath]);
+  const promoted = await promoteGridFsObject({ uploadId: upload.id, fromBucket: "upload-quarantine", toBucket: destinationBucket, destinationPath, contentType: upload.mimeType });
+  if (!promoted) return NextResponse.json({ error: "quarantine_object_unavailable" }, { status: 409 });
   await prisma.$transaction(async (tx) => {
     await tx.uploadObject.update({ where: { id: upload.id }, data: { status: "PROMOTED", destinationBucket, destinationPath, scannerProvider: parsed.data.provider, scanResult, sha256: parsed.data.sha256, scannedAt: new Date(), promotedAt: new Date() } });
     if (upload.purpose === "INCIDENT_EVIDENCE") {

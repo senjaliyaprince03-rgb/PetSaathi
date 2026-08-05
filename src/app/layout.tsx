@@ -1,40 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Manrope, Playfair_Display, Inter, Plus_Jakarta_Sans, Outfit } from "next/font/google";
 
 import { SiteMotion } from "@/components/motion/site-motion";
 import { CustomCursor } from "@/components/marketing/custom-cursor";
+import { GoogleAnalytics } from "@next/third-parties/google";
+import { hasUsableAnalyticsId } from "@/lib/public-config";
 
 import "./globals.css";
-
-const jakarta = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  variable: "--font-jakarta",
-  weight: ["400", "500", "600", "700", "800"],
-});
-
-const outfit = Outfit({
-  subsets: ["latin"],
-  variable: "--font-outfit",
-  weight: ["500", "600", "700", "800"],
-});
-
-const manrope = Manrope({
-  subsets: ["latin"],
-  variable: "--font-manrope",
-  weight: ["400", "500", "600", "700"],
-});
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair",
-  weight: ["400", "500", "600", "700"],
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  weight: ["300", "400", "500", "600", "700"],
-});
 
 export const viewport: Viewport = {
   themeColor: "#fffdf8",
@@ -58,12 +29,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const analyticsId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className={`${jakarta.variable} ${outfit.variable} ${manrope.variable} ${inter.variable} ${playfair.variable} relative overflow-x-hidden bg-background font-sans text-on-background selection:bg-saffron/35`}>
+    <html lang="en" className="scroll-smooth" data-scroll-behavior="smooth">
+      <body className="relative overflow-x-clip bg-background font-sans text-on-background selection:bg-saffron/35">
         <SiteMotion />
         <CustomCursor />
         {children}
+        {hasUsableAnalyticsId(analyticsId) && (
+          <GoogleAnalytics gaId={analyticsId!} />
+        )}
       </body>
     </html>
   );

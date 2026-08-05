@@ -13,7 +13,7 @@ describe("booking price and capacity transaction", () => {
   const scheduledStart = new Date(Date.now() + 48 * 60 * 60_000);
 
   beforeAll(async () => {
-    const customer = await prisma.user.create({ data: { authUserId: randomUUID(), email: `booking-${suffix}@example.test`, displayName: "Booking Integration", status: "ACTIVE" } });
+    const customer = await prisma.user.create({ data: { email: `booking-${suffix}@example.test`, displayName: "Booking Integration", status: "ACTIVE" } });
     const pet = await prisma.pet.create({ data: { ownerId: customer.id, name: "Milo", species: "DOG", active: true } });
     const address = await prisma.address.create({ data: { userId: customer.id, label: "Home", line1: "12 Test Avenue", locality: `Locality ${suffix}`, city: `City ${suffix}`, state: "Gujarat", postalCode: "999000" } });
     const city = await prisma.city.create({ data: { slug: `city-${suffix}`, name: `City ${suffix}`, state: "Gujarat", status: "PUBLIC_LIMITED", launchedAt: new Date() } });

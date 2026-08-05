@@ -57,7 +57,7 @@ However, launch is still blocked by:
 - permissive/duplicated CSP;
 - incomplete readiness and server-environment enforcement;
 - unapproved final legal policies;
-- unverified live Supabase, Razorpay, notifications, storage, scanning, maps, and Sentry;
+- unverified live legacy backend, Razorpay, notifications, storage, scanning, maps, and Sentry;
 - the requested clean hero image still has a white 40% overlay;
 - cursor-scroll regression coverage was removed while the cursor remains implemented.
 
@@ -177,8 +177,8 @@ The source is buildable. With non-secret audit values for required public and se
 
 The normal build still fails because `src/lib/env.ts` requires production public values during page-data collection:
 
-- `NEXT_PUBLIC_SUPABASE_URL`;
-- `NEXT_PUBLIC_SUPABASE_ANON_KEY`;
+- the former provider public URL;
+- the former provider anonymous key;
 - `NEXT_PUBLIC_RAZORPAY_KEY_ID`.
 
 The GitHub Actions quality job does not define these values. Therefore the current CI quality job is expected to fail at `npm run build`, preventing the dependent E2E job from starting.
@@ -235,7 +235,7 @@ This is an environment/CI contract defect, not a TypeScript or compilation defec
 
 **Complete**
 
-- Supabase session adapter exists.
+- A legacy provider session adapter existed at the time of the audit.
 - Sensitive canonical routes commonly require active identity and roles.
 - Shared admin layout now rejects anonymous/non-admin visitors.
 - Focused live audit confirmed anonymous users are redirected away from:
@@ -256,7 +256,7 @@ This is an environment/CI contract defect, not a TypeScript or compilation defec
 - Admin layout redirects all roles to a generic `/admin` return target rather than preserving exact destination.
 - `as any` is used to bypass typed redirects.
 - `CITY_MANAGER` and `OPERATOR` remain missing from the canonical permission module.
-- Live authenticated role-by-role testing was not possible without Supabase/database credentials.
+- Live authenticated role-by-role testing was not possible without the former provider credentials.
 
 ### 5.4 Customer experience — 72%
 
@@ -552,7 +552,7 @@ These areas have meaningful implementation but lack one or more of:
 
 - PostgreSQL integration suite.
 - Migration replay/status.
-- Supabase authenticated journey.
+- Former-provider authenticated journey.
 - Razorpay sandbox payment/refund/payout.
 - Resend and WhatsApp delivery.
 - Storage/scanner workflow.
@@ -733,7 +733,7 @@ The security score therefore increases from the earlier audit but cannot exceed 
 | Coverage | Configured | Cannot run | Install provider and thresholds |
 | Load/concurrency | No | Not available | Booking/capacity/webhook races |
 | Security matrix | Partial | Existing checks pass | Add exact remediated endpoints/roles |
-| Provider sandbox | No current proof | Not available | Supabase/Razorpay/notifications |
+| Provider sandbox | No current proof | Not available | Legacy backend/Razorpay/notifications |
 
 ---
 
@@ -743,9 +743,9 @@ The security score therefore increases from the earlier audit but cannot exceed 
 
 - `DATABASE_URL`
 - `DIRECT_URL`
-- `NEXT_PUBLIC_SUPABASE_URL`
-- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-- `SUPABASE_SERVICE_ROLE_KEY`
+- Former-provider public URL
+- Former-provider anonymous key
+- Former-provider service credential
 - `NEXT_PUBLIC_RAZORPAY_KEY_ID`
 - `RAZORPAY_KEY_SECRET`
 - `RAZORPAY_WEBHOOK_SECRET`
@@ -793,7 +793,7 @@ Recommended correction:
 6. Harden CSP using nonces/hashes and remove unsafe-eval.
 7. Implement connectivity-based readiness.
 8. Validate server environment at application startup.
-9. Run Supabase and Razorpay sandbox journeys.
+9. Run legacy-backend and Razorpay sandbox journeys.
 10. Restore cursor scroll/reduced-motion coverage.
 11. Remove the hero overlay if the required design is a clear, unfiltered image.
 
@@ -875,5 +875,4 @@ PetSaathi has strong source implementation and a healthy local frontend/test bas
 
 1. **Make backend verification real:** provision disposable PostgreSQL, replay migrations, pass all integration tests, and add targeted authorization regression tests.
 2. **Make delivery reproducible:** correct CI build environment wiring, add coverage, clean the dependency tree, and produce a reviewed clean commit.
-3. **Finish product truth and production safety:** replace mocks/placeholders, implement partner verification and matching scores, remove the hero overlay, restore cursor coverage, and verify Supabase/Razorpay sandbox flows.
-
+3. **Finish product truth and production safety:** replace mocks/placeholders, implement partner verification and matching scores, remove the hero overlay, restore cursor coverage, and verify backend/Razorpay sandbox flows.

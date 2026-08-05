@@ -1,0 +1,280 @@
+
+> petsaathi@0.1.0 build
+> prisma generate && next build
+
+Loaded Prisma config from prisma.config.ts.
+
+Prisma config detected, skipping environment variable loading.
+Prisma schema loaded from prisma\schema.prisma
+
+✔ Generated Prisma Client (v6.19.3) to .\node_modules\@prisma\client in 719ms
+
+Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+
+Tip: Need your database queries to be 1000x faster? Accelerate offers you that and more: https://pris.ly/tip-2-accelerate
+
+   ▲ Next.js 15.5.22
+   - Environments: .env
+   - Experiments (use with caution):
+     · clientTraceMetadata
+
+   Creating an optimized production build ...
+[@sentry/nextjs] DEPRECATION WARNING: It is recommended renaming your `sentry.client.config.ts` file, or moving its content to `instrumentation-client.ts`. When using Turbopack `sentry.client.config.ts` will no longer work. Read more about the `instrumentation-client.ts` file: https://nextjs.org/docs/app/api-reference/file-conventions/instrumentation-client
+<w> [webpack.cache.PackFileCacheStrategy] Serializing big strings (132kiB) impacts deserialization performance (consider using Buffer instead and decode when needed)
+<w> [webpack.cache.PackFileCacheStrategy] Serializing big strings (106kiB) impacts deserialization performance (consider using Buffer instead and decode when needed)
+<w> [webpack.cache.PackFileCacheStrategy] Serializing big strings (253kiB) impacts deserialization performance (consider using Buffer instead and decode when needed)
+<w> [webpack.cache.PackFileCacheStrategy] Serializing big strings (139kiB) impacts deserialization performance (consider using Buffer instead and decode when needed)
+ ✓ Compiled successfully in 3.6min
+   Linting and checking validity of types ...
+   Collecting page data ...
+ ⚠ Using edge runtime on a page currently disables static generation for that page
+   Generating static pages (0/93) ...
+   Generating static pages (23/93) 
+   Generating static pages (46/93) 
+   Generating static pages (69/93) 
+ ✓ Generating static pages (93/93)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                                              Size  First Load JS
+┌ ○ /                                                                   86 kB         400 kB
+├ ○ /_not-found                                                         683 B         254 kB
+├ ○ /about                                                            1.72 kB         271 kB
+├ ƒ /addresses/new                                                    6.32 kB         300 kB
+├ ƒ /admin                                                            1.79 kB         271 kB
+├ ƒ /admin/b2b                                                        1.79 kB         271 kB
+├ ƒ /admin/b2b/invoices                                               1.79 kB         271 kB
+├ ƒ /admin/b2b/organizations                                          1.79 kB         271 kB
+├ ƒ /admin/b2b/pipeline                                               1.79 kB         271 kB
+├ ƒ /admin/b2b/programmes                                             1.79 kB         271 kB
+├ ƒ /admin/catalog                                                     5.2 kB         275 kB
+├ ƒ /admin/cities                                                     1.79 kB         271 kB
+├ ƒ /admin/content                                                     3.6 kB         273 kB
+├ ƒ /admin/content/testimonials                                       2.19 kB         272 kB
+├ ƒ /admin/features                                                   2.22 kB         272 kB
+├ ƒ /admin/finance                                                    4.39 kB         274 kB
+├ ƒ /admin/leads                                                      2.32 kB         272 kB
+├ ƒ /admin/matching                                                   4.05 kB         274 kB
+├ ƒ /admin/operations                                                   388 B         273 kB
+├ ƒ /admin/operations/cities/[id]/health                              1.79 kB         271 kB
+├ ƒ /admin/operations/community                                       2.07 kB         272 kB
+├ ƒ /admin/operations/live                                            1.79 kB         271 kB
+├ ƒ /admin/operations/queue                                           1.79 kB         271 kB
+├ ƒ /admin/operations/trust-safety                                    1.79 kB         271 kB
+├ ƒ /admin/partner-orders                                             2.61 kB         272 kB
+├ ƒ /admin/partners                                                   1.79 kB         271 kB
+├ ƒ /admin/privacy                                                    2.36 kB         272 kB
+├ ƒ /admin/reports                                                    2.97 kB         273 kB
+├ ƒ /admin/reports/investor-metrics                                   1.79 kB         271 kB
+├ ƒ /admin/safety                                                     6.16 kB         276 kB
+├ ƒ /admin/support                                                    2.48 kB         272 kB
+├ ƒ /admin/verification                                               1.79 kB         271 kB
+├ ƒ /api/account-requests                                               680 B         254 kB
+├ ƒ /api/account-requests/[id]/cancel                                   680 B         254 kB
+├ ƒ /api/addresses                                                      680 B         254 kB
+├ ƒ /api/admin/account-requests/[id]/transition                         681 B         254 kB
+├ ƒ /api/admin/b2b/contracts                                            680 B         254 kB
+├ ƒ /api/admin/b2b/programmes                                           681 B         254 kB
+├ ƒ /api/admin/bookings/[id]/assignments                                681 B         254 kB
+├ ƒ /api/admin/bookings/[id]/match                                      680 B         254 kB
+├ ƒ /api/admin/bookings/[id]/no-show                                    683 B         254 kB
+├ ƒ /api/admin/bookings/[id]/risk-review                                680 B         254 kB
+├ ƒ /api/admin/capacity-limits                                          684 B         254 kB
+├ ƒ /api/admin/cities                                                   681 B         254 kB
+├ ƒ /api/admin/cities/[id]/launch                                       683 B         254 kB
+├ ƒ /api/admin/cities/[id]/managers                                     682 B         254 kB
+├ ƒ /api/admin/cities/[id]/services                                     682 B         254 kB
+├ ƒ /api/admin/community/memberships/[id]                               682 B         254 kB
+├ ƒ /api/admin/complaints/[id]/transition                               681 B         254 kB
+├ ƒ /api/admin/content                                                  681 B         254 kB
+├ ƒ /api/admin/content/[id]                                             683 B         254 kB
+├ ƒ /api/admin/content/[id]/expert-review                               682 B         254 kB
+├ ƒ /api/admin/content/[id]/review                                      681 B         254 kB
+├ ƒ /api/admin/content/[id]/transition                                  682 B         254 kB
+├ ƒ /api/admin/contracts                                                682 B         254 kB
+├ ƒ /api/admin/contracts/[id]                                           681 B         254 kB
+├ ƒ /api/admin/enterprise-invoices                                      684 B         254 kB
+├ ƒ /api/admin/enterprise-invoices/[id]                                 682 B         254 kB
+├ ƒ /api/admin/enterprise-invoices/[id]/credit-note                     682 B         254 kB
+├ ƒ /api/admin/enterprise-invoices/[id]/record-payment                  682 B         254 kB
+├ ƒ /api/admin/enterprise-invoices/[id]/send                            683 B         254 kB
+├ ƒ /api/admin/features/[key]                                           684 B         254 kB
+├ ƒ /api/admin/incidents/[id]/corrective-actions                        684 B         254 kB
+├ ƒ /api/admin/incidents/[id]/corrective-actions/[actionId]/complete    681 B         254 kB
+├ ƒ /api/admin/incidents/[id]/events                                    681 B         254 kB
+├ ƒ /api/admin/incidents/[id]/sitter-hold                               682 B         254 kB
+├ ƒ /api/admin/incidents/[id]/transition                                683 B         254 kB
+├ ƒ /api/admin/leads/[id]                                               682 B         254 kB
+├ ƒ /api/admin/opportunities                                            681 B         254 kB
+├ ƒ /api/admin/opportunities/[id]                                       682 B         254 kB
+├ ƒ /api/admin/opportunities/[id]/change-stage                          683 B         254 kB
+├ ƒ /api/admin/organizations                                            681 B         254 kB
+├ ƒ /api/admin/organizations/[id]                                       684 B         254 kB
+├ ƒ /api/admin/partner-orders/[id]/transition                           681 B         254 kB
+├ ƒ /api/admin/partner-programmes                                       681 B         254 kB
+├ ƒ /api/admin/partner-programmes/[id]                                  682 B         254 kB
+├ ƒ /api/admin/partner-programmes/[id]/activate                         681 B         254 kB
+├ ƒ /api/admin/partner-programmes/[id]/pause                            682 B         254 kB
+├ ƒ /api/admin/partner-programmes/[id]/verification-tokens              683 B         254 kB
+├ ƒ /api/admin/partners                                                 680 B         254 kB
+├ ƒ /api/admin/partners/[id]                                            682 B         254 kB
+├ ƒ /api/admin/partners/[id]/locations                                  682 B         254 kB
+├ ƒ /api/admin/partners/[id]/services                                   680 B         254 kB
+├ ƒ /api/admin/partners/[id]/verifications                              683 B         254 kB
+├ ƒ /api/admin/payouts/[id]/transition                                  682 B         254 kB
+├ ƒ /api/admin/plan-versions                                            681 B         254 kB
+├ ƒ /api/admin/reconciliation-runs                                      682 B         254 kB
+├ ƒ /api/admin/reconciliation-runs/[id]/complete                        682 B         254 kB
+├ ƒ /api/admin/refunds/[id]/transition                                  683 B         254 kB
+├ ƒ /api/admin/reports/[id]/review                                      683 B         254 kB
+├ ƒ /api/admin/reports/investor-metrics                                 683 B         254 kB
+├ ƒ /api/admin/scale/audits                                             681 B         254 kB
+├ ƒ /api/admin/scale/cities                                             683 B         254 kB
+├ ƒ /api/admin/scale/partners                                           681 B         254 kB
+├ ƒ /api/admin/service-areas                                            681 B         254 kB
+├ ƒ /api/admin/service-prices                                           684 B         254 kB
+├ ƒ /api/admin/sitters/[id]/permissions                                 681 B         254 kB
+├ ƒ /api/admin/sitters/[id]/status                                      682 B         254 kB
+├ ƒ /api/admin/sitters/[id]/training-attempts                           682 B         254 kB
+├ ƒ /api/admin/sitters/[id]/verifications                               684 B         254 kB
+├ ƒ /api/admin/societies                                                681 B         254 kB
+├ ƒ /api/admin/societies/[id]                                           681 B         254 kB
+├ ƒ /api/admin/support-cases/[id]/transition                            682 B         254 kB
+├ ƒ /api/admin/testimonials                                             683 B         254 kB
+├ ƒ /api/admin/testimonials/[id]                                        681 B         254 kB
+├ ƒ /api/auth/otp/request                                               681 B         254 kB
+├ ƒ /api/auth/otp/verify                                                682 B         254 kB
+├ ƒ /api/auth/signout                                                   682 B         254 kB
+├ ƒ /api/b2b/memberships                                                683 B         254 kB
+├ ƒ /api/b2b/societies/[societyId]/dashboard                            681 B         254 kB
+├ ƒ /api/bookings                                                       682 B         254 kB
+├ ƒ /api/bookings/[id]/approve-assignment                               681 B         254 kB
+├ ƒ /api/bookings/[id]/cancel                                           681 B         254 kB
+├ ƒ /api/bookings/[id]/complaints                                       682 B         254 kB
+├ ƒ /api/bookings/[id]/incidents                                        682 B         254 kB
+├ ƒ /api/bookings/[id]/payment-order                                    681 B         254 kB
+├ ƒ /api/bookings/[id]/refunds                                          683 B         254 kB
+├ ƒ /api/bookings/[id]/review                                           680 B         254 kB
+├ ƒ /api/bookings/[id]/tracking                                         680 B         254 kB
+├ ƒ /api/communication-preferences                                      683 B         254 kB
+├ ƒ /api/content/cities/[cityId]                                        682 B         254 kB
+├ ƒ /api/customer/bookings/[id]/live                                    681 B         254 kB
+├ ƒ /api/customer/dashboard                                             680 B         254 kB
+├ ƒ /api/customer/loyalty                                               684 B         254 kB
+├ ƒ /api/customer/pets/[id]/health                                      681 B         254 kB
+├ ƒ /api/customer/pets/[id]/timeline                                    682 B         254 kB
+├ ƒ /api/customer/pets/[id]/timeline/events                             682 B         254 kB
+├ ƒ /api/customer/pets/sync                                             683 B         254 kB
+├ ƒ /api/health                                                         681 B         254 kB
+├ ƒ /api/jobs/notifications                                             682 B         254 kB
+├ ƒ /api/jobs/tracking-retention                                        681 B         254 kB
+├ ƒ /api/jobs/upload-retention                                          682 B         254 kB
+├ ƒ /api/leads                                                          682 B         254 kB
+├ ƒ /api/notifications                                                  683 B         254 kB
+├ ƒ /api/og                                                             682 B         254 kB
+├ ƒ /api/partner-orders                                                 681 B         254 kB
+├ ƒ /api/partner-programmes/[slug]                                      683 B         254 kB
+├ ƒ /api/partner-programmes/[slug]/benefits                             682 B         254 kB
+├ ƒ /api/partner-programmes/[slug]/enroll                               683 B         254 kB
+├ ƒ /api/partner-programmes/[slug]/verify                               684 B         254 kB
+├ ƒ /api/payments/verify                                                682 B         254 kB
+├ ƒ /api/pets                                                           683 B         254 kB
+├ ƒ /api/pets/[id]/care-instructions                                    682 B         254 kB
+├ ƒ /api/pets/[id]/health-events                                        682 B         254 kB
+├ ƒ /api/pets/[id]/medications                                          681 B         254 kB
+├ ƒ /api/pets/[id]/medications/[medicationId]                           683 B         254 kB
+├ ƒ /api/pets/[id]/vaccinations                                         682 B         254 kB
+├ ƒ /api/privacy/consent                                                682 B         254 kB
+├ ƒ /api/privacy/dsr                                                    684 B         254 kB
+├ ƒ /api/public/community/join                                          681 B         254 kB
+├ ƒ /api/public/lead-magnets                                            680 B         254 kB
+├ ƒ /api/public/leads                                                   681 B         254 kB
+├ ƒ /api/public/testimonials                                            683 B         254 kB
+├ ƒ /api/ready                                                          681 B         254 kB
+├ ƒ /api/saathi/application                                             682 B         254 kB
+├ ƒ /api/saathi/assignments                                             682 B         254 kB
+├ ƒ /api/saathi/assignments/[id]/cancel                                 681 B         254 kB
+├ ƒ /api/saathi/assignments/[id]/events                                 680 B         254 kB
+├ ƒ /api/saathi/assignments/[id]/report                                 682 B         254 kB
+├ ƒ /api/saathi/assignments/[id]/response                               683 B         254 kB
+├ ƒ /api/saathi/assignments/[id]/tracking                               682 B         254 kB
+├ ƒ /api/sentry-example-api                                             682 B         254 kB
+├ ƒ /api/subscriptions                                                  681 B         254 kB
+├ ƒ /api/support-cases                                                  682 B         254 kB
+├ ƒ /api/uploads/sign                                                   682 B         254 kB
+├ ƒ /api/webhooks/razorpay                                              681 B         254 kB
+├ ƒ /api/webhooks/sanity-publish                                        685 B         254 kB
+├ ƒ /api/webhooks/scanner                                               681 B         254 kB
+├ ƒ /become-a-saathi                                                  7.28 kB         301 kB
+├ ƒ /benefits/[slug]                                                  3.98 kB         274 kB
+├ ƒ /book                                                             12.2 kB         306 kB
+├ ƒ /bookings/[id]                                                    4.08 kB         279 kB
+├ ƒ /bookings/[id]/checkout                                             389 B         275 kB
+├ ƒ /bookings/[id]/feedback                                             389 B         275 kB
+├ ƒ /bookings/[id]/live                                               2.59 kB         272 kB
+├ ƒ /bookings/[id]/report                                             1.79 kB         271 kB
+├ ƒ /bookings/[id]/timeline                                           1.79 kB         271 kB
+├ ○ /caregivers                                                       1.72 kB         271 kB
+├ ƒ /cities/[slug]                                                    1.72 kB         271 kB
+├ ƒ /cities/[slug]/[service]                                          1.72 kB         271 kB
+├ ƒ /contact                                                          4.03 kB         274 kB
+├ ○ /corporate/pet-care-benefits                                      1.72 kB         271 kB
+├ ƒ /customer/inbox                                                   1.79 kB         271 kB
+├ ƒ /customer/loyalty                                                 1.79 kB         271 kB
+├ ƒ /customer/protocols                                               1.79 kB         271 kB
+├ ƒ /customer/referrals                                               1.79 kB         271 kB
+├ ƒ /customer/wallet                                                  1.79 kB         271 kB
+├ ƒ /dashboard                                                        1.79 kB         271 kB
+├ ○ /icon.png                                                             0 B            0 B
+├ ƒ /journal                                                          1.72 kB         271 kB
+├ ƒ /journal/[slug]                                                   2.53 kB         272 kB
+├ ○ /login                                                            4.13 kB         298 kB
+├ ○ /manifest.webmanifest                                               681 B         254 kB
+├ ƒ /membership                                                        2.3 kB         272 kB
+├ ƒ /notifications                                                    2.79 kB         272 kB
+├ ○ /offline                                                          1.72 kB         271 kB
+├ ƒ /operator                                                         1.79 kB         271 kB
+├ ƒ /partners                                                         3.89 kB         274 kB
+├ ƒ /pets                                                             1.79 kB         271 kB
+├ ƒ /pets/[id]                                                        8.18 kB         278 kB
+├ ƒ /pets/[id]/id-card                                                1.79 kB         271 kB
+├ ƒ /pets/[id]/records                                                1.79 kB         271 kB
+├ ƒ /pets/new                                                         6.83 kB         300 kB
+├ ○ /privacy                                                          1.72 kB         271 kB
+├ ○ /resources/new-pet-checklist                                      1.72 kB         271 kB
+├ ○ /robots.txt                                                         684 B         254 kB
+├ ƒ /saathi                                                           1.79 kB         271 kB
+├ ƒ /saathi/assignments                                               4.92 kB         278 kB
+├ ƒ /saathi/availability                                              1.79 kB         271 kB
+├ ƒ /saathi/earnings                                                  1.79 kB         271 kB
+├ ƒ /saathi/inbox                                                     1.79 kB         271 kB
+├ ƒ /saathi/profile                                                   1.79 kB         271 kB
+├ ƒ /saathi/reports                                                   1.79 kB         271 kB
+├ ○ /safety                                                           1.72 kB         271 kB
+├ ○ /sentry-example-page                                              11.5 kB         264 kB
+├ ○ /services                                                         1.72 kB         271 kB
+├ ● /services/[slug]                                                  1.72 kB         271 kB
+├   ├ /services/dog-walking
+├   ├ /services/home-pet-sitting
+├   ├ /services/boarding-beta
+├   └ [+3 more paths]
+├ ƒ /settings/notifications                                           3.69 kB         273 kB
+├ ƒ /settings/privacy                                                 3.34 kB         273 kB
+├ ƒ /sitemap.xml                                                        682 B         254 kB
+├ ○ /societies                                                        1.72 kB         271 kB
+├ ƒ /society                                                          1.79 kB         271 kB
+├ ƒ /support                                                          3.69 kB         273 kB
+└ ○ /terms                                                            1.72 kB         271 kB
++ First Load JS shared by all                                          253 kB
+  ├ chunks/4a7b0c69-17ae2e378ce60810.js                                 38 kB
+  ├ chunks/4bd1b696-d601811a97eef754.js                               54.4 kB
+  ├ chunks/503-d63e8c87708bde15.js                                     157 kB
+  └ other shared chunks (total)                                       4.04 kB
+
+
+ƒ Middleware                                                           170 kB
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+

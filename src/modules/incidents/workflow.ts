@@ -101,7 +101,7 @@ export async function reportBookingIncident(bookingId: string, actor: IncidentAc
     }
 
     return { incident, bookingHeld: holdBooking };
-  }, { isolationLevel: Prisma.TransactionIsolationLevel.Serializable, maxWait: 5_000, timeout: 15_000 });
+  }, { maxWait: 5_000, timeout: 15_000 });
 }
 
 export async function recordIncidentEvent(incidentId: string, actor: IncidentActor, input: { type: (typeof incidentEventTypes)[number]; details: string }) {
@@ -202,7 +202,7 @@ export async function transitionIncident(incidentId: string, actor: IncidentActo
       }
     }
     return { incident: updated, bookingStatus: input.bookingResolution ?? incident.booking.status };
-  }, { isolationLevel: Prisma.TransactionIsolationLevel.Serializable, maxWait: 5_000, timeout: 15_000 });
+  }, { maxWait: 5_000, timeout: 15_000 });
 }
 
 export async function createIncidentCorrectiveAction(incidentId: string, actor: IncidentActor, input: { title: string; ownerId?: string; dueAt: Date }) {

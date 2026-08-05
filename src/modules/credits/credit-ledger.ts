@@ -49,7 +49,7 @@ export async function issueCredits(params: CreditParams): Promise<{ id: string; 
     });
 
     return { id: entry.id, balanceAfter: entry.balanceAfter };
-  }, { isolationLevel: Prisma.TransactionIsolationLevel.Serializable });
+  }, { });
 }
 
 export async function consumeCredits(params: CreditParams): Promise<{ id: string; balanceAfter: number }> {
@@ -76,7 +76,7 @@ export async function consumeCredits(params: CreditParams): Promise<{ id: string
     });
 
     return { id: entry.id, balanceAfter: entry.balanceAfter };
-  }, { isolationLevel: Prisma.TransactionIsolationLevel.Serializable });
+  }, { });
 }
 
 export async function getBalance(userId: string): Promise<number> {
@@ -108,5 +108,5 @@ export async function reverseCredits(params: { userId: string; originalEntryId: 
     });
 
     return { id: entry.id, balanceAfter: entry.balanceAfter };
-  }, { isolationLevel: Prisma.TransactionIsolationLevel.Serializable });
+  }, { });
 }

@@ -36,7 +36,7 @@ export async function markSitterNoShow(bookingId: string, actor: RecoveryActor, 
     await queueRecoveryNotification(tx, assignment.sitter.userId, "assignment.no_show_recorded", { bookingId: booking.id, bookingReference: booking.reference, reason }, `replacement-no-show:${booking.id}:sitter`);
     await queueRecoveryNotification(tx, undefined, "booking.replacement_required", { bookingId: booking.id, bookingReference: booking.reference, reason: "SITTER_NO_SHOW" }, `replacement-no-show:${booking.id}:operations`, "operations-queue");
     return { bookingId: booking.id, status: "REPLACEMENT_REQUIRED" as const, assignmentId: assignment.id, assignmentStatus: "NO_SHOW" as const, capacityRetained: true };
-  }, { isolationLevel: Prisma.TransactionIsolationLevel.Serializable, maxWait: 5_000, timeout: 15_000 });
+  }, { maxWait: 5_000, timeout: 15_000 });
 }
 
 export async function cancelConfirmedAssignment(assignmentId: string, sitterUserId: string, reason: string) {
@@ -56,7 +56,7 @@ export async function cancelConfirmedAssignment(assignmentId: string, sitterUser
     await queueRecoveryNotification(tx, assignment.booking.customerId, "booking.replacement_required", { bookingId: assignment.booking.id, bookingReference: assignment.booking.reference, reason: "SITTER_CANCELLED" }, `replacement-cancel:${assignment.booking.id}:customer`);
     await queueRecoveryNotification(tx, undefined, "booking.replacement_required", { bookingId: assignment.booking.id, bookingReference: assignment.booking.reference, reason: "SITTER_CANCELLED" }, `replacement-cancel:${assignment.booking.id}:operations`, "operations-queue");
     return { bookingId: assignment.booking.id, status: "REPLACEMENT_REQUIRED" as const, capacityRetained: true };
-  }, { isolationLevel: Prisma.TransactionIsolationLevel.Serializable, maxWait: 5_000, timeout: 15_000 });
+  }, { maxWait: 5_000, timeout: 15_000 });
 }
 
 async function queueRecoveryNotification(tx: Prisma.TransactionClient, userId: string | undefined, templateKey: string, payload: Prisma.InputJsonObject, idempotencyKey: string, destination = userId) {

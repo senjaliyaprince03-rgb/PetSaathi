@@ -17,7 +17,6 @@ describe("Phase 11: Pet Health Timeline Integration", () => {
       data: {
         email: `health_customer_${randomUUID()}@petsaathi.in`,
         displayName: "Health Customer",
-        authUserId: randomUUID(),
         roles: { create: [{ role: "CUSTOMER" }] }
       }
     });

@@ -4,12 +4,31 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { Route } from "next";
-import { Menu, X, type LucideIcon } from "lucide-react";
+import {
+  Menu, X, type LucideIcon,
+  Home, PawPrint, CalendarDays, ClipboardCheck, Sparkles, WalletCards,
+  Inbox, Handshake, Bell, Settings2, Headphones, ShieldCheck, Clock3,
+  UserRound, SlidersHorizontal, BadgeCheck, Flag, FileLock2, BookOpen,
+  Users, Megaphone, MapPin, Activity, DollarSign
+} from "lucide-react";
 import { cn } from "@/lib/cn";
 import { PetSaathiLogo } from "@/components/brand/logo";
 
+const iconMap: Record<string, LucideIcon> = {
+  Home, PawPrint, CalendarDays, ClipboardCheck, Sparkles, WalletCards,
+  Inbox, Handshake, Bell, Settings2, Headphones, ShieldCheck, Clock3,
+  UserRound, SlidersHorizontal, BadgeCheck, Flag, FileLock2, BookOpen,
+  Users, Megaphone, MapPin, Activity, DollarSign
+};
+
+export interface SerializableNavLink {
+  iconName: string;
+  label: string;
+  href: string;
+}
+
 interface PortalMobileNavProps {
-  links: Array<{ icon: LucideIcon; label: string; href: string }>;
+  links: Array<SerializableNavLink>;
   mode: string;
 }
 
@@ -62,11 +81,12 @@ export function PortalMobileNav({ links, mode }: PortalMobileNavProps) {
               <X className="h-5 w-5" />
             </button>
           </div>
-          
+
           <nav className="flex flex-1 flex-col overflow-y-auto px-4 py-6 sm:px-6">
             <ul className="grid gap-2">
-              {links.map(({ icon: NavIcon, label, href }) => {
+              {links.map(({ iconName, label, href }) => {
                 const isActive = pathname === href;
+                const NavIcon = iconMap[iconName] || Home;
                 return (
                   <li key={label}>
                     <Link

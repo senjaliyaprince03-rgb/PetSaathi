@@ -43719,15 +43719,15 @@ Customer receives controlled access
 
 Do not route large video files through the Next.js server unless necessary.
 
-Supabase alternative
+MongoDB Atlas alternative
 
-Supabase Storage supports on-the-fly image resizing and optimisation, but its documented image transformations are a Pro-plan feature and do not replace a complete video-processing system.
+MongoDB GridFS storage supports on-the-fly image resizing and optimisation, but its documented image transformations are a Pro-plan feature and do not replace a complete video-processing system.
 
 Recommendation
 
-Images only and already using Supabase:
+Images only and already using MongoDB Atlas:
 
-Supabase Storage may be enough
+MongoDB GridFS storage may be enough
 
 Images + short service videos:
 

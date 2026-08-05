@@ -22,7 +22,6 @@ describe("Phase 13: B2B & Enterprise Partnership Integration", () => {
         email: `employee-${Date.now()}@acmecorp.in`,
         phoneE164: `+9199${Math.floor(10000000 + Math.random() * 90000000)}`,
         displayName: "Acme Employee",
-        authUserId: randomUUID()
       }
     });
     customerId = user.id;

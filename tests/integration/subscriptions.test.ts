@@ -19,7 +19,6 @@ describe("Phase 9: Subscriptions and Entitlements Integration", () => {
         email: "sub_user@example.com",
         displayName: "Sub User",
         roles: { create: [{ role: "CUSTOMER" }] },
-        authUserId: randomUUID()
       }
     });
     customerId = user.id;

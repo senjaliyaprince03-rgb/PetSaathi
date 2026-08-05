@@ -36,6 +36,7 @@ export async function createBookingWithQuote(customerId: string, input: CreateBo
             city: { status: { in: ["CLOSED_BETA", "PUBLIC_LIMITED", "VALIDATED", "GROWTH", "MATURE"] }, name: { equals: address.city, mode: "insensitive" }, state: { equals: address.state, mode: "insensitive" } },
             OR: [
               { serviceZoneId: null },
+              { serviceZoneId: { isSet: false } },
               { serviceZone: { status: { in: ["BETA", "ACTIVE_LIMITED", "ACTIVE"] } } }
             ]
           },
@@ -45,15 +46,29 @@ export async function createBookingWithQuote(customerId: string, input: CreateBo
 
         const priceScope = {
           serviceTypeId: service.id,
-          variantId: null,
           effectiveAt: { lte: now },
-          OR: [{ expiresAt: null }, { expiresAt: { gt: now } }]
+          AND: [
+            { OR: [{ variantId: null }, { variantId: { isSet: false } }] },
+            {
+              OR: [
+                { expiresAt: null },
+                { expiresAt: { isSet: false } },
+                { expiresAt: { gt: now } },
+              ],
+            },
+          ],
         } satisfies Prisma.ServicePriceWhereInput;
         const price = await tx.servicePrice.findFirst({
           where: { ...priceScope, serviceAreaId: serviceArea.id },
           orderBy: [{ version: "desc" }, { effectiveAt: "desc" }]
         }) ?? await tx.servicePrice.findFirst({
-          where: { ...priceScope, serviceAreaId: null },
+          where: {
+            ...priceScope,
+            OR: [
+              { serviceAreaId: null },
+              { serviceAreaId: { isSet: false } },
+            ],
+          },
           orderBy: [{ version: "desc" }, { effectiveAt: "desc" }]
         });
         if (!price) throw new BookingGateError(409, "pricing_not_configured", "An approved price is not configured for this service and area yet.");
@@ -63,17 +78,15 @@ export async function createBookingWithQuote(customerId: string, input: CreateBo
         const serviceDate = indiaServiceDate(scheduledStart);
         const capacity = await tx.capacityLimit.findUnique({
           where: { serviceAreaId_serviceCode_serviceDate: { serviceAreaId: serviceArea.id, serviceCode: service.code, serviceDate } },
-          select: { id: true }
+          select: { id: true, maximum: true }
         });
         if (!capacity) throw new BookingGateError(409, "capacity_not_configured", "This service day has not been opened for bookings yet. Choose another day.");
 
-        const reserved = await tx.$queryRaw<Array<{ id: string }>>`
-          UPDATE "capacity_limits"
-          SET "reserved" = "reserved" + 1, "updated_at" = CURRENT_TIMESTAMP
-          WHERE "id" = ${capacity.id}::uuid AND "reserved" + 1 <= "maximum"
-          RETURNING "id"
-        `;
-        if (reserved.length !== 1) throw new BookingGateError(409, "daily_capacity_reached", "This service day has reached its approved capacity. Choose another day.");
+        const reserved = await tx.capacityLimit.updateMany({
+          where: { id: capacity.id, reserved: { lt: capacity.maximum } },
+          data: { reserved: { increment: 1 } },
+        });
+        if (reserved.count !== 1) throw new BookingGateError(409, "daily_capacity_reached", "This service day has reached its approved capacity. Choose another day.");
 
         const quote = calculateQuote(price.amountPaise, price.taxBasisPoints);
         const scheduledEnd = new Date(scheduledStart.getTime() + (service.durationMinutes ?? 60) * 60_000);
@@ -146,7 +159,7 @@ export async function createBookingWithQuote(customerId: string, input: CreateBo
         }
         
         return booking;
-      }, { isolationLevel: Prisma.TransactionIsolationLevel.Serializable, maxWait: 5_000, timeout: 15_000 });
+      }, { maxWait: 5_000, timeout: 15_000 });
     } catch (error) {
       if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2034" && attempt < 2) continue;
       throw error;

@@ -3,6 +3,12 @@
 @tailwind utilities;
 
 :root {
+  /* Local system stacks keep production builds deterministic without a Google Fonts fetch. */
+  --font-jakarta: "Trebuchet MS", "Segoe UI", sans-serif;
+  --font-manrope: "Segoe UI", Arial, sans-serif;
+  --font-inter: Arial, sans-serif;
+  --font-outfit: "Trebuchet MS", "Segoe UI", sans-serif;
+  --font-playfair: Georgia, "Times New Roman", serif;
   --cream: 250 246 241;
   --paper: 255 253 250;
   --ink: 48 31 48;

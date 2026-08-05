@@ -5275,9 +5275,7 @@ Possible components include:
 
 Frontend application: Bubble, Glide or Softr
 
-Database: Built-in database, Airtable or Supabase
-
-Authentication: Platform authentication or Supabase Auth
+Database: Built-in database, Airtable or MongoDB-backed authenticationentication: Platform authentication or MongoDB-backed authentication
 
 File storage: Secure platform storage
 
@@ -5297,7 +5295,7 @@ Frontend: Next.js or React PWA
 
 Styling: Tailwind CSS or a component library
 
-Backend and database: Supabase or Firebase
+Backend and database: MongoDB Atlas or Firebase
 
 Authentication: Phone OTP and email authentication
 

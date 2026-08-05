@@ -73,7 +73,7 @@ export async function findEligibleSitters(bookingId: string) {
       // Basic scoring based on reliability and experience
       let score = 0;
       score += p.sitter.yearsExperience * 5;
-      score += (p.sitter.reliabilityScore ? p.sitter.reliabilityScore.toNumber() : 0) * 10;
+      score += (p.sitter.reliabilityScore ?? 0) * 10;
       
       return {
         sitterId: p.sitter.id,

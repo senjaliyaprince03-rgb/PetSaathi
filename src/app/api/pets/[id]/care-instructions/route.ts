@@ -23,7 +23,7 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
     const instruction = await tx.careInstruction.create({ data: { petId: id, version: (latest?.version ?? 0) + 1, instructions: parsed.data, createdBy: identity.id } });
     await tx.auditLog.create({ data: { actorId: identity.id, actorRole: "CUSTOMER", action: "pet.care_instructions_versioned", resourceType: "pet", resourceId: id, after: { version: instruction.version } } });
     return instruction;
-  }, { isolationLevel: Prisma.TransactionIsolationLevel.Serializable });
+  }, { });
 
   return NextResponse.json({ instruction: { id: created.id, version: created.version, activeFrom: created.activeFrom } }, { status: 201 });
 }

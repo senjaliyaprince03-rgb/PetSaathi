@@ -223,7 +223,6 @@ describe("partner programme verification", () => {
 async function createUser(displayName: string) {
   return prisma.user.create({
     data: {
-      authUserId: randomUUID(),
       email: `${randomUUID()}@example.test`,
       displayName,
       status: "ACTIVE",

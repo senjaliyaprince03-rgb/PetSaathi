@@ -14,7 +14,7 @@
 
 PetSaathi is a production-oriented, India-focused pet-care marketplace and operating platform. It is not merely a marketing website: the repository contains customer, caregiver, operations, safety, finance, content, society, partner, enterprise, city-management, and operator workflows.
 
-The architecture is strongest in domain modelling, fail-closed service activation, state-machine-driven workflows, auditability, and operational safety. The implementation includes a large PostgreSQL/Prisma domain, strict TypeScript, Zod boundary validation, Supabase authentication adapters, Razorpay integration, notification orchestration, private upload handling, feature gates, RLS migrations, and extensive role-oriented interfaces.
+The architecture is strongest in domain modelling, fail-closed service activation, state-machine-driven workflows, auditability, and operational safety. The implementation includes a large MongoDB/Prisma domain, strict TypeScript, Zod boundary validation, first-party session authentication, Razorpay integration, notification orchestration, private GridFS upload handling, feature gates, MongoDB validators, and extensive role-oriented interfaces.
 
 The project is **pilot-capable in source but not production-launch-ready today**. The current release gate is red because lint and the production build fail. The live Chromium suite passes 16 of 21 tests. Database, authentication, payment, messaging, scanning, monitoring, and production-domain credentials are absent locally. Terms and privacy pages are intentional placeholders. Current `npm audit` reports five high-severity advisories.
 
@@ -139,7 +139,7 @@ The product must not claim diagnosis, guaranteed veterinary availability, guaran
 
 - Next.js Route Handlers and server-only domain modules.
 - PostgreSQL through Prisma 6.
-- Supabase Auth, SSR session handling, RLS, and private Storage adapters.
+- MongoDB-backed OTP/password authentication, opaque SSR sessions, database validators, and private GridFS storage.
 - Zod validation for request and domain inputs.
 - Database-backed rate limiting.
 
@@ -184,7 +184,7 @@ The database defines customer, caregiver, specialist-admin, city, operator, and 
 
 Sensitive actions are designed to verify:
 
-1. Active Supabase session.
+1. Active server-managed MongoDB session.
 2. Active application user.
 3. Required role or permission.
 4. Resource ownership or assignment.
@@ -212,7 +212,7 @@ Sensitive actions are designed to verify:
 
 ### Authentication
 
-- Phone OTP request and verification through Supabase adapters.
+- Phone OTP request and verification through the server-side MongoDB auth module and configured SMS webhook.
 - Server-side rate limiting.
 - Fail-closed behavior when authentication configuration is missing.
 - Protected portal routes redirect anonymous users to sign-in.
@@ -503,7 +503,7 @@ There is no generated OpenAPI contract or route catalogue. With 111 handlers, th
 
 ### Implemented controls
 
-- Supabase session verification.
+- Opaque session-cookie verification against hashed MongoDB session records.
 - Role and resource authorization.
 - RLS-enabled migrations and revoked broad PostgREST access.
 - Same-origin protection for browser mutations.
@@ -766,7 +766,7 @@ Missing or unverified:
 **Effort:** 2–5 days after credentials
 **Risk:** High
 
-- Supabase project, database, Auth, and Storage.
+- MongoDB Atlas project, database collections, auth collections, and GridFS bucket.
 - Razorpay sandbox-to-production verification.
 - OTP sender.
 - Resend and WhatsApp.
@@ -830,9 +830,10 @@ Missing or unverified:
 
 - `DATABASE_URL`
 - `DIRECT_URL`
-- `NEXT_PUBLIC_SUPABASE_URL`
-- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-- `SUPABASE_SERVICE_ROLE_KEY`
+- `MONGODB_URI`
+- `MONGODB_DATABASE`
+- `AUTH_SECRET`
+- `UPLOAD_SIGNING_SECRET`
 - `NEXT_PUBLIC_APP_URL`
 
 ### Capability-specific
@@ -874,7 +875,7 @@ No secret values should be committed or copied into documentation.
 
 1. Provision disposable PostgreSQL and replay migrations.
 2. Run integration, RLS, restore, and idempotency tests.
-3. Configure Supabase and Razorpay sandbox credentials.
+3. Configure MongoDB Atlas and Razorpay sandbox credentials.
 4. Complete one end-to-end customer/Saathi/admin booking simulation.
 5. Approve pilot pricing, capacity, service areas, and safety evidence policy.
 

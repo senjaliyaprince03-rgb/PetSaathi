@@ -29,7 +29,7 @@ export async function POST(request: Request) {
         const created = await tx.servicePrice.create({ data: { serviceTypeId: service.id, variantId: null, serviceAreaId, version: (latest?.version ?? 0) + 1, amountPaise: parsed.data.amountPaise, sitterPaise: parsed.data.sitterPaise, taxBasisPoints: parsed.data.taxBasisPoints, currency: "INR", effectiveAt: new Date(parsed.data.effectiveAt), expiresAt: parsed.data.expiresAt ? new Date(parsed.data.expiresAt) : null, approvedBy: identity.id } });
         await tx.auditLog.create({ data: { actorId: identity.id, actorRole: identity.roles.includes("SUPER_ADMIN") ? "SUPER_ADMIN" : "FINANCE_ADMIN", action: "service_price.approved", resourceType: "service_price", resourceId: created.id, after: { serviceCode: service.code, serviceAreaId, version: created.version, amountPaise: created.amountPaise, sitterPaise: created.sitterPaise, taxBasisPoints: created.taxBasisPoints, effectiveAt: created.effectiveAt.toISOString(), expiresAt: created.expiresAt?.toISOString() }, reason: parsed.data.reason } });
         return created;
-      }, { isolationLevel: Prisma.TransactionIsolationLevel.Serializable });
+      }, { });
       return NextResponse.json({ servicePrice }, { status: 201, headers: { "Cache-Control": "no-store" } });
     } catch (error) {
       if (error instanceof PriceError) return NextResponse.json({ error: error.code, message: error.message }, { status: error.status });

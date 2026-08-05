@@ -9,6 +9,7 @@ vi.mock("@/modules/auth/server", () => ({
 }));
 vi.mock("@/modules/auth/session", () => ({
   getCurrentIdentity: vi.fn().mockResolvedValue({ id: "admin-123", roles: ["SUPER_ADMIN"] }),
+  hasAnyRole: vi.fn(() => true),
 }));
 
 const SOCIETY_PAYLOAD = {
@@ -40,10 +41,10 @@ describe("Phase 7: Society Partnerships (Integration)", () => {
     expect(res.status).toBe(201);
     
     const data = await res.json();
-    expect(data.name).toBe("Green Valley Apartments");
-    expect(data.partnershipModel).toBe("MODEL_C");
-    expect(data.bookingCap).toBe(50);
-    societyId = data.id;
+    expect(data.society.name).toBe("Green Valley Apartments");
+    expect(data.society.partnershipModel).toBe("MODEL_C");
+    expect(data.society.bookingCap).toBe(50);
+    societyId = data.society.id;
   });
 
   it("should update society access rules and fetch them correctly", async () => {

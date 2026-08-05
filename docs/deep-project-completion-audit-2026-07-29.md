@@ -49,7 +49,7 @@ The audit covered:
 - Images, video size, duplicate media hashes, and topic-specific dog/cat mappings.
 - CI gates, security headers, logging, lint suppressions, mocks, placeholders, and broken links.
 
-This report does not claim that credential-gated external systems work. Supabase, PostgreSQL, Razorpay, Resend, WhatsApp, scanner, maps, and Sentry were not live-verified because the required local credentials/services were not available.
+This historical report did not claim that the former hosted backend, PostgreSQL, Razorpay, Resend, WhatsApp, scanner, maps, or Sentry worked because the required local credentials/services were unavailable at that time.
 
 ---
 
@@ -172,7 +172,7 @@ Live anonymous behavior:
 - `/pets/<uuid>/records` returned HTTP 200 and displayed hardcoded vaccination, consultation, and grooming history, ignoring the pet ID.
 - `/admin/operations/queue` returned HTTP 200 and rendered a Prisma/database configuration failure rather than redirecting to sign-in.
 
-The root middleware refreshes the Supabase session and checks mutation origin. It does not authorize portal pages.
+At the time of this audit, the root middleware refreshed the former provider session and checked mutation origin. It did not authorize portal pages.
 
 **Impact:** sensitive data disclosure; the operations queue would expose real bookings, pets, and Saathis when the database is connected.  
 **Effort:** Medium.  
@@ -292,7 +292,7 @@ The test configuration also uses `reuseExistingServer: false`, which collides wi
 
 - database connectivity;
 - migration compatibility;
-- Supabase reachability;
+- former hosted-backend reachability;
 - storage access;
 - provider reachability;
 - background-job health.
@@ -464,7 +464,7 @@ Source mapping is improved and includes cats, but the visual work cannot be mark
 | --- | --- | --- | --- |
 | Public marketing | **Mostly complete** | Homepage, services, SEO routes, concierge, stories, media | Browser verification blocked; automation stubs; heavy/duplicate assets |
 | Logo/favicon/brand | **Mostly complete** | Unified colored assets and tests exist | Browser test blocked; duplicate logo files |
-| Authentication | **Foundation complete** | Supabase adapters, OTP flow, fail-closed patterns | No credentialed live proof; portal guard gaps |
+| Authentication | **Foundation complete** | Legacy provider adapters, OTP flow, fail-closed patterns | No credentialed live proof; portal guard gaps |
 | Customer profiles/pets | **Partial** | Profile, pet, health, care instruction models/routes | Pet records page is mock and anonymous |
 | Booking core | **Strong source / unverified runtime** | Canonical quote, capacity, matching, payment foundations | Duplicate unsafe booking API; integration DB unavailable |
 | Matching | **Partial** | Eligibility/risk/service gates | Locality and availability ranking placeholders |
@@ -498,7 +498,7 @@ Source mapping is improved and includes cats, but the visual work cannot be mark
 
 - Migrations were not replayed from zero on a disposable database.
 - Drift against any deployed database was not checked.
-- RLS policies were not tested with Supabase roles.
+- The former PostgreSQL RLS policies were not tested with hosted-provider roles.
 - Backup/restore and point-in-time recovery were not exercised.
 - Index/query performance and slow-query thresholds were not measured.
 - Integration cleanup behavior was not proven.
@@ -553,7 +553,7 @@ The repository should undergo a route-by-route authorization matrix test before 
 - No anonymous tests for the three unguarded portal pages.
 - No migration replay test result.
 - No Razorpay sandbox happy-path/retry/idempotency evidence.
-- No Supabase RLS test result.
+- No former-provider RLS test result.
 - No load, soak, concurrency, or capacity-race evidence.
 - No accessibility proof beyond the blocked browser suite.
 
@@ -565,7 +565,7 @@ The repository should undergo a route-by-route authorization matrix test before 
 
 - PostgreSQL pooled runtime URL.
 - PostgreSQL direct migration URL.
-- Supabase URL, anonymous key, service-role key, and storage buckets.
+- Former-provider URL, anonymous key, service-role key, and storage buckets.
 - Razorpay key, secret, and webhook secret.
 - Resend key and approved sender.
 - WhatsApp credentials and templates.
@@ -787,4 +787,3 @@ No merge should bypass build, lint, typecheck, test, integration, and security g
 1. **Contain:** disable the two unsafe APIs, guard every portal/admin route, secure the three admin mutations, and remove unapproved legal claims.
 2. **Restore gates:** fix all 53 TypeScript errors; run clean install, Prisma generation, lint, typecheck, unit, and production build.
 3. **Prove workflows:** provision a disposable database, replay migrations, run integration tests, then run all 40 Playwright tests on an isolated server with traces and mobile coverage.
-

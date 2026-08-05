@@ -300,10 +300,12 @@ test("anonymous care request validates locally and hands off to secure sign-in",
   await expect(page.getByRole("link", { name: "Sign in to continue" })).toHaveAttribute("href", "/login?returnTo=/book");
 });
 
-test("sign-in fails closed when auth credentials are absent", async ({ page }) => {
+test("sign-in presents the configured password flow", async ({ page }) => {
   await page.goto("/login");
-  await expect(page.getByText("OTP delivery stays disabled")).toBeVisible();
-  await expect(page.getByRole("button", { name: /send secure otp/i })).toBeDisabled();
+  await expect(page.getByRole("heading", { name: "Sign In" })).toBeVisible();
+  await expect(page.getByRole("textbox", { name: "Password", exact: true })).toBeVisible();
+  await expect(page.getByRole("button", { name: "SIGN IN" })).toBeEnabled();
+  await expect(page.getByText("OTP delivery stays disabled")).toHaveCount(0);
 });
 
 test("support records remain private to authenticated accounts", async ({ page }) => {

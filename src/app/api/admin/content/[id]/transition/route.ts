@@ -22,7 +22,7 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
   const latest = content.versions[0];
   await prisma.$transaction([
     prisma.contentEntry.update({ where: { id }, data: { status: parsed.data.toState, publishedAt: parsed.data.toState === "PUBLISHED" ? new Date() : parsed.data.toState === "DRAFT" ? null : undefined } }),
-    ...(latest ? [prisma.contentVersion.create({ data: { contentId: id, version: latest.version + 1, title: content.title, excerpt: content.excerpt, body: content.body === null ? Prisma.JsonNull : content.body, status: parsed.data.toState, authorId: identity.id } })] : []),
+    ...(latest ? [prisma.contentVersion.create({ data: { contentId: id, version: latest.version + 1, title: content.title, excerpt: content.excerpt, body: content.body as Prisma.InputJsonValue, status: parsed.data.toState, authorId: identity.id } })] : []),
     prisma.auditLog.create({ data: { actorId: identity.id, actorRole: identity.roles[0], action: "content.transition", resourceType: "content", resourceId: id, before: { status: content.status }, after: { status: parsed.data.toState }, reason: parsed.data.reason } })
   ]);
   return NextResponse.json({ transitioned: true, status: parsed.data.toState });

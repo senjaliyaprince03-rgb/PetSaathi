@@ -215,14 +215,22 @@ export async function rankCandidates(bookingId: string): Promise<MatchCandidate[
       holds: {
         none: {
           status: "ACTIVE",
-          OR: [{ expiresAt: null }, { expiresAt: { gt: now } }],
+          OR: [
+            { expiresAt: null },
+            { expiresAt: { isSet: false } },
+            { expiresAt: { gt: now } },
+          ],
         },
       },
       permissions: {
         some: {
           serviceTypeId: booking.serviceTypeId,
           status: "ACTIVE",
-          OR: [{ expiresAt: null }, { expiresAt: { gt: now } }],
+          OR: [
+            { expiresAt: null },
+            { expiresAt: { isSet: false } },
+            { expiresAt: { gt: now } },
+          ],
         },
       },
     },
@@ -242,7 +250,11 @@ export async function rankCandidates(bookingId: string): Promise<MatchCandidate[
         where: {
           serviceTypeId: booking.serviceTypeId,
           status: "ACTIVE",
-          OR: [{ expiresAt: null }, { expiresAt: { gt: now } }],
+          OR: [
+            { expiresAt: null },
+            { expiresAt: { isSet: false } },
+            { expiresAt: { gt: now } },
+          ],
         },
         select: { riskLimit: true, expiresAt: true },
       },

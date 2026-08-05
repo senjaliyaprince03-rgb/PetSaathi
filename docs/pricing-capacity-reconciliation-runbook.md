@@ -52,4 +52,4 @@ Do not mark a failed run as successful by adjusting the statement inputs. Correc
 | Daily capacity by service and roster | Operations | Yes |
 | Razorpay production credentials and statement process | Finance + Engineering | Yes |
 
-No secret value belongs in this document or source control. Configure provider secrets only in the approved Vercel, GitHub and Supabase secret stores listed in the deployment documentation.
+No secret value belongs in this document or source control. Configure provider secrets only in the approved Vercel, GitHub, and MongoDB Atlas secret stores listed in the deployment documentation.

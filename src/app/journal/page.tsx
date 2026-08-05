@@ -6,6 +6,7 @@ import Link from "next/link";
 import { PublicShell } from "@/components/marketing/public-shell";
 import { buttonVariants } from "@/components/ui/button";
 import { isDatabaseConfigured, prisma } from "@/lib/db";
+import { logger } from "@/lib/logger";
 
 export const metadata: Metadata = {
   title: "Care Journal | PetSaathi",
@@ -13,9 +14,21 @@ export const metadata: Metadata = {
 };
 export const dynamic = "force-dynamic";
 
+type JournalEntry = {
+  slug: string;
+  type: string;
+  title: string;
+  excerpt: string | null;
+  city: string | null;
+  publishedAt: Date | null;
+  expertReview: { reviewerName: string; credentials: string; verdict: string } | null;
+};
+
 export default async function JournalPage() {
-  const entries = isDatabaseConfigured()
-    ? await prisma.contentEntry.findMany({
+  let entries: JournalEntry[] = [];
+  if (isDatabaseConfigured()) {
+    try {
+      entries = await prisma.contentEntry.findMany({
         where: { status: "PUBLISHED", publishedAt: { lte: new Date() } },
         orderBy: { publishedAt: "desc" },
         take: 24,
@@ -28,8 +41,13 @@ export default async function JournalPage() {
           publishedAt: true,
           expertReview: { select: { reviewerName: true, credentials: true, verdict: true } }
         }
-      })
-    : [];
+      });
+    } catch (error) {
+      logger.warn("journal_feed_unavailable", {
+        error: error instanceof Error ? error.message : "unknown_error",
+      });
+    }
+  }
 
   return (
     <PublicShell>

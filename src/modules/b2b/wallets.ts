@@ -68,7 +68,7 @@ export async function issueCredits(params: {
 
       return { id: entry.id, balanceAfter: entry.balanceAfter };
     },
-    { isolationLevel: Prisma.TransactionIsolationLevel.Serializable }
+    { }
   );
 }
 
@@ -125,7 +125,7 @@ export async function redeemCredits(params: {
 
       return { id: entry.id, balanceAfter: entry.balanceAfter };
     },
-    { isolationLevel: Prisma.TransactionIsolationLevel.Serializable }
+    { }
   );
 }
 
@@ -166,7 +166,7 @@ export async function expireCredits(
 
       return { id: entry.id, balanceAfter: entry.balanceAfter };
     },
-    { isolationLevel: Prisma.TransactionIsolationLevel.Serializable }
+    { }
   );
 }
 

@@ -1,4 +1,3 @@
-import { createServerClient } from "@supabase/ssr";
 import { type NextRequest, NextResponse } from "next/server";
 
 import { isTrustedBrowserMutation } from "@/modules/security/origin";
@@ -20,12 +19,12 @@ export async function middleware(request: NextRequest) {
     form-action 'self';
     frame-ancestors 'none';
     object-src 'none';
-    img-src 'self' blob: data: https://*.supabase.co https://maps.googleapis.com;
+    img-src 'self' blob: data: https://maps.googleapis.com https://*.tile.openstreetmap.org https://unpkg.com https://www.google-analytics.com https://www.google.com;
     font-src 'self' data: https://fonts.gstatic.com;
-    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-    script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https://checkout.razorpay.com ${process.env.NODE_ENV === "development" ? "'unsafe-eval'" : ""};
-    connect-src 'self' https://*.supabase.co https://api.razorpay.com https://lumberjack.razorpay.com wss://*.supabase.co;
-    frame-src https://api.razorpay.com https://checkout.razorpay.com https://*.razorpay.com;
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://accounts.google.com;
+    script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https://checkout.razorpay.com https://accounts.google.com https://www.googletagmanager.com ${process.env.NODE_ENV === "development" ? "'unsafe-eval'" : ""};
+    connect-src 'self' https://api.razorpay.com https://lumberjack.razorpay.com https://www.google-analytics.com https://www.google.com https://accounts.google.com;
+    frame-src 'self' https://api.razorpay.com https://checkout.razorpay.com https://*.razorpay.com https://accounts.google.com https://*.google.com;
     upgrade-insecure-requests;
   `.replace(/\s{2,}/g, " ").trim();
 
@@ -53,10 +52,12 @@ export async function middleware(request: NextRequest) {
   }
 
   const contentLength = Number(request.headers.get("content-length") ?? 0);
+  const isSignedUpload = /^\/api\/uploads\/[0-9a-f-]+$/i.test(request.nextUrl.pathname);
+  const payloadLimit = isSignedUpload ? 16 * 1024 * 1024 : 256 * 1024;
   if (
     isProtectedApiMutation &&
     Number.isFinite(contentLength) &&
-    contentLength > 256 * 1_024
+    contentLength > payloadLimit
   ) {
     const rejected = NextResponse.json(
       { error: "payload_too_large" },
@@ -66,30 +67,42 @@ export async function middleware(request: NextRequest) {
     return rejected;
   }
 
-  let response = NextResponse.next({ request: { headers } });
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-  const hasAuthCookie = request.cookies
-    .getAll()
-    .some(
-      ({ name }) =>
-        name.startsWith("sb-") && name.includes("-auth-token"),
+  const protectedPagePrefixes = [
+    "/admin",
+    "/addresses",
+    "/bookings",
+    "/customer",
+    "/dashboard",
+    "/notifications",
+    "/operator",
+    "/partners",
+    "/pets",
+    "/saathi",
+    "/settings",
+    "/society",
+    "/support",
+  ];
+  const isProtectedPage =
+    request.method === "GET" &&
+    protectedPagePrefixes.some(
+      (prefix) =>
+        request.nextUrl.pathname === prefix ||
+        request.nextUrl.pathname.startsWith(`${prefix}/`),
     );
-
-  if (url && anonKey && hasAuthCookie) {
-    const supabase = createServerClient(url, anonKey, {
-      cookies: {
-        getAll: () => request.cookies.getAll(),
-        setAll: (cookiesToSet) => {
-          cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
-          response = NextResponse.next({ request: { headers } });
-          cookiesToSet.forEach(({ name, value, options }) => response.cookies.set(name, value, options));
-        }
-      }
-    });
-    await settleWithin(supabase.auth.getUser().catch(() => null), 1_500);
+  if (isProtectedPage && !request.cookies.has("petsaathi_session")) {
+    const loginUrl = request.nextUrl.clone();
+    loginUrl.pathname = "/login";
+    loginUrl.search = "";
+    loginUrl.searchParams.set(
+      "returnTo",
+      `${request.nextUrl.pathname}${request.nextUrl.search}`,
+    );
+    const redirected = NextResponse.redirect(loginUrl);
+    applySecurityHeaders(redirected, cspHeader, requestId);
+    return redirected;
   }
+
+  const response = NextResponse.next({ request: { headers } });
 
   applySecurityHeaders(response, cspHeader, requestId);
   return response;
@@ -115,20 +128,6 @@ function applySecurityHeaders(
     );
   }
   response.headers.set("X-Request-Id", requestId);
-}
-
-async function settleWithin<T>(operation: Promise<T>, timeoutMs: number) {
-  let timeout: ReturnType<typeof setTimeout> | undefined;
-  try {
-    await Promise.race([
-      operation,
-      new Promise<void>((resolve) => {
-        timeout = setTimeout(resolve, timeoutMs);
-      }),
-    ]);
-  } finally {
-    if (timeout) clearTimeout(timeout);
-  }
 }
 
 export const config = { matcher: ["/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)"] };

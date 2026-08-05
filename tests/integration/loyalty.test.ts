@@ -15,7 +15,6 @@ describe("Phase 11: Loyalty Ledger Integration", () => {
       data: {
         email: `customer_${randomUUID()}@petsaathi.in`,
         displayName: "Loyalty Customer",
-        authUserId: randomUUID(),
         roles: { create: [{ role: "CUSTOMER" }] }
       }
     });

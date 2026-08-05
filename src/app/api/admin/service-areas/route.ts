@@ -1,4 +1,3 @@
-import { Prisma } from "@prisma/client";
 import { NextResponse } from "next/server";
 
 import { prisma } from "@/lib/db";
@@ -28,9 +27,9 @@ export async function POST(request: Request) {
       const overlap = await tx.serviceArea.findFirst({ where: { cityId: city.id, id: current ? { not: current.id } : undefined, status: { notIn: ["CLOSED", "ARCHIVED"] }, postalCodes: { hasSome: parsed.data.postalCodes } }, select: { name: true, postalCodes: true } });
       if (overlap) throw new CatalogError(409, "postal_code_overlap", `Postal codes overlap with ${overlap.name}. Active service areas must be unambiguous.`);
       const area = current ? await tx.serviceArea.update({ where: { id: current.id }, data: { name: parsed.data.localityName, postalCodes: parsed.data.postalCodes, status: parsed.data.status } }) : await tx.serviceArea.create({ data: { cityId: city.id, slug: localitySlug, name: parsed.data.localityName, postalCodes: parsed.data.postalCodes, status: parsed.data.status } });
-      await tx.auditLog.create({ data: { actorId: identity.id, actorRole: "SUPER_ADMIN", action: current ? "service_area.updated" : "service_area.created", resourceType: "service_area", resourceId: area.id, before: current ? { name: current.name, postalCodes: current.postalCodes, status: current.status } : Prisma.JsonNull, after: { cityId: city.id, city: city.name, state: city.state, name: area.name, postalCodes: area.postalCodes, status: area.status }, reason: parsed.data.reason } });
+      await tx.auditLog.create({ data: { actorId: identity.id, actorRole: "SUPER_ADMIN", action: current ? "service_area.updated" : "service_area.created", resourceType: "service_area", resourceId: area.id, before: current ? { name: current.name, postalCodes: current.postalCodes, status: current.status } : null, after: { cityId: city.id, city: city.name, state: city.state, name: area.name, postalCodes: area.postalCodes, status: area.status }, reason: parsed.data.reason } });
       return area;
-    }, { isolationLevel: Prisma.TransactionIsolationLevel.Serializable });
+    }, { });
     return NextResponse.json({ serviceArea }, { status: 201, headers: { "Cache-Control": "no-store" } });
   } catch (error) {
     if (error instanceof CatalogError) return NextResponse.json({ error: error.code, message: error.message }, { status: error.status });

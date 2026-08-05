@@ -185,7 +185,11 @@ export async function offerRankedAssignment(input: OfferAssignmentInput) {
               holds: {
                 where: {
                   status: "ACTIVE",
-                  OR: [{ expiresAt: null }, { expiresAt: { gt: now } }],
+                  OR: [
+                    { expiresAt: null },
+                    { expiresAt: { isSet: false } },
+                    { expiresAt: { gt: now } },
+                  ],
                 },
                 take: 1,
                 select: { id: true },
@@ -194,7 +198,11 @@ export async function offerRankedAssignment(input: OfferAssignmentInput) {
                 where: {
                   serviceTypeId: booking.serviceType.id,
                   status: "ACTIVE",
-                  OR: [{ expiresAt: null }, { expiresAt: { gt: now } }],
+                  OR: [
+                    { expiresAt: null },
+                    { expiresAt: { isSet: false } },
+                    { expiresAt: { gt: now } },
+                  ],
                 },
                 take: 1,
                 select: {
@@ -218,7 +226,11 @@ export async function offerRankedAssignment(input: OfferAssignmentInput) {
             where: {
               petId: booking.petId,
               serviceCode: booking.serviceType.code,
-              OR: [{ expiresAt: null }, { expiresAt: { gt: now } }],
+              OR: [
+                { expiresAt: null },
+                { expiresAt: { isSet: false } },
+                { expiresAt: { gt: now } },
+              ],
             },
             orderBy: { createdAt: "desc" },
             select: { finalLevel: true },
@@ -342,7 +354,6 @@ export async function offerRankedAssignment(input: OfferAssignmentInput) {
           return { assignment: created, created: true as const };
         },
         {
-          isolationLevel: Prisma.TransactionIsolationLevel.Serializable,
           maxWait: 5_000,
           timeout: 15_000,
         },

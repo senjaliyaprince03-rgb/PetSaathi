@@ -47,69 +47,80 @@ const cards: Record<PortalMode, Array<{ label: string; value: string; hint: stri
   ]
 };
 
-const portalNavigation: Record<PortalMode, Array<{ icon: LucideIcon; label: string; href: Route }>> = {
+const portalNavigation: Record<PortalMode, Array<{ icon: LucideIcon; iconName: string; label: string; href: Route }>> = {
   customer: [
-    { icon: Home, label: "Overview", href: "/dashboard" },
-    { icon: PawPrint, label: "My pets", href: "/pets" },
-    { icon: CalendarDays, label: "Request care", href: "/book" },
-    { icon: ClipboardCheck, label: "Care protocols", href: "/customer/protocols" as Route },
-    { icon: Sparkles, label: "Loyalty & Rewards", href: "/customer/loyalty" as Route },
-    { icon: WalletCards, label: "Service wallet", href: "/customer/wallet" as Route },
-    { icon: Inbox, label: "Protocol inbox", href: "/customer/inbox" as Route },
-    { icon: Handshake, label: "Refer a friend", href: "/customer/referrals" as Route },
-    { icon: Handshake, label: "Partner services", href: "/partners" as Route },
-    { icon: Bell, label: "Notifications", href: "/notifications" },
-    { icon: Settings2, label: "Communication", href: "/settings/notifications" },
-    { icon: Headphones, label: "Support", href: "/support" },
-    { icon: Settings2, label: "Privacy requests", href: "/settings/privacy" },
-    { icon: ShieldCheck, label: "Trust & safety", href: "/safety" }
+    { icon: Home, iconName: "Home", label: "Overview", href: "/dashboard" },
+    { icon: PawPrint, iconName: "PawPrint", label: "My pets", href: "/pets" },
+    { icon: CalendarDays, iconName: "CalendarDays", label: "Request care", href: "/book" },
+    { icon: ClipboardCheck, iconName: "ClipboardCheck", label: "Care protocols", href: "/customer/protocols" as Route },
+    { icon: Sparkles, iconName: "Sparkles", label: "Loyalty & Rewards", href: "/customer/loyalty" as Route },
+    { icon: WalletCards, iconName: "WalletCards", label: "Service wallet", href: "/customer/wallet" as Route },
+    { icon: Inbox, iconName: "Inbox", label: "Protocol inbox", href: "/customer/inbox" as Route },
+    { icon: Handshake, iconName: "Handshake", label: "Refer a friend", href: "/customer/referrals" as Route },
+    { icon: Handshake, iconName: "Handshake", label: "Partner services", href: "/partners" as Route },
+    { icon: Sparkles, iconName: "Sparkles", label: "Services Hub", href: "/customer/services" as Route },
+    { icon: Bell, iconName: "Bell", label: "Notifications", href: "/notifications" },
+    { icon: Settings2, iconName: "Settings2", label: "Communication", href: "/settings/notifications" },
+    { icon: Headphones, iconName: "Headphones", label: "Support", href: "/support" },
+    { icon: Settings2, iconName: "Settings2", label: "Privacy requests", href: "/settings/privacy" },
+    { icon: ShieldCheck, iconName: "ShieldCheck", label: "Trust & safety", href: "/safety" }
   ],
   saathi: [
-    { icon: Home, label: "Overview", href: "/saathi" },
-    { icon: PawPrint, label: "Assignments", href: "/saathi/assignments" },
-    { icon: Inbox, label: "Protocol inbox", href: "/saathi/inbox" as Route },
-    { icon: WalletCards, label: "Earnings", href: "/saathi/earnings" as Route },
-    { icon: CalendarDays, label: "Availability", href: "/saathi/availability" as Route },
-    { icon: ClipboardCheck, label: "Report cards", href: "/saathi/reports" as Route },
-    { icon: UserRound, label: "My profile", href: "/saathi/profile" as Route },
-    { icon: Bell, label: "Notifications", href: "/notifications" },
-    { icon: Settings2, label: "Communication", href: "/settings/notifications" },
-    { icon: Headphones, label: "Support", href: "/support" },
-    { icon: ShieldCheck, label: "Safety guide", href: "/safety" }
+    { icon: Home, iconName: "Home", label: "Overview", href: "/saathi" },
+    { icon: PawPrint, iconName: "PawPrint", label: "Assignments", href: "/saathi/assignments" },
+    { icon: Inbox, iconName: "Inbox", label: "Protocol inbox", href: "/saathi/inbox" as Route },
+    { icon: WalletCards, iconName: "WalletCards", label: "Earnings", href: "/saathi/earnings" as Route },
+    { icon: CalendarDays, iconName: "CalendarDays", label: "Availability", href: "/saathi/availability" as Route },
+    { icon: ClipboardCheck, iconName: "ClipboardCheck", label: "Report cards", href: "/saathi/reports" as Route },
+    { icon: UserRound, iconName: "UserRound", label: "My profile", href: "/saathi/profile" as Route },
+    { icon: Bell, iconName: "Bell", label: "Notifications", href: "/notifications" },
+    { icon: Settings2, iconName: "Settings2", label: "Communication", href: "/settings/notifications" },
+    { icon: Headphones, iconName: "Headphones", label: "Support", href: "/support" },
+    { icon: ShieldCheck, iconName: "ShieldCheck", label: "Safety guide", href: "/safety" }
   ],
   admin: [
-    { icon: Home, label: "Overview", href: "/admin" },
-    { icon: Clock3, label: "Service monitor", href: "/admin/operations" },
-    { icon: UserRound, label: "Matching", href: "/admin/matching" },
-    { icon: SlidersHorizontal, label: "Catalog", href: "/admin/catalog" },
-    { icon: ClipboardCheck, label: "Reports", href: "/admin/reports" },
-    { icon: Inbox, label: "Leads", href: "/admin/leads" },
-    { icon: Handshake, label: "Partner queue", href: "/admin/partner-orders" as Route },
-    { icon: WalletCards, label: "Finance", href: "/admin/finance" },
-    { icon: ShieldCheck, label: "Safety queue", href: "/admin/safety" },
-    { icon: Bell, label: "Notifications", href: "/notifications" },
-    { icon: BadgeCheck, label: "Verification", href: "/admin/verification" },
-    { icon: Flag, label: "Cities", href: "/admin/cities" as Route },
-    { icon: FileLock2, label: "Privacy queue", href: "/admin/privacy" },
-    { icon: BookOpen, label: "Content", href: "/admin/content" },
-    { icon: Headphones, label: "Support", href: "/admin/support" }
+    { icon: Home, iconName: "Home", label: "Overview", href: "/admin" },
+    { icon: Clock3, iconName: "Clock3", label: "Service monitor", href: "/admin/operations" },
+    { icon: UserRound, iconName: "UserRound", label: "Matching", href: "/admin/matching" },
+    { icon: SlidersHorizontal, iconName: "SlidersHorizontal", label: "Catalog", href: "/admin/catalog" },
+    { icon: ClipboardCheck, iconName: "ClipboardCheck", label: "Reports", href: "/admin/reports" },
+    { icon: Inbox, iconName: "Inbox", label: "Leads", href: "/admin/leads" },
+    { icon: Handshake, iconName: "Handshake", label: "Partner queue", href: "/admin/partner-orders" as Route },
+    { icon: Handshake, iconName: "Handshake", label: "Partners", href: "/admin/partners" as Route },
+    { icon: Megaphone, iconName: "Megaphone", label: "Vaccination Camps", href: "/admin/vaccination-camps" as Route },
+    { icon: WalletCards, iconName: "WalletCards", label: "Finance", href: "/admin/finance" },
+    { icon: ShieldCheck, iconName: "ShieldCheck", label: "Safety queue", href: "/admin/safety" },
+    { icon: Bell, iconName: "Bell", label: "Notifications", href: "/notifications" },
+    { icon: BadgeCheck, iconName: "BadgeCheck", label: "Verification", href: "/admin/verification" },
+    { icon: Flag, iconName: "Flag", label: "Cities", href: "/admin/cities" as Route },
+    { icon: FileLock2, iconName: "FileLock2", label: "Privacy queue", href: "/admin/privacy" },
+    { icon: BookOpen, iconName: "BookOpen", label: "Content", href: "/admin/content" },
+    { icon: Headphones, iconName: "Headphones", label: "Support", href: "/admin/support" }
   ],
   society: [
-    { icon: Home, label: "Overview", href: "/society" as Route },
-    { icon: Users, label: "Residents", href: "/society" as Route },
-    { icon: PawPrint, label: "Saathi pool", href: "/society" as Route },
-    { icon: Megaphone, label: "Events & notices", href: "/society" as Route },
-    { icon: ShieldCheck, label: "Safety centre", href: "/safety" },
-    { icon: Headphones, label: "Support", href: "/support" }
+    { icon: Home, iconName: "Home", label: "Overview", href: "/society" as Route },
+    { icon: Users, iconName: "Users", label: "Residents", href: "/society" as Route },
+    { icon: PawPrint, iconName: "PawPrint", label: "Saathi pool", href: "/society" as Route },
+    { icon: Megaphone, iconName: "Megaphone", label: "Events & notices", href: "/society" as Route },
+    { icon: ShieldCheck, iconName: "ShieldCheck", label: "Safety centre", href: "/safety" },
+    { icon: Headphones, iconName: "Headphones", label: "Support", href: "/support" }
   ],
   operator: [
-    { icon: Home, label: "Overview", href: "/operator" as Route },
-    { icon: MapPin, label: "Territories", href: "/operator" as Route },
-    { icon: Activity, label: "City health", href: "/operator" as Route },
-    { icon: DollarSign, label: "Economics", href: "/operator" as Route },
-    { icon: Settings2, label: "Settings", href: "/settings/notifications" as Route }
+    { icon: Home, iconName: "Home", label: "Overview", href: "/operator" as Route },
+    { icon: MapPin, iconName: "MapPin", label: "Territories", href: "/operator" as Route },
+    { icon: Activity, iconName: "Activity", label: "City health", href: "/operator" as Route },
+    { icon: DollarSign, iconName: "DollarSign", label: "Economics", href: "/operator" as Route },
+    { icon: Settings2, iconName: "Settings2", label: "Settings", href: "/settings/notifications" as Route }
   ]
 };
+
+function getSerializableLinks(mode: PortalMode) {
+  return portalNavigation[mode].map(({ iconName, label, href }) => ({
+    iconName,
+    label,
+    href
+  }));
+}
 
 export function PortalShell({ mode, displayName, metrics, showSummaryCards = true, children }: { mode: PortalMode; displayName: string; metrics?: readonly [string, string, string]; showSummaryCards?: boolean; children?: ReactNode }) {
   const copy = portalCopy[mode];
@@ -120,7 +131,7 @@ export function PortalShell({ mode, displayName, metrics, showSummaryCards = tru
       <header className="sticky top-0 z-40 border-b border-indigo/10 bg-paper/80 backdrop-blur-2xl">
         <div className="container-shell flex min-h-20 items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <PortalMobileNav links={portalNavigation[mode]} mode={mode} />
+            <PortalMobileNav links={getSerializableLinks(mode)} mode={mode} />
             <PetSaathiLogo />
           </div>
           <div className="flex items-center gap-2">

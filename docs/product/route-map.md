@@ -36,7 +36,8 @@ This document outlines the core routes and API paths that comprise the PetSaathi
 - *(Additional admin routes are typically grouped under specialized portals or nested under `/admin` depending on the frontend structure)*
 
 ## 5. Key API Routes
-- `/api/auth/[...supabase]` - Authentication callbacks
+- `/api/auth/password/signup`, `/api/auth/password/signin` - MongoDB-backed password registration and sign-in
+- `/api/auth/email/*`, `/api/auth/otp/*` - MongoDB-backed email and phone OTP challenges
 - `/api/public/leads` - Capture public inquiries
 - `/api/public/testimonials` - Fetch verified reviews
 - `/api/customer/bookings` - Create or manage bookings

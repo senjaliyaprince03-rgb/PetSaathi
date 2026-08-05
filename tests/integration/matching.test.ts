@@ -1,8 +1,13 @@
-import { describe, it, expect, beforeEach, afterEach } from "vitest";
+import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import { PrismaClient, BookingStatus, RiskLevel, SitterStatus, PermissionStatus } from "@prisma/client";
 import { NextRequest } from "next/server";
 import { randomUUID } from "crypto";
 import { GET as MatchGET, POST as MatchPOST } from "@/app/api/admin/bookings/[id]/match/route";
+
+const testIdentity = vi.hoisted(() => ({ id: "", roles: ["OPERATIONS_ADMIN"] as const }));
+vi.mock("@/modules/auth/session", () => ({
+  getCurrentIdentity: vi.fn(() => Promise.resolve(testIdentity)),
+}));
 
 const prisma = new PrismaClient();
 
@@ -21,18 +26,17 @@ describe("Phase 11: Assisted Matching Integration", () => {
       data: {
         email: `admin_${randomUUID()}@petsaathi.in`,
         displayName: "Admin",
-        authUserId: randomUUID(),
         roles: { create: [{ role: "OPERATIONS_ADMIN" }] }
       }
     });
     adminId = admin.id;
+    testIdentity.id = adminId;
 
     // Customer
     const customer = await prisma.user.create({
       data: {
         email: `customer_${randomUUID()}@petsaathi.in`,
         displayName: "Customer",
-        authUserId: randomUUID(),
         roles: { create: [{ role: "CUSTOMER" }] }
       }
     });
@@ -78,7 +82,6 @@ describe("Phase 11: Assisted Matching Integration", () => {
       data: {
         email: `sitter_${randomUUID()}@petsaathi.in`,
         displayName: "Sitter",
-        authUserId: randomUUID(),
         roles: { create: [{ role: "SITTER" }] }
       }
     });
@@ -163,7 +166,7 @@ describe("Phase 11: Assisted Matching Integration", () => {
     const postReq = new NextRequest(`http://localhost/api/admin/bookings/${bookingId}/match`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ sitterId, adminId })
+      body: JSON.stringify({ sitterId })
     });
     const postRes = await MatchPOST(postReq as any, { params: Promise.resolve({ id: bookingId }) } as any);
     if (postRes.status !== 200) {

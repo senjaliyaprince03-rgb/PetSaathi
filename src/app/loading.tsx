@@ -2,7 +2,7 @@ import { PawPrint } from "lucide-react";
 
 export default function Loading() {
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-cream/95 backdrop-blur-xl" role="status" aria-label="Loading PetSaathi">
+    <div className="flex min-h-[100dvh] w-full items-center justify-center bg-cream/95 backdrop-blur-xl" role="status" aria-label="Loading PetSaathi">
       <div className="text-center [perspective:800px]">
         <div className="relative mx-auto h-24 w-24 animate-[float_2.4s_ease-in-out_infinite] [transform-style:preserve-3d]">
           <div className="absolute inset-0 rotate-6 rounded-[2rem] bg-gradient-to-br from-coral to-saffron shadow-soft [transform:rotateY(-18deg)_rotateX(12deg)]" />

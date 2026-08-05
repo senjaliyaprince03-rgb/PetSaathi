@@ -1,7 +1,13 @@
 import { NextResponse } from "next/server";
 import { createContract, activateContract, getContracts, B2bError } from "@/modules/b2b/contract.service";
+import { authorizeApi } from "@/modules/auth/authorization";
+
+const allowedRoles = ["PARTNER_MANAGER", "FINANCE_ADMIN", "SUPER_ADMIN"] as const;
 
 export async function POST(req: Request) {
+  const authorization = await authorizeApi(allowedRoles);
+  if (!authorization.authorized) return authorization.response;
+
   try {
     const body = await req.json();
     const { organizationId, contractType, startDate, endDate, contractedValue, action, contractId } = body;
@@ -30,6 +36,9 @@ export async function POST(req: Request) {
 }
 
 export async function GET(req: Request) {
+  const authorization = await authorizeApi(allowedRoles);
+  if (!authorization.authorized) return authorization.response;
+
   const { searchParams } = new URL(req.url);
   const organizationId = searchParams.get("organizationId") || undefined;
 

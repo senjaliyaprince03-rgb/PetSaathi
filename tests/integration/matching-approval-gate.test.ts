@@ -321,7 +321,6 @@ describe("ranked assignment approval gate", () => {
 async function createUser(prefix: string, displayName: string) {
   return prisma.user.create({
     data: {
-      authUserId: randomUUID(),
       email: `${prefix}@example.test`,
       displayName,
       status: "ACTIVE",

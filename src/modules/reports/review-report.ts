@@ -63,7 +63,7 @@ export async function reviewBookingReport(reportId: string, reviewer: { id: stri
 
     await tx.auditLog.create({ data: { actorId: reviewer.id, actorRole, action: `booking_report.${toState.toLowerCase()}`, resourceType: "booking_report", resourceId: report.id, before: { reviewStatus: report.reviewStatus, bookingStatus: report.booking.status }, after: { reviewStatus: updated.reviewStatus, bookingStatus: toState === "APPROVED" ? "CLOSED" : report.booking.status }, reason: input.note } });
     return { report: { id: updated.id, reviewStatus: updated.reviewStatus }, bookingStatus: toState === "APPROVED" ? "CLOSED" : report.booking.status };
-  }, { isolationLevel: Prisma.TransactionIsolationLevel.Serializable, maxWait: 5_000, timeout: 15_000 });
+  }, { maxWait: 5_000, timeout: 15_000 });
 }
 
 export class ReportReviewError extends Error {

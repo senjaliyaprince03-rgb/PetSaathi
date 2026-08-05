@@ -1,19 +1,16 @@
 name: petsaathi-test
 
 services:
-  db-test:
-    image: postgres:16-alpine
+  mongodb-test:
+    image: mongo:8.0
     restart: "no"
-    environment:
-      POSTGRES_USER: petsaathi_test
-      POSTGRES_PASSWORD: test_password
-      POSTGRES_DB: petsaathi_test
+    command: ["mongod", "--replSet", "rs0", "--bind_ip_all"]
     ports:
-      - "127.0.0.1:${PETSAATHI_TEST_DB_PORT:-55432}:5432"
+      - "127.0.0.1:${PETSAATHI_TEST_DB_PORT:-47017}:27017"
     tmpfs:
-      - /var/lib/postgresql/data
+      - /data/db
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U petsaathi_test -d petsaathi_test"]
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand({ ping: 1 }).ok"]
       interval: 2s
       timeout: 3s
       retries: 30

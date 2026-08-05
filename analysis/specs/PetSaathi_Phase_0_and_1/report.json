@@ -13332,12 +13332,12 @@
     {
       "type": "paragraph",
       "style": "Normal",
-      "text": "Database: Built-in database, Airtable or Supabase"
+      "text": "Database: Built-in database, Airtable or MongoDB Atlas"
     },
     {
       "type": "paragraph",
       "style": "Normal",
-      "text": "Authentication: Platform authentication or Supabase Auth"
+      "text": "Authentication: Platform authentication or MongoDB-backed authentication"
     },
     {
       "type": "paragraph",
@@ -13387,7 +13387,7 @@
     {
       "type": "paragraph",
       "style": "Normal",
-      "text": "Backend and database: Supabase or Firebase"
+      "text": "Backend and database: MongoDB Atlas or Firebase"
     },
     {
       "type": "paragraph",

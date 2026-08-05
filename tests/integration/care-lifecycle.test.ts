@@ -15,9 +15,9 @@ describe("care report to closure lifecycle", () => {
 
   beforeAll(async () => {
     const [customer, sitterUser, admin] = await Promise.all([
-      prisma.user.create({ data: { authUserId: randomUUID(), email: `care-customer-${suffix}@example.test`, displayName: "Care Customer", status: "ACTIVE" } }),
-      prisma.user.create({ data: { authUserId: randomUUID(), email: `care-sitter-${suffix}@example.test`, displayName: "Care Saathi", status: "ACTIVE" } }),
-      prisma.user.create({ data: { authUserId: randomUUID(), email: `care-admin-${suffix}@example.test`, displayName: "Care Reviewer", status: "ACTIVE" } })
+      prisma.user.create({ data: { email: `care-customer-${suffix}@example.test`, displayName: "Care Customer", status: "ACTIVE" } }),
+      prisma.user.create({ data: { email: `care-sitter-${suffix}@example.test`, displayName: "Care Saathi", status: "ACTIVE" } }),
+      prisma.user.create({ data: { email: `care-admin-${suffix}@example.test`, displayName: "Care Reviewer", status: "ACTIVE" } })
     ]);
     const sitter = await prisma.sitterProfile.create({ data: { userId: sitterUser.id, status: "APPROVED", approvedAt: new Date() } });
     const pet = await prisma.pet.create({ data: { ownerId: customer.id, name: "Milo", species: "DOG", active: true } });

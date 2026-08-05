@@ -223,7 +223,6 @@ export async function enrollMember(programmeId: string, customerId: string) {
           return { membership, created: true };
         },
         {
-          isolationLevel: Prisma.TransactionIsolationLevel.Serializable,
           maxWait: 5_000,
           timeout: 15_000,
         },

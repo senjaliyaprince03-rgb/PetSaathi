@@ -26,7 +26,7 @@ export async function submitBookingReport(assignmentId: string, sitterUserId: st
     await tx.notificationOutbox.create({ data: { channel: "IN_APP", templateKey: correctionSubmission ? "report.resubmitted" : "report.review_pending", destination: "operations-queue", payload: { bookingId: assignment.booking.id, reference: assignment.booking.reference, reportId: created.id, version, concernFlag: input.concernFlag }, idempotencyKey: `report-review:${created.id}:operations` } });
     if (input.concernFlag) await tx.notificationOutbox.create({ data: { channel: "IN_APP", templateKey: "report.concern", destination: "safety-queue", payload: { bookingId: assignment.booking.id, reportId: created.id, version }, idempotencyKey: `report-concern:${created.id}:safety` } });
     return created;
-  }, { isolationLevel: Prisma.TransactionIsolationLevel.Serializable, maxWait: 5_000, timeout: 15_000 });
+  }, { maxWait: 5_000, timeout: 15_000 });
 }
 
 export class ReportSubmissionError extends Error {

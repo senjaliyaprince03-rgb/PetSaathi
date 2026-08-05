@@ -55,3 +55,6 @@ extracted_images/
 test_*.pdf
 videos/
 .originkit/
+
+# Sentry Config File
+.env.sentry-build-plugin

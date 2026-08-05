@@ -35369,11 +35369,7 @@ Backup coverage 90–95%+
 Direct contribution Positive or clearly improving
 Critical unresolved incidents Zero
 Marketing scale rule
-Increase customer-acquisition spending only when:
-[
-\text{Incremental contribution}
-\text{Incremental acquisition and fulfilment cost}
-]
+Increase customer-acquisition spending only when incremental contribution exceeds incremental acquisition and fulfilment cost, and conversion metrics remain stable at the current spend level.
 
 ### Page 231
 
@@ -35384,6 +35380,19 @@ Do not scale advertising when:
 • Customer ratings are falling
 • Partner payouts are delayed
 • Subscription capacity lacks backup
+• New bookings cannot be supported within the guaranteed window
+• Refunds and disputes are above acceptable thresholds
+
+Hold new campaign launches until the service can consistently absorb additional demand without degrading quality.
+Use this pause to restore operational stability, improve provider readiness, and verify recovery pathways.
+
+Before reopening acquisition:
+• Confirm that current demand can be accommodated by at least 20% extra capacity
+• Verify that support response time and issue resolution are within targets
+• Ensure provider payout and billing processes are operating smoothly
+• Validate the recovery path for cancellations, delays, and reschedules
+• Reassess the marketing funnel to confirm healthy conversion and retention trends
+
 Part III — Company-Owned vs Franchise Expansion
 9. Company-owned cities
 Advantages

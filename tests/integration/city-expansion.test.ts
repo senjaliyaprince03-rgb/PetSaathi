@@ -22,7 +22,6 @@ describe("Phase 10: Multi-City Expansion Integration", () => {
         email: `manager_${randomUUID()}@petsaathi.in`,
         displayName: "City Manager",
         roles: { create: [{ role: "CITY_MANAGER" }] },
-        authUserId: randomUUID()
       }
     });
     managerId = user.id;

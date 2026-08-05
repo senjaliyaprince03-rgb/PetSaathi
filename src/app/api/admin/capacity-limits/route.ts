@@ -1,4 +1,3 @@
-import { Prisma } from "@prisma/client";
 import { NextResponse } from "next/server";
 
 import { prisma } from "@/lib/db";
@@ -29,9 +28,9 @@ export async function POST(request: Request) {
       if (!service) throw new CapacityError(409, "service_inactive", "Capacity can only open for an active service.");
       if (current && parsed.data.maximum < current.reserved) throw new CapacityError(409, "below_reserved_capacity", `Maximum cannot be below ${current.reserved} existing reservation${current.reserved === 1 ? "" : "s"}.`);
       const saved = current ? await tx.capacityLimit.update({ where: { id: current.id }, data: { maximum: parsed.data.maximum, reason: parsed.data.reason } }) : await tx.capacityLimit.create({ data: { serviceAreaId: area.id, serviceCode: service.code, serviceDate, maximum: parsed.data.maximum, reason: parsed.data.reason } });
-      await tx.auditLog.create({ data: { actorId: identity.id, actorRole: identity.roles.includes("SUPER_ADMIN") ? "SUPER_ADMIN" : "OPERATIONS_ADMIN", action: current ? "capacity_limit.updated" : "capacity_limit.created", resourceType: "capacity_limit", resourceId: saved.id, before: current ? { maximum: current.maximum, reserved: current.reserved, reason: current.reason } : Prisma.JsonNull, after: { serviceAreaId: saved.serviceAreaId, serviceCode: saved.serviceCode, serviceDate: parsed.data.serviceDate, maximum: saved.maximum, reserved: saved.reserved }, reason: parsed.data.reason } });
+      await tx.auditLog.create({ data: { actorId: identity.id, actorRole: identity.roles.includes("SUPER_ADMIN") ? "SUPER_ADMIN" : "OPERATIONS_ADMIN", action: current ? "capacity_limit.updated" : "capacity_limit.created", resourceType: "capacity_limit", resourceId: saved.id, before: current ? { maximum: current.maximum, reserved: current.reserved, reason: current.reason } : null, after: { serviceAreaId: saved.serviceAreaId, serviceCode: saved.serviceCode, serviceDate: parsed.data.serviceDate, maximum: saved.maximum, reserved: saved.reserved }, reason: parsed.data.reason } });
       return saved;
-    }, { isolationLevel: Prisma.TransactionIsolationLevel.Serializable });
+    }, { });
     return NextResponse.json({ capacityLimit }, { status: 201, headers: { "Cache-Control": "no-store" } });
   } catch (error) {
     if (error instanceof CapacityError) return NextResponse.json({ error: error.code, message: error.message }, { status: error.status });

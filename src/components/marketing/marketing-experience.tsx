@@ -109,24 +109,24 @@ export function MarketingExperience() {
               </div>
             </ScrollReveal>
             <ScrollReveal direction="up" delay={0.16}>
-                <p className="mt-7 max-w-xl text-base font-semibold leading-8 text-white drop-shadow-md sm:text-lg">Connect with background-checked local Saathis for GPS-tracked walks, in-home sitting, grooming, and vet care—all backed by 24/7 human support.</p>
+                <p className="mt-7 max-w-xl text-base font-semibold leading-8 text-white drop-shadow-md sm:text-lg">Plan local care with clear service context for walks, home visits, grooming and non-emergency veterinary support. Availability and permissions are checked before confirmation.</p>
             </ScrollReveal>
             <ScrollReveal direction="up" delay={0.24}>
               <Float3D className="mt-12 flex flex-col items-start gap-6 sm:flex-row sm:items-center">
                 {/* Left side: Overlapping circles */}
                 <div className="flex -space-x-4">
                   <div className="relative h-16 w-16 overflow-hidden rounded-full border-2 border-white ring-2 ring-white shadow-md">
-                    <Image src="/images/avatar-1.jpg" alt="Pet parent" fill className="object-cover" />
+                    <Image src="/images/avatar-1.jpg" alt="Pet parent" fill sizes="64px" className="object-cover" />
                   </div>
                   <div className="relative h-16 w-16 overflow-hidden rounded-full border-2 border-white ring-2 ring-white shadow-md">
-                    <Image src="/images/avatar-2.jpg" alt="Pet parent" fill className="object-cover" />
+                    <Image src="/images/avatar-2.jpg" alt="Pet parent" fill sizes="64px" className="object-cover" />
                   </div>
                   <div className="relative h-16 w-16 overflow-hidden rounded-full border-2 border-white ring-2 ring-white shadow-md">
-                    <Image src="/images/avatar-3.jpg" alt="Pet parent" fill className="object-cover" />
+                    <Image src="/images/avatar-3.jpg" alt="Pet parent" fill sizes="64px" className="object-cover" />
                   </div>
                   <div className="relative z-10 flex h-16 w-16 flex-col items-center justify-center rounded-full border-2 border-[#D4AF37] bg-[#f8f5f0] shadow-md ring-2 ring-white">
-                    <span className="font-display text-lg font-bold leading-none text-[#987634]">10k+</span>
-                    <span className="text-[0.4rem] font-bold tracking-widest text-[#987634] uppercase mt-0.5">Pet Parents</span>
+                    <span className="font-display text-sm font-bold leading-none text-[#987634]">Care</span>
+                    <span className="text-[0.4rem] font-bold tracking-widest text-[#987634] uppercase mt-0.5">Plans</span>
                   </div>
                 </div>
 
@@ -140,10 +140,10 @@ export function MarketingExperience() {
                       <svg className="h-4 w-4 text-[#D4AF37] fill-[#D4AF37]" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
                       <svg className="h-4 w-4 text-[#D4AF37] fill-[#D4AF37]" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
                     </div>
-                    <span className="text-[0.65rem] font-bold text-white uppercase tracking-wider">78% Rating</span>
+                    <span className="text-[0.65rem] font-bold text-white uppercase tracking-wider">Care detail</span>
                   </div>
                   
-                  <p className="mt-2 font-display text-2xl sm:text-3xl font-medium text-white drop-shadow-md">Trusted by careful families across the city</p>
+                  <p className="mt-2 font-display text-2xl sm:text-3xl font-medium text-white drop-shadow-md">Designed for thoughtful local care</p>
                   
                   <div className="mt-2 flex items-center w-full max-w-sm opacity-60">
                     <div className="h-px w-full bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent" />
@@ -224,7 +224,7 @@ export function MarketingExperience() {
 
       <section className="py-24 sm:py-32" id="services">
         <div className="container-shell">
-          <ScrollReveal direction="up"><div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end"><div><p className="eyebrow font-outfit">Tailored Pet Care</p><h2 className="section-title mt-5 max-w-[14ch]">Comprehensive Services Designed for Every Need.</h2></div><p className="max-w-xl text-sm font-medium leading-7 text-ink/60">Every service is backed by background-checked Saathis, real-time photo/GPS telemetry, transparent pricing, and 24/7 support.</p></div></ScrollReveal>
+          <ScrollReveal direction="up"><div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end"><div><p className="eyebrow font-outfit">Tailored Pet Care</p><h2 className="section-title mt-5 max-w-[14ch]">Comprehensive Services Designed for Every Need.</h2></div><p className="max-w-xl text-sm font-medium leading-7 text-ink/60">Every service follows service-specific permissions, transparent pricing, structured updates where agreed, and clear human support pathways.</p></div></ScrollReveal>
 
           <ScrollStaggerContainer className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {services.map(({ slug, name, kicker, description, icon: Icon, image }) => (

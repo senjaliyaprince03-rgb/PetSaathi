@@ -110766,12 +110766,12 @@
     {
       "type": "paragraph",
       "style": "Normal",
-      "text": "Supabase alternative"
+      "text": "MongoDB Atlas alternative"
     },
     {
       "type": "paragraph",
       "style": "Normal",
-      "text": "Supabase Storage supports on-the-fly image resizing and optimisation, but its documented image transformations are a Pro-plan feature and do not replace a complete video-processing system."
+      "text": "MongoDB GridFS storage supports on-the-fly image resizing and optimisation, but its documented image transformations are a Pro-plan feature and do not replace a complete video-processing system."
     },
     {
       "type": "paragraph",
@@ -110781,12 +110781,12 @@
     {
       "type": "paragraph",
       "style": "Normal",
-      "text": "Images only and already using Supabase:"
+      "text": "Images only and already using MongoDB Atlas:"
     },
     {
       "type": "paragraph",
       "style": "Normal",
-      "text": "Supabase Storage may be enough"
+      "text": "MongoDB GridFS storage may be enough"
     },
     {
       "type": "paragraph",

@@ -26,7 +26,6 @@ describe("Admin Mutation Handlers", () => {
   function identity(roles: Role[]): AppIdentity {
     return {
       id: ids.adminId,
-      authUserId: randomUUID(),
       displayName: "Integration Admin",
       status: "ACTIVE",
       roles

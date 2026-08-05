@@ -18,13 +18,11 @@ export async function cancelBookingBeforePayment(bookingId: string, customerId: 
 
     const entitlementConsumption = await tx.entitlementConsumption.findFirst({ where: { bookingId: current.id } });
 
-    const released = await tx.$queryRaw<Array<{ id: string }>>`
-      UPDATE "capacity_limits"
-      SET "reserved" = "reserved" - ${current.capacityReservation.quantity}, "updated_at" = CURRENT_TIMESTAMP
-      WHERE "id" = ${current.capacityReservation.capacityLimitId}::uuid AND "reserved" >= ${current.capacityReservation.quantity}
-      RETURNING "id"
-    `;
-    if (released.length !== 1) throw new CancellationError(409, "capacity_release_failed", "Capacity could not be released consistently. No booking status was changed.");
+    const released = await tx.capacityLimit.updateMany({
+      where: { id: current.capacityReservation.capacityLimitId, reserved: { gte: current.capacityReservation.quantity } },
+      data: { reserved: { decrement: current.capacityReservation.quantity } },
+    });
+    if (released.count !== 1) throw new CancellationError(409, "capacity_release_failed", "Capacity could not be released consistently. No booking status was changed.");
 
     const now = new Date();
     await tx.capacityReservation.update({ where: { id: current.capacityReservation.id }, data: { status: "RELEASED", releaseReason: reason, releasedAt: now } });
@@ -52,7 +50,7 @@ export async function cancelBookingBeforePayment(bookingId: string, customerId: 
 
     await tx.auditLog.create({ data: { actorId: customerId, actorRole: "CUSTOMER", action: "booking.customer_cancelled", resourceType: "booking", resourceId: current.id, before: { status: current.status }, after: { status: updated.status, capacityReservation: "RELEASED", entitlementRefunded: !!entitlementConsumption }, reason } });
     return updated;
-  }, { isolationLevel: Prisma.TransactionIsolationLevel.Serializable, maxWait: 5_000, timeout: 15_000 });
+  }, { maxWait: 5_000, timeout: 15_000 });
 }
 
 export class CancellationError extends Error {

@@ -49,7 +49,7 @@ export async function awardLoyaltyReward(params: {
     });
 
     return { id: entry.id, balanceAfter: entry.balanceAfter, creditsPaise: rule.creditsPaise };
-  }, { isolationLevel: Prisma.TransactionIsolationLevel.Serializable });
+  }, { });
 }
 
 // ──────────────────────────────────────────────────────────

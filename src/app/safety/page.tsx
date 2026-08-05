@@ -4,7 +4,9 @@ import Link from "next/link";
 import { ArrowRight, BadgeCheck, FileClock, ShieldAlert, Sparkles, UserRoundCheck } from "lucide-react";
 
 import { PublicShell } from "@/components/marketing/public-shell";
+import { PortalShell } from "@/components/portal/portal-shell";
 import { buttonVariants } from "@/components/ui/button";
+import { getCurrentIdentity } from "@/modules/auth/session";
 
 export const metadata: Metadata = { title: "Safety | PetSaathi" };
 
@@ -15,7 +17,34 @@ const safetyCards = [
   [ShieldAlert, "A formal exception path", "Concerns move through triage, communication, response, review and corrective action with authorised closure."]
 ] as const;
 
-export default function SafetyPage() {
+export default async function SafetyPage() {
+  const identity = await getCurrentIdentity();
+  if (identity?.roles.includes("CUSTOMER")) {
+    return (
+      <PortalShell mode="customer" displayName={identity.displayName} showSummaryCards={false}>
+        <section className="mt-5 grid gap-5 xl:grid-cols-[minmax(0,1.25fr)_minmax(18rem,0.75fr)]">
+          <div className="rounded-[2rem] border border-ink/[0.07] bg-paper p-5 shadow-[0_18px_55px_-38px_rgb(var(--ink)/0.32)] sm:p-7">
+            <p className="eyebrow">Trust architecture</p>
+            <h2 className="mt-3 max-w-2xl font-display text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">Safety is a system, not a decorative badge.</h2>
+            <p className="mt-3 max-w-3xl text-sm leading-6 text-ink/50">PetSaathi separates evidence, permissions, matching, service records and exception handling so every boundary remains visible.</p>
+            <div className="mt-7 grid gap-3 md:grid-cols-2">
+              {safetyCards.map(([Icon, title, copy], index) => (
+                <article key={title} className="rounded-[1.5rem] border border-ink/[0.06] bg-cream/35 p-5">
+                  <div className="flex items-start justify-between"><span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-indigo/10 text-indigo"><Icon className="h-4 w-4" /></span><span className="font-display text-xl text-ink/18">0{index + 1}</span></div>
+                  <h3 className="mt-5 font-display text-xl font-semibold">{title}</h3><p className="mt-2 text-xs leading-5 text-ink/48">{copy}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+          <aside className="grid gap-5">
+            <div className="relative overflow-hidden rounded-[2rem] bg-[#281d2b] p-6 text-paper shadow-soft sm:p-7"><div className="absolute -right-16 -top-16 h-44 w-44 rounded-full bg-coral/20 blur-3xl" /><ShieldAlert className="relative h-8 w-8 text-saffron" /><p className="relative mt-8 text-[0.6rem] font-bold uppercase tracking-[0.2em] text-paper/42">Emergency boundary</p><h2 className="relative mt-3 font-display text-3xl font-semibold">Support is not veterinary care.</h2><p className="relative mt-3 text-sm leading-6 text-paper/55">For an active emergency, use the veterinary and emergency contacts stored with the booking. A support ticket does not replace urgent response.</p></div>
+            <div className="rounded-[2rem] border border-leaf/15 bg-leaf/[0.07] p-6"><p className="text-[0.6rem] font-bold uppercase tracking-[0.2em] text-leaf">Need a documented response?</p><h2 className="mt-3 font-display text-2xl font-semibold">Use the correct protected trail.</h2><div className="mt-5 grid gap-2"><Link href="/customer/protocols" className="flex items-center justify-between rounded-2xl bg-paper px-4 py-3 text-sm font-bold shadow-sm">Open care protocols<ArrowRight className="h-4 w-4 text-coral" /></Link><Link href="/support" className="flex items-center justify-between rounded-2xl bg-paper px-4 py-3 text-sm font-bold shadow-sm">Contact support<ArrowRight className="h-4 w-4 text-coral" /></Link></div></div>
+          </aside>
+        </section>
+      </PortalShell>
+    );
+  }
+
   return (
     <PublicShell>
       {/* 1. FULL-BLEED HERO BANNER (LEFT ALIGNED) */}

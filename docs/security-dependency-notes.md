@@ -1,12 +1,11 @@
 # Dependency security notes
 
-## 2026-07-18 — Next.js bundled PostCSS advisory
+## 2026-08-03 — PostCSS and Sharp advisories resolved
 
-`npm audit` reports three moderate entries that resolve to `next@15.5.20` bundling `postcss@8.4.31`, affected by `GHSA-qx2v-qp2m-jg93` (unescaped `</style>` during CSS stringification).
+Both application production dependency audits currently report zero known vulnerabilities.
 
-- The audit proposes downgrading Next.js to 9.3.3, which is not a safe or supported remediation for this Next.js 15 application.
-- A scoped npm override to PostCSS 8.5.19 was tested and rejected because Next pins 8.4.31 exactly; npm left the dependency tree invalid.
-- PetSaathi does not compile user-authored CSS or inject stored article HTML. CMS content is parsed into allowlisted paragraph, heading and list blocks and rendered as React text.
-- Risk remains moderate and accepted temporarily pending an upstream Next.js release that updates its pinned PostCSS dependency.
+- The primary app uses compatible top-level PostCSS and Sharp releases with scoped npm overrides.
+- The nested app pins Next.js 16.2.12, NextAuth 4.24.15, UUID 11.1.1, PostCSS 8.5.19 and Sharp 0.35.3.
+- Both production builds passed after the dependency updates.
 
-Release owners must re-run `npm audit`, inspect `npm ls postcss next`, and remove this exception as soon as a compatible Next.js release provides PostCSS 8.5.10 or newer.
+Release owners must re-run both production audits and builds on every lockfile change. No forced downgrade or broad audit fix is approved.

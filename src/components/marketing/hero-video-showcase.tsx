@@ -5,6 +5,14 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Pause, Play, PawPrint, Volume2, VolumeX } from "lucide-react";
 import { ParallaxScroll, RotateOnScroll } from "@/components/3d/scroll-reveal";
 
+const videoAssetExists = (src: string) => {
+  if (typeof window === "undefined") return true;
+
+  const video = document.createElement("video");
+  video.src = src;
+  return video.canPlayType("video/mp4") !== "";
+};
+
 const careFilms = [
   {
     slug: "dog-walking",
@@ -54,6 +62,7 @@ export function HeroVideoShowcase() {
   const [progress, setProgress] = useState(0);
 
   const activeFilm = careFilms[activeIndex] ?? careFilms[0];
+  const [hasVideo, setHasVideo] = useState(true);
 
   const selectFilm = useCallback((index: number) => {
     setProgress(0);
@@ -67,6 +76,11 @@ export function HeroVideoShowcase() {
   const showPrevious = useCallback(() => {
     selectFilm((activeIndex - 1 + careFilms.length) % careFilms.length);
   }, [activeIndex, selectFilm]);
+
+  useEffect(() => {
+    const src = `/videos/${activeFilm.slug}.mp4?v=clean2026_v3`;
+    setHasVideo(videoAssetExists(src));
+  }, [activeFilm.slug]);
 
   // Handle changing videos
   useEffect(() => {
@@ -138,29 +152,35 @@ export function HeroVideoShowcase() {
       <ParallaxScroll speed={0.05}>
         <div className="relative overflow-hidden rounded-[2rem] border border-white/20 bg-ink shadow-2xl sm:rounded-[2.5rem]">
           <div className="relative">
-            <video
-              key={activeFilm.slug}
-              ref={videoRef}
-              id="hero-care-film"
-              className="block aspect-video h-auto w-full object-cover rounded-t-[2rem] sm:rounded-t-[2.5rem]"
-              poster={`/videos/${activeFilm.slug}.jpg?v=clean2026_v3`}
-              preload="auto"
-              autoPlay
-              muted={isMuted}
-              playsInline
-              onPlay={() => setIsPlaying(true)}
-              onPause={() => setIsPlaying(false)}
-              onEnded={handleEnded}
-              onTimeUpdate={(event) => {
-                const video = event.currentTarget;
-                setProgress(video.duration ? (video.currentTime / video.duration) * 100 : 0);
-              }}
-              aria-label={`${activeFilm.title} care film`}
-              aria-describedby="hero-care-film-description"
-            >
-              <source src={`/videos/${activeFilm.slug}.mp4?v=clean2026_v3`} type="video/mp4" />
-              Your browser does not support embedded video.
-            </video>
+            {hasVideo ? (
+              <video
+                key={activeFilm.slug}
+                ref={videoRef}
+                id="hero-care-film"
+                className="block aspect-video h-auto w-full object-cover rounded-t-[2rem] sm:rounded-t-[2.5rem]"
+                poster={`/videos/${activeFilm.slug}.jpg?v=clean2026_v3`}
+                preload="auto"
+                autoPlay
+                muted={isMuted}
+                playsInline
+                onPlay={() => setIsPlaying(true)}
+                onPause={() => setIsPlaying(false)}
+                onEnded={handleEnded}
+                onTimeUpdate={(event) => {
+                  const video = event.currentTarget;
+                  setProgress(video.duration ? (video.currentTime / video.duration) * 100 : 0);
+                }}
+                aria-label={`${activeFilm.title} care film`}
+                aria-describedby="hero-care-film-description"
+              >
+                <source src={`/videos/${activeFilm.slug}.mp4?v=clean2026_v3`} type="video/mp4" />
+                Your browser does not support embedded video.
+              </video>
+            ) : (
+              <div className="flex aspect-video items-center justify-center rounded-t-[2rem] bg-ink/90 text-center text-sm text-paper sm:rounded-t-[2.5rem]">
+                <p className="max-w-sm px-6">The care film preview is currently unavailable, but the experience remains fully accessible.</p>
+              </div>
+            )}
 
             <div className="pointer-events-none absolute inset-0" />
             <div className="pointer-events-none absolute inset-x-0 top-0 flex items-center justify-between p-4 sm:p-6">

@@ -28,18 +28,33 @@ const petFormSchema = z.object({
 
 type PetFormInput = z.infer<typeof petFormSchema>;
 
-export function PetProfileForm() {
+export function PetProfileForm({ pet }: { pet?: { id: string; name: string; species: "DOG" | "CAT" | "OTHER"; breed?: string | null; sex?: "FEMALE" | "MALE" | "UNKNOWN" | null; birthDate?: string | null; weightKg?: number | null; sterilised?: boolean | null; medical?: { allergies?: string | null; conditions?: string | null; medications?: string | null } | null; emergencyContact?: { name: string; phone: string } | null } }) {
   const router = useRouter();
   const [serverError, setServerError] = useState<string | null>(null);
   const form = useForm<PetFormInput>({
     resolver: zodResolver(petFormSchema),
-    defaultValues: { name: "", species: "DOG", breed: "", sex: "UNKNOWN", birthDate: "", allergies: "", conditions: "", medications: "", emergencyName: "", emergencyPhone: "" }
+    defaultValues: pet ? {
+      name: pet.name,
+      species: pet.species,
+      breed: pet.breed || "",
+      sex: pet.sex || "UNKNOWN",
+      birthDate: pet.birthDate ? pet.birthDate.split("T")[0] : "",
+      weightKg: pet.weightKg || undefined,
+      sterilised: pet.sterilised || false,
+      allergies: pet.medical?.allergies || "",
+      conditions: pet.medical?.conditions || "",
+      medications: pet.medical?.medications || "",
+      emergencyName: pet.emergencyContact?.name || "",
+      emergencyPhone: pet.emergencyContact?.phone || ""
+    } : { name: "", species: "DOG", breed: "", sex: "UNKNOWN", birthDate: "", allergies: "", conditions: "", medications: "", emergencyName: "", emergencyPhone: "" }
   });
 
   async function submit(values: PetFormInput) {
     setServerError(null);
-    const response = await fetch("/api/pets", {
-      method: "POST",
+    const url = pet ? `/api/pets/${pet.id}` : "/api/pets";
+    const method = pet ? "PUT" : "POST";
+    const response = await fetch(url, {
+      method,
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         name: values.name,

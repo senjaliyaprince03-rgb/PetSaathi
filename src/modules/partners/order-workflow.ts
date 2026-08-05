@@ -23,7 +23,16 @@ export async function createPartnerOrder(customerId: string, input: { partnerSer
         status: "ACTIVE",
         partner: {
           status: "ACTIVE",
-          verifications: { some: { status: "PASSED", OR: [{ expiresAt: null }, { expiresAt: { gt: new Date() } }] } }
+          verifications: {
+            some: {
+              status: "PASSED",
+              OR: [
+                { expiresAt: null },
+                { expiresAt: { isSet: false } },
+                { expiresAt: { gt: new Date() } },
+              ],
+            },
+          }
         }
       },
       select: { id: true, serviceCode: true, partner: { select: { displayName: true } } }
@@ -44,7 +53,7 @@ export async function createPartnerOrder(customerId: string, input: { partnerSer
     await tx.auditLog.create({ data: { actorId: customerId, actorRole: "CUSTOMER", action: "partner_order.requested", resourceType: "partner_order", resourceId: order.id, after: { reference, partnerServiceId: service.id, serviceCode: service.serviceCode, scheduledAt: input.scheduledAt?.toISOString() ?? null }, reason: "Controlled partner-service request" } });
     await queueCustomerNotice(tx, customerId, "partner_order.requested", { orderId: order.id, reference, partnerName: service.partner.displayName, serviceCode: service.serviceCode }, `partner-order-requested:${order.id}`);
     return order;
-  }, { isolationLevel: Prisma.TransactionIsolationLevel.Serializable, maxWait: 5_000, timeout: 15_000 });
+  }, { maxWait: 5_000, timeout: 15_000 });
 }
 
 export async function transitionPartnerOrder(orderId: string, actor: { id: string; roles: Role[] }, input: { toState: PartnerOrderStatus; note: string; scheduledAt?: Date }) {
@@ -58,7 +67,7 @@ export async function transitionPartnerOrder(orderId: string, actor: { id: strin
     await tx.auditLog.create({ data: { actorId: actor.id, actorRole: role, action: "partner_order.transition", resourceType: "partner_order", resourceId: order.id, before: { status: order.status, scheduledAt: order.scheduledAt?.toISOString() ?? null }, after: { status: updated.status, scheduledAt: updated.scheduledAt?.toISOString() ?? null }, reason: input.note } });
     await queueCustomerNotice(tx, order.customerId, `partner_order.${input.toState.toLowerCase()}`, { orderId: order.id, reference: order.reference, partnerName: order.partnerService.partner.displayName, status: input.toState, scheduledAt: updated.scheduledAt?.toISOString() ?? null }, `partner-order-${input.toState.toLowerCase()}:${order.id}`);
     return updated;
-  }, { isolationLevel: Prisma.TransactionIsolationLevel.Serializable, maxWait: 5_000, timeout: 15_000 });
+  }, { maxWait: 5_000, timeout: 15_000 });
 }
 
 async function queueCustomerNotice(tx: Prisma.TransactionClient, userId: string, templateKey: string, payload: Prisma.InputJsonObject, idempotencyKey: string) {

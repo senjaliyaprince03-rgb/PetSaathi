@@ -197,7 +197,6 @@ async function claimPaymentRecord(
           return { claimed: true as const, booking, payment };
         },
         {
-          isolationLevel: Prisma.TransactionIsolationLevel.Serializable,
           maxWait: 5_000,
           timeout: 15_000,
         },

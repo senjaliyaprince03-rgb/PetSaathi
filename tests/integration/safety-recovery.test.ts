@@ -17,9 +17,9 @@ describe("incident response and replacement recovery", () => {
 
   beforeAll(async () => {
     const [customer, sitterUser, safety] = await Promise.all([
-      prisma.user.create({ data: { authUserId: randomUUID(), email: `safety-customer-${suffix}@example.test`, displayName: "Safety Customer", status: "ACTIVE" } }),
-      prisma.user.create({ data: { authUserId: randomUUID(), email: `safety-sitter-${suffix}@example.test`, displayName: "Safety Saathi", status: "ACTIVE" } }),
-      prisma.user.create({ data: { authUserId: randomUUID(), email: `safety-admin-${suffix}@example.test`, displayName: "Safety Admin", status: "ACTIVE", roles: { create: { role: "SAFETY_ADMIN" } } } })
+      prisma.user.create({ data: { email: `safety-customer-${suffix}@example.test`, displayName: "Safety Customer", status: "ACTIVE" } }),
+      prisma.user.create({ data: { email: `safety-sitter-${suffix}@example.test`, displayName: "Safety Saathi", status: "ACTIVE" } }),
+      prisma.user.create({ data: { email: `safety-admin-${suffix}@example.test`, displayName: "Safety Admin", status: "ACTIVE", roles: { create: { role: "SAFETY_ADMIN" } } } })
     ]);
     const sitter = await prisma.sitterProfile.create({ data: { userId: sitterUser.id, status: "APPROVED", approvedAt: new Date() } });
     const pet = await prisma.pet.create({ data: { ownerId: customer.id, name: "Milo", species: "DOG", active: true } });

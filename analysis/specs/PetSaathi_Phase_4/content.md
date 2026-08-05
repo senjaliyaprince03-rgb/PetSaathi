@@ -2690,7 +2690,7 @@ No native apps, live chat, AI matching, wallet or subscription engine
 
 The best architecture is a modular monolith: one Next.js codebase, one PostgreSQL database and three role-based interfaces for customers, sitters and administrators.
 
-Recommended stack: Next.js + TypeScript + Tailwind/shadcn + Supabase PostgreSQL/Auth/Storage + Prisma + Razorpay + WhatsApp Cloud API + Resend + Vercel + Sentry.
+Recommended stack: Next.js + TypeScript + Tailwind/shadcn + MongoDB Atlas/Auth/Storage + Prisma + Razorpay + WhatsApp Cloud API + Resend + Vercel + Sentry.
 
 1. Recommended Phase 4 duration
 
@@ -2854,10 +2854,10 @@ Stack decision table
 | Framework | Next.js App Router + TypeScript | Approve |
 | UI | Tailwind CSS + shadcn/ui | Approve |
 | Architecture | Modular monolith | Approve |
-| Database | Supabase-hosted PostgreSQL | Approve |
+| Database | MongoDB Atlas | Approve |
 | ORM | Prisma | Approve |
-| Authentication | Supabase Auth | Recommended |
-| Storage | Supabase Storage | Approve |
+| Authentication | MongoDB-backed authentication | Recommended |
+| Storage | MongoDB GridFS storage | Approve |
 | Payments | Razorpay Standard Checkout | Approve |
 | Messaging | WhatsApp Cloud API | Approve |
 | Email | Resend | Approve |
@@ -3068,9 +3068,9 @@ Lower infrastructure complexity
 
 Modules can be separated into services later if transaction volume or team structure genuinely requires it.
 
-7. Database — Supabase PostgreSQL with Prisma
+7. Database — MongoDB Atlas with Prisma
 
-Supabase provides hosted PostgreSQL, while Prisma supports Supabase and other PostgreSQL-compatible databases.
+MongoDB Atlas provides hosted PostgreSQL, while Prisma supports MongoDB Atlas and other PostgreSQL-compatible databases.
 
 Recommended connection model
 
@@ -3084,7 +3084,7 @@ SSL connections
 
 Prisma migrations under version control
 
-Supabase provides its Supavisor connection pooler; server-side pooling is particularly relevant for auto-scaling and serverless functions because it prevents short-lived functions from exhausting database connections.
+MongoDB Atlas provides its Supavisor connection pooler; server-side pooling is particularly relevant for auto-scaling and serverless functions because it prevents short-lived functions from exhausting database connections.
 
 Important architecture decision
 
@@ -3124,9 +3124,9 @@ inside the trusted server environment.
 
 8. Authentication — use one system
 
-Do not combine Supabase Auth, Auth.js and Clerk in the same MVP.
+Do not combine MongoDB-backed authentication, Auth.js and Clerk in the same MVP.
 
-Recommended choice: Supabase Auth
+Recommended choice: MongoDB-backed authentication
 
 Use:
 
@@ -3138,11 +3138,11 @@ Stronger admin authentication controls
 
 Role records stored in the PetSaathi database
 
-Supabase supports phone OTP authentication, but it requires an external supported SMS provider to deliver the codes.
+MongoDB Atlas supports phone OTP authentication, but it requires an external supported SMS provider to deliver the codes.
 
 User structure
 
-Supabase Auth owns the authentication identity.
+MongoDB-backed authentication owns the authentication identity.
 
 PetSaathi owns the application record:
 
@@ -3198,9 +3198,9 @@ Current business status
 
 Permission to perform the action
 
-9. File storage — Supabase Storage
+9. File storage — MongoDB GridFS storage
 
-Use private Supabase Storage buckets.
+Use private MongoDB GridFS storage buckets.
 
 Suggested buckets:
 
@@ -3216,7 +3216,7 @@ incident-evidence
 
 marketing-assets
 
-Supabase Storage supports access control through PostgreSQL Row Level Security, and uploads are denied by default until policies are created.
+MongoDB GridFS storage supports access control through PostgreSQL Row Level Security, and uploads are denied by default until policies are created.
 
 Storage rules
 
@@ -3590,9 +3590,9 @@ Accuracy result
 
 Calculate sitter matching using travel minutes, not only straight-line kilometres.
 
-14. Hosting — Vercel and Supabase
+14. Hosting — Vercel and MongoDB Atlas
 
-Deploy the Next.js application to Vercel and host the database, authentication and storage in Supabase.
+Deploy the Next.js application to Vercel and host the database, authentication and storage in MongoDB Atlas.
 
 Vercel provides direct support for Next.js deployments and automatically configures the framework’s build and deployment behaviour.
 
@@ -4310,7 +4310,7 @@ Next.js application
 
 Tailwind and shadcn setup
 
-Supabase project
+MongoDB Atlas project
 
 Prisma schema and migrations
 
@@ -4889,11 +4889,11 @@ Modular monolith architecture
 
 Authentication
 
-Supabase Auth
+MongoDB-backed authentication
 
 Database
 
-Supabase PostgreSQL
+MongoDB Atlas
 
 ORM
 
@@ -4901,7 +4901,7 @@ Prisma
 
 File storage
 
-Private Supabase Storage buckets
+Private MongoDB GridFS storage buckets
 
 Payments
 
@@ -4937,7 +4937,7 @@ Final recommendation
 
 Your proposed stack is approved with four refinements:
 
-Use Supabase Auth rather than introducing Auth.js or Clerk alongside Supabase.
+Use MongoDB-backed authentication rather than introducing Auth.js or Clerk alongside MongoDB Atlas.
 
 Use App Router Route Handlers, rather than designing around legacy Next.js API Routes.
 
@@ -4951,7 +4951,7 @@ A mobile-first, installable PWA that digitises PetSaathi’s validated customer 
 
 Simple explanation for professor
 
-“Phase 4 will take approximately sixty days and will convert PetSaathi’s manual system into a working Progressive Web App. I will use Next.js and TypeScript for the customer, sitter and admin interfaces, PostgreSQL and Prisma for structured business data, Supabase for authentication and private file storage, Razorpay for prepaid bookings, WhatsApp and email for notifications, and Vercel for deployment. Dog walking and home pet sitting will be active services, while boarding will remain an administrator-controlled beta. Customers will create pet profiles, request services, approve sitters, pay and receive report cards. Sitters will manage assignments, send updates and submit reports. Administrators will control pet-risk review, matching, verification, incidents, refunds and payouts. The system will be developed as one modular application instead of separate native apps or microservices. The product will launch first to a small group in one micro-market after payment, security, privacy and complete booking journeys have passed testing.”
+“Phase 4 will take approximately sixty days and will convert PetSaathi’s manual system into a working Progressive Web App. I will use Next.js and TypeScript for the customer, sitter and admin interfaces, PostgreSQL and Prisma for structured business data, MongoDB Atlas for authentication and private file storage, Razorpay for prepaid bookings, WhatsApp and email for notifications, and Vercel for deployment. Dog walking and home pet sitting will be active services, while boarding will remain an administrator-controlled beta. Customers will create pet profiles, request services, approve sitters, pay and receive report cards. Sitters will manage assignments, send updates and submit reports. Administrators will control pet-risk review, matching, verification, incidents, refunds and payouts. The system will be developed as one modular application instead of separate native apps or microservices. The product will launch first to a small group in one micro-market after payment, security, privacy and complete booking journeys have passed testing.”
 
 PetSaathi Phase 4 — User Roles and Public Website, End to End 🐾🚀
 
@@ -7552,7 +7552,7 @@ Email magic link
 
 Google login later
 
-Supabase Auth supports one-time-password login, including phone OTP. Phone delivery requires a supported messaging provider to be configured.
+MongoDB-backed authentication supports one-time-password login, including phone OTP. Phone delivery requires a supported messaging provider to be configured.
 
 Signup fields
 
@@ -18249,7 +18249,7 @@ Location metadata
 
 They should therefore be stored in private object storage.
 
-Supabase Storage buckets are private by default and can serve authorised files through authenticated access or time-limited signed URLs. This is appropriate for customer report media because the files should not have permanent public links.
+MongoDB GridFS storage buckets are private by default and can serve authorised files through authenticated access or time-limited signed URLs. This is appropriate for customer report media because the files should not have permanent public links.
 
 Recommended access
 
@@ -20188,7 +20188,7 @@ Revoke
 
 Escalate for second review
 
-Verification evidence should use private storage and restricted access. Supabase recommends enabling Row Level Security on exposed tables and granting only the permissions each role requires; its Storage service also supports RLS policies controlling private-object access.
+Verification evidence should use private storage and restricted access. MongoDB Atlas recommends enabling Row Level Security on exposed tables and granting only the permissions each role requires; its Storage service also supports RLS policies controlling private-object access.
 
 9. Booking Management
 
@@ -20893,7 +20893,7 @@ Frontend route checks alone
 
 Database controls
 
-For any tables exposed through Supabase APIs, RLS must be enabled and explicitly configured. Supabase warns that exposed tables without RLS may be accessible to roles with matching grants.
+For any tables exposed through MongoDB Atlas APIs, RLS must be enabled and explicitly configured. MongoDB Atlas warns that exposed tables without RLS may be accessible to roles with matching grants.
 
 Admin session controls
 
@@ -21242,7 +21242,7 @@ customer_profiles
 
 sitter_profiles
 
-Supabase Auth can provide the authenticated identity, while PostgreSQL Row Level Security can restrict which records that identity may access. Supabase documents Auth and RLS as complementary layers, and its Storage service also uses RLS-based access policies.
+MongoDB-backed authentication can provide the authenticated identity, while PostgreSQL Row Level Security can restrict which records that identity may access. MongoDB Atlas documents Auth and RLS as complementary layers, and its Storage service also uses RLS-based access policies.
 
 Rule 2 — Current values and historical evidence must be separate
 
@@ -21318,7 +21318,7 @@ Incident evidence
 
 Customer home images
 
-Supabase Storage denies or permits access through RLS-backed policies, so files can be delivered only to authorised users rather than exposed through permanent public URLs.
+MongoDB GridFS storage denies or permits access through RLS-backed policies, so files can be delivered only to authorised users rather than exposed through permanent public URLs.
 
 Rule 6 — Critical multi-table operations must be transactional
 
@@ -23206,9 +23206,9 @@ Next.js App Router supports Route Handlers inside the app directory for standard
 
 Authentication
 
-When using Supabase Auth, you generally do not need to recreate a password-authentication system in custom API routes.
+When using MongoDB-backed authentication, you generally do not need to recreate a password-authentication system in custom API routes.
 
-Use Supabase authentication for:
+Use MongoDB-backed authenticationentication for:
 
 OTP initiation
 
@@ -23600,7 +23600,7 @@ Change system configuration
 
 Access audit history
 
-Supabase recommends RLS for controlling which data roles may access, and PostgreSQL constraints provide an additional integrity layer. Application-level permission checks are still required for sensitive commands.
+MongoDB Atlas recommends RLS for controlling which data roles may access, and PostgreSQL constraints provide an additional integrity layer. Application-level permission checks are still required for sensitive commands.
 
 21. Design-direction audit 🎨
 
@@ -24008,7 +24008,7 @@ Signed media links
 
 The browser must never receive:
 
-Supabase service-role credentials
+MongoDB Atlas service-role credentials
 
 Razorpay secret
 
@@ -25250,7 +25250,7 @@ Expired verification cannot generate a public badge.
 
 Row-level access planning
 
-Even when most database access passes through the Next.js server, define ownership and role rules early. Supabase documents Row Level Security as a PostgreSQL mechanism for restricting row access and integrating authorization with Supabase Auth; it also recommends ensuring exposed tables have RLS or equivalent safeguards.
+Even when most database access passes through the Next.js server, define ownership and role rules early. MongoDB Atlas documents Row Level Security as a PostgreSQL mechanism for restricting row access and integrating authorization with MongoDB-backed authentication; it also recommends ensuring exposed tables have RLS or equivalent safeguards.
 
 Create an access matrix for every table:
 
@@ -26528,7 +26528,7 @@ SITTER_APPLICATION_WEBHOOK_URL=
 
 Do not commit secret keys.
 
-Week 2 may not need Razorpay, Supabase or WhatsApp API credentials yet, but the environment structure should be ready for later integrations.
+Week 2 may not need Razorpay, MongoDB Atlas or WhatsApp API credentials yet, but the environment structure should be ready for later integrations.
 
 5. Add code-quality controls
 
@@ -48599,7 +48599,7 @@ Auth.js
 
 Clerk
 
-Supabase Auth
+MongoDB-backed authentication
 
 Another established provider that supports the required deployment model
 

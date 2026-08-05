@@ -5,9 +5,9 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 
 import { prisma } from "@/lib/db";
-import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { getCurrentIdentity } from "@/modules/auth/session";
 import { consumeRateLimit } from "@/modules/security/rate-limit";
+import { createUploadToken } from "@/modules/storage/gridfs";
 
 const uploadSchema = z.object({ purpose: z.enum(["PET_PHOTO", "SITTER_EVIDENCE", "REPORT_MEDIA", "INCIDENT_EVIDENCE"]), resourceId: z.string().uuid(), mimeType: z.enum(["image/jpeg", "image/png", "image/webp", "application/pdf"]), sizeBytes: z.number().int().positive().max(15 * 1024 * 1024) });
 const incidentRoles: Role[] = ["OPERATIONS_ADMIN", "SAFETY_ADMIN", "SUPER_ADMIN"];
@@ -26,18 +26,15 @@ export async function POST(request: Request) {
   const rate = await consumeRateLimit("upload-sign-user", identity.id, 30, 60 * 60_000);
   if (!rate.allowed) return NextResponse.json({ error: "too_many_requests" }, { status: 429, headers: { "Retry-After": String(rate.retryAfterSeconds) } });
 
-  const supabase = createSupabaseAdminClient();
-  if (!supabase) return NextResponse.json({ error: "storage_not_configured" }, { status: 503 });
   const objectPath = `${purpose.toLowerCase()}/${resourceId}/${randomUUID()}.${extensionByMime[mimeType]}`;
-  const { data, error } = await supabase.storage.from("upload-quarantine").createSignedUploadUrl(objectPath, { upsert: false });
-  if (error || !data) return NextResponse.json({ error: "upload_url_unavailable" }, { status: 502 });
 
   const upload = await prisma.$transaction(async (tx) => {
     const created = await tx.uploadObject.create({ data: { ownerId: identity.id, purpose, resourceId, quarantinePath: objectPath, mimeType, sizeBytes } });
     await tx.auditLog.create({ data: { actorId: identity.id, actorRole: identity.roles[0], action: "upload.quarantine_url_issued", resourceType: purpose.toLowerCase(), resourceId, after: { uploadId: created.id, objectPath, mimeType, sizeBytes, bucket: "upload-quarantine" } } });
     return created;
   });
-  return NextResponse.json({ upload: { id: upload.id, bucket: "upload-quarantine", objectPath, signedUrl: data.signedUrl, token: data.token, mimeType, maxBytes: purpose === "PET_PHOTO" ? 8 * 1024 * 1024 : 15 * 1024 * 1024 }, scanStatus: "required" });
+  const token = createUploadToken(upload.id);
+  return NextResponse.json({ upload: { id: upload.id, bucket: "upload-quarantine", objectPath, signedUrl: `/api/uploads/${upload.id}?token=${encodeURIComponent(token)}`, token, mimeType, maxBytes: purpose === "PET_PHOTO" ? 8 * 1024 * 1024 : 15 * 1024 * 1024 }, scanStatus: "required" });
 }
 
 async function authoriseUpload(userId: string, roles: Role[], purpose: z.infer<typeof uploadSchema>["purpose"], resourceId: string) {

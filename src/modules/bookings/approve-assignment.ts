@@ -26,7 +26,7 @@ export async function approveCustomerAssignment(bookingId: string, assignmentId:
     await tx.auditLog.create({ data: { actorId: customerId, actorRole: "CUSTOMER", action: replacement ? "booking.replacement_approved" : "booking.assignment_approved", resourceType: "booking_assignment", resourceId: assignment.id, before: { assignmentStatus: assignment.status, bookingStatus: booking.status }, after: { assignmentStatus: "CUSTOMER_APPROVED", bookingStatus: nextState, paymentReused: replacement }, reason: replacement ? "Customer approved replacement without a second charge" : "Customer approved proposed Saathi" } });
     await tx.notificationOutbox.create({ data: { userId: assignment.sitter.userId, channel: "IN_APP", templateKey: replacement ? "assignment.replacement_approved" : "assignment.customer_approved", destination: assignment.sitter.userId, payload: { bookingId: booking.id, bookingReference: booking.reference, assignmentId: assignment.id, bookingStatus: nextState }, idempotencyKey: `assignment-customer-approved:${assignment.id}` } });
     return { approved: true as const, next: replacement ? "confirmed" as const : "payment" as const, paymentReused: replacement, bookingStatus: nextState };
-  }, { isolationLevel: Prisma.TransactionIsolationLevel.Serializable, maxWait: 5_000, timeout: 15_000 });
+  }, { maxWait: 5_000, timeout: 15_000 });
 }
 
 export class AssignmentApprovalError extends Error {

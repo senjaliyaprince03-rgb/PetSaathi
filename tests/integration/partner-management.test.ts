@@ -29,7 +29,6 @@ describe("Phase 8: Partner Management Integration", () => {
         email: "test_customer@example.com",
         displayName: "Test Customer",
         roles: { create: [{ role: "CUSTOMER" }] },
-        authUserId: randomUUID()
       }
     });
     customerId = user.id;

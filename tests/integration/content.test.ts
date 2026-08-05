@@ -21,7 +21,6 @@ describe("Phase 12: Content, SEO, Testimonials Integration", () => {
       data: {
         email: `admin_${randomUUID()}@petsaathi.in`,
         displayName: "Content Admin",
-        authUserId: randomUUID(),
         roles: { create: [{ role: "CONTENT_ADMIN" }] }
       }
     });
@@ -32,7 +31,6 @@ describe("Phase 12: Content, SEO, Testimonials Integration", () => {
       data: {
         email: `customer_${randomUUID()}@petsaathi.in`,
         displayName: "Happy Customer",
-        authUserId: randomUUID(),
         roles: { create: [{ role: "CUSTOMER" }] }
       }
     });

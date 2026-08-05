@@ -28,7 +28,6 @@ describe("Pet Records Page Security", () => {
   function identity(id: string, roles: Role[]): AppIdentity {
     return {
       id,
-      authUserId: randomUUID(),
       displayName: "Integration Identity",
       status: "ACTIVE",
       roles
@@ -42,7 +41,6 @@ describe("Pet Records Page Security", () => {
     // We do not strictly need the user object, but Prisma requires it for relations.
     const owner = await prisma.user.create({
       data: { 
-        authUserId: randomUUID(),
         email: `owner-${randomUUID()}@example.test`,
         displayName: "Owner Name",
         status: "ACTIVE" 

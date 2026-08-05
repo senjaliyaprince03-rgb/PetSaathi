@@ -35,7 +35,6 @@ describe("Phase 14: Scale, Funding, Franchise Integration", () => {
         email: `manager-${Date.now()}@petsaathi.in`,
         phoneE164: `+9199${Math.floor(10000000 + Math.random() * 90000000)}`,
         displayName: "Manager",
-        authUserId: randomUUID()
       }
     });
 
@@ -46,7 +45,6 @@ describe("Phase 14: Scale, Funding, Franchise Integration", () => {
         email: `sitter-${Date.now()}@petsaathi.in`,
         phoneE164: `+9199${Math.floor(10000000 + Math.random() * 90000000)}`,
         displayName: "Sitter",
-        authUserId: randomUUID()
       }
     });
 
@@ -57,7 +55,6 @@ describe("Phase 14: Scale, Funding, Franchise Integration", () => {
         email: `auditor-${Date.now()}@petsaathi.in`,
         phoneE164: `+9199${Math.floor(10000000 + Math.random() * 90000000)}`,
         displayName: "Auditor",
-        authUserId: randomUUID()
       }
     });
 
@@ -69,7 +66,6 @@ describe("Phase 14: Scale, Funding, Franchise Integration", () => {
         email: `contact-${Date.now()}@petsaathi.in`,
         phoneE164: `+9199${Math.floor(10000000 + Math.random() * 90000000)}`,
         displayName: "Contact",
-        authUserId: randomUUID()
       }
     });
 

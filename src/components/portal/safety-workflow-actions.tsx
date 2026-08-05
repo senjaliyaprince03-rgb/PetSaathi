@@ -83,14 +83,11 @@ export function SafetyWorkflowActions({ incidentId, status, bookingStatus, hasSi
     if (!file) return;
     setPending("upload"); setError(null); setMessage(null);
     const signedResponse = await fetch("/api/uploads/sign", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ purpose: "INCIDENT_EVIDENCE", resourceId: incidentId, mimeType: file.type, sizeBytes: file.size }) });
-    const signed = await signedResponse.json().catch(() => null) as { upload?: { bucket: string; objectPath: string; token: string }; message?: string; error?: string } | null;
+    const signed = await signedResponse.json().catch(() => null) as { upload?: { signedUrl: string }; message?: string; error?: string } | null;
     if (!signedResponse.ok || !signed?.upload) { setPending(null); return setError(signed?.message ?? signed?.error?.replaceAll("_", " ") ?? "Evidence upload could not be prepared."); }
-    const { createSupabaseBrowserClient } = await import("@/lib/supabase/client");
-    const client = createSupabaseBrowserClient();
-    if (!client) { setPending(null); return setError("Private storage is not configured in this environment."); }
-    const uploaded = await client.storage.from(signed.upload.bucket).uploadToSignedUrl(signed.upload.objectPath, signed.upload.token, file, { contentType: file.type });
+    const uploaded = await fetch(signed.upload.signedUrl, { method: "PUT", headers: { "Content-Type": file.type }, body: file });
     setPending(null);
-    if (uploaded.error) return setError("The evidence file did not reach quarantine. Try again.");
+    if (!uploaded.ok) return setError("The evidence file did not reach quarantine. Try again.");
     setFile(null); setMessage("Evidence uploaded to quarantine. It becomes part of the timeline only after malware scanning and promotion.");
   }
 

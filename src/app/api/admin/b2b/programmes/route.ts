@@ -1,8 +1,14 @@
 import { NextResponse } from "next/server";
 import { createProgramme, activateProgramme } from "@/modules/b2b/programme.service";
 import { B2bError } from "@/modules/b2b/contract.service";
+import { authorizeApi } from "@/modules/auth/authorization";
+
+const allowedRoles = ["PARTNER_MANAGER", "SUPER_ADMIN"] as const;
 
 export async function POST(req: Request) {
+  const authorization = await authorizeApi(allowedRoles);
+  if (!authorization.authorized) return authorization.response;
+
   try {
     const body = await req.json();
     const { action, programmeId, organizationId, contractId, name, slug, programmeType, cityScope, eligibilityMethod, eligibilityDomain, startDate, endDate } = body;
