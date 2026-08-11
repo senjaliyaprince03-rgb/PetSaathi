@@ -1,14 +1,26 @@
 import { NextResponse } from "next/server";
+import { getMongoDatabase } from "@/lib/mongodb";
 
-export const dynamic = "force-dynamic";
-
-export function GET() {
-  return NextResponse.json(
-    {
+export async function GET() {
+  try {
+    const db = await getMongoDatabase();
+    await db.command({ ping: 1 });
+    
+    return NextResponse.json({
       status: "ok",
-      service: "petsaathi-web",
+      db: "connected",
       timestamp: new Date().toISOString(),
-    },
-    { headers: { "Cache-Control": "no-store" } },
-  );
+      version: process.env.npm_package_version || "1.0.0"
+    });
+  } catch (error) {
+    return NextResponse.json(
+      {
+        status: "error",
+        db: "disconnected",
+        timestamp: new Date().toISOString(),
+        error: (error as Error).message
+      },
+      { status: 503 }
+    );
+  }
 }
