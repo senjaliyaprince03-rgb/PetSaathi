@@ -17,7 +17,7 @@ export function createApiError(
     error,
     code,
     statusCode,
-    ...(details && { details }),
+    ...(details !== undefined ? { details } : {})
   };
 }
 
