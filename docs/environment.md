@@ -8,6 +8,7 @@ Secrets belong in Vercel Environment Variables and GitHub Secrets. They must nev
 | --- | --- | --- |
 | `MONGODB_URI` | server | MongoDB Atlas connection string including the application database path |
 | `MONGODB_DATABASE` | server | Explicit database name; required when the URI does not include one |
+| `MONGODB_PRISMA_URI` | server, optional | Direct MongoDB seed-list URI for Windows/native MongoDB and Prisma runtimes where Atlas SRV DNS is unavailable; never commit it |
 | `AUTH_SECRET` | server | At least 32 random characters used to protect OTP challenges and sessions |
 | `UPLOAD_SIGNING_SECRET` | server | At least 32 random characters used for short-lived GridFS upload tokens |
 | `NEXT_PUBLIC_APP_URL` | public | Canonical HTTPS origin |
