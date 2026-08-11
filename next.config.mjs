@@ -1,11 +1,18 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { withSentryConfig } from "@sentry/nextjs";
+import withBundleAnalyzer from "@next/bundle-analyzer";
+
+const bundleAnalyzer = withBundleAnalyzer({
+  enabled: process.env.ANALYZE === "true",
+});
 
 const projectRoot = path.dirname(fileURLToPath(import.meta.url));
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Keep browser-runner artifacts isolated from the normal production build.
+  distDir: process.env.NEXT_DIST_DIR ?? ".next",
   poweredByHeader: false,
   reactStrictMode: true,
   typedRoutes: true,
@@ -95,5 +102,5 @@ const shouldUploadSourcemaps = Boolean(
 // Do not launch the Sentry CLI during local/CI builds unless upload credentials
 // are explicitly configured; runtime error reporting remains env-gated.
 export default process.env.NODE_ENV === "development" || !shouldUploadSourcemaps
-  ? nextConfig
-  : withSentryConfig(nextConfig, sentryOptions);
+  ? bundleAnalyzer(nextConfig)
+  : withSentryConfig(bundleAnalyzer(nextConfig), sentryOptions);
