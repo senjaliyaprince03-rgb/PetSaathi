@@ -2,6 +2,7 @@ const browserMutationMethods = new Set(["POST", "PUT", "PATCH", "DELETE"]);
 
 export function isTrustedBrowserMutation(method: string, requestUrl: string, origin: string | null) {
   if (!browserMutationMethods.has(method.toUpperCase())) return true;
+  console.log("Checking origin:", origin, "for request:", requestUrl);
   if (!origin) return false;
   try {
     const requestOrigin = new URL(requestUrl);

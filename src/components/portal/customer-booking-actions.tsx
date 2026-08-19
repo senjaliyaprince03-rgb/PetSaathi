@@ -10,7 +10,7 @@ type RazorpayResult = { razorpay_order_id: string; razorpay_payment_id: string; 
 type RazorpayInstance = { open: () => void };
 type RazorpayConstructor = new (options: Record<string, unknown>) => RazorpayInstance;
 
-declare global { interface Window { Razorpay?: RazorpayConstructor } }
+declare global { interface Window { Razorpay?: any } }
 
 export function CustomerApprovalAction({ bookingId, assignmentId }: { bookingId: string; assignmentId: string }) {
   const router = useRouter();

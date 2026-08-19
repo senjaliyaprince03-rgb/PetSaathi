@@ -1,7 +1,6 @@
-import { PrismaClient } from "@prisma/client";
 import { ScaleError } from "./city-ops.service";
 
-const prisma = new PrismaClient();
+import { prisma } from "@/lib/db";
 
 export async function recordSafetyAudit(
   sitterId: string,

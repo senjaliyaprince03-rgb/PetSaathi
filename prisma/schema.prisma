@@ -527,7 +527,7 @@ enum OrgContactRole {
 model User {
   id                       String                    @id @default(uuid()) @map("_id")
   email                    String?                   @unique
-  phoneE164                String?                   @unique @map("phone_e164")
+  phoneE164                String?                   @map("phone_e164")
   displayName              String                    @map("display_name")
   avatarPath               String?                   @map("avatar_path")
   status                   AccountStatus             @default(PENDING)
@@ -2634,7 +2634,7 @@ model HealthTimelineEvent {
 model Contact {
   id                   String                @id @default(uuid()) @map("_id")
   email                String?               @unique
-  phoneE164            String?               @unique @map("phone_e164")
+  phoneE164            String?               @map("phone_e164")
   firstName            String?               @map("first_name")
   lastName             String?               @map("last_name")
   source               String                @default("ORGANIC")

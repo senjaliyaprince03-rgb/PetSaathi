@@ -142,29 +142,14 @@ export function DiscoveryReviewRail() {
       <section className="pb-24 pt-16 sm:pb-32 sm:pt-20" aria-labelledby="care-stories-title">
         <div className="container-shell">
           <ScrollReveal direction="up">
-            <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-              <div>
+            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+              <div className="shrink-0">
                 <p className="eyebrow">Care stories with permission</p>
                 <h2 id="care-stories-title" className="section-title mt-5 max-w-[13ch]">See the details families can compare.</h2>
               </div>
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={showPrevious}
-                  className="flex h-11 w-11 items-center justify-center rounded-full border border-indigo/[0.12] bg-paper text-ink transition hover:bg-ink hover:text-paper"
-                  aria-label="Show previous care stories"
-                >
-                  <ArrowLeft className="h-4 w-4" />
-                </button>
-                <button
-                  type="button"
-                  onClick={showNext}
-                  className="flex h-11 w-11 items-center justify-center rounded-full border border-indigo/[0.12] bg-paper text-ink transition hover:bg-ink hover:text-paper"
-                  aria-label="Show next care stories"
-                >
-                  <ArrowRight className="h-4 w-4" />
-                </button>
-              </div>
+              <p className="max-w-md text-base leading-relaxed text-ink/70 md:pb-2 md:text-right">
+                We believe in absolute transparency. Explore real, verified care routines from local families—published securely with their explicit consent—to help you make the best choice for your pet&apos;s well-being.
+              </p>
             </div>
           </ScrollReveal>
 
@@ -179,8 +164,8 @@ export function DiscoveryReviewRail() {
                 className="grid gap-5 md:grid-cols-3"
               >
                 {visibleStories.map((story, index) => (
-                  <article key={`${story.id}-${index}`} className={cn("overflow-hidden rounded-[2.5rem] border border-indigo/10 bg-paper shadow-lifted", index > 0 && "hidden md:block")}>
-                    <div className="relative aspect-[1.45/1] overflow-hidden">
+                  <article key={`${story.id}-${index}`} className={cn("flex flex-col overflow-hidden rounded-[2.5rem] border border-indigo/10 bg-paper shadow-lifted", index > 0 && "hidden md:block")}>
+                    <div className="relative shrink-0 aspect-[1.45/1] overflow-hidden">
                       <Image
                         src={story.image ?? storyImages[(activeIndex + index) % storyImages.length] ?? storyImages[0]}
                         alt={`${story.context ?? "PetSaathi care"} story setting`}
@@ -194,10 +179,10 @@ export function DiscoveryReviewRail() {
                         {story.isPreview ? "Design preview" : "Published with active consent"}
                       </span>
                     </div>
-                    <div className="p-6">
+                    <div className="flex flex-1 flex-col p-6">
                       <p className="text-[0.62rem] font-bold uppercase tracking-[0.17em] text-coral">{story.context ?? "PetSaathi care"}</p>
                       <blockquote className="mt-4 font-display text-xl font-semibold leading-8 text-ink">&ldquo;{story.quote}&rdquo;</blockquote>
-                      <div className="mt-6 flex items-center justify-between gap-4 border-t border-indigo/10 pt-4">
+                      <div className="mt-auto flex items-center justify-between gap-4 border-t border-indigo/10 pt-4">
                         <div>
                           <p className="text-xs font-bold text-ink/65">{story.displayName}</p>
                           {story.city ? <p className="mt-1 flex items-center gap-1 text-[0.65rem] text-ink/38"><MapPin className="h-3 w-3" />{story.city}</p> : null}

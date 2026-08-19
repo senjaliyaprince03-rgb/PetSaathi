@@ -7,6 +7,7 @@ import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import {
   ArrowRight,
+  ArrowUpRight,
   BookOpenText,
   Building2,
   CheckCircle2,
@@ -17,7 +18,6 @@ import {
   PawPrint,
   Scissors,
   ShieldCheck,
-  Sparkles,
   Stethoscope
 } from "lucide-react";
 
@@ -256,21 +256,21 @@ export function CareJourneyExplorer() {
                   <Link
                     href={href as Route}
                     className={cn(
-                      "group flex min-h-[22rem] h-full flex-col rounded-[2.5rem] border border-indigo/10 bg-gradient-to-br p-7 shadow-lifted transition duration-500 hover:-translate-y-1 hover:border-indigo/25",
+                      "group flex h-[28rem] flex-col rounded-[2.5rem] border border-indigo/10 bg-gradient-to-br p-7 shadow-lifted transition-all duration-500 hover:border-indigo/30 hover:shadow-2xl transform-gpu will-change-transform backface-hidden",
                       tone
                     )}
                   >
                     <div className="flex items-start justify-between">
-                      <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-paper/85 text-indigo shadow-sm">
+                      <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-paper/85 text-indigo shadow-sm transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-3">
                         <Icon className="h-6 w-6" />
                       </span>
-                      <Sparkles className="h-5 w-5 text-coral/60" />
+                      <ArrowUpRight className="h-5 w-5 text-ink/20 transition group-hover:text-indigo group-hover:translate-x-1 group-hover:-translate-y-1" />
                     </div>
                     <p className="mt-auto pt-12 text-[0.62rem] font-bold uppercase tracking-[0.19em] text-coral">{eyebrow}</p>
                     <h3 className="mt-3 max-w-[12ch] font-display text-3xl font-semibold tracking-[-0.04em]">{title}</h3>
                     <p className="mt-4 text-sm leading-7 text-ink/50">{description}</p>
                     <span className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-indigo">
-                      {linkLabel} <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                      {linkLabel} <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-2" />
                     </span>
                   </Link>
                 </AnimosCard>

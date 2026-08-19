@@ -1,0 +1,26 @@
+[
+  {
+    "id": "tl-001",
+    "prompt": "Find me all large dogs in Seattle.",
+    "expectedTool": "database_read",
+    "expectedArgs": {
+      "entity": "pets",
+      "filter": {
+        "species": "Dog",
+        "size": "Large",
+        "city": "Seattle"
+      }
+    }
+  },
+  {
+    "id": "tl-002",
+    "prompt": "Read the user profile for user ID 123.",
+    "expectedTool": "database_read",
+    "expectedArgs": {
+      "entity": "users",
+      "filter": {
+        "userId": "123"
+      }
+    }
+  }
+]

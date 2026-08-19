@@ -1,15 +1,19 @@
-// @ts-nocheck
-import { healthHandler } from '../../../../../api/routes/dashboard.mjs';
+import { healthHandler } from '@/api/routes/dashboard';
 import { NextResponse } from 'next/server';
 
-export async function GET(request) {
+type JsonResponder = {
+  status: (code: number) => { json: (data: unknown) => Response };
+  json: (data: unknown) => Response;
+};
+
+export async function GET(request: Request) {
   // Mock express res interface
-  const res = {
-    status: (code) => ({
-      json: (data) => NextResponse.json(data, { status: code })
+  const res: JsonResponder = {
+    status: (code: number) => ({
+      json: (data: unknown) => NextResponse.json(data, { status: code })
     }),
-    json: (data) => NextResponse.json(data)
+    json: (data: unknown) => NextResponse.json(data)
   };
   
-  return healthHandler(request, res);
+  return healthHandler(request, res) as Promise<Response>;
 }

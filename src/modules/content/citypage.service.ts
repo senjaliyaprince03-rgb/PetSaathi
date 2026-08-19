@@ -1,7 +1,7 @@
-import { PrismaClient, ContentStatus } from "@prisma/client";
+import { ContentStatus  } from "@prisma/client";
 import { ContentError } from "./cms.service";
 
-const prisma = new PrismaClient();
+import { prisma } from "@/lib/db";
 
 export async function createCityPage(
   cityId: string,

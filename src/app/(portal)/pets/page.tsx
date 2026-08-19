@@ -24,19 +24,47 @@ export default async function PetsPage() {
       breed: true,
       birthDate: true,
       weightKg: true,
-      medicalProfile: { select: { allergies: true, conditions: true } },
+      sterilised: true,
+      medicalProfile: { select: { allergies: true, conditions: true, medications: true, veterinarianName: true, veterinarianPhone: true, emergencyClinicName: true, emergencyClinicPhone: true } },
+      emergencyContacts: { orderBy: { priority: "asc" }, take: 1, select: { name: true, phone: true, relation: true } },
       _count: { select: { careInstructions: true, medications: true, vaccinations: true, healthEvents: true } },
     },
   });
 
   const totalRecords = pets.reduce((sum, pet) => sum + pet._count.careInstructions + pet._count.medications + pet._count.vaccinations + pet._count.healthEvents, 0);
-  const careReady = pets.filter((pet) => pet.breed && pet.birthDate && pet.weightKg && pet.medicalProfile).length;
+
+  const completeness = (pet: (typeof pets)[number]) => {
+    const fields = [
+      pet.breed,
+      pet.birthDate,
+      pet.weightKg,
+      pet.sterilised,
+      pet.medicalProfile?.allergies,
+      pet.medicalProfile?.conditions,
+      pet.medicalProfile?.medications,
+      pet.medicalProfile?.veterinarianName,
+      pet.medicalProfile?.veterinarianPhone,
+      pet.medicalProfile?.emergencyClinicName,
+      pet.medicalProfile?.emergencyClinicPhone,
+      pet.emergencyContacts[0]?.name,
+      pet.emergencyContacts[0]?.phone,
+      pet.emergencyContacts[0]?.relation,
+    ];
+
+    const filled = fields.filter((value) => value !== undefined && value !== null && value !== "").length;
+    return { filled, total: fields.length };
+  };
+
+  const careReady = pets.filter((pet) => {
+    const score = completeness(pet);
+    return score.filled === score.total;
+  }).length;
 
   return (
     <PortalShell mode="customer" displayName={identity.displayName} showSummaryCards={false}>
       <div className="mt-5 grid gap-4 sm:grid-cols-3">
         <MetricCard icon={FileHeart} label="Pet passports" value={`${pets.length} active`} hint="Private profiles available for care" />
-        <MetricCard icon={ShieldCheck} label="Care ready" value={`${careReady} complete`} hint="Core identity and medical context" tone="leaf" />
+        <MetricCard icon={ShieldCheck} label="Profile complete" value={`${careReady} complete`} hint="Identity, medical and emergency fields" tone="leaf" />
         <MetricCard icon={HeartPulse} label="Health records" value={`${totalRecords} entries`} hint="Routines, medicines and events" tone="coral" />
       </div>
 
@@ -52,8 +80,8 @@ export default async function PetsPage() {
           <div className="mt-7 grid gap-5 xl:grid-cols-2">
             {pets.map((pet, index) => {
               const records = pet._count.careInstructions + pet._count.medications + pet._count.vaccinations + pet._count.healthEvents;
-              const signals = [pet.breed, pet.birthDate, pet.weightKg, pet.medicalProfile].filter(Boolean).length;
-              const readiness = Math.round((signals / 4) * 100);
+              const score = completeness(pet);
+              const readiness = Math.round((score.filled / score.total) * 100);
               const age = pet.birthDate ? Math.max(0, new Date().getFullYear() - pet.birthDate.getFullYear()) : null;
               return (
                 <Link

@@ -304,7 +304,7 @@ test("sign-in presents the configured password flow", async ({ page }) => {
   await page.goto("/login");
   await expect(page.getByRole("heading", { name: "Sign In" })).toBeVisible();
   await expect(page.getByRole("textbox", { name: "Password", exact: true })).toBeVisible();
-  await expect(page.getByRole("button", { name: "SIGN IN" })).toBeEnabled();
+  await expect(page.getByRole("button", { name: "SIGN IN", exact: true })).toBeEnabled();
   await expect(page.getByText("OTP delivery stays disabled")).toHaveCount(0);
 });
 

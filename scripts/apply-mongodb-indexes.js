@@ -1,7 +1,8 @@
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-require("dotenv").config();
-// eslint-disable-next-line @typescript-eslint/no-require-imports
+/* eslint-disable @typescript-eslint/no-require-imports */
+require("dotenv").config({ path: ".env.local" });
 const { MongoClient } = require("mongodb");
+const dns = require("node:dns");
+try { dns.setServers(["8.8.8.8", "8.8.4.4"]); } catch (e) {}
 
 const uri = process.env.MONGODB_URI;
 if (!uri) throw new Error("MONGODB_URI is required to apply MongoDB indexes.");

@@ -5,12 +5,12 @@ const playwrightPort =
   Number.isInteger(requestedPort) && requestedPort >= 1024 && requestedPort <= 65_535
     ? requestedPort
     : 3110;
-const baseURL = `http://127.0.0.1:${playwrightPort}`;
+const baseURL = `http://localhost:${playwrightPort}`;
 
 export default defineConfig({
   testDir: "./tests/e2e",
   fullyParallel: false,
-  timeout: 120_000,
+  timeout: 300_000,
   forbidOnly: Boolean(process.env.CI),
   retries: process.env.CI ? 2 : 0,
   workers: 1,
@@ -23,14 +23,16 @@ export default defineConfig({
     screenshot: "only-on-failure",
     video: "retain-on-failure"
   },
+  // webServer: {
+  //   command: `npm run dev -- -p ${playwrightPort}`,
+  //   url: baseURL,
+  //   timeout: 420_000,
+  //   reuseExistingServer: !process.env.CI,
+  //   stdout: "pipe",
+  //   stderr: "pipe",
+  // },
   projects: [
     { name: "chromium", use: { ...devices["Desktop Chrome"] } },
     { name: "mobile", use: { ...devices["Pixel 7"] } }
   ],
-  webServer: {
-    command: `npm run dev -- --port ${playwrightPort}`,
-    url: `${baseURL}/api/health`,
-    reuseExistingServer: true,
-    timeout: 300_000
-  }
 });

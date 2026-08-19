@@ -1,7 +1,6 @@
-import { PrismaClient } from "@prisma/client";
 import { ContentError } from "./cms.service";
 
-const prisma = new PrismaClient();
+import { prisma } from "@/lib/db";
 
 export async function attachExpertReview(
   entryId: string,

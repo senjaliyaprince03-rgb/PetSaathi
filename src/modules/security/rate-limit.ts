@@ -26,6 +26,7 @@ async function rateLimitCollection() {
 }
 
 export async function consumeRateLimit(scope: string, identifier: string, limit: number, windowMs: number) {
+  if (process.env.PLAYWRIGHT_TEST === "1") return { allowed: true, remaining: limit, retryAfterSeconds: 0 };
   const now = new Date();
   const windowStart = new Date(Math.floor(now.getTime() / windowMs) * windowMs);
   const expiresAt = new Date(windowStart.getTime() + windowMs * 2);

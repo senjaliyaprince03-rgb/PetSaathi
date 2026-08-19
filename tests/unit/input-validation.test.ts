@@ -4,6 +4,8 @@ import { describe, expect, it } from "vitest";
 
 import { createAddressSchema } from "@/modules/addresses/input";
 import { createBookingSchema } from "@/modules/bookings/input";
+import { compactDefinedFields } from "@/modules/pets/input-utils";
+import { petProfileFormSchema } from "@/modules/pets/profile-input";
 import { validRazorpaySignature } from "@/modules/payments/signature";
 import { createPetSchema } from "@/modules/pets/input";
 
@@ -17,6 +19,59 @@ describe("customer input boundaries", () => {
   it("rejects impossible pet weight and malformed emergency contact data", () => {
     const parsed = createPetSchema.safeParse({ name: "Milo", species: "DOG", weightKg: 900, emergencyContact: { name: "A", phone: "123" } });
     expect(parsed.success).toBe(false);
+  });
+
+  it("accepts blank optional pet profile fields while preserving real values", () => {
+    const formParsed = petProfileFormSchema.safeParse({
+      name: "Milo",
+      species: "DOG",
+      breed: "",
+      sex: "UNKNOWN",
+      birthDate: "",
+      weightKg: "",
+      sterilised: false,
+      allergies: "",
+      conditions: "",
+      medications: "",
+      veterinarianName: "Dr. Rao",
+      veterinarianPhone: "+91 98765 43210",
+      emergencyClinicName: "24x7 Pet Care",
+      emergencyClinicPhone: "+91 99887 77665",
+      emergencyName: "Asha",
+      emergencyRelation: "Guardian",
+      emergencyPhone: "+91 90000 11111"
+    });
+
+    expect(formParsed.success).toBe(true);
+    if (formParsed.success) {
+      expect(formParsed.data.birthDate).toBeUndefined();
+      expect(formParsed.data.weightKg).toBeUndefined();
+      expect(formParsed.data.breed).toBeUndefined();
+    }
+
+    const apiParsed = createPetSchema.safeParse({
+      name: "Milo",
+      species: "DOG",
+      birthDate: "",
+      weightKg: "",
+      medical: {
+        allergies: "",
+        conditions: "",
+        medications: "",
+        veterinarianName: "Dr. Rao",
+        veterinarianPhone: "+91 98765 43210",
+        emergencyClinicName: "24x7 Pet Care",
+        emergencyClinicPhone: "+91 99887 77665"
+      },
+      emergencyContact: {
+        name: "Asha",
+        relation: "Guardian",
+        phone: "+91 90000 11111"
+      }
+    });
+
+    expect(apiParsed.success).toBe(true);
+    expect(compactDefinedFields({ name: "", relation: "", phone: undefined })).toBeUndefined();
   });
 
   it("accepts a future booking while rejecting a near-immediate booking", () => {

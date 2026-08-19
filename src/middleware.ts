@@ -25,7 +25,7 @@ export async function middleware(request: NextRequest) {
     script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https://checkout.razorpay.com https://accounts.google.com https://www.googletagmanager.com ${process.env.NODE_ENV === "development" ? "'unsafe-eval'" : ""};
     connect-src 'self' https://api.razorpay.com https://lumberjack.razorpay.com https://www.google-analytics.com https://www.google.com https://accounts.google.com;
     frame-src 'self' https://api.razorpay.com https://checkout.razorpay.com https://*.razorpay.com https://accounts.google.com https://*.google.com;
-    upgrade-insecure-requests;
+    ${process.env.NODE_ENV === "production" ? "upgrade-insecure-requests;" : ""}
   `.replace(/\s{2,}/g, " ").trim();
 
   headers.set("x-nonce", nonce);
@@ -82,6 +82,21 @@ export async function middleware(request: NextRequest) {
     "/society",
     "/support",
   ];
+  
+  const isNextAuthSession = request.cookies.has("next-auth.session-token") || request.cookies.has("__Secure-next-auth.session-token");
+  const isLegacySession = request.cookies.has("petsaathi_session");
+  const isAuthenticated = isNextAuthSession || isLegacySession;
+
+  const isAdminApi = request.nextUrl.pathname.startsWith("/api/admin");
+  if (isAdminApi && !isAuthenticated) {
+    const rejected = NextResponse.json(
+      { error: "unauthorized" },
+      { status: 401, headers: { "Cache-Control": "no-store" } },
+    );
+    applySecurityHeaders(rejected, cspHeader, requestId);
+    return rejected;
+  }
+
   const isProtectedPage =
     request.method === "GET" &&
     protectedPagePrefixes.some(
@@ -89,7 +104,8 @@ export async function middleware(request: NextRequest) {
         request.nextUrl.pathname === prefix ||
         request.nextUrl.pathname.startsWith(`${prefix}/`),
     );
-  if (isProtectedPage && !request.cookies.has("petsaathi_session")) {
+    
+  if (isProtectedPage && !isAuthenticated) {
     const loginUrl = request.nextUrl.clone();
     loginUrl.pathname = "/login";
     loginUrl.search = "";

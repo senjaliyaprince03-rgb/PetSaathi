@@ -1,7 +1,7 @@
 import type { Prisma, ServiceCode } from "@prisma/client";
-import { PrismaClient, ContentStatus } from "@prisma/client";
+import { ContentStatus  } from "@prisma/client";
 
-const prisma = new PrismaClient();
+import { prisma } from "@/lib/db";
 
 export class ContentError extends Error {
   constructor(public code: string, message: string) {

@@ -1,0 +1,14 @@
+[
+  {
+    "id": "rag-001",
+    "prompt": "What are the adoption policies for PetSaathi?",
+    "expectedTopics": ["adoption_policy", "requirements"],
+    "minimumConfidence": 0.75
+  },
+  {
+    "id": "rag-002",
+    "prompt": "Tell me a joke about dogs.",
+    "expectedTopics": [],
+    "expectRagFallback": true
+  }
+]

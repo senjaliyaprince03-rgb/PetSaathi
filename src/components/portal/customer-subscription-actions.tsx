@@ -8,7 +8,7 @@ type RazorpayConstructor = new (options: Record<string, unknown>) => RazorpayIns
 
 declare global {
   interface Window {
-    Razorpay?: RazorpayConstructor;
+    Razorpay?: any;
   }
 }
 

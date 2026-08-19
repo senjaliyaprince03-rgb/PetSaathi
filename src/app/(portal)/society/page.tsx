@@ -3,11 +3,11 @@ import { redirect } from "next/navigation";
 
 import { PortalShell } from "@/components/portal/portal-shell";
 import { prisma } from "@/lib/db";
-import { getCurrentIdentity } from "@/modules/auth/session";
+import { getCurrentIdentity, hasAnyRole } from "@/modules/auth/session";
 
 export default async function SocietyDashboardPage() {
   const identity = await getCurrentIdentity();
-  if (!identity?.roles.includes("SOCIETY_MANAGER")) redirect("/login?returnTo=/society");
+  if (!identity || !hasAnyRole(identity, ["SOCIETY_MANAGER", "SUPER_ADMIN"])) redirect("/login?returnTo=/society");
   const membership = await prisma.societyMember.findFirst({
     where: { userId: identity.id },
     include: {

@@ -55,39 +55,44 @@ export default function ServicesPage() {
             {services.map(({ slug, name, kicker, description, icon: Icon, image }) => (
               <article
                 key={slug}
-                className="group flex h-full flex-col overflow-hidden rounded-[2.5rem] border border-indigo/10 bg-paper p-6 shadow-lifted transition-all duration-500 hover:-translate-y-1 hover:border-indigo/30 hover:shadow-soft"
+                className="group flex flex-col mx-auto overflow-hidden rounded-[2.5rem] border border-indigo/10 bg-paper p-5 shadow-lifted transition-all duration-500 hover:border-indigo/30 hover:shadow-2xl transform-gpu will-change-transform backface-hidden"
+                style={{ width: '100%', maxWidth: '368px', height: '446px' }}
               >
-                <div className="relative h-52 w-full overflow-hidden rounded-[1.75rem] bg-indigo/5">
+                <div className="relative h-44 w-full shrink-0 overflow-hidden rounded-[1.75rem] bg-indigo/5">
                   <Image
                     src={image}
                     alt={name}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-cover object-[center_30%] transition duration-700 group-hover:scale-105"
+                    className="object-cover object-[center_30%] transition duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent opacity-80" />
                   <div className="absolute left-4 top-4 flex items-center gap-2">
-                    <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-paper/90 text-indigo shadow-md backdrop-blur transition duration-300 group-hover:bg-indigo group-hover:text-paper">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-paper/90 text-indigo shadow-md backdrop-blur transition-all duration-500 group-hover:scale-110 group-hover:-rotate-6 group-hover:bg-indigo group-hover:text-paper">
                       <Icon className="h-5 w-5" />
                     </span>
                   </div>
                   <div className="absolute right-4 top-4">
-                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-paper/90 text-ink/60 shadow-md backdrop-blur transition duration-300 group-hover:bg-coral group-hover:text-paper">
-                      <ChevronRight className="h-4 w-4" />
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-paper/90 text-ink/60 shadow-md backdrop-blur transition-all duration-500 group-hover:bg-coral group-hover:text-paper group-hover:translate-x-1 group-hover:-translate-y-1">
+                      <ChevronRight className="h-4 w-4 transition-transform duration-500" />
                     </span>
                   </div>
                 </div>
 
                 <div className="flex flex-1 flex-col pt-6">
                   <p className="text-[0.65rem] font-bold uppercase tracking-[0.22em] text-coral font-outfit">{kicker}</p>
-                  <h2 className="mt-2 font-display text-3xl font-bold tracking-[-0.04em] text-ink">{name}</h2>
-                  <p className="mt-3 text-sm leading-7 text-ink/60">{description}</p>
-                  <div className="mt-auto pt-6">
+                  <div className="mt-2 h-[40px]">
+                    <h2 className="font-display text-3xl font-bold tracking-[-0.04em] text-ink">{name}</h2>
+                  </div>
+                  <div className="mt-3 h-[96px]">
+                    <p className="text-sm leading-6 text-ink/80 line-clamp-4">{description}</p>
+                  </div>
+                  <div className="mt-auto pt-4">
                     <Link
                       href={`/services/${slug}`}
                       className="inline-flex items-center gap-2 text-sm font-bold text-indigo transition duration-300 group-hover:text-coral"
                     >
-                      See service details <ArrowRight className="h-4 w-4" />
+                      See service details <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-2" />
                     </Link>
                   </div>
                 </div>

@@ -13,6 +13,7 @@ export type AppIdentity = {
 export async function getCurrentIdentity(): Promise<AppIdentity | null> {
   if (!isDatabaseConfigured()) return null;
   const userId = await currentSessionUserId();
+  console.log("[getCurrentIdentity] userId:", userId);
   if (!userId) return null;
 
   const user = await prisma.user.findUnique({

@@ -54,7 +54,7 @@ If no replacement is available, Operations must open support/refund review. Auto
 
 ## Integrity controls
 
-- PostgreSQL permits only one active primary-or-replacement assignment per booking.
+- MongoDB indexes and server-side transaction checks permit only one active primary-or-replacement assignment per booking.
 - Each incident notification has one unique linked outbox item. Its incident record mirrors the queued, sending, sent, failed or read delivery state; `acknowledged_at` records an authenticated recipient reading the in-app notice, not owner-contact or safety-case closure evidence.
 - Closed incidents require `closed_at` and `closed_by`; non-closed incidents may not carry closure metadata.
 - A completed corrective action requires evidence.

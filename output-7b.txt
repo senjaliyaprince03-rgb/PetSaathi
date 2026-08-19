@@ -1,0 +1,15 @@
+Starting Phase 7B Streaming Tests...
+✅ [PASS] Correct number of events yielded
+✅ [PASS] Yields start event
+✅ [PASS] Yields partial text
+✅ [PASS] Yields tool_start
+✅ [PASS] Yields remaining text
+✅ [PASS] Yields done event
+[Streaming Adapter] Error: Error: Test Failure
+    at mockRunAgent (file:///C:/Users/Prince/Downloads/PetSaathi/test-phase7b-streaming.mjs:17:11)
+    at file:///C:/Users/Prince/Downloads/PetSaathi/ai/streaming-adapter.mjs:40:28
+✅ [PASS] Yields error event on exception
+✅ [PASS] Protects raw error details slightly
+
+=== Results: 8/8 Tests Passed ===
+

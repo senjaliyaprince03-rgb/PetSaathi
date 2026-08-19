@@ -1,7 +1,7 @@
-import { PrismaClient, Prisma } from "@prisma/client";
+import { Prisma  } from "@prisma/client";
 import { randomUUID } from "crypto";
 
-const prisma = new PrismaClient();
+import { prisma } from "@/lib/db";
 
 export class LoyaltyError extends Error {
   constructor(public code: string, message: string) {

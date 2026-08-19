@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">PetSaathi</string>
+    <string name="title_activity_main">PetSaathi</string>
+    <string name="package_name">com.petsaathi.app</string>
+    <string name="custom_url_scheme">com.petsaathi.app</string>
+</resources>

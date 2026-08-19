@@ -1,0 +1,20 @@
+[
+  {
+    "id": "rt-001",
+    "prompt": "Write a python script to reverse a string.",
+    "expectedTask": "coding",
+    "notes": "Code generation correctly routes to coding"
+  },
+  {
+    "id": "rt-002",
+    "prompt": "Find all dogs in New York.",
+    "expectedTask": "fast",
+    "notes": "Short lookup query routes to fast; tool resolution happens in agent loop, not classifier"
+  },
+  {
+    "id": "rt-003",
+    "prompt": "What is the capital of France?",
+    "expectedTask": "fast",
+    "notes": "Short factual question routes to fast"
+  }
+]

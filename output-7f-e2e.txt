@@ -1,0 +1,5 @@
+Starting Phase 7F E2E API Tests...
+✅ [PASS] Returns 400 for missing message
+
+=== Results: 1/1 Tests Passed ===
+

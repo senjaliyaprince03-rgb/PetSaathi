@@ -1,7 +1,7 @@
 import type { ProgrammeType} from "@prisma/client";
-import { PrismaClient, ContractStatus } from "@prisma/client";
+import { ContractStatus  } from "@prisma/client";
 
-const prisma = new PrismaClient();
+import { prisma } from "@/lib/db";
 
 export class B2bError extends Error {
   constructor(public code: string, message: string) {

@@ -1,6 +1,6 @@
-import { PrismaClient, BookingStatus, RiskLevel, PermissionStatus, SitterStatus, AssignmentStatus } from "@prisma/client";
+import { BookingStatus, RiskLevel, PermissionStatus, SitterStatus, AssignmentStatus  } from "@prisma/client";
 
-const prisma = new PrismaClient();
+import { prisma } from "@/lib/db";
 
 export class MatchingError extends Error {
   constructor(public code: string, message: string) {

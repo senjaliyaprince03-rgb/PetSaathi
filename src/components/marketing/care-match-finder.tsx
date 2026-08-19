@@ -50,6 +50,8 @@ export function CareMatchFinder() {
   return (
     <form
       onSubmit={submit}
+      action="/book"
+      method="get"
       className="relative mt-9 overflow-hidden rounded-[2rem] border border-paper/90 bg-paper/[0.92] p-5 shadow-2xl backdrop-blur-xl sm:p-6"
       aria-label="Start a PetSaathi care match"
       noValidate
@@ -68,14 +70,14 @@ export function CareMatchFinder() {
       <div className="relative mt-5 grid gap-3 sm:grid-cols-2">
         <label className="care-finder-field sm:col-span-2">
           <span className="care-finder-label"><PawPrint className="h-3.5 w-3.5" />Care service</span>
-          <select value={service} onChange={(event) => setService(event.target.value as typeof service)} className="care-finder-input">
+          <select name="service" value={service} onChange={(event) => setService(event.target.value as typeof service)} className="care-finder-input">
             {careOptions.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
           </select>
         </label>
 
         <label className="care-finder-field">
           <span className="care-finder-label"><CheckCircle2 className="h-3.5 w-3.5" />Pet type</span>
-          <select value={petType} onChange={(event) => setPetType(event.target.value as PetType)} className="care-finder-input">
+          <select name="petType" value={petType} onChange={(event) => setPetType(event.target.value as PetType)} className="care-finder-input">
             <option value="DOG">Dog</option>
             <option value="CAT">Cat</option>
             <option value="RABBIT">Rabbit</option>
@@ -90,6 +92,7 @@ export function CareMatchFinder() {
           <span className="care-finder-label"><MapPin className="h-3.5 w-3.5" />City or locality</span>
           <input
             value={locality}
+            name="locality"
             onChange={(event) => {
               setLocality(event.target.value);
               if (error) setError(null);

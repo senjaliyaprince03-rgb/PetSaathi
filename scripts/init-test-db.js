@@ -1,6 +1,7 @@
-// eslint-disable-next-line @typescript-eslint/no-require-imports
+/* eslint-disable @typescript-eslint/no-require-imports */
 const { spawnSync } = require("node:child_process");
-// eslint-disable-next-line @typescript-eslint/no-require-imports
+const { existsSync } = require("node:fs");
+const path = require("node:path");
 const { MongoClient } = require("mongodb");
 
 const DEFAULT_MONGODB_URI =
@@ -20,6 +21,33 @@ function run(command, args, env = process.env) {
   const result = spawnSync(command, args, { cwd: process.cwd(), env, stdio: "inherit", shell: false });
   if (result.error) throw result.error;
   if (result.status !== 0) throw new Error(`${command} ${args.join(" ")} exited with status ${result.status}`);
+}
+
+function generatePrismaClient(prismaCli, env) {
+  const result = spawnSync(process.execPath, [prismaCli, "generate"], {
+    cwd: process.cwd(),
+    env,
+    encoding: "utf8",
+    shell: false,
+  });
+
+  if (result.stdout) process.stdout.write(result.stdout);
+  if (result.stderr) process.stderr.write(result.stderr);
+  if (result.error) throw result.error;
+  if (result.status === 0) return;
+
+  // A running Windows dev server can hold Prisma's query-engine DLL open.
+  // Continue only when the generated client already exists; the rest of the
+  // test bootstrap can still proceed against the existing client artifacts.
+  const generatedClient = path.join(process.cwd(), "node_modules/.prisma/client/index.js");
+  const output = `${result.stdout ?? ""}\n${result.stderr ?? ""}`;
+  const isLockedWindowsClient = /EPERM|query_engine-windows\.dll\.node|rename/i.test(output);
+  if (isLockedWindowsClient && existsSync(generatedClient)) {
+    console.warn("Prisma Client generation was skipped because the existing Windows client is locked by another process.");
+    return;
+  }
+
+  throw new Error(`prisma generate exited with status ${result.status}`);
 }
 
 async function initializeReplicaSet() {
@@ -73,7 +101,7 @@ async function main() {
   const env = { ...process.env, MONGODB_URI: databaseUrl, MONGODB_DATABASE: new URL(databaseUrl).pathname.slice(1) };
   const prismaCli = require.resolve("prisma/build/index.js");
   console.log("Generating Prisma Client for MongoDB...");
-  run(process.execPath, [prismaCli, "generate"], env);
+  generatePrismaClient(prismaCli, env);
   console.log("Applying MongoDB indexes with Prisma db push...");
   run(process.execPath, [prismaCli, "db", "push", "--accept-data-loss"], env);
   console.log("Applying partial unique indexes for optional values...");

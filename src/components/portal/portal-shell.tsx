@@ -8,6 +8,7 @@ import { PetSaathiLogo } from "@/components/brand/logo";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
 import { PortalMobileNav } from "@/components/portal/portal-mobile-nav";
+import { GlobalChatWidget } from "@/components/ai/GlobalChatWidget";
 
 type PortalMode = "customer" | "saathi" | "admin" | "society" | "operator";
 
@@ -137,7 +138,7 @@ export function PortalShell({ mode, displayName, metrics, showSummaryCards = tru
           <div className="flex items-center gap-2">
             <span className="mr-2 hidden text-right sm:block"><span className="block text-[0.6rem] font-bold uppercase tracking-[0.18em] text-ink/40">Signed in as</span><span className="mt-0.5 block text-sm font-bold">{displayName}</span></span>
             <Link href="/notifications" aria-label="Notifications" className="relative flex h-11 w-11 items-center justify-center rounded-full border border-indigo/10 bg-paper shadow-sm transition hover:-translate-y-0.5 hover:border-coral/35 hover:text-coral"><Bell className="h-[18px] w-[18px]" /><span className="absolute right-2.5 top-2.5 h-1.5 w-1.5 rounded-full bg-coral" /></Link>
-            <Link href="/api/auth/signout" aria-label="Sign out" className="flex h-11 w-11 items-center justify-center rounded-full border border-indigo/10 bg-paper shadow-sm transition hover:-translate-y-0.5 hover:text-coral"><LogOut className="h-[18px] w-[18px]" /></Link>
+            <a href="/api/auth/signout" aria-label="Sign out" className="flex h-11 w-11 items-center justify-center rounded-full border border-indigo/10 bg-paper shadow-sm transition hover:-translate-y-0.5 hover:text-coral"><LogOut className="h-[18px] w-[18px]" /></a>
           </div>
         </div>
       </header>
@@ -167,6 +168,7 @@ export function PortalShell({ mode, displayName, metrics, showSummaryCards = tru
           {children}
         </section>
       </div>
+      <GlobalChatWidget />
     </main>
   );
 }

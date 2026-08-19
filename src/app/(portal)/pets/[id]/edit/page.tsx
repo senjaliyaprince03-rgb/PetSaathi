@@ -11,7 +11,7 @@ export default async function EditPetPage({ params }: { params: Promise<{ id: st
 
   const pet = await prisma.pet.findFirst({
     where: { id, ownerId: identity.id, active: true },
-    include: { medicalProfile: true, emergencyContacts: true }
+    include: { medicalProfile: true, emergencyContacts: { orderBy: { priority: "asc" } } }
   });
   
   if (!pet) notFound();
@@ -28,10 +28,15 @@ export default async function EditPetPage({ params }: { params: Promise<{ id: st
     medical: pet.medicalProfile ? {
       allergies: pet.medicalProfile.allergies,
       conditions: pet.medicalProfile.conditions,
-      medications: pet.medicalProfile.medications
+      medications: pet.medicalProfile.medications,
+      veterinarianName: pet.medicalProfile.veterinarianName,
+      veterinarianPhone: pet.medicalProfile.veterinarianPhone,
+      emergencyClinicName: pet.medicalProfile.emergencyClinicName,
+      emergencyClinicPhone: pet.medicalProfile.emergencyClinicPhone
     } : null,
     emergencyContact: pet.emergencyContacts[0] ? {
       name: pet.emergencyContacts[0].name,
+      relation: pet.emergencyContacts[0].relation,
       phone: pet.emergencyContacts[0].phone
     } : null
   };

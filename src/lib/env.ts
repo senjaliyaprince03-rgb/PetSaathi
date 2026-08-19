@@ -3,6 +3,7 @@ import { z } from "zod";
 const serverSchema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
   MONGODB_URI: z.string().regex(/^mongodb(?:\+srv)?:\/\//).optional(),
+  MONGODB_PRISMA_URI: z.string().regex(/^mongodb:\/\//).optional(),
   MONGODB_DATABASE: z.string().regex(/^[A-Za-z0-9_-]+$/).optional(),
   AUTH_SECRET: z.string().min(32).optional(),
   AUTH_SESSION_DAYS: z.coerce.number().int().min(1).max(90).default(30),
@@ -27,6 +28,15 @@ const serverSchema = z.object({
   SENTRY_PROJECT: z.string().min(1).optional(),
   REQUIRED_SITTER_VERIFICATIONS: z.string().min(1).optional(),
   REQUIRED_SITTER_TRAINING_MODULES: z.string().min(1).optional()
+}).superRefine((values, context) => {
+  // Fail closed if a development-only OTP leaks into a production process.
+  if (values.NODE_ENV === "production" && values.AUTH_DEV_FIXED_OTP) {
+    context.addIssue({
+      code: z.ZodIssueCode.custom,
+      path: ["AUTH_DEV_FIXED_OTP"],
+      message: "AUTH_DEV_FIXED_OTP must be absent when NODE_ENV is production.",
+    });
+  }
 });
 
 const publicSchema = z.object({

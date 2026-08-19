@@ -20,12 +20,13 @@ import {
   Instagram,
   Linkedin,
   Lock,
+  LogIn,
   Mail,
   MapPin,
   Newspaper,
   PawPrint,
   ShieldCheck,
-  Sparkles,
+  Star,
   Twitter,
   UserRoundCheck
 } from "lucide-react";
@@ -104,8 +105,16 @@ export function MarketingExperience() {
             </ScrollReveal>
             <ScrollReveal direction="up" delay={0.08}>
               <h1 className="sr-only">Care That Feels Like Family.</h1>
-              <div className="mt-2" aria-hidden="true">
-                <TextReveal text="Care That Feels Like Family." className="max-w-[10ch] font-display text-[3.7rem] font-semibold leading-[0.91] tracking-[-0.065em] text-[#301F30] drop-shadow-2xl sm:text-[5.4rem] xl:text-[6.6rem]" delay={0.08} />
+              {/* filter: drop-shadow follows the exact letter shapes — no box, just a soft white glow behind each character */}
+              <div
+                className="mt-2 relative inline-block"
+                aria-hidden="true"
+                style={{
+                  filter:
+                    "drop-shadow(0 0 6px rgba(255,255,255,0.60)) drop-shadow(0 0 16px rgba(255,255,255,0.38)) drop-shadow(0 0 32px rgba(255,255,255,0.20))",
+                }}
+              >
+                <TextReveal text="Care That Feels Like Family." className="max-w-[10ch] font-display text-[3.7rem] font-semibold leading-[0.91] tracking-[-0.065em] text-[#301F30] sm:text-[5.4rem] xl:text-[6.6rem]" delay={0.08} />
               </div>
             </ScrollReveal>
             <ScrollReveal direction="up" delay={0.16}>
@@ -218,9 +227,37 @@ export function MarketingExperience() {
 
       <DiscoveryReviewRail />
 
-      <section className="border-y border-indigo/10 bg-paper/70 py-6">
-        <div className="container-shell flex flex-wrap items-center justify-center gap-x-10 gap-y-4">{trustSignals.map(({ label, icon: Icon }) => <span key={label} className="flex items-center gap-2 text-sm font-bold text-ink/52"><Icon className="h-4 w-4 text-coral" />{label}</span>)}</div>
+      {/* ── Animated Trust Ticker ── */}
+      <section className="relative overflow-hidden border-y border-indigo/10 bg-paper/70 py-0 backdrop-blur-sm">
+        {/* left + right fade masks */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-paper/90 to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-paper/90 to-transparent" />
+
+        {/* track 1 — scrolls left */}
+        <div
+          className="group flex w-max items-center py-4 hover:[animation-play-state:paused]"
+          style={{ animation: "marquee 40s linear infinite" }}
+        >
+          {[...Array(4)].flatMap(() => trustSignals).map(({ label, icon: Icon }, i) => (
+            <span
+              key={`t1-${i}`}
+              className="flex shrink-0 items-center gap-2.5 px-8 text-sm font-bold text-ink/55 transition-colors duration-300 hover:text-indigo"
+            >
+              <span className="relative flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-coral/10">
+                <Icon className="h-3.5 w-3.5 text-coral" />
+              </span>
+              {label}
+              {/* shimmer diamond separator */}
+              <span className="ml-6 h-1 w-1 rotate-45 rounded-sm bg-saffron/50" />
+            </span>
+          ))}
+        </div>
       </section>
+
+      {/* keyframes for the ticker pulse removed */}
+      <style>{`
+        /* removed tickerPulse */
+      `}</style>
 
       <section className="py-24 sm:py-32" id="services">
         <div className="container-shell">
@@ -229,8 +266,8 @@ export function MarketingExperience() {
           <ScrollStaggerContainer className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {services.map(({ slug, name, kicker, description, icon: Icon, image }) => (
               <ScrollStaggerItem key={slug}>
-                <AnimosCard>
-                  <Link href={`/services/${slug}` as Route} className="group flex h-full flex-col overflow-hidden rounded-5xl border border-indigo/10 bg-paper p-6 shadow-lifted transition duration-500 hover:border-indigo/30 hover:shadow-soft">
+                <div className="h-full">
+                  <Link href={`/services/${slug}` as Route} className="group flex h-full flex-col overflow-hidden rounded-5xl border border-indigo/10 bg-paper p-6 shadow-lifted transition-all duration-500 hover:-translate-y-1 hover:border-indigo/30 hover:shadow-soft">
                     <div className="relative h-48 w-full overflow-hidden rounded-4xl bg-indigo/5">
                       <Image
                         src={image}
@@ -249,15 +286,19 @@ export function MarketingExperience() {
                     </div>
                     <div className="flex flex-1 flex-col pt-3">
                       <p className="text-[0.65rem] font-bold uppercase tracking-[0.22em] text-coral font-outfit">{kicker}</p>
-                      <h3 className="mt-2 font-display text-3xl font-bold tracking-[-0.04em] text-ink">{name}</h3>
-                      <p className="mt-3 text-sm font-medium leading-6 text-ink/60">{description}</p>
-                      <div className="mt-5 pt-3 border-t border-indigo/10 flex items-center justify-between text-xs font-bold text-indigo group-hover:text-coral transition">
+                      <div className="mt-2 h-[40px]">
+                        <h3 className="font-display text-3xl font-bold tracking-[-0.04em] text-ink">{name}</h3>
+                      </div>
+                      <div className="mt-3 h-[96px]">
+                        <p className="text-sm font-medium leading-6 text-ink/60">{description}</p>
+                      </div>
+                      <div className="mt-auto pt-4 border-t border-indigo/10 flex items-center justify-between text-xs font-bold text-indigo group-hover:text-coral transition">
                         <span>See service details</span>
                         <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
                       </div>
                     </div>
                   </Link>
-                </AnimosCard>
+                </div>
               </ScrollStaggerItem>
             ))}
           </ScrollStaggerContainer>
@@ -278,7 +319,6 @@ export function MarketingExperience() {
           <ScrollStaggerContainer className="mt-14 grid gap-4 lg:grid-cols-4">
             {careSteps.map(({ number, title, copy, icon: Icon }) => (
               <ScrollStaggerItem key={number}>
-                <AnimosCard glare={false}>
                   <article className="h-full rounded-4xl border border-paper/10 bg-paper/[0.06] p-6 backdrop-blur transition duration-300 hover:border-saffron/30">
                     <div className="flex items-center justify-between">
                       <span className="font-display text-3xl font-semibold text-saffron">{number}</span>
@@ -287,7 +327,6 @@ export function MarketingExperience() {
                     <h3 className="mt-10 font-display text-2xl font-semibold">{title}</h3>
                     <p className="mt-3 text-sm leading-6 text-paper/52">{copy}</p>
                   </article>
-                </AnimosCard>
               </ScrollStaggerItem>
             ))}
           </ScrollStaggerContainer>
@@ -295,8 +334,8 @@ export function MarketingExperience() {
       </section>
 
       <section className="py-24 sm:py-32">
-        <div className="container-shell grid items-center gap-12 lg:grid-cols-[1fr_0.92fr]">
-          <ScrollReveal direction="left"><div className="relative min-h-[34rem] overflow-hidden rounded-[3.5rem] border border-indigo/10 bg-gradient-to-br from-[#f3eafa] to-[#fff0e8] shadow-soft"><Image src="/images/privacy-stage-illustration.jpg" alt="A pet parent reviewing a protected PetSaathi care record beside her resting dog" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" /><div className="absolute inset-0 bg-gradient-to-t from-ink/30 via-transparent to-transparent" /><div className="absolute bottom-6 left-6 right-6 rounded-3xl border border-paper/30 bg-paper/85 p-5 backdrop-blur"><p className="text-xs font-bold uppercase tracking-[0.16em] text-indigo/60">Privacy by stage</p><p className="mt-2 font-display text-2xl font-semibold">The right information appears only when the relationship requires it.</p></div></div></ScrollReveal>
+        <div className="container-shell grid gap-12 lg:grid-cols-[1fr_0.92fr]">
+          <ScrollReveal direction="left" className="h-full"><div className="relative h-full min-h-[34rem] overflow-hidden rounded-[3.5rem] border border-indigo/10 bg-gradient-to-br from-[#f3eafa] to-[#fff0e8] shadow-soft"><Image src="/images/privacy-stage-illustration.jpg" alt="A pet parent reviewing a protected PetSaathi care record beside her resting dog" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" /><div className="absolute inset-0 bg-gradient-to-t from-ink/30 via-transparent to-transparent" /><div className="absolute bottom-6 left-6 right-6 rounded-3xl border border-paper/30 bg-paper/85 p-5 backdrop-blur"><p className="text-xs font-bold uppercase tracking-[0.16em] text-indigo/60">Privacy by stage</p><p className="mt-2 font-display text-2xl font-semibold">The right information appears only when the relationship requires it.</p></div></div></ScrollReveal>
           <ScrollReveal direction="right"><div><p className="eyebrow">Trust without theatre</p><h2 className="section-title mt-5">No single badge can promise perfect care.</h2><p className="mt-6 text-base leading-8 text-ink/54">PetSaathi combines separate checks, service permissions, careful matching, structured proof and a formal exception path. Each layer has a specific job.</p><div className="mt-8 grid gap-3">{[[ShieldCheck, "Service-specific permissions", "A Saathi receives only the work their current evidence permits."], [Clock3, "Traceable service milestones", "Key moments belong to the booking record, not an unstructured chat."], [HeartHandshake, "People for exceptions", "Sensitive concerns move through support and safety workflows with accountable closure."]].map(([Icon, title, copy]) => { const TrustIcon = Icon as typeof ShieldCheck; return <div key={String(title)} className="flex gap-4 rounded-3xl border border-indigo/10 bg-paper/80 p-5 shadow-sm"><span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-leaf/10 text-leaf"><TrustIcon className="h-5 w-5" /></span><div><h3 className="font-bold">{String(title)}</h3><p className="mt-1 text-sm leading-6 text-ink/48">{String(copy)}</p></div></div>; })}</div><Link href="/safety" className={cn(buttonVariants({ variant: "outline" }), "mt-7")}>Explore the safety model <ArrowRight className="h-4 w-4" /></Link></div></ScrollReveal>
         </div>
       </section>
@@ -346,7 +385,7 @@ export function MarketingExperience() {
               ["Saathis", "/caregivers", UserRoundCheck],
               ["Membership", "/membership", BadgeCheck],
               ["Locations", "/locations", MapPin],
-              ["Reviews", "/reviews", Sparkles]
+              ["Reviews", "/reviews", Star]
             ]],
             ["Trust", [
               ["Safety", "/safety", ShieldCheck],
@@ -383,24 +422,36 @@ export function MarketingExperience() {
             <p className="text-xs font-medium text-white/50">© {new Date().getFullYear()} PetSaathi. All rights reserved.</p>
             <p className="text-xs font-medium text-white/50">Care feels closer.</p>
           </div>
-          <div className="flex items-center gap-4">
-            <a href="#" className="flex h-8 w-8 items-center justify-center rounded-full bg-white/5 text-white/50 transition hover:bg-saffron hover:text-[#301F30]" aria-label="Twitter">
-              <Twitter className="h-4 w-4" />
+          <div className="flex items-center gap-3">
+            {/* Twitter / X — black background, white bird */}
+            <a href="#" aria-label="Twitter"
+              className="flex h-9 w-9 items-center justify-center rounded-full transition hover:opacity-80"
+              style={{ background: "#000000" }}>
+              <Twitter className="h-4 w-4 text-white" />
             </a>
-            <a href="#" className="flex h-8 w-8 items-center justify-center rounded-full bg-white/5 text-white/50 transition hover:bg-saffron hover:text-[#301F30]" aria-label="Instagram">
-              <Instagram className="h-4 w-4" />
+            {/* Instagram — official gradient */}
+            <a href="#" aria-label="Instagram"
+              className="flex h-9 w-9 items-center justify-center rounded-full transition hover:opacity-80"
+              style={{ background: "radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%)" }}>
+              <Instagram className="h-4 w-4 text-white" />
             </a>
-            <a href="#" className="flex h-8 w-8 items-center justify-center rounded-full bg-white/5 text-white/50 transition hover:bg-saffron hover:text-[#301F30]" aria-label="Facebook">
-              <Facebook className="h-4 w-4" />
+            {/* Facebook — official blue */}
+            <a href="#" aria-label="Facebook"
+              className="flex h-9 w-9 items-center justify-center rounded-full transition hover:opacity-80"
+              style={{ background: "#1877F2" }}>
+              <Facebook className="h-4 w-4 text-white" />
             </a>
-            <a href="#" className="flex h-8 w-8 items-center justify-center rounded-full bg-white/5 text-white/50 transition hover:bg-saffron hover:text-[#301F30]" aria-label="LinkedIn">
-              <Linkedin className="h-4 w-4" />
+            {/* LinkedIn — official blue */}
+            <a href="#" aria-label="LinkedIn"
+              className="flex h-9 w-9 items-center justify-center rounded-full transition hover:opacity-80"
+              style={{ background: "#0A66C2" }}>
+              <Linkedin className="h-4 w-4 text-white" />
             </a>
           </div>
         </div>
       </footer>
 
-      <nav aria-label="Mobile navigation" className="fixed inset-x-3 bottom-3 z-50 grid grid-cols-4 rounded-[1.75rem] border border-paper/80 bg-paper/90 p-2 shadow-soft backdrop-blur-2xl lg:hidden">{[[Home, "Home", "/"], [PawPrint, "Services", "/services"], [MapPin, "Find care", "/book"], [Sparkles, "Sign in", "/login"]].map(([Icon, label, href]) => { const NavIcon = Icon as typeof Home; return <Link key={String(label)} href={href as Route} className="flex flex-col items-center gap-1 rounded-2xl px-2 py-2 text-[0.62rem] font-bold text-ink/50 transition hover:bg-indigo/[0.06] hover:text-indigo"><NavIcon className="h-4 w-4" />{String(label)}</Link>; })}</nav>
+      <nav aria-label="Mobile navigation" className="fixed inset-x-3 bottom-3 z-50 grid grid-cols-4 rounded-[1.75rem] border border-paper/80 bg-paper/90 p-2 shadow-soft backdrop-blur-2xl lg:hidden">{[[Home, "Home", "/"], [PawPrint, "Services", "/services"], [MapPin, "Find care", "/book"], [LogIn, "Sign in", "/login"]].map(([Icon, label, href]) => { const NavIcon = Icon as typeof Home; return <Link key={String(label)} href={href as Route} className="flex flex-col items-center gap-1 rounded-2xl px-2 py-2 text-[0.62rem] font-bold text-ink/50 transition hover:bg-indigo/[0.06] hover:text-indigo"><NavIcon className="h-4 w-4" />{String(label)}</Link>; })}</nav>
     </main>
   );
 }

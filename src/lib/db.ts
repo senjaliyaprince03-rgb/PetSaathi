@@ -1,10 +1,14 @@
 import { PrismaClient } from "@prisma/client";
+import { configureMongoDns, mongoConnectionTimeoutMs } from "@/lib/mongodb";
+
+// Initialize DNS immediately before PrismaClient so Atlas SRV resolution is deterministic.
+configureMongoDns();
 
 function createPrismaClient() {
-  const mongoUri = boundedMongoUri();
+  const mongoUri = process.env.MONGODB_PRISMA_URI?.trim() || boundedMongoUri();
   return new PrismaClient({
     ...(mongoUri ? { datasourceUrl: mongoUri } : {}),
-    log: process.env.NODE_ENV === "development" ? ["warn", "error"] : ["error"],
+    log: process.env.NODE_ENV === "development" ? ["query", "info", "warn", "error"] : ["error"],
   }).$extends({
     query: {
       incident: {
@@ -39,7 +43,8 @@ function boundedMongoUri() {
   if (/serverSelectionTimeoutMS=/i.test(uri)) return uri;
   const separator = uri.includes("?") ? "&" : "?";
   // Keep public routes responsive during Atlas outages while preserving normal retry behavior.
-  return `${uri}${separator}serverSelectionTimeoutMS=5000&connectTimeoutMS=5000`;
+  const timeout = mongoConnectionTimeoutMs();
+  return `${uri}${separator}serverSelectionTimeoutMS=${timeout}&connectTimeoutMS=${timeout}`;
 }
 
 function readSetValue(value: unknown) {

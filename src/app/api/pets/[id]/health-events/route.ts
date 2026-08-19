@@ -18,7 +18,7 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
   const rate = await consumeRateLimit("pet-health-event", identity.id, 30, 24 * 60 * 60_000);
   if (!rate.allowed) return NextResponse.json({ error: "too_many_requests" }, { status: 429, headers: { "Retry-After": String(rate.retryAfterSeconds) } });
 
-  const event = await prisma.petHealthEvent.create({ data: { petId: id, eventType: parsed.data.eventType, occurredAt, source: "PET_PARENT", summary: parsed.data.summary, details: parsed.data.details ? { note: parsed.data.details } : undefined, providerRef: parsed.data.providerRef, createdBy: identity.id } });
+  const event = await prisma.petHealthEvent.create({ data: { petId: id, eventType: parsed.data.eventType, occurredAt, source: "PET_PARENT", summary: parsed.data.summary, details: parsed.data.details ? { notes: parsed.data.details } : undefined, providerRef: parsed.data.providerRef, createdBy: identity.id } });
   await prisma.auditLog.create({ data: { actorId: identity.id, actorRole: "CUSTOMER", action: "pet.health_event_recorded", resourceType: "pet", resourceId: id, after: { healthEventId: event.id, eventType: event.eventType } } });
   return NextResponse.json({ event: { id: event.id, eventType: event.eventType, occurredAt: event.occurredAt } }, { status: 201 });
 }

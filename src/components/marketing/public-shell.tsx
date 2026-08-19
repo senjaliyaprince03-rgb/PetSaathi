@@ -31,20 +31,54 @@ export function PublicShell({ children }: { children: ReactNode }) {
 
       {children}
 
-      <footer className="mt-28 border-t border-paper/10 bg-[#2f2032] py-16 text-paper">
-        <div className="container-shell flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-3">
-            <PetSaathiLogo inverted />
+      <footer className="mt-28 border-t border-white/10 bg-[#301F30] pb-28 pt-14 lg:pb-14">
+        <div className="container-shell grid gap-10 md:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr]">
+          <div>
+            <PetSaathiLogo inverted={true} />
+            <p className="mt-5 max-w-sm text-sm leading-7 text-white/70">India-focused, trust-first pet care built around careful handoffs and traceable service delivery.</p>
           </div>
-          <div className="flex flex-wrap gap-7 text-xs font-bold tracking-wide text-paper/75">
-            <Link href="/services" className="transition hover:text-saffron">Services</Link>
-            <Link href="/caregivers" className="transition hover:text-saffron">Saathis</Link>
-            <Link href="/about" className="transition hover:text-saffron">About</Link>
-            <Link href="/contact" className="transition hover:text-saffron">Contact</Link>
-            <Link href="/privacy" className="transition hover:text-saffron">Privacy</Link>
-            <Link href="/terms" className="transition hover:text-saffron">Terms</Link>
+          {[
+            ["Explore", [
+              ["Services", "/services"],
+              ["Saathis", "/caregivers"],
+              ["Membership", "/membership"],
+              ["Locations", "/locations"],
+              ["Reviews", "/reviews"]
+            ]],
+            ["Trust", [
+              ["Safety", "/safety"],
+              ["Privacy", "/privacy"],
+              ["Terms", "/terms"],
+              ["Insurance", "/insurance"],
+              ["Guidelines", "/guidelines"]
+            ]],
+            ["PetSaathi", [
+              ["About", "/about"],
+              ["Journal", "/journal"],
+              ["Careers", "/careers"],
+              ["Contact", "/contact"],
+              ["Press", "/press"]
+            ]]
+          ].map(([title, links]) => (
+            <div key={String(title)}>
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-white/50">{String(title)}</p>
+              <ul className="mt-5 grid gap-4">
+                {(links as [string, Route][]).map(([label, href]) => (
+                  <li key={href}>
+                    <Link href={href} className="group flex w-fit items-center gap-2 text-sm font-medium text-white/70 transition hover:text-white">
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+        <div className="container-shell mt-16 flex flex-col gap-6 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-6">
+            <p className="text-xs font-medium text-white/50">© {new Date().getFullYear()} PetSaathi. All rights reserved.</p>
+            <p className="text-xs font-medium text-white/50">Care feels closer.</p>
           </div>
-          <p className="text-xs font-medium text-paper/50">© {new Date().getFullYear()} PetSaathi · Care feels closer</p>
         </div>
       </footer>
     </main>

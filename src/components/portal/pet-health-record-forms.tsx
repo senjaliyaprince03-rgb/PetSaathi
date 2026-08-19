@@ -18,7 +18,7 @@ export function PetHealthRecordForms({ petId }: { petId: string }) {
   async function submit(kind: string, path: string, payload: Record<string, unknown>, clear: () => void) {
     setPending(kind);
     setMessage(null);
-    const response = await fetch(`/api/pets/${petId}/${path}`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+    const response = await fetch(`/api/pets/${petId}/${path}`, { method: "POST", headers: { "Content-Type": "application/json" }, credentials: "include", body: JSON.stringify(payload) });
     const result = await response.json().catch(() => null) as { error?: string } | null;
     setPending(null);
     if (!response.ok) return setMessage(result?.error === "too_many_requests" ? "Daily update limit reached. Try again later." : "This record could not be saved. Check every field and try again.");

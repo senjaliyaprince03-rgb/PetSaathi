@@ -1,4 +1,4 @@
-import { Activity, AlertCircle, ArrowLeft, CalendarDays, CreditCard, PawPrint, Pill, ShieldCheck } from "lucide-react";
+import { Activity, AlertCircle, ArrowLeft, CalendarDays, CreditCard, HeartPulse, PawPrint, Pill, ShieldCheck } from "lucide-react";
 import type { Route } from "next";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
@@ -43,18 +43,50 @@ export default async function PetDetailPage({ params }: { params: Promise<{ id: 
           </div>
         </section>
 
-        <div className="mt-6 grid gap-5 lg:grid-cols-3">
-          <InfoCard icon={AlertCircle} title="Medical snapshot"><p>Allergies: {pet.medicalProfile?.allergies || "None recorded"}</p><p>Conditions: {pet.medicalProfile?.conditions || "None recorded"}</p></InfoCard>
-          <InfoCard icon={ShieldCheck} title="Emergency contact">{pet.emergencyContacts[0] ? <><p>{pet.emergencyContacts[0].name}</p><p>{pet.emergencyContacts[0].phone}</p></> : <p>No contact recorded.</p>}</InfoCard>
-          <InfoCard icon={Activity} title="Current routine">{activeCare ? <><p>Version {activeCare.version}</p><p>{text(care.feedingRoutine) || "Feeding routine recorded."}</p></> : <p>No structured routine yet.</p>}</InfoCard>
+        <div className="mt-6 grid gap-5 lg:grid-cols-2 xl:grid-cols-4">
+          <InfoCard icon={AlertCircle} title="Medical snapshot">
+            <p>Allergies: {pet.medicalProfile?.allergies || "None recorded"}</p>
+            <p>Conditions: {pet.medicalProfile?.conditions || "None recorded"}</p>
+            <p>Medications: {pet.medicalProfile?.medications || "None recorded"}</p>
+          </InfoCard>
+          <InfoCard icon={HeartPulse} title="Veterinary support">
+            <p>Veterinarian: {pet.medicalProfile?.veterinarianName || "Not recorded"}</p>
+            <p>Phone: {pet.medicalProfile?.veterinarianPhone || "Not recorded"}</p>
+            <p>Emergency clinic: {pet.medicalProfile?.emergencyClinicName || "Not recorded"}</p>
+            <p>Clinic phone: {pet.medicalProfile?.emergencyClinicPhone || "Not recorded"}</p>
+          </InfoCard>
+          <InfoCard icon={ShieldCheck} title="Emergency contact">
+            {pet.emergencyContacts[0] ? (
+              <>
+                <p>{pet.emergencyContacts[0].name}</p>
+                <p>{pet.emergencyContacts[0].relation || "Relation not recorded"}</p>
+                <p>{pet.emergencyContacts[0].phone}</p>
+              </>
+            ) : (
+              <p>No contact recorded.</p>
+            )}
+          </InfoCard>
+          <InfoCard icon={Activity} title="Current routine">
+            {activeCare ? (
+              <>
+                <p>Version {activeCare.version}</p>
+                {care.feedingRoutine && <p><strong>Feeding:</strong> {text(care.feedingRoutine)}</p>}
+                {care.walkRoutine && <p><strong>Walk/Activity:</strong> {text(care.walkRoutine)}</p>}
+                {care.behaviour && <p><strong>Behaviour:</strong> {text(care.behaviour)}</p>}
+                {care.handoverNotes && <p><strong>Notes:</strong> {text(care.handoverNotes)}</p>}
+              </>
+            ) : (
+              <p>No structured routine yet.</p>
+            )}
+          </InfoCard>
         </div>
 
         <div className="mt-6 grid gap-5 xl:grid-cols-2">
           <section className="rounded-4xl border border-indigo/10 bg-paper p-6 shadow-lifted">
             <h2 className="font-display text-3xl font-semibold">Medication and vaccination</h2>
             <div className="mt-5 grid gap-3">
-              {pet.medications.map((item) => <article key={item.id} className="rounded-2xl bg-cream/45 p-4"><div className="flex items-center justify-between gap-3"><p className="flex items-center gap-2 font-semibold"><Pill className="h-4 w-4 text-coral" />{item.name}</p><span className={`rounded-full px-3 py-1 text-xs font-bold ${item.active ? "bg-leaf/10 text-leaf" : "bg-ink/5 text-ink/55"}`}>{item.active ? "ACTIVE" : "ENDED"}</span></div><p className="mt-2 text-sm text-ink/70">{item.dosage} · {item.schedule}</p>{item.active && <MedicationStatusButton petId={pet.id} medicationId={item.id} />}</article>)}
-              {pet.vaccinations.map((item) => <article key={item.id} className="rounded-2xl bg-indigo/5 p-4"><p className="flex items-center gap-2 font-semibold"><ShieldCheck className="h-4 w-4 text-indigo" />{item.vaccine}</p><p className="mt-2 text-sm text-ink/70">Given {item.administeredAt.toLocaleDateString("en-IN")}{item.nextDueAt ? ` · due ${item.nextDueAt.toLocaleDateString("en-IN")}` : ""}</p></article>)}
+              {pet.medications.map((item) => <article key={item.id} className="rounded-2xl bg-cream/45 p-4"><div className="flex items-center justify-between gap-3"><p className="flex items-center gap-2 font-semibold"><Pill className="h-4 w-4 text-coral" />{item.name}</p><span className={`rounded-full px-3 py-1 text-xs font-bold ${item.active ? "bg-leaf/10 text-leaf" : "bg-ink/5 text-ink/55"}`}>{item.active ? "ACTIVE" : "ENDED"}</span></div><p className="mt-2 text-sm text-ink/70">{item.dosage} · {item.schedule}</p>{item.administration && <p className="mt-1 text-sm text-ink/70">Admin: {item.administration}</p>}{item.prescribedBy && <p className="mt-1 text-sm text-ink/70">Prescribed by: {item.prescribedBy}</p>}{item.notes && <p className="mt-1 text-sm text-ink/70">Notes: {item.notes}</p>}{item.startsAt && <p className="mt-1 text-xs text-ink/50">From: {item.startsAt.toLocaleDateString("en-IN")}{item.endsAt ? ` to ${item.endsAt.toLocaleDateString("en-IN")}` : ""}</p>}{item.active && <MedicationStatusButton petId={pet.id} medicationId={item.id} />}</article>)}
+              {pet.vaccinations.map((item) => <article key={item.id} className="rounded-2xl bg-indigo/5 p-4"><p className="flex items-center gap-2 font-semibold"><ShieldCheck className="h-4 w-4 text-indigo" />{item.vaccine}</p><p className="mt-2 text-sm text-ink/70">Given {item.administeredAt.toLocaleDateString("en-IN")}{item.nextDueAt ? ` · due ${item.nextDueAt.toLocaleDateString("en-IN")}` : ""}</p>{item.clinic && <p className="mt-1 text-sm text-ink/70">Clinic: {item.clinic}</p>}</article>)}
               {!pet.medications.length && !pet.vaccinations.length && <p className="text-sm text-ink/65">No structured medication or vaccination records.</p>}
             </div>
           </section>

@@ -1,4 +1,4 @@
-import { Clock3, HeartHandshake, Home, MapPinned, PawPrint, ShieldCheck } from "lucide-react";
+import { CheckCircle2, Clock3, HeartHandshake, Home, MapPinned, PawPrint, ShieldCheck, UserCheck, Video } from "lucide-react";
 
 export const coreServiceCodes = ["DOG_WALK_30", "DOG_WALK_60", "HOME_VISIT", "HOME_SITTING_60", "GROOMING_HOME", "VET_SUPPORT", "TRAINING_ASSESSMENT", "PET_TAXI"] as const;
 export type CoreServiceCode = (typeof coreServiceCodes)[number];
@@ -63,5 +63,18 @@ export const services = [
 export const trustSignals = [
   { label: "Service-Specific Permission Checks", icon: PawPrint },
   { label: "Structured Milestones and Reports", icon: Clock3 },
-  { label: "Human Exception Workflows", icon: HeartHandshake }
+  { label: "Human Exception Workflows", icon: HeartHandshake },
+  { label: "Background-Verified Saathis", icon: UserCheck },
+  { label: "Real-time Location Tracking", icon: MapPinned },
+  { label: "Secure Digital Payments", icon: ShieldCheck },
+  { label: "Photo & Video Updates", icon: Video },
+  { label: "Quality Assurance Guarantee", icon: CheckCircle2 },
+  { label: "Emergency Vet Support Contacts", icon: HeartHandshake },
+  { label: "Locally Vetted and Trained", icon: UserCheck },
+  { label: "No Vague Verified Labels", icon: ShieldCheck },
+  { label: "Secure Care Protocols", icon: ShieldCheck },
+  { label: "Premium Support Experience", icon: HeartHandshake },
+  { label: "Transparent Pricing Upfront", icon: CheckCircle2 },
+  { label: "Pet Personality Matching", icon: PawPrint },
+  { label: "Care That Feels Like Family", icon: Home }
 ] as const;

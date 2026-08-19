@@ -35,4 +35,4 @@ Every report decision and payout transition requires a reason and creates an aud
 
 ## Verification evidence
 
-The PostgreSQL integration suite covers initial report submission, payout creation, correction holding, versioned resubmission, final approval, booking closure and capacity consumption. Migration constraints reject non-pending report decisions that omit reviewer, review timestamp or decision note.
+The MongoDB integration suite covers initial report submission, payout creation, correction holding, versioned resubmission, final approval, booking closure and capacity consumption. Application-level invariants reject non-pending report decisions that omit reviewer, review timestamp or decision note, and the CI test database runs as a disposable MongoDB replica set so Prisma transactions are exercised.

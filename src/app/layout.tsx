@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { headers } from "next/headers";
 
 import { SiteMotion } from "@/components/motion/site-motion";
 import { CustomCursor } from "@/components/marketing/custom-cursor";
@@ -24,15 +25,17 @@ export const metadata: Metadata = {
   }
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Read the middleware request nonce so Next can attach it to framework scripts.
+  await headers();
   const analyticsId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
   return (
-    <html lang="en" className="scroll-smooth" data-scroll-behavior="smooth">
-      <body className="relative overflow-x-clip bg-background font-sans text-on-background selection:bg-saffron/35">
+    <html lang="en" className="scroll-smooth" data-scroll-behavior="smooth" suppressHydrationWarning>
+      <body className="relative overflow-x-clip bg-background font-sans text-on-background selection:bg-saffron/35" suppressHydrationWarning>
         <SiteMotion />
         <CustomCursor />
         {children}

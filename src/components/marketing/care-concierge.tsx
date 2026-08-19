@@ -24,7 +24,7 @@ import {
   Scissors,
   ShieldAlert,
   ShieldCheck,
-  Sparkles,
+  Compass,
   Stethoscope,
   Turtle
 } from "lucide-react";
@@ -143,7 +143,7 @@ export function CareConcierge() {
                 <div className="relative">
                   <div className="flex items-center justify-between gap-4">
                     <p className="inline-flex items-center gap-2 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-saffron">
-                      <Sparkles className="h-4 w-4" /> Care concierge
+                      <Compass className="h-4 w-4" /> Care concierge
                     </p>
                     <span className="text-xs font-bold text-paper/45">Step {step} of 3</span>
                   </div>
@@ -280,9 +280,9 @@ export function CareConcierge() {
 
       <section className="pb-24 sm:pb-32" aria-labelledby="care-details-title">
         <div className="container-shell">
-          <div className="grid items-center gap-10 lg:grid-cols-[1.06fr_0.94fr]">
-            <ScrollReveal direction="left">
-              <div className="relative min-h-[34rem] overflow-hidden rounded-[3.5rem] border border-indigo/10 shadow-soft sm:min-h-[42rem]">
+          <div className="grid gap-10 lg:grid-cols-[1.06fr_0.94fr]">
+            <ScrollReveal direction="left" className="h-full">
+              <div className="relative h-full min-h-[34rem] overflow-hidden rounded-[3.5rem] border border-indigo/10 shadow-soft">
                 <Image
                   src="/images/care-observation-editorial-v2.webp"
                   alt="A PetSaathi caregiver recording care details beside a relaxed cat and dog"

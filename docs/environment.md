@@ -37,7 +37,7 @@ Use a dedicated Atlas database user with `readWrite` access to only the PetSaath
 
 ## Release sequence
 
-1. Run `npm run doctor` locally and `npm run doctor:production` against deployment secrets.
+1. Run `npm run doctor` locally, then `npm run doctor:production` and `npm run doctor:providers` against deployment secrets.
 2. Create or update Atlas indexes with `npm run prisma:push` from a reviewed CI job.
 3. Run `npm run check`; deploy a Vercel preview and execute Playwright smoke tests.
 4. Promote the immutable build to production, verify `/api/health` and `/api/ready`, then enable feature flags gradually.
@@ -53,6 +53,10 @@ MongoDB Atlas supplies the replica set required by Prisma transactions. Local an
 | 03:15 daily | `/api/jobs/upload-retention` | Removes expired GridFS quarantine objects |
 
 Each job fails closed when `CRON_SECRET` is absent or incorrect; never put the secret in the URL.
+
+## Provider activation
+
+See `docs/provider-activation-runbook.md` for the live provider gate. `npm run doctor:providers` verifies Resend, Sentry, Razorpay, and NVIDIA without sending mail or creating payments.
 
 ## Rollback
 

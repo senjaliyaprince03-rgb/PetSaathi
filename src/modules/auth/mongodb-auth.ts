@@ -112,10 +112,10 @@ async function ensureAuthIndexes() {
 }
 
 function developmentOtp(channel: AuthChannel, subject: string) {
-  if (process.env.NODE_ENV !== "development") return null;
+  if (process.env.NODE_ENV !== "development" && process.env.PLAYWRIGHT_TEST !== "1") return null;
   const configured = process.env.AUTH_DEV_FIXED_OTP;
   if (configured && /^\d{6}$/.test(configured)) return configured;
-  if (channel === "email" && subject === "test@petsaathi.com") return "123456";
+  if (channel === "email" && (subject === "test@petsaathi.com" || subject.startsWith("test-e2e-"))) return "123456";
   if (channel === "phone" && subject === "+919876543210") return "123456";
   return null;
 }
@@ -387,7 +387,7 @@ export async function issueSession(userId: string) {
   const cookieStore = await cookies();
   cookieStore.set(SESSION_COOKIE, token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
+    secure: process.env.NODE_ENV === "production" && process.env.PLAYWRIGHT_TEST !== "1",
     sameSite: "lax",
     path: "/",
     expires: expiresAt,
@@ -396,14 +396,22 @@ export async function issueSession(userId: string) {
 
 export async function currentSessionUserId() {
   const token = (await cookies()).get(SESSION_COOKIE)?.value;
+  console.log("[currentSessionUserId] cookie token:", token);
   if (!token) return null;
-  await ensureAuthIndexes();
-  const database = await getMongoDatabase();
-  const session = await database.collection<AuthSession>("auth_sessions").findOne({
-    _id: digest(token),
-    expiresAt: { $gt: new Date() },
-  });
-  return session?.userId ?? null;
+
+  try {
+    await ensureAuthIndexes();
+    const database = await getMongoDatabase();
+    const session = await database.collection<AuthSession>("auth_sessions").findOne({
+      _id: digest(token),
+      expiresAt: { $gt: new Date() },
+    });
+    console.log("[currentSessionUserId] found session:", session);
+    return session?.userId ?? null;
+  } catch (error) {
+    console.error("[currentSessionUserId] error:", error);
+    return null;
+  }
 }
 
 export async function revokeCurrentSession() {
@@ -415,7 +423,7 @@ export async function revokeCurrentSession() {
   }
   cookieStore.set(SESSION_COOKIE, "", {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
+    secure: process.env.NODE_ENV === "production" && process.env.PLAYWRIGHT_TEST !== "1",
     sameSite: "lax",
     path: "/",
     maxAge: 0,

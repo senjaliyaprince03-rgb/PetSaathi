@@ -9,7 +9,7 @@ import {
 
 import { PortalShell } from "@/components/portal/portal-shell";
 import { prisma } from "@/lib/db";
-import { getCurrentIdentity } from "@/modules/auth/session";
+import { getCurrentIdentity, hasAnyRole } from "@/modules/auth/session";
 import {
   resolveTerritoryScope,
   cityWhereFilter,
@@ -29,12 +29,7 @@ export default async function OperatorDashboard() {
     return redirect("/login");
   }
 
-  const hasAccess =
-    identity.roles.includes("OPERATOR") ||
-    identity.roles.includes("CITY_MANAGER") ||
-    identity.roles.includes("SUPER_ADMIN");
-
-  if (!hasAccess) {
+  if (!identity || !hasAnyRole(identity, ["OPERATOR", "CITY_MANAGER", "SUPER_ADMIN"])) {
     return (
       <PortalShell mode="operator" displayName={identity.displayName}>
         <div className="mt-5 max-w-3xl">

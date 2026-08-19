@@ -12,7 +12,7 @@ Area-specific prices take precedence over global prices. Within a scope, the lat
 
 ## Booking transaction invariant
 
-The booking endpoint uses a serializable PostgreSQL transaction. It rechecks pet/address ownership, active city and area, approved price, price-version ID and area/service/date capacity. One atomic commit then:
+The booking endpoint uses a Prisma transaction against MongoDB Atlas. It rechecks pet/address ownership, active city and area, approved price, price-version ID and area/service/date capacity. One atomic commit then:
 
 - increments the capacity counter only when `reserved + 1 <= maximum`;
 - creates the booking and initial status history;

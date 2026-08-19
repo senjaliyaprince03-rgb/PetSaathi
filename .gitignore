@@ -5,7 +5,9 @@
 
 # Next.js
 /.next/
+/.next-playwright/
 /out/
+/.capacitor-web/
 
 # testing
 /coverage/
@@ -58,3 +60,4 @@ videos/
 
 # Sentry Config File
 .env.sentry-build-plugin
+.env.local

@@ -1,23 +1,27 @@
-// @ts-nocheck
-import { metricsHandler } from '../../../../../api/routes/dashboard.mjs';
+import { metricsHandler } from '@/api/routes/dashboard';
 import { NextResponse } from 'next/server';
 
-export async function GET(request) {
+type JsonResponder = {
+  status: (code: number) => { json: (data: unknown) => Response };
+  json: (data: unknown) => Response;
+};
+
+export async function GET(request: Request & { nextUrl: URL }) {
   const searchParams = request.nextUrl.searchParams;
   
   // Mock express req/res
   const req = {
     query: {
-      windowMs: searchParams.get('windowMs')
+      windowMs: searchParams.get('windowMs') ?? undefined
     }
   };
   
-  const res = {
-    status: (code) => ({
-      json: (data) => NextResponse.json(data, { status: code })
+  const res: JsonResponder = {
+    status: (code: number) => ({
+      json: (data: unknown) => NextResponse.json(data, { status: code })
     }),
-    json: (data) => NextResponse.json(data)
+    json: (data: unknown) => NextResponse.json(data)
   };
   
-  return metricsHandler(req, res);
+  return metricsHandler(req, res) as Promise<Response>;
 }

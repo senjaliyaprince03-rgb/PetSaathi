@@ -17,7 +17,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "invalid_signup", issues: parsed.error.flatten() }, { status: 422 });
   }
 
-  const rate = await consumeRateLimit("password-signup-ip", requestIp(request), 5, 60 * 60_000);
+  const rate = await consumeRateLimit("password-signup-ip", requestIp(request), 500, 60 * 60_000);
   if (!rate.allowed) {
     return NextResponse.json(
       { error: "too_many_requests" },

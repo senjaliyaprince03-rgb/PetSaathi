@@ -1,8 +1,8 @@
 import type { ProgrammeType, EligibilityMethod} from "@prisma/client";
-import { PrismaClient, ProgrammeStatus } from "@prisma/client";
+import { ProgrammeStatus  } from "@prisma/client";
 import { B2bError } from "./contract.service";
 
-const prisma = new PrismaClient();
+import { prisma } from "@/lib/db";
 
 export async function createProgramme(
   organizationId: string,

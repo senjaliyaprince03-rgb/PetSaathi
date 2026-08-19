@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { getAdminSession } from "@/modules/auth/server";
 import { createCity } from "@/modules/cities/service";
 import { prisma } from "@/lib/db";
+import { unstable_cache } from "next/cache";
 import { z } from "zod";
 
 const createCitySchema = z.object({
@@ -41,12 +42,18 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const cities = await prisma.city.findMany({
-      orderBy: { name: "asc" },
-      include: {
-        cityServiceConfigs: true
-      }
-    });
+    const getCachedCities = unstable_cache(
+      async () => {
+        return prisma.city.findMany({
+          orderBy: { name: "asc" },
+          include: { cityServiceConfigs: true }
+        });
+      },
+      ["admin-cities-list"],
+      { tags: ["cities"], revalidate: 60 }
+    );
+
+    const cities = await getCachedCities();
 
     return NextResponse.json(cities, { status: 200 });
   } catch (error) {

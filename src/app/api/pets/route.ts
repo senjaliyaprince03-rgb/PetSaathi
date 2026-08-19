@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { getCurrentIdentity } from "@/modules/auth/session";
 import { createPetSchema } from "@/modules/pets/input";
+import { compactDefinedFields, normalizeEmergencyContactFields } from "@/modules/pets/input-utils";
 
 export const dynamic = "force-dynamic";
 
@@ -25,6 +26,8 @@ export async function POST(request: Request) {
   const parsed = createPetSchema.safeParse(await request.json().catch(() => null));
   if (!parsed.success) return NextResponse.json({ error: "invalid_request", issues: parsed.error.flatten() }, { status: 422 });
   const { medical, emergencyContact, birthDate, weightKg, ...petInput } = parsed.data;
+  const medicalData = compactDefinedFields(medical);
+  const emergencyContactData = normalizeEmergencyContactFields(compactDefinedFields(emergencyContact));
 
   const pet = await prisma.pet.create({
     data: {
@@ -32,8 +35,8 @@ export async function POST(request: Request) {
       ownerId: identity.id,
       birthDate: birthDate ? new Date(`${birthDate}T00:00:00.000Z`) : undefined,
       weightKg,
-      medicalProfile: medical ? { create: medical } : undefined,
-      emergencyContacts: emergencyContact ? { create: { ...emergencyContact, priority: 1 } } : undefined
+      medicalProfile: medicalData ? { create: medicalData } : undefined,
+      emergencyContacts: emergencyContactData ? { create: { ...emergencyContactData, priority: 1 } } : undefined
     },
     select: { id: true, name: true, species: true, breed: true, createdAt: true }
   });

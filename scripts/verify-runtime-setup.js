@@ -3,6 +3,9 @@ const path = require("node:path");
 
 const dotenv = require("dotenv");
 const { MongoClient } = require("mongodb");
+const dns = require("node:dns");
+
+try { dns.setServers(["8.8.8.8", "8.8.4.4"]); } catch (e) {}
 
 dotenv.config({ path: path.resolve(process.cwd(), ".env"), quiet: true });
 dotenv.config({ path: path.resolve(process.cwd(), ".env.local"), override: true, quiet: true });
@@ -19,6 +22,10 @@ function requireValue(name, minimumLength = 1) {
   return value;
 }
 
+function isPlaceholderValue(value) {
+  return /(?:your[_ -]?domain|example\.com|placeholder)/i.test(value);
+}
+
 async function verify() {
   const uri = requireValue("MONGODB_URI");
   const databaseName = requireValue("MONGODB_DATABASE");
@@ -27,15 +34,20 @@ async function verify() {
 
   if (!uri || !databaseName) return;
 
-  let parsedUri;
+  let client;
   try {
-    parsedUri = new URL(uri);
+    // MongoClient accepts both Atlas SRV URIs and direct multi-host seed lists.
+    client = new MongoClient(uri, {
+      appName: "PetSaathiSetupVerifier",
+      serverSelectionTimeoutMS: 8_000,
+      connectTimeoutMS: 8_000,
+    });
   } catch {
-    failures.push("MONGODB_URI is not a valid URL.");
+    failures.push("MONGODB_URI is not a valid MongoDB connection string.");
     return;
   }
 
-  const uriDatabase = decodeURIComponent(parsedUri.pathname.replace(/^\//, ""));
+  const uriDatabase = client.options.dbName?.trim() ?? "";
   if (!uriDatabase) failures.push("MONGODB_URI must include the database path.");
   if (uriDatabase && uriDatabase !== databaseName) {
     failures.push("MONGODB_URI database path does not match MONGODB_DATABASE.");
@@ -48,26 +60,26 @@ async function verify() {
 
   const resendKey = process.env.RESEND_API_KEY?.trim();
   const resendFrom = process.env.RESEND_FROM_EMAIL?.trim();
+  const placeholderResendKey = Boolean(resendKey && /(?:your[_ -]?actual|placeholder|example|xxx)/i.test(resendKey));
+  const placeholderSender = Boolean(resendFrom && isPlaceholderValue(resendFrom));
   if (!resendKey || !resendFrom) {
     warnings.push("Email OTP delivery is not configured; localhost requires AUTH_DEV_FIXED_OTP.");
+  } else if (placeholderResendKey) {
+    warnings.push("RESEND_API_KEY is a placeholder and cannot be used for production email.");
   } else if (resendFrom.toLowerCase().endsWith("@resend.dev")) {
     warnings.push("RESEND_FROM_EMAIL uses Resend's shared test sender and cannot serve arbitrary production users.");
+  } else if (placeholderSender) {
+    warnings.push("RESEND_FROM_EMAIL is a placeholder and cannot be used for production email.");
   }
 
   if (productionCheck) {
     const publicUrl = process.env.NEXT_PUBLIC_APP_URL?.trim();
     if (!publicUrl?.startsWith("https://")) failures.push("Production NEXT_PUBLIC_APP_URL must use HTTPS.");
     if (developmentOtp) failures.push("AUTH_DEV_FIXED_OTP must be absent from production secrets.");
-    if (!resendKey || !resendFrom || resendFrom.toLowerCase().endsWith("@resend.dev")) {
+    if (!resendKey || placeholderResendKey || !resendFrom || resendFrom.toLowerCase().endsWith("@resend.dev") || placeholderSender) {
       failures.push("Production email OTP requires a verified custom Resend sender domain.");
     }
   }
-
-  const client = new MongoClient(uri, {
-    appName: "PetSaathiSetupVerifier",
-    serverSelectionTimeoutMS: 8_000,
-    connectTimeoutMS: 8_000,
-  });
 
   try {
     await client.connect();

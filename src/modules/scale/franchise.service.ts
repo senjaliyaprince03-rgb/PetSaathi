@@ -1,7 +1,7 @@
-import { PrismaClient, OperatorStatus } from "@prisma/client";
+import { OperatorStatus  } from "@prisma/client";
 import { ScaleError } from "./city-ops.service";
 
-const prisma = new PrismaClient();
+import { prisma } from "@/lib/db";
 
 export async function onboardPartner(
   partnerId: string

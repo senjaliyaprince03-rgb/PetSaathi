@@ -109,7 +109,7 @@ export function MarketplaceAssurance() {
                     </div>
 
                     <div className="flex flex-1 flex-col p-6">
-                      <div className="flex items-start justify-between gap-4">
+                      <div className="flex h-[96px] items-start justify-between gap-4">
                         <div>
                           <p className="flex items-center gap-1.5 text-[0.62rem] font-bold uppercase tracking-[0.17em] text-coral">
                             <MapPin className="h-3.5 w-3.5" /> {proposal.locality}
@@ -121,7 +121,7 @@ export function MarketplaceAssurance() {
                         </span>
                       </div>
 
-                      <p className="mt-4 text-sm leading-7 text-ink/50">{proposal.summary}</p>
+                      <p className="mt-4 h-[84px] text-sm leading-7 text-ink/50">{proposal.summary}</p>
                       <div className="mt-auto grid gap-2 pt-6">
                         {proposal.evidence.map((item) => (
                           <span key={item} className="flex items-center gap-2 rounded-2xl bg-cream/75 px-3 py-2.5 text-xs font-semibold text-ink/55">
