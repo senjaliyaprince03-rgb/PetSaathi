@@ -1,6 +1,7 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
+import type { Route } from "next";
 import { prisma } from "@/lib/db";
 import Link from "next/link";
 import { CheckoutButton } from "@/components/payment/checkout-button";
@@ -14,7 +15,7 @@ export default async function CustomerDashboard() {
 
   const user = session.user as any;
   if (user.role !== "CUSTOMER" && user.role !== "SUPER_ADMIN") {
-    redirect("/dashboard/sitter");
+    redirect("/dashboard/sitter" as Route);
   }
 
   const bookings = await prisma.booking.findMany({
@@ -48,7 +49,7 @@ export default async function CustomerDashboard() {
       </div>
       <h2 className="text-xl font-semibold mb-4">Your Bookings</h2>
       {bookings.length === 0 ? (
-        <p className="text-gray-500">You have no bookings yet.</p>
+        <p className="text-gray-700">You have no bookings yet.</p>
       ) : (
         <div className="space-y-4">
           {bookings.map((booking) => {

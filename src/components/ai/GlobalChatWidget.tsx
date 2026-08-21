@@ -32,7 +32,7 @@ export function GlobalChatWidget() {
             <button 
               onClick={() => setIsOpen(false)}
               aria-label="Close chat"
-              className="rounded-full p-1 text-ink/50 transition hover:bg-indigo/10 hover:text-ink focus:outline-none focus:ring-2 focus:ring-indigo"
+              className="rounded-full p-1 text-ink/80 transition hover:bg-indigo/10 hover:text-ink focus:outline-none focus:ring-2 focus:ring-indigo"
             >
               <X className="h-4 w-4" />
             </button>

@@ -52,7 +52,10 @@ export async function POST(request: Request) {
     });
 
     if (role === "SITTER") {
-      await prisma.sitterProfile.create({ data: { userId: user.id } });
+      await prisma.sitterProfile.create({ data: { userId: user.id, status: "APPLICANT" } });
+      
+      // Trigger Admin Email Notification for new Employee Request (mocked for now)
+      console.log(`[EMAIL to Admin] New Employee (Sitter) Request from ${name} (${normalizedEmail}) - Pending Approval.`);
     } else {
       await prisma.customerProfile.create({ data: { userId: user.id } });
     }

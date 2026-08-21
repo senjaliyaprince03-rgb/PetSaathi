@@ -1,9 +1,0 @@
-Starting Phase 7D Error Mapping Tests...
-✅ [PASS] Maps rate limits appropriately
-✅ [PASS] Maps security appropriately
-✅ [PASS] Maps RAG degradation appropriately
-✅ [PASS] Maps null appropriately
-✅ [PASS] Maps unknown appropriately
-
-=== Results: 5/5 Tests Passed ===
-

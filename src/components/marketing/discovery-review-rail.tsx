@@ -47,7 +47,7 @@ const serviceShortcuts = [
   { label: "Grooming", href: "/book?service=GROOMING_HOME", icon: Scissors, tone: "bg-indigo/[0.08] text-indigo" },
   { label: "Vet support", href: "/book?service=VET_SUPPORT", icon: Stethoscope, tone: "bg-leaf/[0.12] text-leaf" },
   { label: "Training", href: "/book?service=TRAINING_ASSESSMENT", icon: PawPrint, tone: "bg-[#eaf3ff] text-[#376ca6]" },
-  { label: "All services", href: "/services", icon: MoreHorizontal, tone: "bg-ink/[0.06] text-ink/55" }
+  { label: "All services", href: "/services", icon: MoreHorizontal, tone: "bg-ink/[0.06] text-ink/80" }
 ] as const;
 
 const previewStories: StoryCard[] = [
@@ -122,13 +122,13 @@ export function DiscoveryReviewRail() {
       <div className="container-shell relative z-20 -mt-10 sm:-mt-12">
         <nav
           aria-label="Quick service shortcuts"
-          className="grid grid-cols-3 gap-2 rounded-[2rem] border border-indigo/10 bg-paper/[0.92] p-2.5 shadow-soft backdrop-blur-2xl sm:grid-cols-6 sm:p-3"
+          className="grid grid-cols-3 gap-2 rounded-[2rem] border border-indigo/10 bg-paper p-2.5 shadow-soft sm:grid-cols-6 sm:p-3"
         >
           {serviceShortcuts.map(({ label, href, icon: Icon, tone }) => (
             <Link
               key={label}
               href={href as Route}
-              className="group flex min-h-20 flex-col items-center justify-center gap-2 rounded-[1.35rem] px-2 text-center text-[0.65rem] font-bold text-ink/52 transition hover:bg-cream hover:text-indigo sm:min-h-24 sm:text-xs"
+              className="group flex min-h-20 flex-col items-center justify-center gap-2 rounded-[1.35rem] px-2 text-center text-[0.65rem] font-bold text-ink/80 transition hover:bg-cream hover:text-indigo sm:min-h-24 sm:text-xs"
             >
               <span className={cn("flex h-9 w-9 items-center justify-center rounded-2xl transition group-hover:scale-105", tone)}>
                 <Icon className="h-4 w-4" />
@@ -139,7 +139,7 @@ export function DiscoveryReviewRail() {
         </nav>
       </div>
 
-      <section className="pb-24 pt-16 sm:pb-32 sm:pt-20" aria-labelledby="care-stories-title">
+      <section className="pb-12 pt-12 sm:pb-16 sm:pt-16" aria-labelledby="care-stories-title">
         <div className="container-shell">
           <ScrollReveal direction="up">
             <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
@@ -147,7 +147,7 @@ export function DiscoveryReviewRail() {
                 <p className="eyebrow">Care stories with permission</p>
                 <h2 id="care-stories-title" className="section-title mt-5 max-w-[13ch]">See the details families can compare.</h2>
               </div>
-              <p className="max-w-md text-base leading-relaxed text-ink/70 md:pb-2 md:text-right">
+              <p className="max-w-md text-base leading-relaxed text-ink/80 md:pb-2 md:text-right">
                 We believe in absolute transparency. Explore real, verified care routines from local families—published securely with their explicit consent—to help you make the best choice for your pet&apos;s well-being.
               </p>
             </div>
@@ -174,7 +174,7 @@ export function DiscoveryReviewRail() {
                         className="object-cover object-[center_25%] transition duration-700 hover:scale-[1.035]"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent" />
-                      <span className="absolute bottom-4 left-4 inline-flex items-center gap-1.5 rounded-full border border-paper/25 bg-ink/48 px-3 py-2 text-[0.62rem] font-bold text-paper backdrop-blur-xl">
+                      <span className="absolute bottom-4 left-4 inline-flex items-center gap-1.5 rounded-full border border-paper/25 bg-ink/90 px-3 py-2 text-[0.62rem] font-bold text-paper shadow-sm">
                         {story.isPreview ? <Palette className="h-3.5 w-3.5 text-saffron" /> : <ShieldCheck className="h-3.5 w-3.5 text-leaf" />}
                         {story.isPreview ? "Design preview" : "Published with active consent"}
                       </span>
@@ -184,8 +184,8 @@ export function DiscoveryReviewRail() {
                       <blockquote className="mt-4 font-display text-xl font-semibold leading-8 text-ink">&ldquo;{story.quote}&rdquo;</blockquote>
                       <div className="mt-auto flex items-center justify-between gap-4 border-t border-indigo/10 pt-4">
                         <div>
-                          <p className="text-xs font-bold text-ink/65">{story.displayName}</p>
-                          {story.city ? <p className="mt-1 flex items-center gap-1 text-[0.65rem] text-ink/38"><MapPin className="h-3 w-3" />{story.city}</p> : null}
+                          <p className="text-xs font-bold text-ink/80">{story.displayName}</p>
+                          {story.city ? <p className="mt-1 flex items-center gap-1 text-[0.65rem] text-ink/80"><MapPin className="h-3 w-3" />{story.city}</p> : null}
                         </div>
                         <ShieldCheck className="h-5 w-5 shrink-0 text-leaf" />
                       </div>
@@ -196,7 +196,7 @@ export function DiscoveryReviewRail() {
             </AnimatePresence>
           </div>
 
-          <div className="mt-6 flex flex-col gap-3 text-xs leading-5 text-ink/42 sm:flex-row sm:items-center sm:justify-between">
+          <div className="mt-6 flex flex-col gap-3 text-xs leading-5 text-ink/80 sm:flex-row sm:items-center sm:justify-between">
             <p>
               {publishedStories.length > 0
                 ? "Only reviewed stories with active publication consent are shown."

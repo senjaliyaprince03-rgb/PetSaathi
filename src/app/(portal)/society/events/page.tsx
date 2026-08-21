@@ -38,7 +38,7 @@ export default async function SocietyEventsPage() {
       <div className="max-w-7xl pb-12">
         <div className="flex flex-wrap items-center justify-between gap-5 border-b border-ink/10 pb-8">
           <div>
-            <p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-ink/50">acquistion & engagement</p>
+            <p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-ink/80">acquistion & engagement</p>
             <h1 className="mt-2 font-display text-4xl font-semibold tracking-[-0.04em]">Community Events</h1>
           </div>
           <button className="flex h-12 items-center justify-center gap-2 rounded-2xl bg-indigo px-6 font-bold text-white transition hover:bg-indigo/90">
@@ -53,18 +53,18 @@ export default async function SocietyEventsPage() {
               <article key={event.id} className="flex flex-col justify-between rounded-4xl border border-ink/10 bg-paper p-6 shadow-lifted">
                 <div>
                   <div className="flex items-center justify-between">
-                    <span className={`rounded-full px-3 py-1 text-xs font-bold uppercase ${event.status === "ACTIVE" ? "bg-leaf/15 text-leaf" : "bg-ink/10 text-ink/70"}`}>
+                    <span className={`rounded-full px-3 py-1 text-xs font-bold uppercase ${event.status === "ACTIVE" ? "bg-leaf/15 text-leaf" : "bg-ink/10 text-ink/80"}`}>
                       {event.status}
                     </span>
-                    <span className="text-sm font-semibold text-ink/60">
+                    <span className="text-sm font-semibold text-ink/80">
                       {event.startsAt.toLocaleDateString("en-IN", { dateStyle: "short" })}
                     </span>
                   </div>
                   <h3 className="mt-4 font-display text-2xl font-semibold">{event.title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-ink/70">{event.description}</p>
+                  <p className="mt-2 text-sm leading-6 text-ink/80">{event.description}</p>
                 </div>
                 <div className="mt-6 flex items-center justify-between border-t border-ink/10 pt-4">
-                  <p className="text-xs font-semibold text-ink/50">Capacity: {event.capacity ?? "Unlimited"}</p>
+                  <p className="text-xs font-semibold text-ink/80">Capacity: {event.capacity ?? "Unlimited"}</p>
                   <button className="text-sm font-bold text-indigo hover:underline">Edit</button>
                 </div>
               </article>
@@ -73,7 +73,7 @@ export default async function SocietyEventsPage() {
             <div className="col-span-full glass-panel rounded-5xl p-10 text-center">
               <Megaphone className="mx-auto h-12 w-12 text-saffron" />
               <h2 className="mt-5 font-display text-3xl font-semibold">No community events planned yet.</h2>
-              <p className="mt-2 text-ink/60 max-w-lg mx-auto">
+              <p className="mt-2 text-ink/80 max-w-lg mx-auto">
                 Host a free pet care consultation, vaccination camp, or training workshop in your society to encourage residents to join the PetSaathi platform.
               </p>
             </div>

@@ -10,7 +10,7 @@ const buttonVariants = cva(
       variant: {
         primary: "bg-ink text-paper shadow-lifted hover:-translate-y-0.5 hover:bg-indigo hover:shadow-soft",
       accent: "bg-[#b64f38] text-white shadow-lifted hover:-translate-y-0.5 hover:bg-[#9f3f2c] hover:shadow-soft",
-        outline: "border border-ink/15 bg-paper/70 text-ink backdrop-blur hover:-translate-y-0.5 hover:border-indigo/30 hover:bg-paper",
+        outline: "border border-ink/20 bg-transparent text-ink hover:-translate-y-0.5 hover:border-indigo/40 hover:bg-ink/5 hover:text-indigo hover:shadow-sm",
         ghost: "text-ink hover:bg-ink/5"
       },
       size: {

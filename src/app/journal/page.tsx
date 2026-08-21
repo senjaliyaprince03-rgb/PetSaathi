@@ -106,7 +106,7 @@ export default async function JournalPage() {
                     {entry.city ? ` · ${entry.city}` : ""}
                   </p>
                   <h2 className="mt-2 font-display text-2xl font-bold text-ink transition duration-300 group-hover:text-indigo">{entry.title}</h2>
-                  <p className="mt-3 text-sm leading-7 text-ink/65">{entry.excerpt}</p>
+                  <p className="mt-3 text-sm leading-7 text-ink/80">{entry.excerpt}</p>
                   {entry.expertReview ? (
                     <div className="mt-auto pt-6">
                       <div className="flex items-center gap-2 rounded-2xl bg-leaf/10 p-3 text-xs font-bold text-leaf">
@@ -121,7 +121,7 @@ export default async function JournalPage() {
               <div className="col-span-full rounded-[2.5rem] border border-indigo/10 bg-paper p-12 text-center shadow-lifted">
                 <BookOpen className="mx-auto h-12 w-12 text-indigo" />
                 <h2 className="mt-4 font-display text-3xl font-bold text-ink">Journal Guides Coming Soon</h2>
-                <p className="mt-3 text-sm leading-7 text-ink/65">
+                <p className="mt-3 text-sm leading-7 text-ink/80">
                   The editorial team is preparing structured guides for review before anything is published.
                 </p>
               </div>

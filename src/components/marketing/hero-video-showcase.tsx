@@ -184,10 +184,10 @@ export function HeroVideoShowcase() {
 
             <div className="pointer-events-none absolute inset-0" />
             <div className="pointer-events-none absolute inset-x-0 top-0 flex items-center justify-between p-4 sm:p-6">
-              <span className="flex items-center gap-2 rounded-2xl bg-ink/75 px-4 py-2 text-[0.62rem] font-bold uppercase tracking-[0.18em] text-paper shadow-sm backdrop-blur-md">
+              <span className="flex items-center gap-2 rounded-2xl bg-ink/90 px-4 py-2 text-[0.62rem] font-bold uppercase tracking-[0.18em] text-paper shadow-sm">
                 <PawPrint className="h-4 w-4 text-saffron" /> Six moments of care
               </span>
-              <span className="rounded-full border border-paper/20 bg-ink/35 px-3 py-2 text-[0.62rem] font-bold tracking-[0.16em] text-paper/80 backdrop-blur-xl">
+              <span className="rounded-full border border-paper/20 bg-ink/75 px-3 py-2 text-[0.62rem] font-bold tracking-[0.16em] text-paper/80">
                 {String(activeIndex + 1).padStart(2, "0")} / {String(careFilms.length).padStart(2, "0")}
               </span>
             </div>
@@ -215,7 +215,7 @@ export function HeroVideoShowcase() {
               <div className="max-w-md text-paper">
                 <p className="text-[0.6rem] font-bold uppercase tracking-[0.2em] text-saffron">{activeFilm.eyebrow}</p>
                 <h2 className="mt-1.5 font-display text-2xl font-semibold leading-none sm:text-3xl">{activeFilm.title}</h2>
-                <p id="hero-care-film-description" className="mt-2 hidden max-w-sm text-xs leading-5 text-paper/65 sm:block">
+                <p id="hero-care-film-description" className="mt-2 hidden max-w-sm text-xs leading-5 text-paper/80 sm:block">
                   {activeFilm.description}
                 </p>
               </div>
@@ -267,7 +267,7 @@ export function HeroVideoShowcase() {
         })}
       </div>
 
-      <p className="mt-3 text-center text-[0.62rem] font-semibold text-ink/40">
+      <p className="mt-3 text-center text-[0.62rem] font-semibold text-ink/80">
         Service availability varies by city, care context and verified provider capacity.
       </p>
       <p className="sr-only" aria-live="polite">Now showing {activeFilm.title}.</p>

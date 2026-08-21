@@ -119,7 +119,7 @@ export function CareJourneyExplorer() {
 
   return (
     <>
-      <section className="py-24 sm:py-32" aria-labelledby="care-journey-title">
+      <section className="py-12 sm:py-16" aria-labelledby="care-journey-title">
         <div className="container-shell">
           <ScrollReveal direction="up">
             <div className="grid gap-7 lg:grid-cols-[1fr_0.72fr] lg:items-end">
@@ -129,7 +129,7 @@ export function CareJourneyExplorer() {
                   Choose the care rhythm that fits the day.
                 </h2>
               </div>
-              <p className="max-w-xl text-sm leading-7 text-ink/52">
+              <p className="max-w-xl text-sm leading-7 text-ink/80">
                 Each service asks for different context, checks different evidence and produces a different care record. Preview that path before sharing personal details.
               </p>
             </div>
@@ -149,7 +149,7 @@ export function CareJourneyExplorer() {
                   onClick={() => setActiveJourneyId(id)}
                   className={cn(
                     "flex min-h-14 items-center justify-center gap-2 rounded-[1.4rem] px-3 text-xs font-bold transition sm:text-sm",
-                    isActive ? "bg-ink text-paper shadow-lifted" : "text-ink/52 hover:bg-indigo/[0.06] hover:text-indigo"
+                    isActive ? "bg-ink text-paper shadow-lifted" : "text-ink/80 hover:bg-indigo/[0.06] hover:text-indigo"
                   )}
                 >
                   <Icon className="h-4 w-4 shrink-0" />
@@ -186,7 +186,7 @@ export function CareJourneyExplorer() {
                     <JourneyIcon className="h-4 w-4" /> {activeJourney.label}
                   </span>
                   <h3 className="mt-5 max-w-[15ch] font-display text-3xl font-semibold leading-[1.1] tracking-[-0.03em] text-ink sm:text-4xl lg:text-[2.75rem]">{activeJourney.title}</h3>
-                  <p className="mt-5 max-w-xl text-base leading-8 text-ink/60 sm:text-lg">{activeJourney.description}</p>
+                  <p className="mt-5 max-w-xl text-base leading-8 text-ink/80 sm:text-lg">{activeJourney.description}</p>
                 </div>
 
                 <div className="mt-8 grid gap-4 md:grid-cols-3">
@@ -204,7 +204,7 @@ export function CareJourneyExplorer() {
                         <h3 className="mt-5 font-display text-xl font-semibold">{String(title)}</h3>
                         <div className="mt-4 grid gap-2.5">
                           {(items as readonly string[]).map((item) => (
-                            <p key={item} className="flex gap-2 text-xs leading-5 text-ink/50">
+                            <p key={item} className="flex gap-2 text-xs leading-5 text-ink/80">
                               <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-leaf" />
                               {item}
                             </p>
@@ -216,7 +216,7 @@ export function CareJourneyExplorer() {
                 </div>
 
                 <div className="mt-8 flex flex-col gap-4 border-t border-indigo/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
-                  <p className="flex max-w-md gap-2 text-xs leading-5 text-ink/42">
+                  <p className="flex max-w-md gap-2 text-xs leading-5 text-ink/80">
                     <Clock3 className="mt-0.5 h-4 w-4 shrink-0 text-coral" />
                     Availability and the final quote are checked before a caregiver proposal is approved.
                   </p>
@@ -233,7 +233,7 @@ export function CareJourneyExplorer() {
         </div>
       </section>
 
-      <section className="pb-24 sm:pb-32" aria-labelledby="care-ecosystem-title">
+      <section className="pb-12 sm:pb-16" aria-labelledby="care-ecosystem-title">
         <div className="container-shell">
           <ScrollReveal direction="up">
             <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
@@ -243,7 +243,7 @@ export function CareJourneyExplorer() {
                   Build a calmer care ecosystem.
                 </h2>
               </div>
-              <p className="max-w-xl text-sm leading-7 text-ink/52">
+              <p className="max-w-xl text-sm leading-7 text-ink/80">
                 Continue into the parts of PetSaathi that help recurring routines, residential communities and better-informed decisions.
               </p>
             </div>
@@ -252,28 +252,26 @@ export function CareJourneyExplorer() {
           <ScrollStaggerContainer className="mt-12 grid gap-5 lg:grid-cols-3">
             {extendedPaths.map(({ eyebrow, title, description, href, linkLabel, icon: Icon, tone }) => (
               <ScrollStaggerItem key={href}>
-                <AnimosCard glare={false}>
-                  <Link
-                    href={href as Route}
-                    className={cn(
-                      "group flex h-[28rem] flex-col rounded-[2.5rem] border border-indigo/10 bg-gradient-to-br p-7 shadow-lifted transition-all duration-500 hover:border-indigo/30 hover:shadow-2xl transform-gpu will-change-transform backface-hidden",
-                      tone
-                    )}
-                  >
-                    <div className="flex items-start justify-between">
-                      <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-paper/85 text-indigo shadow-sm transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-3">
-                        <Icon className="h-6 w-6" />
-                      </span>
-                      <ArrowUpRight className="h-5 w-5 text-ink/20 transition group-hover:text-indigo group-hover:translate-x-1 group-hover:-translate-y-1" />
-                    </div>
-                    <p className="mt-auto pt-12 text-[0.62rem] font-bold uppercase tracking-[0.19em] text-coral">{eyebrow}</p>
-                    <h3 className="mt-3 max-w-[12ch] font-display text-3xl font-semibold tracking-[-0.04em]">{title}</h3>
-                    <p className="mt-4 text-sm leading-7 text-ink/50">{description}</p>
-                    <span className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-indigo">
-                      {linkLabel} <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-2" />
+                <Link
+                  href={href as Route}
+                  className={cn(
+                    "group relative flex h-[28rem] flex-col overflow-hidden rounded-[2.5rem] border border-indigo/10 bg-gradient-to-br p-8 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-indigo/20 hover:shadow-2xl",
+                    tone
+                  )}
+                >
+                  <div className="flex items-start justify-between">
+                    <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-paper/85 text-indigo shadow-sm transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-3">
+                      <Icon className="h-6 w-6" />
                     </span>
-                  </Link>
-                </AnimosCard>
+                    <ArrowUpRight className="h-5 w-5 text-ink/80 transition-all duration-500 group-hover:text-indigo group-hover:translate-x-1 group-hover:-translate-y-1" />
+                  </div>
+                  <p className="mt-auto pt-12 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-coral">{eyebrow}</p>
+                  <h3 className="mt-3 max-w-[12ch] font-display text-3xl font-semibold tracking-[-0.04em] text-ink">{title}</h3>
+                  <p className="mt-4 text-sm leading-relaxed text-ink/70">{description}</p>
+                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-indigo">
+                    {linkLabel} <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-2" />
+                  </span>
+                </Link>
               </ScrollStaggerItem>
             ))}
           </ScrollStaggerContainer>

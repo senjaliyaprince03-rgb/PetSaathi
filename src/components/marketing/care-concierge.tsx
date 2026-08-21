@@ -118,7 +118,7 @@ export function CareConcierge() {
 
   return (
     <>
-      <section className="pb-24 sm:pb-32" aria-labelledby="care-concierge-title">
+      <section className="pb-12 sm:pb-16" aria-labelledby="care-concierge-title">
         <div className="container-shell">
           <div className="overflow-hidden rounded-[3.5rem] border border-indigo/10 bg-[#2f2032] text-paper shadow-soft">
             <div className="grid lg:grid-cols-[0.9fr_1.1fr]">
@@ -132,7 +132,7 @@ export function CareConcierge() {
                   className="object-cover object-[85%_35%]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#2f2032] via-[#2f2032]/10 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-[#2f2032]/20" />
-                <div className="absolute inset-x-5 bottom-5 rounded-3xl border border-paper/20 bg-[#2f2032]/55 p-5 backdrop-blur-xl sm:inset-x-8 sm:bottom-8">
+                <div className="absolute inset-x-5 bottom-5 rounded-3xl border border-paper/20 bg-[#2f2032] p-5 sm:inset-x-8 sm:bottom-8">
                   <p className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-saffron">Original PetSaathi editorial</p>
                   <p className="mt-2 font-display text-2xl font-semibold">A good match starts with the right question.</p>
                 </div>
@@ -145,7 +145,7 @@ export function CareConcierge() {
                     <p className="inline-flex items-center gap-2 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-saffron">
                       <Compass className="h-4 w-4" /> Care concierge
                     </p>
-                    <span className="text-xs font-bold text-paper/45">Step {step} of 3</span>
+                    <span className="text-xs font-bold text-paper/80">Step {step} of 3</span>
                   </div>
 
                   <div className="mt-4 grid grid-cols-3 gap-2" aria-hidden="true">
@@ -167,7 +167,7 @@ export function CareConcierge() {
                         <h2 id="care-concierge-title" className="font-display text-4xl font-semibold tracking-[-0.045em] sm:text-5xl">
                           Who needs care?
                         </h2>
-                        <p className="mt-4 max-w-xl text-sm leading-7 text-paper/58">
+                        <p className="mt-4 max-w-xl text-sm leading-7 text-paper/80">
                           This guide suggests a starting service only. Eligibility, availability and price are still checked before confirmation.
                         </p>
                         <div className="mt-8 grid gap-3 sm:grid-cols-3">
@@ -218,7 +218,7 @@ export function CareConcierge() {
                               <Icon className="mt-0.5 h-6 w-6 shrink-0" />
                               <span>
                                 <span className="block text-sm font-bold">{label}</span>
-                                <span className={cn("mt-2 block text-xs leading-5", need === value ? "text-ink/58" : "text-paper/50")}>{detail}</span>
+                                <span className={cn("mt-2 block text-xs leading-5", need === value ? "text-ink/80" : "text-paper/80")}>{detail}</span>
                               </span>
                             </button>
                           ))}
@@ -248,10 +248,10 @@ export function CareConcierge() {
                         </span>
                         <p className="mt-7 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-saffron">Suggested starting point</p>
                         <h2 className="mt-3 max-w-[12ch] font-display text-4xl font-semibold tracking-[-0.045em] sm:text-5xl">{recommendation.title}</h2>
-                        <p className="mt-5 max-w-xl text-sm leading-7 text-paper/58">{recommendation.summary}</p>
+                        <p className="mt-5 max-w-xl text-sm leading-7 text-paper/80">{recommendation.summary}</p>
 
                         {need === "health" ? (
-                          <div className="mt-6 flex gap-3 rounded-3xl border border-coral/30 bg-coral/10 p-4 text-sm leading-6 text-paper/75">
+                          <div className="mt-6 flex gap-3 rounded-3xl border border-coral/30 bg-coral/10 p-4 text-sm leading-6 text-paper/80">
                             <ShieldAlert className="mt-0.5 h-5 w-5 shrink-0 text-coral" />
                             PetSaathi is not an emergency service. For breathing difficulty, collapse, severe bleeding or another urgent concern, contact the nearest veterinary clinic immediately.
                           </div>
@@ -278,7 +278,7 @@ export function CareConcierge() {
         </div>
       </section>
 
-      <section className="pb-24 sm:pb-32" aria-labelledby="care-details-title">
+      <section className="pb-12 sm:pb-16" aria-labelledby="care-details-title">
         <div className="container-shell">
           <div className="grid gap-10 lg:grid-cols-[1.06fr_0.94fr]">
             <ScrollReveal direction="left" className="h-full">
@@ -291,9 +291,9 @@ export function CareConcierge() {
                   className="object-cover object-[center_78%]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/50 via-transparent to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between gap-4 rounded-3xl border border-paper/30 bg-paper/85 p-5 text-ink backdrop-blur-xl sm:bottom-8 sm:left-8 sm:right-8">
+                <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between gap-4 rounded-3xl border border-paper/30 bg-paper p-5 text-ink sm:bottom-8 sm:left-8 sm:right-8">
                   <div>
-                    <p className="text-[0.62rem] font-bold uppercase tracking-[0.18em] text-indigo/55">Care record</p>
+                    <p className="text-[0.62rem] font-bold uppercase tracking-[0.18em] text-indigo/80">Care record</p>
                     <p className="mt-1 font-display text-2xl font-semibold">Small details make reassurance useful.</p>
                   </div>
                   <Clock3 className="hidden h-6 w-6 shrink-0 text-coral sm:block" />
@@ -305,7 +305,7 @@ export function CareConcierge() {
               <div>
                 <p className="eyebrow">Designed around the handover</p>
                 <h2 id="care-details-title" className="section-title mt-5">Care should feel considered before, during and after.</h2>
-                <p className="mt-6 max-w-xl text-base leading-8 text-ink/54">
+                <p className="mt-6 max-w-xl text-base leading-8 text-ink/80">
                   Premium care is not decoration. It is clear context, limited access, meaningful updates and an accountable response when the plan changes.
                 </p>
 
@@ -325,7 +325,7 @@ export function CareConcierge() {
                       <div>
                         <p className="text-[0.6rem] font-bold uppercase tracking-[0.18em] text-coral">{number}</p>
                         <h3 className="mt-1 font-display text-2xl font-semibold">{title}</h3>
-                        <p className="mt-2 text-sm leading-6 text-ink/48">{copy}</p>
+                        <p className="mt-2 text-sm leading-6 text-ink/80">{copy}</p>
                       </div>
                     </motion.article>
                   ))}

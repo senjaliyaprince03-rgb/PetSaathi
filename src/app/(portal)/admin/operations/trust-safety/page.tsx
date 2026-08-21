@@ -35,7 +35,7 @@ export default async function TrustSafetyCommandCenter() {
       <PortalShell mode="admin" displayName={identity.displayName}>
         <div className="max-w-7xl pb-12">
           <h1 className="mt-2 font-display text-4xl font-semibold tracking-[-0.04em] text-coral">Access Denied</h1>
-          <p className="mt-3 max-w-3xl text-sm leading-6 text-ink/60 mb-10">You do not have permission to view Trust & Safety metrics.</p>
+          <p className="mt-3 max-w-3xl text-sm leading-6 text-ink/80 mb-10">You do not have permission to view Trust & Safety metrics.</p>
         </div>
       </PortalShell>
     );
@@ -89,12 +89,12 @@ export default async function TrustSafetyCommandCenter() {
       <div className="max-w-7xl pb-12 space-y-8">
         {/* Header */}
         <div>
-          <span className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-ink/50">
+          <span className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-ink/80">
             <ShieldAlert className="w-3 h-3 text-coral" />
             Trust & Safety
           </span>
           <h1 className="mt-2 font-display text-4xl font-semibold tracking-[-0.04em]">Command Center</h1>
-          <p className="mt-3 max-w-3xl text-sm leading-6 text-ink/60 mb-10">
+          <p className="mt-3 max-w-3xl text-sm leading-6 text-ink/80 mb-10">
             Monitor and manage platform integrity, incidents, and provider interventions.
           </p>
         </div>
@@ -115,7 +115,7 @@ export default async function TrustSafetyCommandCenter() {
 
           <div className="space-y-4">
             {pendingIncidents.length === 0 ? (
-              <p className="text-ink/50 text-sm">No active incidents at the moment.</p>
+              <p className="text-ink/80 text-sm">No active incidents at the moment.</p>
             ) : (
               pendingIncidents.map((incident) => (
                 <div key={incident.id} className="p-4 bg-cream/50 rounded-2xl border border-ink/5 flex flex-col gap-2">
@@ -128,8 +128,8 @@ export default async function TrustSafetyCommandCenter() {
                       {incident.severity}
                     </span>
                   </div>
-                  <p className="text-sm text-ink/70 line-clamp-2">{incident.description}</p>
-                  <div className="text-xs text-ink/50 flex justify-between mt-2">
+                  <p className="text-sm text-ink/80 line-clamp-2">{incident.description}</p>
+                  <div className="text-xs text-ink/80 flex justify-between mt-2">
                     <span>{new Date(incident.detectedAt).toLocaleDateString()}</span>
                     <span>Ref: {incident.reference}</span>
                   </div>
@@ -151,14 +151,14 @@ export default async function TrustSafetyCommandCenter() {
 
             <div className="space-y-4">
               {activeSuspensions.length === 0 ? (
-                <p className="text-ink/50 text-sm">No active provider suspensions.</p>
+                <p className="text-ink/80 text-sm">No active provider suspensions.</p>
               ) : (
                 activeSuspensions.map((suspension) => (
                   <div key={suspension.id} className="p-4 bg-cream/50 rounded-2xl border border-coral/20 flex justify-between items-center gap-4">
                     <div>
                       <div className="font-semibold">{suspension.sitter.displayName}</div>
                       <div className="text-sm text-coral font-medium mt-1">{suspension.reason.replace(/_/g, ' ')}</div>
-                      <div className="text-xs text-ink/60 mt-1 line-clamp-1">{suspension.description}</div>
+                      <div className="text-xs text-ink/80 mt-1 line-clamp-1">{suspension.description}</div>
                     </div>
                     <div className="text-right shrink-0">
                       <div className="text-xs font-semibold text-ink">
@@ -182,13 +182,13 @@ export default async function TrustSafetyCommandCenter() {
 
             <div className="space-y-4">
               {actionRequiredAudits.length === 0 ? (
-                <p className="text-ink/50 text-sm">No audits currently require action.</p>
+                <p className="text-ink/80 text-sm">No audits currently require action.</p>
               ) : (
                 actionRequiredAudits.map((audit) => (
                   <div key={audit.id} className="p-4 bg-cream/50 rounded-2xl border border-yellow-500/30 flex justify-between items-center gap-4">
                     <div>
                       <div className="font-semibold text-sm">Provider: {audit.sitter.displayName}</div>
-                      <div className="text-xs text-ink/60 mt-1">Audited by: {audit.auditor.displayName}</div>
+                      <div className="text-xs text-ink/80 mt-1">Audited by: {audit.auditor.displayName}</div>
                     </div>
                     <div className="text-right">
                       <span className={`font-mono font-bold text-lg ${audit.score < 70 ? 'text-coral' : 'text-yellow-600'}`}>

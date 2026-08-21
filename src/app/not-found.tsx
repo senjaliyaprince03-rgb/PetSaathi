@@ -39,7 +39,7 @@ export default function NotFound() {
               Ruh-roh! <br />
               <span className="text-indigo">You&apos;re lost.</span>
             </h1>
-            <p className="mb-10 text-lg leading-relaxed text-ink/70 max-w-lg mx-auto lg:mx-0">
+            <p className="mb-10 text-lg leading-relaxed text-ink/80 max-w-lg mx-auto lg:mx-0">
               We&apos;ve sniffed around every corner, but we can&apos;t seem to find the page you&apos;re looking for. It might have been moved or deleted.
             </p>
 

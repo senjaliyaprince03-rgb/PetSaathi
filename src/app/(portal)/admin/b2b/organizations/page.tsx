@@ -24,9 +24,9 @@ export default async function OrganizationsPage() {
             <table className="w-full text-left">
               <thead>
                 <tr className="border-b border-indigo/10 bg-cream/30">
-                  <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-ink/50">Name</th>
-                  <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-ink/50">Type</th>
-                  <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-ink/50">Status</th>
+                  <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-ink/80">Name</th>
+                  <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-ink/80">Type</th>
+                  <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-ink/80">Status</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-indigo/5">
@@ -34,10 +34,10 @@ export default async function OrganizationsPage() {
                   <tr key={org.id} className="transition-colors hover:bg-cream/20">
                     <td className="px-6 py-5">
                       <div className="font-semibold text-ink">{org.displayName}</div>
-                      <div className="mt-1 text-sm text-ink/60">{org.legalName}</div>
+                      <div className="mt-1 text-sm text-ink/80">{org.legalName}</div>
                     </td>
                     <td className="px-6 py-5">
-                      <span className="text-sm font-medium text-ink/75">{org.organizationType}</span>
+                      <span className="text-sm font-medium text-ink/80">{org.organizationType}</span>
                     </td>
                     <td className="px-6 py-5">
                       <span className="inline-flex rounded-full bg-indigo/10 px-3 py-1 text-xs font-bold text-indigo">
@@ -48,7 +48,7 @@ export default async function OrganizationsPage() {
                 ))}
                 {result.items.length === 0 && (
                   <tr>
-                    <td colSpan={3} className="px-6 py-12 text-center text-sm font-medium text-ink/60">
+                    <td colSpan={3} className="px-6 py-12 text-center text-sm font-medium text-ink/80">
                       No organizations found.
                     </td>
                   </tr>
@@ -66,14 +66,14 @@ export default async function OrganizationsPage() {
                     {org.status}
                   </span>
                 </div>
-                <div className="mt-1 text-sm text-ink/60">{org.legalName}</div>
-                <div className="mt-4 text-xs font-medium text-ink/75">
+                <div className="mt-1 text-sm text-ink/80">{org.legalName}</div>
+                <div className="mt-4 text-xs font-medium text-ink/80">
                   Type: {org.organizationType}
                 </div>
               </div>
             ))}
             {result.items.length === 0 && (
-              <div className="p-10 text-center text-sm font-medium text-ink/60">
+              <div className="p-10 text-center text-sm font-medium text-ink/80">
                 No organizations found.
               </div>
             )}

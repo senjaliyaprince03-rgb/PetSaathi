@@ -26,7 +26,7 @@ export default async function AdminCitiesPage() {
       <div className="space-y-6 max-w-5xl p-6">
         <div>
           <h1 className="font-display text-4xl font-semibold tracking-[-0.04em] text-ink">City Network Command Center</h1>
-          <p className="mt-3 text-sm leading-6 text-ink/60">Manage city lifecycle stages and zone capacities.</p>
+          <p className="mt-3 text-sm leading-6 text-ink/80">Manage city lifecycle stages and zone capacities.</p>
         </div>
 
         <div className="grid gap-6">
@@ -35,7 +35,7 @@ export default async function AdminCitiesPage() {
               <div className="flex items-center justify-between mb-4">
                 <div>
                   <h2 className="font-display text-2xl font-semibold text-ink">{city.name}</h2>
-                  <p className="text-sm text-ink/60">{city.state}</p>
+                  <p className="text-sm text-ink/80">{city.state}</p>
                 </div>
                 <div className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-[0.16em] border border-blue-500/20 bg-blue-500/10 text-blue-700">
                   {city.status}
@@ -44,9 +44,9 @@ export default async function AdminCitiesPage() {
 
               <div className="grid gap-4 md:grid-cols-2">
                 <div className="space-y-3">
-                  <h3 className="text-xs font-bold uppercase tracking-[0.18em] text-ink/45 border-b border-ink/5 pb-2">Service Zones</h3>
+                  <h3 className="text-xs font-bold uppercase tracking-[0.18em] text-ink/80 border-b border-ink/5 pb-2">Service Zones</h3>
                   {city.serviceZones.length === 0 ? (
-                    <p className="text-sm text-ink/50">No zones configured.</p>
+                    <p className="text-sm text-ink/80">No zones configured.</p>
                   ) : (
                     <div className="space-y-2">
                       {city.serviceZones.map(zone => (
@@ -62,15 +62,15 @@ export default async function AdminCitiesPage() {
                 </div>
 
                 <div className="space-y-3">
-                  <h3 className="text-xs font-bold uppercase tracking-[0.18em] text-ink/45 border-b border-ink/5 pb-2">Service Statuses</h3>
+                  <h3 className="text-xs font-bold uppercase tracking-[0.18em] text-ink/80 border-b border-ink/5 pb-2">Service Statuses</h3>
                   {city.cityServiceConfigs.length === 0 ? (
-                    <p className="text-sm text-ink/50">No services configured.</p>
+                    <p className="text-sm text-ink/80">No services configured.</p>
                   ) : (
                     <div className="space-y-2">
                       {city.cityServiceConfigs.map(config => (
                         <div key={config.id} className="flex justify-between text-sm bg-cream/30 p-3 rounded-2xl">
                           <span className="text-ink/80 font-medium">{config.serviceType.name}</span>
-                          <span className={`text-[10px] font-bold uppercase tracking-[0.16em] ${config.status === "ACTIVE" ? "text-leaf" : "text-ink/45"}`}>
+                          <span className={`text-[10px] font-bold uppercase tracking-[0.16em] ${config.status === "ACTIVE" ? "text-leaf" : "text-ink/80"}`}>
                             {config.status}
                           </span>
                         </div>
@@ -84,7 +84,7 @@ export default async function AdminCitiesPage() {
 
           {cities.length === 0 && (
             <div className="text-center py-12 border border-ink/10 border-dashed rounded-4xl bg-paper">
-              <p className="text-sm text-ink/60">No cities have been configured in the system yet.</p>
+              <p className="text-sm text-ink/80">No cities have been configured in the system yet.</p>
             </div>
           )}
         </div>

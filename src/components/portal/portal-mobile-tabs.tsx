@@ -81,7 +81,7 @@ export function PortalMobileTabs({ links }: { links: Array<SerializableNavLink> 
               "flex shrink-0 items-center gap-2 rounded-full border px-4 py-2.5 text-xs font-bold",
               isActive
                 ? "border-ink bg-ink text-paper"
-                : "border-indigo/10 bg-paper text-ink/60"
+                : "border-indigo/10 bg-paper text-ink/80"
             )}
           >
             <NavIcon className="h-3.5 w-3.5" />

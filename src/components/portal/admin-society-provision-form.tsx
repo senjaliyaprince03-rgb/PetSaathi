@@ -57,7 +57,7 @@ export function AdminSocietyProvisionForm() {
         </span>
         <div>
           <h2 className="font-display text-2xl font-semibold tracking-tight">Provision Society Partnership</h2>
-          <p className="text-xs text-ink/60">Launch a new 30-day pilot for a residential society</p>
+          <p className="text-xs text-ink/80">Launch a new 30-day pilot for a residential society</p>
         </div>
       </div>
 

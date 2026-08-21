@@ -1,6 +1,20 @@
 import { type NextRequest, NextResponse } from "next/server";
+import { getToken } from "next-auth/jwt";
+import { Ratelimit } from "@upstash/ratelimit";
+import { Redis } from "@upstash/redis";
 
 import { isTrustedBrowserMutation } from "@/modules/security/origin";
+
+const redis = new Redis({
+  url: process.env.UPSTASH_REDIS_REST_URL || "https://dummy.upstash.io",
+  token: process.env.UPSTASH_REDIS_REST_TOKEN || "dummy",
+});
+
+const ratelimit = new Ratelimit({
+  redis,
+  limiter: Ratelimit.slidingWindow(20, "10 s"),
+  analytics: true,
+});
 
 export async function middleware(request: NextRequest) {
   const headers = new Headers(request.headers);
@@ -35,6 +49,20 @@ export async function middleware(request: NextRequest) {
     request.nextUrl.pathname.startsWith("/api/") &&
     !request.nextUrl.pathname.startsWith("/api/webhooks/") &&
     !request.nextUrl.pathname.startsWith("/api/jobs/");
+
+  if (request.nextUrl.pathname.startsWith("/api/") && process.env.UPSTASH_REDIS_REST_URL) {
+    const ip = request.headers.get("x-forwarded-for") ?? "127.0.0.1";
+    const { success, limit, reset, remaining } = await ratelimit.limit(`ratelimit_${ip}`);
+    if (!success) {
+      const rejected = NextResponse.json(
+        { error: "Too Many Requests" },
+        { status: 429, headers: { "X-RateLimit-Limit": limit.toString(), "X-RateLimit-Remaining": remaining.toString(), "X-RateLimit-Reset": reset.toString() } }
+      );
+      applySecurityHeaders(rejected, cspHeader, requestId);
+      return rejected;
+    }
+  }
+
   if (
     isProtectedApiMutation &&
     !isTrustedBrowserMutation(
@@ -104,7 +132,7 @@ export async function middleware(request: NextRequest) {
         request.nextUrl.pathname === prefix ||
         request.nextUrl.pathname.startsWith(`${prefix}/`),
     );
-    
+
   if (isProtectedPage && !isAuthenticated) {
     const loginUrl = request.nextUrl.clone();
     loginUrl.pathname = "/login";
@@ -116,6 +144,34 @@ export async function middleware(request: NextRequest) {
     const redirected = NextResponse.redirect(loginUrl);
     applySecurityHeaders(redirected, cspHeader, requestId);
     return redirected;
+  }
+
+  // RBAC checks
+  if (isProtectedPage || isAdminApi) {
+    const token = await getToken({ req: request as any, secret: process.env.NEXTAUTH_SECRET || "petsaathi-local-development-secret-change-before-production" });
+    
+    if (token) {
+      const userRole = token.role as string;
+      const path = request.nextUrl.pathname;
+
+      if ((path.startsWith("/admin") || isAdminApi) && userRole !== "SUPER_ADMIN") {
+        const url = request.nextUrl.clone();
+        url.pathname = userRole === "SITTER" ? "/dashboard/sitter" : "/dashboard/customer";
+        return NextResponse.redirect(url);
+      }
+
+      if (path.startsWith("/dashboard/customer") && userRole !== "CUSTOMER" && userRole !== "SUPER_ADMIN") {
+         const url = request.nextUrl.clone();
+         url.pathname = "/dashboard/sitter";
+         return NextResponse.redirect(url);
+      }
+
+      if (path.startsWith("/dashboard/sitter") && userRole !== "SITTER" && userRole !== "SUPER_ADMIN") {
+         const url = request.nextUrl.clone();
+         url.pathname = "/dashboard/customer";
+         return NextResponse.redirect(url);
+      }
+    }
   }
 
   const response = NextResponse.next({ request: { headers } });

@@ -122,7 +122,7 @@ export default async function CustomerServicesHubPage() {
                   <span className={`flex h-12 w-12 items-center justify-center rounded-2xl ${service.tone}`}>
                     <Icon className="h-6 w-6" />
                   </span>
-                  <span className="rounded-full bg-cream px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-ink/60">
+                  <span className="rounded-full bg-cream px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-ink/80">
                     {service.badge}
                   </span>
                 </div>
@@ -130,7 +130,7 @@ export default async function CustomerServicesHubPage() {
                 <h3 className="mt-5 font-display text-2xl font-semibold tracking-[-0.03em] group-hover:text-indigo">
                   {service.title}
                 </h3>
-                <p className="mt-2 text-xs leading-5 text-ink/50">
+                <p className="mt-2 text-xs leading-5 text-ink/80">
                   {service.description}
                 </p>
 
@@ -159,7 +159,7 @@ export default async function CustomerServicesHubPage() {
               </span>
               <div>
                 <p className="font-bold text-sm">Grooming Refresh Reminder</p>
-                <p className="text-xs text-ink/50">Recommended every 4–6 weeks for coat maintenance</p>
+                <p className="text-xs text-ink/80">Recommended every 4–6 weeks for coat maintenance</p>
               </div>
             </div>
             <Link href={"/customer/grooming" as Route} className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-indigo hover:underline">
@@ -174,7 +174,7 @@ export default async function CustomerServicesHubPage() {
               </span>
               <div>
                 <p className="font-bold text-sm">Annual Vaccination Check</p>
-                <p className="text-xs text-ink/50">Keep rabies and annual boosters updated</p>
+                <p className="text-xs text-ink/80">Keep rabies and annual boosters updated</p>
               </div>
             </div>
             <Link href={"/customer/vet" as Route} className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-indigo hover:underline">

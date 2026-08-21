@@ -95,10 +95,10 @@ export function PortalMobileNav({ links, mode }: PortalMobileNavProps) {
                         "flex items-center gap-3 rounded-2xl px-4 py-3.5 text-base font-semibold transition",
                         isActive
                           ? "bg-ink text-paper shadow-lifted"
-                          : "text-ink/60 hover:bg-indigo/[0.06] hover:text-indigo"
+                          : "text-ink/80 hover:bg-indigo/[0.06] hover:text-indigo"
                       )}
                     >
-                      <NavIcon className={cn("h-5 w-5", isActive ? "" : "text-ink/40")} />
+                      <NavIcon className={cn("h-5 w-5", isActive ? "" : "text-ink/80")} />
                       {label}
                     </Link>
                   </li>

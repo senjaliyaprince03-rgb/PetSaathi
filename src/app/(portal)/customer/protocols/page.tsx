@@ -64,17 +64,17 @@ export default async function CareProtocolsPage() {
                       <div>
                         <div className="flex flex-wrap items-center gap-2"><p className="text-[0.6rem] font-bold uppercase tracking-[0.16em] text-coral">{booking.reference}</p><StatusPill status={booking.status} /></div>
                         <h3 className="mt-3 font-display text-2xl font-semibold tracking-[-0.035em] sm:text-3xl">{booking.serviceType.name} for {booking.pet.name}</h3>
-                        <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-xs text-ink/45">
+                        <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-xs text-ink/80">
                           <span className="flex items-center gap-1.5"><PawPrint className="h-3.5 w-3.5 text-indigo" />{booking.pet.species.toLowerCase()}</span>
                           <span className="flex items-center gap-1.5"><CalendarDays className="h-3.5 w-3.5 text-indigo" />{booking.scheduledStart.toLocaleDateString("en-IN", { dateStyle: "medium" })}</span>
                           <span className="flex items-center gap-1.5"><Clock3 className="h-3.5 w-3.5 text-indigo" />{booking.scheduledStart.toLocaleTimeString("en-IN", { timeStyle: "short" })}</span>
                           {booking.assignments[0] ? <span>{booking.assignments[0].sitter.user.displayName}</span> : null}
                         </div>
                       </div>
-                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-paper text-ink/30 shadow-sm transition group-hover:bg-indigo group-hover:text-paper"><ChevronRight className="h-5 w-5" /></span>
+                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-paper text-ink/80 shadow-sm transition group-hover:bg-indigo group-hover:text-paper"><ChevronRight className="h-5 w-5" /></span>
                     </div>
                     <div className="mt-5">
-                      <div className="flex items-center justify-between text-[0.62rem] font-bold uppercase tracking-[0.12em] text-ink/35"><span>Protocol progress</span><span>{progress}%</span></div>
+                      <div className="flex items-center justify-between text-[0.62rem] font-bold uppercase tracking-[0.12em] text-ink/80"><span>Protocol progress</span><span>{progress}%</span></div>
                       <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-ink/[0.06]"><div className="h-full rounded-full bg-gradient-to-r from-coral via-indigo to-leaf transition-all" style={{ width: `${progress}%` }} /></div>
                     </div>
                   </Link>

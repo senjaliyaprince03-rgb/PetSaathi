@@ -73,6 +73,7 @@
     "openai": "^7.4.0",
     "razorpay": "^2.9.6",
     "react": "^19.1.0",
+    "react-cookie-consent": "^10.0.2",
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.62.0",
     "react-leaflet": "^5.0.0",

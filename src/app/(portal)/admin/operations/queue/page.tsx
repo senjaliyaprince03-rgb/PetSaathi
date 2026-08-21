@@ -37,7 +37,7 @@ export default async function ExceptionQueuePage() {
     <PortalShell mode="admin" displayName={identity.displayName}>
       <div className="mt-5 max-w-5xl">
         <h1 className="font-display text-4xl font-semibold tracking-[-0.04em]">Operations Exception Queue</h1>
-        <p className="mt-3 text-sm leading-6 text-ink/60">
+        <p className="mt-3 text-sm leading-6 text-ink/80">
           Monitor and resolve high-risk matches and stalled workflows.
         </p>
 
@@ -57,7 +57,7 @@ export default async function ExceptionQueuePage() {
           <div className="mt-6 overflow-hidden rounded-4xl border border-indigo/10 bg-paper shadow-lifted">
             <ul className="divide-y divide-indigo/5">
               {flaggedMatches.length === 0 ? (
-                <li className="p-8 text-center text-sm font-medium text-ink/60">
+                <li className="p-8 text-center text-sm font-medium text-ink/80">
                   No matches require manual approval.
                 </li>
               ) : (
@@ -66,13 +66,13 @@ export default async function ExceptionQueuePage() {
                     <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
                       <div>
                         <p className="font-semibold text-ink">
-                          <span className="font-mono text-ink/50">{match.booking.reference}</span>
-                          <span className="mx-2 text-ink/30">•</span>
+                          <span className="font-mono text-ink/80">{match.booking.reference}</span>
+                          <span className="mx-2 text-ink/80">•</span>
                           {match.booking.serviceType.name} for {match.booking.pet.name}
                         </p>
-                        <p className="mt-1 text-sm font-medium text-ink/75">
+                        <p className="mt-1 text-sm font-medium text-ink/80">
                           Proposed Sitter: <span className="font-semibold">{match.sitter.user.displayName}</span> 
-                          <span className="mx-2 text-ink/30">•</span>
+                          <span className="mx-2 text-ink/80">•</span>
                           Match Score: {(match.totalScore * 100).toFixed(0)}%
                         </p>
                         <ul className="mt-3 grid gap-1 border-l-2 border-coral/30 pl-3">
@@ -120,13 +120,13 @@ export default async function ExceptionQueuePage() {
             <span className="ml-2 rounded-full bg-saffron px-3 py-1 text-xs font-bold text-ink">
               {stuckBookings.length}
             </span>
-            <span className="text-sm font-medium text-ink/50">(&gt;15m without assignment)</span>
+            <span className="text-sm font-medium text-ink/80">(&gt;15m without assignment)</span>
           </div>
 
           <div className="mt-6 overflow-hidden rounded-4xl border border-indigo/10 bg-paper shadow-lifted">
             <ul className="divide-y divide-indigo/5">
               {stuckBookings.length === 0 ? (
-                <li className="p-8 text-center text-sm font-medium text-ink/60">
+                <li className="p-8 text-center text-sm font-medium text-ink/80">
                   No stuck bookings. Queue is healthy.
                 </li>
               ) : (
@@ -135,15 +135,15 @@ export default async function ExceptionQueuePage() {
                     <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
                       <div>
                         <p className="font-semibold text-ink">
-                          <span className="font-mono text-ink/50">{booking.reference}</span>
-                          <span className="mx-2 text-ink/30">•</span>
+                          <span className="font-mono text-ink/80">{booking.reference}</span>
+                          <span className="mx-2 text-ink/80">•</span>
                           {booking.serviceType.name} for {booking.pet.name}
                         </p>
                         <div className="mt-2 flex items-center gap-3 text-sm">
                           <span className="inline-flex rounded-full bg-indigo/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.16em] text-indigo">
                             {booking.status}
                           </span>
-                          <span className="text-ink/60">
+                          <span className="text-ink/80">
                             Created: {booking.createdAt.toLocaleTimeString("en-IN")}
                           </span>
                         </div>

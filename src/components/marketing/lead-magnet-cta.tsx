@@ -52,7 +52,7 @@ export function LeadMagnetCta({
       <div className="rounded-4xl border border-leaf/20 bg-leaf/5 p-7">
         <Download className="h-6 w-6 text-leaf" />
         <h3 className="mt-4 font-display text-2xl font-semibold text-leaf">Check your email!</h3>
-        <p className="mt-2 text-sm leading-6 text-ink/60">
+        <p className="mt-2 text-sm leading-6 text-ink/80">
           We&apos;ve sent the download link. No spam — just useful pet care resources.
         </p>
       </div>
@@ -63,7 +63,7 @@ export function LeadMagnetCta({
     <div className="rounded-4xl border border-indigo/15 bg-indigo/5 p-7">
       <Download className="h-6 w-6 text-indigo" />
       <h3 className="mt-4 font-display text-2xl font-semibold">{title}</h3>
-      <p className="mt-2 text-sm leading-6 text-ink/60">{description}</p>
+      <p className="mt-2 text-sm leading-6 text-ink/80">{description}</p>
       <form onSubmit={handleSubmit} className="mt-5 flex gap-3">
         <input
           type="email"
@@ -86,7 +86,7 @@ export function LeadMagnetCta({
           {error}
         </p>
       )}
-      <p className="mt-3 text-xs text-ink/40">No spam. Unsubscribe anytime.</p>
+      <p className="mt-3 text-xs text-ink/80">No spam. Unsubscribe anytime.</p>
     </div>
   );
 }

@@ -69,7 +69,7 @@ export function TextReveal({ text, className = "", delay = 0 }: TextRevealProps)
           <motion.span
             key={`${word}-${idx}`}
             variants={wordVariants}
-            className="inline-block transform-gpu"
+            className="inline-block"
           >
             {word}
           </motion.span>
@@ -128,7 +128,7 @@ export function MagneticButton({ children, className = "", strength = 0.45 }: Ma
       }}
       whileHover={{ scale: 1.04 }}
       whileTap={{ scale: 0.96 }}
-      className={cn("inline-block transform-gpu cursor-pointer", className)}
+      className={cn("inline-block cursor-pointer", className)}
     >
       {children}
     </motion.div>
@@ -200,13 +200,12 @@ export function AnimosCard({ children, className = "", glare = true }: AnimosCar
       style={{
         rotateX: shouldReduceMotion ? 0 : rotateX,
         rotateY: shouldReduceMotion ? 0 : rotateY,
-        transformStyle: "preserve-3d",
       }}
       whileHover={{ y: -6, scale: 1.015 }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      className={cn("relative overflow-hidden rounded-4xl transition-all duration-300 shadow-lifted hover:shadow-soft", className)}
+      className={cn("relative overflow-hidden rounded-4xl transition-all duration-300 shadow-lifted hover:shadow-soft antialiased", className)}
     >
-      <div style={{ transform: "translateZ(35px)", transformStyle: "preserve-3d" }}>
+      <div>
         {children}
       </div>
 
@@ -288,7 +287,7 @@ export function ScrollStaggerItem({ children, className = "" }: ScrollStaggerIte
   };
 
   return (
-    <motion.div variants={itemVariants} className={cn("transform-gpu", className)}>
+    <motion.div variants={itemVariants} className={className}>
       {children}
     </motion.div>
   );

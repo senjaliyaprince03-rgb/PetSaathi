@@ -52,7 +52,7 @@ export default async function CompanyBenefitProgrammePage({
             <h1 className="mt-3 max-w-[12ch] font-display text-5xl font-semibold tracking-[-0.055em] sm:text-7xl">
               {programme.name}
             </h1>
-            <p className="mt-5 max-w-2xl text-base leading-8 text-ink/62">
+            <p className="mt-5 max-w-2xl text-base leading-8 text-ink/80">
               Controlled access to PetSaathi services through an authenticated,
               auditable eligibility workflow. Enrollment never bypasses service
               permissions, capacity, safety review, or verified pricing.
@@ -108,7 +108,7 @@ function ProgrammeFact({
   return (
     <div className="rounded-3xl border border-paper/80 bg-paper/85 p-4 shadow-sm backdrop-blur">
       <Icon className="h-5 w-5 text-indigo" />
-      <p className="mt-3 text-[0.62rem] font-bold uppercase tracking-[0.14em] text-ink/40">
+      <p className="mt-3 text-[0.62rem] font-bold uppercase tracking-[0.14em] text-ink/80">
         {label}
       </p>
       <p className="mt-1 text-sm font-semibold capitalize text-ink">{value}</p>

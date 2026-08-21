@@ -2,7 +2,7 @@
 
 import { useState, useRef, type FormEvent } from "react";
 import { motion } from "framer-motion";
-import { KeyRound, LoaderCircle, Lock, Mail, User } from "lucide-react";
+import { Eye, EyeOff, KeyRound, LoaderCircle, Lock, Mail, User } from "lucide-react";
 import Lottie from "lottie-react";
 import { useRouter } from "next/navigation";
 import Script from "next/script";
@@ -11,7 +11,7 @@ import { useEffect } from "react";
 import lottiePet from "../../../public/images/lottie-pet.json";
 import { hasUsableGoogleClientId } from "@/lib/public-config";
 
-type ApiResponse = { error?: string; developmentOtp?: string };
+type ApiResponse = { error?: string; developmentOtp?: string; role?: string; roles?: string[] };
 
 export function AuthSlidingPanel() {
   const router = useRouter();
@@ -22,6 +22,7 @@ export function AuthSlidingPanel() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [otp, setOtp] = useState("");
+  const [role, setRole] = useState<"CUSTOMER" | "SITTER">("CUSTOMER");
   const [error, setError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
   const googleButtonSignUpRef = useRef<HTMLDivElement>(null);
@@ -39,7 +40,13 @@ export function AuthSlidingPanel() {
         setError(payload?.error?.replaceAll("_", " ") ?? "Google sign in failed.");
         return;
       }
-      router.replace("/dashboard", { scroll: false });
+      if (payload?.roles?.includes("SUPER_ADMIN") || payload?.roles?.includes("OPERATIONS_ADMIN")) {
+        router.replace("/admin", { scroll: false });
+      } else if (payload?.roles?.includes("SITTER")) {
+        router.replace("/dashboard/sitter", { scroll: false });
+      } else {
+        router.replace("/dashboard/customer", { scroll: false });
+      }
       router.refresh();
     } finally {
       setPending(false);
@@ -94,7 +101,20 @@ export function AuthSlidingPanel() {
     setError(null);
     setMessage(null);
     try {
-      const { response, payload } = await submit("/api/auth/password/signup", { displayName, email, password });
+      const pwErrors = [];
+      if (password.length < 10) pwErrors.push("at least 10 characters");
+      if (!/[A-Z]/.test(password)) pwErrors.push("an uppercase letter");
+      if (!/[a-z]/.test(password)) pwErrors.push("a lowercase letter");
+      if (!/[0-9]/.test(password)) pwErrors.push("a number");
+      if (!/[^A-Za-z0-9]/.test(password)) pwErrors.push("a special character");
+      
+      if (pwErrors.length > 0) {
+        setError(`Password must contain ${pwErrors.join(", ")}.`);
+        setPending(false);
+        return;
+      }
+
+      const { response, payload } = await submit("/api/auth/password/signup", { displayName, email, password, role });
       if (!response.ok) {
         setError(payload?.error?.replaceAll("_", " ") ?? "Account creation is unavailable.");
         return;
@@ -120,7 +140,13 @@ export function AuthSlidingPanel() {
         setError(payload?.error?.replaceAll("_", " ") ?? "The verification code was rejected.");
         return;
       }
-      router.replace("/dashboard", { scroll: false });
+      if (payload?.roles?.includes("SUPER_ADMIN") || payload?.roles?.includes("OPERATIONS_ADMIN")) {
+        router.replace("/admin", { scroll: false });
+      } else if (payload?.roles?.includes("SITTER")) {
+        router.replace("/dashboard/sitter", { scroll: false });
+      } else {
+        router.replace("/dashboard/customer", { scroll: false });
+      }
       router.refresh();
     } finally {
       setPending(false);
@@ -135,10 +161,16 @@ export function AuthSlidingPanel() {
     try {
       const { response, payload } = await submit("/api/auth/password/signin", { email, password });
       if (!response.ok) {
-        setError(payload?.error?.replaceAll("_", " ") ?? "Sign in failed.");
+        setError(payload?.error === "invalid_credentials" ? "Invalid Username or Password." : (payload?.error?.replaceAll("_", " ") ?? "Sign in failed."));
         return;
       }
-      router.replace("/dashboard", { scroll: false });
+      if (payload?.roles?.includes("SUPER_ADMIN") || payload?.roles?.includes("OPERATIONS_ADMIN")) {
+        router.replace("/admin", { scroll: false });
+      } else if (payload?.role === "SITTER" || payload?.roles?.includes("SITTER")) {
+        router.replace("/dashboard/sitter", { scroll: false });
+      } else {
+        router.replace("/dashboard/customer", { scroll: false });
+      }
       router.refresh();
     } finally {
       setPending(false);
@@ -157,7 +189,7 @@ export function AuthSlidingPanel() {
         <h2 className="mb-2 text-center font-display text-2xl font-bold text-ink sm:mb-3 sm:text-3xl">
           {verificationPending ? "Verify your email" : "Create Account"}
         </h2>
-        <p className="mb-4 text-center text-[0.65rem] font-semibold uppercase tracking-wider text-ink/50 sm:mb-6 sm:text-xs">
+        <p className="mb-4 text-center text-[0.65rem] font-semibold uppercase tracking-wider text-ink/80 sm:mb-6 sm:text-xs">
           {verificationPending ? "Enter the code sent to your inbox" : "Secure account backed by PetSaathi"}
         </p>
 
@@ -168,13 +200,40 @@ export function AuthSlidingPanel() {
           </form>
         ) : (
           <form onSubmit={handleSignUp} className="flex flex-col gap-3 sm:gap-4">
+            <div className="flex flex-col gap-2 px-1">
+              <span className="text-sm font-semibold text-ink/80"><span className="text-coral">*</span>Role</span>
+              <div className="flex items-center gap-6">
+                <label className="flex items-center gap-2 cursor-pointer text-sm font-medium text-ink/80">
+                  <input
+                    type="radio"
+                    name="role"
+                    value="CUSTOMER"
+                    checked={role === "CUSTOMER"}
+                    onChange={() => setRole("CUSTOMER")}
+                    className="h-4 w-4 text-indigo focus:ring-indigo accent-indigo"
+                  />
+                  Customer
+                </label>
+                <label className="flex items-center gap-2 cursor-pointer text-sm font-medium text-ink/80">
+                  <input
+                    type="radio"
+                    name="role"
+                    value="SITTER"
+                    checked={role === "SITTER"}
+                    onChange={() => setRole("SITTER")}
+                    className="h-4 w-4 text-indigo focus:ring-indigo accent-indigo"
+                  />
+                  Saathi
+                </label>
+              </div>
+            </div>
             <Field aria-label="Full name" autoComplete="name" icon={<User />} maxLength={80} minLength={2} name="displayName" onChange={setDisplayName} placeholder="Full Name" type="text" value={displayName} />
             <Field aria-label="Email address" autoComplete="email" icon={<Mail />} maxLength={254} name="email" onChange={setEmail} placeholder="Email Address" type="email" value={email} />
-            <Field aria-label="Create password" autoComplete="new-password" icon={<Lock />} maxLength={128} minLength={10} name="newPassword" onChange={setPassword} placeholder="Password (10+ characters)" type="password" value={password} />
+            <Field aria-label="Create password" autoComplete="new-password" icon={<Lock />} maxLength={128} minLength={10} name="newPassword" onChange={setPassword} placeholder="Strong Password" type="password" value={password} />
             <SubmitButton pending={pending} label="SIGN UP" color="bg-indigo hover:bg-indigo/90" />
             {hasGoogleAuth && <div className="relative my-2 flex items-center py-2">
               <div className="flex-grow border-t border-ink/10"></div>
-              <span className="mx-4 flex-shrink-0 text-xs font-semibold text-ink/40 uppercase">Or continue with</span>
+              <span className="mx-4 flex-shrink-0 text-xs font-semibold text-ink/80 uppercase">Or continue with</span>
               <div className="flex-grow border-t border-ink/10"></div>
             </div>}
             {hasGoogleAuth && <div ref={googleButtonSignUpRef} className="flex justify-center w-full min-h-[40px]"></div>}
@@ -189,14 +248,41 @@ export function AuthSlidingPanel() {
         }`}
       >
         <h2 className="mb-2 text-center font-display text-2xl font-bold text-ink sm:mb-3 sm:text-3xl">Sign In</h2>
-        <p className="mb-4 text-center text-[0.65rem] font-semibold uppercase tracking-wider text-ink/50 sm:mb-6 sm:text-xs">Use your verified email account</p>
+        <p className="mb-4 text-center text-[0.65rem] font-semibold uppercase tracking-wider text-ink/80 sm:mb-6 sm:text-xs">Use your verified email account</p>
         <form onSubmit={handleSignIn} className="flex flex-col gap-3 sm:gap-4">
+          <div className="flex flex-col gap-2 px-1">
+            <span className="text-sm font-semibold text-ink/80"><span className="text-coral">*</span>Role</span>
+            <div className="flex items-center gap-6">
+              <label className="flex items-center gap-2 cursor-pointer text-sm font-medium text-ink/80">
+                <input
+                  type="radio"
+                  name="signinRole"
+                  value="CUSTOMER"
+                  checked={role === "CUSTOMER"}
+                  onChange={() => setRole("CUSTOMER")}
+                  className="h-4 w-4 text-indigo focus:ring-indigo accent-indigo"
+                />
+                Customer
+              </label>
+              <label className="flex items-center gap-2 cursor-pointer text-sm font-medium text-ink/80">
+                <input
+                  type="radio"
+                  name="signinRole"
+                  value="SITTER"
+                  checked={role === "SITTER"}
+                  onChange={() => setRole("SITTER")}
+                  className="h-4 w-4 text-indigo focus:ring-indigo accent-indigo"
+                />
+                Saathi
+              </label>
+            </div>
+          </div>
           <Field aria-label="Email address" autoComplete="email" icon={<Mail />} maxLength={254} name="email" onChange={setEmail} placeholder="Email Address" type="email" value={email} />
           <Field aria-label="Password" autoComplete="current-password" icon={<Lock />} maxLength={128} name="password" onChange={setPassword} placeholder="Password" type="password" value={password} />
           <SubmitButton pending={pending} label="SIGN IN" color="bg-[#301F30] hover:bg-[#301F30]/90" />
           {hasGoogleAuth && <div className="relative my-2 flex items-center py-2">
             <div className="flex-grow border-t border-ink/10"></div>
-            <span className="mx-4 flex-shrink-0 text-xs font-semibold text-ink/40 uppercase">Or continue with</span>
+            <span className="mx-4 flex-shrink-0 text-xs font-semibold text-ink/80 uppercase">Or continue with</span>
             <div className="flex-grow border-t border-ink/10"></div>
           </div>}
           {hasGoogleAuth && <div ref={googleButtonSignInRef} className="flex justify-center w-full min-h-[40px]"></div>}
@@ -251,15 +337,30 @@ function Field({
   icon: React.ReactElement<{ className?: string }>;
   onChange: (value: string) => void;
 } & Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange">) {
+  const [showPassword, setShowPassword] = useState(false);
+  const isPassword = props.type === "password";
+  const inputType = isPassword && showPassword ? "text" : props.type;
+
   return (
     <div className="relative">
-      <span className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-ink/40">{icon}</span>
+      <span className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-ink/80">{icon}</span>
       <input
         {...props}
+        type={inputType}
         required
         onChange={(event) => onChange(event.target.value)}
-        className="h-11 w-full rounded-xl bg-ink/5 pl-12 pr-4 text-sm outline-none transition focus:ring-2 focus:ring-indigo/30 sm:h-12 sm:text-[15px]"
+        className={`h-11 w-full rounded-xl bg-ink/5 pl-12 text-sm outline-none transition focus:ring-2 focus:ring-indigo/30 sm:h-12 sm:text-[15px] ${isPassword ? 'pr-12' : 'pr-4'}`}
       />
+      {isPassword && (
+        <button
+          type="button"
+          onClick={() => setShowPassword(!showPassword)}
+          className="absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-ink/60 transition hover:text-ink/90"
+          tabIndex={-1}
+        >
+          {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+        </button>
+      )}
     </div>
   );
 }

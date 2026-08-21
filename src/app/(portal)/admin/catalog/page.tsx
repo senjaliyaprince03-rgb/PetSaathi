@@ -28,9 +28,9 @@ export default async function AdminCatalogPage() {
     <PortalShell mode="admin" displayName={identity.displayName}>
       <div className="max-w-7xl pb-12">
         <Link href="/admin" className={buttonVariants({ variant: "ghost", size: "sm" })}><ArrowLeft className="h-4 w-4 mr-2" />Admin overview</Link>
-        <p className="mt-6 text-[10px] font-bold uppercase tracking-[0.16em] text-ink/50">controlled commerce catalog</p>
+        <p className="mt-6 text-[10px] font-bold uppercase tracking-[0.16em] text-ink/80">controlled commerce catalog</p>
         <h1 className="mt-2 font-display text-4xl font-semibold tracking-[-0.04em]">Areas, immutable prices and capacity</h1>
-        <p className="mt-3 max-w-3xl text-sm leading-6 text-ink/60 mb-10">Customer booking fails closed until each required business record is explicitly approved. Role separation keeps market activation, money and daily operations independently accountable.</p>
+        <p className="mt-3 max-w-3xl text-sm leading-6 text-ink/80 mb-10">Customer booking fails closed until each required business record is explicitly approved. Role separation keeps market activation, money and daily operations independently accountable.</p>
         <CatalogAdmin services={services} areas={areas} prices={prices} capacities={capacities} canManageAreas={identity.roles.includes("SUPER_ADMIN")} canManagePrices={hasAnyRole(identity, ["FINANCE_ADMIN", "SUPER_ADMIN"])} canManageCapacity={hasAnyRole(identity, ["OPERATIONS_ADMIN", "SUPER_ADMIN"])} />
       </div>
     </PortalShell>

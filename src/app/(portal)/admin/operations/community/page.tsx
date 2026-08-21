@@ -27,9 +27,9 @@ export default async function AdminCommunityPage() {
   return (
     <PortalShell mode="admin" displayName={identity.displayName}>
       <div className="max-w-7xl pb-12">
-        <p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-ink/50">community operations</p>
+        <p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-ink/80">community operations</p>
         <h1 className="mt-2 font-display text-4xl font-semibold tracking-[-0.04em]">Community Groups</h1>
-        <p className="mt-3 max-w-3xl text-sm leading-6 text-ink/60 mb-10">
+        <p className="mt-3 max-w-3xl text-sm leading-6 text-ink/80 mb-10">
           Manage local pet-parent communities and process membership requests.
         </p>
 
@@ -53,7 +53,7 @@ export default async function AdminCommunityPage() {
                       </span>
                       <div>
                         <h2 className="font-display text-2xl font-semibold">{group.name}</h2>
-                        <p className="text-xs text-ink/40">/{group.slug}</p>
+                        <p className="text-xs text-ink/80">/{group.slug}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
@@ -67,16 +67,16 @@ export default async function AdminCommunityPage() {
                   </div>
 
                   {group.description && (
-                    <p className="mt-3 text-sm leading-6 text-ink/60">{group.description}</p>
+                    <p className="mt-3 text-sm leading-6 text-ink/80">{group.description}</p>
                   )}
 
                   {group.joinLink && (
-                    <p className="mt-2 flex items-center gap-1 text-xs text-ink/40">
+                    <p className="mt-2 flex items-center gap-1 text-xs text-ink/80">
                       <Link2 className="h-3 w-3" /> {group.joinLink}
                     </p>
                   )}
 
-                  <div className="mt-4 flex gap-4 text-sm text-ink/50">
+                  <div className="mt-4 flex gap-4 text-sm text-ink/80">
                     <span>{approved.length} members</span>
                     <span className="font-bold text-saffron">{pending.length} pending</span>
                   </div>
@@ -91,7 +91,7 @@ export default async function AdminCommunityPage() {
                               <p className="text-sm font-semibold">
                                 {membership.contact.firstName} {membership.contact.lastName}
                               </p>
-                              <p className="text-xs text-ink/40">
+                              <p className="text-xs text-ink/80">
                                 {membership.contact.email ?? membership.contact.phoneE164} · {membership.createdAt.toLocaleString("en-IN")}
                               </p>
                             </div>

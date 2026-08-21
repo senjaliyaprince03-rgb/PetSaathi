@@ -15,7 +15,7 @@ export default function OfflinePage() {
           </div>
           <div>
             <h1 className="mt-4 font-display text-4xl font-semibold tracking-tight text-ink">You are offline</h1>
-            <p className="mt-4 text-center text-lg leading-7 text-ink/70">
+            <p className="mt-4 text-center text-lg leading-7 text-ink/80">
               It seems you&apos;ve lost your internet connection. We&apos;ll be right here when you get back online.
             </p>
           </div>

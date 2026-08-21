@@ -45,7 +45,7 @@ export function SocietyJoinForm({ societyId }: { societyId: string }) {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-      <p className="text-xs text-ink/70">
+      <p className="text-xs text-ink/80">
         Clicking the button below will securely link your profile to this community. If you are not logged in, you will be prompted to sign in first.
       </p>
       

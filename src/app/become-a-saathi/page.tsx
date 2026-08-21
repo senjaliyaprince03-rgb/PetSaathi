@@ -52,7 +52,7 @@ export default async function BecomeASaathiPage() {
             <article key={number} className="rounded-3xl bg-paper/80 p-5">
               <p className="font-display text-3xl font-semibold text-coral">{number}</p>
               <h2 className="mt-4 font-display text-2xl font-semibold">{title}</h2>
-              <p className="mt-2 text-sm leading-6 text-ink/50">{copy}</p>
+              <p className="mt-2 text-sm leading-6 text-ink/80">{copy}</p>
             </article>
           ))}
         </section>
@@ -66,7 +66,7 @@ export default async function BecomeASaathiPage() {
             <h2 className="mt-5 font-display text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">
               A Saathi is chosen carefully, not quickly.
             </h2>
-            <p className="mt-4 max-w-xl text-sm leading-7 text-paper/72">
+            <p className="mt-4 max-w-xl text-sm leading-7 text-paper/80">
               The application is meant to collect only the details needed to judge
               whether someone is ready for real pet care work.
             </p>
@@ -75,7 +75,7 @@ export default async function BecomeASaathiPage() {
                 <div key={title} className="rounded-3xl border border-paper/10 bg-paper/[0.05] p-5">
                   <Icon className="h-6 w-6 text-saffron" />
                   <h3 className="mt-4 font-display text-xl font-semibold">{title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-paper/68">{copy}</p>
+                  <p className="mt-2 text-sm leading-6 text-paper/80">{copy}</p>
                 </div>
               ))}
             </div>
@@ -102,7 +102,7 @@ export default async function BecomeASaathiPage() {
                   </div>
                   <div>
                     <h3 className="font-display text-xl font-semibold">{title}</h3>
-                    <p className="mt-1 text-sm leading-6 text-ink/55">{copy}</p>
+                    <p className="mt-1 text-sm leading-6 text-ink/80">{copy}</p>
                   </div>
                 </div>
               ))}
@@ -131,7 +131,7 @@ export default async function BecomeASaathiPage() {
           ].map((card) => (
             <article key={card.title} className="rounded-4xl border border-indigo/10 bg-paper p-6 shadow-soft">
               <h3 className="font-display text-2xl font-semibold">{card.title}</h3>
-              <p className="mt-3 text-sm leading-7 text-ink/55">{card.copy}</p>
+              <p className="mt-3 text-sm leading-7 text-ink/80">{card.copy}</p>
             </article>
           ))}
         </section>

@@ -31,6 +31,46 @@ export async function POST(req: NextRequest) {
     const conversationId = body.conversationId || crypto.randomUUID();
     const requestId = crypto.randomUUID();
 
+    // Streaming mode (Server-Sent Events)
+    if (body.stream) {
+      const encoder = new TextEncoder();
+      const stream = new ReadableStream({
+        async start(controller) {
+          try {
+            const result = await runAgent(body.message, {
+              userId,
+              requestId,
+              taskContext: { conversationId },
+              onStreamEvent: (event: any) => {
+                const data = JSON.stringify(event);
+                controller.enqueue(encoder.encode(`event: ${event.type}\ndata: ${data}\n\n`));
+              }
+            });
+
+            if (result.routing?.error) {
+              controller.enqueue(encoder.encode(`event: error\ndata: ${JSON.stringify({ error: result.routing.error })}\n\n`));
+            } else {
+              controller.enqueue(encoder.encode(`event: done\ndata: ${JSON.stringify({ conversationId })}\n\n`));
+            }
+            controller.close();
+          } catch (err: any) {
+            console.error('Agent stream error:', err);
+            controller.enqueue(encoder.encode(`event: error\ndata: ${JSON.stringify({ error: 'Stream failed' })}\n\n`));
+            controller.close();
+          }
+        }
+      });
+
+      return new Response(stream, {
+        headers: {
+          'Content-Type': 'text/event-stream',
+          'Cache-Control': 'no-cache',
+          'Connection': 'keep-alive',
+        },
+      });
+    }
+
+    // Non-streaming fallback
     const result = await runAgent(body.message, {
       userId,
       requestId,

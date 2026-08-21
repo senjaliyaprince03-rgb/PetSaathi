@@ -4,50 +4,49 @@ import { z } from "zod";
 import { prisma } from "@/lib/db";
 import { getCurrentIdentity } from "@/modules/auth/session";
 
-const createSchema = z.object({
+const schema = z.object({
   tripType: z.enum(["OWNER_ACCOMPANIED", "HANDLER_ACCOMPANIED", "UNACCOMPANIED"]),
-  petId: z.string().min(1),
-  pickupAddress: z.string().min(3).max(500),
-  dropoffAddress: z.string().min(3).max(500),
-  purpose: z.string().min(1),
-  scheduledAt: z.coerce.date().optional(),
-  instructions: z.string().max(1000).optional(),
+  petId: z.string().uuid(),
+  pickup: z.string().min(3),
+  dropoff: z.string().min(3),
+  purpose: z.string().min(3),
+  instructions: z.string().optional(),
+  scheduledAt: z.coerce.date().min(new Date()),
 });
 
 export async function POST(request: Request) {
   const identity = await getCurrentIdentity();
   if (!identity?.roles.includes("CUSTOMER")) return NextResponse.json({ error: "forbidden" }, { status: 403 });
 
-  const parsed = createSchema.safeParse(await request.json().catch(() => null));
+  const body = await request.json().catch(() => null);
+  const parsed = schema.safeParse(body);
   if (!parsed.success) return NextResponse.json({ error: "invalid_request", issues: parsed.error.flatten() }, { status: 422 });
 
-  const { tripType, petId, pickupAddress, dropoffAddress, purpose, scheduledAt, instructions } = parsed.data;
-
-  const pet = await prisma.pet.findFirst({ where: { id: petId, ownerId: identity.id, active: true }, select: { id: true, name: true } });
-  if (!pet) return NextResponse.json({ error: "pet_not_found" }, { status: 404 });
-
-  let taxiService = await prisma.partnerService.findFirst({
+  const partnerService = await prisma.partnerService.findFirst({
     where: { serviceCode: "PET_TAXI", status: "ACTIVE" },
-    select: { id: true },
   });
 
-  if (!taxiService) {
-    taxiService = await prisma.partnerService.findFirst({ where: { serviceCode: "PET_TAXI" }, select: { id: true } });
+  if (!partnerService) {
+    return NextResponse.json({ error: "service_unavailable", message: "Pet taxi services are currently unavailable." }, { status: 503 });
   }
 
-  if (!taxiService) return NextResponse.json({ error: "no_taxi_service", message: "Pet taxi service is not currently available." }, { status: 404 });
-
-  const reference = `TXI-${new Date().toISOString().slice(2, 10).replaceAll("-", "")}-${Math.random().toString(36).slice(2, 6).toUpperCase()}`;
+  const reference = `PO-${Date.now()}-${Math.random().toString(36).slice(2, 6).toUpperCase()}`;
 
   const order = await prisma.partnerOrder.create({
     data: {
       reference,
-      partnerServiceId: taxiService.id,
+      partnerServiceId: partnerService.id,
       customerId: identity.id,
-      petId,
-      scheduledAt,
-      instructions: `Pickup: ${pickupAddress}\nDropoff: ${dropoffAddress}\nInstructions: ${instructions || "None"}`,
-      metadata: { tripType, purpose, pickupAddress, dropoffAddress, petName: pet.name, serviceCategory: "PET_TAXI" },
+      petId: parsed.data.petId,
+      status: "REQUESTED",
+      scheduledAt: parsed.data.scheduledAt,
+      instructions: parsed.data.instructions,
+      metadata: {
+        tripType: parsed.data.tripType,
+        pickup: parsed.data.pickup,
+        dropoff: parsed.data.dropoff,
+        purpose: parsed.data.purpose,
+      },
     },
   });
 
@@ -58,23 +57,17 @@ export async function GET() {
   const identity = await getCurrentIdentity();
   if (!identity?.roles.includes("CUSTOMER")) return NextResponse.json({ error: "forbidden" }, { status: 403 });
 
-  const orders = await prisma.partnerOrder.findMany({
-    where: {
+  const trips = await prisma.partnerOrder.findMany({
+    where: { 
       customerId: identity.id,
-      partnerService: { serviceCode: "PET_TAXI" },
+      partnerService: { serviceCode: "PET_TAXI" }
     },
     orderBy: { createdAt: "desc" },
-    take: 50,
-    select: {
-      id: true,
-      reference: true,
-      status: true,
-      scheduledAt: true,
-      metadata: true,
-      createdAt: true,
+    include: {
       pet: { select: { name: true } },
+      partnerService: { include: { partner: { select: { displayName: true } } } }
     },
   });
 
-  return NextResponse.json(orders);
+  return NextResponse.json({ trips });
 }

@@ -45,7 +45,7 @@ export default async function EditPetPage({ params }: { params: Promise<{ id: st
     <PortalShell mode="customer" displayName={identity.displayName}>
       <div className="mt-5 max-w-3xl">
         <h1 className="font-display text-4xl font-semibold tracking-[-0.04em]">Edit Pet Profile</h1>
-        <p className="mt-3 text-sm leading-6 text-ink/60 mb-8">
+        <p className="mt-3 text-sm leading-6 text-ink/80 mb-8">
           Update the profile details for {pet.name}.
         </p>
         <PetProfileForm pet={formattedPet} />

@@ -136,7 +136,7 @@ export default async function AdminDashboardPage() {
               Command centre
             </h2>
           </div>
-          <p className="max-w-md text-sm leading-6 text-ink/48">
+          <p className="max-w-md text-sm leading-6 text-ink/80">
             Each queue keeps its own permission boundary and recorded decision
             trail.
           </p>
@@ -148,7 +148,7 @@ export default async function AdminDashboardPage() {
               href={href}
               className="group rounded-3xl border border-indigo/10 bg-cream/45 p-5 transition hover:-translate-y-1 hover:bg-indigo/[0.05]"
             >
-              <p className="text-xs font-bold uppercase tracking-[0.14em] text-ink/40">
+              <p className="text-xs font-bold uppercase tracking-[0.14em] text-ink/80">
                 {label}
               </p>
               <p className="mt-3 font-display text-2xl font-semibold">

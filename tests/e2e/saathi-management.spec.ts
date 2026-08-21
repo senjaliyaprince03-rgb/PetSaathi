@@ -83,7 +83,7 @@ test("Saathi full lifecycle", async ({ browser }) => {
     });
 
     // Add mock training module and attempt to verify training structure is prepared
-    const module = await tx.trainingModule.create({
+    const trainingModule = await tx.trainingModule.create({
       data: {
         code: "ONBOARDING_101",
         title: "Saathi Essentials",
@@ -94,7 +94,7 @@ test("Saathi full lifecycle", async ({ browser }) => {
     await tx.trainingAttempt.create({
       data: {
         sitterId: sitter.id,
-        moduleId: module.id,
+        moduleId: trainingModule.id,
         status: "PASSED",
         score: 100,
         completedAt: new Date()

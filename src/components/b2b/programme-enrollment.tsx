@@ -93,7 +93,7 @@ export function ProgrammeEnrollment({
         <h2 className="mt-4 font-display text-3xl font-semibold">
           Programme access verified
         </h2>
-        <p className="mt-2 text-sm leading-6 text-ink/65" aria-live="polite">
+        <p className="mt-2 text-sm leading-6 text-ink/80" aria-live="polite">
           {message}
         </p>
         <Button
@@ -123,7 +123,7 @@ export function ProgrammeEnrollment({
           ? "Complete the controlled verification step."
           : "Request programme access."}
       </h2>
-      <p className="mt-3 text-sm leading-6 text-ink/60">
+      <p className="mt-3 text-sm leading-6 text-ink/80">
         {openAccess
           ? "Open-access enrollment activates only for an authenticated customer while this programme remains active."
           : "Enrollment does not grant benefits by itself. An authorised programme manager must verify eligibility and issue a short-lived, one-time token."}
@@ -175,7 +175,7 @@ export function ProgrammeEnrollment({
 
       {message ? (
         <p
-          className="mt-4 rounded-2xl bg-cream/70 p-3 text-sm leading-6 text-ink/70"
+          className="mt-4 rounded-2xl bg-cream/70 p-3 text-sm leading-6 text-ink/80"
           role="status"
           aria-live="polite"
         >

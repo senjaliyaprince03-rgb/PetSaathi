@@ -34,7 +34,7 @@ export default async function OperatorDashboard() {
       <PortalShell mode="operator" displayName={identity.displayName}>
         <div className="mt-5 max-w-3xl">
           <h1 className="font-display text-4xl font-semibold tracking-[-0.04em] text-coral">Access Denied</h1>
-          <p className="mt-3 text-sm leading-6 text-ink/60">
+          <p className="mt-3 text-sm leading-6 text-ink/80">
             This dashboard is only available to operating partners and city managers.
           </p>
         </div>
@@ -100,12 +100,12 @@ export default async function OperatorDashboard() {
         {/* Header */}
         <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
           <div>
-            <span className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-ink/50">
+            <span className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-ink/80">
               <Building2 className="h-3 w-3" />
               {scope.unrestricted ? "Central Operations" : "Operator Portal"}
             </span>
             <h1 className="mt-2 font-display text-4xl font-semibold tracking-[-0.04em]">Operations Dashboard</h1>
-            <p className="mt-3 text-sm leading-6 text-ink/60">
+            <p className="mt-3 text-sm leading-6 text-ink/80">
               {scope.unrestricted
                 ? "Full platform view — all cities and territories."
                 : `Viewing ${scope.cityIds.length} assigned ${scope.cityIds.length === 1 ? "city" : "cities"}.`}
@@ -118,7 +118,7 @@ export default async function OperatorDashboard() {
                 <Lock className="h-5 w-5" />
               </div>
               <div>
-                <div className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink/40">Data Scope</div>
+                <div className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink/80">Data Scope</div>
                 <div className="text-sm font-semibold text-ink">Territory-Restricted</div>
               </div>
             </div>
@@ -144,11 +144,11 @@ export default async function OperatorDashboard() {
                   className="rounded-4xl border border-indigo/10 bg-paper p-6 shadow-lifted"
                 >
                   <div className="font-semibold text-ink">{t.name}</div>
-                  <div className="mt-1 text-sm text-ink/60">
+                  <div className="mt-1 text-sm text-ink/80">
                     {t.city.name}, {t.city.state}
                   </div>
                   {t.serviceZone && (
-                    <div className="mt-2 text-xs font-medium text-ink/50">
+                    <div className="mt-2 text-xs font-medium text-ink/80">
                       Zone: {t.serviceZone.name}
                     </div>
                   )}
@@ -159,13 +159,13 @@ export default async function OperatorDashboard() {
                           ? "bg-leaf/10 text-leaf"
                           : t.territoryType === "MANAGED"
                             ? "bg-indigo/10 text-indigo"
-                            : "bg-ink/10 text-ink/60"
+                            : "bg-ink/10 text-ink/80"
                       }`}
                     >
                       {t.territoryType}
                     </span>
                     {t.agreedRevShareBps > 0 && (
-                      <span className="text-xs font-medium text-ink/50">
+                      <span className="text-xs font-medium text-ink/80">
                         Rev share: {(t.agreedRevShareBps / 100).toFixed(1)}%
                       </span>
                     )}
@@ -189,7 +189,7 @@ export default async function OperatorDashboard() {
 
           {scopedCities.length === 0 ? (
             <div className="mt-6 rounded-4xl border border-indigo/10 bg-paper py-12 text-center shadow-lifted">
-              <p className="text-sm font-medium text-ink/60">
+              <p className="text-sm font-medium text-ink/80">
                 No cities assigned to your territory.
               </p>
             </div>
@@ -199,12 +199,12 @@ export default async function OperatorDashboard() {
                 <table className="w-full text-left">
                   <thead>
                     <tr className="border-b border-indigo/10 bg-cream/30">
-                      <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-ink/50">City</th>
-                      <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-ink/50">Status</th>
-                      <th className="px-6 py-4 text-right text-xs font-bold uppercase tracking-[0.16em] text-ink/50">GBV</th>
-                      <th className="px-6 py-4 text-right text-xs font-bold uppercase tracking-[0.16em] text-ink/50">CM2</th>
-                      <th className="px-6 py-4 text-right text-xs font-bold uppercase tracking-[0.16em] text-ink/50">Bookings</th>
-                      <th className="px-6 py-4 text-right text-xs font-bold uppercase tracking-[0.16em] text-ink/50">Health</th>
+                      <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-ink/80">City</th>
+                      <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-ink/80">Status</th>
+                      <th className="px-6 py-4 text-right text-xs font-bold uppercase tracking-[0.16em] text-ink/80">GBV</th>
+                      <th className="px-6 py-4 text-right text-xs font-bold uppercase tracking-[0.16em] text-ink/80">CM2</th>
+                      <th className="px-6 py-4 text-right text-xs font-bold uppercase tracking-[0.16em] text-ink/80">Bookings</th>
+                      <th className="px-6 py-4 text-right text-xs font-bold uppercase tracking-[0.16em] text-ink/80">Health</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-indigo/5">
@@ -222,7 +222,7 @@ export default async function OperatorDashboard() {
                               {city.status}
                             </span>
                           </td>
-                          <td className="px-6 py-5 text-right font-mono text-sm text-ink/75">
+                          <td className="px-6 py-5 text-right font-mono text-sm text-ink/80">
                             {fin
                               ? `₹${(Number(fin.gbvPaise) / 100).toLocaleString()}`
                               : "—"}
@@ -239,10 +239,10 @@ export default async function OperatorDashboard() {
                                 ₹{(Number(fin.cm2Paise) / 100).toLocaleString()}
                               </span>
                             ) : (
-                              <span className="text-ink/30">—</span>
+                              <span className="text-ink/80">—</span>
                             )}
                           </td>
-                          <td className="px-6 py-5 text-right font-mono text-sm text-ink/75">
+                          <td className="px-6 py-5 text-right font-mono text-sm text-ink/80">
                             {fin ? fin.totalBookings.toLocaleString() : "—"}
                           </td>
                           <td className="px-6 py-5 text-right">
@@ -259,7 +259,7 @@ export default async function OperatorDashboard() {
                                 {health.overallScore}/100
                               </span>
                             ) : (
-                              <span className="text-ink/30">—</span>
+                              <span className="text-ink/80">—</span>
                             )}
                           </td>
                         </tr>

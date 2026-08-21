@@ -1,15 +1,15 @@
-import { PawPrint } from "lucide-react";
+import { PetSaathiLogo } from "@/components/brand/logo";
 
 export default function Loading() {
   return (
-    <div className="flex min-h-[100dvh] w-full items-center justify-center bg-cream/95 backdrop-blur-xl" role="status" aria-label="Loading PetSaathi">
-      <div className="text-center [perspective:800px]">
-        <div className="relative mx-auto h-24 w-24 animate-[float_2.4s_ease-in-out_infinite] [transform-style:preserve-3d]">
-          <div className="absolute inset-0 rotate-6 rounded-[2rem] bg-gradient-to-br from-coral to-saffron shadow-soft [transform:rotateY(-18deg)_rotateX(12deg)]" />
-          <div className="absolute inset-2 flex items-center justify-center rounded-[1.6rem] border border-paper/50 bg-paper/20 text-paper backdrop-blur-sm [transform:translateZ(18px)]"><PawPrint className="h-10 w-10" strokeWidth={1.6} /></div>
+    <div className="flex min-h-[100dvh] w-full flex-col items-center justify-center bg-cream/95 backdrop-blur-md" role="status" aria-label="Loading PetSaathi">
+      <div className="flex flex-col items-center justify-center animate-pulse">
+        <PetSaathiLogo className="mb-6 scale-125" />
+        <div className="flex items-center gap-2">
+          <div className="h-1.5 w-1.5 rounded-full bg-indigo/40 animate-[bounce_1s_infinite_0ms]" />
+          <div className="h-1.5 w-1.5 rounded-full bg-indigo/40 animate-[bounce_1s_infinite_200ms]" />
+          <div className="h-1.5 w-1.5 rounded-full bg-indigo/40 animate-[bounce_1s_infinite_400ms]" />
         </div>
-        <p className="mt-7 font-display text-2xl font-semibold tracking-[-0.035em]">PetSaathi</p>
-        <p className="mt-2 text-[0.62rem] font-bold uppercase tracking-[0.22em] text-indigo/55">Preparing thoughtful care</p>
       </div>
     </div>
   );

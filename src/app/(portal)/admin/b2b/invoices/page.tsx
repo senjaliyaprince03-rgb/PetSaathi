@@ -24,11 +24,11 @@ export default async function InvoicesPage() {
             <table className="w-full text-left">
               <thead>
                 <tr className="border-b border-indigo/10 bg-cream/30">
-                  <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-ink/50">Invoice Number</th>
-                  <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-ink/50">Organization</th>
-                  <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-ink/50">Total Amount</th>
-                  <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-ink/50">Status</th>
-                  <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-ink/50">Due Date</th>
+                  <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-ink/80">Invoice Number</th>
+                  <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-ink/80">Organization</th>
+                  <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-ink/80">Total Amount</th>
+                  <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-ink/80">Status</th>
+                  <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-ink/80">Due Date</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-indigo/5">
@@ -37,7 +37,7 @@ export default async function InvoicesPage() {
                     <td className="px-6 py-5">
                       <div className="font-semibold text-ink">{inv.invoiceNumber}</div>
                     </td>
-                    <td className="px-6 py-5 text-sm font-medium text-ink/75">{inv.organization.displayName}</td>
+                    <td className="px-6 py-5 text-sm font-medium text-ink/80">{inv.organization.displayName}</td>
                     <td className="px-6 py-5 font-semibold text-ink">
                       ₹{(inv.totalAmount / 100).toFixed(2)}
                     </td>
@@ -50,14 +50,14 @@ export default async function InvoicesPage() {
                         {inv.status}
                       </span>
                     </td>
-                    <td className="px-6 py-5 text-sm text-ink/60">
+                    <td className="px-6 py-5 text-sm text-ink/80">
                       {inv.dueDate ? new Date(inv.dueDate).toLocaleDateString("en-IN") : "N/A"}
                     </td>
                   </tr>
                 ))}
                 {result.items.length === 0 && (
                   <tr>
-                    <td colSpan={5} className="px-6 py-12 text-center text-sm font-medium text-ink/60">
+                    <td colSpan={5} className="px-6 py-12 text-center text-sm font-medium text-ink/80">
                       No invoices found.
                     </td>
                   </tr>
@@ -79,19 +79,19 @@ export default async function InvoicesPage() {
                     {inv.status}
                   </span>
                 </div>
-                <div className="mt-2 text-sm text-ink/75">{inv.organization.displayName}</div>
+                <div className="mt-2 text-sm text-ink/80">{inv.organization.displayName}</div>
                 <div className="mt-4 flex items-center justify-between">
                   <div className="font-semibold text-ink">
                     ₹{(inv.totalAmount / 100).toFixed(2)}
                   </div>
-                  <div className="text-xs text-ink/60">
+                  <div className="text-xs text-ink/80">
                     Due: {inv.dueDate ? new Date(inv.dueDate).toLocaleDateString("en-IN") : "N/A"}
                   </div>
                 </div>
               </div>
             ))}
             {result.items.length === 0 && (
-              <div className="p-10 text-center text-sm font-medium text-ink/60">
+              <div className="p-10 text-center text-sm font-medium text-ink/80">
                 No invoices found.
               </div>
             )}

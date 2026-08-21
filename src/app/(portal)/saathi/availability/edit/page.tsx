@@ -95,7 +95,7 @@ export default function EditAvailabilityPage() {
       <div className="mb-8 flex items-center justify-between">
         <div>
           <h1 className="font-display text-4xl font-semibold tracking-tight text-ink">Availability</h1>
-          <p className="mt-2 text-ink/60">Set your weekly recurring schedule.</p>
+          <p className="mt-2 text-ink/80">Set your weekly recurring schedule.</p>
         </div>
         <button
           type="button"
@@ -120,7 +120,7 @@ export default function EditAvailabilityPage() {
 
           <div className="flex flex-col gap-4">
             {fields.length === 0 && (
-              <div className="rounded-2xl border border-dashed border-ink/20 p-8 text-center text-ink/50">
+              <div className="rounded-2xl border border-dashed border-ink/20 p-8 text-center text-ink/80">
                 <Calendar className="mx-auto mb-2 h-8 w-8 opacity-50" />
                 <p>No availability rules set. Click &quot;Add Slot&quot; to define your schedule.</p>
               </div>
@@ -130,7 +130,7 @@ export default function EditAvailabilityPage() {
               <div key={field.id} className="flex flex-col items-start gap-4 rounded-2xl bg-cream/50 p-4 sm:flex-row sm:items-center">
                 
                 <div className="flex-1">
-                  <label className="mb-1 block text-xs font-bold text-ink/70">Day</label>
+                  <label className="mb-1 block text-xs font-bold text-ink/80">Day</label>
                   <select
                     {...register(`rules.${index}.weekday`, { valueAsNumber: true })}
                     className="h-10 w-full rounded-lg border border-ink/10 bg-white px-3 text-sm outline-none focus:border-indigo"
@@ -142,9 +142,9 @@ export default function EditAvailabilityPage() {
                 </div>
 
                 <div className="flex-1">
-                  <label className="mb-1 block text-xs font-bold text-ink/70">Start Time</label>
+                  <label className="mb-1 block text-xs font-bold text-ink/80">Start Time</label>
                   <div className="relative">
-                    <Clock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ink/40" />
+                    <Clock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ink/80" />
                     <input
                       type="text"
                       placeholder="09:00"
@@ -158,9 +158,9 @@ export default function EditAvailabilityPage() {
                 </div>
 
                 <div className="flex-1">
-                  <label className="mb-1 block text-xs font-bold text-ink/70">End Time</label>
+                  <label className="mb-1 block text-xs font-bold text-ink/80">End Time</label>
                   <div className="relative">
-                    <Clock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ink/40" />
+                    <Clock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ink/80" />
                     <input
                       type="text"
                       placeholder="17:00"

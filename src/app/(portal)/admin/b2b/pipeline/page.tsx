@@ -53,7 +53,7 @@ export default async function PipelinePage() {
                     </span>
                     {col.title}
                   </h2>
-                  <span className="rounded-full bg-paper px-3 py-1 text-xs font-bold text-ink/50 shadow-soft">
+                  <span className="rounded-full bg-paper px-3 py-1 text-xs font-bold text-ink/80 shadow-soft">
                     {colOpps.length}
                   </span>
                 </div>
@@ -62,13 +62,13 @@ export default async function PipelinePage() {
                   {colOpps.map((opp) => (
                     <article key={opp.id} className="rounded-3xl border border-indigo/10 bg-paper p-5 shadow-lifted transition-shadow hover:shadow-soft">
                       <h3 className="font-semibold text-ink">{opp.organization.displayName}</h3>
-                      <p className="mt-1 text-sm text-ink/60">{opp.programmeType.replace(/_/g, " ")}</p>
+                      <p className="mt-1 text-sm text-ink/80">{opp.programmeType.replace(/_/g, " ")}</p>
                       
                       <div className="mt-4 flex items-end justify-between">
                         <p className="text-sm font-bold text-ink">
                           ₹{opp.estimatedValue || 0}
                         </p>
-                        <span className="inline-flex rounded-md bg-cream px-2 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-ink/50">
+                        <span className="inline-flex rounded-md bg-cream px-2 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-ink/80">
                           {opp.pipelineStage.replace(/_/g, " ")}
                         </span>
                       </div>
@@ -76,7 +76,7 @@ export default async function PipelinePage() {
                   ))}
                   {colOpps.length === 0 && (
                     <div className="rounded-3xl border border-dashed border-indigo/20 p-6 text-center">
-                      <p className="text-sm font-medium text-ink/40 italic">No opportunities</p>
+                      <p className="text-sm font-medium text-ink/80 italic">No opportunities</p>
                     </div>
                   )}
                 </div>

@@ -1,33 +1,28 @@
 import { NextResponse } from "next/server";
 
-import { isDatabaseConfigured, prisma } from "@/lib/db";
+import { prisma } from "@/lib/db";
+
+export const dynamic = "force-dynamic";
 
 export async function GET() {
-  if (!isDatabaseConfigured()) return NextResponse.json([]);
-
-  const catalogue = await prisma.serviceType.findMany({
-    where: { active: true },
-    orderBy: { name: "asc" },
-    select: {
-      id: true,
-      code: true,
-      name: true,
-      description: true,
-      durationMinutes: true,
-      basePricePaise: true,
-      currency: true,
-      variants: {
-        where: { status: "ACTIVE" },
-        select: { id: true, key: true, name: true, durationMinutes: true },
+  try {
+    const services = await prisma.serviceType.findMany({
+      where: { active: true },
+      include: {
+        variants: {
+          where: { status: "ACTIVE" },
+        },
+        prices: {
+          orderBy: { version: "desc" },
+          take: 10,
+        },
       },
-      prices: {
-        where: { OR: [{ expiresAt: null }, { expiresAt: { gt: new Date() } }] },
-        orderBy: { effectiveAt: "desc" },
-        take: 1,
-        select: { id: true, amountPaise: true, effectiveAt: true },
-      },
-    },
-  });
+      orderBy: { name: "asc" },
+    });
 
-  return NextResponse.json(catalogue);
+    return NextResponse.json({ services });
+  } catch (error) {
+    console.error("[CATALOGUE_GET_ERROR]", error);
+    return NextResponse.json({ error: "failed_to_fetch_catalogue" }, { status: 500 });
+  }
 }

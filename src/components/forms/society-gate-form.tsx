@@ -54,7 +54,7 @@ export function SocietyGateForm({ initialData }: { initialData: any }) {
         </span>
         <div>
           <h2 className="font-display text-2xl font-semibold tracking-tight">Access & Security Settings</h2>
-          <p className="text-xs text-ink/60">Configure how PetSaathi sitters enter your premises</p>
+          <p className="text-xs text-ink/80">Configure how PetSaathi sitters enter your premises</p>
         </div>
       </div>
 

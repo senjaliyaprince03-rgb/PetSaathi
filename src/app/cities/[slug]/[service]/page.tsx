@@ -80,7 +80,7 @@ export default async function CityServicePage({ params }: Props) {
         <div className="mx-auto grid max-w-5xl gap-6 lg:grid-cols-2">
           <article className="rounded-5xl bg-ink p-8 text-paper sm:p-10">
             <h2 className="font-display text-4xl font-semibold">How it works</h2>
-            <ul className="mt-7 space-y-3 text-paper/70">
+            <ul className="mt-7 space-y-3 text-paper/80">
               {[
                 "Submit a care request with your pet's details",
                 "We match you with a verified local caregiver",
@@ -104,7 +104,7 @@ export default async function CityServicePage({ params }: Props) {
               ].map((item) => (
                 <li key={item.label}>
                   <p className="text-sm font-semibold">{item.label}</p>
-                  <p className="text-sm leading-6 text-ink/60">{item.desc}</p>
+                  <p className="text-sm leading-6 text-ink/80">{item.desc}</p>
                 </li>
               ))}
             </ul>
@@ -126,11 +126,11 @@ export default async function CityServicePage({ params }: Props) {
             {testimonials.map((t) => (
               <article key={t.id} className="rounded-5xl border border-ink/10 bg-paper p-7 shadow-lifted">
                 <ShieldCheck className="h-5 w-5 text-leaf" />
-                <blockquote className="mt-4 text-sm italic leading-6 text-ink/60">
+                <blockquote className="mt-4 text-sm italic leading-6 text-ink/80">
                   &ldquo;{t.quote}&rdquo;
                 </blockquote>
                 <p className="mt-4 text-sm font-semibold">{t.displayName}</p>
-                {t.city && <p className="text-xs text-ink/40">{t.city}</p>}
+                {t.city && <p className="text-xs text-ink/80">{t.city}</p>}
               </article>
             ))}
           </div>
@@ -143,7 +143,7 @@ export default async function CityServicePage({ params }: Props) {
           <h2 className="font-display text-4xl font-semibold">
             Ready for better {serviceType.name.toLowerCase()}?
           </h2>
-          <p className="mt-4 text-lg leading-8 text-ink/60">
+          <p className="mt-4 text-lg leading-8 text-ink/80">
             Start with a trial session. Meet the caregiver, see the process, then decide.
           </p>
           <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">

@@ -34,28 +34,28 @@ export default async function LiveOperationsPage() {
     <PortalShell mode="admin" displayName={identity.displayName}>
       <div className="space-y-6 max-w-7xl pb-12">
         <div>
-          <p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-ink/50">operations</p>
+          <p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-ink/80">operations</p>
           <h1 className="mt-2 font-display text-4xl font-semibold tracking-[-0.04em]">Live Operations</h1>
-          <p className="mt-3 max-w-3xl text-sm leading-6 text-ink/60 mb-10">Real-time service execution and matching across all cities.</p>
+          <p className="mt-3 max-w-3xl text-sm leading-6 text-ink/80 mb-10">Real-time service execution and matching across all cities.</p>
         </div>
 
         {/* KPI Cards */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="rounded-xl border border-white/10 bg-black p-4">
-            <p className="text-xs text-gray-400 uppercase tracking-wider">Active Walks</p>
+            <p className="text-xs text-gray-700 uppercase tracking-wider">Active Walks</p>
             <p className="text-3xl font-bold text-emerald-400 mt-1">{activeSessions.length}</p>
           </div>
           <div className="rounded-xl border border-white/10 bg-black p-4">
-            <p className="text-xs text-gray-400 uppercase tracking-wider">Today&apos;s Bookings</p>
+            <p className="text-xs text-gray-700 uppercase tracking-wider">Today&apos;s Bookings</p>
             <p className="text-3xl font-bold text-blue-400 mt-1">{todayBookings}</p>
           </div>
           <div className="rounded-xl border border-white/10 bg-black p-4">
-            <p className="text-xs text-gray-400 uppercase tracking-wider">Overdue Check-ins</p>
-            <p className={`text-3xl font-bold mt-1 ${overdueCheckins > 0 ? "text-amber-400" : "text-gray-500"}`}>{overdueCheckins}</p>
+            <p className="text-xs text-gray-700 uppercase tracking-wider">Overdue Check-ins</p>
+            <p className={`text-3xl font-bold mt-1 ${overdueCheckins > 0 ? "text-amber-400" : "text-gray-700"}`}>{overdueCheckins}</p>
           </div>
           <div className="rounded-xl border border-white/10 bg-black p-4">
-            <p className="text-xs text-gray-400 uppercase tracking-wider">Match Approvals</p>
-            <p className={`text-3xl font-bold mt-1 ${pendingMatches > 0 ? "text-rose-400" : "text-gray-500"}`}>{pendingMatches}</p>
+            <p className="text-xs text-gray-700 uppercase tracking-wider">Match Approvals</p>
+            <p className={`text-3xl font-bold mt-1 ${pendingMatches > 0 ? "text-rose-400" : "text-gray-700"}`}>{pendingMatches}</p>
           </div>
         </div>
 
@@ -70,14 +70,14 @@ export default async function LiveOperationsPage() {
         <div className="rounded-xl border border-white/10 bg-black p-6">
           <h2 className="text-lg font-semibold text-white mb-4">Active Service Sessions</h2>
           {activeSessions.length === 0 ? (
-            <p className="text-sm text-gray-500">No active tracking sessions right now.</p>
+            <p className="text-sm text-gray-700">No active tracking sessions right now.</p>
           ) : (
             <div className="space-y-3">
               {activeSessions.map((session) => (
                 <div key={session.id} className="flex items-center justify-between bg-white/5 rounded-lg p-3">
                   <div>
                     <p className="text-sm font-medium text-white">{session.booking.reference}</p>
-                    <p className="text-xs text-gray-400">
+                    <p className="text-xs text-gray-700">
                       {session.booking.pet.name} • {session.booking.serviceType.name} • {session.booking.customer.displayName}
                     </p>
                   </div>
@@ -86,7 +86,7 @@ export default async function LiveOperationsPage() {
                       <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
                       <span className="text-xs text-emerald-400">Live</span>
                     </div>
-                    <p className="text-xs text-gray-500 mt-0.5">
+                    <p className="text-xs text-gray-700 mt-0.5">
                       {session.distanceM ? `${(session.distanceM / 1000).toFixed(1)} km` : "Starting..."}
                     </p>
                   </div>

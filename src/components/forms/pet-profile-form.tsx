@@ -133,7 +133,7 @@ export function PetProfileForm({ pet }: { pet?: PetProfileInput }) {
           <PawPrint className="h-6 w-6" />
         </span>
         <div>
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-ink/45">Private pet record</p>
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-ink/80">Private pet record</p>
           <h2 className="font-display text-3xl font-semibold">The essentials for thoughtful care</h2>
         </div>
       </div>
@@ -176,7 +176,7 @@ export function PetProfileForm({ pet }: { pet?: PetProfileInput }) {
 
       <fieldset className="mt-8 rounded-[2rem] border border-ink/10 bg-paper/70 p-5 sm:p-6">
         <legend className="px-2 font-display text-2xl font-semibold">Health notes</legend>
-        <p className="mt-2 text-sm text-ink/50">These notes help the care team avoid preventable risks and keep daily routines consistent.</p>
+        <p className="mt-2 text-sm text-ink/80">These notes help the care team avoid preventable risks and keep daily routines consistent.</p>
         <div className="mt-5 grid gap-5 sm:grid-cols-3">
           <Field label="Allergies" error={form.formState.errors.allergies?.message}>
             <textarea {...form.register("allergies")} className="portal-input min-h-28 resize-y" />
@@ -192,7 +192,7 @@ export function PetProfileForm({ pet }: { pet?: PetProfileInput }) {
 
       <fieldset className="mt-8 rounded-[2rem] border border-ink/10 bg-paper/70 p-5 sm:p-6">
         <legend className="px-2 font-display text-2xl font-semibold">Veterinary support</legend>
-        <p className="mt-2 text-sm text-ink/50">Add the primary vet and emergency clinic so urgent care can be handed off quickly.</p>
+        <p className="mt-2 text-sm text-ink/80">Add the primary vet and emergency clinic so urgent care can be handed off quickly.</p>
         <div className="mt-5 grid gap-5 sm:grid-cols-2">
           <Field label="Veterinarian name" error={form.formState.errors.veterinarianName?.message}>
             <input {...form.register("veterinarianName")} className="portal-input" autoComplete="off" />
@@ -211,7 +211,7 @@ export function PetProfileForm({ pet }: { pet?: PetProfileInput }) {
 
       <fieldset className="mt-8 rounded-[2rem] border border-ink/10 bg-paper/70 p-5 sm:p-6">
         <legend className="px-2 font-display text-2xl font-semibold">Emergency contact</legend>
-        <p className="mt-2 text-sm text-ink/50">We only show this information to authorised caregivers on active work.</p>
+        <p className="mt-2 text-sm text-ink/80">We only show this information to authorised caregivers on active work.</p>
         <div className="mt-5 grid gap-5 sm:grid-cols-3">
           <Field label="Name" error={form.formState.errors.emergencyName?.message}>
             <input {...form.register("emergencyName")} className="portal-input" autoComplete="off" />

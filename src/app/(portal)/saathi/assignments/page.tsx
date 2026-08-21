@@ -30,19 +30,19 @@ export default async function SaathiAssignmentsPage() {
   return (
     <PortalShell mode="saathi" displayName={identity.displayName}>
       <div className="mt-5 max-w-5xl pb-12">
-        <p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-ink/50">
+        <p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-ink/80">
           <PawPrint className="h-3 w-3" /> authorised work only
         </p>
         <h1 className="mt-2 font-display text-4xl font-semibold tracking-[-0.04em]">Assignments</h1>
-        <p className="mt-3 text-sm leading-6 text-ink/60 max-w-2xl">
+        <p className="mt-3 text-sm leading-6 text-ink/80 max-w-2xl">
           Offers show only the information needed to decide. Exact care instructions and address remain hidden until approval and confirmation.
         </p>
     <div className="mt-10 grid gap-5">{assignments.length ? assignments.map((assignment) => {
       const releasedAddress = addressByBooking.get(assignment.bookingId);
       const payout = assignment.booking.payouts.find(({ sitterId }) => sitterId === assignment.sitterId);
       return <article key={assignment.id} className="rounded-4xl border border-ink/10 bg-paper p-6 shadow-lifted">
-        <div className="flex flex-col justify-between gap-4 sm:flex-row"><div><p className="text-xs font-bold uppercase tracking-[0.18em] text-coral">{assignment.status.replaceAll("_", " ")} · {assignment.booking.status.replaceAll("_", " ")}</p><h2 className="mt-2 font-display text-3xl font-semibold">{assignment.booking.serviceType.name} with {assignment.booking.pet.name}</h2></div><div className="text-right"><p className="font-display text-2xl font-semibold">₹{((payout ? payout.amountPaise + payout.adjustmentPaise : assignment.payoutPaise) / 100).toLocaleString("en-IN")}</p><p className="mt-1 text-xs font-bold uppercase tracking-[0.12em] text-ink/40">{payout ? `Payout ${payout.status.toLowerCase()}` : "Estimated payout"}</p></div></div>
-        <div className="mt-5 grid gap-3 text-sm text-ink/60 sm:grid-cols-3"><p className="flex items-center gap-2"><PawPrint className="h-4 w-4 text-leaf" />{assignment.booking.pet.species.toLowerCase()} {assignment.booking.pet.breed ? `· ${assignment.booking.pet.breed}` : ""}</p><p className="flex items-center gap-2"><CalendarDays className="h-4 w-4 text-leaf" />{assignment.booking.scheduledStart.toLocaleDateString("en-IN", { dateStyle: "medium" })}</p><p className="flex items-center gap-2"><Clock3 className="h-4 w-4 text-leaf" />{assignment.booking.scheduledStart.toLocaleTimeString("en-IN", { hour: "numeric", minute: "2-digit" })}</p><p className="flex items-center gap-2 sm:col-span-3"><MapPin className="h-4 w-4 text-leaf" />{releasedAddress ? [releasedAddress.line1, releasedAddress.line2, releasedAddress.landmark, releasedAddress.locality, releasedAddress.city].filter(Boolean).join(", ") : `${assignment.booking.address.locality}, ${assignment.booking.address.city} · exact address withheld until confirmation`}</p></div>
+        <div className="flex flex-col justify-between gap-4 sm:flex-row"><div><p className="text-xs font-bold uppercase tracking-[0.18em] text-coral">{assignment.status.replaceAll("_", " ")} · {assignment.booking.status.replaceAll("_", " ")}</p><h2 className="mt-2 font-display text-3xl font-semibold">{assignment.booking.serviceType.name} with {assignment.booking.pet.name}</h2></div><div className="text-right"><p className="font-display text-2xl font-semibold">₹{((payout ? payout.amountPaise + payout.adjustmentPaise : assignment.payoutPaise) / 100).toLocaleString("en-IN")}</p><p className="mt-1 text-xs font-bold uppercase tracking-[0.12em] text-ink/80">{payout ? `Payout ${payout.status.toLowerCase()}` : "Estimated payout"}</p></div></div>
+        <div className="mt-5 grid gap-3 text-sm text-ink/80 sm:grid-cols-3"><p className="flex items-center gap-2"><PawPrint className="h-4 w-4 text-leaf" />{assignment.booking.pet.species.toLowerCase()} {assignment.booking.pet.breed ? `· ${assignment.booking.pet.breed}` : ""}</p><p className="flex items-center gap-2"><CalendarDays className="h-4 w-4 text-leaf" />{assignment.booking.scheduledStart.toLocaleDateString("en-IN", { dateStyle: "medium" })}</p><p className="flex items-center gap-2"><Clock3 className="h-4 w-4 text-leaf" />{assignment.booking.scheduledStart.toLocaleTimeString("en-IN", { hour: "numeric", minute: "2-digit" })}</p><p className="flex items-center gap-2 sm:col-span-3"><MapPin className="h-4 w-4 text-leaf" />{releasedAddress ? [releasedAddress.line1, releasedAddress.line2, releasedAddress.landmark, releasedAddress.locality, releasedAddress.city].filter(Boolean).join(", ") : `${assignment.booking.address.locality}, ${assignment.booking.address.city} · exact address withheld until confirmation`}</p></div>
         {assignment.status === "OFFERED" && <AssignmentActions assignmentId={assignment.id} />}
         <ServiceActions assignmentId={assignment.id} bookingStatus={assignment.booking.status} trackingEnabled={liveWalkTrackingEnabled} />
         {assignment.status === "CUSTOMER_APPROVED" && assignment.booking.status === "CONFIRMED" && <SitterCancellationAction assignmentId={assignment.id} />}
@@ -51,7 +51,7 @@ export default async function SaathiAssignmentsPage() {
         {assignment.status === "ACTIVE" && assignment.booking.status === "REPORT_PENDING" && <ReportForm assignmentId={assignment.id} />}
         {assignment.status === "COMPLETED" && assignment.booking.status === "COMPLETED" && assignment.booking.reports[0]?.reviewStatus === "CORRECTION_REQUIRED" && <ReportForm assignmentId={assignment.id} correctionNote={assignment.booking.reports[0].reviewNote ?? undefined} />}
       </article>;
-    }) : <div className="mt-6 rounded-4xl border border-indigo/10 bg-paper py-16 text-center shadow-lifted"><PawPrint className="mx-auto h-10 w-10 text-saffron" /><h2 className="mt-5 font-display text-3xl font-semibold text-ink">No assignments yet.</h2><p className="mt-3 text-sm text-ink/55">Eligible offers will appear here.</p></div>}</div>
+    }) : <div className="mt-6 rounded-4xl border border-indigo/10 bg-paper py-16 text-center shadow-lifted"><PawPrint className="mx-auto h-10 w-10 text-saffron" /><h2 className="mt-5 font-display text-3xl font-semibold text-ink">No assignments yet.</h2><p className="mt-3 text-sm text-ink/80">Eligible offers will appear here.</p></div>}</div>
       </div>
     </PortalShell>
   );

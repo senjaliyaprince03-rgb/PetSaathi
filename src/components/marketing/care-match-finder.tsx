@@ -52,14 +52,14 @@ export function CareMatchFinder() {
       onSubmit={submit}
       action="/book"
       method="get"
-      className="relative mt-9 overflow-hidden rounded-[2rem] border border-paper/90 bg-paper/[0.92] p-5 shadow-2xl backdrop-blur-xl sm:p-6"
+      className="relative mt-9 overflow-hidden rounded-[2rem] border border-paper/90 bg-paper p-5 shadow-2xl sm:p-6"
       aria-label="Start a PetSaathi care match"
       noValidate
     >
       <div className="pointer-events-none absolute -right-16 -top-20 h-48 w-48 rounded-full bg-saffron/25 blur-3xl" />
       <div className="relative flex items-center justify-between gap-4">
         <div>
-          <p className="text-[0.62rem] font-bold uppercase tracking-[0.22em] text-indigo/70 font-outfit">Instant Care Match</p>
+          <p className="text-[0.62rem] font-bold uppercase tracking-[0.22em] text-indigo/80 font-outfit">Instant Care Match</p>
           <p className="mt-1 text-sm font-bold text-ink">Share the care context in under a minute.</p>
         </div>
         <span className="hidden items-center gap-1.5 rounded-full bg-secondary-container/50 px-3 py-1.5 text-[0.65rem] font-bold text-on-secondary-container sm:inline-flex">
@@ -125,7 +125,7 @@ export function CareMatchFinder() {
       <div className="relative mt-5 flex flex-col gap-3 border-t border-indigo/10 pt-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="text-xs font-bold text-ink">{selectedService.label}</p>
-          <p className="mt-0.5 text-[0.68rem] text-ink/45">{selectedService.note}</p>
+          <p className="mt-0.5 text-[0.68rem] text-ink/80">{selectedService.note}</p>
         </div>
         <Button type="submit" size="lg" disabled={isPending} className="shrink-0 font-outfit bg-[#301F30] hover:bg-[#301F30]/90 text-white border-transparent">
           {isPending ? <Search className="h-4 w-4 animate-pulse" /> : null}
@@ -134,7 +134,7 @@ export function CareMatchFinder() {
         </Button>
       </div>
 
-      <p className="relative mt-3 text-[0.65rem] font-medium leading-5 text-ink/50">
+      <p className="relative mt-3 text-[0.65rem] font-medium leading-5 text-ink/80">
         No payment is requested here. Availability, permissions, capacity, and the current quote are checked before confirmation.
       </p>
     </form>

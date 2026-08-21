@@ -1,6 +1,0 @@
-wsl: Failed to translate 'D:\swipl\bin'
-wsl: Failed to translate 'D:\Void\bin'
-wsl: Failed to translate 'D:\Antigravity\bin'
-wsl: Failed to translate 'D:\Microsoft VS Code\bin'
-wsl: Failed to translate 'D:\Kiro\bin'
-<3>WSL (9 - Relay) ERROR: CreateProcessCommon:818: execvpe(/bin/bash) failed: No such file or directory

@@ -30,9 +30,9 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "invalid_credential" }, { status: 401 });
     }
 
-    await signInWithGoogle(payload.email, payload.name || "Pet Parent", payload.picture);
+    const result = await signInWithGoogle(payload.email, payload.name || "Pet Parent", payload.picture);
     
-    return NextResponse.json({ authenticated: true });
+    return NextResponse.json({ authenticated: true, roles: result.roles });
   } catch (error) {
     console.error("Google sign in error:", error);
     return NextResponse.json({ error: "invalid_credential" }, { status: 401 });

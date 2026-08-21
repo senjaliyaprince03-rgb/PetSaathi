@@ -4,68 +4,73 @@ import { z } from "zod";
 import { prisma } from "@/lib/db";
 import { getCurrentIdentity } from "@/modules/auth/session";
 
-export async function GET() {
-  const identity = await getCurrentIdentity();
-  if (!identity?.roles.includes("CUSTOMER")) return NextResponse.json({ error: "forbidden" }, { status: 403 });
-
-  const pets = await prisma.pet.findMany({
-    where: { ownerId: identity.id, active: true },
-    select: { id: true, name: true },
-  });
-
-  const petIds = pets.map((p) => p.id);
-
-  const vaccinations = await prisma.vaccination.findMany({
-    where: { petId: { in: petIds } },
-    orderBy: { administeredAt: "desc" },
-    select: {
-      id: true,
-      petId: true,
-      vaccine: true,
-      administeredAt: true,
-      nextDueAt: true,
-      clinic: true,
-      evidenceRef: true,
-      verifiedAt: true,
-      pet: { select: { name: true } },
-    },
-  });
-
-  return NextResponse.json(vaccinations);
-}
-
-const registerSchema = z.object({
-  petId: z.string().min(1),
+const schema = z.object({
+  petId: z.string().uuid(),
   campId: z.string().optional(),
   previousVaccine: z.string().optional(),
   lastVaccineDate: z.coerce.date().optional(),
-  healthConditions: z.string().max(1000).optional(),
-  emergencyContact: z.string().min(10),
-  consent: z.literal(true),
+  healthConditions: z.string().optional(),
+  emergencyContact: z.string().min(5),
+  consent: z.boolean().refine((val) => val === true, { message: "Consent is required" }),
 });
 
 export async function POST(request: Request) {
   const identity = await getCurrentIdentity();
   if (!identity?.roles.includes("CUSTOMER")) return NextResponse.json({ error: "forbidden" }, { status: 403 });
 
-  const parsed = registerSchema.safeParse(await request.json().catch(() => null));
+  const body = await request.json().catch(() => null);
+  const parsed = schema.safeParse(body);
   if (!parsed.success) return NextResponse.json({ error: "invalid_request", issues: parsed.error.flatten() }, { status: 422 });
 
-  const { petId, campId, previousVaccine, lastVaccineDate, healthConditions, emergencyContact } = parsed.data;
+  // If there's a specific vet for the camp, we'd link to them. For now, find first active vet service.
+  const partnerService = await prisma.partnerService.findFirst({
+    where: { serviceCode: "VET_SUPPORT", status: "ACTIVE" },
+  });
 
-  const pet = await prisma.pet.findFirst({ where: { id: petId, ownerId: identity.id, active: true } });
-  if (!pet) return NextResponse.json({ error: "pet_not_found" }, { status: 404 });
+  if (!partnerService) {
+    return NextResponse.json({ error: "service_unavailable", message: "Vaccination camps are currently unavailable." }, { status: 503 });
+  }
 
-  // Record registration in Vaccination model as pending or as audit event
-  const record = await prisma.vaccination.create({
+  const reference = `PO-${Date.now()}-${Math.random().toString(36).slice(2, 6).toUpperCase()}`;
+
+  const order = await prisma.partnerOrder.create({
     data: {
-      petId,
-      vaccine: previousVaccine || "Rabies / Annual Camp",
-      administeredAt: new Date(),
-      clinic: campId ? `Society Camp (${campId})` : "Society Vaccination Camp",
-      evidenceRef: `REG:${emergencyContact}:${healthConditions || "None"}`,
+      reference,
+      partnerServiceId: partnerService.id,
+      customerId: identity.id,
+      petId: parsed.data.petId,
+      status: "REQUESTED",
+      instructions: `Vaccination Camp Registration. Health conditions: ${parsed.data.healthConditions || 'None'}`,
+      metadata: {
+        isVaccinationCamp: true,
+        campId: parsed.data.campId,
+        previousVaccine: parsed.data.previousVaccine,
+        lastVaccineDate: parsed.data.lastVaccineDate,
+        emergencyContact: parsed.data.emergencyContact,
+        consentGiven: parsed.data.consent,
+      },
     },
   });
 
-  return NextResponse.json({ registration: record }, { status: 201 });
+  return NextResponse.json({ order: { id: order.id, reference: order.reference, status: order.status } }, { status: 201 });
+}
+
+export async function GET() {
+  const identity = await getCurrentIdentity();
+  if (!identity?.roles.includes("CUSTOMER")) return NextResponse.json({ error: "forbidden" }, { status: 403 });
+
+  const pets = await prisma.pet.findMany({
+    where: { ownerId: identity.id, active: true },
+    select: { id: true }
+  });
+
+  const petIds = pets.map(p => p.id);
+
+  const records = await prisma.vaccination.findMany({
+    where: { petId: { in: petIds } },
+    orderBy: { administeredAt: "desc" },
+    include: { pet: { select: { name: true } } }
+  });
+
+  return NextResponse.json({ records });
 }

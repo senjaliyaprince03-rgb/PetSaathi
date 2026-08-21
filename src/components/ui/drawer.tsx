@@ -30,7 +30,7 @@ export function Drawer({ open, onOpenChange, children, side = "right" }: DrawerP
           >
             <button
               onClick={() => onOpenChange(false)}
-              className="absolute right-6 top-6 rounded-full bg-cream p-2 text-ink/50 transition hover:bg-indigo/5 hover:text-ink focus:outline-none focus:ring-2 focus:ring-indigo/40"
+              className="absolute right-6 top-6 rounded-full bg-cream p-2 text-ink/80 transition hover:bg-indigo/5 hover:text-ink focus:outline-none focus:ring-2 focus:ring-indigo/40"
               aria-label="Close drawer"
             >
               <X className="h-5 w-5" />
@@ -48,7 +48,7 @@ export function DrawerHeader({ title, description }: { title: string; descriptio
   return (
     <div className="mb-6">
       <h2 className="font-display text-2xl font-semibold text-ink">{title}</h2>
-      {description && <p className="mt-2 text-sm leading-6 text-ink/60">{description}</p>}
+      {description && <p className="mt-2 text-sm leading-6 text-ink/80">{description}</p>}
     </div>
   );
 }

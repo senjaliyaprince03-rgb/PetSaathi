@@ -63,7 +63,7 @@ export default function SocietiesPage() {
                   <Icon className="h-7 w-7" />
                 </span>
                 <h2 className="mt-8 font-display text-3xl font-bold text-ink">{title}</h2>
-                <p className="mt-4 text-sm leading-7 text-ink/65">{copy}</p>
+                <p className="mt-4 text-sm leading-7 text-ink/80">{copy}</p>
               </article>
             ))}
           </div>

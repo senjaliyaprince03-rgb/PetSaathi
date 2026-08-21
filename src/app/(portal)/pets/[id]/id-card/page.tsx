@@ -39,7 +39,7 @@ export default async function DigitalPetIdPage({ params }: { params: Promise<{ i
             <div>
               <p className="text-[0.62rem] font-bold uppercase tracking-[0.22em] text-saffron">PetSaathi digital pet ID</p>
               <h1 className="mt-5 font-display text-6xl font-semibold tracking-[-0.055em]">{pet.name}</h1>
-              <p className="mt-3 text-paper/58">
+              <p className="mt-3 text-paper/80">
                 {pet.species.toLowerCase()}
                 {pet.breed ? ` · ${pet.breed}` : ""}
                 {pet.weightKg ? ` · ${pet.weightKg.toString()} kg` : ""}
@@ -62,34 +62,34 @@ export default async function DigitalPetIdPage({ params }: { params: Promise<{ i
 
           <div className="relative mt-10 grid gap-3 border-t border-paper/10 pt-6 sm:grid-cols-4">
             <div>
-              <p className="text-[0.6rem] font-bold uppercase tracking-[0.16em] text-paper/35">Pet ID</p>
+              <p className="text-[0.6rem] font-bold uppercase tracking-[0.16em] text-paper/80">Pet ID</p>
               <p className="mt-2 font-mono text-sm tracking-[0.15em]">{code}</p>
             </div>
             <div>
-              <p className="text-[0.6rem] font-bold uppercase tracking-[0.16em] text-paper/35">Emergency contact</p>
+              <p className="text-[0.6rem] font-bold uppercase tracking-[0.16em] text-paper/80">Emergency contact</p>
               <p className="mt-2 text-sm font-bold">{pet.emergencyContacts[0]?.name ?? "Not recorded"}</p>
-              <p className="mt-1 text-xs text-paper/58">{pet.emergencyContacts[0]?.relation || "Relation not recorded"}</p>
-              <p className="mt-1 text-xs text-paper/58">{pet.emergencyContacts[0]?.phone ?? "Phone not recorded"}</p>
+              <p className="mt-1 text-xs text-paper/80">{pet.emergencyContacts[0]?.relation || "Relation not recorded"}</p>
+              <p className="mt-1 text-xs text-paper/80">{pet.emergencyContacts[0]?.phone ?? "Phone not recorded"}</p>
             </div>
             <div>
-              <p className="text-[0.6rem] font-bold uppercase tracking-[0.16em] text-paper/35">Veterinary support</p>
+              <p className="text-[0.6rem] font-bold uppercase tracking-[0.16em] text-paper/80">Veterinary support</p>
               <p className="mt-2 text-sm font-bold">{pet.medicalProfile?.veterinarianName ?? "Not recorded"}</p>
-              <p className="mt-1 text-xs text-paper/58">{pet.medicalProfile?.veterinarianPhone ?? "Phone not recorded"}</p>
-              <p className="mt-1 text-xs text-paper/58">{pet.medicalProfile?.emergencyClinicName ?? "Emergency clinic not recorded"}</p>
+              <p className="mt-1 text-xs text-paper/80">{pet.medicalProfile?.veterinarianPhone ?? "Phone not recorded"}</p>
+              <p className="mt-1 text-xs text-paper/80">{pet.medicalProfile?.emergencyClinicName ?? "Emergency clinic not recorded"}</p>
             </div>
             <div>
-              <p className="text-[0.6rem] font-bold uppercase tracking-[0.16em] text-paper/35">Medical snapshot</p>
+              <p className="text-[0.6rem] font-bold uppercase tracking-[0.16em] text-paper/80">Medical snapshot</p>
               <p className="mt-2 flex items-center gap-2 text-sm font-bold">
                 <HeartPulse className="h-4 w-4 text-coral" />
                 {pet.medicalProfile ? "Available" : "Not recorded"}
               </p>
-              <p className="mt-1 text-xs text-paper/58">Allergies, conditions and medication history live in the full passport.</p>
+              <p className="mt-1 text-xs text-paper/80">Allergies, conditions and medication history live in the full passport.</p>
             </div>
           </div>
         </section>
 
         <div className="mt-5 flex flex-col items-start justify-between gap-4 rounded-4xl border border-indigo/10 bg-paper p-6 shadow-lifted sm:flex-row sm:items-center">
-          <p className="max-w-xl text-sm leading-6 text-ink/50">
+          <p className="max-w-xl text-sm leading-6 text-ink/80">
             This card is an authenticated convenience view. It is not a government identity document, vaccination certificate or substitute for veterinary records.
           </p>
           <Link href={`/pets/${pet.id}`} className={buttonVariants({ variant: "outline" })}>

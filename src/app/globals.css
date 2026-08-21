@@ -108,11 +108,11 @@
   }
 
   .care-finder-label {
-    @apply flex items-center gap-1.5 text-[0.6rem] font-bold uppercase tracking-[0.16em] text-ink/[0.38];
+    @apply flex items-center gap-1.5 text-[0.6rem] font-bold uppercase tracking-[0.16em] text-ink/[0.70];
   }
 
   .care-finder-input {
-    @apply mt-1.5 min-h-7 w-full appearance-none border-0 bg-transparent p-0 text-sm font-bold text-ink outline-none placeholder:font-medium placeholder:text-ink/30 focus:ring-0;
+    @apply mt-1.5 min-h-7 w-full appearance-none border-0 bg-transparent p-0 text-sm font-bold text-ink outline-none placeholder:font-medium placeholder:text-ink/60 focus:ring-0;
   }
 
   .status-dot {

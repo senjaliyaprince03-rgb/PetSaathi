@@ -58,7 +58,7 @@ export function DynamicPricingEngine({ serviceCode, basePrice, assessmentData, p
           <span>Total Estimate</span>
           <span>₹{calculatedPrice.total}</span>
         </div>
-        <p className="text-xs text-gray-500 mt-2">
+        <p className="text-xs text-gray-700 mt-2">
           * Final price may vary if conditions found during the pre-service inspection differ from assessment.
         </p>
       </div>

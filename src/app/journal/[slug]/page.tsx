@@ -37,7 +37,7 @@ export default async function JournalDetailPage({ params }: Props) {
         <header className="mx-auto max-w-3xl text-center">
           <p className="eyebrow justify-center">{entry.type.replaceAll("_", " ")}{entry.city ? ` · ${entry.city}` : ""}</p>
           <h1 className="section-title mx-auto mt-5 max-w-[14ch]">{entry.title}</h1>
-          {entry.excerpt && <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-ink/60">{entry.excerpt}</p>}
+          {entry.excerpt && <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-ink/80">{entry.excerpt}</p>}
           {entry.expertReview?.verdict === "APPROVED" && <div className="mx-auto mt-7 inline-flex items-center gap-3 rounded-full bg-leaf/10 px-5 py-3 text-sm font-semibold text-leaf"><ShieldCheck className="h-5 w-5" />Reviewed by {entry.expertReview.reviewerName} · {entry.expertReview.credentials}</div>}
         </header>
         <div className="mx-auto mt-14 max-w-3xl rounded-5xl border border-ink/10 bg-paper p-7 shadow-lifted sm:p-10">
@@ -52,7 +52,7 @@ export default async function JournalDetailPage({ params }: Props) {
           />
         </div>
 
-        <p className="mx-auto mt-10 max-w-3xl text-xs leading-5 text-ink/40">
+        <p className="mx-auto mt-10 max-w-3xl text-xs leading-5 text-ink/80">
           General care education only. This article does not diagnose, treat, guarantee clinic availability, transport or insurance coverage.
         </p>
       </article>

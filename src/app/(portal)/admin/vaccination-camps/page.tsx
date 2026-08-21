@@ -1,107 +1,82 @@
-import { Building2, Calendar, Syringe } from "lucide-react";
-import { notFound, redirect } from "next/navigation";
+import { CalendarDays, Syringe, Users } from "lucide-react";
+import { redirect } from "next/navigation";
 
-import { DashboardHeading, DashboardPanel, MetricCard } from "@/components/portal/dashboard-ui";
+import { DashboardEmptyState, DashboardHeading, DashboardPanel, MetricCard, StatusPill } from "@/components/portal/dashboard-ui";
 import { PortalShell } from "@/components/portal/portal-shell";
 import { prisma } from "@/lib/db";
 import { getCurrentIdentity, hasAnyRole } from "@/modules/auth/session";
+import { AdminCampForm } from "./admin-camp-form";
 
 export const dynamic = "force-dynamic";
 
 export default async function AdminVaccinationCampsPage() {
   const identity = await getCurrentIdentity();
-  if (!identity) redirect("/login?returnTo=/admin/vaccination-camps");
-  if (!hasAnyRole(identity, ["OPERATIONS_ADMIN", "SUPER_ADMIN", "PARTNER_MANAGER", "SOCIETY_MANAGER"])) notFound();
+  if (!identity || !hasAnyRole(identity, ["OPERATIONS_ADMIN", "SUPER_ADMIN"])) {
+    redirect("/login?returnTo=/admin/vaccination-camps");
+  }
 
-  const [allEvents, societies] = await Promise.all([
-    prisma.societyEvent.findMany({
-      orderBy: { startsAt: "desc" },
-      select: {
-        id: true,
-        title: true,
-        description: true,
-        startsAt: true,
-        endsAt: true,
-        capacity: true,
-        status: true,
-        metadata: true,
-        society: { select: { name: true } },
-      },
-    }),
-    prisma.society.findMany({
-      where: { status: "ACTIVE" },
-      select: { id: true, name: true },
-    }),
-  ]);
-
-  const camps = allEvents.filter((e) => {
-    const meta = (e.metadata || {}) as Record<string, unknown>;
-    return meta.category === "VACCINATION" || e.title.toLowerCase().includes("vaccin");
+  // Fetch camps (simulated by SocietyEvent containing 'Vaccination' in title)
+  const camps = await prisma.societyEvent.findMany({
+    where: { title: { contains: "Vaccination", mode: "insensitive" } },
+    orderBy: { startsAt: "desc" },
+    include: { society: { select: { name: true } } }
   });
 
-  const activeCamps = camps.filter((c) => c.status === "ACTIVE").length;
+  const now = new Date();
+  const upcomingCamps = camps.filter(c => c.startsAt > now);
+  
+  // We simulate total registrations. In reality we'd join PartnerOrders with campId metadata
+  const totalCamps = camps.length;
 
   return (
     <PortalShell mode="admin" displayName={identity.displayName}>
-      <div className="mt-5 grid gap-4 sm:grid-cols-3">
-        <MetricCard icon={Syringe} label="Total camps" value={`${camps.length} drives`} hint="Society vaccination drives" tone="leaf" />
-        <MetricCard icon={Calendar} label="Active drives" value={`${activeCamps} open`} hint="Registration open for residents" tone="saffron" />
-        <MetricCard icon={Building2} label="Partner societies" value={`${societies.length} linked`} hint="Eligible RWAs" tone="indigo" />
-      </div>
+      <div className="max-w-7xl pb-12">
+        <p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-ink/80">preventive care</p>
+        <h1 className="mt-2 font-display text-4xl font-semibold tracking-[-0.04em]">Vaccination Camps</h1>
+        <p className="mt-3 max-w-3xl text-sm leading-6 text-ink/80 mb-10">Manage community vaccination camps, partner vet assignments, and monitor registration capacity.</p>
+        
+        <div className="grid gap-4 sm:grid-cols-3 mb-10">
+          <MetricCard icon={CalendarDays} label="Total Camps" value={totalCamps.toString()} hint="All time" tone="indigo" />
+          <MetricCard icon={Syringe} label="Upcoming Camps" value={upcomingCamps.length.toString()} hint="Scheduled" tone="leaf" />
+          <MetricCard icon={Users} label="Total Capacity" value={camps.reduce((acc, c) => acc + (c.capacity || 0), 0).toString()} hint="Max pets" tone="saffron" />
+        </div>
 
-      <DashboardPanel className="mt-7">
-        <DashboardHeading
-          eyebrow="Vaccination Drives"
-          title="Society Vaccination Camps"
-          description="Manage RWA vaccination drives organized with local veterinary partners."
-        />
+        <div className="grid lg:grid-cols-2 gap-8">
+          <DashboardPanel>
+            <DashboardHeading eyebrow="Management" title="Create Vaccination Camp" description="Schedule a new camp for a specific society." />
+            <AdminCampForm />
+          </DashboardPanel>
 
-        <div className="mt-8 overflow-hidden rounded-4xl border border-indigo/10 bg-paper shadow-lifted">
-          <div className="overflow-x-auto">
-            <table className="w-full text-left">
-              <thead>
-                <tr className="border-b border-indigo/10 bg-cream/30">
-                  <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-ink/50">Camp Drive</th>
-                  <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-ink/50">Society</th>
-                  <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-ink/50">Date</th>
-                  <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-ink/50">Status</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-indigo/5">
-                {camps.map((camp) => {
-                  const meta = (camp.metadata || {}) as { location?: string };
-                  return (
-                    <tr key={camp.id} className="transition-colors hover:bg-cream/20">
-                      <td className="px-6 py-5">
-                        <div className="font-semibold text-ink">{camp.title}</div>
-                        <div className="mt-1 text-xs text-ink/60">{meta.location || "Society grounds"}</div>
-                      </td>
-                      <td className="px-6 py-5">
-                        <span className="text-sm font-medium text-ink/75">{camp.society?.name ?? "Linked Society"}</span>
-                      </td>
-                      <td className="px-6 py-5">
-                        <span className="text-xs text-ink/60">{new Date(camp.startsAt).toLocaleDateString("en-IN")}</span>
-                      </td>
-                      <td className="px-6 py-5">
-                        <span className={`inline-flex rounded-full px-3 py-1 text-xs font-bold ${camp.status === "ACTIVE" ? "bg-leaf/10 text-leaf" : "bg-ink/10 text-ink/50"}`}>
-                          {camp.status}
-                        </span>
-                      </td>
-                    </tr>
-                  );
-                })}
-                {camps.length === 0 && (
-                  <tr>
-                    <td colSpan={4} className="px-6 py-12 text-center text-sm font-medium text-ink/60">
-                      No vaccination camps scheduled yet.
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
+          <div className="space-y-4">
+            <h3 className="font-display text-2xl font-semibold">Camp Roster</h3>
+            {camps.length ? (
+              camps.map(camp => (
+                <article key={camp.id} className="rounded-2xl border border-ink/10 bg-paper p-5 shadow-sm hover:shadow-md transition">
+                  <div className="flex justify-between items-start mb-3">
+                    <div>
+                      <h4 className="font-semibold text-lg">{camp.title}</h4>
+                      <p className="text-xs text-ink/80">{camp.society?.name ?? "Unknown Society"}</p>
+                    </div>
+                    <StatusPill status={camp.status} />
+                  </div>
+                  <div className="flex flex-wrap gap-4 text-sm mt-4">
+                    <span className="flex items-center gap-1.5 text-ink/80">
+                      <CalendarDays className="w-4 h-4 text-indigo" />
+                      {camp.startsAt.toLocaleDateString("en-IN", { dateStyle: "medium" })}
+                    </span>
+                    <span className="flex items-center gap-1.5 text-ink/80">
+                      <Users className="w-4 h-4 text-leaf" />
+                      Capacity: {camp.capacity ?? "N/A"}
+                    </span>
+                  </div>
+                </article>
+              ))
+            ) : (
+              <DashboardEmptyState icon={Syringe} title="No camps scheduled" description="Create your first vaccination camp using the form." compact />
+            )}
           </div>
         </div>
-      </DashboardPanel>
+      </div>
     </PortalShell>
   );
 }

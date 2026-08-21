@@ -77,7 +77,7 @@ export default function CorporateBenefitsPage() {
             <h1 className="mt-7 max-w-[12ch] font-display text-5xl font-semibold tracking-[-0.055em] text-ink sm:text-7xl">
               Pet-care benefits with accountable controls.
             </h1>
-            <p className="mt-6 max-w-2xl text-base leading-8 text-ink/65">
+            <p className="mt-6 max-w-2xl text-base leading-8 text-ink/80">
               Create a structured route for eligible members to request local
               pet care. Every programme stays bounded by its contract,
               verification method, city scope, active dates, and available
@@ -128,7 +128,7 @@ export default function CorporateBenefitsPage() {
                   key={label}
                   className="flex items-center justify-between gap-4 rounded-2xl bg-cream/60 px-4 py-3"
                 >
-                  <span className="text-sm font-semibold text-ink/55">
+                  <span className="text-sm font-semibold text-ink/80">
                     {label}
                   </span>
                   <span className="text-right text-sm font-bold text-ink">
@@ -137,7 +137,7 @@ export default function CorporateBenefitsPage() {
                 </div>
               ))}
             </div>
-            <p className="mt-5 text-xs leading-5 text-ink/45">
+            <p className="mt-5 text-xs leading-5 text-ink/80">
               Programme activation is contractual and operational. This page
               does not create eligibility, pricing, or a service guarantee.
             </p>
@@ -165,7 +165,7 @@ export default function CorporateBenefitsPage() {
                 <h3 className="mt-5 font-display text-2xl font-semibold">
                   {title}
                 </h3>
-                <p className="mt-3 text-sm leading-7 text-ink/60">{body}</p>
+                <p className="mt-3 text-sm leading-7 text-ink/80">{body}</p>
               </article>
             ))}
           </div>
@@ -182,7 +182,7 @@ export default function CorporateBenefitsPage() {
             <h2 className="mt-4 font-display text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">
               Four stages from agreement to evidence.
             </h2>
-            <p className="mt-5 text-sm leading-7 text-paper/65">
+            <p className="mt-5 text-sm leading-7 text-paper/80">
               The recommended implementation keeps commercial approval,
               member eligibility, service operations, and reporting as
               separate auditable decisions.
@@ -200,7 +200,7 @@ export default function CorporateBenefitsPage() {
                 <h3 className="mt-4 font-display text-2xl font-semibold">
                   {step.title}
                 </h3>
-                <p className="mt-3 text-sm leading-7 text-paper/65">
+                <p className="mt-3 text-sm leading-7 text-paper/80">
                   {step.body}
                 </p>
               </li>
@@ -219,7 +219,7 @@ export default function CorporateBenefitsPage() {
                 <h2 className="mt-4 font-display text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">
                   Explore a programme without making premature promises.
                 </h2>
-                <p className="mt-5 text-sm leading-7 text-ink/60">
+                <p className="mt-5 text-sm leading-7 text-ink/80">
                   Share the organisation, intended member group, cities, and
                   desired care context. PetSaathi will record the enquiry for
                   a human review; no programme or booking is created from an

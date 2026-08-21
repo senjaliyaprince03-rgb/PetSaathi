@@ -97,12 +97,12 @@ export default async function PetsPage() {
                         <Activity className="h-7 w-7" />
                       </span>
                       <div>
-                        <p className="text-[0.58rem] font-bold uppercase tracking-[0.18em] text-ink/35">{pet.species.toLowerCase()} passport</p>
+                        <p className="text-[0.58rem] font-bold uppercase tracking-[0.18em] text-ink/80">{pet.species.toLowerCase()} passport</p>
                         <h2 className="mt-1 font-display text-3xl font-semibold tracking-[-0.04em]">{pet.name}</h2>
-                        <p className="mt-1 text-xs text-ink/45">{pet.breed ?? "Breed not recorded"}{age !== null ? ` · ${age}y` : ""}</p>
+                        <p className="mt-1 text-xs text-ink/80">{pet.breed ?? "Breed not recorded"}{age !== null ? ` · ${age}y` : ""}</p>
                       </div>
                     </div>
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-paper text-ink/35 shadow-sm transition group-hover:bg-indigo group-hover:text-paper"><ArrowRight className="h-4 w-4" /></span>
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-paper text-ink/80 shadow-sm transition group-hover:bg-indigo group-hover:text-paper"><ArrowRight className="h-4 w-4" /></span>
                   </div>
 
                   <div className="relative mt-6 grid grid-cols-3 gap-2">
@@ -114,7 +114,7 @@ export default async function PetsPage() {
                   <div className="relative mt-5 rounded-2xl border border-ink/[0.06] bg-paper/75 p-4">
                     <div className="flex items-center justify-between gap-3 text-xs"><span className="font-bold">Passport readiness</span><span className="font-bold text-leaf">{readiness}%</span></div>
                     <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-ink/[0.06]"><div className="h-full rounded-full bg-gradient-to-r from-indigo to-leaf" style={{ width: `${readiness}%` }} /></div>
-                    <p className="mt-3 flex items-center gap-2 text-[0.68rem] text-ink/42"><CalendarClock className="h-3.5 w-3.5 text-coral" />{records ? `${records} structured records ready for review` : "Add health and routine records before the next request"}</p>
+                    <p className="mt-3 flex items-center gap-2 text-[0.68rem] text-ink/80"><CalendarClock className="h-3.5 w-3.5 text-coral" />{records ? `${records} structured records ready for review` : "Add health and routine records before the next request"}</p>
                   </div>
                 </Link>
               );
@@ -131,5 +131,5 @@ export default async function PetsPage() {
 }
 
 function PetSignal({ icon: Icon, label, value }: { icon: typeof FileHeart; label: string; value: number }) {
-  return <div className="rounded-2xl bg-paper/80 p-3"><Icon className="h-4 w-4 text-indigo" /><p className="mt-3 font-display text-xl font-semibold">{value}</p><p className="mt-0.5 text-[0.6rem] font-semibold text-ink/40">{label}</p></div>;
+  return <div className="rounded-2xl bg-paper/80 p-3"><Icon className="h-4 w-4 text-indigo" /><p className="mt-3 font-display text-xl font-semibold">{value}</p><p className="mt-0.5 text-[0.6rem] font-semibold text-ink/80">{label}</p></div>;
 }

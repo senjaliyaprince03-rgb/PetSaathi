@@ -91,7 +91,7 @@ export default async function CityHubPage({ params }: Props) {
                 <h3 className="mt-3 font-display text-2xl font-semibold group-hover:text-indigo">
                   {config.serviceType.name}
                 </h3>
-                <p className="mt-3 line-clamp-2 text-sm leading-6 text-ink/60">
+                <p className="mt-3 line-clamp-2 text-sm leading-6 text-ink/80">
                   {config.serviceType.description}
                 </p>
                 <span className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-indigo">
@@ -103,7 +103,7 @@ export default async function CityHubPage({ params }: Props) {
             <div className="rounded-5xl border border-dashed border-ink/15 bg-paper p-10 text-center md:col-span-2 lg:col-span-3">
               <MapPin className="mx-auto h-10 w-10 text-saffron" />
               <h3 className="mt-4 font-display text-2xl font-semibold">Services launching soon.</h3>
-              <p className="mt-2 text-ink/60">We are building caregiver capacity in {city.name}.</p>
+              <p className="mt-2 text-ink/80">We are building caregiver capacity in {city.name}.</p>
             </div>
           )}
         </div>
@@ -113,7 +113,7 @@ export default async function CityHubPage({ params }: Props) {
       {activeZones.length > 0 && (
         <section className="container-shell mt-20">
           <h2 className="font-display text-4xl font-semibold">Service areas</h2>
-          <p className="mt-3 max-w-2xl text-lg leading-8 text-ink/60">
+          <p className="mt-3 max-w-2xl text-lg leading-8 text-ink/80">
             We currently serve the following areas in {city.name}.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
@@ -145,7 +145,7 @@ export default async function CityHubPage({ params }: Props) {
                   {page.contentEntry.title}
                 </h3>
                 {page.contentEntry.excerpt && (
-                  <p className="mt-3 line-clamp-2 text-sm leading-6 text-ink/60">
+                  <p className="mt-3 line-clamp-2 text-sm leading-6 text-ink/80">
                     {page.contentEntry.excerpt}
                   </p>
                 )}
@@ -162,7 +162,7 @@ export default async function CityHubPage({ params }: Props) {
           <h2 className="mt-10 font-display text-4xl font-semibold">
             Join the {city.name} pet parent community.
           </h2>
-          <p className="mt-5 max-w-2xl leading-7 text-paper/70">
+          <p className="mt-5 max-w-2xl leading-7 text-paper/80">
             Connect with local pet parents, get care tips specific to {city.name}, and receive availability updates.
           </p>
           <Link

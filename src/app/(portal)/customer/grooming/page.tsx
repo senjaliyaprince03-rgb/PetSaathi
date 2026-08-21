@@ -1,8 +1,9 @@
-import { BadgeCheck, CalendarClock, History, PawPrint, Scissors, Sparkles } from "lucide-react";
+import { Calendar, Clock, Scissors, Star } from "lucide-react";
 import { redirect } from "next/navigation";
 
 import { GroomingRequestForm } from "@/components/forms/grooming-request-form";
 import { DashboardEmptyState, DashboardHeading, DashboardPanel, MetricCard, StatusPill } from "@/components/portal/dashboard-ui";
+import { GroomingReportCard } from "@/components/portal/grooming-report-card";
 import { PortalShell } from "@/components/portal/portal-shell";
 import { prisma } from "@/lib/db";
 import { getCurrentIdentity } from "@/modules/auth/session";
@@ -11,7 +12,9 @@ export const dynamic = "force-dynamic";
 
 export default async function CustomerGroomingPage() {
   const identity = await getCurrentIdentity();
-  if (!identity?.roles.includes("CUSTOMER")) redirect("/login?returnTo=/customer/grooming");
+  if (!identity?.roles.includes("CUSTOMER")) {
+    redirect("/login?returnTo=/customer/grooming");
+  }
 
   const [pets, orders] = await Promise.all([
     prisma.pet.findMany({
@@ -25,56 +28,75 @@ export default async function CustomerGroomingPage() {
         partnerService: { serviceCode: "GROOMING_HOME" },
       },
       orderBy: { createdAt: "desc" },
-      take: 20,
-      select: {
-        id: true,
-        reference: true,
-        status: true,
-        scheduledAt: true,
-        createdAt: true,
-        metadata: true,
+      include: {
         partnerService: { select: { partner: { select: { displayName: true } } } },
         pet: { select: { name: true } },
       },
     }),
   ]);
 
-  const completedCount = orders.filter((o) => o.status === "COMPLETED").length;
-  const activeCount = orders.filter((o) => !["COMPLETED", "CANCELLED", "REJECTED"].includes(o.status)).length;
+  const completedOrders = orders.filter((o) => o.status === "COMPLETED");
+  const upcomingOrders = orders.filter((o) => ["REQUESTED", "PARTNER_REVIEWING", "ACCEPTED", "SCHEDULED", "IN_PROGRESS"].includes(o.status));
 
   return (
     <PortalShell mode="customer" displayName={identity.displayName} showSummaryCards={false}>
       <div className="mt-5 grid gap-4 sm:grid-cols-3">
-        <MetricCard icon={Scissors} label="Grooming sessions" value={`${completedCount} completed`} hint="Professional home grooming" tone="leaf" />
-        <MetricCard icon={CalendarClock} label="Active requests" value={`${activeCount} pending`} hint="Groomer assignment in progress" tone="coral" />
-        <MetricCard icon={Sparkles} label="Rating average" value="4.8 ★" hint="Verified customer feedback" tone="saffron" />
+        <MetricCard icon={Scissors} label="Total Sessions" value={completedOrders.length.toString()} hint="Completed grooming visits" tone="indigo" />
+        <MetricCard icon={Calendar} label="Upcoming" value={upcomingOrders.length.toString()} hint="Scheduled or pending" tone="saffron" />
+        <MetricCard icon={Star} label="Average Rating" value="4.9" hint="Based on recent feedback" tone="leaf" />
       </div>
 
-      <GroomingRequestForm pets={pets} />
+      <DashboardPanel className="mt-5">
+        <DashboardHeading eyebrow="At-Home Grooming" title="Spa day, right in your living room." description="Professional, stress-free grooming for your pets by certified partners. Request a session below." />
+        <GroomingRequestForm pets={pets} />
+      </DashboardPanel>
 
-      <DashboardPanel className="mt-7" tone="lavender">
-        <DashboardHeading eyebrow="Grooming history" title="Past sessions & report cards." description="Review coat condition notes, products used, and groomer recommendations from completed sessions." />
-        {orders.length ? (
-          <div className="mt-7 grid gap-3">
-            {orders.map((order) => (
-              <article key={order.id} className="rounded-[1.5rem] border border-ink/[0.06] bg-paper/90 p-5">
-                <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
-                  <div>
-                    <p className="text-[0.6rem] font-bold uppercase tracking-[0.16em] text-coral">{order.reference}</p>
-                    <h3 className="mt-2 font-display text-2xl font-semibold">{order.partnerService.partner.displayName}</h3>
-                    <div className="mt-3 flex flex-wrap gap-4 text-xs text-ink/42">
-                      <span className="flex items-center gap-1.5"><PawPrint className="h-3.5 w-3.5 text-indigo" />{order.pet?.name ?? "Pet"}</span>
-                      <span className="flex items-center gap-1.5"><CalendarClock className="h-3.5 w-3.5 text-indigo" />{order.scheduledAt ? order.scheduledAt.toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" }) : "Timing unconfirmed"}</span>
+      <DashboardPanel className="mt-5" tone="cream">
+        <DashboardHeading eyebrow="Grooming History" title="Track your pet's spa sessions." description="Review past sessions, groomer notes, and upcoming scheduled appointments." />
+        
+        {orders.length > 0 ? (
+          <div className="mt-7 grid gap-6">
+            {orders.map((order) => {
+              const metadata = order.metadata as any;
+              const report = metadata?.report;
+              
+              return (
+                <div key={order.id} className="rounded-[1.5rem] border border-ink/[0.06] bg-paper p-5 sm:p-6">
+                  <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start mb-6">
+                    <div>
+                      <p className="text-[0.6rem] font-bold uppercase tracking-[0.16em] text-coral">{order.reference}</p>
+                      <h3 className="mt-2 font-display text-2xl font-semibold">Grooming for {order.pet?.name || "Pet"}</h3>
+                      <p className="mt-1 text-sm text-ink/80">Provided by {order.partnerService.partner.displayName}</p>
+                      <div className="mt-3 flex flex-wrap gap-4 text-xs text-ink/80">
+                        {order.scheduledAt && (
+                          <span className="flex items-center gap-1.5">
+                            <Clock className="h-3.5 w-3.5 text-indigo" />
+                            {order.scheduledAt.toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" })}
+                          </span>
+                        )}
+                      </div>
                     </div>
+                    <StatusPill status={order.status} />
                   </div>
-                  <StatusPill status={order.status} />
+
+                  {order.status === "COMPLETED" && report ? (
+                    <GroomingReportCard report={report} />
+                  ) : order.status === "COMPLETED" && !report ? (
+                    <div className="rounded-2xl bg-cream/50 p-4 text-center text-sm text-ink/80">
+                      Grooming report is being prepared by the partner.
+                    </div>
+                  ) : null}
                 </div>
-              </article>
-            ))}
+              );
+            })}
           </div>
         ) : (
           <div className="mt-7">
-            <DashboardEmptyState icon={History} title="No grooming history yet." description="Request your first in-home grooming session above to get started." />
+            <DashboardEmptyState
+              icon={Scissors}
+              title="No grooming history yet."
+              description="Your completed sessions and groomer reports will appear here."
+            />
           </div>
         )}
       </DashboardPanel>

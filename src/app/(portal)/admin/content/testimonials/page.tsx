@@ -23,9 +23,9 @@ export default async function AdminTestimonialsPage() {
   return (
     <PortalShell mode="admin" displayName={identity.displayName}>
       <div className="max-w-7xl pb-12">
-        <p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-ink/50">content moderation</p>
+        <p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-ink/80">content moderation</p>
         <h1 className="mt-2 font-display text-4xl font-semibold tracking-[-0.04em]">Testimonial Review</h1>
-        <p className="mt-3 max-w-3xl text-sm leading-6 text-ink/60 mb-10">
+        <p className="mt-3 max-w-3xl text-sm leading-6 text-ink/80 mb-10">
           Review and approve customer stories before they appear on the public website.
         </p>
 
@@ -46,13 +46,13 @@ export default async function AdminTestimonialsPage() {
                 </div>
 
                 <h2 className="mt-5 font-display text-2xl font-semibold">{t.displayName}</h2>
-                {t.city && <p className="mt-1 text-sm text-ink/50">{t.city}</p>}
+                {t.city && <p className="mt-1 text-sm text-ink/80">{t.city}</p>}
 
-                <blockquote className="mt-4 border-l-2 border-indigo/30 pl-4 text-sm italic leading-6 text-ink/60">
+                <blockquote className="mt-4 border-l-2 border-indigo/30 pl-4 text-sm italic leading-6 text-ink/80">
                   &ldquo;{t.quote}&rdquo;
                 </blockquote>
 
-                <p className="mt-3 text-xs text-ink/40">
+                <p className="mt-3 text-xs text-ink/80">
                   Submitted {t.createdAt.toLocaleString("en-IN")}
                 </p>
 

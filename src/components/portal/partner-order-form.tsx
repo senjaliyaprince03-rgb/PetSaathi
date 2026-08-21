@@ -36,7 +36,7 @@ export function PartnerOrderForm({ services, pets }: { services: Service[]; pets
       <div className="grid lg:grid-cols-[0.72fr_1.28fr]">
         <div className="relative overflow-hidden border-b border-paper/10 p-6 lg:border-b-0 lg:border-r">
           <div className="absolute -left-14 -top-14 h-48 w-48 rounded-full bg-indigo/40 blur-3xl" />
-          <div className="relative"><span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-saffron text-ink"><CalendarPlus className="h-5 w-5" /></span><p className="mt-8 text-[0.6rem] font-bold uppercase tracking-[0.2em] text-saffron">Controlled request</p><h3 className="mt-3 font-display text-3xl font-semibold tracking-[-0.04em]">Ask a verified partner.</h3><p className="mt-3 text-sm leading-6 text-paper/55">The partner reviews timing and availability before commercial terms or payment are discussed.</p><div className="mt-7 grid gap-3"><Rule icon={BadgeCheck} text="Provider verification checked" /><Rule icon={ShieldCheck} text="Sensitive access details stay out" /><Rule icon={CheckCircle2} text="Status remains in your ledger" /></div></div>
+          <div className="relative"><span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-saffron text-ink"><CalendarPlus className="h-5 w-5" /></span><p className="mt-8 text-[0.6rem] font-bold uppercase tracking-[0.2em] text-saffron">Controlled request</p><h3 className="mt-3 font-display text-3xl font-semibold tracking-[-0.04em]">Ask a verified partner.</h3><p className="mt-3 text-sm leading-6 text-paper/80">The partner reviews timing and availability before commercial terms or payment are discussed.</p><div className="mt-7 grid gap-3"><Rule icon={BadgeCheck} text="Provider verification checked" /><Rule icon={ShieldCheck} text="Sensitive access details stay out" /><Rule icon={CheckCircle2} text="Status remains in your ledger" /></div></div>
         </div>
         <div className="bg-paper p-6 text-ink sm:p-7">
           <div className="grid gap-4 sm:grid-cols-2">
@@ -57,9 +57,9 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 }
 
 function Rule({ icon: Icon, text }: { icon: typeof BadgeCheck; text: string }) {
-  return <div className="flex items-center gap-3 text-xs text-paper/60"><span className="flex h-8 w-8 items-center justify-center rounded-xl bg-paper/[0.07] text-saffron"><Icon className="h-4 w-4" /></span>{text}</div>;
+  return <div className="flex items-center gap-3 text-xs text-paper/80"><span className="flex h-8 w-8 items-center justify-center rounded-xl bg-paper/[0.07] text-saffron"><Icon className="h-4 w-4" /></span>{text}</div>;
 }
 
 export function PartnerMarketplaceUnavailable() {
-  return <section className="relative mt-7 overflow-hidden rounded-[1.75rem] border border-saffron/20 bg-saffron/10 p-6"><div className="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-coral/10 blur-3xl" /><span className="relative flex h-11 w-11 items-center justify-center rounded-2xl bg-paper text-coral shadow-sm"><CalendarPlus className="h-5 w-5" /></span><h2 className="relative mt-5 font-display text-3xl font-semibold tracking-[-0.04em]">Partner services are not open yet.</h2><p className="relative mt-3 max-w-2xl text-sm leading-6 text-ink/55">The pilot remains closed until contracts, verification requirements and commercial policies are approved. Existing requests stay visible below.</p></section>;
+  return <section className="relative mt-7 overflow-hidden rounded-[1.75rem] border border-saffron/20 bg-saffron/10 p-6"><div className="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-coral/10 blur-3xl" /><span className="relative flex h-11 w-11 items-center justify-center rounded-2xl bg-paper text-coral shadow-sm"><CalendarPlus className="h-5 w-5" /></span><h2 className="relative mt-5 font-display text-3xl font-semibold tracking-[-0.04em]">Partner services are not open yet.</h2><p className="relative mt-3 max-w-2xl text-sm leading-6 text-ink/80">The pilot remains closed until contracts, verification requirements and commercial policies are approved. Existing requests stay visible below.</p></section>;
 }

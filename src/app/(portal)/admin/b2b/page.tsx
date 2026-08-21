@@ -28,15 +28,15 @@ export default async function EnterpriseB2BPage() {
         
         <div className="mt-8 grid gap-5 sm:grid-cols-3">
           <section className="rounded-4xl border border-indigo/10 bg-paper p-6 shadow-lifted">
-            <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-ink/50">Total Organizations</h3>
+            <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-ink/80">Total Organizations</h3>
             <p className="mt-2 font-display text-4xl font-semibold">{orgs.total}</p>
           </section>
           <section className="rounded-4xl border border-indigo/10 bg-paper p-6 shadow-lifted">
-            <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-ink/50">Active Programmes</h3>
+            <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-ink/80">Active Programmes</h3>
             <p className="mt-2 font-display text-4xl font-semibold">{progs.total}</p>
           </section>
           <section className="rounded-4xl border border-indigo/10 bg-paper p-6 shadow-lifted">
-            <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-ink/50">Pipeline Opportunities</h3>
+            <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-ink/80">Pipeline Opportunities</h3>
             <p className="mt-2 font-display text-4xl font-semibold">{totalPipelineOpps}</p>
           </section>
         </div>
@@ -48,7 +48,7 @@ export default async function EnterpriseB2BPage() {
             </div>
             <div>
               <h2 className="font-display text-2xl font-semibold">Organizations</h2>
-              <p className="mt-1 text-sm leading-6 text-ink/60">Manage B2B partners and accounts.</p>
+              <p className="mt-1 text-sm leading-6 text-ink/80">Manage B2B partners and accounts.</p>
             </div>
           </Link>
           
@@ -58,7 +58,7 @@ export default async function EnterpriseB2BPage() {
             </div>
             <div>
               <h2 className="font-display text-2xl font-semibold">CRM Pipeline</h2>
-              <p className="mt-1 text-sm leading-6 text-ink/60">Track B2B sales and onboarding.</p>
+              <p className="mt-1 text-sm leading-6 text-ink/80">Track B2B sales and onboarding.</p>
             </div>
           </Link>
           
@@ -68,7 +68,7 @@ export default async function EnterpriseB2BPage() {
             </div>
             <div>
               <h2 className="font-display text-2xl font-semibold">Programmes</h2>
-              <p className="mt-1 text-sm leading-6 text-ink/60">Active corporate benefit programs.</p>
+              <p className="mt-1 text-sm leading-6 text-ink/80">Active corporate benefit programs.</p>
             </div>
           </Link>
           
@@ -78,7 +78,7 @@ export default async function EnterpriseB2BPage() {
             </div>
             <div>
               <h2 className="font-display text-2xl font-semibold">Invoices</h2>
-              <p className="mt-1 text-sm leading-6 text-ink/60">Enterprise billing and payments.</p>
+              <p className="mt-1 text-sm leading-6 text-ink/80">Enterprise billing and payments.</p>
             </div>
           </Link>
         </div>

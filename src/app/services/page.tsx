@@ -55,7 +55,7 @@ export default function ServicesPage() {
             {services.map(({ slug, name, kicker, description, icon: Icon, image }) => (
               <article
                 key={slug}
-                className="group flex flex-col mx-auto overflow-hidden rounded-[2.5rem] border border-indigo/10 bg-paper p-5 shadow-lifted transition-all duration-500 hover:border-indigo/30 hover:shadow-2xl transform-gpu will-change-transform backface-hidden"
+                className="group flex flex-col mx-auto overflow-hidden rounded-[2.5rem] border border-indigo/10 bg-paper p-5 shadow-lifted transition-all duration-500 hover:border-indigo/30 hover:shadow-2xl"
                 style={{ width: '100%', maxWidth: '368px', height: '446px' }}
               >
                 <div className="relative h-44 w-full shrink-0 overflow-hidden rounded-[1.75rem] bg-indigo/5">
@@ -68,12 +68,12 @@ export default function ServicesPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent opacity-80" />
                   <div className="absolute left-4 top-4 flex items-center gap-2">
-                    <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-paper/90 text-indigo shadow-md backdrop-blur transition-all duration-500 group-hover:scale-110 group-hover:-rotate-6 group-hover:bg-indigo group-hover:text-paper">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-paper text-indigo shadow-md transition-all duration-500 group-hover:scale-110 group-hover:-rotate-6 group-hover:bg-indigo group-hover:text-paper">
                       <Icon className="h-5 w-5" />
                     </span>
                   </div>
                   <div className="absolute right-4 top-4">
-                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-paper/90 text-ink/60 shadow-md backdrop-blur transition-all duration-500 group-hover:bg-coral group-hover:text-paper group-hover:translate-x-1 group-hover:-translate-y-1">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-paper text-ink/80 shadow-md transition-all duration-500 group-hover:bg-coral group-hover:text-paper group-hover:translate-x-1 group-hover:-translate-y-1">
                       <ChevronRight className="h-4 w-4 transition-transform duration-500" />
                     </span>
                   </div>

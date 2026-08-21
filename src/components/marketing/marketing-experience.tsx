@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -44,6 +46,14 @@ import { TextReveal, MagneticButton, AnimosCard, ScrollStaggerContainer, ScrollS
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
 import { services, trustSignals } from "@/modules/catalog/services";
+import dynamic from "next/dynamic";
+
+
+
+const LazyAnimatedLogo = dynamic(() => import("@/components/3d/animated-logo").then(mod => mod.AnimatedLogo), {
+  ssr: false,
+  loading: () => <div className="h-11 w-11 animate-pulse bg-indigo/5 rounded-full" />
+});
 
 const careSteps = [
   { number: "01", title: "Share the care context", copy: "Choose the service, pet, place and time without exposing more information than the request needs.", icon: PawPrint },
@@ -59,6 +69,35 @@ const questions = [
   ["What happens if care does not go as planned?", "Support, incident triage, replacement matching, refunds and corrective actions use explicit workflows with authorised decisions and recorded history."]
 ] as const;
 
+function FaqAccordionItem({ question, answer }: { question: string, answer: string }) {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <div className={cn("group rounded-3xl border border-indigo/10 bg-paper/85 p-5 transition-shadow duration-300", isOpen && "shadow-lifted")}>
+      <button 
+        type="button" 
+        onClick={() => setIsOpen(!isOpen)} 
+        className="flex w-full cursor-pointer items-center justify-between gap-4 text-left font-display text-xl font-semibold outline-none"
+      >
+        <span>{question}</span>
+        <span className={cn("flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-indigo/[0.07] text-indigo transition-transform duration-300", isOpen && "rotate-45")}>+</span>
+      </button>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="overflow-hidden"
+          >
+            <p className="mt-4 pr-9 text-sm leading-7 text-ink/80">{answer}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
 export function MarketingExperience() {
   return (
     <main className="min-h-screen overflow-hidden bg-cream text-ink" data-motion-skip>
@@ -67,17 +106,21 @@ export function MarketingExperience() {
         <div className="mx-auto flex min-h-[4.5rem] max-w-container-max items-center justify-between rounded-full border border-paper/80 bg-paper/95 px-4 shadow-lifted backdrop-blur-2xl sm:px-6">
           <PetSaathiLogo />
           <nav aria-label="Primary navigation" className="hidden items-center gap-7 lg:flex">
-            <Link href={"/services" as Route} className="text-sm font-bold text-ink/70 transition hover:text-ink">Services</Link>
-            <Link href={"/caregivers" as Route} className="text-sm font-bold text-ink/70 transition hover:text-ink">Saathis</Link>
-            <Link href={"/safety" as Route} className="text-sm font-bold text-ink/70 transition hover:text-ink">Safety</Link>
-            <Link href={"/societies" as Route} className="text-sm font-bold text-ink/70 transition hover:text-ink">Societies</Link>
-            <Link href={"/about" as Route} className="text-sm font-bold text-ink/70 transition hover:text-ink">About</Link>
+            <Link href={"/services" as Route} className="text-sm font-bold text-ink/80 transition hover:text-ink">Services</Link>
+            <Link href={"/caregivers" as Route} className="text-sm font-bold text-ink/80 transition hover:text-ink">Saathis</Link>
+            <Link href={"/safety" as Route} className="text-sm font-bold text-ink/80 transition hover:text-ink">Safety</Link>
+            <Link href={"/societies" as Route} className="text-sm font-bold text-ink/80 transition hover:text-ink">Societies</Link>
+            <Link href={"/about" as Route} className="text-sm font-bold text-ink/80 transition hover:text-ink">About</Link>
           </nav>
           <div className="flex items-center gap-4">
-            <Link href={"/login" as Route} className="hidden text-sm font-bold text-ink sm:block">Sign in</Link>
-            <Link href={"/book" as Route} className={cn(buttonVariants({ variant: "primary", size: "default" }), "rounded-full font-bold bg-[#301F30] hover:bg-[#301F30]/90 text-white")}>
-              Find care <ArrowRight className="ml-1 h-4 w-4" />
-            </Link>
+            <MagneticButton strength={0.2}>
+              <Link href={"/login" as Route} className="hidden text-sm font-bold text-ink sm:block">Sign in</Link>
+            </MagneticButton>
+            <MagneticButton strength={0.4}>
+              <Link href={"/book" as Route} className={cn(buttonVariants({ variant: "primary", size: "default" }), "rounded-full font-bold bg-[#301F30] hover:bg-[#301F30]/90 text-white")}>
+                Find care <ArrowRight className="ml-1 h-4 w-4" />
+              </Link>
+            </MagneticButton>
           </div>
         </div>
       </header>
@@ -90,7 +133,7 @@ export function MarketingExperience() {
             fill
             priority
             sizes="100vw"
-            className="object-cover object-center"
+            className="object-cover object-center mix-blend-overlay"
             aria-hidden="true"
             data-testid="marketing-hero-background"
           />
@@ -123,21 +166,29 @@ export function MarketingExperience() {
             <ScrollReveal direction="up" delay={0.24}>
               <Float3D className="mt-12 flex flex-col items-start gap-6 sm:flex-row sm:items-center">
                 {/* Left side: Overlapping circles */}
-                <div className="flex -space-x-4">
-                  <div className="relative h-16 w-16 overflow-hidden rounded-full border-2 border-white ring-2 ring-white shadow-md">
-                    <Image src="/images/avatar-1.jpg" alt="Pet parent" fill sizes="64px" className="object-cover" />
-                  </div>
-                  <div className="relative h-16 w-16 overflow-hidden rounded-full border-2 border-white ring-2 ring-white shadow-md">
-                    <Image src="/images/avatar-2.jpg" alt="Pet parent" fill sizes="64px" className="object-cover" />
-                  </div>
-                  <div className="relative h-16 w-16 overflow-hidden rounded-full border-2 border-white ring-2 ring-white shadow-md">
-                    <Image src="/images/avatar-3.jpg" alt="Pet parent" fill sizes="64px" className="object-cover" />
-                  </div>
-                  <div className="relative z-10 flex h-16 w-16 flex-col items-center justify-center rounded-full border-2 border-[#D4AF37] bg-[#f8f5f0] shadow-md ring-2 ring-white">
-                    <span className="font-display text-sm font-bold leading-none text-[#987634]">Care</span>
-                    <span className="text-[0.4rem] font-bold tracking-widest text-[#987634] uppercase mt-0.5">Plans</span>
-                  </div>
-                </div>
+                <ScrollStaggerContainer className="flex -space-x-4">
+                  <ScrollStaggerItem>
+                    <div className="relative h-16 w-16 overflow-hidden rounded-full border-2 border-white ring-2 ring-white shadow-md">
+                      <Image src="/images/avatar-1.jpg" alt="Pet parent" fill sizes="64px" className="object-cover" />
+                    </div>
+                  </ScrollStaggerItem>
+                  <ScrollStaggerItem>
+                    <div className="relative h-16 w-16 overflow-hidden rounded-full border-2 border-white ring-2 ring-white shadow-md">
+                      <Image src="/images/avatar-2.jpg" alt="Pet parent" fill sizes="64px" className="object-cover" />
+                    </div>
+                  </ScrollStaggerItem>
+                  <ScrollStaggerItem>
+                    <div className="relative h-16 w-16 overflow-hidden rounded-full border-2 border-white ring-2 ring-white shadow-md">
+                      <Image src="/images/avatar-3.jpg" alt="Pet parent" fill sizes="64px" className="object-cover" />
+                    </div>
+                  </ScrollStaggerItem>
+                  <ScrollStaggerItem>
+                    <div className="relative z-10 flex h-16 w-16 flex-col items-center justify-center rounded-full border-2 border-[#D4AF37] bg-[#f8f5f0] shadow-md ring-2 ring-white">
+                      <span className="font-display text-sm font-bold leading-none text-[#987634]">Care</span>
+                      <span className="text-[0.4rem] font-bold tracking-widest text-[#987634] uppercase mt-0.5">Plans</span>
+                    </div>
+                  </ScrollStaggerItem>
+                </ScrollStaggerContainer>
 
                 {/* Right side: Stars, Rating, and Text */}
                 <div className="flex flex-col justify-center">
@@ -166,7 +217,9 @@ export function MarketingExperience() {
 
           <div className="relative z-10 w-full pt-8 self-center">
             <ScrollReveal direction="up" delay={0.24}>
-              <CareMatchFinder />
+              <AnimosCard glare={false}>
+                <CareMatchFinder />
+              </AnimosCard>
             </ScrollReveal>
             <ScrollReveal direction="up" delay={0.32}>
               <div className="mt-4 flex flex-wrap items-center justify-between gap-y-3 text-xs font-bold text-white drop-shadow-md w-full">
@@ -179,7 +232,7 @@ export function MarketingExperience() {
         </div>
       </section>
 
-      <section className="bg-cream py-24 sm:py-32 border-b border-indigo/10 overflow-hidden">
+      <section className="bg-cream py-12 sm:py-16 border-b border-indigo/10 overflow-hidden">
         <div className="container-shell grid items-start gap-16 lg:grid-cols-[1.15fr_0.85fr]">
           <HeroVideoShowcase />
           
@@ -187,7 +240,7 @@ export function MarketingExperience() {
             <div className="flex h-full flex-col justify-center">
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-coral font-outfit">The PetSaathi Standard</p>
               <h2 className="mt-5 font-display text-5xl font-semibold leading-[1.05] tracking-[-0.04em] text-ink sm:text-[4rem]">Every detail, meticulously managed.</h2>
-              <p className="mt-6 max-w-md text-base leading-8 text-ink/60">We go beyond simple connections. From health support to specialized grooming, discover our ecosystem designed for pet longevity and owner peace of mind.</p>
+              <p className="mt-6 max-w-md text-base leading-8 text-ink/80">We go beyond simple connections. From health support to specialized grooming, discover our ecosystem designed for pet longevity and owner peace of mind.</p>
               
               <ul className="mt-10 flex flex-col gap-6">
                 <li className="flex gap-4">
@@ -196,7 +249,7 @@ export function MarketingExperience() {
                   </div>
                   <div>
                     <h3 className="font-bold text-ink">Service-Specific Permission Checks</h3>
-                    <p className="mt-1 text-sm leading-6 text-ink/60">Every caregiver passes rigorous background checks.</p>
+                    <p className="mt-1 text-sm leading-6 text-ink/80">Every caregiver passes rigorous background checks.</p>
                   </div>
                 </li>
                 <li className="flex gap-4">
@@ -205,7 +258,7 @@ export function MarketingExperience() {
                   </div>
                   <div>
                     <h3 className="font-bold text-ink">Verified Photo Updates</h3>
-                    <p className="mt-1 text-sm leading-6 text-ink/60">Follow along with event-based tracking.</p>
+                    <p className="mt-1 text-sm leading-6 text-ink/80">Follow along with event-based tracking.</p>
                   </div>
                 </li>
                 <li className="flex gap-4">
@@ -214,7 +267,7 @@ export function MarketingExperience() {
                   </div>
                   <div>
                     <h3 className="font-bold text-ink">Accountable Human Support</h3>
-                    <p className="mt-1 text-sm leading-6 text-ink/60">Our safety team is available during all active service hours.</p>
+                    <p className="mt-1 text-sm leading-6 text-ink/80">Our safety team is available during all active service hours.</p>
                   </div>
                 </li>
               </ul>
@@ -241,7 +294,7 @@ export function MarketingExperience() {
           {[...Array(4)].flatMap(() => trustSignals).map(({ label, icon: Icon }, i) => (
             <span
               key={`t1-${i}`}
-              className="flex shrink-0 items-center gap-2.5 px-8 text-sm font-bold text-ink/55 transition-colors duration-300 hover:text-indigo"
+              className="flex shrink-0 items-center gap-2.5 px-8 text-sm font-bold text-ink/80 transition-colors duration-300 hover:text-indigo"
             >
               <span className="relative flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-coral/10">
                 <Icon className="h-3.5 w-3.5 text-coral" />
@@ -259,15 +312,15 @@ export function MarketingExperience() {
         /* removed tickerPulse */
       `}</style>
 
-      <section className="py-24 sm:py-32" id="services">
+      <section className="py-12 sm:py-16" id="services">
         <div className="container-shell">
-          <ScrollReveal direction="up"><div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end"><div><p className="eyebrow font-outfit">Tailored Pet Care</p><h2 className="section-title mt-5 max-w-[14ch]">Comprehensive Services Designed for Every Need.</h2></div><p className="max-w-xl text-sm font-medium leading-7 text-ink/60">Every service follows service-specific permissions, transparent pricing, structured updates where agreed, and clear human support pathways.</p></div></ScrollReveal>
+          <ScrollReveal direction="up"><div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end"><div><p className="eyebrow font-outfit">Tailored Pet Care</p><h2 className="section-title mt-5 max-w-[14ch]">Comprehensive Services Designed for Every Need.</h2></div><p className="max-w-xl text-sm font-medium leading-7 text-ink/80">Every service follows service-specific permissions, transparent pricing, structured updates where agreed, and clear human support pathways.</p></div></ScrollReveal>
 
           <ScrollStaggerContainer className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {services.map(({ slug, name, kicker, description, icon: Icon, image }) => (
               <ScrollStaggerItem key={slug}>
                 <div className="h-full">
-                  <Link href={`/services/${slug}` as Route} className="group flex h-full flex-col overflow-hidden rounded-5xl border border-indigo/10 bg-paper p-6 shadow-lifted transition-all duration-500 hover:-translate-y-1 hover:border-indigo/30 hover:shadow-soft">
+                  <Link href={`/services/${slug}` as Route} className="group flex h-full flex-col overflow-hidden rounded-5xl border border-indigo/10 bg-paper p-6 shadow-lifted transition-all duration-500 hover:-translate-y-1 hover:border-indigo/30 hover:shadow-soft antialiased">
                     <div className="relative h-48 w-full overflow-hidden rounded-4xl bg-indigo/5">
                       <Image
                         src={image}
@@ -278,10 +331,10 @@ export function MarketingExperience() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent opacity-80" />
                       <div className="absolute left-4 top-4 flex items-center gap-2">
-                        <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-paper/90 text-indigo shadow-md backdrop-blur transition group-hover:bg-indigo group-hover:text-paper"><Icon className="h-5 w-5" /></span>
+                        <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-paper text-indigo shadow-md transition group-hover:bg-indigo group-hover:text-paper"><Icon className="h-5 w-5" /></span>
                       </div>
                       <div className="absolute right-4 top-4">
-                        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-paper/90 text-ink/60 shadow-md backdrop-blur transition group-hover:bg-coral group-hover:text-paper"><ChevronRight className="h-4 w-4" /></span>
+                        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-paper text-ink/80 shadow-md transition group-hover:bg-coral group-hover:text-paper"><ChevronRight className="h-4 w-4" /></span>
                       </div>
                     </div>
                     <div className="flex flex-1 flex-col pt-3">
@@ -290,7 +343,7 @@ export function MarketingExperience() {
                         <h3 className="font-display text-3xl font-bold tracking-[-0.04em] text-ink">{name}</h3>
                       </div>
                       <div className="mt-3 h-[96px]">
-                        <p className="text-sm font-medium leading-6 text-ink/60">{description}</p>
+                        <p className="text-sm font-medium leading-6 text-ink/80">{description}</p>
                       </div>
                       <div className="mt-auto pt-4 border-t border-indigo/10 flex items-center justify-between text-xs font-bold text-indigo group-hover:text-coral transition">
                         <span>See service details</span>
@@ -311,7 +364,7 @@ export function MarketingExperience() {
 
       <CareConcierge />
 
-      <section className="relative overflow-hidden bg-[#2f2032] py-24 text-paper sm:py-32">
+      <section className="relative overflow-hidden bg-[#2f2032] py-12 text-paper sm:py-16">
         <div className="absolute inset-0 luxury-grid opacity-[0.08]" />
         <div className="container-shell relative">
           <ScrollReveal direction="up"><div className="max-w-3xl"><p className="eyebrow !text-saffron">A care protocol, not a loose transaction</p><h2 className="mt-5 font-display text-5xl font-semibold leading-[0.98] tracking-[-0.055em] sm:text-7xl">Four clear moments. One accountable thread.</h2></div></ScrollReveal>
@@ -319,13 +372,13 @@ export function MarketingExperience() {
           <ScrollStaggerContainer className="mt-14 grid gap-4 lg:grid-cols-4">
             {careSteps.map(({ number, title, copy, icon: Icon }) => (
               <ScrollStaggerItem key={number}>
-                  <article className="h-full rounded-4xl border border-paper/10 bg-paper/[0.06] p-6 backdrop-blur transition duration-300 hover:border-saffron/30">
+                  <article className="h-full rounded-4xl border border-paper/10 bg-[#3f2a44] p-6 transition duration-300 hover:border-saffron/30">
                     <div className="flex items-center justify-between">
                       <span className="font-display text-3xl font-semibold text-saffron">{number}</span>
-                      <Icon className="h-5 w-5 text-paper/35" />
+                      <Icon className="h-5 w-5 text-paper/80" />
                     </div>
                     <h3 className="mt-10 font-display text-2xl font-semibold">{title}</h3>
-                    <p className="mt-3 text-sm leading-6 text-paper/52">{copy}</p>
+                    <p className="mt-3 text-sm leading-6 text-paper/80">{copy}</p>
                   </article>
               </ScrollStaggerItem>
             ))}
@@ -333,31 +386,31 @@ export function MarketingExperience() {
         </div>
       </section>
 
-      <section className="py-24 sm:py-32">
+      <section className="py-12 sm:py-16">
         <div className="container-shell grid gap-12 lg:grid-cols-[1fr_0.92fr]">
-          <ScrollReveal direction="left" className="h-full"><div className="relative h-full min-h-[34rem] overflow-hidden rounded-[3.5rem] border border-indigo/10 bg-gradient-to-br from-[#f3eafa] to-[#fff0e8] shadow-soft"><Image src="/images/privacy-stage-illustration.jpg" alt="A pet parent reviewing a protected PetSaathi care record beside her resting dog" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" /><div className="absolute inset-0 bg-gradient-to-t from-ink/30 via-transparent to-transparent" /><div className="absolute bottom-6 left-6 right-6 rounded-3xl border border-paper/30 bg-paper/85 p-5 backdrop-blur"><p className="text-xs font-bold uppercase tracking-[0.16em] text-indigo/60">Privacy by stage</p><p className="mt-2 font-display text-2xl font-semibold">The right information appears only when the relationship requires it.</p></div></div></ScrollReveal>
-          <ScrollReveal direction="right"><div><p className="eyebrow">Trust without theatre</p><h2 className="section-title mt-5">No single badge can promise perfect care.</h2><p className="mt-6 text-base leading-8 text-ink/54">PetSaathi combines separate checks, service permissions, careful matching, structured proof and a formal exception path. Each layer has a specific job.</p><div className="mt-8 grid gap-3">{[[ShieldCheck, "Service-specific permissions", "A Saathi receives only the work their current evidence permits."], [Clock3, "Traceable service milestones", "Key moments belong to the booking record, not an unstructured chat."], [HeartHandshake, "People for exceptions", "Sensitive concerns move through support and safety workflows with accountable closure."]].map(([Icon, title, copy]) => { const TrustIcon = Icon as typeof ShieldCheck; return <div key={String(title)} className="flex gap-4 rounded-3xl border border-indigo/10 bg-paper/80 p-5 shadow-sm"><span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-leaf/10 text-leaf"><TrustIcon className="h-5 w-5" /></span><div><h3 className="font-bold">{String(title)}</h3><p className="mt-1 text-sm leading-6 text-ink/48">{String(copy)}</p></div></div>; })}</div><Link href="/safety" className={cn(buttonVariants({ variant: "outline" }), "mt-7")}>Explore the safety model <ArrowRight className="h-4 w-4" /></Link></div></ScrollReveal>
+          <ScrollReveal direction="left" className="h-full"><div className="relative h-full min-h-[34rem] overflow-hidden rounded-[3.5rem] border border-indigo/10 bg-gradient-to-br from-[#f3eafa] to-[#fff0e8] shadow-soft"><Image src="/images/privacy-stage-illustration.jpg" alt="A pet parent reviewing a protected PetSaathi care record beside her resting dog" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" /><div className="absolute inset-0 bg-gradient-to-t from-ink/30 via-transparent to-transparent" /><div className="absolute bottom-6 left-6 right-6 rounded-3xl border border-paper/30 bg-paper p-5"><p className="text-xs font-bold uppercase tracking-[0.16em] text-indigo/80">Privacy by stage</p><p className="mt-2 font-display text-2xl font-semibold">The right information appears only when the relationship requires it.</p></div></div></ScrollReveal>
+          <ScrollReveal direction="right"><div><p className="eyebrow">Trust without theatre</p><h2 className="section-title mt-5">No single badge can promise perfect care.</h2><p className="mt-6 text-base leading-8 text-ink/80">PetSaathi combines separate checks, service permissions, careful matching, structured proof and a formal exception path. Each layer has a specific job.</p><div className="mt-8 grid gap-3">{[[ShieldCheck, "Service-specific permissions", "A Saathi receives only the work their current evidence permits."], [Clock3, "Traceable service milestones", "Key moments belong to the booking record, not an unstructured chat."], [HeartHandshake, "People for exceptions", "Sensitive concerns move through support and safety workflows with accountable closure."]].map(([Icon, title, copy]) => { const TrustIcon = Icon as typeof ShieldCheck; return <div key={String(title)} className="flex gap-4 rounded-3xl border border-indigo/10 bg-paper/80 p-5 shadow-sm"><span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-leaf/10 text-leaf"><TrustIcon className="h-5 w-5" /></span><div><h3 className="font-bold">{String(title)}</h3><p className="mt-1 text-sm leading-6 text-ink/80">{String(copy)}</p></div></div>; })}</div><Link href="/safety" className={cn(buttonVariants({ variant: "outline" }), "mt-7")}>Explore the safety model <ArrowRight className="h-4 w-4" /></Link></div></ScrollReveal>
         </div>
       </section>
 
-      <section className="pb-24 sm:pb-32">
+      <section className="pb-12 sm:pb-16">
         <div className="container-shell">
           <Scale3D>
             <div className="luxury-grid overflow-hidden rounded-[3.5rem] border border-indigo/10 bg-gradient-to-br from-[#f3eafa] via-paper to-[#fff0e8] p-7 shadow-soft sm:p-12 lg:p-16">
-              <div className="grid gap-12 lg:grid-cols-[0.86fr_1.14fr] lg:items-start"><div><p className="eyebrow">Questions before the first request</p><h2 className="mt-5 font-display text-5xl font-semibold leading-[1] tracking-[-0.055em] sm:text-6xl">Clarity is part of care.</h2><p className="mt-5 max-w-md text-sm leading-7 text-ink/50">PetSaathi should be easy to understand before you share pet details, approve a match or pay.</p></div><div className="grid gap-3">{questions.map(([question, answer]) => <details key={question} className="group rounded-3xl border border-indigo/10 bg-paper/85 p-5 open:shadow-lifted"><summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-xl font-semibold"><span>{question}</span><span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-indigo/[0.07] text-indigo transition group-open:rotate-45">+</span></summary><p className="mt-4 pr-9 text-sm leading-7 text-ink/52">{answer}</p></details>)}</div></div>
+              <div className="grid gap-12 lg:grid-cols-[0.86fr_1.14fr] lg:items-start"><div><p className="eyebrow">Questions before the first request</p><h2 className="mt-5 font-display text-5xl font-semibold leading-[1] tracking-[-0.055em] sm:text-6xl">Clarity is part of care.</h2><p className="mt-5 max-w-md text-sm leading-7 text-ink/80">PetSaathi should be easy to understand before you share pet details, approve a match or pay.</p></div><div className="grid gap-3">{questions.map(([question, answer]) => <FaqAccordionItem key={question} question={question} answer={answer} />)}</div></div>
             </div>
           </Scale3D>
         </div>
       </section>
 
-      <section className="pb-24">
+      <section className="pb-12">
         <div className="container-shell">
           <div className="relative overflow-hidden rounded-[3.5rem] bg-coral p-8 text-paper shadow-soft sm:p-14 lg:p-16">
             <RotateOnScroll className="absolute -right-20 -top-20 h-80 w-80">
               <div className="h-full w-full rounded-full border-[54px] border-paper/10" />
             </RotateOnScroll>
-            <div className="relative max-w-3xl">
-              <p className="text-[0.65rem] font-bold uppercase tracking-[0.22em] text-paper/65">Ready when their day needs you</p>
+            <ScrollReveal direction="up" className="relative max-w-3xl">
+              <p className="text-[0.65rem] font-bold uppercase tracking-[0.22em] text-paper/80">Ready when their day needs you</p>
               <h2 className="mt-5 font-display text-5xl font-semibold leading-[0.98] tracking-[-0.055em] sm:text-7xl">Plan thoughtful care in one calm flow.</h2>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <MagneticButton strength={0.3}>
@@ -367,7 +420,7 @@ export function MarketingExperience() {
                   <Link href="/become-a-saathi" className="inline-flex min-h-14 items-center justify-center rounded-full border border-paper/30 px-7 text-sm font-bold text-paper transition hover:bg-paper/10">Become a Saathi</Link>
                 </MagneticButton>
               </div>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -376,7 +429,7 @@ export function MarketingExperience() {
         <div className="container-shell grid gap-10 md:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr]">
           <div>
             <PetSaathiLogo inverted={true} />
-            <p className="mt-5 max-w-sm text-sm leading-7 text-white/70">India-focused, trust-first pet care built around careful handoffs and traceable service delivery.</p>
+            <p className="mt-5 max-w-sm text-sm leading-7 text-white/80">India-focused, trust-first pet care built around careful handoffs and traceable service delivery.</p>
           </div>
           
           {[
@@ -403,12 +456,12 @@ export function MarketingExperience() {
             ]]
           ].map(([title, links]) => (
             <div key={String(title)}>
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-white/50">{String(title)}</p>
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-white/80">{String(title)}</p>
               <ul className="mt-5 grid gap-4">
                 {(links as [string, Route, React.ElementType<{ className?: string }>][]).map(([label, href, Icon]) => (
                   <li key={href}>
-                    <Link href={href} className="group flex w-fit items-center gap-2 text-sm font-medium text-white/70 transition hover:text-white">
-                      <Icon className="h-4 w-4 text-white/40 transition group-hover:text-saffron" />
+                    <Link href={href} className="group flex w-fit items-center gap-2 text-sm font-medium text-white/80 transition hover:text-white">
+                      <Icon className="h-4 w-4 text-white/80 transition group-hover:text-saffron" />
                       {label}
                     </Link>
                   </li>
@@ -419,8 +472,8 @@ export function MarketingExperience() {
         </div>
         <div className="container-shell mt-16 flex flex-col gap-6 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-6">
-            <p className="text-xs font-medium text-white/50">© {new Date().getFullYear()} PetSaathi. All rights reserved.</p>
-            <p className="text-xs font-medium text-white/50">Care feels closer.</p>
+            <p className="text-xs font-medium text-white/80">© {new Date().getFullYear()} PetSaathi. All rights reserved.</p>
+            <p className="text-xs font-medium text-white/80">Care feels closer.</p>
           </div>
           <div className="flex items-center gap-3">
             {/* Twitter / X — black background, white bird */}
@@ -451,7 +504,7 @@ export function MarketingExperience() {
         </div>
       </footer>
 
-      <nav aria-label="Mobile navigation" className="fixed inset-x-3 bottom-3 z-50 grid grid-cols-4 rounded-[1.75rem] border border-paper/80 bg-paper/90 p-2 shadow-soft backdrop-blur-2xl lg:hidden">{[[Home, "Home", "/"], [PawPrint, "Services", "/services"], [MapPin, "Find care", "/book"], [LogIn, "Sign in", "/login"]].map(([Icon, label, href]) => { const NavIcon = Icon as typeof Home; return <Link key={String(label)} href={href as Route} className="flex flex-col items-center gap-1 rounded-2xl px-2 py-2 text-[0.62rem] font-bold text-ink/50 transition hover:bg-indigo/[0.06] hover:text-indigo"><NavIcon className="h-4 w-4" />{String(label)}</Link>; })}</nav>
+      <nav aria-label="Mobile navigation" className="fixed inset-x-3 bottom-3 z-50 grid grid-cols-4 rounded-[1.75rem] border border-paper/80 bg-paper/90 p-2 shadow-soft backdrop-blur-2xl lg:hidden">{[[Home, "Home", "/"], [PawPrint, "Services", "/services"], [MapPin, "Find care", "/book"], [LogIn, "Sign in", "/login"]].map(([Icon, label, href]) => { const NavIcon = Icon as typeof Home; return <Link key={String(label)} href={href as Route} className="flex flex-col items-center gap-1 rounded-2xl px-2 py-2 text-[0.62rem] font-bold text-ink/80 transition hover:bg-indigo/[0.06] hover:text-indigo"><NavIcon className="h-4 w-4" />{String(label)}</Link>; })}</nav>
     </main>
   );
 }

@@ -49,11 +49,14 @@ export function DashboardHeading({
   className?: string;
 }) {
   return (
-    <div className={cn("flex flex-col justify-between gap-4 sm:flex-row sm:items-end", className)}>
+    <div className={cn("flex flex-col justify-between gap-6 sm:flex-row sm:items-end", className)}>
       <div className="max-w-3xl">
-        <p className="text-[0.6rem] font-bold uppercase tracking-[0.2em] text-coral">{eyebrow}</p>
-        <h2 className="mt-3 font-display text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">{title}</h2>
-        {description ? <p className="mt-2 max-w-2xl text-sm leading-6 text-ink/50">{description}</p> : null}
+        <div className="flex items-center gap-3">
+          <span className="h-px w-6 bg-coral/40" />
+          <p className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-coral">{eyebrow}</p>
+        </div>
+        <h2 className="mt-4 font-display text-4xl font-semibold tracking-[-0.04em] text-ink sm:text-5xl">{title}</h2>
+        {description ? <p className="mt-3 max-w-2xl text-base leading-7 text-ink/80">{description}</p> : null}
       </div>
       {action ? <div className="shrink-0">{action}</div> : null}
     </div>
@@ -85,17 +88,20 @@ export function MetricCard({
   return (
     <article
       className={cn(
-        "group rounded-[1.6rem] border border-ink/[0.07] bg-paper p-5 transition duration-300 hover:-translate-y-1 hover:border-indigo/20 hover:shadow-lifted",
+        "group relative overflow-hidden rounded-[2rem] border border-ink/[0.07] bg-paper p-6 transition-all duration-300 hover:-translate-y-1 hover:border-indigo/20 hover:shadow-2xl",
         className,
       )}
       data-motion="rise"
     >
-      <span className={cn("flex h-10 w-10 items-center justify-center rounded-2xl", tones[tone])}>
-        <Icon className="h-[18px] w-[18px]" />
-      </span>
-      <p className="mt-5 text-[0.58rem] font-bold uppercase tracking-[0.18em] text-ink/35">{label}</p>
-      <p className="mt-1.5 font-display text-2xl font-semibold tracking-[-0.035em]">{value}</p>
-      {hint ? <p className="mt-1.5 text-xs leading-5 text-ink/42">{hint}</p> : null}
+      <div className={cn("absolute -right-6 -top-6 h-32 w-32 rounded-full opacity-10 transition-transform duration-500 group-hover:scale-150", tones[tone].split(" ")[0])} />
+      <div className="relative">
+        <span className={cn("flex h-12 w-12 items-center justify-center rounded-[1.2rem] shadow-sm", tones[tone])}>
+          <Icon className="h-5 w-5" />
+        </span>
+        <p className="mt-6 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-ink/80">{label}</p>
+        <p className="mt-1.5 font-display text-3xl font-semibold tracking-[-0.035em] text-ink">{value}</p>
+        {hint ? <p className="mt-2 text-xs leading-5 text-ink/80">{hint}</p> : null}
+      </div>
     </article>
   );
 }
@@ -132,14 +138,19 @@ export function DashboardEmptyState({
   compact?: boolean;
 }) {
   return (
-    <div className={cn("relative overflow-hidden rounded-[1.75rem] border border-dashed border-indigo/15 bg-cream/35 text-center", compact ? "p-6" : "p-9 sm:p-10")}>
-      <div className="absolute left-1/2 top-0 h-32 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo/10 blur-3xl" />
-      <span className="relative mx-auto flex h-14 w-14 items-center justify-center rounded-[1.25rem] bg-paper text-indigo shadow-lifted">
-        <Icon className="h-6 w-6 animate-[float_4s_ease-in-out_infinite]" />
+    <div className={cn("relative overflow-hidden rounded-[2rem] border border-dashed border-indigo/20 bg-gradient-to-b from-cream/20 to-cream/5 text-center transition-all duration-500 hover:border-indigo/40 hover:bg-cream/40", compact ? "p-6" : "p-10 sm:p-12")}>
+      <div className="absolute left-1/2 top-0 h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo/15 blur-3xl transition-transform duration-700 hover:scale-150" />
+      <div className="absolute bottom-0 left-1/2 h-32 w-32 -translate-x-1/2 translate-y-1/2 rounded-full bg-coral/10 blur-3xl" />
+      
+      <span className="relative mx-auto flex h-16 w-16 items-center justify-center rounded-[1.5rem] bg-paper text-indigo shadow-[0_8px_30px_rgb(var(--indigo)/0.12)] ring-1 ring-indigo/5">
+        <Icon className="h-7 w-7 animate-[float_4s_ease-in-out_infinite]" />
       </span>
-      <h3 className={cn("relative mt-5 font-display font-semibold tracking-[-0.035em]", compact ? "text-2xl" : "text-3xl")}>{title}</h3>
-      <p className="relative mx-auto mt-2 max-w-md text-sm leading-6 text-ink/48">{description}</p>
-      {action ? <div className="relative mt-5">{action}</div> : null}
+      
+      <div className="relative mt-7">
+        <h3 className={cn("font-display font-semibold tracking-[-0.035em] text-ink", compact ? "text-2xl" : "text-3xl")}>{title}</h3>
+        <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-ink/80">{description}</p>
+        {action ? <div className="mt-7 flex justify-center">{action}</div> : null}
+      </div>
     </div>
   );
 }
@@ -152,14 +163,14 @@ export function ProgressRing({ value, label, detail }: { value: number; label: s
     <div className="flex items-center gap-4">
       <div className="relative h-24 w-24 shrink-0">
         <svg viewBox="0 0 100 100" className="h-full w-full -rotate-90" aria-hidden="true">
-          <circle cx="50" cy="50" r="42" fill="none" stroke="currentColor" strokeWidth="8" className="text-paper/10" />
+          <circle cx="50" cy="50" r="42" fill="none" stroke="currentColor" strokeWidth="8" className="text-paper/80" />
           <circle cx="50" cy="50" r="42" fill="none" stroke="currentColor" strokeWidth="8" strokeLinecap="round" strokeDasharray={circumference} strokeDashoffset={offset} className="text-saffron transition-all duration-700" />
         </svg>
         <span className="absolute inset-0 flex items-center justify-center font-display text-xl font-semibold">{Math.round(safeValue)}%</span>
       </div>
       <div>
-        <p className="text-[0.58rem] font-bold uppercase tracking-[0.18em] text-paper/40">{label}</p>
-        <p className="mt-2 text-sm leading-6 text-paper/65">{detail}</p>
+        <p className="text-[0.58rem] font-bold uppercase tracking-[0.18em] text-paper/80">{label}</p>
+        <p className="mt-2 text-sm leading-6 text-paper/80">{detail}</p>
       </div>
     </div>
   );

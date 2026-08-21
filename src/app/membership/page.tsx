@@ -98,7 +98,7 @@ export default async function MembershipPage() {
               <article key={number} className="rounded-3xl bg-paper/80 p-5">
                 <p className="font-display text-3xl font-semibold text-coral">{number}</p>
                 <h2 className="mt-4 font-display text-2xl font-semibold">{title}</h2>
-                <p className="mt-2 text-sm leading-6 text-ink/50">{copy}</p>
+                <p className="mt-2 text-sm leading-6 text-ink/80">{copy}</p>
               </article>
             ))}
           </section>
@@ -112,7 +112,7 @@ export default async function MembershipPage() {
               <h2 className="mt-5 font-display text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">
                 Membership works best when the routine stays predictable.
               </h2>
-              <p className="mt-4 max-w-xl text-sm leading-7 text-paper/72">
+              <p className="mt-4 max-w-xl text-sm leading-7 text-paper/80">
                 The plan is meant for families that want regular care, careful matching,
                 and fewer surprises around scheduling.
               </p>
@@ -121,7 +121,7 @@ export default async function MembershipPage() {
                   <div key={title} className="rounded-3xl border border-paper/10 bg-paper/[0.05] p-5">
                     <Icon className="h-6 w-6 text-saffron" />
                     <h3 className="mt-4 font-display text-xl font-semibold">{title}</h3>
-                    <p className="mt-2 text-sm leading-6 text-paper/68">{copy}</p>
+                    <p className="mt-2 text-sm leading-6 text-paper/80">{copy}</p>
                   </div>
                 ))}
               </div>
@@ -143,7 +143,7 @@ export default async function MembershipPage() {
                     </div>
                     <div>
                       <h3 className="font-display text-xl font-semibold">{title}</h3>
-                      <p className="mt-1 text-sm leading-6 text-ink/55">{copy}</p>
+                      <p className="mt-1 text-sm leading-6 text-ink/80">{copy}</p>
                     </div>
                   </div>
                 ))}
@@ -167,12 +167,12 @@ export default async function MembershipPage() {
               {plans.map((plan) => (
                 <article key={plan.id} className="rounded-[2.5rem] border border-ink/10 bg-paper p-8 shadow-lifted">
                   <Repeat2 className="h-7 w-7 text-indigo" />
-                  <p className="mt-8 text-xs font-bold uppercase tracking-[0.17em] text-ink/45">{plan.audience}</p>
+                  <p className="mt-8 text-xs font-bold uppercase tracking-[0.17em] text-ink/80">{plan.audience}</p>
                   <h2 className="mt-2 font-display text-4xl font-semibold">{plan.name}</h2>
                   <p className="mt-5 font-display text-3xl font-semibold">
-                    ₹{(plan.pricePaise / 100).toLocaleString("en-IN")} <span className="font-sans text-sm text-ink/45">/ {plan.billingInterval.toLowerCase()}</span>
+                    ₹{(plan.pricePaise / 100).toLocaleString("en-IN")} <span className="font-sans text-sm text-ink/80">/ {plan.billingInterval.toLowerCase()}</span>
                   </p>
-                  <div className="mt-5 flex items-start gap-2 text-sm text-ink/55">
+                  <div className="mt-5 flex items-start gap-2 text-sm text-ink/80">
                     <BadgeCheck className="mt-0.5 h-4 w-4 shrink-0 text-leaf" />
                     Entitlements are ledger-backed and activate only after a verified provider webhook.
                   </div>
@@ -193,7 +193,7 @@ export default async function MembershipPage() {
               <article key={title} className="rounded-4xl border border-indigo/10 bg-paper p-6 shadow-soft">
                 <Icon className="h-7 w-7 text-coral" />
                 <h3 className="mt-4 font-display text-2xl font-semibold">{title}</h3>
-                <p className="mt-3 text-sm leading-7 text-ink/55">{copy}</p>
+                <p className="mt-3 text-sm leading-7 text-ink/80">{copy}</p>
               </article>
             ))}
           </div>

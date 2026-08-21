@@ -69,7 +69,7 @@ export default async function PetHealthRecordsPage({ params }: { params: Promise
           <h1 className="font-display text-4xl font-semibold tracking-[-0.04em]">
             {pet.name}&apos;s Health & Service Records
           </h1>
-          <p className="mt-3 text-sm leading-6 text-ink/60">
+          <p className="mt-3 text-sm leading-6 text-ink/80">
             A private timeline of structured health and service events.
           </p>
         </div>
@@ -78,7 +78,7 @@ export default async function PetHealthRecordsPage({ params }: { params: Promise
         <ShieldCheck className="h-6 w-6 shrink-0 text-coral" />
         <div>
           <h4 className="text-sm font-bold text-ink">Privacy & Data Ownership</h4>
-          <p className="mt-2 text-sm leading-6 text-ink/75">
+          <p className="mt-2 text-sm leading-6 text-ink/80">
             These records are restricted to the pet owner and explicitly authorized
             trust-and-safety staff. Staff access is recorded in the audit trail.
           </p>
@@ -88,7 +88,7 @@ export default async function PetHealthRecordsPage({ params }: { params: Promise
       <div className="mt-8 grid gap-4">
         {events.length === 0 ? (
           <div className="rounded-3xl border border-indigo/10 bg-paper p-10 text-center shadow-soft">
-            <p className="text-sm font-semibold text-ink/60">No health records found for this pet.</p>
+            <p className="text-sm font-semibold text-ink/80">No health records found for this pet.</p>
           </div>
         ) : (
           events.map(record => {
@@ -106,19 +106,19 @@ export default async function PetHealthRecordsPage({ params }: { params: Promise
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-col items-start justify-between gap-3 sm:flex-row">
                     <div>
-                      <span className="text-xs font-bold uppercase tracking-[0.16em] text-ink/40">{record.occurredAt.toISOString().split('T')[0]}</span>
+                      <span className="text-xs font-bold uppercase tracking-[0.16em] text-ink/80">{record.occurredAt.toISOString().split('T')[0]}</span>
                       <h3 className="mt-2 font-display text-2xl font-semibold tracking-tight">{record.summary}</h3>
-                      <p className="mt-1 text-sm font-semibold text-ink/75">{record.source}</p>
+                      <p className="mt-1 text-sm font-semibold text-ink/80">{record.source}</p>
                     </div>
                     {record.providerRef && (
-                      <span className="shrink-0 rounded-full bg-cream px-3 py-1.5 text-xs font-bold text-ink/60">
+                      <span className="shrink-0 rounded-full bg-cream px-3 py-1.5 text-xs font-bold text-ink/80">
                         Evidence reference recorded
                       </span>
                     )}
                   </div>
                   {notes && (
                     <div className="mt-5 rounded-2xl bg-cream/50 p-5">
-                      <p className="text-sm leading-6 text-ink/75">{notes}</p>
+                      <p className="text-sm leading-6 text-ink/80">{notes}</p>
                     </div>
                   )}
                 </div>

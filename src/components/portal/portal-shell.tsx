@@ -60,6 +60,7 @@ const portalNavigation: Record<PortalMode, Array<{ icon: LucideIcon; iconName: s
     { icon: Handshake, iconName: "Handshake", label: "Refer a friend", href: "/customer/referrals" as Route },
     { icon: Handshake, iconName: "Handshake", label: "Partner services", href: "/partners" as Route },
     { icon: Sparkles, iconName: "Sparkles", label: "Services Hub", href: "/customer/services" as Route },
+    { icon: WalletCards, iconName: "WalletCards", label: "Subscriptions", href: "/customer/subscriptions" as Route },
     { icon: Bell, iconName: "Bell", label: "Notifications", href: "/notifications" },
     { icon: Settings2, iconName: "Settings2", label: "Communication", href: "/settings/notifications" },
     { icon: Headphones, iconName: "Headphones", label: "Support", href: "/support" },
@@ -74,6 +75,7 @@ const portalNavigation: Record<PortalMode, Array<{ icon: LucideIcon; iconName: s
     { icon: CalendarDays, iconName: "CalendarDays", label: "Availability", href: "/saathi/availability" as Route },
     { icon: ClipboardCheck, iconName: "ClipboardCheck", label: "Report cards", href: "/saathi/reports" as Route },
     { icon: UserRound, iconName: "UserRound", label: "My profile", href: "/saathi/profile" as Route },
+    { icon: Sparkles, iconName: "Sparkles", label: "Pro Membership", href: "/partners/membership" as Route },
     { icon: Bell, iconName: "Bell", label: "Notifications", href: "/notifications" },
     { icon: Settings2, iconName: "Settings2", label: "Communication", href: "/settings/notifications" },
     { icon: Headphones, iconName: "Headphones", label: "Support", href: "/support" },
@@ -90,6 +92,7 @@ const portalNavigation: Record<PortalMode, Array<{ icon: LucideIcon; iconName: s
     { icon: Handshake, iconName: "Handshake", label: "Partners", href: "/admin/partners" as Route },
     { icon: Megaphone, iconName: "Megaphone", label: "Vaccination Camps", href: "/admin/vaccination-camps" as Route },
     { icon: WalletCards, iconName: "WalletCards", label: "Finance", href: "/admin/finance" },
+    { icon: DollarSign, iconName: "DollarSign", label: "Plans", href: "/admin/plans" as Route },
     { icon: ShieldCheck, iconName: "ShieldCheck", label: "Safety queue", href: "/admin/safety" },
     { icon: Bell, iconName: "Bell", label: "Notifications", href: "/notifications" },
     { icon: BadgeCheck, iconName: "BadgeCheck", label: "Verification", href: "/admin/verification" },
@@ -100,17 +103,18 @@ const portalNavigation: Record<PortalMode, Array<{ icon: LucideIcon; iconName: s
   ],
   society: [
     { icon: Home, iconName: "Home", label: "Overview", href: "/society" as Route },
-    { icon: Users, iconName: "Users", label: "Residents", href: "/society" as Route },
-    { icon: PawPrint, iconName: "PawPrint", label: "Saathi pool", href: "/society" as Route },
-    { icon: Megaphone, iconName: "Megaphone", label: "Events & notices", href: "/society" as Route },
+    { icon: Users, iconName: "Users", label: "Residents", href: "/society/residents" as Route },
+    { icon: PawPrint, iconName: "PawPrint", label: "Saathi pool", href: "/society/saathi-pool" as Route },
+    { icon: Megaphone, iconName: "Megaphone", label: "Events & notices", href: "/society/events" as Route },
+    { icon: ShieldCheck, iconName: "ShieldCheck", label: "Gate protocol", href: "/society/gate-protocol" as Route },
     { icon: ShieldCheck, iconName: "ShieldCheck", label: "Safety centre", href: "/safety" },
     { icon: Headphones, iconName: "Headphones", label: "Support", href: "/support" }
   ],
   operator: [
     { icon: Home, iconName: "Home", label: "Overview", href: "/operator" as Route },
-    { icon: MapPin, iconName: "MapPin", label: "Territories", href: "/operator" as Route },
-    { icon: Activity, iconName: "Activity", label: "City health", href: "/operator" as Route },
-    { icon: DollarSign, iconName: "DollarSign", label: "Economics", href: "/operator" as Route },
+    { icon: MapPin, iconName: "MapPin", label: "Territories", href: "/operator/territories" as Route },
+    { icon: Activity, iconName: "Activity", label: "City health", href: "/operator/city-health" as Route },
+    { icon: DollarSign, iconName: "DollarSign", label: "Economics", href: "/operator/economics" as Route },
     { icon: Settings2, iconName: "Settings2", label: "Settings", href: "/settings/notifications" as Route }
   ]
 };
@@ -136,9 +140,9 @@ export function PortalShell({ mode, displayName, metrics, showSummaryCards = tru
             <PetSaathiLogo />
           </div>
           <div className="flex items-center gap-2">
-            <span className="mr-2 hidden text-right sm:block"><span className="block text-[0.6rem] font-bold uppercase tracking-[0.18em] text-ink/40">Signed in as</span><span className="mt-0.5 block text-sm font-bold">{displayName}</span></span>
+            <span className="mr-2 hidden text-right sm:block"><span className="block text-[0.6rem] font-bold uppercase tracking-[0.18em] text-ink/80">Signed in as</span><span className="mt-0.5 block text-sm font-bold">{displayName}</span></span>
             <Link href="/notifications" aria-label="Notifications" className="relative flex h-11 w-11 items-center justify-center rounded-full border border-indigo/10 bg-paper shadow-sm transition hover:-translate-y-0.5 hover:border-coral/35 hover:text-coral"><Bell className="h-[18px] w-[18px]" /><span className="absolute right-2.5 top-2.5 h-1.5 w-1.5 rounded-full bg-coral" /></Link>
-            <a href="/api/auth/signout" aria-label="Sign out" className="flex h-11 w-11 items-center justify-center rounded-full border border-indigo/10 bg-paper shadow-sm transition hover:-translate-y-0.5 hover:text-coral"><LogOut className="h-[18px] w-[18px]" /></a>
+            <Link href="/api/auth/signout" aria-label="Sign out" className="flex h-11 w-11 items-center justify-center rounded-full border border-indigo/10 bg-paper shadow-sm transition hover:-translate-y-0.5 hover:text-coral"><LogOut className="h-[18px] w-[18px]" /></Link>
           </div>
         </div>
       </header>
@@ -146,25 +150,54 @@ export function PortalShell({ mode, displayName, metrics, showSummaryCards = tru
       <div className="container-shell grid gap-6 py-6 lg:grid-cols-[16rem_minmax(0,1fr)] lg:py-9">
         <aside className="hidden rounded-4xl border border-indigo/10 bg-paper/80 p-3 shadow-lifted backdrop-blur-xl lg:flex lg:min-h-[calc(100vh-8.5rem)] lg:flex-col">
           <div className="rounded-3xl bg-indigo/[0.06] px-4 py-5">
-            <p className="text-[0.6rem] font-bold uppercase tracking-[0.2em] text-indigo/60">{portalCopy[mode].eyebrow}</p>
+            <p className="text-[0.6rem] font-bold uppercase tracking-[0.2em] text-indigo/80">{portalCopy[mode].eyebrow}</p>
             <p className="mt-2 font-display text-2xl font-semibold tracking-[-0.03em]">Hello, {firstName}.</p>
           </div>
-          <nav className="mt-3 grid gap-1" aria-label="Workspace navigation">{portalNavigation[mode].map(({ icon: NavIcon, label, href }, index) => <Link key={label} href={href} className={cn("group flex items-center gap-3 rounded-2xl px-3.5 py-3 text-sm font-semibold transition", index === 0 ? "bg-ink text-paper shadow-lifted" : "text-ink/58 hover:bg-indigo/[0.06] hover:text-indigo")}><NavIcon className="h-4 w-4 transition group-hover:scale-110" />{label}</Link>)}</nav>
-          <div className="mt-auto rounded-3xl border border-indigo/10 bg-gradient-to-br from-indigo/[0.08] to-coral/[0.08] p-4"><div className="flex items-center gap-2 text-xs font-bold text-leaf"><ShieldCheck className="h-4 w-4" />Protected workspace</div><p className="mt-2 text-xs leading-5 text-ink/48">Access remains limited by role and every sensitive action is traceable.</p></div>
+          <nav className="mt-3 grid gap-1" aria-label="Workspace navigation">{portalNavigation[mode].map(({ icon: NavIcon, label, href }, index) => <Link key={label} href={href} className={cn("group flex items-center gap-3 rounded-2xl px-3.5 py-3 text-sm font-semibold transition", index === 0 ? "bg-ink text-paper shadow-lifted" : "text-ink/80 hover:bg-indigo/[0.06] hover:text-indigo")}><NavIcon className="h-4 w-4 transition group-hover:scale-110" />{label}</Link>)}</nav>
+          <div className="mt-auto rounded-3xl border border-indigo/10 bg-gradient-to-br from-indigo/[0.08] to-coral/[0.08] p-4"><div className="flex items-center gap-2 text-xs font-bold text-leaf"><ShieldCheck className="h-4 w-4" />Protected workspace</div><p className="mt-2 text-xs leading-5 text-ink/80">Access remains limited by role and every sensitive action is traceable.</p></div>
         </aside>
 
         <section className="min-w-0">
-          <nav className="mb-5 flex gap-2 overflow-x-auto pb-2 lg:hidden" aria-label="Mobile workspace navigation">{portalNavigation[mode].slice(0, 6).map(({ icon: NavIcon, label, href }, index) => <Link key={label} href={href} className={cn("flex shrink-0 items-center gap-2 rounded-full border px-4 py-2.5 text-xs font-bold", index === 0 ? "border-ink bg-ink text-paper" : "border-indigo/10 bg-paper text-ink/60")}><NavIcon className="h-3.5 w-3.5" />{label}</Link>)}</nav>
+          <nav className="mb-5 flex gap-2 overflow-x-auto pb-2 lg:hidden" aria-label="Mobile workspace navigation">{portalNavigation[mode].slice(0, 6).map(({ icon: NavIcon, label, href }, index) => <Link key={label} href={href} className={cn("flex shrink-0 items-center gap-2 rounded-full border px-4 py-2.5 text-xs font-bold", index === 0 ? "border-ink bg-ink text-paper" : "border-indigo/10 bg-paper text-ink/80")}><NavIcon className="h-3.5 w-3.5" />{label}</Link>)}</nav>
 
           <div className="luxury-grid relative overflow-hidden rounded-5xl border border-indigo/10 bg-gradient-to-br from-[#f3eafa] via-paper to-[#fff1e8] p-7 shadow-soft sm:p-10 xl:p-12" data-motion="rise">
             <div className="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-indigo/10 blur-3xl" />
             <div className="absolute -bottom-28 right-1/4 h-56 w-56 rounded-full bg-coral/10 blur-3xl" />
-            <div className="relative max-w-3xl"><p className="eyebrow">{copy.eyebrow}</p><h1 className="mt-5 max-w-[13ch] font-display text-5xl font-semibold leading-[0.98] tracking-[-0.055em] text-ink sm:text-6xl xl:text-7xl">{copy.title}</h1><p className="mt-6 max-w-2xl text-base leading-7 text-ink/58 sm:text-lg">{copy.description}</p><Link href={copy.href} className={cn(buttonVariants({ variant: "accent" }), "mt-7")}>{copy.primary}<ArrowUpRight className="h-4 w-4" /></Link></div>
+            <div className="relative max-w-3xl"><p className="eyebrow">{copy.eyebrow}</p><h1 className="mt-5 max-w-[13ch] font-display text-5xl font-semibold leading-[0.98] tracking-[-0.055em] text-ink sm:text-6xl xl:text-7xl">{copy.title}</h1><p className="mt-6 max-w-2xl text-base leading-7 text-ink/80 sm:text-lg">{copy.description}</p><Link href={copy.href} className={cn(buttonVariants({ variant: "accent" }), "mt-7")}>{copy.primary}<ArrowUpRight className="h-4 w-4" /></Link></div>
           </div>
 
-          {showSummaryCards && <div className="mt-5 grid gap-4 md:grid-cols-3">{cards[mode].map(({ label, value, hint, icon: Icon, tone }, index) => <article key={label} className="group rounded-4xl border border-indigo/10 bg-paper/90 p-5 shadow-lifted transition duration-300 hover:-translate-y-1 hover:border-indigo/20 hover:shadow-soft sm:p-6"><div className="flex items-start justify-between"><span className={cn("flex h-12 w-12 items-center justify-center rounded-2xl", tone)}><Icon className="h-5 w-5" /></span><ArrowUpRight className="h-4 w-4 text-ink/20 transition group-hover:text-coral" /></div><p className="mt-7 text-[0.62rem] font-bold uppercase tracking-[0.2em] text-ink/38">{label}</p><h2 className="mt-2 font-display text-2xl font-semibold leading-tight tracking-[-0.035em]">{metrics?.[index] ?? value}</h2><p className="mt-2 text-sm leading-6 text-ink/48">{hint}</p></article>)}</div>}
+          {showSummaryCards && (
+            <div className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-3 md:grid-rows-2">
+              {cards[mode].map(({ label, value, hint, icon: Icon, tone }, index) => (
+                <article
+                  key={label}
+                  className={cn(
+                    "group relative overflow-hidden rounded-[2rem] border border-indigo/10 bg-paper/90 p-6 shadow-lifted transition-all duration-300 hover:-translate-y-1 hover:border-indigo/30 hover:shadow-2xl",
+                    index === 0 ? "md:col-span-2 md:row-span-2 p-8" : "md:col-span-1 md:row-span-1"
+                  )}
+                >
+                  <div className={cn("absolute -right-6 -top-6 h-32 w-32 rounded-full opacity-10 transition-transform duration-500 group-hover:scale-150", tone.split(" ")[0])} />
+                  <div className="relative flex h-full flex-col justify-between">
+                    <div className="flex items-start justify-between">
+                      <span className={cn("flex items-center justify-center rounded-[1.2rem] shadow-sm", index === 0 ? "h-14 w-14" : "h-12 w-12", tone)}>
+                        <Icon className={index === 0 ? "h-6 w-6" : "h-5 w-5"} />
+                      </span>
+                      <ArrowUpRight className="h-5 w-5 text-ink/80 transition group-hover:text-coral group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                    </div>
+                    <div className="mt-8">
+                      <p className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-ink/80">{label}</p>
+                      <h2 className={cn("mt-2 font-display font-semibold leading-tight tracking-[-0.035em] text-ink", index === 0 ? "text-4xl" : "text-2xl")}>
+                        {metrics?.[index] ?? value}
+                      </h2>
+                      <p className="mt-2 text-sm leading-6 text-ink/80">{hint}</p>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
 
-          <div className="mt-5 flex items-start gap-3 rounded-3xl border border-leaf/15 bg-leaf/[0.06] p-5"><CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-leaf" /><p className="text-sm leading-6 text-ink/58"><strong className="text-ink">Live and private.</strong> This workspace reads authenticated server data; genuine empty states remain visible until real records exist.</p></div>
+          <div className="mt-5 flex items-start gap-3 rounded-3xl border border-leaf/15 bg-leaf/[0.06] p-5"><CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-leaf" /><p className="text-sm leading-6 text-ink/80"><strong className="text-ink">Live and private.</strong> This workspace reads authenticated server data; genuine empty states remain visible until real records exist.</p></div>
           {children}
         </section>
       </div>

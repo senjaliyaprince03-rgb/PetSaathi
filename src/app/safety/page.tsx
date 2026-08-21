@@ -64,15 +64,15 @@ export default function SafetyPage() {
                   <Icon className="h-7 w-7" />
                 </span>
                 <h2 className="mt-8 font-display text-3xl font-bold text-ink">{title}</h2>
-                <p className="mt-4 text-sm leading-7 text-ink/65">{copy}</p>
+                <p className="mt-4 text-sm leading-7 text-ink/80">{copy}</p>
               </article>
             ))}
           </div>
 
           <div className="mt-12 rounded-[2.5rem] bg-ink p-8 text-paper shadow-lifted sm:p-12">
-            <p className="eyebrow !text-paper/50 font-outfit">Important Boundary</p>
+            <p className="eyebrow !text-paper/80 font-outfit">Important Boundary</p>
             <h2 className="mt-4 font-display text-4xl font-bold">Emergency referral support is not veterinary care.</h2>
-            <p className="mt-4 max-w-3xl text-sm leading-7 text-paper/70">
+            <p className="mt-4 max-w-3xl text-sm leading-7 text-paper/80">
               PetSaathi can preserve clinic contacts, support escalation and document communication. It does not diagnose, treat, guarantee clinic availability, guarantee transport or provide insurance.
             </p>
           </div>

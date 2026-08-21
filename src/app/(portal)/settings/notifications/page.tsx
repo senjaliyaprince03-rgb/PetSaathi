@@ -30,5 +30,5 @@ export default async function NotificationSettingsPage() {
 }
 
 function Promise({ icon: Icon, title, copy }: { icon: typeof ShieldCheck; title: string; copy: string }) {
-  return <div className="flex gap-3"><span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-paper/[0.07] text-saffron"><Icon className="h-4 w-4" /></span><div><p className="text-sm font-bold">{title}</p><p className="mt-1 text-xs leading-5 text-paper/45">{copy}</p></div></div>;
+  return <div className="flex gap-3"><span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-paper/[0.07] text-saffron"><Icon className="h-4 w-4" /></span><div><p className="text-sm font-bold">{title}</p><p className="mt-1 text-xs leading-5 text-paper/80">{copy}</p></div></div>;
 }

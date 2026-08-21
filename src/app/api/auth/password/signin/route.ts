@@ -21,7 +21,7 @@ export async function POST(request: Request) {
     );
   }
 
-  const authenticated = await signInWithPassword(parsed.data.email, parsed.data.password);
-  if (!authenticated) return NextResponse.json({ error: "invalid_credentials" }, { status: 401 });
-  return NextResponse.json({ authenticated: true });
+  const result = await signInWithPassword(parsed.data.email, parsed.data.password);
+  if (!result.success) return NextResponse.json({ error: "invalid_credentials" }, { status: 401 });
+  return NextResponse.json({ authenticated: true, roles: result.roles });
 }

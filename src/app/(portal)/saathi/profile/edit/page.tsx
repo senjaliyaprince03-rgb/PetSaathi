@@ -97,7 +97,7 @@ export default function EditProfilePage() {
     <div className="mx-auto max-w-2xl px-4 py-8">
       <div className="mb-8">
         <h1 className="font-display text-4xl font-semibold tracking-tight text-ink">Edit Profile</h1>
-        <p className="mt-2 text-ink/60">Update your public Saathi profile information.</p>
+        <p className="mt-2 text-ink/80">Update your public Saathi profile information.</p>
       </div>
 
       <motion.div 
@@ -146,7 +146,7 @@ export default function EditProfilePage() {
               {...register("serviceRadiusKm", { valueAsNumber: true })}
               className="h-12 w-full rounded-xl border border-ink/10 bg-cream/50 px-4 text-sm outline-none transition focus:border-indigo focus:ring-1 focus:ring-indigo"
             />
-            <p className="mt-2 flex items-center gap-1.5 text-xs text-ink/50">
+            <p className="mt-2 flex items-center gap-1.5 text-xs text-ink/80">
               <Info className="h-3.5 w-3.5" /> How far you are willing to travel.
             </p>
             {errors.serviceRadiusKm && <p className="mt-1 text-xs text-coral">{errors.serviceRadiusKm.message}</p>}

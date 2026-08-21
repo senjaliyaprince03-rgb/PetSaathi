@@ -8,7 +8,14 @@ import { logger } from "@/lib/logger";
 const signupSchema = z.object({
   displayName: z.string().trim().min(2).max(80),
   email: z.string().trim().email().max(254),
-  password: z.string().min(10).max(128),
+  password: z.string()
+    .min(10, "Password must be at least 10 characters long")
+    .max(128, "Password must not exceed 128 characters")
+    .regex(/[A-Z]/, "Password must contain at least one uppercase letter")
+    .regex(/[a-z]/, "Password must contain at least one lowercase letter")
+    .regex(/[0-9]/, "Password must contain at least one number")
+    .regex(/[^A-Za-z0-9]/, "Password must contain at least one special character"),
+  role: z.enum(["CUSTOMER", "SITTER"]).optional(),
 });
 
 export async function POST(request: Request) {

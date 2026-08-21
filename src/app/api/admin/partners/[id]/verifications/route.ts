@@ -41,3 +41,19 @@ export async function POST(
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }
+
+export async function GET(request: NextRequest, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
+  const adminId = await getAdminSession();
+  if (!adminId) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const { prisma } = await import("@/lib/db");
+  const verifications = await prisma.partnerVerification.findMany({
+    where: { partnerId: params.id },
+    orderBy: { createdAt: "desc" },
+  });
+
+  return NextResponse.json({ verifications });
+}

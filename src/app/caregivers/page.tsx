@@ -59,7 +59,7 @@ export default function CaregiversPage() {
         <div className="container-shell">
           <div className="flex flex-wrap justify-center gap-2">
             {["Identity reviewed", "Service permissions", "Local availability", "Pet-fit context", "Human support"].map((item) => (
-              <span key={item} className="rounded-full border border-indigo/10 bg-paper px-4 py-2 text-xs font-bold text-ink/65 shadow-sm">
+              <span key={item} className="rounded-full border border-indigo/10 bg-paper px-4 py-2 text-xs font-bold text-ink/80 shadow-sm">
                 {item}
               </span>
             ))}
@@ -77,7 +77,7 @@ export default function CaregiversPage() {
                     className="object-cover object-[center_20%] transition duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent opacity-80" />
-                  <span className="absolute left-4 top-4 flex items-center gap-2 rounded-full bg-paper/90 px-3 py-1.5 text-xs font-bold text-leaf backdrop-blur shadow-sm">
+                  <span className="absolute left-4 top-4 flex items-center gap-2 rounded-full bg-paper px-3 py-1.5 text-xs font-bold text-leaf shadow-sm">
                     <ShieldCheck className="h-3.5 w-3.5" /> Profile view {index + 1}
                   </span>
                 </div>
@@ -85,8 +85,8 @@ export default function CaregiversPage() {
                 <div className="p-7">
                   <p className="text-[0.62rem] font-bold uppercase tracking-[0.18em] text-coral font-outfit">What a proposal includes</p>
                   <h2 className="mt-2 font-display text-3xl font-bold tracking-[-0.035em] text-ink">{item.label}</h2>
-                  <p className="mt-3 text-sm leading-7 text-ink/60">{item.detail}</p>
-                  <div className="mt-6 flex flex-wrap gap-2 text-xs font-bold text-ink/65">
+                  <p className="mt-3 text-sm leading-7 text-ink/80">{item.detail}</p>
+                  <div className="mt-6 flex flex-wrap gap-2 text-xs font-bold text-ink/80">
                     <span className="flex items-center gap-1.5 rounded-full bg-indigo/[0.06] px-3.5 py-1.5"><BadgeCheck className="h-3.5 w-3.5 text-indigo" />Relevant checks</span>
                     <span className="flex items-center gap-1.5 rounded-full bg-coral/[0.06] px-3.5 py-1.5"><MapPin className="h-3.5 w-3.5 text-coral" />Local fit</span>
                   </div>
@@ -98,7 +98,7 @@ export default function CaregiversPage() {
           <div className="luxury-grid mt-12 rounded-[2.5rem] border border-indigo/10 bg-gradient-to-br from-[#f3eafa] to-[#fff0e8] p-8 text-center shadow-soft sm:p-12">
             <Sparkles className="mx-auto h-8 w-8 text-coral" />
             <h2 className="mx-auto mt-5 max-w-[16ch] font-display text-4xl font-bold tracking-[-0.04em] text-ink sm:text-5xl">Your match stays private until it matters.</h2>
-            <p className="mx-auto mt-4 max-w-2xl text-sm font-medium leading-7 text-ink/60">Names, exact locations and private pet details are revealed only at the appropriate approval stage. You review the proposed Saathi before payment and confirmation.</p>
+            <p className="mx-auto mt-4 max-w-2xl text-sm font-medium leading-7 text-ink/80">Names, exact locations and private pet details are revealed only at the appropriate approval stage. You review the proposed Saathi before payment and confirmation.</p>
             <Link href="/book" className={`${buttonVariants({ variant: "accent", size: "lg" })} mt-7 font-outfit rounded-full px-8 shadow-lifted`}>
               Start a care request <ArrowRight className="h-4 w-4 ml-1" />
             </Link>
