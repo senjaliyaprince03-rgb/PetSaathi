@@ -1,4 +1,6 @@
 # dependencies
+__pycache__/
+*.pyc
 /node_modules
 /.pnp
 .pnp.*
@@ -6,6 +8,7 @@
 # Next.js
 /.next/
 /.next-playwright/
+/.next-dev/
 /out/
 /.capacitor-web/
 

@@ -1,6 +1,7 @@
 import type { AvailabilityRule, RiskLevel } from "@prisma/client";
 
 import { prisma } from "@/lib/db";
+import { fetchFastAPI } from "@/lib/fastapi";
 
 // ──────────────────────────────────────────────────────────
 // Types
@@ -301,8 +302,8 @@ export async function rankCandidates(bookingId: string): Promise<MatchCandidate[
     }
   }
 
-  // ── Score each candidate ──
-  const scored = eligibleSitters.flatMap((sitter) => {
+  // ── Prepare Data for Python Scoring Microservice ──
+  const candidatesPayload = eligibleSitters.flatMap((sitter) => {
     const permission = sitter.permissions[0];
     if (
       !permission ||
@@ -330,77 +331,38 @@ export async function rankCandidates(bookingId: string): Promise<MatchCandidate[
       timezone: booking.timezone,
     });
     if (availability.score === 0) return [];
-
-    const factors: MatchFactor[] = [];
-    const candidateApprovalReasons = [...riskReasons];
-
-    // 1. History with this pet
-    const historyScore = Math.min(completedWithPet / 10, 1);
-    factors.push({
-      name: "history",
-      score: historyScore,
-      weight: FACTOR_WEIGHTS.history,
-      explanation: completedWithPet > 0 ? `Completed ${completedWithPet} service(s) with this pet` : "No prior history with this pet",
-    });
-
-    // 2. Reliability
-    const relScore = sitter.reliabilityScore ? Number(sitter.reliabilityScore) : 50;
-    const reliabilityNorm = Math.min(relScore / 100, 1);
-    factors.push({
-      name: "reliability",
-      score: reliabilityNorm,
-      weight: FACTOR_WEIGHTS.reliability,
-      explanation: sitter.reliabilityScore ? `${relScore}% reliability score` : "Reliability data not yet available",
-    });
-
-    // 3. Quality (review ratings)
-    const ratings = sitterRatings.get(sitter.id) ?? [];
-    const avgRating = ratings.length > 0 ? ratings.reduce((a: number, b: number) => a + b, 0) / ratings.length : 3;
-    const qualityScore = (avgRating - 1) / 4; // normalise 1-5 → 0-1
-    factors.push({
-      name: "quality",
-      score: qualityScore,
-      weight: FACTOR_WEIGHTS.quality,
-      explanation: ratings.length > 0 ? `${avgRating.toFixed(1)} avg rating from ${ratings.length} review(s)` : "No reviews yet",
-    });
-
-    // 4. Locality match. The schema has no verified sitter coordinates, so a
-    // different locality is deliberately low-scored and sent to Operations.
+    
     const locality = scoreLocality(sitter.serviceLocality, booking.address.locality);
-    if (locality.score < 1) candidateApprovalReasons.push(locality.explanation);
-    factors.push({
-      name: "locality",
-      score: locality.score,
-      weight: FACTOR_WEIGHTS.locality,
-      explanation: locality.explanation,
-    });
-
-    // 5. Availability alignment
-    factors.push({
-      name: "availability",
-      score: availability.score,
-      weight: FACTOR_WEIGHTS.availability,
-      explanation: availability.explanation,
-    });
-
-    const totalScore = factors.reduce((sum, f) => sum + f.score * f.weight, 0);
 
     return {
       sitterId: sitter.id,
       sitterName: sitter.user.displayName,
-      totalScore,
-      rank: 0,
-      factors,
-      requiresHumanApproval: candidateApprovalReasons.length > 0,
-      approvalReasons: candidateApprovalReasons,
-    } satisfies MatchCandidate;
+      completedWithPet,
+      reliabilityScore: sitter.reliabilityScore ? Number(sitter.reliabilityScore) : 50,
+      ratings: sitterRatings.get(sitter.id) ?? [],
+      localityScore: locality.score,
+      localityExplanation: locality.explanation,
+      availabilityScore: availability.score,
+      availabilityExplanation: availability.explanation,
+    };
   });
+  
+  if (candidatesPayload.length === 0) return [];
 
-  // Sort by totalScore descending and assign ranks
-  scored.sort(
-    (a, b) => b.totalScore - a.totalScore || a.sitterId.localeCompare(b.sitterId),
-  );
-  scored.forEach((c, i) => { c.rank = i + 1; });
-
-  return scored;
+  try {
+    // ── Score each candidate in FastAPI ──
+    const scored = await fetchFastAPI("/api/score-candidates", {
+      method: "POST",
+      body: JSON.stringify({
+        bookingId,
+        candidates: candidatesPayload,
+        riskReasons
+      })
+    });
+    
+    return scored as MatchCandidate[];
+  } catch (error) {
+    console.error("FastAPI matching failed, falling back to empty candidates:", error);
+    return [];
+  }
 }

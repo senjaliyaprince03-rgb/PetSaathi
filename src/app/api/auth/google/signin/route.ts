@@ -7,7 +7,7 @@ const client = new OAuth2Client(process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID);
 
 export async function POST(request: Request) {
   try {
-    const { credential } = await request.json();
+    const { credential, selectedRole } = await request.json();
     if (!credential) {
       return NextResponse.json({ error: "missing_credential" }, { status: 400 });
     }
@@ -30,7 +30,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "invalid_credential" }, { status: 401 });
     }
 
-    const result = await signInWithGoogle(payload.email, payload.name || "Pet Parent", payload.picture);
+    const result = await signInWithGoogle(payload.email, payload.name || "Pet Parent", payload.picture, selectedRole);
     
     return NextResponse.json({ authenticated: true, roles: result.roles });
   } catch (error) {

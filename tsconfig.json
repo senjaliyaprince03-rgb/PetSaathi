@@ -32,6 +32,7 @@
     }
   },
   "include": [
+    ".next-playwright/types/**/*.ts",
     ".next/types/**/*.ts",
     "next-env.d.ts",
     "playwright.config.ts",
@@ -40,7 +41,7 @@
     "tests/**/*.ts",
     "tests/**/*.tsx",
     "vitest.config.ts",
-    ".next-playwright/types/**/*.ts"
+    ".next-dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules",

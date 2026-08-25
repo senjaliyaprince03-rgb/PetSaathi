@@ -49,7 +49,7 @@ export function CookieConsentBanner({ analyticsId }: { analyticsId?: string }) {
         }}
       >
         <span className="text-sm font-medium text-white/90">
-          We use cookies to improve your experience and analyze our traffic. By clicking "Accept All", you consent to our use of cookies. 
+          We use cookies to improve your experience and analyze our traffic. By clicking &quot;Accept All&quot;, you consent to our use of cookies.
           Read our <a href="/privacy" className="underline hover:text-[#D4AF37]">Privacy Policy</a> for more details.
         </span>
       </CookieConsent>

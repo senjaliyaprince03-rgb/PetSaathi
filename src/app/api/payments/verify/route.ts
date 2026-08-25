@@ -19,7 +19,7 @@ export async function POST(request: Request) {
 
   const payment = await prisma.payment.findFirst({ where: { providerOrderId: orderId, booking: { customerId: identity.id } }, select: { id: true, status: true } });
   if (!payment) return NextResponse.json({ error: "not_found" }, { status: 404 });
-  if (!validRazorpayCheckoutSignature(orderId, paymentId, signature, secret)) return NextResponse.json({ error: "invalid_signature" }, { status: 401 });
+  if (!validRazorpayCheckoutSignature(orderId, paymentId, signature, secret)) return NextResponse.json({ error: "invalid_signature" }, { status: 400 });
 
   if (payment.status !== "CAPTURED") await prisma.payment.update({ where: { id: payment.id }, data: { providerPaymentId: paymentId, signatureVerified: true, status: "AUTHORIZED" } });
   return NextResponse.json({ verified: true, settlement: payment.status === "CAPTURED" ? "captured" : "awaiting_webhook" });

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
-require("dotenv").config({ path: ".env" });
-require("dotenv").config({ path: ".env.local", override: true });
+require("dotenv").config({ path: ".env", override: false });
+require("dotenv").config({ path: ".env.local", override: false });
 const { MongoClient } = require("mongodb");
 const dns = require("node:dns");
 try { dns.setServers(["8.8.8.8", "8.8.4.4"]); } catch (e) {}

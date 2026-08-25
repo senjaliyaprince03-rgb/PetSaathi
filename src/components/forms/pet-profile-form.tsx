@@ -13,7 +13,7 @@ import { petProfileFormSchema, type PetProfileFormValues } from "@/modules/pets/
 type PetProfileInput = {
   id: string;
   name: string;
-  species: "DOG" | "CAT" | "OTHER";
+  species: "DOG" | "CAT" | "RABBIT" | "BIRD" | "FISH" | "TURTLE" | "RAT" | "OTHER";
   breed?: string | null;
   sex?: "FEMALE" | "MALE" | "UNKNOWN" | null;
   birthDate?: string | null;
@@ -148,6 +148,11 @@ export function PetProfileForm({ pet }: { pet?: PetProfileInput }) {
           <select {...form.register("species")} className="portal-input">
             <option value="DOG">Dog</option>
             <option value="CAT">Cat</option>
+            <option value="RABBIT">Rabbit</option>
+            <option value="BIRD">Bird</option>
+            <option value="FISH">Fish</option>
+            <option value="TURTLE">Turtle</option>
+            <option value="RAT">Rat / Mouse</option>
             <option value="OTHER">Other</option>
           </select>
         </Field>

@@ -6,5 +6,7 @@ petsaathi-web/
 build_mega_page.js
 convert.js
 temp_convert.js
+fix_*.js
+test-*.js
 
 android

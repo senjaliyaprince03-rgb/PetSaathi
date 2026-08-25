@@ -87,11 +87,15 @@ export function SiteMotion() {
 
     const scheduleStart = () => {
       // Let React finish hydrating every streamed boundary before mutating SSR markup.
-      if (requestIdle) {
-        idleId = requestIdle(start, { timeout: 1_200 });
-      } else {
-        timeoutId = window.setTimeout(start, 0);
-      }
+      // We add an explicit delay to avoid hydration mismatches, especially in development.
+      const delayedStart = () => {
+        if (requestIdle) {
+          idleId = requestIdle(start, { timeout: 1_200 });
+        } else {
+          start();
+        }
+      };
+      timeoutId = window.setTimeout(delayedStart, 800);
     };
 
     if (document.readyState === "complete") scheduleStart();

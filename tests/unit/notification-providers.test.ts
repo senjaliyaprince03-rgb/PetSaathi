@@ -1,10 +1,13 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-const sendEmail = vi.hoisted(() => vi.fn());
+const { createTransport, sendMail } = vi.hoisted(() => ({
+  createTransport: vi.fn(),
+  sendMail: vi.fn(),
+}));
 
-vi.mock("resend", () => ({
-  Resend: class {
-    emails = { send: sendEmail };
+vi.mock("nodemailer", () => ({
+  default: {
+    createTransport,
   },
 }));
 
@@ -13,20 +16,18 @@ import { sendProviderMessage } from "@/modules/notifications/providers";
 describe("notification providers", () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    process.env.RESEND_API_KEY = "test-only-resend-key";
-    process.env.RESEND_FROM_EMAIL = "care@example.test";
+    process.env.SMTP_USER = "care@example.test";
+    process.env.SMTP_PASS = "test-only-password";
+    createTransport.mockReturnValue({ sendMail });
   });
 
   afterEach(() => {
-    delete process.env.RESEND_API_KEY;
-    delete process.env.RESEND_FROM_EMAIL;
+    delete process.env.SMTP_USER;
+    delete process.env.SMTP_PASS;
   });
 
-  it("passes the outbox idempotency key to email delivery", async () => {
-    sendEmail.mockResolvedValue({
-      data: { id: "provider-message-1" },
-      error: null,
-    });
+  it("sends rendered email through the configured SMTP provider", async () => {
+    sendMail.mockResolvedValue({ messageId: "provider-message-1" });
 
     const result = await sendProviderMessage({
       channel: "EMAIL",
@@ -36,12 +37,19 @@ describe("notification providers", () => {
       idempotencyKey: "booking-confirmed:test-1",
     });
 
-    expect(sendEmail).toHaveBeenCalledWith(
+    expect(createTransport).toHaveBeenCalledWith({
+      service: "gmail",
+      auth: {
+        user: "care@example.test",
+        pass: "test-only-password",
+      },
+    });
+    expect(sendMail).toHaveBeenCalledWith(
       expect.objectContaining({
-        from: "care@example.test",
+        from: "\"PetSaathi\" <care@example.test>",
         to: "parent@example.test",
+        subject: "Your PetSaathi booking is confirmed",
       }),
-      { idempotencyKey: "booking-confirmed:test-1" },
     );
     expect(result.providerMessageId).toBe("provider-message-1");
   });
@@ -62,11 +70,11 @@ describe("notification providers", () => {
       "in-app:assignment-offered:assignment-1",
     );
     expect(retry.providerMessageId).toBe(first.providerMessageId);
-    expect(sendEmail).not.toHaveBeenCalled();
+    expect(sendMail).not.toHaveBeenCalled();
   });
 
   it("fails closed when email delivery is not configured", async () => {
-    delete process.env.RESEND_API_KEY;
+    delete process.env.SMTP_USER;
 
     await expect(
       sendProviderMessage({

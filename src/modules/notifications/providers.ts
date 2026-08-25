@@ -1,7 +1,7 @@
 import "server-only";
 
 import type { NotificationChannel } from "@prisma/client";
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
 
 type ProviderMessage = {
   channel: NotificationChannel;
@@ -24,26 +24,31 @@ export async function sendProviderMessage(message: ProviderMessage) {
 }
 
 async function sendEmail(message: ProviderMessage) {
-  const apiKey = process.env.RESEND_API_KEY;
-  const from = process.env.RESEND_FROM_EMAIL;
-  if (!apiKey || !from) throw new Error("Email provider is not configured");
+  const user = process.env.SMTP_USER;
+  const pass = process.env.SMTP_PASS;
+  if (!user || !pass) throw new Error("Email provider is not configured");
   const rendered = renderEmail(message.templateKey, message.payload);
   if (!rendered) throw new Error("Email template is not registered");
-  const resend = new Resend(apiKey);
-  const { data, error } = await withTimeout(
-    resend.emails.send(
-      {
-        from,
+  
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: { user, pass },
+  });
+
+  try {
+    const info = await withTimeout(
+      transporter.sendMail({
+        from: `"PetSaathi" <${user}>`,
         to: message.destination,
         subject: rendered.subject,
         text: rendered.text,
-      },
-      { idempotencyKey: message.idempotencyKey },
-    ),
-    10_000,
-  );
-  if (error || !data?.id) throw new Error("Email provider rejected the message");
-  return { providerMessageId: data.id, providerPayload: { accepted: true } };
+      }),
+      10_000,
+    );
+    return { providerMessageId: info.messageId, providerPayload: { accepted: true } };
+  } catch (error) {
+    throw new Error("Email provider rejected the message");
+  }
 }
 
 async function sendWhatsApp(message: ProviderMessage) {

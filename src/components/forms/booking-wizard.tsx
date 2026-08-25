@@ -13,7 +13,7 @@ import { cn } from "@/lib/cn";
 const bookingSchema = z.object({
   service: z.enum(["DOG_WALK_30", "DOG_WALK_60", "HOME_VISIT", "HOME_SITTING_60", "GROOMING_HOME", "VET_SUPPORT", "TRAINING_ASSESSMENT", "PET_TAXI"]),
   petName: z.string().trim().min(2, "Tell us your pet's name"),
-  petType: z.enum(["DOG", "CAT", "OTHER"]),
+  petType: z.enum(["DOG", "CAT", "RABBIT", "BIRD", "FISH", "TURTLE", "RAT", "OTHER"]),
   date: z.string().min(1, "Choose a date"),
   time: z.string().min(1, "Choose a time"),
   locality: z.string().trim().min(2, "Enter your locality"),
@@ -91,7 +91,7 @@ export function BookingWizard({ initialValues = {} }: { initialValues?: BookingP
 
       {step === 0 && <fieldset><legend className="font-display text-3xl font-semibold">What kind of care?</legend><p className="mt-2 text-sm text-ink/80">Choose one service to begin.</p><div className="mt-6 grid gap-3 sm:grid-cols-2">{services.map(([value, label, copy]) => <label key={value} className={cn("cursor-pointer rounded-3xl border p-5 transition hover:-translate-y-0.5", form.watch("service") === value ? "border-saffron bg-saffron/10 shadow-lifted" : "border-ink/10 bg-paper/70")}><input type="radio" value={value} {...form.register("service")} className="sr-only" /><PawPrint className="h-5 w-5 text-coral" /><span className="mt-4 block font-semibold">{label}</span><span className="mt-1 block text-sm leading-6 text-ink/80">{copy}</span></label>)}</div></fieldset>}
 
-      {step === 1 && <fieldset><legend className="font-display text-3xl font-semibold">Who are we caring for?</legend><div className="mt-7 grid gap-5 sm:grid-cols-2"><Field label="Pet name" error={errorFor("petName")}><input {...form.register("petName")} className="form-input" placeholder="e.g. Miso" /></Field><Field label="Pet type" error={errorFor("petType")}><select {...form.register("petType")} className="form-input"><option value="DOG">Dog</option><option value="CAT">Cat</option><option value="OTHER">Other</option></select></Field></div></fieldset>}
+      {step === 1 && <fieldset><legend className="font-display text-3xl font-semibold">Who are we caring for?</legend><div className="mt-7 grid gap-5 sm:grid-cols-2"><Field label="Pet name" error={errorFor("petName")}><input {...form.register("petName")} className="form-input" placeholder="e.g. Miso" /></Field><Field label="Pet type" error={errorFor("petType")}><select {...form.register("petType")} className="form-input"><option value="DOG">Dog</option><option value="CAT">Cat</option><option value="RABBIT">Rabbit</option><option value="BIRD">Bird</option><option value="FISH">Fish</option><option value="TURTLE">Turtle</option><option value="RAT">Rat / Mouse</option><option value="OTHER">Other</option></select></Field></div></fieldset>}
 
       {step === 2 && <fieldset><legend className="font-display text-3xl font-semibold">When and where?</legend><div className="mt-7 grid gap-5 sm:grid-cols-2"><Field label="Date" icon={<CalendarDays className="h-4 w-4" />} error={errorFor("date")}><input type="date" {...form.register("date")} className="form-input" /></Field><Field label="Start time" icon={<Clock3 className="h-4 w-4" />} error={errorFor("time")}><input type="time" {...form.register("time")} className="form-input" /></Field><div className="sm:col-span-2"><Field label="Locality" icon={<MapPin className="h-4 w-4" />} error={errorFor("locality")}><input {...form.register("locality")} className="form-input" placeholder="Bopal, Ahmedabad" /></Field></div></div></fieldset>}
 

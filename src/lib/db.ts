@@ -8,7 +8,7 @@ function createPrismaClient() {
   const mongoUri = process.env.MONGODB_PRISMA_URI?.trim() || boundedMongoUri();
   return new PrismaClient({
     ...(mongoUri ? { datasourceUrl: mongoUri } : {}),
-    log: process.env.NODE_ENV === "development" ? ["query", "info", "warn", "error"] : ["error"],
+    log: process.env.NODE_ENV === "development" ? ["warn", "error"] : ["error"],
   }).$extends({
     query: {
       incident: {

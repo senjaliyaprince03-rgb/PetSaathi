@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const petSpeciesSchema = z.enum(["DOG", "CAT", "OTHER"]);
+export const petSpeciesSchema = z.enum(["DOG", "CAT", "RABBIT", "BIRD", "FISH", "TURTLE", "RAT", "OTHER"]);
 export const petSexSchema = z.enum(["FEMALE", "MALE", "UNKNOWN"]);
 
 const phonePattern = /^\+?[1-9]\d{7,14}$/;
