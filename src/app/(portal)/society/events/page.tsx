@@ -1,7 +1,8 @@
-import { CalendarPlus, Megaphone } from "lucide-react";
+import { Megaphone } from "lucide-react";
 import { redirect } from "next/navigation";
 
 import { PortalShell } from "@/components/portal/portal-shell";
+import { EditEventButton, PlanEventButton } from "@/components/portal/society-event-buttons";
 import { prisma } from "@/lib/db";
 import { getCurrentIdentity, hasAnyRole } from "@/modules/auth/session";
 
@@ -41,10 +42,7 @@ export default async function SocietyEventsPage() {
             <p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-ink/80">acquistion & engagement</p>
             <h1 className="mt-2 font-display text-4xl font-semibold tracking-[-0.04em]">Community Events</h1>
           </div>
-          <button className="flex h-12 items-center justify-center gap-2 rounded-2xl bg-indigo px-6 font-bold text-white transition hover:bg-indigo/90">
-            <CalendarPlus className="h-5 w-5" />
-            Plan New Event
-          </button>
+          <PlanEventButton />
         </div>
 
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -65,7 +63,16 @@ export default async function SocietyEventsPage() {
                 </div>
                 <div className="mt-6 flex items-center justify-between border-t border-ink/10 pt-4">
                   <p className="text-xs font-semibold text-ink/80">Capacity: {event.capacity ?? "Unlimited"}</p>
-                  <button className="text-sm font-bold text-indigo hover:underline">Edit</button>
+                  <EditEventButton
+                    event={{
+                      id: event.id,
+                      title: event.title,
+                      description: event.description,
+                      startsAt: event.startsAt.toISOString(),
+                      endsAt: event.endsAt.toISOString(),
+                      capacity: event.capacity
+                    }}
+                  />
                 </div>
               </article>
             ))

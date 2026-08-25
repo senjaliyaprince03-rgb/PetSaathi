@@ -1,4 +1,4 @@
-import { Camera, CheckCircle2, HeartPulse, Scissors, Sparkles } from "lucide-react";
+import { Camera, CheckCircle2, HeartPulse, Scissors } from "lucide-react";
 
 import { DashboardPanel } from "@/components/portal/dashboard-ui";
 
@@ -18,7 +18,7 @@ export function GroomingReportCard({ report }: { report: GroomingReport }) {
     <DashboardPanel tone="cream" className="overflow-hidden p-0 sm:p-0">
       <div className="bg-indigo/5 px-6 py-5 border-b border-indigo/10">
         <h3 className="flex items-center gap-2 font-display text-2xl font-semibold text-indigo">
-          <Sparkles className="h-6 w-6" /> Grooming Report
+          <Scissors className="h-6 w-6" /> Grooming Report
         </h3>
         <p className="mt-1 text-sm text-ink/80">Observations and care details from the session</p>
       </div>

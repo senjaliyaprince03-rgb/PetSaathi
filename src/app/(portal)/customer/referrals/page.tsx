@@ -1,4 +1,4 @@
-import { BadgeCheck, CircleDashed, Gift, HeartHandshake, Sparkles, UserRoundCheck } from "lucide-react";
+import { BadgeCheck, CircleDashed, Gift, HeartHandshake, UserRoundCheck } from "lucide-react";
 import { redirect } from "next/navigation";
 
 import { DashboardEmptyState, DashboardHeading, DashboardPanel, MetricCard, StatusPill } from "@/components/portal/dashboard-ui";
@@ -42,6 +42,6 @@ function JourneyStep({ number, label }: { number: string; label: string }) {
   return <div className="rounded-2xl border border-paper/10 bg-paper/[0.06] p-3"><p className="text-[0.58rem] font-bold text-saffron">{number}</p><p className="mt-2 text-xs font-bold text-paper/80">{label}</p></div>;
 }
 
-function ReferralState({ active, icon: Icon, label }: { active: boolean; icon: typeof Sparkles; label: string }) {
+function ReferralState({ active, icon: Icon, label }: { active: boolean; icon: typeof Gift; label: string }) {
   return <div className={`rounded-2xl p-3 ${active ? "bg-leaf/10 text-leaf" : "bg-ink/[0.04] text-ink/80"}`}>{active ? <Icon className="h-4 w-4" /> : <CircleDashed className="h-4 w-4" />}<p className="mt-2 text-[0.62rem] font-bold">{label}</p></div>;
 }

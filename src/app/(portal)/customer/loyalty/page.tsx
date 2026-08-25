@@ -1,4 +1,4 @@
-import { ArrowDownRight, ArrowUpRight, Gift, History, Sparkles, WalletCards } from "lucide-react";
+import { ArrowDownRight, ArrowUpRight, Gift, History, WalletCards } from "lucide-react";
 import { redirect } from "next/navigation";
 
 import { DashboardEmptyState, DashboardHeading, DashboardPanel, MetricCard, ProgressRing } from "@/components/portal/dashboard-ui";
@@ -37,7 +37,7 @@ export default async function CustomerLoyaltyPage() {
       </div>
 
       <div className="mt-4 grid gap-4 sm:grid-cols-3">
-        <MetricCard icon={Sparkles} label="Earned" value={money(summary.totalEarned)} hint="Verified lifetime credit" tone="leaf" />
+        <MetricCard icon={Gift} label="Earned" value={money(summary.totalEarned)} hint="Verified lifetime credit" tone="leaf" />
         <MetricCard icon={Gift} label="Available" value={money(summary.balancePaise)} hint="Ready for eligible redemption" />
         <MetricCard icon={ArrowDownRight} label="Redeemed" value={money(summary.totalSpent)} hint="Used credit history" tone="coral" />
       </div>

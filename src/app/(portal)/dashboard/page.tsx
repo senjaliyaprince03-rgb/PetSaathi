@@ -7,6 +7,7 @@ import {
   Bell,
   CalendarDays,
   ClipboardCheck,
+  Gift,
   Handshake,
   Headphones,
   HeartPulse,
@@ -14,7 +15,6 @@ import {
   MessageCircleMore,
   PawPrint,
   ShieldCheck,
-  Sparkles,
   UserRoundPlus,
   WalletCards,
 } from "lucide-react";
@@ -36,7 +36,7 @@ const workspaceLinks: Array<{
   { label: "My pets", description: "Passports, health and routines", href: "/pets", icon: PawPrint, tone: "bg-indigo/10 text-indigo" },
   { label: "Request care", description: "Create a protected booking", href: "/book", icon: CalendarDays, tone: "bg-coral/10 text-coral" },
   { label: "Care protocols", description: "Follow every care journey", href: "/customer/protocols" as Route, icon: ClipboardCheck, tone: "bg-leaf/10 text-leaf" },
-  { label: "Loyalty & rewards", description: "Credits and reward history", href: "/customer/loyalty" as Route, icon: Sparkles, tone: "bg-saffron/25 text-ink" },
+  { label: "Loyalty & rewards", description: "Credits and reward history", href: "/customer/loyalty" as Route, icon: Gift, tone: "bg-saffron/25 text-ink" },
   { label: "Service wallet", description: "Partner benefit balances", href: "/customer/wallet" as Route, icon: WalletCards, tone: "bg-indigo/10 text-indigo" },
   { label: "Protocol inbox", description: "Care notices and support threads", href: "/customer/inbox" as Route, icon: Inbox, tone: "bg-coral/10 text-coral" },
   { label: "Partner services", description: "Verified local providers", href: "/partners" as Route, icon: Handshake, tone: "bg-leaf/10 text-leaf" },
@@ -45,7 +45,12 @@ const workspaceLinks: Array<{
 
 export default async function CustomerDashboardPage() {
   const identity = await getCurrentIdentity();
-  if (!identity?.roles.includes("CUSTOMER")) redirect("/login?returnTo=/dashboard");
+  if (!identity) redirect("/login?returnTo=/dashboard");
+  if (!identity.roles.includes("CUSTOMER")) {
+    if (identity.roles.includes("SITTER")) redirect("/saathi");
+    if (identity.roles.includes("SUPER_ADMIN")) redirect("/admin");
+    redirect("/login");
+  }
 
   const [activeBookings, pets, reports, recentBookings, unreadNotices, openCases] = await Promise.all([
     prisma.booking.count({ where: { customerId: identity.id, status: { notIn: ["CLOSED", "DECLINED", "CUSTOMER_CANCELLED", "NO_SHOW"] } } }),
@@ -85,6 +90,30 @@ export default async function CustomerDashboardPage() {
         `${reports} care stor${reports === 1 ? "y" : "ies"}`,
       ]}
     >
+      {/* Quick Services Bar */}
+      <ScrollReveal direction="up" delay={0.05}>
+        <section className="mt-5 rounded-[2rem] bg-gradient-to-r from-[#1c1917] to-[#312e81] p-5 shadow-[0_18px_55px_-38px_rgb(var(--ink)/0.32)] sm:p-6">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h2 className="font-display text-2xl font-semibold tracking-[-0.04em] text-white sm:text-3xl">Quick services</h2>
+              <p className="mt-1 text-sm text-white/60">Book trusted care for your pet in seconds.</p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {([
+                { label: "🐕 Dog Walking", href: "/book" as Route },
+                { label: "🏠 Pet Sitting", href: "/book" as Route },
+                { label: "✂️ Grooming", href: "/customer/grooming" as Route },
+                { label: "🏥 Vet Visit", href: "/customer/vet" as Route },
+              ] as const).map(({ label, href }) => (
+                <Link key={label} href={href} className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-4 py-2 text-xs font-bold text-white backdrop-blur transition hover:-translate-y-0.5 hover:bg-white/20">
+                  {label}<ArrowUpRight className="h-3 w-3" />
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      </ScrollReveal>
+
       <section className="mt-5 grid gap-5 xl:grid-cols-[minmax(0,1.35fr)_minmax(19rem,0.65fr)]">
         <ScrollReveal direction="up" delay={0.1}>
           <div className="rounded-[2rem] border border-ink/[0.07] bg-paper p-5 shadow-[0_18px_55px_-38px_rgb(var(--ink)/0.32)] sm:p-7 h-full">
@@ -134,6 +163,26 @@ export default async function CustomerDashboardPage() {
           </aside>
         </ScrollReveal>
       </section>
+
+      {/* Pet Overview Stats */}
+      <ScrollReveal direction="up" delay={0.25}>
+        <section className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+          {([
+            { label: "Active bookings", value: activeBookings, icon: CalendarDays, tone: "bg-coral/10 text-coral" },
+            { label: "Pet passports", value: pets, icon: PawPrint, tone: "bg-indigo/10 text-indigo" },
+            { label: "Care stories", value: reports, icon: ClipboardCheck, tone: "bg-leaf/10 text-leaf" },
+            { label: "Pending updates", value: unreadNotices, icon: Bell, tone: "bg-saffron/25 text-ink" },
+          ] as const).map(({ label, value, icon: Icon, tone }) => (
+            <div key={label} className="rounded-[1.6rem] border border-ink/[0.06] bg-paper p-5 shadow-[0_10px_30px_-20px_rgb(var(--ink)/0.15)]">
+              <div className="flex items-center justify-between">
+                <span className={cn("flex h-10 w-10 items-center justify-center rounded-2xl", tone)}><Icon className="h-4 w-4" /></span>
+              </div>
+              <p className="mt-4 font-display text-3xl font-semibold">{value}</p>
+              <p className="mt-1 text-xs font-semibold text-ink/80">{label}</p>
+            </div>
+          ))}
+        </section>
+      </ScrollReveal>
 
       <ScrollReveal direction="up" delay={0.3}>
         <section className="mt-5 rounded-[2rem] border border-ink/[0.07] bg-paper p-5 shadow-[0_18px_55px_-38px_rgb(var(--ink)/0.32)] sm:p-7">

@@ -1,4 +1,4 @@
-import { ArrowRight, BadgeCheck, Building2, Car, GraduationCap, PawPrint, Scissors, Sparkles, Stethoscope, Syringe } from "lucide-react";
+import { ArrowRight, BadgeCheck, Building2, Car, GraduationCap, LayoutGrid, PawPrint, Scissors, Stethoscope, Syringe } from "lucide-react";
 import type { Route } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -97,7 +97,7 @@ export default async function CustomerServicesHubPage() {
   return (
     <PortalShell mode="customer" displayName={identity.displayName} showSummaryCards={false}>
       <div className="mt-5 grid gap-4 sm:grid-cols-3">
-        <MetricCard icon={Sparkles} label="Service categories" value="6 available" hint="Expanded care ecosystem" tone="leaf" />
+        <MetricCard icon={LayoutGrid} label="Service categories" value="6 available" hint="Expanded care ecosystem" tone="leaf" />
         <MetricCard icon={PawPrint} label="Registered pets" value={`${pets.length} active`} hint="Linked to longitudinal profile" tone="indigo" />
         <MetricCard icon={BadgeCheck} label="Partner requests" value={`${ordersCount} total`} hint="Marketplace orders" tone="coral" />
       </div>

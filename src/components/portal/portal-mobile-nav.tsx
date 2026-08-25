@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import type { Route } from "next";
 import {
   Menu, X, type LucideIcon,
-  Home, PawPrint, CalendarDays, ClipboardCheck, Sparkles, WalletCards,
+  Home, PawPrint, CalendarDays, ClipboardCheck, Gift, LayoutGrid, WalletCards,
   Inbox, Handshake, Bell, Settings2, Headphones, ShieldCheck, Clock3,
   UserRound, SlidersHorizontal, BadgeCheck, Flag, FileLock2, BookOpen,
   Users, Megaphone, MapPin, Activity, DollarSign
@@ -15,7 +15,7 @@ import { cn } from "@/lib/cn";
 import { PetSaathiLogo } from "@/components/brand/logo";
 
 const iconMap: Record<string, LucideIcon> = {
-  Home, PawPrint, CalendarDays, ClipboardCheck, Sparkles, WalletCards,
+  Home, PawPrint, CalendarDays, ClipboardCheck, Gift, LayoutGrid, WalletCards,
   Inbox, Handshake, Bell, Settings2, Headphones, ShieldCheck, Clock3,
   UserRound, SlidersHorizontal, BadgeCheck, Flag, FileLock2, BookOpen,
   Users, Megaphone, MapPin, Activity, DollarSign
