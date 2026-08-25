@@ -6,6 +6,33 @@ import { compactDefinedFields, normalizeEmergencyContactFields } from "@/modules
 
 export const dynamic = "force-dynamic";
 
+// Ownership-scoped read. Missing and not-owned pets return the same 404 so
+// the endpoint cannot be used to probe other users' pet ids (no IDOR oracle).
+export async function GET(_request: Request, context: { params: Promise<{ id: string }> }) {
+  const identity = await getCurrentIdentity();
+  if (!identity?.roles.includes("CUSTOMER")) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+
+  const { id } = await context.params;
+  const pet = await prisma.pet.findFirst({
+    where: { id, ownerId: identity.id, active: true },
+    select: {
+      id: true,
+      name: true,
+      species: true,
+      breed: true,
+      sex: true,
+      birthDate: true,
+      weightKg: true,
+      sterilised: true,
+      photoPath: true,
+      medicalProfile: { select: { allergies: true, conditions: true, medications: true, veterinarianName: true, veterinarianPhone: true } },
+    },
+  });
+  if (!pet) return NextResponse.json({ error: "not_found" }, { status: 404 });
+
+  return NextResponse.json({ pet }, { headers: { "Cache-Control": "private, no-store" } });
+}
+
 export async function PUT(request: Request, context: { params: Promise<{ id: string }> }) {
   const identity = await getCurrentIdentity();
   if (!identity?.roles.includes("CUSTOMER")) return NextResponse.json({ error: "unauthorized" }, { status: 401 });

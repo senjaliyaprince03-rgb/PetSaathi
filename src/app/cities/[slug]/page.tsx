@@ -85,7 +85,7 @@ export default async function CityHubPage({ params }: Props) {
                 href={`/cities/${slug}/${config.serviceType.code.toLowerCase().replaceAll("_", "-")}` as Route<string>}
                 className="group rounded-5xl border border-ink/10 bg-paper p-7 shadow-lifted transition hover:-translate-y-1"
               >
-                <p className="text-xs font-bold uppercase tracking-[0.17em] text-coral">
+                <p className="text-xs font-bold uppercase tracking-[0.17em] text-coral-text">
                   {config.status.replaceAll("_", " ")}
                 </p>
                 <h3 className="mt-3 font-display text-2xl font-semibold group-hover:text-indigo">

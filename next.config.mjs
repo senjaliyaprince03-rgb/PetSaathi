@@ -11,8 +11,11 @@ const projectRoot = path.dirname(fileURLToPath(import.meta.url));
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Keep browser-runner artifacts isolated from the normal production build.
-  distDir: process.env.NEXT_DIST_DIR ?? ".next",
+  // Isolate dev and build artifacts: `next dev` writes to .next-dev while
+  // `next build`/`next start` keep using .next, so running a production build
+  // while a dev server is up can no longer corrupt either manifest set.
+  // Explicit NEXT_DIST_DIR (e.g. .next-playwright for e2e) still wins.
+  distDir: process.env.NEXT_DIST_DIR ?? (process.env.NODE_ENV === "development" ? ".next-dev" : ".next"),
   poweredByHeader: false,
   reactStrictMode: true,
   typedRoutes: true,
@@ -49,7 +52,7 @@ const nextConfig = {
           },
           {
             key: "Content-Security-Policy",
-            value: "default-src 'self'; script-src 'self' 'unsafe-inline' https://js.stripe.com https://accounts.google.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://accounts.google.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https:; frame-src 'self' https://js.stripe.com https://accounts.google.com https://*.google.com; object-src 'none'; base-uri 'self';"
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline' https://checkout.razorpay.com https://accounts.google.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://accounts.google.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https:; frame-src 'self' https://checkout.razorpay.com https://api.razorpay.com https://*.razorpay.com https://accounts.google.com https://*.google.com; object-src 'none'; base-uri 'self';"
           }
         ]
       }

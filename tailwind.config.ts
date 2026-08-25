@@ -15,6 +15,7 @@ const config: Config = {
         "ink": "rgb(var(--ink) / <alpha-value>)",
         "saffron": "rgb(var(--saffron) / <alpha-value>)",
         "coral": "rgb(var(--coral) / <alpha-value>)",
+        "coral-text": "rgb(var(--coral-text) / <alpha-value>)",
         "indigo": "rgb(var(--indigo) / <alpha-value>)",
         "leaf": "rgb(var(--leaf) / <alpha-value>)",
         "outline": "#747878",

@@ -3,6 +3,7 @@ import { z } from "zod";
 
 import { registerWithPassword } from "@/modules/auth/mongodb-auth";
 import { consumeRateLimit, requestIp } from "@/modules/security/rate-limit";
+import { errorResponseForCaughtError, jsonError } from "@/lib/api-error";
 import { logger } from "@/lib/logger";
 
 const signupSchema = z.object({
@@ -21,20 +22,23 @@ const signupSchema = z.object({
 export async function POST(request: Request) {
   const parsed = signupSchema.safeParse(await request.json().catch(() => null));
   if (!parsed.success) {
-    return NextResponse.json({ error: "invalid_signup", issues: parsed.error.flatten() }, { status: 422 });
+    return jsonError("invalid_signup", "Please check the highlighted fields and try again.", 422, {
+      issues: parsed.error.flatten(),
+    });
   }
 
   const rate = await consumeRateLimit("password-signup-ip", requestIp(request), 500, 60 * 60_000);
   if (!rate.allowed) {
-    return NextResponse.json(
-      { error: "too_many_requests" },
-      { status: 429, headers: { "Retry-After": String(rate.retryAfterSeconds) } },
-    );
+    return jsonError("too_many_requests", "Too many signup attempts. Please try again later.", 429, {
+      headers: { "Retry-After": String(rate.retryAfterSeconds) },
+    });
   }
 
   try {
     const result = await registerWithPassword(parsed.data);
-    if (!result.created) return NextResponse.json({ error: result.reason }, { status: 409 });
+    if (!result.created) {
+      return jsonError("account_exists", "An account with this email already exists.", 409);
+    }
     return NextResponse.json(
       {
         created: true,
@@ -46,9 +50,8 @@ export async function POST(request: Request) {
       { status: 201 },
     );
   } catch (error) {
-    logger.exception("auth.password_signup_failed", error, {
+    return errorResponseForCaughtError(error, logger, "auth.password_signup_failed", {
       requestId: request.headers.get("x-request-id") ?? undefined,
     });
-    return NextResponse.json({ error: "signup_unavailable" }, { status: 503 });
   }
 }

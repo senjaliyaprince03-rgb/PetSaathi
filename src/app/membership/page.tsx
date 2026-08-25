@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, BadgeCheck, Clock3, LockKeyhole, Repeat2, ShieldCheck, Sparkles, Users } from "lucide-react";
+import { ArrowRight, BadgeCheck, Clock3, LockKeyhole, Repeat2, ShieldCheck, Users } from "lucide-react";
 
 import { CustomerSubscriptionActions } from "@/components/portal/customer-subscription-actions";
 import { PublicShell } from "@/components/marketing/public-shell";
@@ -69,7 +69,7 @@ export default async function MembershipPage() {
         <div className="container-shell relative flex h-full flex-col justify-center pb-10 pt-28 sm:pt-32">
           <div className="max-w-xl md:max-w-2xl text-left items-start flex flex-col">
             <span className="inline-flex items-center gap-2 rounded-full border border-saffron/40 bg-saffron/20 px-4 py-1.5 text-[0.68rem] font-bold uppercase tracking-[0.2em] text-saffron backdrop-blur-md font-outfit">
-              <Sparkles className="h-3.5 w-3.5" /> Controlled Membership
+              <BadgeCheck className="h-3.5 w-3.5" /> Controlled Membership
             </span>
             <h1 className="mt-5 font-display text-4xl font-bold tracking-tight text-paper sm:text-6xl sm:leading-[1.1]">
               A STEADIER CARE RHYTHM
@@ -106,7 +106,7 @@ export default async function MembershipPage() {
           <section className="mt-12 grid gap-5 lg:grid-cols-[1fr_1fr]">
             <article className="rounded-[2.5rem] bg-[#281d2b] p-8 text-paper shadow-lifted">
               <span className="inline-flex items-center gap-2 rounded-full border border-saffron/40 bg-saffron/15 px-4 py-1.5 text-[0.68rem] font-bold uppercase tracking-[0.2em] text-saffron">
-                <Sparkles className="h-3.5 w-3.5" />
+                <BadgeCheck className="h-3.5 w-3.5" />
                 Why membership feels steadier
               </span>
               <h2 className="mt-5 font-display text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">

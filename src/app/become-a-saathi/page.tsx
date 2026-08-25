@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { BadgeCheck, CalendarDays, Clock3, MapPin, ShieldCheck, Sparkles, Users } from "lucide-react";
+import { BadgeCheck, CalendarDays, Clock3, MapPin, ShieldCheck, Users } from "lucide-react";
 
 import { SitterApplication } from "@/components/forms/sitter-application";
 import { PageIntro, PublicShell } from "@/components/marketing/public-shell";
@@ -60,7 +60,7 @@ export default async function BecomeASaathiPage() {
         <section className="grid gap-5 lg:grid-cols-[1.05fr_0.95fr]">
           <article className="rounded-5xl bg-[#281d2b] p-8 text-paper shadow-lifted">
             <span className="inline-flex items-center gap-2 rounded-full border border-saffron/40 bg-saffron/15 px-4 py-1.5 text-[0.68rem] font-bold uppercase tracking-[0.2em] text-saffron">
-              <Sparkles className="h-3.5 w-3.5" />
+              <BadgeCheck className="h-3.5 w-3.5" />
               What we look for
             </span>
             <h2 className="mt-5 font-display text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">
@@ -82,7 +82,7 @@ export default async function BecomeASaathiPage() {
           </article>
 
           <article className="rounded-5xl border border-indigo/10 bg-paper p-8 shadow-lifted">
-            <span className="inline-flex items-center gap-2 rounded-full border border-coral/20 bg-coral/10 px-4 py-1.5 text-[0.68rem] font-bold uppercase tracking-[0.2em] text-coral">
+            <span className="inline-flex items-center gap-2 rounded-full border border-coral/20 bg-coral/10 px-4 py-1.5 text-[0.68rem] font-bold uppercase tracking-[0.2em] text-coral-text">
               <CalendarDays className="h-3.5 w-3.5" />
               Review flow
             </span>

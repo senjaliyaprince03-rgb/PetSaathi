@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Route } from "next";
 import type { ReactNode } from "react";
 import type { LucideIcon } from "lucide-react";
-import { Activity, ArrowUpRight, BadgeCheck, Bell, BookOpen, CalendarDays, CheckCircle2, ClipboardCheck, Clock3, DollarSign, FileLock2, Flag, Handshake, Headphones, Heart, Home, Inbox, LogOut, MapPin, Megaphone, Menu, PawPrint, Settings2, ShieldCheck, SlidersHorizontal, Sparkles, UserRound, Users, WalletCards } from "lucide-react";
+import { Activity, ArrowUpRight, BadgeCheck, Bell, BookOpen, CalendarDays, CheckCircle2, ClipboardCheck, Clock3, DollarSign, FileLock2, Flag, Gift, Handshake, Headphones, Heart, Home, Inbox, LayoutGrid, LogOut, MapPin, Megaphone, Menu, PawPrint, Settings2, ShieldCheck, SlidersHorizontal, UserRound, Users, WalletCards } from "lucide-react";
 
 import { PetSaathiLogo } from "@/components/brand/logo";
 import { buttonVariants } from "@/components/ui/button";
@@ -29,7 +29,7 @@ const cards: Record<PortalMode, Array<{ label: string; value: string; hint: stri
   saathi: [
     { label: "Today’s plan", value: "No active assignment", hint: "Eligible offers will appear here", icon: Clock3, tone: "bg-saffron/35 text-ink" },
     { label: "Readiness", value: "Verification required", hint: "Checks are service-specific", icon: ShieldCheck, tone: "bg-indigo/10 text-indigo" },
-    { label: "Care quality", value: "Build your care record", hint: "Completed reports grow trust", icon: Sparkles, tone: "bg-leaf/10 text-leaf" }
+    { label: "Care quality", value: "Build your care record", hint: "Completed reports grow trust", icon: Heart, tone: "bg-leaf/10 text-leaf" }
   ],
   admin: [
     { label: "Matching queue", value: "Queue connected", hint: "Prioritised by time and eligibility", icon: UserRound, tone: "bg-saffron/35 text-ink" },
@@ -54,12 +54,12 @@ const portalNavigation: Record<PortalMode, Array<{ icon: LucideIcon; iconName: s
     { icon: PawPrint, iconName: "PawPrint", label: "My pets", href: "/pets" },
     { icon: CalendarDays, iconName: "CalendarDays", label: "Request care", href: "/book" },
     { icon: ClipboardCheck, iconName: "ClipboardCheck", label: "Care protocols", href: "/customer/protocols" as Route },
-    { icon: Sparkles, iconName: "Sparkles", label: "Loyalty & Rewards", href: "/customer/loyalty" as Route },
+    { icon: Gift, iconName: "Gift", label: "Loyalty & Rewards", href: "/customer/loyalty" as Route },
     { icon: WalletCards, iconName: "WalletCards", label: "Service wallet", href: "/customer/wallet" as Route },
     { icon: Inbox, iconName: "Inbox", label: "Protocol inbox", href: "/customer/inbox" as Route },
     { icon: Handshake, iconName: "Handshake", label: "Refer a friend", href: "/customer/referrals" as Route },
     { icon: Handshake, iconName: "Handshake", label: "Partner services", href: "/partners" as Route },
-    { icon: Sparkles, iconName: "Sparkles", label: "Services Hub", href: "/customer/services" as Route },
+    { icon: LayoutGrid, iconName: "LayoutGrid", label: "Services Hub", href: "/customer/services" as Route },
     { icon: WalletCards, iconName: "WalletCards", label: "Subscriptions", href: "/customer/subscriptions" as Route },
     { icon: Bell, iconName: "Bell", label: "Notifications", href: "/notifications" },
     { icon: Settings2, iconName: "Settings2", label: "Communication", href: "/settings/notifications" },
@@ -75,7 +75,7 @@ const portalNavigation: Record<PortalMode, Array<{ icon: LucideIcon; iconName: s
     { icon: CalendarDays, iconName: "CalendarDays", label: "Availability", href: "/saathi/availability" as Route },
     { icon: ClipboardCheck, iconName: "ClipboardCheck", label: "Report cards", href: "/saathi/reports" as Route },
     { icon: UserRound, iconName: "UserRound", label: "My profile", href: "/saathi/profile" as Route },
-    { icon: Sparkles, iconName: "Sparkles", label: "Pro Membership", href: "/partners/membership" as Route },
+    { icon: BadgeCheck, iconName: "BadgeCheck", label: "Pro Membership", href: "/partners/membership" as Route },
     { icon: Bell, iconName: "Bell", label: "Notifications", href: "/notifications" },
     { icon: Settings2, iconName: "Settings2", label: "Communication", href: "/settings/notifications" },
     { icon: Headphones, iconName: "Headphones", label: "Support", href: "/support" },
@@ -142,7 +142,7 @@ export function PortalShell({ mode, displayName, metrics, showSummaryCards = tru
           <div className="flex items-center gap-2">
             <span className="mr-2 hidden text-right sm:block"><span className="block text-[0.6rem] font-bold uppercase tracking-[0.18em] text-ink/80">Signed in as</span><span className="mt-0.5 block text-sm font-bold">{displayName}</span></span>
             <Link href="/notifications" aria-label="Notifications" className="relative flex h-11 w-11 items-center justify-center rounded-full border border-indigo/10 bg-paper shadow-sm transition hover:-translate-y-0.5 hover:border-coral/35 hover:text-coral"><Bell className="h-[18px] w-[18px]" /><span className="absolute right-2.5 top-2.5 h-1.5 w-1.5 rounded-full bg-coral" /></Link>
-            <Link href="/api/auth/signout" aria-label="Sign out" className="flex h-11 w-11 items-center justify-center rounded-full border border-indigo/10 bg-paper shadow-sm transition hover:-translate-y-0.5 hover:text-coral"><LogOut className="h-[18px] w-[18px]" /></Link>
+            <Link href={"/api/auth/signout" as Route} aria-label="Sign out" className="flex h-11 w-11 items-center justify-center rounded-full border border-indigo/10 bg-paper shadow-sm transition hover:-translate-y-0.5 hover:text-coral"><LogOut className="h-[18px] w-[18px]" /></Link>
           </div>
         </div>
       </header>
@@ -168,7 +168,7 @@ export function PortalShell({ mode, displayName, metrics, showSummaryCards = tru
 
           {showSummaryCards && (
             <div className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-3 md:grid-rows-2">
-              {cards[mode].map(({ label, value, hint, icon: Icon, tone }, index) => (
+              {cards[mode].map(({ label, hint, icon: Icon, tone }, index) => (
                 <article
                   key={label}
                   className={cn(
@@ -187,9 +187,9 @@ export function PortalShell({ mode, displayName, metrics, showSummaryCards = tru
                     <div className="mt-8">
                       <p className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-ink/80">{label}</p>
                       <h2 className={cn("mt-2 font-display font-semibold leading-tight tracking-[-0.035em] text-ink", index === 0 ? "text-4xl" : "text-2xl")}>
-                        {metrics?.[index] ?? value}
+                        {metrics ? metrics[index] : <span className="text-ink/40" title="Not available yet">—</span>}
                       </h2>
-                      <p className="mt-2 text-sm leading-6 text-ink/80">{hint}</p>
+                      <p className="mt-2 text-sm leading-6 text-ink/80">{metrics ? hint : "Updates once activity is recorded."}</p>
                     </div>
                   </div>
                 </article>

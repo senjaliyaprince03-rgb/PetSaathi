@@ -5,7 +5,9 @@ const playwrightPort =
   Number.isInteger(requestedPort) && requestedPort >= 1024 && requestedPort <= 65_535
     ? requestedPort
     : 3110;
-const baseURL = `http://localhost:${playwrightPort}`;
+// 127.0.0.1 (not localhost) so Playwright never resolves ::1 while the dev/
+// prod servers bind IPv4 — an IPv6/IPv4 mismatch shows up as ECONNREFUSED.
+const baseURL = `http://127.0.0.1:${playwrightPort}`;
 
 export default defineConfig({
   testDir: "./tests/e2e",

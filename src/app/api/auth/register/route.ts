@@ -3,6 +3,8 @@ import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/db";
 import { getMongoDatabase } from "@/lib/mongodb";
 import { registerSchema } from "@/lib/validators/auth";
+import { errorResponseForCaughtError, jsonError } from "@/lib/api-error";
+import { logger } from "@/lib/logger";
 
 export async function POST(request: Request) {
   try {
@@ -10,10 +12,9 @@ export async function POST(request: Request) {
     const parsed = registerSchema.safeParse(body);
     
     if (!parsed.success) {
-      return NextResponse.json(
-        { error: "Validation failed", details: parsed.error.format() },
-        { status: 400 }
-      );
+      return jsonError("VALIDATION_ERROR", "Please check the highlighted fields and try again.", 422, {
+        issues: parsed.error.format(),
+      });
     }
 
     const { email, password, name, role } = parsed.data;
@@ -25,10 +26,7 @@ export async function POST(request: Request) {
     });
 
     if (existingUser) {
-      return NextResponse.json(
-        { error: "User already exists with this email" },
-        { status: 409 }
-      );
+      return jsonError("account_exists", "An account with this email already exists.", 409);
     }
 
     // Hash password
@@ -74,11 +72,7 @@ export async function POST(request: Request) {
       { message: "User registered successfully", userId: user.id },
       { status: 201 }
     );
-  } catch (error: any) {
-    console.error("[REGISTER ERROR]", error);
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 }
-    );
+  } catch (error: unknown) {
+    return errorResponseForCaughtError(error, logger, "auth.register_failed");
   }
 }

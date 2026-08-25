@@ -9,6 +9,7 @@ import {
   timingSafeEqual,
 } from "node:crypto";
 import { promisify } from "node:util";
+import nodemailer from "nodemailer";
 
 import { cookies } from "next/headers";
 
@@ -157,47 +158,52 @@ export async function requestEmailOtp(rawEmail: string) {
     return { mode: "development", code: challenge.code } satisfies OtpDelivery;
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
-  const from = process.env.RESEND_FROM_EMAIL;
-  if (!apiKey || !from) {
-    await removeChallenge("email", email);
-    throw new Error("Email OTP delivery is not configured.");
+  const user = process.env.SMTP_USER;
+  const pass = process.env.SMTP_PASS;
+  
+  if (process.env.NODE_ENV === "development") {
+    console.log(`\n\n🐶 [DEV] Login OTP for ${email}: ${challenge.code}\n\n`);
   }
 
-  const timeoutValue = Number(process.env.RESEND_REQUEST_TIMEOUT_MS ?? 8_000);
-  const timeoutMs = Number.isFinite(timeoutValue)
-    ? Math.min(30_000, Math.max(1_000, timeoutValue))
-    : 8_000;
+  if (!user || !pass) {
+    if (process.env.NODE_ENV === "development") {
+      return { mode: "development", code: challenge.code } satisfies OtpDelivery;
+    }
+    await removeChallenge("email", email);
+    throw new Error("Email OTP delivery (SMTP) is not configured.");
+  }
 
-  let response: Response;
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: { user, pass },
+  });
+
   try {
-    response = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
-        "Idempotency-Key": `petsaathi-otp-${digest(`${email}:${challenge.code}`)}`,
-      },
-      body: JSON.stringify({
-        from,
-        to: [email],
+    await new Promise((resolve, reject) => {
+      const timeout = setTimeout(() => reject(new Error("Timeout")), 15_000);
+      transporter.sendMail({
+        from: `"PetSaathi" <${user}>`,
+        to: email,
         subject: "Your PetSaathi verification code",
         text: `Your PetSaathi verification code is ${challenge.code}. It expires in ${CHALLENGE_MINUTES} minutes.`,
         html: `<p>Your PetSaathi verification code is <strong>${challenge.code}</strong>.</p><p>It expires in ${CHALLENGE_MINUTES} minutes.</p>`,
-      }),
-      signal: AbortSignal.timeout(timeoutMs),
+      }).then((info) => {
+        clearTimeout(timeout);
+        resolve(info);
+      }).catch((err) => {
+        clearTimeout(timeout);
+        reject(err);
+      });
     });
-  } catch {
+    return { mode: "email" } satisfies OtpDelivery;
+  } catch (error) {
+    if (process.env.NODE_ENV === "development") {
+      console.warn(`[DEV] Email failed to send via SMTP. OTP is ${challenge.code}`);
+      return { mode: "development", code: challenge.code } satisfies OtpDelivery;
+    }
     await removeChallenge("email", email);
-    throw new Error("Email OTP provider request failed or timed out.");
+    throw new Error("Email OTP provider rejected the request.");
   }
-
-  if (!response.ok) {
-    await removeChallenge("email", email);
-    throw new Error(`Email OTP provider rejected the request with status ${response.status}.`);
-  }
-
-  return { mode: "email" } satisfies OtpDelivery;
 }
 
 export async function requestPhoneOtp(phone: string) {
@@ -255,14 +261,96 @@ async function consumeChallenge(channel: AuthChannel, subject: string, code: str
   return consumed.modifiedCount === 1;
 }
 
-async function ensureUser(channel: AuthChannel, subject: string, displayName?: string) {
+async function sendWelcomeEmail(email: string, displayName: string) {
+  const user = process.env.SMTP_USER;
+  const pass = process.env.SMTP_PASS;
+  if (!user || !pass) return;
+
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: { user, pass },
+  });
+
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3111";
+
+  const htmlContent = `
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body style="margin: 0; padding: 0; background-color: #f4f4f5; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+  <div style="background-color: #f4f4f5; padding: 40px 20px;">
+    
+    <div style="text-align: center; margin-bottom: 24px;">
+      <h1 style="color: #10b981; margin: 0; font-size: 32px; font-weight: 800; letter-spacing: -0.5px;">🐾 PetSaathi</h1>
+    </div>
+    
+    <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; padding: 40px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
+      <p style="color: #3f3f46; font-size: 16px; margin-top: 0;">Hi ${displayName},</p>
+      
+      <p style="color: #3f3f46; font-size: 16px; line-height: 1.6;">You've successfully created your PetSaathi account—welcome! The next step: finish your profile by adding your pet's information.</p>
+      
+      <div style="text-align: center; margin: 32px 0;">
+        <a href="${appUrl}/dashboard" style="background-color: #10b981; color: #ffffff; text-decoration: none; padding: 14px 32px; border-radius: 9999px; font-weight: 600; font-size: 16px; display: inline-block;">Add my pet's information</a>
+      </div>
+      
+      <p style="color: #3f3f46; font-size: 16px; line-height: 1.6;">In the meantime, welcome to PetSaathi. We believe that everyone deserves the opportunity to experience the unconditional love of a pet. Once you add your pet's information, you can easily connect with the best match for your best friend.</p>
+      
+      <p style="color: #3f3f46; font-size: 16px; line-height: 1.6;">If you have any questions, don't hesitate to reply directly to this email.</p>
+      
+      <p style="color: #3f3f46; font-size: 16px; line-height: 1.6; margin-bottom: 0;">All the best,<br>The PetSaathi Team</p>
+    </div>
+    
+    <div style="max-width: 600px; margin: 24px auto 0; text-align: center;">
+      <p style="color: #a1a1aa; font-size: 12px;">Please add ${user} to your address book to make sure our emails are delivered to your inbox.</p>
+    </div>
+  </div>
+</body>
+</html>
+  `;
+
+  transporter.sendMail({
+    from: `"PetSaathi" <${user}>`,
+    to: email,
+    subject: "Welcome to PetSaathi! 🐾",
+    text: `Hi ${displayName},\n\nYou've successfully created your PetSaathi account—welcome! The next step: finish your profile by adding your pet's information.\n\nBest,\nThe PetSaathi Team`,
+    html: htmlContent,
+  }).catch(err => console.error("Failed to send welcome email:", err));
+}
+
+async function ensureUser(channel: AuthChannel, subject: string, displayName?: string, requestedRole?: string) {
   const selector = channel === "email" ? { email: subject } : { phoneE164: subject };
-  const existing = await prisma.user.findFirst({ where: selector, select: { id: true } });
+  const existing = await prisma.user.findFirst({ where: selector, select: { id: true, status: true, displayName: true, roles: { select: { role: true } } } });
+  
+  const roleToRequest = requestedRole === "SITTER" ? "SITTER" : requestedRole === "CUSTOMER" ? "CUSTOMER" : undefined;
+  const isAdmin = subject.toLowerCase() === "mrsenjaliya532@gmail.com";
+  
   if (existing) {
+    if (!isAdmin && roleToRequest) {
+      const hasRole = existing.roles.some(r => r.role === roleToRequest);
+      if (!hasRole) {
+        await prisma.user.update({
+          where: { id: existing.id },
+          data: {
+            roles: { create: { role: roleToRequest } },
+            ...(roleToRequest === "SITTER" ? { sitter: { create: {} } } : { customer: { create: {} } })
+          }
+        });
+      }
+    }
+    
+    const wasPending = existing.status === "PENDING";
     await prisma.user.update({ where: { id: existing.id }, data: { status: "ACTIVE", lastLoginAt: new Date() } });
+    
+    if (wasPending && channel === "email") {
+      sendWelcomeEmail(subject, existing.displayName || "Pet Parent");
+    }
+    
     return existing.id;
   }
 
+  const defaultRole = roleToRequest || "CUSTOMER";
   const user = await prisma.user.create({
     data: {
       ...selector,
@@ -272,14 +360,20 @@ async function ensureUser(channel: AuthChannel, subject: string, displayName?: s
       status: "ACTIVE",
       lastLoginAt: new Date(),
       roles: { 
-        create: subject.toLowerCase() === "mrsenjaliya532@gmail.com" 
+        create: isAdmin 
           ? [{ role: "SUPER_ADMIN" }, { role: "OPERATIONS_ADMIN" }] 
-          : [{ role: "CUSTOMER" }] 
+          : [{ role: defaultRole }] 
       },
-      ...(subject.toLowerCase() !== "mrsenjaliya532@gmail.com" ? { customer: { create: {} } } : {})
+      ...(!isAdmin && defaultRole === "CUSTOMER" ? { customer: { create: {} } } : {}),
+      ...(!isAdmin && defaultRole === "SITTER" ? { sitter: { create: {} } } : {})
     },
-    select: { id: true },
+    select: { id: true, displayName: true },
   });
+
+  if (channel === "email") {
+    sendWelcomeEmail(subject, user.displayName || "Pet Parent");
+  }
+
   return user.id;
 }
 
@@ -300,6 +394,31 @@ async function passwordHash(password: string) {
   const salt = randomBytes(16).toString("hex");
   const derived = (await scrypt(password, salt, 64)) as Buffer;
   return `scrypt:${salt}:${derived.toString("hex")}`;
+}
+
+/**
+ * Sets (or resets) the password credential for an already-authenticated user.
+ * The caller must have verified the user's identity — e.g. via the email OTP
+ * login flow — before invoking this. Never accepts an email from the client.
+ */
+export async function setPasswordForUser(userId: string, newPassword: string) {
+  await ensureAuthIndexes();
+  const user = await prisma.user.findUnique({ where: { id: userId }, select: { email: true } });
+  if (!user) return { success: false as const, reason: "user_not_found" as const };
+
+  const database = await getMongoDatabase();
+  const credentials = database.collection<AuthCredential>("auth_credentials");
+  const now = new Date();
+  if (!user.email) return { success: false as const, reason: "user_not_found" as const };
+  await credentials.updateOne(
+    { _id: user.email },
+    {
+      $set: { userId, passwordHash: await passwordHash(newPassword), updatedAt: now },
+      $setOnInsert: { createdAt: now },
+    },
+    { upsert: true },
+  );
+  return { success: true as const };
 }
 
 async function passwordMatches(password: string, encoded: string) {
@@ -411,13 +530,11 @@ export async function issueSession(userId: string) {
     secure: process.env.NODE_ENV === "production" && process.env.PLAYWRIGHT_TEST !== "1",
     sameSite: "lax",
     path: "/",
-    expires: expiresAt,
   });
 }
 
-export async function currentSessionUserId() {
+export async function currentSessionUserId(): Promise<string | null> {
   const token = (await cookies()).get(SESSION_COOKIE)?.value;
-  console.log("[currentSessionUserId] cookie token:", token);
   if (!token) return null;
 
   try {
@@ -427,10 +544,8 @@ export async function currentSessionUserId() {
       _id: digest(token),
       expiresAt: { $gt: new Date() },
     });
-    console.log("[currentSessionUserId] found session:", session);
     return session?.userId ?? null;
   } catch (error) {
-    console.error("[currentSessionUserId] error:", error);
     return null;
   }
 }
@@ -451,9 +566,9 @@ export async function revokeCurrentSession() {
   });
 }
 
-export async function signInWithGoogle(emailInput: string, name: string, avatarUrl?: string) {
+export async function signInWithGoogle(emailInput: string, name: string, avatarUrl?: string, requestedRole?: string) {
   const email = normalizedEmail(emailInput);
-  const userId = await ensureUser("email", email, name);
+  const userId = await ensureUser("email", email, name, requestedRole);
   const user = await prisma.user.findUnique({ where: { id: userId }, select: { roles: { select: { role: true } } } });
   
   if (avatarUrl) {

@@ -31,28 +31,55 @@ export async function consumeRateLimit(scope: string, identifier: string, limit:
   const windowStart = new Date(Math.floor(now.getTime() / windowMs) * windowMs);
   const expiresAt = new Date(windowStart.getTime() + windowMs * 2);
   const key = createHash("sha256").update(`${scope}:${identifier}`).digest("hex");
-  const collection = await rateLimitCollection();
-  const result = await collection.findOneAndUpdate(
-    { _id: key },
-    [
-      {
-        $set: {
-          count: {
-            $cond: [
-              { $or: [{ $eq: [{ $type: "$windowStart" }, "missing"] }, { $lt: ["$windowStart", windowStart] }] },
-              1,
-              { $add: [{ $ifNull: ["$count", 0] }, 1] },
-            ],
+  try {
+    const collection = await rateLimitCollection();
+    const result = await collection.findOneAndUpdate(
+      { _id: key },
+      [
+        {
+          $set: {
+            count: {
+              $cond: [
+                { $or: [{ $eq: [{ $type: "$windowStart" }, "missing"] }, { $lt: ["$windowStart", windowStart] }] },
+                1,
+                { $add: [{ $ifNull: ["$count", 0] }, 1] },
+              ],
+            },
+            windowStart,
+            expiresAt,
           },
-          windowStart,
-          expiresAt,
         },
-      },
-    ],
-    { upsert: true, returnDocument: "after" },
-  );
-  const count = result?.count ?? limit + 1;
-  return { allowed: count <= limit, remaining: Math.max(0, limit - count), retryAfterSeconds: Math.max(1, Math.ceil((windowStart.getTime() + windowMs - now.getTime()) / 1000)) };
+      ],
+      { upsert: true, returnDocument: "after" },
+    );
+    const count = result?.count ?? limit + 1;
+    return { allowed: count <= limit, remaining: Math.max(0, limit - count), retryAfterSeconds: Math.max(1, Math.ceil((windowStart.getTime() + windowMs - now.getTime()) / 1000)) };
+  } catch (error) {
+    // Fail open on infrastructure failures: an outage should degrade rate
+    // limiting, not hard-block every auth/form endpoint. The middleware
+    // limiter still applies, and the caller's own DB work will surface the
+    // outage as a retryable 503.
+    if (isInfrastructureError(error)) {
+      if (!warnedFailOpen) {
+        warnedFailOpen = true;
+        console.warn(`[rate-limit] store unavailable (${scope}) — failing open until it recovers`);
+      }
+      return { allowed: true, remaining: limit, retryAfterSeconds: 0 };
+    }
+    throw error;
+  }
+}
+
+let warnedFailOpen = false;
+
+// Local import to avoid a cycle with the shared helper.
+function isInfrastructureError(error: unknown): boolean {
+  if (!error || typeof error !== "object") return false;
+  const named = error as { name?: string; code?: unknown; cause?: unknown; message?: string };
+  if (named.name && /^(PrismaClientInitializationError|MongoServerSelectionError|MongoNetworkError|MongoNetworkTimeoutError|MongoTopologyClosedError)$/.test(named.name)) return true;
+  if (named.code === "ECONNREFUSED" || named.code === "ENOTFOUND" || named.code === "ETIMEDOUT") return true;
+  if (named.cause && isInfrastructureError(named.cause)) return true;
+  return /querySrv|ECONNREFUSED|ENOTFOUND|server selection|topology closed/i.test(named.message ?? "");
 }
 
 export function requestIp(request: Request) {

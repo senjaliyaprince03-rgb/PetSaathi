@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
-import { Sparkles, CalendarDays } from "lucide-react";
+import Link from "next/link";
+import { CalendarDays } from "lucide-react";
 
 import { PortalShell } from "@/components/portal/portal-shell";
 import { prisma } from "@/lib/db";
@@ -49,9 +50,12 @@ export default async function CustomerSubscriptionsPage() {
           </div>
         ) : (
           <div className="glass-panel rounded-5xl p-10 text-center">
-            <Sparkles className="mx-auto h-10 w-10 text-leaf" />
+            <CalendarDays className="mx-auto h-10 w-10 text-leaf" />
             <h2 className="mt-5 font-display text-3xl font-semibold">No membership plans available yet.</h2>
             <p className="mt-2 text-sm text-ink/80">We are currently designing our premium membership plans. Check back soon!</p>
+            <Link href="/support" className="mt-6 inline-flex items-center gap-2 rounded-2xl bg-indigo px-6 py-3 text-sm font-bold text-paper transition hover:bg-indigo/90">
+              Get notified when plans launch
+            </Link>
           </div>
         )}
       </div>

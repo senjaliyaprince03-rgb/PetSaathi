@@ -3,6 +3,7 @@ import { z } from "zod";
 import { submitEnquiry } from "@/modules/marketing/crm";
 import { LeadType } from "@prisma/client";
 import { consumeRateLimit, requestIp } from "@/modules/security/rate-limit";
+import { errorResponseForCaughtError, jsonError } from "@/lib/api-error";
 import { logger } from "@/lib/logger";
 
 const schema = z.object({
@@ -23,27 +24,24 @@ export async function POST(request: Request) {
     const ip = requestIp(request);
     const { allowed, retryAfterSeconds } = await consumeRateLimit("public_leads", ip, 30, 60000);
     if (!allowed) {
-      return NextResponse.json(
-        { error: "too_many_requests" },
-        { status: 429, headers: { "Retry-After": retryAfterSeconds.toString() } }
-      );
+      return jsonError("too_many_requests", "Too many enquiries submitted. Please try again shortly.", 429, {
+        headers: { "Retry-After": retryAfterSeconds.toString() },
+      });
     }
 
     const parsed = schema.safeParse(
       await request.json().catch(() => null),
     );
-    
+
     if (!parsed.success) {
-      return NextResponse.json(
-        { error: "VALIDATION_ERROR", issues: parsed.error.flatten() },
-        { status: 422 }
-      );
+      return jsonError("VALIDATION_ERROR", "Please check the highlighted fields and try again.", 422, {
+        issues: parsed.error.flatten(),
+      });
     }
 
     const lead = await submitEnquiry(parsed.data);
     return NextResponse.json({ id: lead.id, status: "success" }, { status: 201 });
   } catch (error) {
-    logger.exception("lead.submission_failed", error);
-    return NextResponse.json({ error: "INTERNAL_ERROR" }, { status: 500 });
+    return errorResponseForCaughtError(error, logger, "lead.submission_failed");
   }
 }

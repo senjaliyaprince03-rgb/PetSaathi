@@ -62,18 +62,48 @@ describe("password signup route", () => {
     });
   });
 
-  it("records a provider failure without exposing its details to the client", async () => {
-    const providerError = new Error("provider rejected private details");
-    mocks.registerWithPassword.mockRejectedValue(providerError);
+  it("returns a retryable 503 envelope for infrastructure failures without exposing details", async () => {
+    const infraError = Object.assign(new Error("querySrv ECONNREFUSED _mongodb._tcp.cluster"), { name: "MongoServerSelectionError" });
+    mocks.registerWithPassword.mockRejectedValue(infraError);
 
     const response = await POST(signupRequest());
 
     expect(response.status).toBe(503);
-    await expect(response.json()).resolves.toEqual({ error: "signup_unavailable" });
+    expect(response.headers.get("Retry-After")).toBe("30");
+    await expect(response.json()).resolves.toEqual({
+      error: "SERVICE_UNAVAILABLE",
+      message: "We're temporarily unable to complete this request. Please try again in a moment.",
+      retryable: true,
+    });
     expect(mocks.loggerException).toHaveBeenCalledWith(
       "auth.password_signup_failed",
-      providerError,
+      infraError,
       { requestId: "request-test-id" },
     );
+    const body = await response.json().catch(() => null);
+    expect(JSON.stringify(body)).not.toContain("querySrv");
+  });
+
+  it("returns a generic 409 with a human message for duplicate accounts", async () => {
+    mocks.registerWithPassword.mockResolvedValue({ created: false, reason: "account_exists" });
+
+    const response = await POST(signupRequest());
+
+    expect(response.status).toBe(409);
+    await expect(response.json()).resolves.toEqual({
+      error: "account_exists",
+      message: "An account with this email already exists.",
+    });
+  });
+
+  it("returns a generic 500 envelope for unexpected failures", async () => {
+    mocks.registerWithPassword.mockRejectedValue(new Error("unexpected boom"));
+
+    const response = await POST(signupRequest());
+
+    expect(response.status).toBe(500);
+    const body = (await response.json()) as { error: string; message: string };
+    expect(body.error).toBe("INTERNAL_ERROR");
+    expect(body.message).not.toContain("boom");
   });
 });

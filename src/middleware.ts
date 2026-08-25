@@ -4,16 +4,28 @@ import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
 
 import { isTrustedBrowserMutation } from "@/modules/security/origin";
+import { createMemoryRateLimiter } from "@/modules/security/memory-rate-limit";
 
-const redis = new Redis({
-  url: process.env.UPSTASH_REDIS_REST_URL || "https://dummy.upstash.io",
-  token: process.env.UPSTASH_REDIS_REST_TOKEN || "dummy",
-});
+const upstashConfigured = Boolean(
+  process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN,
+);
 
-const ratelimit = new Ratelimit({
-  redis,
-  limiter: Ratelimit.slidingWindow(20, "10 s"),
-  analytics: true,
+const ratelimit = upstashConfigured
+  ? new Ratelimit({
+      redis: new Redis({
+        url: process.env.UPSTASH_REDIS_REST_URL as string,
+        token: process.env.UPSTASH_REDIS_REST_TOKEN as string,
+      }),
+      limiter: Ratelimit.slidingWindow(20, "10 s"),
+      analytics: true,
+    })
+  : null;
+
+// Bounded per-instance fallback so API abuse protection never silently
+// disappears when Upstash is not configured.
+const memoryRatelimit = createMemoryRateLimiter(20, 10_000, {
+  onFirstUseWarn:
+    "[rate-limit] UPSTASH_REDIS_REST_URL/TOKEN not configured — using a per-instance in-memory limiter (20 req/10s per IP). Configure Upstash for shared multi-instance limits.",
 });
 
 export async function middleware(request: NextRequest) {
@@ -50,9 +62,11 @@ export async function middleware(request: NextRequest) {
     !request.nextUrl.pathname.startsWith("/api/webhooks/") &&
     !request.nextUrl.pathname.startsWith("/api/jobs/");
 
-  if (request.nextUrl.pathname.startsWith("/api/") && process.env.UPSTASH_REDIS_REST_URL) {
-    const ip = request.headers.get("x-forwarded-for") ?? "127.0.0.1";
-    const { success, limit, reset, remaining } = await ratelimit.limit(`ratelimit_${ip}`);
+  if (request.nextUrl.pathname.startsWith("/api/") && process.env.PLAYWRIGHT_TEST !== "1") {
+    const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "127.0.0.1";
+    const { success, limit, reset, remaining } = upstashConfigured
+      ? await ratelimit!.limit(`ratelimit_${ip}`)
+      : await memoryRatelimit.limit(`ratelimit_${ip}`);
     if (!success) {
       const rejected = NextResponse.json(
         { error: "Too Many Requests" },
@@ -69,6 +83,7 @@ export async function middleware(request: NextRequest) {
       request.method,
       request.url,
       request.headers.get("origin"),
+      request.headers,
     )
   ) {
     const rejected = NextResponse.json(
@@ -156,25 +171,31 @@ export async function middleware(request: NextRequest) {
 
       if ((path.startsWith("/admin") || isAdminApi) && userRole !== "SUPER_ADMIN") {
         const url = request.nextUrl.clone();
-        url.pathname = userRole === "SITTER" ? "/dashboard/sitter" : "/dashboard/customer";
+        url.pathname = userRole === "SITTER" ? "/saathi/profile" : "/dashboard";
         return NextResponse.redirect(url);
       }
 
-      if (path.startsWith("/dashboard/customer") && userRole !== "CUSTOMER" && userRole !== "SUPER_ADMIN") {
+      if (path.startsWith("/dashboard") && userRole !== "CUSTOMER" && userRole !== "SUPER_ADMIN") {
          const url = request.nextUrl.clone();
-         url.pathname = "/dashboard/sitter";
+         url.pathname = "/saathi/profile";
          return NextResponse.redirect(url);
       }
 
-      if (path.startsWith("/dashboard/sitter") && userRole !== "SITTER" && userRole !== "SUPER_ADMIN") {
+      if (path.startsWith("/saathi/profile") && userRole !== "SITTER" && userRole !== "SUPER_ADMIN") {
          const url = request.nextUrl.clone();
-         url.pathname = "/dashboard/customer";
+         url.pathname = "/dashboard";
          return NextResponse.redirect(url);
       }
     }
   }
 
   const response = NextResponse.next({ request: { headers } });
+
+  if (isProtectedPage || isAdminApi) {
+    response.headers.set("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate");
+    response.headers.set("Pragma", "no-cache");
+    response.headers.set("Expires", "0");
+  }
 
   applySecurityHeaders(response, cspHeader, requestId);
   return response;

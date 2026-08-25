@@ -108,7 +108,7 @@ export default function CorporateBenefitsPage() {
           <div className="rounded-[2.5rem] border border-paper/80 bg-paper/90 p-6 shadow-lifted backdrop-blur sm:p-8">
             <div className="flex items-center justify-between gap-4 border-b border-ink/10 pb-5">
               <div>
-                <p className="text-xs font-bold uppercase tracking-[0.16em] text-coral">
+                <p className="text-xs font-bold uppercase tracking-[0.16em] text-coral-text">
                   Programme control plane
                 </p>
                 <h2 className="mt-2 font-display text-3xl font-semibold">

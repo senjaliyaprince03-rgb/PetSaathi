@@ -126,12 +126,15 @@ test("Customer Booking full lifecycle", async ({ browser }) => {
   await page.goto("/login");
   await page.getByRole("button", { name: "Sign Up", exact: true }).click();
   const signUpForm = page.locator("form").filter({ hasText: "SIGN UP" });
+  await expect(signUpForm.getByLabel("Full name")).toBeVisible();
   await signUpForm.getByLabel("Full name").fill("Test Customer");
   await signUpForm.getByLabel("Email address").fill(testEmail);
   await signUpForm.getByLabel("Create password").fill("SecurePassword123!");
   await signUpForm.getByRole("button", { name: "SIGN UP", exact: true }).click();
 
-  await page.getByLabel("Verification code").fill("123456");
+  const verificationCode = page.getByLabel("Verification code");
+  await expect(verificationCode).toBeVisible();
+  await verificationCode.fill("123456");
   await page.getByRole("button", { name: "VERIFY & CONTINUE" }).click();
   await page.waitForURL("/dashboard");
 

@@ -63,10 +63,6 @@ export default async function BookPage({ searchParams }: { searchParams: BookSea
       <div className="mt-7 grid gap-5 xl:grid-cols-[0.7fr_1.3fr]">
         <CareProtocolGuide />
         <AuthenticatedBookingForm pets={pets} addresses={addressOptions} services={activeServices} prices={priceOptions} initialService={initialService} />
-        <div id="debug-prices" style={{ display: "none" }}>{JSON.stringify(priceOptions)}</div>
-        <div id="debug-addresses" style={{ display: "none" }}>{JSON.stringify(addresses)}</div>
-        <div id="debug-service-areas" style={{ display: "none" }}>{JSON.stringify(serviceAreas)}</div>
-        <div id="debug-price-rows" style={{ display: "none" }}>{JSON.stringify(priceRows)}</div>
       </div>
     </DashboardPanel>
   </PortalShell>;

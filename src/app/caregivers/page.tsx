@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, BadgeCheck, MapPin, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowRight, BadgeCheck, MapPin, ShieldCheck } from "lucide-react";
 
 import { PublicShell } from "@/components/marketing/public-shell";
 import { buttonVariants } from "@/components/ui/button";
@@ -33,7 +33,7 @@ export default function CaregiversPage() {
         <div className="container-shell relative flex h-full flex-col justify-center pb-10 pt-28 sm:pt-32">
           <div className="max-w-xl md:max-w-2xl text-left items-start flex flex-col">
             <span className="inline-flex items-center gap-2 rounded-full border border-saffron/40 bg-saffron/20 px-4 py-1.5 text-[0.68rem] font-bold uppercase tracking-[0.2em] text-saffron backdrop-blur-md font-outfit">
-              <Sparkles className="h-3.5 w-3.5" /> Assisted Caregiver Discovery
+              <BadgeCheck className="h-3.5 w-3.5" /> Assisted Caregiver Discovery
             </span>
             <h1 className="mt-5 font-display text-4xl font-bold tracking-tight text-paper sm:text-6xl sm:leading-[1.1]">
               MEET THE RIGHT SAATHI
@@ -83,7 +83,7 @@ export default function CaregiversPage() {
                 </div>
 
                 <div className="p-7">
-                  <p className="text-[0.62rem] font-bold uppercase tracking-[0.18em] text-coral font-outfit">What a proposal includes</p>
+                  <p className="text-[0.62rem] font-bold uppercase tracking-[0.18em] text-coral-text font-outfit">What a proposal includes</p>
                   <h2 className="mt-2 font-display text-3xl font-bold tracking-[-0.035em] text-ink">{item.label}</h2>
                   <p className="mt-3 text-sm leading-7 text-ink/80">{item.detail}</p>
                   <div className="mt-6 flex flex-wrap gap-2 text-xs font-bold text-ink/80">
@@ -96,7 +96,7 @@ export default function CaregiversPage() {
           </div>
 
           <div className="luxury-grid mt-12 rounded-[2.5rem] border border-indigo/10 bg-gradient-to-br from-[#f3eafa] to-[#fff0e8] p-8 text-center shadow-soft sm:p-12">
-            <Sparkles className="mx-auto h-8 w-8 text-coral" />
+            <ShieldCheck className="mx-auto h-8 w-8 text-coral" />
             <h2 className="mx-auto mt-5 max-w-[16ch] font-display text-4xl font-bold tracking-[-0.04em] text-ink sm:text-5xl">Your match stays private until it matters.</h2>
             <p className="mx-auto mt-4 max-w-2xl text-sm font-medium leading-7 text-ink/80">Names, exact locations and private pet details are revealed only at the appropriate approval stage. You review the proposed Saathi before payment and confirmation.</p>
             <Link href="/book" className={`${buttonVariants({ variant: "accent", size: "lg" })} mt-7 font-outfit rounded-full px-8 shadow-lifted`}>

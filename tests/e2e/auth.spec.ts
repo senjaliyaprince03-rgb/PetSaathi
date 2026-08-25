@@ -4,7 +4,7 @@ import { randomUUID } from 'crypto';
 test.describe('Authentication and Security (Phase 1)', () => {
   test('Unauthenticated user cannot access protected UI routes', async ({ page }) => {
     // Should redirect to login page
-    await page.goto('/dashboard/customer');
+    await page.goto('/dashboard');
     expect(page.url()).toContain('/login');
   });
 
@@ -82,7 +82,7 @@ test.describe('Authentication and Security (Phase 1)', () => {
     await context.addCookies(storageState.cookies);
     
     // Now visit the protected dashboard
-    const dashboardResponse = await page.goto('/dashboard/customer');
+    const dashboardResponse = await page.goto('/dashboard');
     expect(dashboardResponse?.status()).toBe(200);
     // It shouldn't redirect to login anymore
     expect(page.url()).not.toContain('/login');

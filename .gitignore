@@ -53,6 +53,16 @@ scripts/fix_*.py
 scripts/create_*.py
 scripts/simplify_*.py
 
+# Scratch / local scripts (never commit - may contain provider keys)
+/update-env.js
+/fix_score.js
+/test-email.ts
+/test-mongo.js
+/test-prisma.js
+/test-rp.js
+/journal.html
+/razorpay_windows_x86_64.zip
+
 # Temp output
 output/
 tmp/

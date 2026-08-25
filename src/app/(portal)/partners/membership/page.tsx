@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import Link from "next/link";
 import { Award } from "lucide-react";
 
 import { PortalShell } from "@/components/portal/portal-shell";
@@ -52,6 +53,9 @@ export default async function PartnerMembershipPage() {
             <Award className="mx-auto h-10 w-10 text-saffron" />
             <h2 className="mt-5 font-display text-3xl font-semibold">Pro Membership coming soon.</h2>
             <p className="mt-2 text-sm text-ink/80">We are currently designing our Pro tier. Keep delivering great service!</p>
+            <Link href="/support" className="mt-6 inline-flex items-center gap-2 rounded-2xl bg-indigo px-6 py-3 text-sm font-bold text-paper transition hover:bg-indigo/90">
+              Get notified when Pro launches
+            </Link>
           </div>
         )}
       </div>

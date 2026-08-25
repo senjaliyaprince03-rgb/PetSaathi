@@ -57,7 +57,7 @@ export default async function SocietyLandingPage({ params }: { params: Promise<{
                     <div key={event.id} className="rounded-2xl border border-indigo/10 bg-[#f3eafa]/30 p-5">
                       <h4 className="font-bold text-lg text-indigo">{event.title}</h4>
                       <p className="text-sm text-ink/80 mt-1">{event.description}</p>
-                      <p className="mt-3 flex items-center gap-2 text-xs font-semibold text-coral">
+                      <p className="mt-3 flex items-center gap-2 text-xs font-semibold text-coral-text">
                         <CalendarDays className="h-4 w-4" /> 
                         {event.startsAt.toLocaleDateString("en-IN", { dateStyle: "medium" })}
                       </p>

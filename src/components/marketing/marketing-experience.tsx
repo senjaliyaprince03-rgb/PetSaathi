@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Route } from "next";
 import Image from "next/image";
@@ -8,28 +8,15 @@ import Link from "next/link";
 import {
   ArrowRight,
   BadgeCheck,
-  BookHeart,
-  BookOpen,
-  Briefcase,
   CheckCircle2,
   ChevronRight,
   Clock3,
-  Facebook,
-  FileText,
   HeartHandshake,
   Home,
-  Info,
-  Instagram,
-  Linkedin,
-  Lock,
   LogIn,
-  Mail,
   MapPin,
-  Newspaper,
   PawPrint,
   ShieldCheck,
-  Star,
-  Twitter,
   UserRoundCheck
 } from "lucide-react";
 
@@ -98,7 +85,7 @@ function FaqAccordionItem({ question, answer }: { question: string, answer: stri
   );
 }
 
-export function MarketingExperience() {
+export function MarketingExperience({ footerContent }: { footerContent?: ReactNode }) {
   return (
     <main className="min-h-screen overflow-hidden bg-cream text-ink" data-motion-skip>
       
@@ -425,84 +412,7 @@ export function MarketingExperience() {
         </div>
       </section>
 
-      <footer className="border-t border-white/10 bg-[#301F30] pb-28 pt-14 lg:pb-14">
-        <div className="container-shell grid gap-10 md:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr]">
-          <div>
-            <PetSaathiLogo inverted={true} />
-            <p className="mt-5 max-w-sm text-sm leading-7 text-white/80">India-focused, trust-first pet care built around careful handoffs and traceable service delivery.</p>
-          </div>
-          
-          {[
-            ["Explore", [
-              ["Services", "/services", PawPrint],
-              ["Saathis", "/caregivers", UserRoundCheck],
-              ["Membership", "/membership", BadgeCheck],
-              ["Locations", "/locations", MapPin],
-              ["Reviews", "/reviews", Star]
-            ]],
-            ["Trust", [
-              ["Safety", "/safety", ShieldCheck],
-              ["Privacy", "/privacy", Lock],
-              ["Terms", "/terms", FileText],
-              ["Insurance", "/insurance", HeartHandshake],
-              ["Guidelines", "/guidelines", BookOpen]
-            ]],
-            ["PetSaathi", [
-              ["About", "/about", Info],
-              ["Journal", "/journal", BookHeart],
-              ["Careers", "/careers", Briefcase],
-              ["Contact", "/contact", Mail],
-              ["Press", "/press", Newspaper]
-            ]]
-          ].map(([title, links]) => (
-            <div key={String(title)}>
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-white/80">{String(title)}</p>
-              <ul className="mt-5 grid gap-4">
-                {(links as [string, Route, React.ElementType<{ className?: string }>][]).map(([label, href, Icon]) => (
-                  <li key={href}>
-                    <Link href={href} className="group flex w-fit items-center gap-2 text-sm font-medium text-white/80 transition hover:text-white">
-                      <Icon className="h-4 w-4 text-white/80 transition group-hover:text-saffron" />
-                      {label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-        <div className="container-shell mt-16 flex flex-col gap-6 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-6">
-            <p className="text-xs font-medium text-white/80">© {new Date().getFullYear()} PetSaathi. All rights reserved.</p>
-            <p className="text-xs font-medium text-white/80">Care feels closer.</p>
-          </div>
-          <div className="flex items-center gap-3">
-            {/* Twitter / X — black background, white bird */}
-            <a href="#" aria-label="Twitter"
-              className="flex h-9 w-9 items-center justify-center rounded-full transition hover:opacity-80"
-              style={{ background: "#000000" }}>
-              <Twitter className="h-4 w-4 text-white" />
-            </a>
-            {/* Instagram — official gradient */}
-            <a href="#" aria-label="Instagram"
-              className="flex h-9 w-9 items-center justify-center rounded-full transition hover:opacity-80"
-              style={{ background: "radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%)" }}>
-              <Instagram className="h-4 w-4 text-white" />
-            </a>
-            {/* Facebook — official blue */}
-            <a href="#" aria-label="Facebook"
-              className="flex h-9 w-9 items-center justify-center rounded-full transition hover:opacity-80"
-              style={{ background: "#1877F2" }}>
-              <Facebook className="h-4 w-4 text-white" />
-            </a>
-            {/* LinkedIn — official blue */}
-            <a href="#" aria-label="LinkedIn"
-              className="flex h-9 w-9 items-center justify-center rounded-full transition hover:opacity-80"
-              style={{ background: "#0A66C2" }}>
-              <Linkedin className="h-4 w-4 text-white" />
-            </a>
-          </div>
-        </div>
-      </footer>
+      {footerContent}
 
       <nav aria-label="Mobile navigation" className="fixed inset-x-3 bottom-3 z-50 grid grid-cols-4 rounded-[1.75rem] border border-paper/80 bg-paper/90 p-2 shadow-soft backdrop-blur-2xl lg:hidden">{[[Home, "Home", "/"], [PawPrint, "Services", "/services"], [MapPin, "Find care", "/book"], [LogIn, "Sign in", "/login"]].map(([Icon, label, href]) => { const NavIcon = Icon as typeof Home; return <Link key={String(label)} href={href as Route} className="flex flex-col items-center gap-1 rounded-2xl px-2 py-2 text-[0.62rem] font-bold text-ink/80 transition hover:bg-indigo/[0.06] hover:text-indigo"><NavIcon className="h-4 w-4" />{String(label)}</Link>; })}</nav>
     </main>

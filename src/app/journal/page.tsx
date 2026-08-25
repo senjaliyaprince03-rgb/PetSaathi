@@ -1,4 +1,4 @@
-import { BookOpen, ShieldCheck, Sparkles, ArrowRight } from "lucide-react";
+import { BadgeCheck, BookOpen, ShieldCheck, ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -57,7 +57,8 @@ export default async function JournalPage() {
           src="/images/journal-hero-luxury-banner.jpg"
           alt="PetSaathi care journal study with pet parent and Golden Retriever"
           fill
-          priority          sizes="100vw"
+          priority
+          sizes="(max-width: 640px) 100vw, (max-width: 1280px) 90vw, 1400px"
           className="object-cover object-[75%_center] sm:object-[center_35%]"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/60 to-transparent md:w-3/4" />
@@ -66,7 +67,7 @@ export default async function JournalPage() {
         <div className="container-shell relative flex h-full flex-col justify-center pb-10 pt-28 sm:pt-32">
           <div className="max-w-xl md:max-w-2xl text-left items-start flex flex-col">
             <span className="inline-flex items-center gap-2 rounded-full border border-saffron/40 bg-saffron/20 px-4 py-1.5 text-[0.68rem] font-bold uppercase tracking-[0.2em] text-saffron backdrop-blur-md font-outfit">
-              <Sparkles className="h-3.5 w-3.5" /> Reviewed Care Knowledge
+              <BadgeCheck className="h-3.5 w-3.5" /> Reviewed Care Knowledge
             </span>
             <h1 className="mt-5 font-display text-4xl font-bold tracking-tight text-paper sm:text-6xl sm:leading-[1.1]">
               VERIFIED PET CARE KNOWLEDGE
@@ -101,7 +102,7 @@ export default async function JournalPage() {
                   <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-indigo/10 text-indigo shadow-sm">
                     <BookOpen className="h-6 w-6" />
                   </span>
-                  <p className="mt-6 text-xs font-bold uppercase tracking-[0.17em] text-coral font-outfit">
+                  <p className="mt-6 text-xs font-bold uppercase tracking-[0.17em] text-coral-text font-outfit">
                     {entry.type.replaceAll("_", " ")}
                     {entry.city ? ` · ${entry.city}` : ""}
                   </p>

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Building2, CalendarCheck, Sparkles, UsersRound } from "lucide-react";
+import { ArrowRight, Building2, CalendarCheck, UsersRound } from "lucide-react";
 
 import { PublicShell } from "@/components/marketing/public-shell";
 import { buttonVariants } from "@/components/ui/button";
@@ -32,7 +32,7 @@ export default function SocietiesPage() {
         <div className="container-shell relative flex h-full flex-col justify-center pb-10 pt-28 sm:pt-32">
           <div className="max-w-xl md:max-w-2xl text-left items-start flex flex-col">
             <span className="inline-flex items-center gap-2 rounded-full border border-saffron/40 bg-saffron/20 px-4 py-1.5 text-[0.68rem] font-bold uppercase tracking-[0.2em] text-saffron backdrop-blur-md font-outfit">
-              <Sparkles className="h-3.5 w-3.5" /> Care At Community Scale
+              <Building2 className="h-3.5 w-3.5" /> Care At Community Scale
             </span>
             <h1 className="mt-5 font-display text-4xl font-bold tracking-tight text-paper sm:text-6xl sm:leading-[1.1]">
               MORE FAMILIAR FACES. CLEARER ACCESS.

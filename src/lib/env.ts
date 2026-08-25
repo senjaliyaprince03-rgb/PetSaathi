@@ -37,6 +37,16 @@ const serverSchema = z.object({
       message: "AUTH_DEV_FIXED_OTP must be absent when NODE_ENV is production.",
     });
   }
+  // A loopback public URL in production silently poisons sitemap, robots,
+  // canonical tags and JSON-LD. Warn loudly instead of failing startup so
+  // local production-mode testing still works.
+  if (values.NODE_ENV === "production" && process.env.NEXT_PUBLIC_APP_URL && /^https?:\/\/(localhost|127\.0\.0\.1|\[::1\])/.test(process.env.NEXT_PUBLIC_APP_URL)) {
+    console.warn(
+      "[env] NEXT_PUBLIC_APP_URL points at a loopback address in production. " +
+        "Sitemap, robots, canonical tags and JSON-LD will reference this URL. " +
+        "Set the real deployment origin before public release.",
+    );
+  }
 });
 
 const publicSchema = z.object({
@@ -44,7 +54,11 @@ const publicSchema = z.object({
   NEXT_PUBLIC_RAZORPAY_KEY_ID: z.string().min(1).optional(),
   NEXT_PUBLIC_MAP_PROVIDER: z.enum(["mappls", "google", "disabled", "openstreetmap", "mapbox"]).default("disabled"),
   NEXT_PUBLIC_GA_MEASUREMENT_ID: z.string().min(1).optional(),
-  NEXT_PUBLIC_SENTRY_DSN: z.string().url().optional()
+  NEXT_PUBLIC_SENTRY_DSN: z.string().url().optional(),
+  NEXT_PUBLIC_SOCIAL_X_URL: z.string().url().optional(),
+  NEXT_PUBLIC_SOCIAL_INSTAGRAM_URL: z.string().url().optional(),
+  NEXT_PUBLIC_SOCIAL_FACEBOOK_URL: z.string().url().optional(),
+  NEXT_PUBLIC_SOCIAL_LINKEDIN_URL: z.string().url().optional()
 });
 
 export const publicEnv = publicSchema.parse({
@@ -52,7 +66,11 @@ export const publicEnv = publicSchema.parse({
   NEXT_PUBLIC_RAZORPAY_KEY_ID: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
   NEXT_PUBLIC_MAP_PROVIDER: process.env.NEXT_PUBLIC_MAP_PROVIDER,
   NEXT_PUBLIC_GA_MEASUREMENT_ID: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID,
-  NEXT_PUBLIC_SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN
+  NEXT_PUBLIC_SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN,
+  NEXT_PUBLIC_SOCIAL_X_URL: process.env.NEXT_PUBLIC_SOCIAL_X_URL,
+  NEXT_PUBLIC_SOCIAL_INSTAGRAM_URL: process.env.NEXT_PUBLIC_SOCIAL_INSTAGRAM_URL,
+  NEXT_PUBLIC_SOCIAL_FACEBOOK_URL: process.env.NEXT_PUBLIC_SOCIAL_FACEBOOK_URL,
+  NEXT_PUBLIC_SOCIAL_LINKEDIN_URL: process.env.NEXT_PUBLIC_SOCIAL_LINKEDIN_URL
 });
 
 export function readServerEnv() {
