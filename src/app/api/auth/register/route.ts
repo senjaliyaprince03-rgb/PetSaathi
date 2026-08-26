@@ -53,7 +53,10 @@ export async function POST(request: Request) {
       await prisma.sitterProfile.create({ data: { userId: user.id, status: "APPLICANT" } });
       
       // Trigger Admin Email Notification for new Employee Request (mocked for now)
-      console.log(`[EMAIL to Admin] New Employee (Sitter) Request from ${name} (${normalizedEmail}) - Pending Approval.`);
+      logger.info("New Employee (Sitter) Request Pending Approval", {
+        name,
+        email: normalizedEmail,
+      });
     } else {
       await prisma.customerProfile.create({ data: { userId: user.id } });
     }

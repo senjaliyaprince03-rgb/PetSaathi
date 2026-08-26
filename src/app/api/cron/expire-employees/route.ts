@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
+import { logger } from "@/lib/logger";
 
 export async function GET(request: Request) {
   // Ensure this is called from a trusted source (e.g. cron service with a secret key)
@@ -28,12 +29,15 @@ export async function GET(request: Request) {
         data: { status: "REJECTED" } // Using REJECTED as a fallback for expired
       });
 
-      console.log(`[EMAIL to Employee] Your employee request has expired without admin review. Please contact support. (User: ${profile.user.email})`);
+      logger.info("Employee application expired without admin review", {
+        userId: profile.user.id,
+        email: profile.user.email,
+      });
     }
 
     return NextResponse.json({ success: true, processedCount: expiredProfiles.length });
   } catch (error) {
-    console.error("[CRON ERROR]", error);
+    logger.exception("cron.expire_employees_failed", error);
     return NextResponse.json({ error: "Internal error" }, { status: 500 });
   }
 }

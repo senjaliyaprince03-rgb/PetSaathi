@@ -85,7 +85,21 @@ function FaqAccordionItem({ question, answer }: { question: string, answer: stri
   );
 }
 
-export function MarketingExperience({ footerContent }: { footerContent?: ReactNode }) {
+export function MarketingExperience({
+  footerContent,
+  currentUser,
+}: {
+  footerContent?: ReactNode;
+  currentUser?: { displayName: string; roles: string[] } | null;
+}) {
+  const dashboardUrl = currentUser
+    ? currentUser.roles.includes("SUPER_ADMIN") || currentUser.roles.includes("OPERATIONS_ADMIN")
+      ? "/admin"
+      : currentUser.roles.includes("SITTER")
+      ? "/saathi"
+      : "/dashboard"
+    : "/dashboard";
+
   return (
     <main className="min-h-screen overflow-hidden bg-cream text-ink" data-motion-skip>
       
@@ -99,10 +113,27 @@ export function MarketingExperience({ footerContent }: { footerContent?: ReactNo
             <Link href={"/societies" as Route} className="text-sm font-bold text-ink/80 transition hover:text-ink">Societies</Link>
             <Link href={"/about" as Route} className="text-sm font-bold text-ink/80 transition hover:text-ink">About</Link>
           </nav>
-          <div className="flex items-center gap-4">
-            <MagneticButton strength={0.2}>
-              <Link href={"/login" as Route} className="hidden text-sm font-bold text-ink sm:block">Sign in</Link>
-            </MagneticButton>
+          <div className="flex items-center gap-3">
+            {currentUser ? (
+              <div className="flex items-center gap-3">
+                <Link
+                  href={dashboardUrl as Route}
+                  className="hidden text-sm font-bold text-indigo transition hover:underline sm:block"
+                >
+                  Dashboard ({currentUser.displayName.split(" ")[0]})
+                </Link>
+                <Link
+                  href={"/api/auth/signout" as Route}
+                  className="hidden text-xs font-semibold text-ink/60 transition hover:text-coral sm:block"
+                >
+                  Sign out
+                </Link>
+              </div>
+            ) : (
+              <MagneticButton strength={0.2}>
+                <Link href={"/login" as Route} className="hidden text-sm font-bold text-ink sm:block">Sign in</Link>
+              </MagneticButton>
+            )}
             <MagneticButton strength={0.4}>
               <Link href={"/book" as Route} className={cn(buttonVariants({ variant: "primary", size: "default" }), "rounded-full font-bold bg-[#301F30] hover:bg-[#301F30]/90 text-white")}>
                 Find care <ArrowRight className="ml-1 h-4 w-4" />

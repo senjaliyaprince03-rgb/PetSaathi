@@ -3,20 +3,29 @@ import type { Route } from "next";
 import { redirect } from "next/navigation";
 import type { LucideIcon } from "lucide-react";
 import {
+  Activity,
+  ArrowRight,
   ArrowUpRight,
   Bell,
   CalendarDays,
+  CheckCircle2,
+  ChevronRight,
   ClipboardCheck,
   Gift,
   Handshake,
   Headphones,
   HeartPulse,
   Inbox,
+  LayoutGrid,
   MessageCircleMore,
   PawPrint,
+  ShieldAlert,
   ShieldCheck,
+  Sparkles,
+  Stethoscope,
   UserRoundPlus,
   WalletCards,
+  Zap,
 } from "lucide-react";
 
 import { PortalShell } from "@/components/portal/portal-shell";
@@ -26,21 +35,69 @@ import { cn } from "@/lib/cn";
 import { prisma } from "@/lib/db";
 import { getCurrentIdentity } from "@/modules/auth/session";
 
+const quickServices: Array<{
+  title: string;
+  subtitle: string;
+  tag: string;
+  icon: string;
+  href: Route;
+  accent: string;
+  badgeTone: string;
+}> = [
+  {
+    title: "Dog Walking",
+    subtitle: "GPS-tracked walks with verified Saathis",
+    tag: "From ₹249",
+    icon: "🐕",
+    href: "/book",
+    accent: "hover:border-indigo/40 hover:bg-indigo/[0.03]",
+    badgeTone: "bg-indigo/10 text-indigo",
+  },
+  {
+    title: "Pet Sitting",
+    subtitle: "Loving in-home sitting & overnight stays",
+    tag: "From ₹499",
+    icon: "🏠",
+    href: "/book",
+    accent: "hover:border-coral/40 hover:bg-coral/[0.03]",
+    badgeTone: "bg-coral/10 text-coral",
+  },
+  {
+    title: "Grooming at Home",
+    subtitle: "Baths, styling & hygiene protocols",
+    tag: "Spa Care",
+    icon: "✂️",
+    href: "/customer/grooming" as Route,
+    accent: "hover:border-emerald-500/40 hover:bg-emerald-500/[0.03]",
+    badgeTone: "bg-emerald-500/10 text-emerald-700",
+  },
+  {
+    title: "Vet On-Demand",
+    subtitle: "Teleconsultation & in-person clinic visits",
+    tag: "Certified",
+    icon: "🏥",
+    href: "/customer/vet" as Route,
+    accent: "hover:border-amber-500/40 hover:bg-amber-500/[0.03]",
+    badgeTone: "bg-amber-500/10 text-amber-700",
+  },
+];
+
 const workspaceLinks: Array<{
   label: string;
   description: string;
   href: Route;
   icon: LucideIcon;
   tone: string;
+  category: string;
 }> = [
-  { label: "My pets", description: "Passports, health and routines", href: "/pets", icon: PawPrint, tone: "bg-indigo/10 text-indigo" },
-  { label: "Request care", description: "Create a protected booking", href: "/book", icon: CalendarDays, tone: "bg-coral/10 text-coral" },
-  { label: "Care protocols", description: "Follow every care journey", href: "/customer/protocols" as Route, icon: ClipboardCheck, tone: "bg-leaf/10 text-leaf" },
-  { label: "Loyalty & rewards", description: "Credits and reward history", href: "/customer/loyalty" as Route, icon: Gift, tone: "bg-saffron/25 text-ink" },
-  { label: "Service wallet", description: "Partner benefit balances", href: "/customer/wallet" as Route, icon: WalletCards, tone: "bg-indigo/10 text-indigo" },
-  { label: "Protocol inbox", description: "Care notices and support threads", href: "/customer/inbox" as Route, icon: Inbox, tone: "bg-coral/10 text-coral" },
-  { label: "Partner services", description: "Verified local providers", href: "/partners" as Route, icon: Handshake, tone: "bg-leaf/10 text-leaf" },
-  { label: "Refer a friend", description: "Invitations and earned rewards", href: "/customer/referrals" as Route, icon: UserRoundPlus, tone: "bg-saffron/25 text-ink" },
+  { label: "Pet Passports", description: "Health records, diet plans and vaccination logs", href: "/pets", icon: PawPrint, tone: "bg-indigo/10 text-indigo border-indigo/20", category: "Core" },
+  { label: "Request Care", description: "Create and schedule a protected care booking", href: "/book", icon: CalendarDays, tone: "bg-coral/10 text-coral border-coral/20", category: "Booking" },
+  { label: "Care Protocols", description: "Live session telemetry, reports & GPS logs", href: "/customer/protocols" as Route, icon: ClipboardCheck, tone: "bg-leaf/10 text-leaf border-leaf/20", category: "Journey" },
+  { label: "Loyalty & Rewards", description: "Redeem credits, coins & service perks", href: "/customer/loyalty" as Route, icon: Gift, tone: "bg-saffron/25 text-ink border-saffron/40", category: "Perks" },
+  { label: "Service Wallet", description: "Manage balance, coupons and billing history", href: "/customer/wallet" as Route, icon: WalletCards, tone: "bg-indigo/10 text-indigo border-indigo/20", category: "Finance" },
+  { label: "Protocol Inbox", description: "Real-time updates and caregiver chat", href: "/customer/inbox" as Route, icon: Inbox, tone: "bg-coral/10 text-coral border-coral/20", category: "Inbox" },
+  { label: "Partner Services", description: "Verified local clinics, trainers & daycare", href: "/partners" as Route, icon: Handshake, tone: "bg-leaf/10 text-leaf border-leaf/20", category: "Network" },
+  { label: "Refer a Friend", description: "Share your invite link & earn ₹500 credits", href: "/customer/referrals" as Route, icon: UserRoundPlus, tone: "bg-saffron/25 text-ink border-saffron/40", category: "Rewards" },
 ];
 
 export default async function CustomerDashboardPage() {
@@ -73,11 +130,31 @@ export default async function CustomerDashboardPage() {
     prisma.supportCase.count({ where: { userId: identity.id, status: { not: "CLOSED" } } }),
   ]);
 
-  const nextStep = pets === 0
-    ? { title: "Create the first pet passport", copy: "A current pet profile unlocks safer matching and care requests.", label: "Add a pet", href: "/pets/new" as Route, icon: PawPrint }
-    : activeBookings === 0
-      ? { title: "Plan the next care request", copy: "Choose a pet, approved service, place and schedule in one guided flow.", label: "Request care", href: "/book" as Route, icon: CalendarDays }
-      : { title: "Review care in progress", copy: "Open the latest protocol for its match, timing, updates and report trail.", label: "Open protocols", href: "/customer/protocols" as Route, icon: ClipboardCheck };
+  const nextStep =
+    pets === 0
+      ? {
+          title: "Complete First Pet Passport",
+          copy: "Adding medical notes and routine details unlocks instant verified matching.",
+          label: "Add Pet Profile",
+          href: "/pets/new" as Route,
+          icon: PawPrint,
+        }
+      : activeBookings === 0
+      ? {
+          title: "Schedule Your Next Care Session",
+          copy: "Select verified services with doorstep pickup and verified Saathi assignment.",
+          label: "Book Care Now",
+          href: "/book" as Route,
+          icon: CalendarDays,
+        }
+      : {
+          title: "Care Protocol in Progress",
+          copy: "Open your active protocol for live milestones, GPS path and session evidence.",
+          label: "View Care Protocol",
+          href: "/customer/protocols" as Route,
+          icon: ClipboardCheck,
+        };
+
   const NextStepIcon = nextStep.icon;
 
   return (
@@ -85,123 +162,272 @@ export default async function CustomerDashboardPage() {
       mode="customer"
       displayName={identity.displayName}
       metrics={[
-        `${activeBookings} active booking${activeBookings === 1 ? "" : "s"}`,
-        `${pets} pet passport${pets === 1 ? "" : "s"}`,
-        `${reports} care stor${reports === 1 ? "y" : "ies"}`,
+        `${activeBookings} Active Service${activeBookings === 1 ? "" : "s"}`,
+        `${pets} Pet Passport${pets === 1 ? "" : "s"}`,
+        `${reports} Care Stor${reports === 1 ? "y" : "ies"}`,
       ]}
     >
-      {/* Quick Services Bar */}
-      <ScrollReveal direction="up" delay={0.05}>
-        <section className="mt-5 rounded-[2rem] bg-gradient-to-r from-[#1c1917] to-[#312e81] p-5 shadow-[0_18px_55px_-38px_rgb(var(--ink)/0.32)] sm:p-6">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <h2 className="font-display text-2xl font-semibold tracking-[-0.04em] text-white sm:text-3xl">Quick services</h2>
-              <p className="mt-1 text-sm text-white/60">Book trusted care for your pet in seconds.</p>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {([
-                { label: "🐕 Dog Walking", href: "/book" as Route },
-                { label: "🏠 Pet Sitting", href: "/book" as Route },
-                { label: "✂️ Grooming", href: "/customer/grooming" as Route },
-                { label: "🏥 Vet Visit", href: "/customer/vet" as Route },
-              ] as const).map(({ label, href }) => (
-                <Link key={label} href={href} className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-4 py-2 text-xs font-bold text-white backdrop-blur transition hover:-translate-y-0.5 hover:bg-white/20">
-                  {label}<ArrowUpRight className="h-3 w-3" />
-                </Link>
-              ))}
-            </div>
+      {/* Quick Services Bento Grid */}
+      <section className="mt-8">
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-indigo">Instant On-Demand</p>
+            <h2 className="mt-1 font-display text-2xl font-bold tracking-tight text-ink sm:text-3xl">
+              Explore Pet Services
+            </h2>
           </div>
-        </section>
-      </ScrollReveal>
+          <Link
+            href={"/customer/services" as Route}
+            className="group hidden items-center gap-1.5 text-xs font-bold text-ink/70 transition hover:text-indigo sm:inline-flex"
+          >
+            All Services
+            <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+          </Link>
+        </div>
 
-      <section className="mt-5 grid gap-5 xl:grid-cols-[minmax(0,1.35fr)_minmax(19rem,0.65fr)]">
-        <ScrollReveal direction="up" delay={0.1}>
-          <div className="rounded-[2rem] border border-ink/[0.07] bg-paper p-5 shadow-[0_18px_55px_-38px_rgb(var(--ink)/0.32)] sm:p-7 h-full">
-            <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+        <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {quickServices.map((service) => (
+            <Link
+              key={service.title}
+              href={service.href}
+              className={cn(
+                "group relative flex flex-col justify-between overflow-hidden rounded-[1.8rem] border border-black/[0.06] bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md",
+                service.accent
+              )}
+            >
               <div>
-                <p className="eyebrow">Care timeline</p>
-                <h2 className="mt-3 font-display text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">Recent care, without the noise.</h2>
-                <p className="mt-2 max-w-xl text-sm leading-6 text-ink/80">Every request opens as a complete protocol with status, schedule and service evidence.</p>
+                <div className="flex items-center justify-between">
+                  <span className="text-3xl">{service.icon}</span>
+                  <span className={cn("rounded-full px-2.5 py-0.5 text-[0.65rem] font-bold", service.badgeTone)}>
+                    {service.tag}
+                  </span>
+                </div>
+                <h3 className="mt-4 font-display text-lg font-bold text-ink transition-colors group-hover:text-indigo">
+                  {service.title}
+                </h3>
+                <p className="mt-1 text-xs leading-relaxed text-ink/60">
+                  {service.subtitle}
+                </p>
               </div>
-              <Link href="/customer/protocols" className="inline-flex items-center gap-2 text-sm font-bold text-coral transition hover:text-indigo">View all care<ArrowUpRight className="h-4 w-4" /></Link>
+
+              <div className="mt-5 flex items-center justify-between border-t border-black/[0.04] pt-3 text-xs font-bold text-ink">
+                <span>Book now</span>
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-black/[0.04] text-ink transition group-hover:bg-indigo group-hover:text-white">
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* Main Center: Care Timeline & Intelligence Action Center */}
+      <section className="mt-8 grid gap-6 xl:grid-cols-[minmax(0,1.4fr)_minmax(20rem,0.6fr)]">
+        {/* Care Timeline Card */}
+        <div className="flex flex-col justify-between rounded-[2.2rem] border border-black/[0.06] bg-white p-6 shadow-[0_20px_50px_-25px_rgba(0,0,0,0.06)] sm:p-8">
+          <div>
+            <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-ink/50">Live Protocol Trail</p>
+                </div>
+                <h2 className="mt-1 font-display text-2xl font-bold tracking-tight text-ink sm:text-3xl">
+                  Recent Care Sessions
+                </h2>
+              </div>
+              <Link
+                href={"/customer/protocols" as Route}
+                className="inline-flex items-center gap-1.5 rounded-full border border-black/[0.08] bg-[#faf8f5] px-4 py-1.5 text-xs font-bold text-ink transition hover:border-black/20 hover:bg-white"
+              >
+                View all protocols
+                <ArrowUpRight className="h-3.5 w-3.5" />
+              </Link>
             </div>
 
-            <div className="mt-6 grid gap-3">
-              {recentBookings.length > 0 ? recentBookings.map((booking) => (
-                <Link key={booking.id} href={`/bookings/${booking.id}`} className="group flex flex-col justify-between gap-4 rounded-[1.4rem] border border-ink/[0.06] bg-cream/45 p-4 transition hover:border-indigo/20 hover:bg-paper hover:shadow-lifted sm:flex-row sm:items-center">
-                  <div className="flex items-start gap-3">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-indigo/10 text-indigo"><HeartPulse className="h-4 w-4" /></span>
-                    <div><p className="font-bold">{booking.serviceType.name} · {booking.pet.name}</p><p className="mt-1 text-xs text-ink/80">{booking.reference} · {booking.scheduledStart.toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" })}</p></div>
+            <div className="mt-6 space-y-3">
+              {recentBookings.length > 0 ? (
+                recentBookings.map((booking) => (
+                  <Link
+                    key={booking.id}
+                    href={`/bookings/${booking.id}`}
+                    className="group flex flex-col justify-between gap-4 rounded-2xl border border-black/[0.05] bg-[#faf8f5] p-4 transition-all duration-200 hover:border-indigo/30 hover:bg-white hover:shadow-sm sm:flex-row sm:items-center"
+                  >
+                    <div className="flex items-center gap-3.5">
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-indigo/10 text-indigo">
+                        <HeartPulse className="h-5 w-5" />
+                      </div>
+                      <div>
+                        <p className="text-sm font-bold text-ink group-hover:text-indigo">
+                          {booking.serviceType.name} · <span className="text-coral">{booking.pet.name}</span>
+                        </p>
+                        <p className="mt-0.5 text-xs text-ink/50">
+                          Ref: <span className="font-mono text-ink/70">{booking.reference}</span> · {booking.scheduledStart.toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" })}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center justify-between gap-3 sm:justify-end">
+                      <span className="rounded-full bg-emerald-500/10 px-3 py-1 text-[0.65rem] font-bold uppercase tracking-wider text-emerald-700">
+                        {booking.status.replaceAll("_", " ")}
+                      </span>
+                      <ChevronRight className="h-4 w-4 text-ink/30 transition group-hover:translate-x-1 group-hover:text-indigo" />
+                    </div>
+                  </Link>
+                ))
+              ) : (
+                <div className="rounded-3xl border border-dashed border-black/[0.1] bg-[#faf8f5] p-10 text-center">
+                  <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-indigo/10 text-indigo">
+                    <ClipboardCheck className="h-7 w-7" />
                   </div>
-                  <div className="flex items-center gap-3"><span className="rounded-full bg-coral/10 px-3 py-1.5 text-[0.6rem] font-bold uppercase tracking-[0.12em] text-coral">{booking.status.replaceAll("_", " ")}</span><ArrowUpRight className="h-4 w-4 text-ink/80 transition group-hover:text-coral" /></div>
-                </Link>
-              )) : (
-                <div className="rounded-[1.6rem] border border-dashed border-indigo/15 bg-cream/25 p-8 text-center">
-                  <ClipboardCheck className="mx-auto h-9 w-9 text-indigo/80" />
-                  <p className="mt-4 font-display text-2xl font-semibold">Your first care timeline will appear here.</p>
-                  <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-ink/80">Create a protected request when you are ready; nothing is invented to make this page look busy.</p>
+                  <h3 className="mt-4 font-display text-xl font-bold text-ink">
+                    No care requests active
+                  </h3>
+                  <p className="mx-auto mt-2 max-w-sm text-xs leading-relaxed text-ink/60">
+                    Book trusted walking, sitting or grooming services. Real-time updates and photo reports will appear here.
+                  </p>
+                  <Link
+                    href="/book"
+                    className="mt-5 inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-xs font-bold text-white shadow transition hover:bg-indigo"
+                  >
+                    Schedule Care Now
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </Link>
                 </div>
               )}
             </div>
           </div>
-        </ScrollReveal>
 
-        <ScrollReveal direction="up" delay={0.2}>
-          <aside className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-[#efe4f4] via-paper to-[#fff0e7] p-6 shadow-[0_18px_55px_-38px_rgb(var(--ink)/0.32)] sm:p-7 h-full">
-            <div className="absolute -right-14 -top-16 h-44 w-44 rounded-full bg-coral/15 blur-3xl" />
-            <div className="relative">
-              <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#281d2b] text-saffron"><NextStepIcon className="h-5 w-5" /></span>
-              <p className="mt-8 text-[0.6rem] font-bold uppercase tracking-[0.2em] text-indigo/80">Recommended next step</p>
-              <h2 className="mt-3 font-display text-3xl font-semibold tracking-[-0.04em]">{nextStep.title}</h2>
-              <p className="mt-3 text-sm leading-6 text-ink/80">{nextStep.copy}</p>
-              <Link href={nextStep.href} className="mt-7 inline-flex min-h-11 items-center gap-2 rounded-full bg-coral px-5 text-sm font-bold text-paper shadow-lifted transition hover:-translate-y-0.5 hover:bg-indigo">{nextStep.label}<ArrowUpRight className="h-4 w-4" /></Link>
+          <div className="mt-6 flex items-center gap-2 rounded-2xl border border-emerald-500/20 bg-emerald-500/[0.04] p-3.5 text-xs text-emerald-800">
+            <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-600" />
+            <span>All sessions are backed by our verified Saathi guarantee and 24/7 safety oversight.</span>
+          </div>
+        </div>
+
+        {/* Intelligence Action Center / Next Step */}
+        <aside className="relative flex flex-col justify-between overflow-hidden rounded-[2.2rem] bg-gradient-to-br from-[#1c1917] via-[#241c2c] to-[#312e81] p-6 text-white shadow-[0_20px_50px_-25px_rgba(0,0,0,0.2)] sm:p-8">
+          <div className="absolute -right-12 -top-12 h-44 w-44 rounded-full bg-coral/20 blur-3xl" />
+          <div className="absolute -bottom-12 -left-12 h-44 w-44 rounded-full bg-indigo-500/20 blur-3xl" />
+
+          <div className="relative z-10">
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-saffron backdrop-blur shadow-sm">
+              <NextStepIcon className="h-6 w-6" />
             </div>
-            <div className="relative mt-7 grid grid-cols-2 gap-3 border-t border-ink/[0.07] pt-5">
-              <Link href="/notifications" className="rounded-2xl bg-paper/65 p-3 transition hover:bg-paper"><Bell className="h-4 w-4 text-coral" /><p className="mt-3 text-xl font-bold">{unreadNotices}</p><p className="text-[0.62rem] font-semibold text-ink/80">Pending updates</p></Link>
-              <Link href="/support" className="rounded-2xl bg-paper/65 p-3 transition hover:bg-paper"><Headphones className="h-4 w-4 text-indigo" /><p className="mt-3 text-xl font-bold">{openCases}</p><p className="text-[0.62rem] font-semibold text-ink/80">Open cases</p></Link>
+
+            <div className="mt-6">
+              <span className="inline-block rounded-full bg-white/10 px-2.5 py-0.5 text-[0.65rem] font-bold uppercase tracking-widest text-saffron">
+                Priority Action
+              </span>
+              <h3 className="mt-3 font-display text-2xl font-bold tracking-tight text-white sm:text-3xl">
+                {nextStep.title}
+              </h3>
+              <p className="mt-2 text-xs leading-relaxed text-white/70">
+                {nextStep.copy}
+              </p>
+
+              <Link
+                href={nextStep.href}
+                className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-full bg-coral px-6 text-xs font-bold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-coral/90"
+              >
+                {nextStep.label}
+                <ArrowUpRight className="h-4 w-4" />
+              </Link>
             </div>
-          </aside>
-        </ScrollReveal>
+          </div>
+
+          <div className="relative z-10 mt-8 grid grid-cols-2 gap-3 border-t border-white/10 pt-5">
+            <Link
+              href="/notifications"
+              className="group rounded-2xl bg-white/5 p-3.5 transition hover:bg-white/10"
+            >
+              <div className="flex items-center justify-between">
+                <Bell className="h-4 w-4 text-coral" />
+                <span className="h-1.5 w-1.5 rounded-full bg-coral" />
+              </div>
+              <p className="mt-3 font-display text-2xl font-bold text-white">{unreadNotices}</p>
+              <p className="text-[0.65rem] font-semibold text-white/60">Unread Notices</p>
+            </Link>
+
+            <Link
+              href="/support"
+              className="group rounded-2xl bg-white/5 p-3.5 transition hover:bg-white/10"
+            >
+              <div className="flex items-center justify-between">
+                <Headphones className="h-4 w-4 text-indigo-300" />
+                <ArrowUpRight className="h-3 w-3 text-white/40 transition group-hover:text-white" />
+              </div>
+              <p className="mt-3 font-display text-2xl font-bold text-white">{openCases}</p>
+              <p className="text-[0.65rem] font-semibold text-white/60">Support Tickets</p>
+            </Link>
+          </div>
+        </aside>
       </section>
 
-      {/* Pet Overview Stats */}
-      <ScrollReveal direction="up" delay={0.25}>
-        <section className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-          {([
-            { label: "Active bookings", value: activeBookings, icon: CalendarDays, tone: "bg-coral/10 text-coral" },
-            { label: "Pet passports", value: pets, icon: PawPrint, tone: "bg-indigo/10 text-indigo" },
-            { label: "Care stories", value: reports, icon: ClipboardCheck, tone: "bg-leaf/10 text-leaf" },
-            { label: "Pending updates", value: unreadNotices, icon: Bell, tone: "bg-saffron/25 text-ink" },
-          ] as const).map(({ label, value, icon: Icon, tone }) => (
-            <div key={label} className="rounded-[1.6rem] border border-ink/[0.06] bg-paper p-5 shadow-[0_10px_30px_-20px_rgb(var(--ink)/0.15)]">
-              <div className="flex items-center justify-between">
-                <span className={cn("flex h-10 w-10 items-center justify-center rounded-2xl", tone)}><Icon className="h-4 w-4" /></span>
-              </div>
-              <p className="mt-4 font-display text-3xl font-semibold">{value}</p>
-              <p className="mt-1 text-xs font-semibold text-ink/80">{label}</p>
-            </div>
-          ))}
-        </section>
-      </ScrollReveal>
-
-      <ScrollReveal direction="up" delay={0.3}>
-        <section className="mt-5 rounded-[2rem] border border-ink/[0.07] bg-paper p-5 shadow-[0_18px_55px_-38px_rgb(var(--ink)/0.32)] sm:p-7">
-          <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-            <div><p className="eyebrow">Your workspace</p><h2 className="mt-3 font-display text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">Everything has a proper place.</h2><p className="mt-2 text-sm leading-6 text-ink/80">Each destination opens as a complete page with its own data, actions and empty states.</p></div>
-            <div className="flex gap-2"><Link href="/settings/notifications" aria-label="Communication preferences" className="flex h-10 w-10 items-center justify-center rounded-full bg-indigo/10 text-indigo transition hover:bg-indigo hover:text-paper"><MessageCircleMore className="h-4 w-4" /></Link><Link href="/safety" aria-label="Trust and safety" className="flex h-10 w-10 items-center justify-center rounded-full bg-leaf/10 text-leaf transition hover:bg-leaf hover:text-paper"><ShieldCheck className="h-4 w-4" /></Link></div>
+      {/* Workspace Grid */}
+      <section className="mt-10 rounded-[2.5rem] border border-black/[0.06] bg-white p-6 shadow-[0_20px_50px_-25px_rgba(0,0,0,0.06)] sm:p-8 lg:p-10">
+        <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-indigo">Platform Modules</p>
+            <h2 className="mt-1 font-display text-2xl font-bold tracking-tight text-ink sm:text-3xl">
+              Your Pet Care Command Matrix
+            </h2>
+            <p className="mt-1 text-xs text-ink/60">
+              Access your digital passports, rewards ledger, wallet balances and customer services.
+            </p>
           </div>
-          <ScrollStaggerContainer className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-            {workspaceLinks.map(({ label, description, href, icon: Icon, tone }) => (
-              <ScrollStaggerItem key={href}>
-                <Link href={href} className="group flex flex-col h-full rounded-[1.4rem] border border-ink/[0.06] bg-cream/35 p-4 transition hover:-translate-y-0.5 hover:border-indigo/20 hover:bg-paper hover:shadow-lifted">
-                  <div className="flex items-start justify-between"><span className={cn("flex h-10 w-10 items-center justify-center rounded-2xl", tone)}><Icon className="h-4 w-4" /></span><ArrowUpRight className="h-4 w-4 text-ink/80 transition group-hover:text-coral" /></div>
-                  <h3 className="mt-5 font-display text-xl font-semibold">{label}</h3><p className="mt-1 text-xs leading-5 text-ink/80">{description}</p>
-                </Link>
-              </ScrollStaggerItem>
-            ))}
-          </ScrollStaggerContainer>
-        </section>
-      </ScrollReveal>
+
+          <div className="flex gap-2">
+            <Link
+              href="/settings/notifications"
+              aria-label="Communication preferences"
+              className="flex h-10 w-10 items-center justify-center rounded-2xl border border-black/[0.08] bg-[#faf8f5] text-ink transition hover:bg-indigo hover:text-white"
+            >
+              <MessageCircleMore className="h-4 w-4" />
+            </Link>
+            <Link
+              href="/safety"
+              aria-label="Trust and safety"
+              className="flex h-10 w-10 items-center justify-center rounded-2xl border border-black/[0.08] bg-[#faf8f5] text-emerald-700 transition hover:bg-emerald-600 hover:text-white"
+            >
+              <ShieldCheck className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
+
+        <ScrollStaggerContainer className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {workspaceLinks.map(({ label, description, href, icon: Icon, tone, category }) => (
+            <ScrollStaggerItem key={href}>
+              <Link
+                href={href}
+                className="group flex h-full flex-col justify-between rounded-[1.6rem] border border-black/[0.06] bg-[#faf8f5] p-5 transition-all duration-300 hover:-translate-y-1 hover:border-indigo/30 hover:bg-white hover:shadow-md"
+              >
+                <div>
+                  <div className="flex items-center justify-between">
+                    <span className={cn("flex h-11 w-11 items-center justify-center rounded-2xl border shadow-sm transition-transform duration-300 group-hover:scale-110", tone)}>
+                      <Icon className="h-5 w-5" />
+                    </span>
+                    <span className="rounded-full bg-black/[0.04] px-2 py-0.5 text-[0.62rem] font-bold text-ink/50">
+                      {category}
+                    </span>
+                  </div>
+
+                  <h3 className="mt-5 font-display text-lg font-bold text-ink transition group-hover:text-indigo">
+                    {label}
+                  </h3>
+                  <p className="mt-1 text-xs leading-relaxed text-ink/60">
+                    {description}
+                  </p>
+                </div>
+
+                <div className="mt-5 flex items-center justify-between border-t border-black/[0.04] pt-3 text-xs font-bold text-ink/40 transition group-hover:text-indigo">
+                  <span>Open workspace</span>
+                  <ArrowUpRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </div>
+              </Link>
+            </ScrollStaggerItem>
+          ))}
+        </ScrollStaggerContainer>
+      </section>
     </PortalShell>
   );
 }

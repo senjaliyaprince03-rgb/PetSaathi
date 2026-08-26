@@ -123,7 +123,6 @@ export function useAIChat(initialConversationId?: string) {
       }
     } catch (err: any) {
       if (err.name === 'AbortError') {
-        console.log('Request cancelled');
         return;
       }
       console.error(err);

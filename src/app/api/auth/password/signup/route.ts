@@ -16,7 +16,7 @@ const signupSchema = z.object({
     .regex(/[a-z]/, "Password must contain at least one lowercase letter")
     .regex(/[0-9]/, "Password must contain at least one number")
     .regex(/[^A-Za-z0-9]/, "Password must contain at least one special character"),
-  role: z.enum(["CUSTOMER", "SITTER"]).optional(),
+  role: z.enum(["CUSTOMER", "SITTER", "ADMIN"]).optional(),
 });
 
 export async function POST(request: Request) {
@@ -37,6 +37,9 @@ export async function POST(request: Request) {
   try {
     const result = await registerWithPassword(parsed.data);
     if (!result.created) {
+      if (result.reason === "unauthorized_role") {
+        return jsonError("unauthorized_role", "Admin registration is restricted to authorized administrator accounts.", 403);
+      }
       return jsonError("account_exists", "An account with this email already exists.", 409);
     }
     return NextResponse.json(

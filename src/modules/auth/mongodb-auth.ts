@@ -15,6 +15,7 @@ import { cookies } from "next/headers";
 
 import { prisma } from "@/lib/db";
 import { getMongoDatabase } from "@/lib/mongodb";
+import { logger } from "@/lib/logger";
 
 const SESSION_COOKIE = "petsaathi_session";
 const CHALLENGE_MINUTES = 10;
@@ -162,7 +163,7 @@ export async function requestEmailOtp(rawEmail: string) {
   const pass = process.env.SMTP_PASS;
   
   if (process.env.NODE_ENV === "development") {
-    console.log(`\n\n🐶 [DEV] Login OTP for ${email}: ${challenge.code}\n\n`);
+    logger.info("Dev Login OTP generated", { email, code: challenge.code });
   }
 
   if (!user || !pass) {
@@ -319,12 +320,21 @@ async function sendWelcomeEmail(email: string, displayName: string) {
   }).catch(err => console.error("Failed to send welcome email:", err));
 }
 
+const AUTHORIZED_ADMIN_EMAILS = new Set([
+  "mrsenjaliya532@gmail.com",
+  "admin@petsaathi.com",
+]);
+
+export function isAuthorizedAdminEmail(email: string): boolean {
+  return AUTHORIZED_ADMIN_EMAILS.has(email.trim().toLowerCase());
+}
+
 async function ensureUser(channel: AuthChannel, subject: string, displayName?: string, requestedRole?: string) {
   const selector = channel === "email" ? { email: subject } : { phoneE164: subject };
   const existing = await prisma.user.findFirst({ where: selector, select: { id: true, status: true, displayName: true, roles: { select: { role: true } } } });
   
-  const roleToRequest = requestedRole === "SITTER" ? "SITTER" : requestedRole === "CUSTOMER" ? "CUSTOMER" : undefined;
-  const isAdmin = subject.toLowerCase() === "mrsenjaliya532@gmail.com";
+  const isAdmin = channel === "email" && isAuthorizedAdminEmail(subject);
+  const roleToRequest = isAdmin ? "SUPER_ADMIN" : requestedRole === "SITTER" ? "SITTER" : "CUSTOMER";
   
   if (existing) {
     if (!isAdmin && roleToRequest) {
@@ -334,7 +344,17 @@ async function ensureUser(channel: AuthChannel, subject: string, displayName?: s
           where: { id: existing.id },
           data: {
             roles: { create: { role: roleToRequest } },
-            ...(roleToRequest === "SITTER" ? { sitter: { create: {} } } : { customer: { create: {} } })
+            ...(roleToRequest === "SITTER" ? { sitter: { create: {} } } : roleToRequest === "CUSTOMER" ? { customer: { create: {} } } : {})
+          }
+        });
+      }
+    } else if (isAdmin) {
+      const hasAdmin = existing.roles.some(r => r.role === "SUPER_ADMIN");
+      if (!hasAdmin) {
+        await prisma.user.update({
+          where: { id: existing.id },
+          data: {
+            roles: { create: [{ role: "SUPER_ADMIN" }, { role: "OPERATIONS_ADMIN" }] }
           }
         });
       }
@@ -433,7 +453,7 @@ export async function registerWithPassword(input: {
   email: string;
   displayName: string;
   password: string;
-  role?: "CUSTOMER" | "SITTER";
+  role?: "CUSTOMER" | "SITTER" | "ADMIN";
 }) {
   await ensureAuthIndexes();
   const email = normalizedEmail(input.email);
@@ -445,8 +465,11 @@ export async function registerWithPassword(input: {
   ]);
   if (existingCredential || existingUser) return { created: false as const, reason: "account_exists" as const };
 
-  const isAdmin = email.toLowerCase() === "mrsenjaliya532@gmail.com";
-  const requestedRole = isAdmin ? "SUPER_ADMIN" : (input.role || "CUSTOMER");
+  const isAdmin = isAuthorizedAdminEmail(email);
+  if (input.role === "ADMIN" && !isAdmin) {
+    return { created: false as const, reason: "unauthorized_role" as const };
+  }
+  const defaultUserRole: "CUSTOMER" | "SITTER" = input.role === "SITTER" ? "SITTER" : "CUSTOMER";
 
   const user = await prisma.user.create({
     data: {
@@ -456,10 +479,10 @@ export async function registerWithPassword(input: {
       roles: { 
         create: isAdmin 
           ? [{ role: "SUPER_ADMIN" }, { role: "OPERATIONS_ADMIN" }] 
-          : { role: requestedRole } 
+          : { role: defaultUserRole } 
       },
-      ...(!isAdmin && requestedRole === "CUSTOMER" ? { customer: { create: {} } } : {}),
-      ...(!isAdmin && requestedRole === "SITTER" ? { sitter: { create: {} } } : {}),
+      ...(!isAdmin && defaultUserRole === "CUSTOMER" ? { customer: { create: {} } } : {}),
+      ...(!isAdmin && defaultUserRole === "SITTER" ? { sitter: { create: {} } } : {}),
     },
     select: { id: true },
   });

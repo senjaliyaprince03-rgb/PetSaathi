@@ -29,7 +29,7 @@ export function AuthSlidingPanel() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [otp, setOtp] = useState("");
-  const [role, setRole] = useState<"CUSTOMER" | "SITTER">("CUSTOMER");
+  const [role, setRole] = useState<"CUSTOMER" | "SITTER" | "ADMIN">("CUSTOMER");
   const [error, setError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
   const googleButtonSignUpRef = useRef<HTMLDivElement>(null);
@@ -45,7 +45,8 @@ export function AuthSlidingPanel() {
   }
 
   function redirectForRoles(roles?: string[]) {
-    if (roles?.includes("SUPER_ADMIN") || roles?.includes("OPERATIONS_ADMIN")) return "/admin";
+    if (roles?.includes("SUPER_ADMIN") || roles?.includes("OPERATIONS_ADMIN") || roles?.includes("ADMIN")) return "/admin";
+    if (role === "ADMIN") return "/admin";
     if (role === "SITTER" && roles?.includes("SITTER")) return "/saathi";
     return "/dashboard";
   }
@@ -266,7 +267,7 @@ export function AuthSlidingPanel() {
           <form onSubmit={handleSignUp} className="flex flex-col gap-3 sm:gap-4">
             <div className="flex flex-col gap-2 px-1">
               <span className="text-sm font-semibold text-ink/80"><span className="text-coral">*</span>Role</span>
-              <div className="flex items-center gap-6">
+              <div className="flex items-center gap-4 sm:gap-6">
                 <label className="flex items-center gap-2 cursor-pointer text-sm font-medium text-ink/80">
                   <input
                     type="radio"
@@ -288,6 +289,17 @@ export function AuthSlidingPanel() {
                     className="h-4 w-4 text-indigo focus:ring-indigo accent-indigo"
                   />
                   Saathi
+                </label>
+                <label className="flex items-center gap-2 cursor-pointer text-sm font-medium text-ink/80">
+                  <input
+                    type="radio"
+                    name="role"
+                    value="ADMIN"
+                    checked={role === "ADMIN"}
+                    onChange={() => setRole("ADMIN")}
+                    className="h-4 w-4 text-indigo focus:ring-indigo accent-indigo"
+                  />
+                  Admin
                 </label>
               </div>
             </div>
@@ -343,7 +355,7 @@ export function AuthSlidingPanel() {
           <form onSubmit={handleSignIn} className="flex flex-col gap-3 sm:gap-4">
           <div className="flex flex-col gap-2 px-1">
             <span className="text-sm font-semibold text-ink/80"><span className="text-coral">*</span>Role</span>
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-4 sm:gap-6">
               <label className="flex items-center gap-2 cursor-pointer text-sm font-medium text-ink/80">
                 <input
                   type="radio"
@@ -365,6 +377,17 @@ export function AuthSlidingPanel() {
                   className="h-4 w-4 text-indigo focus:ring-indigo accent-indigo"
                 />
                 Saathi
+              </label>
+              <label className="flex items-center gap-2 cursor-pointer text-sm font-medium text-ink/80">
+                <input
+                  type="radio"
+                  name="signinRole"
+                  value="ADMIN"
+                  checked={role === "ADMIN"}
+                  onChange={() => setRole("ADMIN")}
+                  className="h-4 w-4 text-indigo focus:ring-indigo accent-indigo"
+                />
+                Admin
               </label>
             </div>
           </div>

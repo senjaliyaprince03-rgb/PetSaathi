@@ -1,6 +1,7 @@
-import { BookingStatus, RiskLevel, PermissionStatus, SitterStatus, AssignmentStatus  } from "@prisma/client";
+import { BookingStatus, RiskLevel, PermissionStatus, SitterStatus, AssignmentStatus } from "@prisma/client";
 
 import { prisma } from "@/lib/db";
+import { logger } from "@/lib/logger";
 
 export class MatchingError extends Error {
   constructor(public code: string, message: string) {
@@ -53,18 +54,20 @@ export async function findEligibleSitters(bookingId: string) {
     }
   });
 
-  console.log("Permissions found:", permissions.length);
+  logger.info("Matching search permissions retrieved", {
+    bookingId,
+    permissionsCount: permissions.length,
+  });
+
   // Filter and score sitters
   const scoredSitters = permissions
     .filter(p => {
       // Must have active profile
       if (p.sitter.status !== SitterStatus.APPROVED) {
-        console.log("Sitter not active", p.sitter.status);
         return false;
       }
       // Must meet risk limit
       if (RiskLevelOrder[p.riskLimit] < requiredRiskValue) {
-        console.log("Risk limit too low", p.riskLimit, requiredRiskValue);
         return false;
       }
       return true;
