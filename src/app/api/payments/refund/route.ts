@@ -42,6 +42,16 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "no_captured_payment" }, { status: 400 });
   }
 
+  const activeRefund = await prisma.refund.findFirst({
+    where: {
+      paymentId: payment.id,
+      status: { in: ["REQUESTED", "APPROVED", "PROCESSING", "COMPLETED"] },
+    },
+  });
+  if (activeRefund) {
+    return NextResponse.json({ error: "refund_already_exists", refundId: activeRefund.id }, { status: 409 });
+  }
+
   const razorpay = createRazorpayClient();
   if (!razorpay) {
     return NextResponse.json({ error: "payments_not_configured" }, { status: 503 });

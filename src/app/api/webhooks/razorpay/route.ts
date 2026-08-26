@@ -4,7 +4,9 @@ import { Prisma } from "@prisma/client";
 import { NextResponse } from "next/server";
 
 import { isDatabaseConfigured, prisma } from "@/lib/db";
+import { canTransitionBooking } from "@/modules/bookings/state-machine";
 import { validRazorpaySignature } from "@/modules/payments/signature";
+import { canTransitionPayment } from "@/modules/payments/state-machine";
 import { canTransitionSubscription } from "@/modules/subscriptions/state-machine";
 
 export const dynamic = "force-dynamic";
@@ -80,7 +82,7 @@ async function processEvent(eventRecordId: string, eventType: string, payload: u
   }
 
   const entity = readPaymentEntity(payload);
-  if (!entity || !["payment.captured", "payment.failed"].includes(eventType)) {
+  if (!entity || !["payment.captured", "payment.authorized", "order.paid", "payment.failed"].includes(eventType)) {
     await prisma.paymentEvent.update({ where: { id: eventRecordId }, data: { processedAt: new Date(), attempts: { increment: 1 }, processingError: null } });
     return;
   }
@@ -90,10 +92,14 @@ async function processEvent(eventRecordId: string, eventType: string, payload: u
     if (!payment) throw new Error("Payment order is unknown");
     if (payment.amountPaise !== entity.amount || payment.currency !== entity.currency) throw new Error("Provider amount or currency does not match the server quote");
 
-    if (eventType === "payment.captured") {
-      await tx.payment.update({ where: { id: payment.id }, data: { providerPaymentId: entity.id, status: "CAPTURED", signatureVerified: true, capturedAt: new Date() } });
-      if (payment.booking.status === "PAYMENT_PENDING") {
-        await tx.booking.update({ where: { id: payment.booking.id }, data: { status: "CONFIRMED", statusHistory: { create: { fromState: "PAYMENT_PENDING", toState: "CONFIRMED", reason: "Verified Razorpay capture webhook" } } } });
+    if (eventType === "payment.captured" || eventType === "order.paid") {
+      if (canTransitionPayment(payment.status, "CAPTURED")) {
+        await tx.payment.update({ where: { id: payment.id }, data: { providerPaymentId: entity.id, status: "CAPTURED", signatureVerified: true, capturedAt: new Date() } });
+      } else if (payment.status === "CAPTURED") {
+        await tx.payment.update({ where: { id: payment.id }, data: { providerPaymentId: entity.id, signatureVerified: true, capturedAt: payment.capturedAt ?? new Date() } });
+      }
+      if (canTransitionBooking(payment.booking.status, "CONFIRMED")) {
+        await tx.booking.update({ where: { id: payment.booking.id }, data: { status: "CONFIRMED", statusHistory: { create: { fromState: payment.booking.status, toState: "CONFIRMED", reason: "Verified Razorpay capture webhook" } } } });
       }
       await tx.notificationOutbox.upsert({
         where: { idempotencyKey: `booking-confirmed:${payment.booking.id}:${payment.id}` },
@@ -107,8 +113,14 @@ async function processEvent(eventRecordId: string, eventType: string, payload: u
         },
         update: {}
       });
-    } else {
-      await tx.payment.update({ where: { id: payment.id }, data: { providerPaymentId: entity.id, status: "FAILED", failureCode: entity.errorCode, failureReason: entity.errorDescription } });
+    } else if (eventType === "payment.authorized") {
+      if (canTransitionPayment(payment.status, "AUTHORIZED")) {
+        await tx.payment.update({ where: { id: payment.id }, data: { providerPaymentId: entity.id, status: "AUTHORIZED" } });
+      }
+    } else if (eventType === "payment.failed") {
+      if (canTransitionPayment(payment.status, "FAILED")) {
+        await tx.payment.update({ where: { id: payment.id }, data: { providerPaymentId: entity.id, status: "FAILED", failureCode: entity.errorCode, failureReason: entity.errorDescription } });
+      }
     }
     await tx.paymentEvent.update({ where: { id: eventRecordId }, data: { processedAt: new Date(), attempts: { increment: 1 }, processingError: null } });
   });
