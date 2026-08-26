@@ -40,7 +40,8 @@
     "src/**/*.tsx",
     "tests/**/*.ts",
     "tests/**/*.tsx",
-    "vitest.config.ts"
+    "vitest.config.ts",
+    ".next-dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules",

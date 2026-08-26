@@ -46,7 +46,9 @@ async function start() {
     console.warn(`Port ${basePort} is busy. Starting Next.js on ${nextPort} instead.`);
   }
 
-  const args = ['dev', '--turbo', '--hostname', host, '--port', String(nextPort)];
+  const useTurbo = process.argv.includes('--turbo') || (!process.argv.includes('--no-turbo') && process.env.NEXT_TURBO !== 'false');
+  const turboArgs = useTurbo ? ['--turbo'] : [];
+  const args = ['dev', ...turboArgs, '--hostname', host, '--port', String(nextPort)];
   const childEnv = { ...process.env, PORT: String(nextPort), NODE_OPTIONS: `${process.env.NODE_OPTIONS || ''} --max-old-space-size=4096`.trim() };
   const { preparePrismaEnvironment } = await import('./prepare-prisma-uri.mjs');
   await preparePrismaEnvironment(childEnv);

@@ -29,7 +29,16 @@ function isPlaceholderValue(value) {
 async function verify() {
   const uri = requireValue("MONGODB_URI");
   const databaseName = requireValue("MONGODB_DATABASE");
-  requireValue("AUTH_SECRET", 32);
+  // NEXTAUTH_SECRET is the preferred signing secret; AUTH_SECRET remains a
+  // supported alias so existing deployments keep passing.
+  const hasAuthSecret =
+    (process.env.NEXTAUTH_SECRET ?? "").trim().length >= 32 ||
+    (process.env.AUTH_SECRET ?? "").trim().length >= 32;
+  if (!hasAuthSecret) {
+    failures.push(
+      "AUTH_SECRET/NEXTAUTH_SECRET is missing or shorter than 32 characters. Generate one with `openssl rand -base64 32`.",
+    );
+  }
   requireValue("UPLOAD_SIGNING_SECRET", 32);
 
   if (!uri || !databaseName) return;

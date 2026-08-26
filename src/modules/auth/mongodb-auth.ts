@@ -15,6 +15,7 @@ import { cookies } from "next/headers";
 
 import { prisma } from "@/lib/db";
 import { getMongoDatabase } from "@/lib/mongodb";
+import { getAuthSecret } from "@/lib/auth-secret";
 import { logger } from "@/lib/logger";
 
 const SESSION_COOKIE = "petsaathi_session";
@@ -63,12 +64,10 @@ function normalizedEmail(email: string) {
 }
 
 function authSecret() {
-  const configured = process.env.AUTH_SECRET;
-  if (configured && configured.length >= 32) return configured;
-  if (process.env.NODE_ENV !== "production") {
-    return "petsaathi-local-development-secret-change-before-production";
-  }
-  throw new Error("AUTH_SECRET must contain at least 32 characters in production.");
+  // Shared resolution (NEXTAUTH_SECRET, falling back to the AUTH_SECRET
+  // alias) so challenge/session HMACs always match the NextAuth signing
+  // secret. Throws in every environment when no strong secret is configured.
+  return getAuthSecret();
 }
 
 function digest(value: string) {

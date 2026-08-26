@@ -3,6 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/db";
 import { getMongoDatabase } from "@/lib/mongodb";
+import { getAuthSecret } from "@/lib/auth-secret";
 
 export const authOptions: NextAuthOptions = {
   session: { strategy: "jwt" },
@@ -60,5 +61,7 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
   },
-  secret: process.env.NEXTAUTH_SECRET || "petsaathi-local-development-secret-change-before-production",
+  // Resolved through the shared helper so NextAuth, the edge middleware and
+  // the Mongo auth module always sign with the same validated secret.
+  secret: getAuthSecret(),
 };

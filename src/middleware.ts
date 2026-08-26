@@ -5,6 +5,7 @@ import { Redis } from "@upstash/redis";
 
 import { isTrustedBrowserMutation } from "@/modules/security/origin";
 import { createMemoryRateLimiter } from "@/modules/security/memory-rate-limit";
+import { getAuthSecret } from "@/lib/auth-secret";
 
 const upstashConfigured = Boolean(
   process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN,
@@ -163,7 +164,7 @@ export async function middleware(request: NextRequest) {
 
   // RBAC checks
   if (isProtectedPage || isAdminApi) {
-    const token = await getToken({ req: request as any, secret: process.env.NEXTAUTH_SECRET || "petsaathi-local-development-secret-change-before-production" });
+    const token = await getToken({ req: request as any, secret: getAuthSecret() });
     
     if (token) {
       const userRole = token.role as string;
