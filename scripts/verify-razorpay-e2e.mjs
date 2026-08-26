@@ -1,4 +1,10 @@
+#!/usr/bin/env node
 // PetSaathi Razorpay Test-Mode End-to-End Payment Lifecycle Verification
+// Exit 1 on any FAIL, 0 on all PASS.
+//
+// Webhook deliveries are sent over HTTP to a running PetSaathi server
+// (PETSAATHI_BASE_URL, default http://127.0.0.1:3110) instead of importing
+// Next.js route handlers directly — plain Node cannot resolve "next/server".
 import { createHmac, randomUUID } from "node:crypto";
 import path from "node:path";
 import dotenv from "dotenv";
@@ -7,6 +13,8 @@ import Razorpay from "razorpay";
 
 dotenv.config({ path: path.resolve(process.cwd(), ".env") });
 dotenv.config({ path: path.resolve(process.cwd(), ".env.local"), override: true });
+
+const BASE_URL = (process.env.PETSAATHI_BASE_URL ?? "http://127.0.0.1:3110").replace(/\/$/, "");
 
 const prisma = new PrismaClient();
 
@@ -30,6 +38,32 @@ function recordTest(name, passed, evidence) {
   if (!passed) console.error("FAILED TEST: " + name);
 }
 
+async function postWebhook(payload, signature, eventId) {
+  try {
+    return await fetch(BASE_URL + "/api/webhooks/razorpay", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-razorpay-signature": signature,
+        "x-razorpay-event-id": eventId,
+      },
+      body: payload,
+    });
+  } catch (err) {
+    console.error("Webhook delivery to " + BASE_URL + " failed: " + err.message);
+    return null;
+  }
+}
+
+async function assertServerUp() {
+  try {
+    const res = await fetch(BASE_URL + "/api/health", { signal: AbortSignal.timeout(10_000) });
+    return res.ok;
+  } catch {
+    return false;
+  }
+}
+
 async function runVerification() {
   console.log("===============================================================");
   console.log("Starting PetSaathi Razorpay Test-Mode Verification");
@@ -49,6 +83,15 @@ async function runVerification() {
     process.exit(1);
   }
   recordTest("Razorpay Test Environment Verified", true, "Test mode key ID (rzp_test_*) and secrets present");
+
+  console.log("\n--- SERVER PREFLIGHT ---");
+  const serverUp = await assertServerUp();
+  if (!serverUp) {
+    console.error("BLOCKED: PetSaathi server not reachable at " + BASE_URL + ". Start it first (npm run dev).");
+    await prisma.$disconnect();
+    process.exit(1);
+  }
+  recordTest("PetSaathi Server Reachable", true, BASE_URL + "/api/health responded OK");
 
   const razorpay = new Razorpay({ key_id: keyId, key_secret: keySecret });
 
@@ -211,20 +254,10 @@ async function runVerification() {
   const isInvalidWebhookSigRejected = !validRazorpaySignature(webhookPayload, "invalid_webhook_sig", webhookSecret);
   recordTest("Invalid Webhook Signature Rejected", isInvalidWebhookSigRejected, "Invalid webhook signature rejected");
 
-  const { POST } = await import("../src/app/api/webhooks/razorpay/route.ts");
-  const webhookRequest1 = new Request("http://localhost:3000/api/webhooks/razorpay", {
-    method: "POST",
-    headers: {
-      "x-razorpay-signature": validWebhookSig,
-      "x-razorpay-event-id": webhookEventId,
-    },
-    body: webhookPayload,
-  });
-
-  const webhookResponse1 = await POST(webhookRequest1);
-  const webhookJson1 = await webhookResponse1.json();
-  const webhook1Passed = webhookResponse1.status === 202 && webhookJson1.accepted === true;
-  recordTest("Webhook Initial Delivery (payment.captured)", webhook1Passed, "Status: " + webhookResponse1.status + ", Accepted: " + webhookJson1.accepted);
+  const webhookResponse1 = await postWebhook(webhookPayload, validWebhookSig, webhookEventId);
+  const webhookJson1 = webhookResponse1 ? await webhookResponse1.json().catch(() => ({})) : {};
+  const webhook1Passed = Boolean(webhookResponse1) && webhookResponse1.status === 202 && webhookJson1.accepted === true;
+  recordTest("Webhook Initial Delivery (payment.captured)", webhook1Passed, "Status: " + (webhookResponse1?.status ?? "unreachable") + ", Accepted: " + webhookJson1.accepted);
 
   const capturedPayment = await prisma.payment.findUnique({ where: { id: paymentRecord.id } });
   const confirmedBooking = await prisma.booking.findUnique({ where: { id: booking.id } });
@@ -233,18 +266,10 @@ async function runVerification() {
   recordTest("Database Payment State (CAPTURED)", paymentCapturedState, "Payment status=" + capturedPayment.status + ", capturedAt=" + capturedPayment.capturedAt);
   recordTest("Database Booking State (CONFIRMED)", bookingConfirmedState, "Booking status=" + confirmedBooking.status);
 
-  const webhookRequest2 = new Request("http://localhost:3000/api/webhooks/razorpay", {
-    method: "POST",
-    headers: {
-      "x-razorpay-signature": validWebhookSig,
-      "x-razorpay-event-id": webhookEventId,
-    },
-    body: webhookPayload,
-  });
-  const webhookResponse2 = await POST(webhookRequest2);
-  const webhookJson2 = await webhookResponse2.json();
-  const webhook2Idempotent = webhookResponse2.status === 200 && webhookJson2.duplicate === true;
-  recordTest("Webhook Idempotency (Duplicate Replay)", webhook2Idempotent, "Replay returned status " + webhookResponse2.status + " duplicate=" + webhookJson2.duplicate);
+  const webhookResponse2 = await postWebhook(webhookPayload, validWebhookSig, webhookEventId);
+  const webhookJson2 = webhookResponse2 ? await webhookResponse2.json().catch(() => ({})) : {};
+  const webhook2Idempotent = Boolean(webhookResponse2) && webhookResponse2.status === 200 && webhookJson2.duplicate === true;
+  recordTest("Webhook Idempotency (Duplicate Replay)", webhook2Idempotent, "Replay returned status " + (webhookResponse2?.status ?? "unreachable") + " duplicate=" + webhookJson2.duplicate);
 
   console.log("\n--- PHASE 9: PAYMENT FAILURE SIMULATION ---");
   const failBooking = await prisma.booking.create({
@@ -299,15 +324,8 @@ async function runVerification() {
   });
   const failWebhookSig = createHmac("sha256", webhookSecret).update(failWebhookPayload).digest("hex");
 
-  const failReq = new Request("http://localhost:3000/api/webhooks/razorpay", {
-    method: "POST",
-    headers: {
-      "x-razorpay-signature": failWebhookSig,
-      "x-razorpay-event-id": failEventId,
-    },
-    body: failWebhookPayload,
-  });
-  await POST(failReq);
+  const failRes = await postWebhook(failWebhookPayload, failWebhookSig, failEventId);
+  recordTest("Payment Failure Webhook Delivered", Boolean(failRes) && failRes.status === 202, "payment.failed webhook delivery status: " + (failRes?.status ?? "unreachable"));
 
   const failedPaymentRecord = await prisma.payment.findUnique({ where: { id: failPayment.id } });
   const failedBookingRecord = await prisma.booking.findUnique({ where: { id: failBooking.id } });
@@ -355,16 +373,8 @@ async function runVerification() {
   });
   const refundWebhookSig = createHmac("sha256", webhookSecret).update(refundWebhookPayload).digest("hex");
 
-  const refundReq = new Request("http://localhost:3000/api/webhooks/razorpay", {
-    method: "POST",
-    headers: {
-      "x-razorpay-signature": refundWebhookSig,
-      "x-razorpay-event-id": refundEventId,
-    },
-    body: refundWebhookPayload,
-  });
-  const refundRes = await POST(refundReq);
-  recordTest("Refund Webhook Processed", refundRes.status === 202, "refund.processed webhook processed successfully");
+  const refundRes = await postWebhook(refundWebhookPayload, refundWebhookSig, refundEventId);
+  recordTest("Refund Webhook Processed", Boolean(refundRes) && refundRes.status === 202, "refund.processed webhook processed successfully");
 
   const finalRefund = await prisma.refund.findUnique({ where: { id: refundRecord.id } });
   const finalPayment = await prisma.payment.findUnique({ where: { id: capturedPayment.id } });
