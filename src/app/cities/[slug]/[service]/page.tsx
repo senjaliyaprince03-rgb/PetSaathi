@@ -13,10 +13,10 @@ type Props = { params: Promise<{ slug: string; service: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug, service } = await params;
-  if (!isDatabaseConfigured()) return { title: "Service not found", robots: { index: false } };
+  if (!isDatabaseConfigured()) notFound();
 
   const city = await prisma.city.findUnique({ where: { slug }, select: { name: true, state: true } });
-  if (!city) return { title: "Service not found", robots: { index: false } };
+  if (!city) notFound();
 
   const parsedServiceCode = serviceCodeSchema.safeParse(
     service.toUpperCase().replaceAll("-", "_"),
@@ -27,7 +27,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         select: { name: true, description: true },
       })
     : null;
-  const serviceName = serviceType?.name ?? service.replaceAll("-", " ");
+  if (!parsedServiceCode.success || !serviceType) notFound();
+  const serviceName = serviceType.name;
 
   return {
     title: `${serviceName} in ${city.name} — PetSaathi`,

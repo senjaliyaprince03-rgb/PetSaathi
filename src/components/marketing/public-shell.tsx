@@ -42,22 +42,18 @@ export function PublicShell({ children }: { children: ReactNode }) {
               ["Services", "/services"],
               ["Saathis", "/caregivers"],
               ["Membership", "/membership"],
-              ["Locations", "/locations"],
-              ["Reviews", "/reviews"]
+              ["Cities", "/cities"]
             ]],
             ["Trust", [
               ["Safety", "/safety"],
               ["Privacy", "/privacy"],
-              ["Terms", "/terms"],
-              ["Insurance", "/insurance"],
-              ["Guidelines", "/guidelines"]
+              ["Terms", "/terms"]
             ]],
             ["PetSaathi", [
               ["About", "/about"],
               ["Journal", "/journal"],
-              ["Careers", "/careers"],
-              ["Contact", "/contact"],
-              ["Press", "/press"]
+              ["Careers", "/become-a-saathi"],
+              ["Contact", "/contact"]
             ]]
           ].map(([title, links]) => (
             <div key={String(title)}>

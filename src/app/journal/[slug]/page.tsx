@@ -13,9 +13,13 @@ type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  if (!isDatabaseConfigured()) return { title: "Guide not found", robots: { index: false } };
-  const entry = await prisma.contentEntry.findFirst({ where: { slug, status: "PUBLISHED" }, select: { title: true, excerpt: true } });
-  return entry ? { title: entry.title, description: entry.excerpt } : { title: "Guide not found", robots: { index: false } };
+  if (!isDatabaseConfigured()) notFound();
+  const entry = await prisma.contentEntry.findFirst({
+    where: { slug, status: "PUBLISHED", publishedAt: { lte: new Date() } },
+    select: { title: true, excerpt: true },
+  });
+  if (!entry) notFound();
+  return { title: entry.title, description: entry.excerpt };
 }
 
 export default async function JournalDetailPage({ params }: Props) {

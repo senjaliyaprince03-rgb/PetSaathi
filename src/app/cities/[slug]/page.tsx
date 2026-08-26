@@ -13,9 +13,9 @@ type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  if (!isDatabaseConfigured()) return { title: "City not found", robots: { index: false } };
+  if (!isDatabaseConfigured()) notFound();
   const city = await prisma.city.findUnique({ where: { slug }, select: { name: true, state: true } });
-  if (!city) return { title: "City not found", robots: { index: false } };
+  if (!city) notFound();
   return {
     title: `Pet Care in ${city.name} — Dog Walking, Pet Sitting & More`,
     description: `Find trusted, verified pet care services in ${city.name}, ${city.state}. PetSaathi offers managed dog walking, home pet sitting, and boarding with structured updates.`,
