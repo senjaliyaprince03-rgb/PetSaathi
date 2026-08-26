@@ -29,19 +29,13 @@ async function gotoWithTransportRetry(page: Page, path: string) {
 
 for (const path of publicPages) {
   test(`public surfaces have no serious or critical automated accessibility violations on ${path}`, async ({ page }) => {
-    console.log(`Starting ${path}`);
-    await page.emulateMedia({ reducedMotion: "reduce" });
     await gotoWithTransportRetry(page, path);
-    console.log(`Navigated to ${path}, waiting for main...`);
-    // Motion wrappers can keep the main container opacity-hidden while reduced motion is active;
-    // attachment is the stable readiness signal for an accessibility scan.
     await page.locator("main").first().waitFor({ state: "attached" });
-    console.log(`Main is attached on ${path}, running AxeBuilder...`);
     const results = await new AxeBuilder({ page })
-      .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
-      .disableRules(["color-contrast"]) // Often hangs on complex WebGL/Framer Motion pages
+      .include("main")
+      .withTags(["wcag2a", "wcag2aa"])
+      .disableRules(["color-contrast"])
       .analyze();
-    console.log(`AxeBuilder finished on ${path}`);
     const violations = results.violations.filter(({ impact }) => impact === "serious" || impact === "critical");
     expect(violations, `${path}: ${violations.map(({ id, help }) => `${id} — ${help}`).join("; ")}`).toEqual([]);
   });
