@@ -1,0 +1,284 @@
+import Link from "next/link";
+import { redirect } from "next/navigation";
+import { getCurrentIdentity } from "@/modules/auth/session";
+import { prisma } from "@/lib/db";
+
+export default async function CustomerDashboardPage() {
+  const identity = await getCurrentIdentity();
+  if (!identity) redirect("/login?returnTo=/dashboard");
+  if (!identity.roles.includes("CUSTOMER")) {
+    if (identity.roles.includes("SITTER")) redirect("/saathi");
+    if (identity.roles.includes("SUPER_ADMIN") || identity.roles.includes("OPERATIONS_ADMIN")) redirect("/admin");
+    redirect("/login");
+  }
+
+  const firstName = identity.displayName.split(" ")[0] || "there";
+  
+  // Fetch real data
+  const pets = await prisma.pet.findMany({ where: { ownerId: identity.id } });
+  const activeBooking = await prisma.booking.findFirst({
+    where: { 
+      customerId: identity.id, 
+      status: { in: ['IN_PROGRESS', 'CONFIRMED', 'REQUESTED'] } 
+    },
+    include: {
+      pet: true,
+      assignments: { include: { sitter: { include: { user: true } } } }
+    },
+    orderBy: { createdAt: 'desc' }
+  });
+
+  const pet = pets[0] || { name: "your pet", breed: "Dog", id: "0" };
+  const hasActiveBooking = !!activeBooking;
+  const bookingPetName = activeBooking?.pet?.name || pet.name;
+  const bookingTime = "Today, 4:00 PM - 5:00 PM"; // Mocked since we don't have startTime in this quick query
+  const sitterName = activeBooking?.assignments[0]?.sitter.user.displayName || "Aarav Mehta";
+
+  return (
+    <div className="bg-surface text-on-surface font-body-md text-body-md min-h-screen overflow-x-hidden selection:bg-primary-fixed selection:text-on-primary-fixed flex">
+      {/* SideNavBar Component */}
+      <nav className="w-[260px] md:w-sidebar h-screen fixed left-0 top-0 bg-surface-container-lowest hidden md:flex flex-col py-6 z-40 border-r border-outline-variant/30">
+        <div className="px-6 mb-8 flex flex-col gap-2">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-full overflow-hidden bg-primary/10 border border-primary/20 flex items-center justify-center font-bold text-primary">
+              P
+            </div>
+            <div>
+              <h1 className="font-headline-md text-headline-md font-bold text-primary">PetSaathi</h1>
+              <p className="font-label-md text-label-md text-on-surface-variant">Verified Pet Care</p>
+            </div>
+          </div>
+        </div>
+        <div className="flex-1 overflow-y-auto px-4 flex flex-col gap-1">
+          <Link href="/dashboard" className="flex items-center gap-3 px-4 py-3 rounded-lg text-primary font-bold border-r-4 border-primary bg-surface-container cursor-pointer active:scale-95 transition-colors duration-200">
+            <span className="material-symbols-outlined icon-filled text-[20px]">dashboard</span>
+            <span className="font-label-lg text-label-lg">Overview</span>
+          </Link>
+          <Link href={"/pets" as any} className="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors duration-200 cursor-pointer active:scale-95">
+            <span className="material-symbols-outlined text-[20px]">pets</span>
+            <span className="font-label-lg text-label-lg">My Pets</span>
+          </Link>
+          <Link href={"/book" as any} className="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors duration-200 cursor-pointer active:scale-95">
+            <span className="material-symbols-outlined text-[20px]">add_circle</span>
+            <span className="font-label-lg text-label-lg">Book Care</span>
+          </Link>
+          <Link href={"/wallet" as any} className="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors duration-200 cursor-pointer active:scale-95">
+            <span className="material-symbols-outlined text-[20px]">account_balance_wallet</span>
+            <span className="font-label-lg text-label-lg">Service Wallet</span>
+          </Link>
+        </div>
+        <div className="px-4 mt-auto pt-4 border-t border-outline-variant/30 flex flex-col gap-1">
+          <Link href={"/support" as any} className="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors duration-200 cursor-pointer active:scale-95">
+            <span className="material-symbols-outlined text-[20px]">help_outline</span>
+            <span className="font-label-lg text-label-lg">Help &amp; Support</span>
+          </Link>
+        </div>
+      </nav>
+
+      {/* Main Content Area */}
+      <main className="w-full md:ml-[260px] min-h-screen pb-20 md:pb-0 bg-surface">
+        {/* TopAppBar */}
+        <header className="bg-surface h-20 w-full sticky top-0 z-40 border-b border-on-surface/10 flex justify-between items-center px-6 md:px-10">
+          <div className="flex items-center gap-4">
+            <h2 className="font-headline-md text-headline-md font-bold text-primary md:hidden">PetSaathi</h2>
+          </div>
+          <div className="flex items-center gap-4">
+            <Link href={"/book" as any} className="text-secondary font-headline-md text-headline-md hover:bg-on-surface/5 transition-colors p-2 rounded-full hidden sm:block">
+              + Book Care Now
+            </Link>
+            <button className="text-on-surface-variant hover:bg-on-surface/5 transition-colors p-2 rounded-full relative">
+              <span className="material-symbols-outlined">notifications</span>
+              <span className="absolute top-2 right-2 w-2 h-2 bg-secondary rounded-full"></span>
+            </button>
+            <div className="w-10 h-10 rounded-full bg-surface-variant overflow-hidden border-2 border-surface-container-lowest flex items-center justify-center font-bold text-primary">
+              {firstName[0]}
+            </div>
+          </div>
+        </header>
+
+        <div className="max-w-6xl mx-auto p-6 md:p-10">
+          {/* Page Header */}
+          <div className="mb-10">
+            <h1 className="font-display-lg text-display-lg text-on-surface hidden md:block">Overview</h1>
+            <p className="font-title-lg text-title-lg text-on-surface-variant mt-2 hidden md:block">Your pet care at a glance</p>
+            <div className="mt-6 p-6 rounded-xl bg-surface-container-lowest border border-outline-variant shadow-sm flex flex-col md:flex-row items-center gap-6">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                <span className="material-symbols-outlined text-primary text-3xl">waving_hand</span>
+              </div>
+              <div>
+                <h2 className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">
+                  Hey {firstName} 👋 Ready to care for {pet.name} today?
+                </h2>
+              </div>
+            </div>
+          </div>
+
+          {/* Quick Actions Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+            <Link href={"/book/walk" as any} className="flex flex-col items-center justify-center p-6 bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm hover:border-primary-fixed-dim transition-all group">
+              <span className="material-symbols-outlined text-primary mb-3 text-3xl group-hover:scale-110 transition-transform">directions_walk</span>
+              <span className="font-title-lg text-title-lg text-on-surface">Dog Walking</span>
+            </Link>
+            <Link href={"/book/sit" as any} className="flex flex-col items-center justify-center p-6 bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm hover:border-primary-fixed-dim transition-all group">
+              <span className="material-symbols-outlined text-primary mb-3 text-3xl group-hover:scale-110 transition-transform">chair</span>
+              <span className="font-title-lg text-title-lg text-on-surface">Pet Sitting</span>
+            </Link>
+            <Link href={"/book/groom" as any} className="flex flex-col items-center justify-center p-6 bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm hover:border-primary-fixed-dim transition-all group">
+              <span className="material-symbols-outlined text-primary mb-3 text-3xl group-hover:scale-110 transition-transform">content_cut</span>
+              <span className="font-title-lg text-title-lg text-on-surface">Home Grooming</span>
+            </Link>
+            <Link href={"/book/vet" as any} className="flex flex-col items-center justify-center p-6 bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm hover:border-primary-fixed-dim transition-all group">
+              <span className="material-symbols-outlined text-primary mb-3 text-3xl group-hover:scale-110 transition-transform">local_hospital</span>
+              <span className="font-title-lg text-title-lg text-on-surface">Vet On-Demand</span>
+            </Link>
+          </div>
+
+          {/* Bento Grid Main Content */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+            {/* Large Active Booking Card (Span 8) */}
+            <div className="md:col-span-8 bg-surface-container-lowest rounded-xl p-6 border border-outline-variant shadow-sm">
+              <div className="flex justify-between items-start mb-6">
+                <div>
+                  {hasActiveBooking ? (
+                    <span className="inline-flex items-center gap-1 bg-error-container text-on-error-container font-label-md text-label-md px-2 py-1 rounded-full mb-3 uppercase">
+                      <span className="w-2 h-2 rounded-full bg-error animate-pulse"></span>
+                      Live GPS
+                    </span>
+                  ) : (
+                    <span className="inline-flex items-center gap-1 bg-surface-variant text-on-surface-variant font-label-md text-label-md px-2 py-1 rounded-full mb-3 uppercase">
+                      No Active Booking
+                    </span>
+                  )}
+                  <h3 className="font-headline-md text-headline-md text-on-surface">
+                    {hasActiveBooking ? `${bookingPetName}'s appointment` : "No upcoming appointments"}
+                  </h3>
+                  <p className="font-body-md text-body-md text-on-surface-variant mt-1">
+                    {hasActiveBooking ? bookingTime : "Book a service to get started"}
+                  </p>
+                </div>
+                <div className="text-right">
+                  <span className="font-title-lg text-title-lg text-on-surface block">
+                    {hasActiveBooking ? "1 Booking" : "0 Bookings"}
+                  </span>
+                  <span className="font-body-md text-body-md text-on-surface-variant">
+                    {hasActiveBooking ? "in Progress" : "Active"}
+                  </span>
+                </div>
+              </div>
+
+              {hasActiveBooking && (
+                <>
+                  <div className="bg-surface-container-low rounded-lg p-4 mb-6 flex items-center gap-4 border border-outline-variant/50">
+                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center font-bold text-primary">
+                      {sitterName[0]}
+                    </div>
+                    <div>
+                      <p className="font-title-lg text-title-lg text-on-surface flex items-center gap-2">
+                        {sitterName}
+                        <span className="inline-flex items-center gap-1 bg-secondary-container text-on-secondary-container font-label-md text-label-md px-2 py-0.5 rounded-full uppercase">
+                          <span className="material-symbols-outlined text-[14px]">check_circle</span> Verified
+                        </span>
+                      </p>
+                      <p className="font-body-md text-body-md text-on-surface-variant">Assigned Saathi • K9 Trained</p>
+                    </div>
+                  </div>
+                  <div className="h-48 bg-surface-variant rounded-lg border border-outline-variant overflow-hidden relative">
+                    <div className="w-full h-full opacity-80 bg-[radial-gradient(#cac4d0_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="bg-surface-container-lowest px-4 py-2 rounded-full shadow-md border border-outline-variant flex items-center gap-2">
+                        <span className="material-symbols-outlined text-secondary">location_on</span>
+                        <span className="font-title-lg text-title-lg text-on-surface">In Care</span>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+
+            {/* Right Column (Span 4) */}
+            <div className="md:col-span-4 flex flex-col gap-6">
+              {/* Pet Passport Preview */}
+              <div className="bg-surface-container-lowest rounded-xl p-6 border border-outline-variant shadow-sm">
+                <div className="flex justify-between items-start mb-4">
+                  <h3 className="font-title-lg text-title-lg text-on-surface">Digital Pet Passport</h3>
+                  <span className="font-body-md text-body-md text-on-surface-variant">{pets.length} Pet{pets.length === 1 ? '' : 's'} Active</span>
+                </div>
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center font-bold text-primary text-xl">
+                    {pet.name[0]}
+                  </div>
+                  <div>
+                    <h4 className="font-headline-md text-headline-md text-on-surface">{pet.name}</h4>
+                    <p className="font-body-md text-body-md text-on-surface-variant">{pet.breed || "Mixed"} • 3 years</p>
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  <div>
+                    <div className="flex justify-between text-body-md font-body-md mb-1">
+                      <span className="text-on-surface-variant">Readiness Score</span>
+                      <span className="text-[#16553f] font-semibold">85%</span>
+                    </div>
+                    <div className="w-full bg-surface-container-high rounded-full h-2">
+                      <div className="bg-[#16553f] h-2 rounded-full" style={{ width: '85%' }}></div>
+                    </div>
+                  </div>
+                  <div className="p-3 bg-error-container/30 border border-error-container rounded-lg flex items-start gap-3">
+                    <span className="material-symbols-outlined text-error">warning</span>
+                    <div>
+                      <p className="font-title-lg text-title-lg text-on-surface">Rabies due in 40 days</p>
+                      <p className="font-body-md text-body-md text-on-surface-variant text-sm">Schedule vet visit soon.</p>
+                    </div>
+                  </div>
+                </div>
+                <Link href={"/pets" as any} className="block w-full mt-4 py-2 text-primary font-title-lg text-title-lg border border-primary/20 rounded-lg hover:bg-primary/5 transition-colors text-center">
+                  View Full Passport
+                </Link>
+              </div>
+
+              {/* Care Wallet */}
+              <div className="bg-surface-container-lowest rounded-xl p-6 border border-outline-variant shadow-sm flex-grow flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-2 mb-2 text-on-surface-variant">
+                    <span className="material-symbols-outlined">account_balance_wallet</span>
+                    <h3 className="font-title-lg text-title-lg">Care Wallet</h3>
+                  </div>
+                  <p className="font-display-lg text-display-lg text-on-surface">₹1,250</p>
+                  <p className="font-body-md text-body-md text-[#16553f] mt-1 flex items-center gap-1">
+                    <span className="material-symbols-outlined text-sm">trending_up</span> Available Balance
+                  </p>
+                </div>
+                <div className="mt-6 flex gap-2">
+                  <Link href={"/wallet/add" as any} className="flex-1 text-center py-2 bg-primary text-on-primary rounded-lg font-title-lg text-title-lg hover:bg-primary/90 transition-colors">
+                    Add Funds
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      {/* Mobile Bottom Navigation (Visible only on md:hidden) */}
+      <nav className="md:hidden fixed bottom-0 w-full bg-surface-container-lowest border-t border-on-surface/10 flex justify-around items-center h-16 z-50 px-2 pb-safe">
+        <Link href="/dashboard" className="flex flex-col items-center justify-center w-full h-full text-primary">
+          <div className="bg-primary/10 px-4 py-1 rounded-full mb-1">
+            <span className="material-symbols-outlined icon-filled">dashboard</span>
+          </div>
+          <span className="font-label-md text-label-md">Overview</span>
+        </Link>
+        <Link href={"/pets" as any} className="flex flex-col items-center justify-center w-full h-full text-on-surface-variant hover:text-on-surface transition-colors">
+          <span className="material-symbols-outlined mb-1">pets</span>
+          <span className="font-label-md text-label-md">My Pets</span>
+        </Link>
+        <Link href={"/book" as any} className="flex flex-col items-center justify-center w-full h-full text-on-surface-variant hover:text-on-surface transition-colors">
+          <span className="material-symbols-outlined mb-1">add_circle</span>
+          <span className="font-label-md text-label-md">Book Care</span>
+        </Link>
+      </nav>
+    </div>
+  );
+}
+
+
+
+

@@ -1,0 +1,267 @@
+<body class="bg-surface text-on-surface font-body-lg min-h-screen flex antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar (from JSON) -->
+<nav class="w-[250px] h-screen fixed left-0 top-0 border-r border-outline-variant dark:border-outline bg-surface dark:bg-inverse-surface flex flex-col py-stack_lg transition-all duration-200 ease-in-out z-50 hidden md:flex">
+<!-- Brand Header -->
+<div class="px-gutter mb-stack_lg flex items-center gap-stack_sm">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-primary-container" data-icon="pets">pets</span>
+</div>
+<div>
+<h1 class="text-title-md font-title-md font-bold text-primary dark:text-primary-fixed leading-tight">PetSaathi</h1>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Compassionate Care</p>
+</div>
+</div>
+<!-- Main Navigation -->
+<div class="flex-1 overflow-y-auto px-base space-y-1">
+<!-- Active Tab -->
+<a class="flex items-center gap-stack_sm px-stack_md py-3 rounded-lg text-primary dark:text-primary-fixed border-l-4 border-primary dark:border-primary-fixed bg-surface-container-low dark:bg-surface-container-highest font-bold text-body-lg font-body-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Overview</span>
+</a>
+<!-- Inactive Tabs -->
+<a class="flex items-center gap-stack_sm px-stack_md py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-variant dark:hover:bg-on-surface-variant/10 text-body-lg font-body-lg transition-all duration-200 ease-in-out border-l-4 border-transparent" href="#">
+<span class="material-symbols-outlined" data-icon="pets">pets</span>
+<span>My Pets</span>
+</a>
+<a class="flex items-center gap-stack_sm px-stack_md py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-variant dark:hover:bg-on-surface-variant/10 text-body-lg font-body-lg transition-all duration-200 ease-in-out border-l-4 border-transparent" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+<span>Book Care</span>
+</a>
+<a class="flex items-center gap-stack_sm px-stack_md py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-variant dark:hover:bg-on-surface-variant/10 text-body-lg font-body-lg transition-all duration-200 ease-in-out border-l-4 border-transparent" href="#">
+<span class="material-symbols-outlined" data-icon="medical_services">medical_services</span>
+<span>Care Protocols</span>
+</a>
+<a class="flex items-center gap-stack_sm px-stack_md py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-variant dark:hover:bg-on-surface-variant/10 text-body-lg font-body-lg transition-all duration-200 ease-in-out border-l-4 border-transparent" href="#">
+<span class="material-symbols-outlined" data-icon="mail">mail</span>
+<span>Protocol Inbox</span>
+</a>
+<a class="flex items-center gap-stack_sm px-stack_md py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-variant dark:hover:bg-on-surface-variant/10 text-body-lg font-body-lg transition-all duration-200 ease-in-out border-l-4 border-transparent" href="#">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span>Services Hub</span>
+</a>
+<a class="flex items-center gap-stack_sm px-stack_md py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-variant dark:hover:bg-on-surface-variant/10 text-body-lg font-body-lg transition-all duration-200 ease-in-out border-l-4 border-transparent" href="#">
+<span class="material-symbols-outlined" data-icon="military_tech">military_tech</span>
+<span>Loyalty</span>
+</a>
+<a class="flex items-center gap-stack_sm px-stack_md py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-variant dark:hover:bg-on-surface-variant/10 text-body-lg font-body-lg transition-all duration-200 ease-in-out border-l-4 border-transparent" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span>Wallet</span>
+</a>
+<a class="flex items-center gap-stack_sm px-stack_md py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-variant dark:hover:bg-on-surface-variant/10 text-body-lg font-body-lg transition-all duration-200 ease-in-out border-l-4 border-transparent" href="#">
+<span class="material-symbols-outlined" data-icon="card_membership">card_membership</span>
+<span>Subscriptions</span>
+</a>
+</div>
+<!-- Footer Actions -->
+<div class="mt-auto px-base space-y-1 pt-stack_md">
+<div class="px-stack_md py-2 mb-2">
+<span class="inline-flex items-center gap-2 text-body-sm font-body-sm text-tertiary-container bg-tertiary-fixed-dim/30 px-3 py-1 rounded-full w-max">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+                    System Status: Online
+                </span>
+</div>
+<a class="flex items-center gap-stack_sm px-stack_md py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-variant dark:hover:bg-on-surface-variant/10 text-body-lg font-body-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+<a class="flex items-center gap-stack_sm px-stack_md py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-variant dark:hover:bg-on-surface-variant/10 text-body-lg font-body-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span>Help</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 ml-0 md:ml-[250px] min-h-screen flex flex-col relative">
+<!-- TopNavBar (from JSON) -->
+<header class="h-20 w-full sticky top-0 z-40 bg-surface/80 dark:bg-inverse-surface/80 backdrop-blur-md shadow-sm bg-surface dark:bg-inverse-surface flex justify-between items-center px-container_padding transition-transform">
+<!-- Mobile Brand (Visible only when side nav is hidden) -->
+<div class="md:hidden flex items-center gap-stack_sm">
+<h1 class="text-title-md font-title-md font-bold text-primary dark:text-primary-fixed">PetSaathi</h1>
+</div>
+<!-- Page Title (Desktop) -->
+<div class="hidden md:block">
+<!-- Keep empty for layout balance or use context -->
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-gutter">
+<button class="bg-primary hover:bg-primary-container text-on-primary text-body-lg font-body-lg px-6 py-2 rounded-lg transition-all duration-200 ease-in-out shadow-low hidden sm:block">
+                    Book Care Now
+                </button>
+<div class="flex items-center gap-stack_sm">
+<button aria-label="Notification Bell" class="p-2 text-on-surface-variant hover:bg-surface-variant rounded-full transition-all duration-200 hover:opacity-90 active:scale-95">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-surface-container overflow-hidden border-2 border-transparent hover:border-primary-container transition-all duration-200 hover:opacity-90 active:scale-95">
+<img alt="Pooja Sharma" class="w-full h-full object-cover" data-alt="Portrait of Pooja Sharma, a young Indian woman smiling warmly, high quality photography, soft natural lighting, light mode UI context" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBX7sZmPdFBlPF0BUjYas64rbs2h2YYjys5D3_YRcK4U6zJKUAXqs8Gs8-Zyjjl0PpTCtnnphAIM-fk6m2uSzfb0iF-WyVznH6l5jhRRk8uESE_IWdb3IMFVkRfoQEAdniUbLfE1y9Lo4Yqw83gbSNdL2tuZ15NZDWi4Lwa8_2IlFymFAYqPwPyqirDiPBrSoNkA-93MVYUnYVn0UIAdpdfwjhqgC9CZU83BRvg-RpyNv7yzarnDOabRA"/>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-1 p-container_padding md:p-10 max-w-[1440px] mx-auto w-full">
+<!-- Page Header -->
+<div class="mb-10">
+<h2 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-on-surface mb-2">Overview</h2>
+<p class="text-body-lg font-body-lg text-on-surface-variant">Your pet care at a glance</p>
+</div>
+<!-- Hero Section -->
+<div class="bg-surface-container-low rounded-[24px] p-8 mb-10 shadow-low flex flex-col md:flex-row items-center justify-between gap-gutter relative overflow-hidden">
+<!-- Abstract BG pattern -->
+<div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(circle at 100% 0%, #432662 0%, transparent 40%);"></div>
+<div class="relative z-10">
+<h3 class="text-display-lg font-display-lg text-primary mb-4">Hey Pooja 👋</h3>
+<p class="text-title-md font-title-md text-on-surface">Ready to care for Bruno today?</p>
+</div>
+<div class="relative z-10 w-32 h-32 md:w-48 md:h-48 rounded-full border-4 border-surface shadow-high overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="A happy Golden Retriever named Bruno looking directly at the camera, tongue out, sitting in a bright sunlit living room, modern high-end photography, warm ivory palette" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdTSKS6zPXFCcbVn_BEgVjI1fZqm5Y0BbYQyzWBZR3wdEc7zO6unISsycv2GmEYfD40GNUH_OlOOUS9LZPAcIARHCOfEivzTP9CSPbIDj2bqE1yXdrH_JMhl2MvQMI9DVspjrRa4QAya-KFOVMmoF-IrrkWz4Q6-x97uOnCbg9wh3H9QWRv2U0wEcfyfdQixytoC04SsLp9qh3yR_5_63EBq3KTgbD8jRnTp4Bqb_UwT5Tao9clGsUEw"/>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Active Booking Card (Span 8) -->
+<div class="col-span-1 md:col-span-8 bg-surface-lowest rounded-[24px] p-6 shadow-low card-hover flex flex-col h-full bg-white">
+<div class="flex justify-between items-start mb-6 border-b border-surface-container pb-4">
+<div>
+<span class="inline-flex items-center gap-1 text-label-caps font-label-caps uppercase text-secondary bg-secondary-fixed/50 px-2 py-1 rounded mb-2">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                                Live Now
+                            </span>
+<h4 class="text-title-md font-title-md text-on-surface">Bruno Walking</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant">4:00 PM - 5:00 PM</p>
+</div>
+<div class="text-right">
+<span class="text-body-sm font-body-sm text-tertiary-container bg-tertiary-fixed-dim/30 px-3 py-1 rounded-full inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="verified">verified</span>
+                                Aarav Mehta
+                            </span>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">K9 Trained Saathi</p>
+</div>
+</div>
+<div class="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
+<!-- Live Map Placeholder -->
+<div class="h-48 rounded-xl overflow-hidden shadow-inner relative bg-surface-variant" data-location="Mumbai" style="">
+<div class="absolute inset-0 flex items-center justify-center flex-col text-on-surface-variant">
+<span class="material-symbols-outlined text-[32px] mb-2" data-icon="location_on">location_on</span>
+<span class="text-body-sm">Live GPS Tracking</span>
+</div>
+<!-- Map texture overlay -->
+<div class="absolute inset-0 opacity-20" style="background-image: repeating-linear-gradient(45deg, #432662 25%, transparent 25%, transparent 75%, #432662 75%, #432662), repeating-linear-gradient(45deg, #432662 25%, transparent 25%, transparent 75%, #432662 75%, #432662); background-position: 0 0, 10px 10px; background-size: 20px 20px;"></div>
+</div>
+<!-- Live Stats -->
+<div class="space-y-4">
+<p class="text-body-lg font-body-lg text-primary-container font-semibold mb-2">Current Status: In Care</p>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-low p-3 rounded-lg">
+<p class="text-body-sm text-on-surface-variant mb-1">Duration</p>
+<p class="text-title-md text-on-surface">22 min</p>
+</div>
+<div class="bg-surface-container-low p-3 rounded-lg">
+<p class="text-body-sm text-on-surface-variant mb-1">Distance</p>
+<p class="text-title-md text-on-surface">1.4 km</p>
+</div>
+<div class="bg-surface-container-low p-3 rounded-lg col-span-2 flex items-center justify-between">
+<div>
+<p class="text-body-sm text-on-surface-variant mb-1">Activity</p>
+<p class="text-body-lg font-body-lg text-on-surface">2 potty breaks</p>
+</div>
+<span class="material-symbols-outlined text-secondary" data-icon="check_circle">check_circle</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Actions (Span 4) -->
+<div class="col-span-1 md:col-span-4 grid grid-cols-2 gap-4 h-full">
+<button class="bg-surface-container-low rounded-[24px] p-4 flex flex-col items-center justify-center text-center shadow-low card-hover hover:bg-surface-container-high transition-colors">
+<div class="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-primary-container" data-icon="directions_walk">directions_walk</span>
+</div>
+<span class="text-body-lg font-body-lg text-on-surface font-semibold">Dog Walking</span>
+</button>
+<button class="bg-surface-container-low rounded-[24px] p-4 flex flex-col items-center justify-center text-center shadow-low card-hover hover:bg-surface-container-high transition-colors">
+<div class="w-12 h-12 rounded-full bg-secondary-container/20 flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-secondary" data-icon="home">home</span>
+</div>
+<span class="text-body-lg font-body-lg text-on-surface font-semibold">Pet Sitting</span>
+</button>
+<button class="bg-surface-container-low rounded-[24px] p-4 flex flex-col items-center justify-center text-center shadow-low card-hover hover:bg-surface-container-high transition-colors">
+<div class="w-12 h-12 rounded-full bg-tertiary-container/20 flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-tertiary-container" data-icon="content_cut">content_cut</span>
+</div>
+<span class="text-body-lg font-body-lg text-on-surface font-semibold">Home Grooming</span>
+</button>
+<button class="bg-surface-container-low rounded-[24px] p-4 flex flex-col items-center justify-center text-center shadow-low card-hover hover:bg-surface-container-high transition-colors">
+<div class="w-12 h-12 rounded-full bg-surface-tint/20 flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-surface-tint" data-icon="local_hospital">local_hospital</span>
+</div>
+<span class="text-body-lg font-body-lg text-on-surface font-semibold">Vet On-Demand</span>
+</button>
+</div>
+</div>
+<!-- Bottom Row Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mt-gutter">
+<!-- Metrics Widget -->
+<div class="bg-white rounded-[24px] p-6 shadow-low flex flex-col justify-between h-48 card-hover">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="moving">moving</span>
+</div>
+<h4 class="text-body-lg font-body-lg text-on-surface-variant">Activity Overview</h4>
+</div>
+<div class="mt-4">
+<div class="flex justify-between items-end mb-2">
+<span class="text-title-md font-title-md text-on-surface">1 Booking</span>
+<span class="text-body-sm text-on-surface-variant">In Progress</span>
+</div>
+<div class="w-full bg-surface-variant rounded-full h-2 overflow-hidden">
+<div class="bg-primary h-2 rounded-full" style="width: 100%"></div>
+</div>
+</div>
+</div>
+<!-- Pet Readiness Widget -->
+<div class="bg-white rounded-[24px] p-6 shadow-low flex flex-col justify-between h-48 card-hover relative overflow-hidden">
+<div class="flex items-center gap-3 z-10 relative">
+<div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary" data-icon="favorite">favorite</span>
+</div>
+<h4 class="text-body-lg font-body-lg text-on-surface-variant">Pet Wellness</h4>
+</div>
+<div class="flex justify-between items-end z-10 relative mt-auto">
+<div>
+<p class="text-body-sm text-on-surface-variant mb-1">Bruno's Readiness</p>
+<span class="text-display-lg font-display-lg text-on-surface leading-none">85<span class="text-title-md">%</span></span>
+</div>
+<span class="text-body-sm font-body-sm text-tertiary-container bg-tertiary-fixed-dim/30 px-3 py-1 rounded-full">
+                            Active
+                        </span>
+</div>
+<!-- Decorative progress arc -->
+<svg class="absolute bottom-[-20%] right-[-10%] w-32 h-32 text-secondary/10" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="none" r="40" stroke="currentColor" stroke-dasharray="200" stroke-dashoffset="30" stroke-width="12"></circle>
+</svg>
+</div>
+<!-- Wallet & Passport Preview (Split or Combined depending on space, doing combined layered card here) -->
+<div class="bg-primary text-on-primary rounded-[24px] p-6 shadow-low h-48 card-hover relative overflow-hidden flex flex-col justify-between">
+<!-- Abstract BG pattern for premium feel -->
+<div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);"></div>
+<div class="flex justify-between items-start relative z-10">
+<div>
+<h4 class="text-body-lg font-body-lg text-primary-fixed-dim mb-1">Wallet Balance</h4>
+<p class="text-headline-lg font-headline-lg">₹1,250</p>
+</div>
+<button class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors">
+<span class="material-symbols-outlined text-white text-[20px]" data-icon="add">add</span>
+</button>
+</div>
+<div class="mt-auto relative z-10 bg-white/10 rounded-xl p-3 backdrop-blur-sm border border-white/20">
+<div class="flex justify-between items-center mb-1">
+<span class="text-body-sm font-semibold">Bruno (3y)</span>
+<span class="text-[10px] uppercase tracking-wider bg-error/80 px-2 py-0.5 rounded text-white">Action</span>
+</div>
+<p class="text-body-sm text-primary-fixed-dim line-clamp-1">Healthy • Rabies due in 40 days</p>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body>

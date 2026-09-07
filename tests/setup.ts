@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
 import { assertSafeDatabase } from "@/lib/db";
 
@@ -7,3 +8,4 @@ import { assertSafeDatabase } from "@/lib/db";
 // Enforce that any configured database in the test environment targets a safe, disposable database
 assertSafeDatabase();
 
+vi.mock('@sentry/nextjs', () => ({ init: vi.fn(), captureException: vi.fn(), setUser: vi.fn(), captureMessage: vi.fn() }));

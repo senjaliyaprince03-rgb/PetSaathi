@@ -7,6 +7,7 @@ import { isHealthy, recordFailure, recordSuccess, isRetryableError, getCircuitSt
 import { recordTelemetry } from "./telemetry.mjs";
 import { analyzeTask } from "./analyzer.mjs";
 import { backoffDelay, isTerminalError, withTimeout, sleep, TIMEOUTS } from "./timeouts.mjs";
+import { retrieveRelevantChunks } from "../src/lib/ai/retriever.ts";
 
 if (!process.env.NVIDIA_API_KEY) {
   throw new Error("[NVIDIA Router] Configuration Error: NVIDIA_API_KEY is missing from environment variables.");
@@ -89,7 +90,8 @@ export async function completeNvidia({ model, messages, tools, toolChoice, strea
       const requestParams = {
         model,
         messages,
-        stream
+        stream,
+        max_tokens: 512
       };
       
       if (tools && tools.length > 0) requestParams.tools = tools;
@@ -232,7 +234,52 @@ export async function askNvidia(options, prompt) {
     throw error;
   }
 
-  const messages = prepareMessages(prompt, { requiresVision });
+  let messages = prepareMessages(prompt, { requiresVision });
+  let retrievedSources = [];
+
+  // Phase 5: Knowledge Base Context Injection for Customer Portals
+  const isCustomerPortal = config.isCustomerChat || config.portal === "customer" || config.kbAssisted === true;
+  if (isCustomerPortal && typeof prompt === "string") {
+    try {
+      const chunks = await retrieveRelevantChunks(prompt, 3);
+      if (chunks && chunks.length > 0) {
+        retrievedSources = chunks.map(c => ({ id: c.fileId, title: c.title, category: c.category, score: c.score }));
+        const kbContextString = chunks.map(c => 
+          `---
+[Source: ${c.fileId} | Category: ${c.category}]
+${c.content}
+---`
+        ).join("\n\n");
+
+        const systemPrompt = `You are PetSaathi AI, an expert veterinary and pet lifestyle assistant specialized in Indian pet parenting (Ahmedabad, Pune, Bangalore, Mumbai, Delhi-NCR, Hyderabad).
+Always provide practical, compassionate, and climate-specific guidance for Indian pet parents.
+
+INDIAN PET CARE CONTEXT:
+${kbContextString}
+
+STRICT GUIDELINES & GUARDRAILS:
+1. ONLY answer from the provided Indian Pet Care Context where applicable. If the context does not contain enough information to answer safely, respond clearly: "I don't have specific info on that — please consult your vet."
+2. Respond in the user's language (English, Hindi, or conversational Hinglish) matching the prompt style.
+3. Never hallucinate veterinary prescription medicines or unverified clinical dosages.
+4. Cite the source files you referenced when presenting specific facts (e.g. "[Source: summer-heatstroke-management]").
+5. For acute emergencies (severe heatstroke, continuous vomiting/diarrhea, bloat, toxic ingestion, severe dog bites), immediately advise the pet parent to rush to an emergency clinic and contact PetSaathi 24/7 support.
+6. Maintain a warm, encouraging tone tailored to Indian families, apartments, and gated societies.`;
+
+        if (process.env.AI_DEBUG === "true") {
+          console.log("[NVIDIA Router AI_DEBUG] Injected KB Chunks:", retrievedSources);
+          console.log("[NVIDIA Router AI_DEBUG] System Prompt Length:", systemPrompt.length);
+        }
+
+        messages = [
+          { role: "system", content: systemPrompt },
+          ...messages
+        ];
+      }
+    } catch (kbErr) {
+      console.warn("[NVIDIA Router] Knowledge Base retrieval failed, falling back to base model:", kbErr.message);
+    }
+  }
+
   let lastError = null;
 
   // Attempt requests using fallback hierarchy
@@ -257,13 +304,13 @@ export async function askNvidia(options, prompt) {
 
       if (stream) {
         if (options.returnMetadata) {
-          return { content: message, executionModel: modelConfig.id, fallbackUsed, fallbackCount };
+          return { content: message, executionModel: modelConfig.id, fallbackUsed, fallbackCount, sources: retrievedSources };
         }
         return message; 
       }
 
       if (options.returnMetadata) {
-        return { content: message.content, executionModel: modelConfig.id, fallbackUsed, fallbackCount };
+        return { content: message.content, executionModel: modelConfig.id, fallbackUsed, fallbackCount, sources: retrievedSources };
       }
       return message.content;
       

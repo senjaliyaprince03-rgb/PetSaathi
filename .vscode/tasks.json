@@ -1,0 +1,35 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "npm",
+      "script": "dev",
+      "problemMatcher": [
+        {
+          "owner": "nextjs",
+          "severity": "error",
+          "fileLocation": ["relative", "${workspaceFolder}"],
+          "pattern": {
+            "regexp": "^(.*?):(\\d+):(\\d+)\\s+-\\s+error\\s+(.*)$",
+            "file": 1,
+            "line": 2,
+            "column": 3,
+            "message": 4
+          },
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": "^\\\\s*✓ Starting...",
+            "endsPattern": "^\\\\s*✓ Ready in"
+          }
+        }
+      ],
+      "label": "Start PetSaathi Server",
+      "detail": "Runs npm run dev to start the local Next.js environment",
+      "isBackground": true,
+      "presentation": {
+        "focus": true,
+        "panel": "shared"
+      }
+    }
+  ]
+}

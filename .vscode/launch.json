@@ -1,0 +1,21 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch PetSaathi (Chrome)",
+      "request": "launch",
+      "type": "chrome",
+      "url": "http://127.0.0.1:3110",
+      "webRoot": "${workspaceFolder}",
+      "preLaunchTask": "Start PetSaathi Server"
+    },
+    {
+      "name": "Launch PetSaathi (Edge)",
+      "request": "launch",
+      "type": "msedge",
+      "url": "http://127.0.0.1:3110",
+      "webRoot": "${workspaceFolder}",
+      "preLaunchTask": "Start PetSaathi Server"
+    }
+  ]
+}

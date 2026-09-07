@@ -25,14 +25,14 @@ export default defineConfig({
     screenshot: "only-on-failure",
     video: "retain-on-failure"
   },
-  // webServer: {
-  //   command: `npm run dev -- -p ${playwrightPort}`,
-  //   url: baseURL,
-  //   timeout: 420_000,
-  //   reuseExistingServer: !process.env.CI,
-  //   stdout: "pipe",
-  //   stderr: "pipe",
-  // },
+  webServer: {
+    command: `npx next start -p ${playwrightPort} -H 127.0.0.1`,
+    url: baseURL,
+    timeout: 120_000,
+    reuseExistingServer: true,
+    stdout: "pipe",
+    stderr: "pipe",
+  },
   projects: [
     { name: "chromium", use: { ...devices["Desktop Chrome"] } },
     { name: "mobile", use: { ...devices["Pixel 7"] } }

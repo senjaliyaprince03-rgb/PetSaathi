@@ -7,7 +7,7 @@
 export const TIMEOUTS = {
   SECURITY: parseInt(process.env.AI_TIMEOUT_SECURITY || '5000', 10),
   ANALYZER: parseInt(process.env.AI_TIMEOUT_ANALYZER || '10000', 10),
-  INFERENCE: parseInt(process.env.AI_TIMEOUT_INFERENCE || '30000', 10),
+  INFERENCE: parseInt(process.env.AI_TIMEOUT_INFERENCE || '60000', 10),
   EMBEDDINGS: parseInt(process.env.AI_TIMEOUT_EMBEDDINGS || '5000', 10),
   RERANKER: parseInt(process.env.AI_TIMEOUT_RERANKER || '5000', 10),
   TOOL: parseInt(process.env.AI_TIMEOUT_TOOL || '10000', 10),

@@ -24,6 +24,7 @@ __pycache__/
 .env
 .env.*
 !.env.schema
+!.env.example
 
 # logs and platform files
 npm-debug.log*
@@ -68,9 +69,10 @@ output/
 tmp/
 extracted_images/
 test_*.pdf
-videos/
 .originkit/
 
 # Sentry Config File
 .env.sentry-build-plugin
 .env.local
+
+.vercel

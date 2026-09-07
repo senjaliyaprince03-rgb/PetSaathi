@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Customer Profile - PetSaathi Ops</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "on-surface": "#1d1b1f",
+                        "on-primary-fixed": "#290947",
+                        "secondary-fixed": "#d9e3fb",
+                        "surface-tint": "#70518f",
+                        "primary-fixed": "#f0dbff",
+                        "inverse-on-surface": "#f6eff5",
+                        "tertiary-container": "#b5ae5c",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#596377",
+                        "background": "#fff7fd",
+                        "on-tertiary-fixed-variant": "#4d4800",
+                        "on-primary-container": "#d0acf2",
+                        "surface-container": "#f3ecf2",
+                        "primary-fixed-dim": "#dcb8ff",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#4b454f",
+                        "surface-container-highest": "#e7e0e6",
+                        "outline-variant": "#cdc3d0",
+                        "inverse-primary": "#dcb8ff",
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#454100",
+                        "on-secondary-fixed": "#111c2d",
+                        "secondary": "#555f73",
+                        "surface-container-high": "#ede6ec",
+                        "tertiary": "#666016",
+                        "on-tertiary-fixed": "#1f1c00",
+                        "on-background": "#1d1b1f",
+                        "surface-container-low": "#f9f1f8",
+                        "surface-variant": "#e7e0e6",
+                        "primary": "#432662",
+                        "surface-dim": "#dfd8de",
+                        "on-primary-fixed-variant": "#573976",
+                        "surface-bright": "#fff7fd",
+                        "inverse-surface": "#322f34",
+                        "secondary-container": "#d6e0f8",
+                        "on-secondary-fixed-variant": "#3d475a",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed": "#eee58d",
+                        "tertiary-fixed-dim": "#d1c974",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed-dim": "#bdc7de",
+                        "surface": "#fff7fd",
+                        "outline": "#7c7480",
+                        "primary-container": "#5b3d7a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "sidebar_width": "260px",
+                        "command_bar_height": "56px",
+                        "base_unit": "4px",
+                        "gutter": "16px",
+                        "container_padding": "24px"
+                    },
+                    "fontFamily": {
+                        "mono": ["geist"],
+                        "display": ["Geist"],
+                        "h2": ["Geist"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Geist"],
+                        "body-md": ["Inter"],
+                        "h1": ["Geist"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "mono": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "display": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "h2": ["18px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "h1": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f9f1f8; }
+        h1, h2, h3, h4, h5, h6, .font-display { font-family: 'Geist', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface-container-low text-on-surface h-full flex antialiased">
+<!-- SideNavBar -->
+<nav class="w-[260px] h-screen fixed left-0 top-0 border-r border-outline-variant dark:border-outline bg-surface dark:bg-inverse-surface flex flex-col h-full py-container_padding z-50">
+<div class="px-container_padding mb-8">
+<h1 class="text-h2 font-display font-bold text-primary dark:text-primary-fixed">PetSaathi Ops</h1>
+<div class="text-label-md text-on-surface-variant mt-1 flex items-center gap-2">
+<img class="w-6 h-6 rounded-full object-cover" data-alt="A small, professional headshot portrait of an operations administrator in a well-lit, minimalist corporate setting with soft natural lighting and a neutral background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKAuXd5b3B22KvtsbzODuhlUDLiZHiWZaEAEN0pzXMHHCmK_A1i6WpNLtdberMT6q-NtiW3PBLd7yXo0Ovkh9560T-mv3wDg0M4FfCXDVCdlBxmp8BbH441n9CYdqMsO5khFW67hRSXdl0b_8KGgnIVAIDGYKWAPRuXR_QrBk4IQw2PBWQgTpIDw7hXQAg8z4wxMmj2zCJG3TYK0rIlnhwiLYygzbj02nvewtFhgcOAZVKWjgq3wh5"/>
+<span>Super Admin</span>
+</div>
+<div class="mt-4 inline-flex items-center px-2 py-1 rounded bg-error-container text-on-error-container text-[10px] font-bold tracking-wider">PRODUCTION</div>
+</div>
+<ul class="flex-1 px-3 space-y-1 overflow-y-auto font-display text-body-md">
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+                    Operations Command
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined text-[20px]">event_seat</span>
+                    Booking Control
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined text-[20px]">security</span>
+                    Safety &amp; Incidents
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+                    Finance &amp; Payouts
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined text-[20px]">category</span>
+                    Service Catalog
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined text-[20px]">location_city</span>
+                    City Capacity
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-primary dark:text-primary-fixed-dim font-bold bg-primary-container/10 dark:bg-primary-container/20 hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined text-[20px]">groups</span>
+                    People &amp; Pets
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined text-[20px]">chat</span>
+                    Communication
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+                    System Settings
+                </a>
+</li>
+</ul>
+<div class="px-3 mt-auto pt-4 border-t border-outline-variant/30 font-display text-body-md">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined text-[20px]">help</span>
+                Help Center
+            </a>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="ml-[260px] flex-1 flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="h-[56px] w-[calc(100%-260px)] fixed top-0 right-0 z-40 border-b border-outline-variant dark:border-outline bg-surface-bright dark:bg-surface-dim flex justify-between items-center px-gutter ml-[260px]">
+<div class="flex items-center gap-4">
+<span class="font-display text-h1 font-bold text-primary dark:text-primary-fixed hidden md:block">PetSaathi Operations</span>
+<div class="relative flex items-center focus-within:ring-2 focus-within:ring-primary rounded-md overflow-hidden bg-surface-container ml-4 w-64">
+<span class="material-symbols-outlined absolute left-3 text-on-surface-variant text-[20px]">search</span>
+<input class="w-full bg-transparent border-none py-1.5 pl-10 pr-3 text-body-sm focus:ring-0 placeholder:text-on-surface-variant/50" placeholder="Search cmd+K" type="text"/>
+</div>
+</div>
+<div class="flex items-center h-full">
+<nav class="hidden lg:flex items-center h-full mr-6 font-display text-h2 space-x-6">
+<a class="h-full flex items-center text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-all" href="#">Operations</a>
+<a class="h-full flex items-center text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-all" href="#">Safety</a>
+<a class="h-full flex items-center text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-all" href="#">Finance</a>
+<a class="h-full flex items-center text-primary dark:text-primary-fixed-dim border-b-2 border-primary hover:text-primary dark:hover:text-primary-fixed-dim transition-all" href="#">Network</a>
+</nav>
+<div class="flex items-center gap-2 text-on-surface-variant border-l border-outline-variant/30 pl-4">
+<button class="p-1.5 rounded hover:bg-surface-container transition-colors"><span class="material-symbols-outlined">sensors</span></button>
+<button class="p-1.5 rounded hover:bg-surface-container transition-colors"><span class="material-symbols-outlined">notifications</span></button>
+<button class="p-1.5 rounded hover:bg-surface-container transition-colors"><span class="material-symbols-outlined">dark_mode</span></button>
+<button class="p-1.5 rounded hover:bg-surface-container transition-colors"><span class="material-symbols-outlined">help</span></button>
+<img class="w-8 h-8 rounded-full ml-2 object-cover border border-outline-variant" data-alt="A small, professional headshot portrait of an operations administrator in a well-lit, minimalist corporate setting with soft natural lighting and a neutral background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIpmFPOOtIM1enXwbGuqIGY26xjTinE9KIwP_xrHWzCs8oOouOop_4tv2-2LH743Tf_b-w6rAFVwPCodCocL3NDlNlaDij3NrOR3t3ohzAO3OTZ7LpncLU6UZAQqFI1usfxrM0xdVaW6nQSugLrwTMSWpYgo6lOOD-W4STyFohQ42zRoTckJte-LAP68MUpq8qsmotnohvNmA62V6sqgdCVb6_zs-tw45VxybiMqBUI3ldAg97Y6or"/>
+</div>
+</div>
+</header>
+<!-- Canvas -->
+<main class="mt-[56px] flex-1 p-container_padding overflow-y-auto">
+<!-- Breadcrumbs -->
+<div class="flex items-center gap-2 text-label-md text-on-surface-variant mb-6">
+<a class="hover:text-primary" href="#">People &amp; Pets</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary" href="#">Customers</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-on-surface font-semibold">Pooja Sharma</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Left Column (Identity & Actions) -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<!-- Profile Card -->
+<div class="bg-surface border border-outline-variant rounded-xl p-6 flex flex-col items-center text-center">
+<div class="relative">
+<img class="w-24 h-24 rounded-full object-cover border-4 border-surface-container" data-alt="A high-quality portrait photo of an Indian woman in her early 30s with a warm, friendly smile, set against a clean, bright, minimalist studio background. Professional lighting creates a light-mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxbeix1E9lg8uF4gd-WiVd5rwN-h0EiEUNBRevwetyXfBKjOSX_QpgmfaeDG-fGyKJ-12uuoxpdUjchH0l30MscbC-sQ5F4aStaoUyh4Wetz8i2mWers55sXHuVyDUKCAqNoZFUw7MUf2OiSydJra1UFrcC7TiXRkGQzsTHPj74nSGVqXUe4M9uqFqVoDe44wMgqWrMWnk-bpQaZS8K__CMjqzaH9FgszFth9HHR0lHdi9y92NjlVi"/>
+<div class="absolute bottom-0 right-0 bg-primary text-on-primary w-6 h-6 rounded-full flex items-center justify-center border-2 border-surface" title="Premium Member">
+<span class="material-symbols-outlined text-[14px]">star</span>
+</div>
+</div>
+<h2 class="font-display font-h1 mt-4">Pooja Sharma</h2>
+<p class="font-body-md text-on-surface-variant">Customer since Oct 2022</p>
+<div class="w-full mt-6 space-y-3 text-left">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline text-[18px]">phone_iphone</span>
+<span class="font-body-md">+91 98765 43210</span>
+<span class="ml-auto material-symbols-outlined text-primary text-[16px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline text-[18px]">mail</span>
+<span class="font-body-md">pooja.sharma.123@email.com</span>
+<span class="ml-auto material-symbols-outlined text-primary text-[16px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline text-[18px]">location_on</span>
+<span class="font-body-md truncate">A-402, Skyline Towers, Koramangala, BLR</span>
+</div>
+</div>
+</div>
+<!-- Safety & Notes -->
+<div class="bg-surface border border-outline-variant rounded-xl p-0 overflow-hidden flex flex-col">
+<div class="bg-surface-container px-4 py-3 border-b border-outline-variant flex items-center justify-between">
+<h3 class="font-display font-h2 text-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-error">flag</span>
+                                Safety &amp; Internal Notes
+                            </h3>
+<button class="text-primary hover:bg-primary/10 p-1 rounded"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+</div>
+<div class="p-4 flex-1">
+<div class="bg-error-container/20 border border-error/20 p-3 rounded-lg mb-4">
+<p class="font-label-md text-error font-semibold mb-1">Gate Pass Required</p>
+<p class="font-body-sm text-on-surface-variant">Society requires pre-approval for Saathis on the MyGate app. Ensure walkers are informed to carry ID.</p>
+</div>
+<div class="space-y-3">
+<div class="flex gap-2">
+<div class="w-1.5 h-1.5 rounded-full bg-outline mt-2"></div>
+<div class="font-body-sm text-on-surface-variant"><span class="text-on-surface font-medium">May 12:</span> Requested specific walker (Ramesh) due to dog's anxiety.</div>
+</div>
+<div class="flex gap-2">
+<div class="w-1.5 h-1.5 rounded-full bg-outline mt-2"></div>
+<div class="font-body-sm text-on-surface-variant"><span class="text-on-surface font-medium">Jan 04:</span> Refund processed for missed walk #4928.</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Panel -->
+<div class="bg-surface border border-outline-variant rounded-xl p-4 flex flex-col gap-2">
+<button class="w-full bg-primary text-on-primary py-2 rounded-lg font-label-md hover:bg-primary/90 transition-colors flex justify-center items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">support_agent</span> Contact Customer
+                        </button>
+<button class="w-full bg-surface text-on-surface border border-outline-variant py-2 rounded-lg font-label-md hover:bg-surface-container transition-colors">
+                            Issue Refund / Credit
+                        </button>
+<div class="grid grid-cols-2 gap-2 mt-2 pt-2 border-t border-outline-variant">
+<button class="w-full bg-surface text-on-surface border border-outline-variant py-2 rounded-lg font-label-md hover:bg-error-container hover:text-on-error-container hover:border-error-container transition-colors flex justify-center items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">report</span> Flag
+                            </button>
+<button class="w-full bg-surface text-error border border-error/30 py-2 rounded-lg font-label-md hover:bg-error hover:text-on-error transition-colors flex justify-center items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">block</span> Block
+                            </button>
+</div>
+</div>
+</div>
+<!-- Right Column (Data Canvas) -->
+<div class="lg:col-span-8 flex flex-col gap-6">
+<!-- KPIs -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="bg-surface border border-outline-variant rounded-xl p-4 flex flex-col">
+<span class="font-label-md text-on-surface-variant uppercase tracking-wider mb-1">Total Spend</span>
+<span class="font-display text-[24px] font-semibold">₹42,500</span>
+<span class="font-body-sm text-primary mt-auto">+12% this month</span>
+</div>
+<div class="bg-surface border border-outline-variant rounded-xl p-4 flex flex-col">
+<span class="font-label-md text-on-surface-variant uppercase tracking-wider mb-1">Avg Rating</span>
+<span class="font-display text-[24px] font-semibold flex items-center gap-1">
+                                4.9 <span class="material-symbols-outlined text-tertiary-container text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</span>
+<span class="font-body-sm text-on-surface-variant mt-auto">Across 45 reviews</span>
+</div>
+<div class="bg-surface border border-outline-variant rounded-xl p-4 flex flex-col">
+<span class="font-label-md text-on-surface-variant uppercase tracking-wider mb-1">Total Pets</span>
+<span class="font-display text-[24px] font-semibold">2</span>
+<span class="font-body-sm text-on-surface-variant mt-auto">Active profiles</span>
+</div>
+<div class="bg-surface border border-outline-variant rounded-xl p-4 flex flex-col">
+<span class="font-label-md text-on-surface-variant uppercase tracking-wider mb-1">Completed</span>
+<span class="font-display text-[24px] font-semibold">128</span>
+<span class="font-body-sm text-on-surface-variant mt-auto">Missions (Walks/Sits)</span>
+</div>
+</div>
+<!-- Linked Pets (Bento Style) -->
+<div class="bg-surface border border-outline-variant rounded-xl p-0 overflow-hidden">
+<div class="bg-surface-container px-6 py-4 border-b border-outline-variant flex items-center justify-between">
+<h3 class="font-display font-h2 text-base">Linked Pets</h3>
+</div>
+<div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Pet 1 -->
+<div class="border border-outline-variant rounded-lg p-4 flex items-start gap-4 hover:border-primary/50 transition-colors cursor-pointer group">
+<img class="w-16 h-16 rounded-lg object-cover" data-alt="A bright, cheerful photo of a Golden Retriever dog outdoors in a grassy park, captured with soft, natural lighting. The image conveys a professional, clean, light-mode friendly aesthetic suitable for a pet care platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTCNwWG7q9nW9Y3zs1EAXygjaFyc1B7A8ODrcLkdF0Kb0MsB7tbdW8EiW2lTGBHtYcXCa7bB3Kzlk_eRZjQFxjVtK5jPKyM6ufy1ZJjSc6PcCV4kpJpcLvilodj5BtQSDZ3cuNQbINfcHCdczIODq1lBRNriKyJ-zSb7DORrDRnu8-A3vKAU_Dar_NU774E7usbRBYNV0depDSIj3gt6eP66KrKihAH-0XGMA8cMeeXIJTwVIcrQSk"/>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<h4 class="font-display font-medium text-on-surface">Bruno</h4>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary text-[18px]">open_in_new</span>
+</div>
+<p class="font-body-sm text-on-surface-variant">Golden Retriever • 4 yrs</p>
+<div class="mt-2 flex gap-2">
+<span class="inline-block px-2 py-0.5 bg-surface-container-high rounded text-[10px] font-mono text-on-surface-variant">Friendly</span>
+<span class="inline-block px-2 py-0.5 bg-surface-container-high rounded text-[10px] font-mono text-on-surface-variant">Pulls on leash</span>
+</div>
+</div>
+</div>
+<!-- Pet 2 -->
+<div class="border border-outline-variant rounded-lg p-4 flex items-start gap-4 hover:border-primary/50 transition-colors cursor-pointer group">
+<img class="w-16 h-16 rounded-lg object-cover" data-alt="A high-quality, professional photo of a small Beagle dog sitting attentively indoors against a clean, bright, minimalist background. The lighting is soft and neutral, fitting a modern light-mode interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIcvIvaASWadT7L20L-f69Qn3LXRsmczuU3rSjDCAEul8tsDtONMdFeKCD4U35_3q8JpST0eTGiWW2oCHRntHyE27StFrifHhTDcnzSUtRHp0w4mjxmWoSc0VNIXstLuqC_D8sEhdGlzuTfbm1xIhYG7WOXJU7FR-C1VF8wveJ2i33h-UvHpJTtGVGlsi8MCk5wD6iS8gL4-SfQqsfr3GB-0ci_eQEVSE2vWc0T6eWs-Xag9FNUzTD"/>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<h4 class="font-display font-medium text-on-surface">Daisy</h4>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary text-[18px]">open_in_new</span>
+</div>
+<p class="font-body-sm text-on-surface-variant">Beagle • 2 yrs</p>
+<div class="mt-2 flex gap-2">
+<span class="inline-block px-2 py-0.5 bg-surface-container-high rounded text-[10px] font-mono text-on-surface-variant">Anxious</span>
+<span class="inline-block px-2 py-0.5 bg-surface-container-high rounded text-[10px] font-mono text-on-surface-variant">Treat motivated</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Booking History Table -->
+<div class="bg-surface border border-outline-variant rounded-xl p-0 overflow-hidden flex-1 flex flex-col">
+<div class="bg-surface-container px-6 py-4 border-b border-outline-variant flex items-center justify-between">
+<h3 class="font-display font-h2 text-base">Recent Booking History</h3>
+<button class="font-label-md text-primary flex items-center gap-1 hover:underline">
+                                View All <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="px-6 py-3 font-label-md text-on-surface-variant">Mission ID</th>
+<th class="px-6 py-3 font-label-md text-on-surface-variant">Date &amp; Time</th>
+<th class="px-6 py-3 font-label-md text-on-surface-variant">Service</th>
+<th class="px-6 py-3 font-label-md text-on-surface-variant">Saathi</th>
+<th class="px-6 py-3 font-label-md text-on-surface-variant">Status</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-on-surface divide-y divide-outline-variant/50">
+<tr class="hover:bg-surface-container-lowest transition-colors group cursor-pointer">
+<td class="px-6 py-3 font-mono text-primary group-hover:underline">#WLK-9284</td>
+<td class="px-6 py-3">Today, 08:00 AM</td>
+<td class="px-6 py-3">30m Walk (Bruno)</td>
+<td class="px-6 py-3 flex items-center gap-2">
+<div class="w-5 h-5 rounded-full bg-secondary-container flex items-center justify-center text-[10px] font-bold">R</div>
+                                            Ramesh K.
+                                        </td>
+<td class="px-6 py-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-[#e6f4ea] text-[#137333] font-label-md">Completed</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors group cursor-pointer">
+<td class="px-6 py-3 font-mono text-primary group-hover:underline">#WLK-9150</td>
+<td class="px-6 py-3">Oct 14, 06:30 PM</td>
+<td class="px-6 py-3">45m Walk (Bruno, Daisy)</td>
+<td class="px-6 py-3 flex items-center gap-2">
+<div class="w-5 h-5 rounded-full bg-secondary-container flex items-center justify-center text-[10px] font-bold">R</div>
+                                            Ramesh K.
+                                        </td>
+<td class="px-6 py-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-[#e6f4ea] text-[#137333] font-label-md">Completed</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors group cursor-pointer">
+<td class="px-6 py-3 font-mono text-primary group-hover:underline">#SIT-8842</td>
+<td class="px-6 py-3">Oct 12, 10:00 AM</td>
+<td class="px-6 py-3">Day Sitting (Daisy)</td>
+<td class="px-6 py-3 flex items-center gap-2">
+<div class="w-5 h-5 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center text-[10px] font-bold">S</div>
+                                            Sneha P.
+                                        </td>
+<td class="px-6 py-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-[#e6f4ea] text-[#137333] font-label-md">Completed</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors group cursor-pointer bg-error-container/10">
+<td class="px-6 py-3 font-mono text-primary group-hover:underline">#WLK-8721</td>
+<td class="px-6 py-3">Oct 10, 08:00 AM</td>
+<td class="px-6 py-3">30m Walk (Bruno)</td>
+<td class="px-6 py-3 flex items-center gap-2">
+<div class="w-5 h-5 rounded-full bg-secondary-container flex items-center justify-center text-[10px] font-bold">A</div>
+                                            Amit S.
+                                        </td>
+<td class="px-6 py-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-md">Cancelled (Saathi)</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

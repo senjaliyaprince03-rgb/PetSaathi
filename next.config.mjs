@@ -20,6 +20,7 @@ const nextConfig = {
   reactStrictMode: true,
   typedRoutes: true,
   transpilePackages: ["leaflet", "react-leaflet"],
+  serverExternalPackages: ["@prisma/client", "bcryptjs", "node:inspector", "inspector"],
   // The repository runs `npm run typecheck` as a separate release gate. Keep
   // Next's duplicate worker-based check opt-in for restricted build runners.
   typescript: {
@@ -27,35 +28,50 @@ const nextConfig = {
   },
   outputFileTracingRoot: projectRoot,
   images: {
-    formats: ["image/avif", "image/webp"]
+    formats: ["image/avif", "image/webp"],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    minimumCacheTTL: 31536000
   },
   async headers() {
     return [
       {
-        source: "/(.*)",
+        source: "/:path*",
         headers: [
-          {
-            key: "Strict-Transport-Security",
-            value: "max-age=31536000; includeSubDomains; preload"
-          },
-          {
-            key: "X-Frame-Options",
-            value: "DENY"
-          },
-          {
-            key: "X-Content-Type-Options",
-            value: "nosniff"
-          },
-          {
-            key: "Referrer-Policy",
-            value: "strict-origin-when-cross-origin"
-          },
+          // Prevent clickjacking attacks
+          { key: "X-Frame-Options", value: "DENY" },
+          // Enable browser XSS filter
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          // Control referrer information
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          // Strict CSP — adjust connect-src for your external domains
           {
             key: "Content-Security-Policy",
-            value: "default-src 'self'; script-src 'self' 'unsafe-inline' https://checkout.razorpay.com https://accounts.google.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://accounts.google.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https:; frame-src 'self' https://checkout.razorpay.com https://api.razorpay.com https://*.razorpay.com https://accounts.google.com https://*.google.com; object-src 'none'; base-uri 'self';"
-          }
-        ]
-      }
+            value: [
+              "default-src 'self'",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://checkout.razorpay.com https://www.googletagmanager.com https://connect.facebook.net https://www.clarity.ms https://accounts.google.com",
+              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://accounts.google.com",
+              "img-src 'self' data: https: blob:",
+              "font-src 'self' data: https://fonts.gstatic.com",
+              "connect-src 'self' https://api.razorpay.com https://integrate.api.nvidia.com wss: https://www.google-analytics.com https://region1.google-analytics.com https://connect.facebook.net https://www.clarity.ms",
+              "frame-src https://api.razorpay.com https://checkout.razorpay.com https://accounts.google.com",
+              "object-src 'none'",
+              "base-uri 'self'",
+              "form-action 'self'",
+            ].join("; "),
+          },
+          // HTTP Strict Transport Security (1 year)
+          {
+            key: "Strict-Transport-Security",
+            value: "max-age=31536000; includeSubDomains",
+          },
+          // Disable browser features not needed
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=(self)",
+          },
+        ],
+      },
     ];
   }
 };
@@ -64,9 +80,9 @@ const sentryOptions = {
   // For all available options, see:
   // https://www.npmjs.com/package/@sentry/webpack-plugin#options
 
-  org: "nexusai-ex",
+  org: process.env.SENTRY_ORG || "petsaathi-f6",
 
-  project: "petsaathi",
+  project: process.env.SENTRY_PROJECT || "petsaathi",
 
   // Only print logs for uploading source maps in CI
   silent: !process.env.CI,
