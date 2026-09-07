@@ -136,5 +136,8 @@
     "postcss": "$postcss",
     "nanoid": "^3.3.18",
     "sharp": "$sharp"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "4.62.2"
   }
 }
