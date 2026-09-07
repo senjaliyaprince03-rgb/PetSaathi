@@ -1,4 +1,5 @@
 import { prisma } from "../db";
+import { logger } from "./logger";
 
 /**
  * PetSaathi Custom Business Metrics Engine (Task 4.2)
@@ -141,7 +142,7 @@ export async function computeBusinessMetricsSnapshot(): Promise<BusinessMetricsS
       totalSessions === 0 ? 0 : Number((totalPoints / totalSessions).toFixed(1));
   } catch (error) {
     logger.warn("business_metrics_database_query_degraded", {
-      error: error instanceof Error ? error.message : String(error),
+      error: error instanceof Error ? error : new Error(String(error)),
     });
   }
 

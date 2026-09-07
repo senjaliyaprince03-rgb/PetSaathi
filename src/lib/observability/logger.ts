@@ -14,11 +14,13 @@ export interface LogEntry {
   action: string;
   durationMs?: number;
   message?: string;
-  error?: {
-    name: string;
-    message: string;
-    stack?: string;
-  };
+  error?:
+    | Error
+    | {
+        name: string;
+        message: string;
+        stack?: string;
+      };
   metadata?: Record<string, any>;
 }
 
