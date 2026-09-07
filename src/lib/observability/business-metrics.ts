@@ -71,21 +71,80 @@ export async function computeBusinessMetricsSnapshot(): Promise<BusinessMetricsS
   metricsState.webhookFailures = pruneOldEntries(metricsState.webhookFailures, oneHourMs);
 
   // 1. Bookings created per hour
-  const bookingsCreatedLastHour = await prisma.booking.count({
-    where: { createdAt: { gte: oneHourAgo } },
-  });
+  let bookingsCreatedLastHour = 0;
+  let completedCount = 0;
+  let cancelledCount = 0;
+  let avgWalkDurationMinutes = 30.0;
+  let avgSitterAcceptanceTimeSeconds = 45.0;
+  let avgGpsPointsPerWalk = 0;
 
-  // 2. Bookings completed vs. cancelled ratio
-  const completedCount = await prisma.booking.count({
-    where: { status: "COMPLETED" },
-  });
-  const cancelledCount = await prisma.booking.count({
-    where: {
-      status: {
-        in: ["CUSTOMER_CANCELLED", "SITTER_CANCELLED", "DECLINED"],
+  try {
+    bookingsCreatedLastHour = await prisma.booking.count({
+      where: { createdAt: { gte: oneHourAgo } },
+    });
+
+    // 2. Bookings completed vs. cancelled ratio
+    completedCount = await prisma.booking.count({
+      where: { status: "COMPLETED" },
+    });
+    cancelledCount = await prisma.booking.count({
+      where: {
+        status: {
+          in: ["CUSTOMER_CANCELLED", "SITTER_CANCELLED", "DECLINED"],
+        },
       },
-    },
-  });
+    });
+
+    // 7. Average walk duration (from TrackingSessions with endedAt)
+    const recentSessions = await prisma.trackingSession.findMany({
+      where: {
+        endedAt: { not: null },
+      },
+      select: { startedAt: true, endedAt: true, id: true },
+      take: 50,
+    });
+
+    let totalDurationMinutes = 0;
+    for (const s of recentSessions) {
+      if (s.endedAt) {
+        totalDurationMinutes += (s.endedAt.getTime() - s.startedAt.getTime()) / 60000;
+      }
+    }
+    avgWalkDurationMinutes =
+      recentSessions.length === 0 ? 30.0 : Number((totalDurationMinutes / recentSessions.length).toFixed(1));
+
+    // 8. Sitter acceptance time (offeredAt -> acceptedAt from BookingAssignment)
+    const acceptedAssignments = await prisma.bookingAssignment.findMany({
+      where: {
+        status: "ACCEPTED",
+        respondedAt: { not: null },
+      },
+      select: { offeredAt: true, respondedAt: true },
+      take: 50,
+    });
+
+    let totalAcceptanceSeconds = 0;
+    for (const a of acceptedAssignments) {
+      if (a.respondedAt) {
+        totalAcceptanceSeconds += (a.respondedAt.getTime() - a.offeredAt.getTime()) / 1000;
+      }
+    }
+    avgSitterAcceptanceTimeSeconds =
+      acceptedAssignments.length === 0
+        ? 45.0
+        : Number((totalAcceptanceSeconds / acceptedAssignments.length).toFixed(1));
+
+    // 9. GPS points recorded per walk
+    const totalPoints = await prisma.trackingPoint.count();
+    const totalSessions = await prisma.trackingSession.count();
+    avgGpsPointsPerWalk =
+      totalSessions === 0 ? 0 : Number((totalPoints / totalSessions).toFixed(1));
+  } catch (error) {
+    logger.warn("business_metrics_database_query_degraded", {
+      error: error instanceof Error ? error.message : String(error),
+    });
+  }
+
   const completedVsCancelledRatio =
     cancelledCount === 0 ? (completedCount > 0 ? completedCount : 1.0) : Number((completedCount / cancelledCount).toFixed(2));
 
@@ -104,51 +163,6 @@ export async function computeBusinessMetricsSnapshot(): Promise<BusinessMetricsS
     chatbotQueriesLastHour === 0
       ? 0.0
       : Number(((chatbotFallbacksLastHour / chatbotQueriesLastHour) * 100).toFixed(1));
-
-  // 7. Average walk duration (from TrackingSessions with endedAt)
-  const recentSessions = await prisma.trackingSession.findMany({
-    where: {
-      endedAt: { not: null },
-    },
-    select: { startedAt: true, endedAt: true, id: true },
-    take: 50,
-  });
-
-  let totalDurationMinutes = 0;
-  for (const s of recentSessions) {
-    if (s.endedAt) {
-      totalDurationMinutes += (s.endedAt.getTime() - s.startedAt.getTime()) / 60000;
-    }
-  }
-  const avgWalkDurationMinutes =
-    recentSessions.length === 0 ? 30.0 : Number((totalDurationMinutes / recentSessions.length).toFixed(1));
-
-  // 8. Sitter acceptance time (offeredAt -> acceptedAt from BookingAssignment)
-  const acceptedAssignments = await prisma.bookingAssignment.findMany({
-    where: {
-      status: "ACCEPTED",
-      respondedAt: { not: null },
-    },
-    select: { offeredAt: true, respondedAt: true },
-    take: 50,
-  });
-
-  let totalAcceptanceSeconds = 0;
-  for (const a of acceptedAssignments) {
-    if (a.respondedAt) {
-      totalAcceptanceSeconds += (a.respondedAt.getTime() - a.offeredAt.getTime()) / 1000;
-    }
-  }
-  const avgSitterAcceptanceTimeSeconds =
-    acceptedAssignments.length === 0
-      ? 45.0
-      : Number((totalAcceptanceSeconds / acceptedAssignments.length).toFixed(1));
-
-  // 9. GPS points recorded per walk
-  const totalPoints = await prisma.trackingPoint.count();
-  const totalSessions = await prisma.trackingSession.count();
-  const avgGpsPointsPerWalk =
-    totalSessions === 0 ? 0 : Number((totalPoints / totalSessions).toFixed(1));
 
   return {
     timestamp: new Date().toISOString(),

@@ -1,6 +1,7 @@
 import { describe, it, expect, vi } from "vitest";
 import { logger } from "../../src/lib/observability/logger";
 import { GET } from "../../src/app/api/health/route";
+import { prisma } from "../../src/lib/db";
 
 describe("Logging & Health Check (Task 4.4)", () => {
   describe("StructuredLogger", () => {
@@ -43,7 +44,9 @@ describe("Logging & Health Check (Task 4.4)", () => {
   });
 
   describe("/api/health endpoint", () => {
-    it("returns status 200 with ok status, db connected, and uptime", async () => {
+    it("returns status 200 with ok status, db connected, and uptime when DB is available", async () => {
+      vi.spyOn(prisma.serviceType, "findFirst").mockResolvedValueOnce({ id: "service-1" } as any);
+
       const response = await GET();
       expect(response.status).toBe(200);
 
@@ -53,6 +56,17 @@ describe("Logging & Health Check (Task 4.4)", () => {
       expect(json.uptime).toBeGreaterThanOrEqual(0);
       expect(json.version).toBeDefined();
       expect(json.timestamp).toBeDefined();
+    });
+
+    it("returns status 503 with degraded status when DB ping fails", async () => {
+      vi.spyOn(prisma.serviceType, "findFirst").mockRejectedValueOnce(new Error("Connection error"));
+
+      const response = await GET();
+      expect(response.status).toBe(503);
+
+      const json = await response.json();
+      expect(json.status).toBe("degraded");
+      expect(json.db).toBe("disconnected");
     });
   });
 });
