@@ -53,7 +53,7 @@ jobs:
   deploy:
     name: Deploy to Vercel (Production)
     needs: verify
-    if: ${{ secrets.VERCEL_TOKEN != '' }}
+    if: "!cancelled() && !failure() && secrets.VERCEL_TOKEN != ''"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -68,7 +68,7 @@ jobs:
   healthcheck:
     name: Post-Deploy Health Check
     needs: deploy
-    if: ${{ secrets.VERCEL_TOKEN != '' }}
+    if: "!cancelled() && !failure() && secrets.VERCEL_TOKEN != ''"
     runs-on: ubuntu-latest
     steps:
       - name: Query /api/health

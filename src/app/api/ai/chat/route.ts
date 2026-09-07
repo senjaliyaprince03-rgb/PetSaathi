@@ -5,6 +5,8 @@ import { askNvidia } from '../../../../../ai/router.mjs';
 import { getCurrentIdentity } from '@/modules/auth/session';
 import { consumeRateLimit } from '@/modules/security/rate-limit';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(req: NextRequest) {
   try {
     let body;

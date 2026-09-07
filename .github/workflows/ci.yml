@@ -101,6 +101,8 @@ jobs:
           MONGODB_DATABASE: petsaathi_test
           NEXTAUTH_SECRET: ci_dummy_nextauth_secret_for_bundle_build_only_32_chars
           AUTH_SECRET: ci_dummy_auth_secret_for_bundle_build_only_32_chars
+          NVIDIA_API_KEY: ci_dummy_nvidia_api_key_for_bundle_build
+          UPLOAD_SIGNING_SECRET: ci_dummy_upload_secret_for_bundle_build_32_chars
 
   deploy-staging:
     name: Deploy to Staging Environment
