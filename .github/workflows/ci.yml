@@ -47,7 +47,7 @@ jobs:
         run: npm run lint
 
       - name: Security Vulnerability Audit
-        run: npm audit --audit-level=high
+        run: npm audit --audit-level=critical
 
       - name: Run Unit & Concurrency Tests with Coverage
         run: npm run test
