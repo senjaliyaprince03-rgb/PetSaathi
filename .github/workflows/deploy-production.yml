@@ -15,7 +15,9 @@ jobs:
           node-version: "22"
           cache: "npm"
       - name: Install dependencies
-        run: npm install
+        run: |
+          npm install
+          npm install @rollup/rollup-linux-x64-gnu --no-save
       - name: TypeScript Typecheck
         run: npm run typecheck
       - name: Run Unit and Integration Tests
