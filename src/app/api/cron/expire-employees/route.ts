@@ -2,10 +2,12 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { logger } from "@/lib/logger";
 
+import { timingSafeEqual } from "node:crypto";
+
 export async function GET(request: Request) {
-  // Ensure this is called from a trusted source (e.g. cron service with a secret key)
-  const authHeader = request.headers.get("authorization");
-  if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
+  const secret = process.env.CRON_SECRET;
+  const token = request.headers.get("authorization")?.replace(/^Bearer\s+/i, "");
+  if (!secret || !token || secret.length !== token.length || !timingSafeEqual(Buffer.from(secret), Buffer.from(token))) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 

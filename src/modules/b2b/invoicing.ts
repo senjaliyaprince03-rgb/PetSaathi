@@ -84,7 +84,7 @@ export async function createInvoice(data: {
     totalAmount = tax.total;
   }
 
-  return prisma.enterpriseInvoice.create({
+  const created = await prisma.enterpriseInvoice.create({
     data: {
       invoiceNumber,
       organizationId: data.organizationId,
@@ -106,6 +106,42 @@ export async function createInvoice(data: {
       notes: data.notes,
     },
   });
+
+  // Automated ClearTax IRN generation for enterprise invoices >= ₹1,00,000 (10,000,000 paise)
+  if (totalAmount >= 10_000_000 && data.customerGstin && data.supplierGstin) {
+    try {
+      const { generateIRN } = await import("@/lib/einvoice");
+      const { irn } = await generateIRN({
+        invoiceId: created.id,
+        sellerGstin: data.supplierGstin,
+        buyerGstin: data.customerGstin,
+        invoiceNumber: created.invoiceNumber,
+        invoiceDate: new Date().toISOString().split("T")[0] ?? "2026-09-03",
+        totalAmount: totalAmount / 100,
+        cgst: cgst / 100,
+        sgst: sgst / 100,
+        igst: igst / 100,
+        sacCode: data.sacCode || "998399",
+        lineItems: [
+          {
+            description: "Pet care enterprise service benefits",
+            quantity: 1,
+            rate: data.taxableValuePaise / 100,
+            amount: data.taxableValuePaise / 100,
+          },
+        ],
+      });
+
+      return prisma.enterpriseInvoice.update({
+        where: { id: created.id },
+        data: { irnNumber: irn },
+      });
+    } catch (irnErr) {
+      console.error("[ClearTax] Auto IRN generation notice:", irnErr);
+    }
+  }
+
+  return created;
 }
 
 export async function sendInvoice(id: string) {

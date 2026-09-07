@@ -116,15 +116,25 @@ export async function listOpportunities(filters: {
 }
 
 export async function getPipelineSummary() {
-  const groups = await prisma.b2bOpportunity.groupBy({
-    by: ["pipelineStage"],
-    _count: { _all: true },
-    _sum: { estimatedValue: true },
+  const opps = await prisma.b2bOpportunity.findMany({
+    select: {
+      pipelineStage: true,
+      estimatedValue: true,
+    },
   });
 
-  return groups.map((g) => ({
-    stage: g.pipelineStage,
-    count: g._count._all,
-    totalValue: g._sum.estimatedValue || 0,
-  }));
+  const stageMap = new Map<string, { stage: OpportunityStage; count: number; totalValue: number }>();
+
+  for (const opp of opps) {
+    const existing = stageMap.get(opp.pipelineStage) || {
+      stage: opp.pipelineStage,
+      count: 0,
+      totalValue: 0,
+    };
+    existing.count += 1;
+    existing.totalValue += opp.estimatedValue || 0;
+    stageMap.set(opp.pipelineStage, existing);
+  }
+
+  return Array.from(stageMap.values());
 }

@@ -13,6 +13,7 @@ import {
   Mail,
   MapPin,
   PawPrint,
+  RefreshCw,
   ShieldCheck,
   Twitter,
   UserRoundCheck
@@ -30,6 +31,12 @@ export function MarketingFooter() {
         <div>
           <PetSaathiLogo inverted={true} />
           <p className="mt-5 max-w-sm text-sm leading-7 text-white/80">India-focused, trust-first pet care built around careful handoffs and traceable service delivery.</p>
+          <div className="mt-4">
+            <a href="mailto:support@petsaathi.com" className="inline-flex items-center gap-2 text-xs font-bold text-saffron hover:underline">
+              <Mail className="w-4 h-4" />
+              <span>support@petsaathi.com</span>
+            </a>
+          </div>
         </div>
 
         {([
@@ -43,6 +50,7 @@ export function MarketingFooter() {
             ["Safety", "/safety", ShieldCheck],
             ["Privacy", "/privacy", Lock],
             ["Terms", "/terms", FileText],
+            ["Refund Policy", "/refund-policy", RefreshCw],
             ["Care Guides", "/journal", BookOpen]
           ]],
           ["PetSaathi", [

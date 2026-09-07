@@ -84,9 +84,9 @@ export async function POST(
       );
     }
     logger.error(
-      error instanceof Error ? error : "AssignmentOfferError",
+      "AssignmentOfferError",
+      error instanceof Error ? error : new Error(String(error)),
       {
-        event: "admin.assignment.offer_failed",
         actorId: authorization.identity.id,
         bookingId: bookingId.data,
         sitterId: input.data.sitterId,

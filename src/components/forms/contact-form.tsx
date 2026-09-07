@@ -26,9 +26,16 @@ export function ContactForm({ defaultTopic = "GENERAL" }: { defaultTopic?: strin
     setError(null);
     const data = new FormData(event.currentTarget);
     const response = await fetch("/api/leads", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ type: topic, name: data.get("name"), email: data.get("email"), phone: data.get("phone"), organisationName: data.get("organisationName"), locality: data.get("locality"), message: data.get("message"), consentToContact: data.get("consentToContact") === "on" }) });
-    const result = await response.json() as { error?: string };
+    const result = (await response.json().catch(() => null)) as { error?: string } | null;
     setPending(false);
-    if (!response.ok) return setError(result.error === "lead_capture_not_configured" ? "The form is ready, but secure enquiry storage requires the production database connection." : result.error === "too_many_requests" ? "Too many enquiries were submitted from this connection. Please try again later." : "Check the required fields and add a valid email or Indian mobile number.");
+    if (!response.ok) return setError(result?.error === "lead_capture_not_configured" ? "The form is ready, but secure enquiry storage requires the production database connection." : result?.error === "too_many_requests" ? "Too many enquiries were submitted from this connection. Please try again later." : "Check the required fields and add a valid email or Indian mobile number.");
+    // Meta Pixel Lead conversion event
+    if (typeof window !== "undefined" && (window as any).fbq) {
+      (window as any).fbq("track", "Lead", {
+        content_name: topic,
+        currency: "INR",
+      });
+    }
     setSent(true);
   }
 

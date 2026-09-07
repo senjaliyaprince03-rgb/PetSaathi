@@ -6,7 +6,10 @@ import { ArrowRight, BadgeCheck, MapPin, ShieldCheck } from "lucide-react";
 import { PublicShell } from "@/components/marketing/public-shell";
 import { buttonVariants } from "@/components/ui/button";
 
-export const metadata: Metadata = { title: "Find a trusted Saathi | PetSaathi" };
+export const metadata: Metadata = { 
+  title: "Find a Trusted Saathi",
+  description: "Browse certified and background-verified pet sitters and dog walkers in your neighborhood society."
+};
 
 const profileViews = [
   { image: "/images/sitter-woman-cinematic.png", label: "Home care", detail: "Routine-led companionship, feeding and careful handovers" },

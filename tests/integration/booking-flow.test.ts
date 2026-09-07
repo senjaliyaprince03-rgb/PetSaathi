@@ -1,7 +1,7 @@
 import { randomUUID } from "node:crypto";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { prisma } from "@/lib/db";
-import { assertBookingTransition } from "@/modules/bookings/state-machine";
+import { validateBookingTransition } from "@/modules/bookings/state-machine";
 
 describe("Booking Integration Flow", () => {
   const suffix = randomUUID().slice(0, 8);
@@ -53,7 +53,7 @@ describe("Booking Integration Flow", () => {
 
   it("successfully transitions from PAYMENT_PENDING to CONFIRMED to COMPLETED", async () => {
     // 1. PAYMENT_PENDING -> CONFIRMED
-    assertBookingTransition("PAYMENT_PENDING", "CONFIRMED");
+    validateBookingTransition("PAYMENT_PENDING", "CONFIRMED");
     
     await prisma.booking.update({
       where: { id: ids.booking },
@@ -79,7 +79,7 @@ describe("Booking Integration Flow", () => {
     ] as const;
 
     for (const { from, to } of transitions) {
-      assertBookingTransition(from, to);
+      validateBookingTransition(from, to);
       await prisma.booking.update({
         where: { id: ids.booking },
         data: {

@@ -1,0 +1,56 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "PetSaathi API",
+    "version": "1.0.0",
+    "description": "Enterprise REST API for PetSaathi hyper-local pet care and dog walking platform."
+  },
+  "paths": {
+    "/api/health": {
+      "get": {
+        "summary": "System Health & Liveness Probe",
+        "responses": {
+          "200": {
+            "description": "Service healthy",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ai/chat": {
+      "post": {
+        "summary": "Customer Pet Care AI Chatbot",
+        "responses": {
+          "200": {
+            "description": "AI answer generated"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        }
+      }
+    },
+    "/api/webhooks/razorpay": {
+      "post": {
+        "summary": "Razorpay Payment & Refund Webhook",
+        "responses": {
+          "200": {
+            "description": "Duplicate event acknowledged"
+          },
+          "202": {
+            "description": "Event accepted for processing"
+          },
+          "401": {
+            "description": "Invalid HMAC signature"
+          }
+        }
+      }
+    }
+  }
+}

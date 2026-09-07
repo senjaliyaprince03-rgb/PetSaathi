@@ -11,7 +11,25 @@ export const dynamic = "force-dynamic";
 export default async function AdminFeaturesPage() {
   const identity = await getCurrentIdentity();
   if (!identity || !hasAnyRole(identity, ["SUPER_ADMIN"])) redirect("/login?returnTo=/admin/features");
-  const flags = await prisma.featureFlag.findMany({ orderBy: { key: "asc" } });
+  let flags = await prisma.featureFlag.findMany({ orderBy: { key: "asc" } });
+  if (flags.length === 0) {
+    const defaultFlags = [
+      { key: "live_walk_tracking", enabled: true, description: "Real-time GPS telemetry & live map during walking assignments." },
+      { key: "partner_marketplace", enabled: true, description: "Partner products & specialized add-ons marketplace." },
+      { key: "subscriptions", enabled: true, description: "Recurring monthly & quarterly care pass memberships." },
+      { key: "society_partnerships", enabled: true, description: "Residential gated society portals and group care booking." },
+      { key: "ai_matching_engine", enabled: true, description: "Autonomous AI-powered caregiver ranking and dispatch." },
+      { key: "instant_payouts", enabled: true, description: "Automated weekly direct-to-bank Saathi earnings reconciliation." },
+    ];
+    for (const f of defaultFlags) {
+      await prisma.featureFlag.upsert({
+        where: { key: f.key },
+        create: { key: f.key, enabled: f.enabled, description: f.description, updatedBy: identity.id },
+        update: {},
+      });
+    }
+    flags = await prisma.featureFlag.findMany({ orderBy: { key: "asc" } });
+  }
   return (
     <PortalShell mode="admin" displayName={identity.displayName}>
       <div className="max-w-7xl pb-12">

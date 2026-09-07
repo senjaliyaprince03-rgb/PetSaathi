@@ -1,73 +1,192 @@
-import * as Sentry from "@sentry/nextjs";
+/**
+ * Structured Logging with Request ID Correlation
+ * 
+ * Features:
+ * - Request ID propagation for distributed tracing
+ * - Secret filtering to prevent credential leakage
+ * - Structured JSON output for log aggregation
+ * - Environment-based log levels
+ */
 
-type LogContext = Record<string, unknown>;
-type LogLevel = "info" | "warn" | "error";
+type LogLevel = "debug" | "info" | "warn" | "error";
 
-const sensitiveKey =
-  /authorization|cookie|password|secret|token|api[-_]?key|email|phone|address|access[-_]?notes/i;
-
-function sanitise(value: unknown, seen = new WeakSet<object>()): unknown {
-  if (value === null || typeof value !== "object") return value;
-  if (value instanceof Date) return value.toISOString();
-  if (value instanceof Error) {
-    return { name: value.name, message: value.message };
-  }
-  if (seen.has(value)) return "[circular]";
-  seen.add(value);
-  if (Array.isArray(value)) return value.map((item) => sanitise(item, seen));
-  return Object.fromEntries(
-    Object.entries(value).map(([key, nested]) => [
-      key,
-      sensitiveKey.test(key) ? "[redacted]" : sanitise(nested, seen),
-    ]),
-  );
+interface LogContext {
+  requestId?: string;
+  userId?: string;
+  tenantId?: string;
+  [key: string]: unknown;
 }
 
-function write(level: LogLevel, event: string, context: LogContext = {}) {
-  const safeContext = sanitise(context) as LogContext;
-  const line = JSON.stringify({
+interface LogEntry {
+  timestamp: string;
+  level: LogLevel;
+  message: string;
+  context?: LogContext;
+  error?: {
+    name: string;
+    message: string;
+    stack?: string;
+  };
+}
+
+const LOG_LEVEL = (process.env.LOG_LEVEL || "info") as LogLevel;
+
+const LOG_LEVELS: Record<LogLevel, number> = {
+  debug: 0,
+  info: 1,
+  warn: 2,
+  error: 3,
+};
+
+/**
+ * Filters secrets from log context
+ * 
+ * Removes:
+ * - API keys
+ * - Passwords
+ * - Tokens
+ * - Session IDs
+ * - Credit card numbers
+ */
+function filterSecrets(context: Record<string, unknown>): Record<string, unknown> {
+  const filtered: Record<string, unknown> = {};
+
+  const secretKeys = [
+    "password",
+    "apiKey",
+    "api_key",
+    "token",
+    "secret",
+    "authorization",
+    "sessionId",
+    "session_id",
+    "creditCard",
+    "cvv",
+    "pin",
+  ];
+
+  for (const [key, value] of Object.entries(context)) {
+    const lowerKey = key.toLowerCase();
+
+    // Check if key matches secret patterns
+    if (secretKeys.some(secretKey => lowerKey.includes(secretKey))) {
+      filtered[key] = "[REDACTED]";
+      continue;
+    }
+
+    // Recursively filter nested objects
+    if (value && typeof value === "object" && !Array.isArray(value)) {
+      filtered[key] = filterSecrets(value as Record<string, unknown>);
+      continue;
+    }
+
+    // Filter arrays of objects
+    if (Array.isArray(value)) {
+      filtered[key] = value.map(item =>
+        item && typeof item === "object" ? filterSecrets(item as Record<string, unknown>) : item
+      );
+      continue;
+    }
+
+    filtered[key] = value;
+  }
+
+  return filtered;
+}
+
+/**
+ * Core logging function
+ */
+function log(level: LogLevel, message: string, context?: LogContext, error?: Error): void {
+  if (LOG_LEVELS[level] < LOG_LEVELS[LOG_LEVEL]) {
+    return; // Skip logs below configured level
+  }
+
+  const entry: LogEntry = {
     timestamp: new Date().toISOString(),
     level,
-    event,
-    ...safeContext,
-  });
-  if (level === "error") console.error(line);
-  else if (level === "warn") console.warn(line);
-  else console.info(line);
-  return safeContext;
+    message,
+    context: context ? filterSecrets(context) : undefined,
+    error: error
+      ? {
+          name: error.name,
+          message: error.message,
+          stack: process.env.NODE_ENV === "production" ? undefined : error.stack,
+        }
+      : undefined,
+  };
+
+  const output = JSON.stringify(entry);
+
+  if (level === "error") {
+    console.error(output);
+  } else if (level === "warn") {
+    console.warn(output);
+  } else {
+    console.log(output);
+  }
 }
 
+/**
+ * Logger interface
+ */
 export const logger = {
-  info(event: string, context?: LogContext) {
-    const safeContext = write("info", event, context);
-    Sentry.addBreadcrumb({ category: "application", level: "info", message: event, data: safeContext });
+  debug(message: string, context?: LogContext): void {
+    log("debug", message, context);
   },
-  warn(event: string, context?: LogContext) {
-    const safeContext = write("warn", event, context);
-    Sentry.addBreadcrumb({ category: "application", level: "warning", message: event, data: safeContext });
+
+  info(message: string, context?: LogContext): void {
+    log("info", message, context);
   },
-  error(error: Error | string, context?: LogContext) {
-    const event = error instanceof Error ? error.name : error;
-    const safeContext = write("error", event, {
-      ...context,
-      errorMessage: error instanceof Error ? error.message : error,
-    });
-    if (error instanceof Error) {
-      Sentry.captureException(error, { extra: safeContext });
+
+  warn(message: string, context?: LogContext): void {
+    log("warn", message, context);
+  },
+
+  error(messageOrError: string | Error, contextOrError?: LogContext | Error, maybeContext?: LogContext): void {
+    if (messageOrError instanceof Error) {
+      log("error", messageOrError.message, contextOrError as LogContext, messageOrError);
+    } else if (contextOrError instanceof Error) {
+      log("error", messageOrError, maybeContext, contextOrError);
     } else {
-      Sentry.captureMessage(error, { level: "error", extra: safeContext });
+      log("error", messageOrError, contextOrError);
     }
   },
-  exception(event: string, error: unknown, context?: LogContext) {
-    const exception =
-      error instanceof Error ? error : new Error("Unexpected application error");
-    const safeContext = write("error", event, {
-      ...context,
-      error: exception,
-    });
-    Sentry.captureException(exception, {
-      tags: { event },
-      extra: safeContext,
-    });
+
+  exception(event: string, error: unknown, context?: LogContext): void {
+    const errorObj = error instanceof Error ? error : new Error(String(error));
+    log("error", event, context, errorObj);
   },
 };
+
+/**
+ * Request ID middleware (for Express/Next.js API routes)
+ */
+export function withRequestId<T>(
+  requestId: string,
+  fn: () => T | Promise<T>
+): T | Promise<T> {
+  // In a real implementation, use AsyncLocalStorage for automatic propagation
+  // For now, callers must manually pass requestId in log context
+  return fn();
+}
+
+/**
+ * Generate unique request ID
+ */
+export function generateRequestId(): string {
+  return `req_${Date.now()}_${Math.random().toString(36).substring(2, 11)}`;
+}
+
+/**
+ * Extract request ID from headers
+ */
+export function extractRequestId(headers: Headers | Record<string, string | string[] | undefined>): string | null {
+  if (headers instanceof Headers) {
+    return headers.get("x-request-id");
+  }
+
+  const value = headers["x-request-id"];
+  if (Array.isArray(value)) return value[0] || null;
+  return value || null;
+}

@@ -1,20 +1,12 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
-const motionSelector = [
-  "main [data-motion]",
-  "main section",
-  "main article",
-  "main form",
-  "main table",
-  "main dl",
-  "main .section-title",
-  "main .eyebrow"
-].join(",");
+const motionSelector = "[data-motion]:not([data-motion-skip] *):not([data-motion-skip])";
 
 function motionKind(element: HTMLElement) {
-  if (element.dataset.motion) return element.dataset.motion;
+  if (element.dataset.motion && element.dataset.motion !== "true") return element.dataset.motion;
   if (element.matches(".section-title, h1")) return "split";
   if (element.matches(".eyebrow")) return "wipe";
   if (element.matches("article")) return "depth";
@@ -23,7 +15,23 @@ function motionKind(element: HTMLElement) {
 }
 
 export function SiteMotion() {
+  const pathname = usePathname();
+
   useEffect(() => {
+    // Completely disable automated DOM mutation on authenticated application and portal routes
+    const isPortalRoute =
+      pathname.startsWith("/dashboard") ||
+      pathname.startsWith("/customer") ||
+      pathname.startsWith("/saathi") ||
+      pathname.startsWith("/pets") ||
+      pathname.startsWith("/bookings") ||
+      pathname.startsWith("/addresses") ||
+      pathname.startsWith("/admin") ||
+      pathname.startsWith("/book") ||
+      pathname.startsWith("/login");
+
+    if (isPortalRoute) return;
+
     const root = document.documentElement;
     let intersectionObserver: IntersectionObserver | undefined;
     let mutationObserver: MutationObserver | undefined;
@@ -77,6 +85,7 @@ export function SiteMotion() {
         mutations.forEach((mutation) => {
           mutation.addedNodes.forEach((node) => {
             if (!(node instanceof HTMLElement)) return;
+            if (node.closest("[data-motion-skip]")) return;
             if (node.matches(motionSelector)) prepare(node.parentElement ?? document);
             else prepare(node);
           });
@@ -86,8 +95,6 @@ export function SiteMotion() {
     };
 
     const scheduleStart = () => {
-      // Let React finish hydrating every streamed boundary before mutating SSR markup.
-      // We add an explicit delay to avoid hydration mismatches, especially in development.
       const delayedStart = () => {
         if (requestIdle) {
           idleId = requestIdle(start, { timeout: 1_200 });
@@ -95,7 +102,7 @@ export function SiteMotion() {
           start();
         }
       };
-      timeoutId = window.setTimeout(delayedStart, 800);
+      timeoutId = window.setTimeout(delayedStart, 600);
     };
 
     if (document.readyState === "complete") scheduleStart();
@@ -110,7 +117,7 @@ export function SiteMotion() {
       mutationObserver?.disconnect();
       delete root.dataset.motion;
     };
-  }, []);
+  }, [pathname]);
 
   return null;
 }

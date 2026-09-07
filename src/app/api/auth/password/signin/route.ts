@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
+import * as Sentry from "@sentry/nextjs";
 import { signInWithPassword } from "@/modules/auth/mongodb-auth";
 import { consumeRateLimit, requestIp } from "@/modules/security/rate-limit";
 import { errorResponseForCaughtError, jsonError } from "@/lib/api-error";
@@ -32,6 +33,8 @@ export async function POST(request: Request) {
   try {
     const result = await signInWithPassword(parsed.data.email, parsed.data.password);
     if (!result.success) return jsonError("invalid_credentials", "Incorrect email or password.", 401);
+    // Set Sentry user context for error tracking
+    Sentry.setUser({ id: result.userId, email: parsed.data.email });
     return NextResponse.json({ authenticated: true, roles: result.roles });
   } catch (error) {
     return errorResponseForCaughtError(error, logger, "auth.password_signin_failed", {

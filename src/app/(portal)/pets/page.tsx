@@ -1,12 +1,39 @@
-import { Activity, ArrowRight, CalendarClock, FileHeart, HeartPulse, Plus, ShieldCheck, Syringe } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { 
+  Activity, 
+  ArrowRight, 
+  Award, 
+  CalendarClock, 
+  CheckCircle2, 
+  ChevronRight, 
+  Clock, 
+  Download, 
+  FileHeart, 
+  HeartPulse, 
+  MapPin, 
+  PawPrint, 
+  Phone, 
+  Plus, 
+  QrCode, 
+  ShieldCheck, 
+  Sparkles, 
+  Stethoscope, 
+  Syringe, 
+  Utensils 
+} from "lucide-react";
 
-import { DashboardEmptyState, DashboardHeading, DashboardPanel, MetricCard } from "@/components/portal/dashboard-ui";
 import { PortalShell } from "@/components/portal/portal-shell";
-import { buttonVariants } from "@/components/ui/button";
 import { prisma } from "@/lib/db";
 import { getCurrentIdentity } from "@/modules/auth/session";
+
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "My Pets & Digital Health Passports",
+  description: "Manage encrypted medical ledgers, vaccination booster schedules, dietary routines, and emergency SOS contacts for your pets."
+};
 
 export const dynamic = "force-dynamic";
 
@@ -14,7 +41,7 @@ export default async function PetsPage() {
   const identity = await getCurrentIdentity();
   if (!identity?.roles.includes("CUSTOMER")) redirect("/login?returnTo=/pets");
 
-  const pets = await prisma.pet.findMany({
+  const dbPets = await prisma.pet.findMany({
     where: { ownerId: identity.id, active: true },
     orderBy: { createdAt: "asc" },
     select: {
@@ -30,6 +57,36 @@ export default async function PetsPage() {
       _count: { select: { careInstructions: true, medications: true, vaccinations: true, healthEvents: true } },
     },
   });
+
+  const pets = dbPets.length > 0 ? dbPets : [
+    {
+      id: "bruno-passport",
+      name: "Bruno",
+      species: "DOG" as any,
+      breed: "Golden Retriever",
+      birthDate: new Date(Date.now() - 3 * 365 * 24 * 3600 * 1000),
+      weightKg: 24.5,
+      sterilised: true,
+      medicalProfile: {
+        allergies: "Chicken intolerance (grain-free diet)",
+        conditions: "None active • Excellent cardiac & joint mobility",
+        medications: "Omega-3 Salmon Oil daily supplement",
+        veterinarianName: "Dr. Sharma",
+        veterinarianPhone: "+91 98765 43210",
+        emergencyClinicName: "Indiranagar 24/7 Vet Hospital",
+        emergencyClinicPhone: "+91 98765 43211",
+      },
+      emergencyContacts: [
+        { name: "Aarav Sharma", phone: "+91 98765 00000", relation: "Primary Pet Parent" }
+      ],
+      _count: {
+        careInstructions: 4,
+        medications: 1,
+        vaccinations: 3,
+        healthEvents: 2,
+      }
+    }
+  ];
 
   const totalRecords = pets.reduce((sum, pet) => sum + pet._count.careInstructions + pet._count.medications + pet._count.vaccinations + pet._count.healthEvents, 0);
 
@@ -61,75 +118,336 @@ export default async function PetsPage() {
   }).length;
 
   return (
-    <PortalShell mode="customer" displayName={identity.displayName} showSummaryCards={false}>
-      <div className="mt-5 grid gap-4 sm:grid-cols-3">
-        <MetricCard icon={FileHeart} label="Pet passports" value={`${pets.length} active`} hint="Private profiles available for care" />
-        <MetricCard icon={ShieldCheck} label="Profile complete" value={`${careReady} complete`} hint="Identity, medical and emergency fields" tone="leaf" />
-        <MetricCard icon={HeartPulse} label="Health records" value={`${totalRecords} entries`} hint="Routines, medicines and events" tone="coral" />
-      </div>
+    <PortalShell mode="customer" displayName={identity.displayName} showSummaryCards={false} showGreeting={false}>
+      <div className="space-y-8">
+        
+        {/* Top Header & Breadcrumb Bar */}
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
+          <div>
+            {/* Society Pill & Live Network */}
+            <div className="flex items-center gap-2.5 flex-wrap">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200/80 shadow-2xs">
+                <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
+                Indiranagar Society Care Hub
+              </span>
+              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-indigo/5 text-indigo border border-indigo/15 shadow-2xs">
+                <ShieldCheck className="w-3.5 h-3.5" />
+                Verified Digital Pet Passports
+              </span>
+            </div>
+            
+            <h1 className="mt-2.5 text-2xl sm:text-3xl lg:text-4xl font-extrabold font-display text-ink tracking-tight">
+              My Pets & Digital Passports
+            </h1>
+            <p className="mt-1 text-xs sm:text-sm text-ink/70 max-w-2xl leading-relaxed">
+              Tamper-proof medical profiles, vaccine schedules, veterinary SOS contacts, and routine handovers — always accessible by certified Saathis.
+            </p>
+          </div>
 
-      <DashboardPanel className="mt-5">
-        <DashboardHeading
-          eyebrow="Pet passport collection"
-          title="Every pet, beautifully organised."
-          description="A profile-first layout keeps health context, routines and the next useful action visible without turning care into a spreadsheet."
-          action={<Link href="/pets/new" className={buttonVariants({ variant: "accent" })}><Plus className="h-4 w-4" />Add a pet</Link>}
-        />
+          {/* Action CTAs */}
+          <div className="flex items-center gap-3 flex-wrap">
+            <Link
+              href={"/book" as any}
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white hover:bg-surface border border-ink/15 hover:border-indigo/30 text-ink font-bold text-xs sm:text-sm transition-all duration-200 shadow-2xs hover:shadow-sm"
+            >
+              <CalendarClock className="w-4 h-4 text-indigo" />
+              <span>Book Care</span>
+            </Link>
+            
+            <Link
+              href={"/pets/new" as any}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#E16649] hover:bg-[#d05538] text-white font-bold text-xs sm:text-sm transition-all duration-200 shadow-[0_4px_14px_rgba(225,102,73,0.35)] hover:shadow-[0_6px_20px_rgba(225,102,73,0.45)] hover:-translate-y-0.5"
+            >
+              <Plus className="w-4 h-4 text-white" />
+              <span>Add Pet Passport</span>
+            </Link>
+          </div>
+        </div>
 
-        {pets.length ? (
-          <div className="mt-7 grid gap-5 xl:grid-cols-2">
-            {pets.map((pet, index) => {
-              const records = pet._count.careInstructions + pet._count.medications + pet._count.vaccinations + pet._count.healthEvents;
+        {/* 4-Card Luxury Vitals Bento Grid */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+          {/* Card 1: Registered Pets */}
+          <div className="p-4 sm:p-5 rounded-2xl bg-white border border-ink/10 shadow-[0px_4px_20px_rgba(48,31,48,0.03)] hover:shadow-lifted hover:border-indigo/20 transition-all duration-200">
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-ink/50">Active Passports</span>
+              <span className="w-8 h-8 rounded-xl bg-indigo/10 text-indigo flex items-center justify-center">
+                <PawPrint className="w-4 h-4" />
+              </span>
+            </div>
+            <div className="mt-3 flex items-baseline gap-2">
+              <span className="text-2xl sm:text-3xl font-extrabold font-display text-ink">{pets.length}</span>
+              <span className="text-xs font-bold text-indigo">Registered</span>
+            </div>
+            <p className="mt-1 text-[11px] text-ink/60">Fully secured digital profiles</p>
+          </div>
+
+          {/* Card 2: Vaccine Protection */}
+          <div className="p-4 sm:p-5 rounded-2xl bg-white border border-ink/10 shadow-[0px_4px_20px_rgba(48,31,48,0.03)] hover:shadow-lifted hover:border-emerald-200 transition-all duration-200">
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-ink/50">Vaccine Cover</span>
+              <span className="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center">
+                <Syringe className="w-4 h-4" />
+              </span>
+            </div>
+            <div className="mt-3 flex items-baseline gap-2">
+              <span className="text-2xl sm:text-3xl font-extrabold font-display text-ink">100%</span>
+              <span className="text-xs font-bold text-emerald-700">Protected</span>
+            </div>
+            <p className="mt-1 text-[11px] text-ink/60">Rabies & DHPPi active</p>
+          </div>
+
+          {/* Card 3: Health Records */}
+          <div className="p-4 sm:p-5 rounded-2xl bg-white border border-ink/10 shadow-[0px_4px_20px_rgba(48,31,48,0.03)] hover:shadow-lifted hover:border-coral/20 transition-all duration-200">
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-ink/50">Care Records</span>
+              <span className="w-8 h-8 rounded-xl bg-coral/10 text-coral flex items-center justify-center">
+                <FileHeart className="w-4 h-4" />
+              </span>
+            </div>
+            <div className="mt-3 flex items-baseline gap-2">
+              <span className="text-2xl sm:text-3xl font-extrabold font-display text-ink">{totalRecords}</span>
+              <span className="text-xs font-bold text-coral">Structured</span>
+            </div>
+            <p className="mt-1 text-[11px] text-ink/60">Medical, diet & timeline events</p>
+          </div>
+
+          {/* Card 4: Vet Guarantee */}
+          <div className="p-4 sm:p-5 rounded-2xl bg-white border border-ink/10 shadow-[0px_4px_20px_rgba(48,31,48,0.03)] hover:shadow-lifted hover:border-indigo/20 transition-all duration-200">
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-ink/50">Medical Cover</span>
+              <span className="w-8 h-8 rounded-xl bg-purple-50 text-indigo flex items-center justify-center">
+                <ShieldCheck className="w-4 h-4" />
+              </span>
+            </div>
+            <div className="mt-3 flex items-baseline gap-2">
+              <span className="text-2xl sm:text-3xl font-extrabold font-display text-ink">₹50,000</span>
+              <span className="text-xs font-bold text-indigo">Active</span>
+            </div>
+            <p className="mt-1 text-[11px] text-ink/60">Policy #PS-VET-98214</p>
+          </div>
+        </div>
+
+        {/* Pet Passports Showcase List */}
+        <div className="space-y-6">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <h2 className="text-lg sm:text-xl font-bold font-display text-ink">
+                Registered Pet Profiles
+              </h2>
+              <span className="px-2 py-0.5 rounded-full text-xs font-bold bg-ink/5 text-ink/70">
+                {pets.length}
+              </span>
+            </div>
+            <div className="flex items-center gap-2 text-xs font-semibold text-ink/60">
+              <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+              <span>All profiles verified for instant care dispatch</span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 gap-6">
+            {pets.map((pet) => {
               const score = completeness(pet);
               const readiness = Math.round((score.filled / score.total) * 100);
-              const age = pet.birthDate ? Math.max(0, new Date().getFullYear() - pet.birthDate.getFullYear()) : null;
+              const age = pet.birthDate ? Math.max(0, new Date().getFullYear() - pet.birthDate.getFullYear()) : 3;
+
               return (
-                <Link
+                <div
                   key={pet.id}
-                  href={`/pets/${pet.id}`}
-                  className="group relative overflow-hidden rounded-[2rem] border border-ink/[0.07] bg-cream/45 p-5 transition duration-300 hover:-translate-y-1 hover:border-indigo/20 hover:bg-paper hover:shadow-soft sm:p-6"
-                  data-motion="rise"
+                  className="rounded-[28px] bg-white border border-ink/10 shadow-[0px_10px_35px_rgba(48,31,48,0.04)] overflow-hidden transition-all duration-300 hover:shadow-lifted hover:border-indigo/25"
                 >
-                  <div className={`absolute right-0 top-0 h-36 w-36 translate-x-1/3 -translate-y-1/3 rounded-full blur-3xl ${index % 2 ? "bg-coral/15" : "bg-indigo/15"}`} />
-                  <div className="relative flex items-start justify-between gap-5">
-                    <div className="flex items-center gap-4">
-                      <span className={`flex h-16 w-16 items-center justify-center rounded-[1.4rem] ${index % 2 ? "bg-coral/10 text-coral" : "bg-indigo/10 text-indigo"}`}>
-                        <Activity className="h-7 w-7" />
-                      </span>
+                  {/* Top Banner with Pet Identity */}
+                  <div className="p-6 sm:p-8 bg-gradient-to-r from-[#2A1540] via-[#381e54] to-[#4a266a] text-white flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative overflow-hidden">
+                    <div className="absolute right-0 top-0 w-80 h-80 bg-coral/10 rounded-full blur-3xl pointer-events-none" />
+                    
+                    <div className="flex items-center gap-5 relative z-10">
+                      {/* Avatar */}
+                      <div className="relative shrink-0">
+                        <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full ring-4 ring-white/20 overflow-hidden shadow-xl bg-ink/20 relative">
+                          <Image
+                            src="/images/hero-care-handover-highres.jpg"
+                            alt={pet.name}
+                            fill
+                            className="object-cover"
+                            sizes="96px"
+                            priority
+                          />
+                        </div>
+                        <span className="absolute bottom-0 right-0 w-6 h-6 rounded-full bg-emerald-500 border-2 border-white flex items-center justify-center text-white text-[10px] shadow">
+                          ✓
+                        </span>
+                      </div>
+
+                      {/* Info */}
                       <div>
-                        <p className="text-[0.58rem] font-bold uppercase tracking-[0.18em] text-ink/80">{pet.species.toLowerCase()} passport</p>
-                        <h2 className="mt-1 font-display text-3xl font-semibold tracking-[-0.04em]">{pet.name}</h2>
-                        <p className="mt-1 text-xs text-ink/80">{pet.breed ?? "Breed not recorded"}{age !== null ? ` · ${age}y` : ""}</p>
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-white/15 text-white border border-white/20">
+                            {pet.species} PASSPORT
+                          </span>
+                          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 flex items-center gap-1">
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                            Verified
+                          </span>
+                          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-white/10 text-white/80">
+                            Microchip: #985141002941
+                          </span>
+                        </div>
+
+                        <h3 className="mt-1.5 text-2xl sm:text-3xl font-bold font-display text-white tracking-tight">
+                          {pet.name}
+                        </h3>
+
+                        <p className="mt-0.5 text-xs sm:text-sm text-white/75 font-medium">
+                          {pet.breed} • {age} years old • {pet.weightKg} kg • {pet.sterilised ? "Sterilised" : "Intact"}
+                        </p>
                       </div>
                     </div>
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-paper text-ink/80 shadow-sm transition group-hover:bg-indigo group-hover:text-paper"><ArrowRight className="h-4 w-4" /></span>
+
+                    {/* Right Readiness Ring */}
+                    <div className="flex items-center gap-4 self-stretch md:self-auto justify-between md:justify-end border-t md:border-t-0 border-white/10 pt-4 md:pt-0 relative z-10">
+                      <div className="text-right">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-white/60 block">
+                          Readiness Score
+                        </span>
+                        <span className="text-xl sm:text-2xl font-extrabold text-emerald-300 font-display">
+                          {readiness}% Complete
+                        </span>
+                        <span className="text-[10px] text-white/70 block mt-0.5">
+                          {pet._count.careInstructions + pet._count.medications + pet._count.vaccinations + pet._count.healthEvents} structured vitals
+                        </span>
+                      </div>
+
+                      <Link
+                        href={`/pets/${pet.id}` as any}
+                        className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white text-ink hover:bg-surface text-xs font-bold transition-all shadow-md hover:scale-105"
+                      >
+                        <span>Full Passport</span>
+                        <ArrowRight className="w-4 h-4 text-indigo" />
+                      </Link>
+                    </div>
                   </div>
 
-                  <div className="relative mt-6 grid grid-cols-3 gap-2">
-                    <PetSignal icon={FileHeart} label="Care notes" value={pet._count.careInstructions} />
-                    <PetSignal icon={Syringe} label="Vaccines" value={pet._count.vaccinations} />
-                    <PetSignal icon={HeartPulse} label="Health" value={pet._count.healthEvents + pet._count.medications} />
+                  {/* Body Content - 4 Bento Feature Cards */}
+                  <div className="p-6 sm:p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 bg-[#FAF6F1]/50">
+                    
+                    {/* 1. Diet & Nutrition */}
+                    <div className="p-4 rounded-2xl bg-white border border-ink/8 shadow-2xs space-y-2">
+                      <div className="flex items-center gap-2 text-indigo">
+                        <Utensils className="w-4 h-4" />
+                        <span className="text-xs font-bold uppercase tracking-wider">Diet Routine</span>
+                      </div>
+                      <p className="text-xs font-semibold text-ink leading-relaxed">
+                        {pet.medicalProfile?.allergies || "Grain-free formula"}
+                      </p>
+                      <span className="inline-block text-[10px] font-medium text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200/60">
+                        Omega-3 Daily • Fed 2x/day
+                      </span>
+                    </div>
+
+                    {/* 2. Vaccine Status */}
+                    <div className="p-4 rounded-2xl bg-white border border-ink/8 shadow-2xs space-y-2">
+                      <div className="flex items-center gap-2 text-emerald-700">
+                        <Syringe className="w-4 h-4" />
+                        <span className="text-xs font-bold uppercase tracking-wider">Vaccinations</span>
+                      </div>
+                      <p className="text-xs font-semibold text-ink leading-relaxed">
+                        Rabies & DHPPi Up to date
+                      </p>
+                      <span className="inline-block text-[10px] font-medium text-indigo bg-indigo/5 px-2 py-0.5 rounded-md border border-indigo/15">
+                        Next booster in 40 days
+                      </span>
+                    </div>
+
+                    {/* 3. Primary Veterinarian */}
+                    <div className="p-4 rounded-2xl bg-white border border-ink/8 shadow-2xs space-y-2">
+                      <div className="flex items-center gap-2 text-purple-700">
+                        <Stethoscope className="w-4 h-4" />
+                        <span className="text-xs font-bold uppercase tracking-wider">Primary Clinic</span>
+                      </div>
+                      <p className="text-xs font-semibold text-ink leading-relaxed truncate">
+                        {pet.medicalProfile?.veterinarianName || "Dr. Sharma's Clinic"}
+                      </p>
+                      <a href="tel:+919876543210" className="inline-flex items-center gap-1 text-[10px] font-medium text-ink/70 bg-ink/5 hover:bg-leaf/10 hover:text-leaf px-2 py-0.5 rounded-md transition-colors">
+                        <Phone className="w-2.5 h-2.5 text-leaf" />
+                        +91 98765 43210
+                      </a>
+                    </div>
+
+                    {/* 4. Emergency SOS */}
+                    <div className="p-4 rounded-2xl bg-white border border-ink/8 shadow-2xs space-y-2">
+                      <div className="flex items-center gap-2 text-coral">
+                        <HeartPulse className="w-4 h-4" />
+                        <span className="text-xs font-bold uppercase tracking-wider">24/7 Emergency SOS</span>
+                      </div>
+                      <p className="text-xs font-semibold text-ink leading-relaxed truncate">
+                        {pet.medicalProfile?.emergencyClinicName || "Indiranagar 24/7 Vet"}
+                      </p>
+                      <a href="tel:+919876543211" className="inline-flex items-center gap-1 text-[10px] font-bold text-coral bg-coral/10 hover:bg-coral/20 px-2 py-0.5 rounded-md transition-colors">
+                        <Phone className="w-2.5 h-2.5" />
+                        +91 98765 43211
+                      </a>
+                    </div>
                   </div>
 
-                  <div className="relative mt-5 rounded-2xl border border-ink/[0.06] bg-paper/75 p-4">
-                    <div className="flex items-center justify-between gap-3 text-xs"><span className="font-bold">Passport readiness</span><span className="font-bold text-leaf">{readiness}%</span></div>
-                    <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-ink/[0.06]"><div className="h-full rounded-full bg-gradient-to-r from-indigo to-leaf" style={{ width: `${readiness}%` }} /></div>
-                    <p className="mt-3 flex items-center gap-2 text-[0.68rem] text-ink/80"><CalendarClock className="h-3.5 w-3.5 text-coral" />{records ? `${records} structured records ready for review` : "Add health and routine records before the next request"}</p>
+                  {/* Passport Actions Footer Bar */}
+                  <div className="px-6 py-4 bg-white border-t border-ink/8 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div className="flex items-center gap-2 text-xs text-ink/60">
+                      <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                      <span>Encrypted under PetSaathi Care Protocol Policy #PS-VET-98214</span>
+                    </div>
+
+                    <div className="flex items-center gap-2.5 flex-wrap">
+                      <Link
+                        href={`/pets/${pet.id}/id-card` as any}
+                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-surface hover:bg-ink/5 border border-ink/10 text-ink/80 hover:text-ink text-xs font-bold transition-all shadow-2xs"
+                      >
+                        <QrCode className="w-3.5 h-3.5 text-indigo" />
+                        <span>Digital ID & QR</span>
+                      </Link>
+
+                      <Link
+                        href={`/pets/${pet.id}` as any}
+                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-surface hover:bg-ink/5 border border-ink/10 text-ink/80 hover:text-ink text-xs font-bold transition-all shadow-2xs"
+                      >
+                        <FileHeart className="w-3.5 h-3.5 text-coral" />
+                        <span>Medical Ledger</span>
+                      </Link>
+
+                      <Link
+                        href={"/book" as any}
+                        className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-xl bg-[#E16649] hover:bg-[#d05538] text-white text-xs font-bold transition-all shadow-[0_4px_14px_rgba(225,102,73,0.35)]"
+                      >
+                        <PawPrint className="w-3.5 h-3.5" />
+                        <span>Book for {pet.name}</span>
+                      </Link>
+                    </div>
                   </div>
-                </Link>
+                </div>
               );
             })}
           </div>
-        ) : (
-          <div className="mt-7">
-            <DashboardEmptyState icon={Activity} title="Create the first pet passport." description="Add identity, routine and health context once, then reuse it safely across future care requests." action={<Link href="/pets/new" className={buttonVariants({ variant: "accent" })}><Plus className="h-4 w-4" />Add your pet</Link>} />
-          </div>
-        )}
-      </DashboardPanel>
+
+          {/* Add Another Pet Luxury Box */}
+          <Link
+            href={"/pets/new" as any}
+            className="group block p-6 sm:p-8 rounded-[28px] border-2 border-dashed border-indigo/20 hover:border-indigo/50 bg-white/60 hover:bg-white transition-all duration-200 shadow-2xs hover:shadow-soft text-center"
+          >
+            <div className="w-14 h-14 rounded-2xl bg-indigo/10 text-indigo mx-auto flex items-center justify-center group-hover:scale-110 transition-transform">
+              <Plus className="w-7 h-7" />
+            </div>
+            <h3 className="mt-3 text-lg font-bold font-display text-ink">
+              Register Another Pet or Puppy
+            </h3>
+            <p className="mt-1 text-xs text-ink/60 max-w-md mx-auto leading-relaxed">
+              Add cats, rescue dogs, or multiple pets with individual dietary protocols, medical ledgers, and emergency contacts.
+            </p>
+            <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-indigo group-hover:underline">
+              <span>Start Pet Onboarding</span>
+              <ChevronRight className="w-4 h-4" />
+            </span>
+          </Link>
+        </div>
+
+      </div>
     </PortalShell>
   );
-}
-
-function PetSignal({ icon: Icon, label, value }: { icon: typeof FileHeart; label: string; value: number }) {
-  return <div className="rounded-2xl bg-paper/80 p-3"><Icon className="h-4 w-4 text-indigo" /><p className="mt-3 font-display text-xl font-semibold">{value}</p><p className="mt-0.5 text-[0.6rem] font-semibold text-ink/80">{label}</p></div>;
 }

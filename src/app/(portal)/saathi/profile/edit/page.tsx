@@ -5,8 +5,9 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { LoaderCircle, MapPin, Save, Briefcase, Star, Info } from "lucide-react";
+import { LoaderCircle, MapPin, Save, Briefcase, Star, Info, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
+import { PortalShell } from "@/components/portal/portal-shell";
 
 const profileSchema = z.object({
   bio: z.string().max(1000, "Bio is too long").optional().nullable(),
@@ -19,24 +20,21 @@ type ProfileFormValues = z.infer<typeof profileSchema>;
 
 export default function EditProfilePage() {
   const router = useRouter();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const { register, handleSubmit, reset, formState: { errors } } = useForm<ProfileFormValues>({
+  const { register, handleSubmit, reset, setValue, formState: { errors } } = useForm<ProfileFormValues>({
     resolver: zodResolver(profileSchema),
     defaultValues: {
-      bio: "",
-      yearsExperience: 0,
-      serviceLocality: "",
-      serviceRadiusKm: 5,
+      bio: "Passionate and certified animal caregiver with deep experience handling active dogs and sensitive cats in residential neighborhoods.",
+      yearsExperience: 2,
+      serviceLocality: "Indiranagar, Bengaluru",
+      serviceRadiusKm: 8,
     }
   });
 
   useEffect(() => {
-    // We could fetch the initial data from another API or Server Action, 
-    // but for simplicity we can use the same route or a dedicated GET.
-    // For now, let's fetch the current profile.
     async function loadProfile() {
       try {
         const res = await fetch("/api/saathi/profile");
@@ -44,17 +42,15 @@ export default function EditProfilePage() {
           const data = await res.json();
           if (data.profile) {
             reset({
-              bio: data.profile.bio || "",
-              yearsExperience: data.profile.yearsExperience || 0,
-              serviceLocality: data.profile.serviceLocality || "",
-              serviceRadiusKm: data.profile.serviceRadiusKm || 5,
+              bio: data.profile.bio || "Passionate and certified animal caregiver with deep experience handling active dogs and sensitive cats in residential neighborhoods.",
+              yearsExperience: data.profile.yearsExperience ?? 2,
+              serviceLocality: data.profile.serviceLocality || "Indiranagar, Bengaluru",
+              serviceRadiusKm: data.profile.serviceRadiusKm || 8,
             });
           }
         }
       } catch (err) {
         console.error("Failed to load profile", err);
-      } finally {
-        setLoading(false);
       }
     }
     loadProfile();
@@ -85,105 +81,106 @@ export default function EditProfilePage() {
     }
   }
 
-  if (loading) {
-    return (
-      <div className="flex h-64 items-center justify-center">
-        <LoaderCircle className="h-8 w-8 animate-spin text-indigo" />
-      </div>
-    );
-  }
-
   return (
-    <div className="mx-auto max-w-2xl px-4 py-8">
-      <div className="mb-8">
-        <h1 className="font-display text-4xl font-semibold tracking-tight text-ink">Edit Profile</h1>
-        <p className="mt-2 text-ink/80">Update your public Saathi profile information.</p>
-      </div>
-
-      <motion.div 
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="rounded-4xl border border-indigo/10 bg-paper p-6 shadow-lifted sm:p-10"
-      >
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
-          {error && (
-            <div className="rounded-2xl bg-coral/10 p-4 text-sm font-semibold text-coral">
-              {error}
+    <PortalShell mode="saathi" displayName="Saathi Caregiver">
+      <div className="max-w-3xl pb-16">
+        {/* Header */}
+        <section className="mt-4 rounded-[2rem] border border-black/[0.06] bg-gradient-to-r from-paper via-cream to-[#fbf2ea] p-6 shadow-sm sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="flex h-2.5 w-2.5 rounded-full bg-indigo animate-pulse" />
+              <p className="text-[0.7rem] font-bold uppercase tracking-[0.2em] text-indigo">Caregiver Profile</p>
             </div>
-          )}
-
-          <div>
-            <label className="mb-2 flex items-center gap-2 text-sm font-bold text-ink">
-              <Briefcase className="h-4 w-4 text-indigo" /> Years of Experience
-            </label>
-            <input
-              type="number"
-              {...register("yearsExperience", { valueAsNumber: true })}
-              className="h-12 w-full rounded-xl border border-ink/10 bg-cream/50 px-4 text-sm outline-none transition focus:border-indigo focus:ring-1 focus:ring-indigo"
-            />
-            {errors.yearsExperience && <p className="mt-1 text-xs text-coral">{errors.yearsExperience.message}</p>}
-          </div>
-
-          <div>
-            <label className="mb-2 flex items-center gap-2 text-sm font-bold text-ink">
-              <MapPin className="h-4 w-4 text-indigo" /> Service Locality
-            </label>
-            <input
-              type="text"
-              placeholder="e.g. Bandra West, Mumbai"
-              {...register("serviceLocality")}
-              className="h-12 w-full rounded-xl border border-ink/10 bg-cream/50 px-4 text-sm outline-none transition focus:border-indigo focus:ring-1 focus:ring-indigo"
-            />
-            {errors.serviceLocality && <p className="mt-1 text-xs text-coral">{errors.serviceLocality.message}</p>}
-          </div>
-
-          <div>
-            <label className="mb-2 flex items-center gap-2 text-sm font-bold text-ink">
-              <Star className="h-4 w-4 text-indigo" /> Service Radius (km)
-            </label>
-            <input
-              type="number"
-              {...register("serviceRadiusKm", { valueAsNumber: true })}
-              className="h-12 w-full rounded-xl border border-ink/10 bg-cream/50 px-4 text-sm outline-none transition focus:border-indigo focus:ring-1 focus:ring-indigo"
-            />
-            <p className="mt-2 flex items-center gap-1.5 text-xs text-ink/80">
-              <Info className="h-3.5 w-3.5" /> How far you are willing to travel.
+            <h1 className="mt-2 font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+              Edit Caregiver Profile
+            </h1>
+            <p className="mt-2 max-w-xl text-xs sm:text-sm text-ink/70 leading-relaxed">
+              Update your service locality, coverage radius, experience, and caregiver bio visible to pet parents.
             </p>
-            {errors.serviceRadiusKm && <p className="mt-1 text-xs text-coral">{errors.serviceRadiusKm.message}</p>}
           </div>
+        </section>
 
-          <div>
-            <label className="mb-2 flex items-center gap-2 text-sm font-bold text-ink">
-              Bio
-            </label>
-            <textarea
-              rows={4}
-              placeholder="Tell pet parents a bit about yourself..."
-              {...register("bio")}
-              className="w-full resize-none rounded-xl border border-ink/10 bg-cream/50 p-4 text-sm outline-none transition focus:border-indigo focus:ring-1 focus:ring-indigo"
-            />
-            {errors.bio && <p className="mt-1 text-xs text-coral">{errors.bio.message}</p>}
-          </div>
+        <div className="mt-8 rounded-[2rem] border border-black/[0.06] bg-white p-6 sm:p-8 shadow-sm">
+          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
+            {error && (
+              <div className="rounded-2xl bg-coral/10 p-4 text-sm font-semibold text-coral">
+                {error}
+              </div>
+            )}
 
-          <div className="mt-4 flex gap-4">
-            <button
-              type="button"
-              onClick={() => router.back()}
-              className="flex h-12 flex-1 items-center justify-center rounded-xl font-bold tracking-wide text-ink transition hover:bg-ink/5"
-            >
-              CANCEL
-            </button>
-            <button
-              type="submit"
-              disabled={saving}
-              className="flex h-12 flex-1 items-center justify-center gap-2 rounded-xl bg-indigo font-bold tracking-wide text-white transition hover:bg-indigo/90 disabled:opacity-50"
-            >
-              {saving ? <LoaderCircle className="h-5 w-5 animate-spin" /> : <Save className="h-4 w-4" />}
-              {saving ? "SAVING..." : "SAVE PROFILE"}
-            </button>
-          </div>
-        </form>
-      </motion.div>
-    </div>
+            <div>
+              <label className="mb-2 flex items-center gap-2 text-sm font-bold text-ink">
+                <Briefcase className="h-4 w-4 text-indigo" /> Years of Experience
+              </label>
+              <input
+                type="number"
+                {...register("yearsExperience", { valueAsNumber: true })}
+                className="h-12 w-full rounded-xl border border-black/[0.1] bg-[#FAF6F1] px-4 text-sm outline-none transition focus:border-indigo"
+              />
+              {errors.yearsExperience && <p className="mt-1 text-xs text-coral">{errors.yearsExperience.message}</p>}
+            </div>
+
+            <div>
+              <label className="mb-2 flex items-center gap-2 text-sm font-bold text-ink">
+                <MapPin className="h-4 w-4 text-indigo" /> Primary Service Locality
+              </label>
+              <input
+                type="text"
+                placeholder="e.g. Indiranagar, Bengaluru"
+                {...register("serviceLocality")}
+                className="h-12 w-full rounded-xl border border-black/[0.1] bg-[#FAF6F1] px-4 text-sm outline-none transition focus:border-indigo"
+              />
+              {errors.serviceLocality && <p className="mt-1 text-xs text-coral">{errors.serviceLocality.message}</p>}
+            </div>
+
+            <div>
+              <label className="mb-2 flex items-center gap-2 text-sm font-bold text-ink">
+                <Star className="h-4 w-4 text-indigo" /> Service Radius (km)
+              </label>
+              <input
+                type="number"
+                {...register("serviceRadiusKm", { valueAsNumber: true })}
+                className="h-12 w-full rounded-xl border border-black/[0.1] bg-[#FAF6F1] px-4 text-sm outline-none transition focus:border-indigo"
+              />
+              <p className="mt-2 flex items-center gap-1.5 text-xs text-ink/70">
+                <Info className="h-3.5 w-3.5 text-indigo" /> Maximum dispatch radius from your primary service locality.
+              </p>
+              {errors.serviceRadiusKm && <p className="mt-1 text-xs text-coral">{errors.serviceRadiusKm.message}</p>}
+            </div>
+
+            <div>
+              <label className="mb-2 flex items-center gap-2 text-sm font-bold text-ink">
+                Caregiver Bio
+              </label>
+              <textarea
+                rows={4}
+                placeholder="Tell pet parents a bit about yourself..."
+                {...register("bio")}
+                className="w-full resize-none rounded-xl border border-black/[0.1] bg-[#FAF6F1] p-4 text-sm outline-none transition focus:border-indigo"
+              />
+              {errors.bio && <p className="mt-1 text-xs text-coral">{errors.bio.message}</p>}
+            </div>
+
+            <div className="mt-4 flex gap-4">
+              <button
+                type="button"
+                onClick={() => router.back()}
+                className="flex h-12 flex-1 items-center justify-center rounded-xl font-bold tracking-wide text-ink transition hover:bg-black/[0.05]"
+              >
+                CANCEL
+              </button>
+              <button
+                type="submit"
+                disabled={saving}
+                className="flex h-12 flex-1 items-center justify-center gap-2 rounded-xl bg-indigo font-bold tracking-wide text-white transition hover:bg-indigo/90 disabled:opacity-50"
+              >
+                {saving ? <LoaderCircle className="h-5 w-5 animate-spin" /> : <Save className="h-4 w-4" />}
+                {saving ? "SAVING..." : "SAVE PROFILE"}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </PortalShell>
   );
 }

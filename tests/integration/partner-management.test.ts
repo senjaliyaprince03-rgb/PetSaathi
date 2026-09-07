@@ -15,6 +15,9 @@ vi.mock("@/modules/auth/server", () => ({
 }));
 vi.mock("@/modules/auth/session", () => ({
   getCurrentIdentity: vi.fn().mockResolvedValue({ id: "admin-123", roles: ["SUPER_ADMIN", "PARTNER_MANAGER"] }),
+  // Real semantics so route-level RBAC behaves as in production.
+  hasAnyRole: (identity: { roles: string[] } | null, allowed: readonly string[]) =>
+    Boolean(identity?.roles?.some((role) => allowed.includes(role))),
 }));
 
 describe("Phase 8: Partner Management Integration", () => {

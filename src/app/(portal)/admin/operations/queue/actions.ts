@@ -108,8 +108,7 @@ export async function reviewMatch(matchId: string, action: "approve" | "reject")
     });
   } catch (error) {
     if (error instanceof QueueActionError) throw error;
-    logger.error(error instanceof Error ? error : "MatchReviewError", {
-      event: "admin.match.review_failed",
+    logger.error("MatchReviewError", {
       resourceId: parsedId.data,
       actorId: identity.id,
     });
@@ -178,8 +177,7 @@ export async function advanceBookingToMatching(bookingId: string) {
     });
   } catch (error) {
     if (error instanceof QueueActionError) throw error;
-    logger.error(error instanceof Error ? error : "BookingQueueActionError", {
-      event: "admin.booking.advance_to_matching_failed",
+    logger.error("BookingQueueActionError", {
       resourceId: parsedId.data,
       actorId: identity.id,
     });

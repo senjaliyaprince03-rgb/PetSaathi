@@ -2,10 +2,13 @@ import { z } from "zod";
 
 const serverSchema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
+  PORT: z.coerce.number().int().default(3000),
+  DATABASE_URL: z.string().optional(),
   MONGODB_URI: z.string().regex(/^mongodb(?:\+srv)?:\/\//).optional(),
   MONGODB_PRISMA_URI: z.string().regex(/^mongodb:\/\//).optional(),
   MONGODB_DATABASE: z.string().regex(/^[A-Za-z0-9_-]+$/).optional(),
   AUTH_SECRET: z.string().min(32).optional(),
+  NEXTAUTH_SECRET: z.string().min(32).optional(),
   AUTH_SESSION_DAYS: z.coerce.number().int().min(1).max(90).default(30),
   AUTH_DEV_FIXED_OTP: z.string().regex(/^\d{6}$/).optional(),
   UPLOAD_SIGNING_SECRET: z.string().min(32).optional(),
@@ -13,6 +16,8 @@ const serverSchema = z.object({
   SMS_OTP_WEBHOOK_SECRET: z.string().min(32).optional(),
   RAZORPAY_KEY_SECRET: z.string().min(1).optional(),
   RAZORPAY_WEBHOOK_SECRET: z.string().min(1).optional(),
+  NVIDIA_API_KEY: z.string().min(1).optional(),
+  NVIDIA_BASE_URL: z.string().url().default("https://integrate.api.nvidia.com/v1"),
   RESEND_API_KEY: z.string().min(1).optional(),
   RESEND_FROM_EMAIL: z.string().email().optional(),
   RESEND_REQUEST_TIMEOUT_MS: z.coerce.number().int().min(1_000).max(30_000).default(8_000),

@@ -1,26 +1,51 @@
 import { NextResponse } from "next/server";
-import { getMongoDatabase } from "@/lib/mongodb";
+import { prisma } from "../../../lib/db";
+import { logger } from "../../../lib/observability/logger";
 
+export const dynamic = "force-dynamic";
+
+/**
+ * PetSaathi Production Readiness Health Check (Task 4.4)
+ * Returns status, database connectivity, uptime, and version.
+ */
 export async function GET() {
+  const startTime = Date.now();
+  let dbStatus: "connected" | "disconnected" = "disconnected";
+  let pingLatencyMs = -1;
+
   try {
-    const db = await getMongoDatabase();
-    await db.command({ ping: 1 });
-    
-    return NextResponse.json({
-      status: "ok",
-      db: "connected",
-      timestamp: new Date().toISOString(),
-      version: process.env.npm_package_version || "1.0.0"
+    const pingStart = Date.now();
+    // Query a single lightweight record to verify active DB connection
+    await prisma.serviceType.findFirst({
+      select: { id: true },
     });
+    pingLatencyMs = Date.now() - pingStart;
+    dbStatus = "connected";
   } catch (error) {
-    return NextResponse.json(
-      {
-        status: "error",
-        db: "disconnected",
-        timestamp: new Date().toISOString(),
-        error: (error as Error).message
-      },
-      { status: 503 }
-    );
+    logger.error("health_check_db_ping_failed", {
+      error: error instanceof Error ? error : new Error(String(error)),
+    });
   }
+
+  const isHealthy = dbStatus === "connected";
+  const durationMs = Date.now() - startTime;
+
+  const healthPayload = {
+    status: isHealthy ? "ok" : "degraded",
+    db: dbStatus,
+    uptime: Math.floor(process.uptime()),
+    version: process.env.npm_package_version || "0.1.0",
+    timestamp: new Date().toISOString(),
+    metrics: {
+      dbPingLatencyMs: pingLatencyMs,
+      totalCheckLatencyMs: durationMs,
+    },
+  };
+
+  return NextResponse.json(healthPayload, {
+    status: isHealthy ? 200 : 503,
+    headers: {
+      "Cache-Control": "no-store, no-cache, must-revalidate",
+    },
+  });
 }

@@ -16,7 +16,7 @@ export class BookingGateError extends Error {
 }
 
 export async function createBookingWithQuote(customerId: string, input: CreateBookingInput) {
-  for (let attempt = 0; attempt < 3; attempt += 1) {
+  for (let attempt = 0; attempt < 5; attempt += 1) {
     try {
       return await prisma.$transaction(async (tx) => {
         const now = new Date();
@@ -98,22 +98,37 @@ export async function createBookingWithQuote(customerId: string, input: CreateBo
           select: { id: true }
         });
 
-        let entitlementBalance = null;
+        let entitlementClaimed = false;
+        let entitlementBalance = 0;
         const entitlementKey = `service_${service.code}`;
-        
+
         if (activeSubscription) {
           const latestLedger = await tx.entitlementLedger.findFirst({
             where: { subscriptionId: activeSubscription.id, entitlementKey },
             orderBy: { createdAt: "desc" },
             select: { balanceAfter: true }
           });
-          if (latestLedger && latestLedger.balanceAfter > 0) {
-            entitlementBalance = latestLedger.balanceAfter;
+          entitlementBalance = latestLedger?.balanceAfter ?? 0;
+
+          if (entitlementBalance >= 1) {
+            // ── Atomic CAS lock ──────────────────────────────────────────
+            // Write to the shared Subscription document BEFORE creating
+            // any ledger rows.  MongoDB snapshot-isolation detects write-
+            // write conflicts on the *same* document, so if a concurrent
+            // transaction already touched this subscription the engine
+            // aborts this one with a TransactionError (Prisma P2034).
+            // The retry loop (attempt < 3) re-reads the ledger with a
+            // fresh snapshot that reflects the winner's deduction.
+            // ─────────────────────────────────────────────────────────────
+            await tx.subscription.updateMany({
+              where: { id: activeSubscription.id },
+              data: { updatedAt: new Date() }
+            });
+            entitlementClaimed = true;
           }
         }
 
-        const isCoveredBySubscription = entitlementBalance !== null && entitlementBalance > 0;
-        const initialStatus = isCoveredBySubscription ? "CONFIRMED" : "REQUESTED";
+        const bookingStatus = entitlementClaimed ? "CONFIRMED" : "REQUESTED";
 
         const booking = await tx.booking.create({
           data: {
@@ -122,26 +137,26 @@ export async function createBookingWithQuote(customerId: string, input: CreateBo
             petId: pet.id,
             addressId: address.id,
             serviceTypeId: service.id,
-            status: initialStatus,
+            status: bookingStatus,
             scheduledStart,
             scheduledEnd,
             customerNotes: input.customerNotes,
             quoteAmountPaise: quote.totalPaise,
             currency: price.currency,
-            statusHistory: { create: { toState: initialStatus, actorId: customerId, reason: isCoveredBySubscription ? "Covered by membership entitlement" : "Customer submitted booking request" } },
+            statusHistory: { create: { toState: bookingStatus, actorId: customerId, reason: entitlementClaimed ? "Covered by membership entitlement" : "Customer submitted booking request" } },
             priceQuotes: { create: { servicePriceId: price.id, ...quote, currency: price.currency, breakdown: { servicePriceVersion: price.version, serviceAreaId: serviceArea.id, serviceAreaName: serviceArea.name, city: serviceArea.city.name, taxBasisPoints: price.taxBasisPoints, sitterPaise: price.sitterPaise }, expiresAt: quoteExpiresAt, acceptedAt: now } },
             capacityReservation: { create: { capacityLimitId: capacity.id, quantity: 1, status: "HELD" } }
           },
           select: { id: true, reference: true, status: true, scheduledStart: true, scheduledEnd: true, quoteAmountPaise: true, currency: true }
         });
 
-        if (isCoveredBySubscription && activeSubscription) {
+        if (entitlementClaimed && activeSubscription) {
           await tx.entitlementLedger.create({
             data: {
               subscriptionId: activeSubscription.id,
               entitlementKey,
               delta: -1,
-              balanceAfter: entitlementBalance! - 1,
+              balanceAfter: entitlementBalance - 1,
               reason: `Redeemed for booking ${reference}`,
               referenceType: "booking",
               referenceId: booking.id
@@ -161,7 +176,15 @@ export async function createBookingWithQuote(customerId: string, input: CreateBo
         return booking;
       }, { maxWait: 5_000, timeout: 15_000 });
     } catch (error) {
-      if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2034" && attempt < 2) continue;
+      const isWriteConflict =
+        (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2034") ||
+        (error instanceof Error && (error.message.includes("write conflict") || error.message.includes("deadlock")));
+
+      if (isWriteConflict && attempt < 4) {
+        // Exponential jittered backoff: 30ms, 60ms, 90ms, 120ms + random jitter
+        await new Promise((resolve) => setTimeout(resolve, 30 * (attempt + 1) + Math.floor(Math.random() * 25)));
+        continue;
+      }
       throw error;
     }
   }

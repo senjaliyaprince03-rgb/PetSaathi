@@ -5,7 +5,10 @@ import { requestEmailOtp } from "@/modules/auth/mongodb-auth";
 import { consumeRateLimit, requestIp } from "@/modules/security/rate-limit";
 import { logger } from "@/lib/logger";
 
-const requestSchema = z.object({ email: z.string().email("Enter a valid email address") });
+const requestSchema = z.object({
+  email: z.string().email("Enter a valid email address"),
+  purpose: z.enum(["registration", "login", "password-reset", "email-change"]).optional().default("login"),
+});
 
 export async function POST(request: Request) {
   const parsed = requestSchema.safeParse(await request.json().catch(() => null));
@@ -16,7 +19,7 @@ export async function POST(request: Request) {
   ]);
   if (!ipLimit.allowed || !emailLimit.allowed) return NextResponse.json({ error: "too_many_requests" }, { status: 429, headers: { "Retry-After": String(Math.max(ipLimit.retryAfterSeconds, emailLimit.retryAfterSeconds)) } });
   try {
-    const delivery = await requestEmailOtp(parsed.data.email);
+    const delivery = await requestEmailOtp(parsed.data.email, parsed.data.purpose);
     return NextResponse.json({
       sent: true,
       ...(delivery.mode === "development" ? { developmentOtp: delivery.code } : {}),

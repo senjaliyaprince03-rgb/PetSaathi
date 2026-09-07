@@ -5,7 +5,10 @@ import { SitterApplication } from "@/components/forms/sitter-application";
 import { PageIntro, PublicShell } from "@/components/marketing/public-shell";
 import { getCurrentIdentity } from "@/modules/auth/session";
 
-export const metadata: Metadata = { title: "Become a Saathi" };
+export const metadata: Metadata = { 
+  title: "Become a Certified Saathi Caregiver",
+  description: "Join India's leading managed pet care network. Earn competitive pay with guaranteed payouts, vet emergency cover, and local society assignments."
+};
 
 export default async function BecomeASaathiPage() {
   const identity = await getCurrentIdentity();

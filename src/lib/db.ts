@@ -4,8 +4,33 @@ import { configureMongoDns, mongoConnectionTimeoutMs } from "@/lib/mongodb";
 // Initialize DNS immediately before PrismaClient so Atlas SRV resolution is deterministic.
 configureMongoDns();
 
+export function assertSafeDatabase(rawUri?: string) {
+  if (process.env.NODE_ENV !== "test") return;
+  const uri = rawUri?.trim() || process.env.MONGODB_PRISMA_URI?.trim() || process.env.MONGODB_URI?.trim();
+  if (!uri) return; // Mocked environments or unconfigured state handled gracefully
+
+  let parsed: URL;
+  try {
+    parsed = new URL(uri);
+  } catch {
+    throw new Error(`[Database Safety Guard] Invalid MongoDB URI: ${uri}`);
+  }
+
+  const hostname = parsed.hostname.toLowerCase();
+  const dbName = parsed.pathname.replace(/^\//, "").toLowerCase();
+  const isLocalHost = hostname === "127.0.0.1" || hostname === "localhost";
+  const isApprovedTestDb = dbName === "petsaathi_test" || dbName === "petsaathi_ci";
+
+  if (!isLocalHost || !isApprovedTestDb) {
+    throw new Error(
+      `[Database Safety Guard] REFUSING CONNECTION: NODE_ENV is 'test' but database connection does not target an approved local test database (127.0.0.1/localhost with petsaathi_test or petsaathi_ci). Attempted target: host='${hostname}', db='${dbName}'.`
+    );
+  }
+}
+
 function createPrismaClient() {
   const mongoUri = process.env.MONGODB_PRISMA_URI?.trim() || boundedMongoUri();
+  assertSafeDatabase(mongoUri);
   return new PrismaClient({
     ...(mongoUri ? { datasourceUrl: mongoUri } : {}),
     log: process.env.NODE_ENV === "development" ? ["warn", "error"] : ["error"],

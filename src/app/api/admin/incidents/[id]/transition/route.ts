@@ -1,14 +1,15 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
+import { IncidentStatus } from "@prisma/client";
+
 import { logger } from "@/lib/logger";
 import { getCurrentIdentity, hasAnyRole } from "@/modules/auth/session";
-import { incidentStatuses } from "@/modules/incidents/state-machine";
 import { IncidentWorkflowError, incidentBookingResolutions, incidentEventTypes, transitionIncident } from "@/modules/incidents/workflow";
 import { consumeRateLimit } from "@/modules/security/rate-limit";
 
 const transitionSchema = z.object({
-  toState: z.enum(incidentStatuses),
+  toState: z.nativeEnum(IncidentStatus),
   details: z.string().trim().min(5).max(2000),
   eventType: z.enum(incidentEventTypes),
   bookingResolution: z.enum(incidentBookingResolutions).optional()

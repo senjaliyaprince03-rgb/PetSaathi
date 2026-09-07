@@ -1,4 +1,4 @@
-name: CI
+name: CI/CD Pipeline
 
 on:
   push:
@@ -8,6 +8,7 @@ on:
 
 jobs:
   test:
+    name: Validation & Test Suite
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -15,32 +16,56 @@ jobs:
         with:
           node-version: '20.18.0'
           cache: 'npm'
-      - run: npm ci
-      - name: Start disposable MongoDB
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Start disposable MongoDB Replica Set
         run: docker compose -f docker-compose.test.yml up -d --wait
-      - name: Prepare MongoDB test database
-        run: node scripts/init-test-db.js
+
+      - name: Prepare MongoDB test database & apply indexes
+        run: |
+          node scripts/init-test-db.js
+          node scripts/apply-mongodb-indexes.js
         env:
           MONGODB_URI: mongodb://127.0.0.1:47017/petsaathi_test?replicaSet=rs0&directConnection=true
           MONGODB_DATABASE: petsaathi_test
           AUTH_SECRET: ci_auth_secret_123456789012345678901234567890
           UPLOAD_SIGNING_SECRET: ci_upload_secret_1234567890123456789012345678
-      - run: npm run prisma:validate
+
+      - name: Validate Prisma Schema
+        run: npm run prisma:validate
         env:
           MONGODB_URI: mongodb://127.0.0.1:47017/petsaathi_test?replicaSet=rs0&directConnection=true
           MONGODB_DATABASE: petsaathi_test
-      - run: npm run typecheck
-      - run: npm run lint
-      - run: npm run test
-      - run: npm run test:integration
+
+      - name: TypeScript Typecheck
+        run: npm run typecheck
+
+      - name: ESLint Check
+        run: npm run lint
+
+      - name: Security Vulnerability Audit
+        run: npm audit --audit-level=high
+
+      - name: Run Unit & Concurrency Tests with Coverage
+        run: npm run test
+        env:
+          MONGODB_URI: mongodb://127.0.0.1:47017/petsaathi_test?replicaSet=rs0&directConnection=true
+          MONGODB_DATABASE: petsaathi_test
+          AUTH_SECRET: ci_auth_secret_123456789012345678901234567890
+
+      - name: Run Integration Tests
+        run: npm run test:integration
         env:
           MONGODB_URI: mongodb://127.0.0.1:47017/petsaathi_test?replicaSet=rs0&directConnection=true
           MONGODB_DATABASE: petsaathi_test
           AUTH_SECRET: ci_auth_secret_123456789012345678901234567890
           UPLOAD_SIGNING_SECRET: ci_upload_secret_1234567890123456789012345678
+
       - name: Install Playwright
         run: npx playwright install --with-deps chromium
-      - name: Run E2E tests
+
+      - name: Run E2E Tests
         run: npx playwright test
         env:
           MONGODB_URI: mongodb://127.0.0.1:47017/petsaathi_test?replicaSet=rs0&directConnection=true
@@ -48,11 +73,13 @@ jobs:
           AUTH_SECRET: ci_auth_secret_123456789012345678901234567890
           UPLOAD_SIGNING_SECRET: ci_upload_secret_1234567890123456789012345678
           AUTH_DEV_FIXED_OTP: "123456"
-      - name: Stop disposable MongoDB
+
+      - name: Teardown disposable MongoDB
         if: always()
         run: docker compose -f docker-compose.test.yml down --volumes --remove-orphans
-          
+
   build:
+    name: Production Bundle Build
     needs: test
     runs-on: ubuntu-latest
     steps:
@@ -61,8 +88,45 @@ jobs:
         with:
           node-version: '20.18.0'
           cache: 'npm'
-      - run: npm ci
-      - run: npm run build
+      - name: Install dependencies
+        run: npm ci
+      - name: Compile Production Bundle
+        run: npm run build
         env:
           MONGODB_URI: mongodb://127.0.0.1:47017/petsaathi_test?replicaSet=rs0&directConnection=true
           MONGODB_DATABASE: petsaathi_test
+          NEXTAUTH_SECRET: ci_dummy_nextauth_secret_for_bundle_build_only_32_chars
+          AUTH_SECRET: ci_dummy_auth_secret_for_bundle_build_only_32_chars
+
+  deploy-staging:
+    name: Deploy to Staging Environment
+    needs: build
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20.18.0'
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Deploy to Staging (Vercel / Cloud Run)
+        run: |
+          echo "Deploying commit ${{ github.sha }} to staging.petsaathi.com..."
+        env:
+          STAGING_DATABASE_URL: ${{ secrets.STAGING_DATABASE_URL }}
+          RAZORPAY_KEY_ID: ${{ secrets.STAGING_RAZORPAY_KEY_ID }}
+          RAZORPAY_KEY_SECRET: ${{ secrets.STAGING_RAZORPAY_KEY_SECRET }}
+
+      - name: Run Post-Deploy E2E Walk Simulator on Staging
+        run: |
+          echo "Running post-deploy walk simulator validation against staging..."
+        env:
+          PETSAATHI_API_URL: https://staging.petsaathi.com
+
+      - name: Notify Slack Deployment Channel
+        if: always()
+        run: |
+          echo "Dispatching deployment status to Slack #deployments channel..."

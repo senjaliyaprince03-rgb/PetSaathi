@@ -8,7 +8,7 @@ import { sitterEligibility } from "@/modules/sitters/eligibility";
 const responseSchema = z.object({ action: z.enum(["ACCEPT", "DECLINE"]) });
 
 export async function POST(request: Request, context: { params: Promise<{ id: string }> }) {
-  const identity = await getCurrentIdentity();
+  const identity = await getCurrentIdentity(request);
   if (!identity?.roles.includes("SITTER")) return NextResponse.json({ error: "forbidden" }, { status: 403 });
   const parsed = responseSchema.safeParse(await request.json().catch(() => null));
   if (!parsed.success) return NextResponse.json({ error: "invalid_request" }, { status: 422 });
@@ -38,11 +38,77 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
   const eligibility = sitterEligibility({ sitterStatus: assignment.sitter.status, permissionStatus: permission.status, permissionExpiresAt: permission.expiresAt, riskLimit: permission.riskLimit, petRisk: assignment.booking.pet.riskAssessments[0]?.finalLevel ?? "UNASSESSED", hasScheduleConflict: conflicts > 0, hasActiveHold: assignment.sitter.holds.length > 0 });
   if (!eligibility.eligible) return NextResponse.json({ error: "no_longer_eligible", reasons: eligibility.reasons }, { status: 409 });
 
-  await prisma.$transaction([
-    prisma.bookingAssignment.update({ where: { id: assignment.id }, data: { status: "ACCEPTED", respondedAt: new Date() } }),
-    prisma.booking.update({ where: { id: assignment.bookingId }, data: { status: "CUSTOMER_APPROVAL_PENDING", statusHistory: { create: { fromState: "SITTER_PROPOSED", toState: "CUSTOMER_APPROVAL_PENDING", actorId: identity.id, reason: assignment.type === "REPLACEMENT" ? "Eligible replacement Saathi accepted offer" : "Eligible Saathi accepted offer" } } } }),
-    prisma.auditLog.create({ data: { actorId: identity.id, actorRole: "SITTER", action: "booking.assignment_accepted", resourceType: "booking_assignment", resourceId: assignment.id, before: { status: assignment.status, bookingStatus: assignment.booking.status }, after: { status: "ACCEPTED", bookingStatus: "CUSTOMER_APPROVAL_PENDING", assignmentType: assignment.type }, reason: "Server eligibility checks passed at acceptance" } }),
-    prisma.notificationOutbox.create({ data: { userId: assignment.booking.customerId, channel: "IN_APP", templateKey: assignment.type === "REPLACEMENT" ? "booking.replacement_approval_required" : "booking.assignment_approval_required", destination: assignment.booking.customerId, payload: { bookingId: assignment.bookingId, assignmentId: assignment.id, assignmentType: assignment.type }, idempotencyKey: `assignment-accepted:${assignment.id}:customer` } })
-  ]);
+  try {
+    const result = await prisma.$transaction(async (tx) => {
+      const updatedBooking = await tx.booking.updateMany({
+        where: { id: assignment.bookingId, status: "SITTER_PROPOSED" },
+        data: { status: "CUSTOMER_APPROVAL_PENDING" }
+      });
+      if (updatedBooking.count !== 1) {
+        return { success: false };
+      }
+
+      const updatedAssignment = await tx.bookingAssignment.updateMany({
+        where: { id: assignment.id, status: "OFFERED" },
+        data: { status: "ACCEPTED", respondedAt: new Date() }
+      });
+      if (updatedAssignment.count !== 1) {
+        throw new Error("Assignment already responded to");
+      }
+
+      // Mark any other pending OFFERED assignments for this booking as DECLINED/REPLACED
+      await tx.bookingAssignment.updateMany({
+        where: { bookingId: assignment.bookingId, id: { not: assignment.id }, status: "OFFERED" },
+        data: { status: "DECLINED", respondedAt: new Date() }
+      });
+
+      await tx.bookingStatusHistory.create({
+        data: {
+          bookingId: assignment.bookingId,
+          fromState: "SITTER_PROPOSED",
+          toState: "CUSTOMER_APPROVAL_PENDING",
+          actorId: identity.id,
+          reason: assignment.type === "REPLACEMENT" ? "Eligible replacement Saathi accepted offer" : "Eligible Saathi accepted offer"
+        }
+      });
+
+      await tx.auditLog.create({
+        data: {
+          actorId: identity.id,
+          actorRole: "SITTER",
+          action: "booking.assignment_accepted",
+          resourceType: "booking_assignment",
+          resourceId: assignment.id,
+          before: { status: assignment.status, bookingStatus: assignment.booking.status },
+          after: { status: "ACCEPTED", bookingStatus: "CUSTOMER_APPROVAL_PENDING", assignmentType: assignment.type },
+          reason: "Server eligibility checks passed at acceptance"
+        }
+      });
+
+      await tx.notificationOutbox.create({
+        data: {
+          userId: assignment.booking.customerId,
+          channel: "IN_APP",
+          templateKey: assignment.type === "REPLACEMENT" ? "booking.replacement_approval_required" : "booking.assignment_approval_required",
+          destination: assignment.booking.customerId,
+          payload: { bookingId: assignment.bookingId, assignmentId: assignment.id, assignmentType: assignment.type },
+          idempotencyKey: `assignment-accepted:${assignment.id}:customer`
+        }
+      });
+
+      return { success: true };
+    });
+
+    if (!result.success) {
+      return NextResponse.json({ error: "offer_already_accepted", message: "Another Saathi accepted this booking or the offer is no longer available" }, { status: 409 });
+    }
+  } catch (err: any) {
+    // In concurrent writes, MongoDB transactions abort losing transactions with write conflict
+    if (err?.message?.includes("write conflict") || err?.message?.includes("deadlock") || err?.code === "P2034" || err?.code === "P2002") {
+      return NextResponse.json({ error: "offer_already_accepted", message: "Another Saathi accepted this booking concurrently" }, { status: 409 });
+    }
+    throw err;
+  }
+
   return NextResponse.json({ accepted: true });
 }

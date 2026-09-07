@@ -156,7 +156,8 @@ export async function POST(
     const expected = adminMutationErrorResponse(error);
     if (expected) return expected;
     logger.error(
-      error instanceof Error ? error : "AdminTestimonialMutationError",
+      "AdminTestimonialMutationError",
+      error instanceof Error ? error : new Error(String(error)),
       {
         event: "admin.testimonial.mutation_failed",
         resourceId: id,

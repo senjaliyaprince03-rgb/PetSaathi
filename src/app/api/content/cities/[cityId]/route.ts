@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getCityPages, createCityPage } from "@/modules/content/citypage.service";
+import { getCurrentIdentity } from "@/modules/auth/session";
 
 export async function GET(
   req: Request,
@@ -22,9 +23,8 @@ export async function POST(
   { params }: { params: Promise<{ cityId: string }> }
 ) {
   try {
-    const userId = req.headers.get("x-user-id");
-    // Ensure admin role check here in real code
-    if (!userId) {
+    const identity = await getCurrentIdentity();
+    if (!identity || !identity.roles.some(r => ["SUPER_ADMIN", "CONTENT_ADMIN", "OPERATIONS_ADMIN"].includes(r))) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 

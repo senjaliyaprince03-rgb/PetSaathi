@@ -32,7 +32,7 @@ export default async function PetDetailPage({ params }: { params: Promise<{ id: 
   const care = object(activeCare?.instructions);
 
   return (
-    <PortalShell mode="customer" displayName={identity.displayName} metrics={[`${pet.medications.filter((item) => item.active).length} active medication${pet.medications.filter((item) => item.active).length === 1 ? "" : "s"}`, `${pet.vaccinations.length} vaccination record${pet.vaccinations.length === 1 ? "" : "s"}`, `${pet.healthEvents.length} timeline event${pet.healthEvents.length === 1 ? "" : "s"}`]}>
+    <PortalShell mode="customer" displayName={identity.displayName} showSummaryCards={false} showGreeting={false} metrics={[`${pet.medications.filter((item) => item.active).length} active medication${pet.medications.filter((item) => item.active).length === 1 ? "" : "s"}`, `${pet.vaccinations.length} vaccination record${pet.vaccinations.length === 1 ? "" : "s"}`, `${pet.healthEvents.length} timeline event${pet.healthEvents.length === 1 ? "" : "s"}`]}>
       <div className="mt-5">
         <Link href="/pets" className={buttonVariants({ variant: "ghost", size: "sm" })}><ArrowLeft className="h-4 w-4" />My pets</Link>
         <section className="luxury-grid relative mt-5 overflow-hidden rounded-5xl border border-indigo/10 bg-gradient-to-br from-paper via-[#f3eafa] to-[#fff0e8] p-7 shadow-soft sm:p-10">

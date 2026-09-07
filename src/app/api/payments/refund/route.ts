@@ -108,7 +108,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ success: true, refundId: refund.id });
   } catch (error) {
-    logger.error(error instanceof Error ? error : "RefundError", { event: "payment.refund_failed", bookingId });
+    logger.error("RefundError", { bookingId });
     return NextResponse.json({ error: "refund_failed" }, { status: 500 });
   }
 }

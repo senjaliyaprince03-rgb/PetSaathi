@@ -29,7 +29,7 @@ export default async function AdminPartnersPage() {
   const pendingVerifications = partners.reduce((acc, p) => acc + (p.status === "DRAFT" ? 1 : 0), 0); // Simplified metric
 
   return (
-    <PortalShell mode="admin" displayName={identity.displayName}>
+    <PortalShell mode="admin" displayName={identity.displayName} showSummaryCards={false}>
       <div className="max-w-7xl pb-12">
         <p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-ink/80">partner management</p>
         <h1 className="mt-2 font-display text-4xl font-semibold tracking-[-0.04em]">Partner Directory</h1>

@@ -2,11 +2,12 @@ import { NextResponse } from "next/server";
 import { createContentEntry, publishContent } from "@/modules/content/cms.service";
 import type { ServiceCode } from "@prisma/client";
 
+import { getCurrentIdentity } from "@/modules/auth/session";
+
 export async function POST(req: Request) {
   try {
-    const userId = req.headers.get("x-user-id");
-    // Ensure admin role check here in real code
-    if (!userId) {
+    const identity = await getCurrentIdentity();
+    if (!identity || !identity.roles.some(r => ["SUPER_ADMIN", "CONTENT_ADMIN", "OPERATIONS_ADMIN"].includes(r))) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -22,7 +23,7 @@ export async function POST(req: Request) {
       type,
       title,
       primaryJob,
-      authorId,
+      authorId: authorId || identity.id,
       body: contentBody,
       excerpt,
       city,
@@ -44,8 +45,8 @@ export async function POST(req: Request) {
 
 export async function PATCH(req: Request) {
   try {
-    const userId = req.headers.get("x-user-id");
-    if (!userId) {
+    const identity = await getCurrentIdentity();
+    if (!identity || !identity.roles.some(r => ["SUPER_ADMIN", "CONTENT_ADMIN", "OPERATIONS_ADMIN"].includes(r))) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -57,7 +58,7 @@ export async function PATCH(req: Request) {
       return NextResponse.json({ error: "bad_request", message: "Invalid parameters" }, { status: 400 });
     }
 
-    const entry = await publishContent(id, userId);
+    const entry = await publishContent(id, identity.id);
     return NextResponse.json({ entry }, { status: 200 });
   } catch (error: any) {
     if (error.code === "entry_not_found") {

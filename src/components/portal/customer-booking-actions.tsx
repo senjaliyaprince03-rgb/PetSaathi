@@ -53,6 +53,15 @@ export function PaymentAction({ bookingId, reference, amountPaise }: { bookingId
           const verification = await fetch("/api/payments/verify", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ orderId: payment.razorpay_order_id, paymentId: payment.razorpay_payment_id, signature: payment.razorpay_signature }) });
           setPending(false);
           if (!verification.ok) return setError("Payment response could not be verified. No booking status was changed.");
+          // Meta Pixel Purchase event for conversion tracking
+          if (typeof window !== "undefined" && (window as any).fbq) {
+            (window as any).fbq("track", "Purchase", {
+              value: amountPaise / 100,
+              currency: "INR",
+              content_type: "service",
+              content_ids: [bookingId],
+            });
+          }
           router.refresh();
         }
       });
@@ -63,7 +72,60 @@ export function PaymentAction({ bookingId, reference, amountPaise }: { bookingId
     }
   }
 
-  return <div className="rounded-3xl bg-indigo p-5 text-paper"><div className="flex items-end justify-between gap-4"><div><p className="text-xs font-bold uppercase tracking-[0.18em] text-paper/80">Verified full prepayment</p><p className="mt-2 text-sm text-paper/80">The amount comes from the server quote.</p></div><p className="font-display text-3xl font-semibold">₹{(amountPaise / 100).toLocaleString("en-IN")}</p></div><Button type="button" variant="accent" className="mt-5" onClick={pay} disabled={pending}>{pending ? <LoaderCircle className="h-4 w-4 animate-spin" /> : <CreditCard className="h-4 w-4" />}Pay securely</Button>{error && <p className="mt-3 text-sm font-semibold text-saffron" role="alert">{error}</p>}</div>;
+  async function simulatePay() {
+    setPending(true); setError(null);
+    try {
+      const res = await fetch(`/api/bookings/${bookingId}/simulate-payment`, { method: "POST" });
+      const data = await res.json().catch(() => null);
+      setPending(false);
+      if (!res.ok) {
+        throw new Error(data?.message ?? "Simulated payment failed.");
+      }
+      router.refresh();
+    } catch (e) {
+      setPending(false);
+      setError(e instanceof Error ? e.message : "Simulation failed.");
+    }
+  }
+
+  return (
+    <div className="rounded-3xl bg-indigo p-5 text-paper shadow-lifted">
+      <div className="flex items-end justify-between gap-4">
+        <div>
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-paper/80">Verified full prepayment</p>
+          <p className="mt-2 text-sm text-paper/80">The amount comes from the server quote.</p>
+        </div>
+        <p className="font-display text-3xl font-semibold">₹{(amountPaise / 100).toLocaleString("en-IN")}</p>
+      </div>
+
+      <div className="mt-5 flex flex-wrap gap-3">
+        <Button type="button" variant="accent" onClick={pay} disabled={pending}>
+          {pending ? <LoaderCircle className="h-4 w-4 animate-spin" /> : <CreditCard className="h-4 w-4" />}
+          Pay with Razorpay
+        </Button>
+        <Button
+          type="button"
+          variant="outline"
+          className="border-paper/20 bg-paper/10 text-paper hover:bg-paper/20"
+          onClick={simulatePay}
+          disabled={pending}
+        >
+          {pending ? <LoaderCircle className="h-4 w-4 animate-spin" /> : <Check className="h-4 w-4 text-saffron" />}
+          Test Sandbox Checkout (1-Click)
+        </Button>
+      </div>
+
+      {error && (
+        <div className="mt-4 rounded-2xl bg-coral/20 p-3 text-xs leading-5 text-paper">
+          <p className="font-bold text-coral">Payment Gateway Notice:</p>
+          <p className="mt-1">{error}</p>
+          <p className="mt-2 text-paper/70">
+            💡 <em>Tip: You can use the <strong>&quot;Test Sandbox Checkout (1-Click)&quot;</strong> button above to complete the booking immediately in local development.</em>
+          </p>
+        </div>
+      )}
+    </div>
+  );
 }
 
 export function ReviewAction({ bookingId }: { bookingId: string }) {

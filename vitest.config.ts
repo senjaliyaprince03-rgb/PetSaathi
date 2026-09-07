@@ -9,10 +9,15 @@ export default defineConfig({
     }
   },
   test: {
-    include: ["tests/unit/**/*.test.ts", "tests/unit/**/*.test.tsx"],
+    include: ["tests/unit/**/*.test.ts", "tests/unit/**/*.test.tsx", "tests/concurrency/**/*.test.ts"],
     environment: "jsdom",
     globals: true,
     setupFiles: ["./tests/setup.ts"],
+    env: {
+      NODE_ENV: "test",
+      MONGODB_URI: "mongodb://127.0.0.1:27017/petsaathi_test",
+      MONGODB_DATABASE: "petsaathi_test"
+    },
     coverage: {
       provider: "v8",
       all: true,

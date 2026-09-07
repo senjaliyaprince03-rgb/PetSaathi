@@ -1,12 +1,15 @@
-const CACHE = "petsaathi-public-v1";
-const PUBLIC_SHELL = ["/", "/about", "/services", "/safety", "/offline.html", "/icons/icon-192.svg", "/icons/icon-512.svg"];
+const CACHE = "petsaathi-public-v3";
+const PUBLIC_SHELL = ["/offline.html"];
 
 self.addEventListener("install", (event) => {
-  event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(PUBLIC_SHELL)).then(() => self.skipWaiting()));
+  self.skipWaiting();
 });
 
 self.addEventListener("activate", (event) => {
-  event.waitUntil(caches.keys().then((keys) => Promise.all(keys.filter((key) => key.startsWith("petsaathi-public-") && key !== CACHE).map((key) => caches.delete(key)))).then(() => self.clients.claim()));
+  event.waitUntil(
+    caches.keys().then((keys) => Promise.all(keys.map((key) => caches.delete(key))))
+      .then(() => self.clients.claim())
+  );
 });
 
 self.addEventListener("fetch", (event) => {
@@ -21,6 +24,33 @@ self.addEventListener("fetch", (event) => {
   if (url.pathname.startsWith("/_next/static/") || url.pathname.startsWith("/icons/") || url.pathname.startsWith("/images/")) {
     event.respondWith(caches.match(request).then((cached) => cached || fetch(request).then((response) => { if (response.ok) void caches.open(CACHE).then((cache) => cache.put(request, response.clone())); return response; })));
   }
+});
+
+// Push notification handler
+self.addEventListener("push", function (event) {
+  if (!event.data) return;
+
+  const data = event.data.json();
+
+  // Show notification with PetSaathi branding
+  event.waitUntil(
+    self.registration.showNotification(data.title, {
+      body: data.body,
+      icon: "/icons/petsaathi-icon-192.png",
+      badge: "/icons/badge-72.png",
+      data: { url: data.url ?? "/" },
+      actions: data.actions ?? [],
+      vibrate: [100, 50, 100], // haptic pattern for mobile
+    })
+  );
+});
+
+self.addEventListener("notificationclick", function (event) {
+  event.notification.close();
+  // Navigate to the relevant page on notification click
+  event.waitUntil(
+    clients.openWindow(event.notification.data.url)
+  );
 });
 
 function isPrivatePath(pathname) {

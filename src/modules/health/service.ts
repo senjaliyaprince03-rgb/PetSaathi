@@ -16,12 +16,17 @@ export async function addHealthEvent(
   occurredAt: Date,
   source: string = "USER",
   details?: Prisma.InputJsonValue,
-  providerRef?: string
+  providerRef?: string,
+  ownerIdCheck?: string
 ) {
   // Ensure pet exists
   const pet = await prisma.pet.findUnique({ where: { id: petId } });
   if (!pet) {
     throw new HealthError("pet_not_found", "Pet does not exist");
+  }
+
+  if (ownerIdCheck && pet.ownerId !== ownerIdCheck) {
+    throw new HealthError("forbidden", "You do not have permission to modify this pet's health records");
   }
 
   return await prisma.petHealthEvent.create({
@@ -38,11 +43,15 @@ export async function addHealthEvent(
   });
 }
 
-export async function getHealthTimeline(petId: string, limit = 50) {
+export async function getHealthTimeline(petId: string, limit = 50, ownerIdCheck?: string) {
   // Ensure pet exists
   const pet = await prisma.pet.findUnique({ where: { id: petId } });
   if (!pet) {
     throw new HealthError("pet_not_found", "Pet does not exist");
+  }
+
+  if (ownerIdCheck && pet.ownerId !== ownerIdCheck) {
+    throw new HealthError("forbidden", "You do not have permission to view this pet's health records");
   }
 
   return await prisma.petHealthEvent.findMany({

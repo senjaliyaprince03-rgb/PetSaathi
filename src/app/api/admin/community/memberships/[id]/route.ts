@@ -121,10 +121,10 @@ export async function POST(
   } catch (error) {
     const expected = adminMutationErrorResponse(error);
     if (expected) return expected;
-    logger.error(error instanceof Error ? error : "AdminMembershipMutationError", {
-      event: "admin.community_membership.mutation_failed",
+    logger.error("AdminMembershipMutationError", {
       resourceId: id,
       actorId: identity.id,
+      error: error instanceof Error ? error.message : String(error),
     });
     return NextResponse.json(
       { error: "internal_error" },

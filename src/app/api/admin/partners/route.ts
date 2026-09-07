@@ -82,7 +82,10 @@ export async function POST(request: Request) {
       },
     });
 
-    return NextResponse.json({ partner }, { status: 201 });
+    // Dual-shape payload: flat fields (id/status/…) for direct consumers,
+    // plus the nested `partner` key for callers following the collection
+    // convention used by GET.
+    return NextResponse.json({ ...partner, partner }, { status: 201 });
   } catch (error) {
     console.error("[PARTNER_CREATE_ERROR]", error);
     return NextResponse.json({ error: "failed_to_create_partner" }, { status: 500 });

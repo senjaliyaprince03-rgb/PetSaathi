@@ -22,5 +22,25 @@ export async function POST(request: Request) {
     await tx.auditLog.create({ data: { actorId: identity.id, actorRole: "CUSTOMER", action: "sitter.application_submitted", resourceType: "sitter_profile", resourceId: profile.id, after: { status: "APPLICANT", locality: parsed.data.locality, servicesRequested: parsed.data.services, yearsExperience: parsed.data.yearsExperience } } });
     return profile;
   });
+
+  // Fire and forget application acknowledgment email
+  void (async () => {
+    try {
+      const user = await prisma.user.findUnique({
+        where: { id: identity.id },
+        select: { email: true, displayName: true },
+      });
+      if (user?.email) {
+        const { dispatchTransactionalEmail } = await import("@/lib/email/dispatcher");
+        await dispatchTransactionalEmail(identity.id, user.email, "SAATHI_APPLICATION_RECEIVED", {
+          applicantName: user.displayName || "Caregiver",
+          applicationId: sitter.id,
+        });
+      }
+    } catch (err) {
+      console.error("[EMAIL] Saathi application acknowledgment email failed:", err);
+    }
+  })();
+
   return NextResponse.json({ application: { id: sitter.id, status: sitter.status } }, { status: 201 });
 }

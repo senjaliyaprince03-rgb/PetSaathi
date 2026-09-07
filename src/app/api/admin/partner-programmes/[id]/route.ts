@@ -99,7 +99,7 @@ export async function PATCH(
         },
       );
     }
-    logger.error(error instanceof Error ? error : "ProgrammeUpdateError", {
+    logger.error("ProgrammeUpdateError", error instanceof Error ? error : new Error(String(error)), {
       event: "admin.partner_programme.update_failed",
       actorId: authorization.identity.id,
       programmeId: id.data,

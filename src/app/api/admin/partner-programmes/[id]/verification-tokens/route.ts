@@ -87,7 +87,8 @@ export async function POST(
       );
     }
     logger.error(
-      error instanceof Error ? error : "ProgrammeVerificationIssuanceError",
+      "ProgrammeVerificationIssuanceError",
+      error instanceof Error ? error : new Error(String(error)),
       {
         event: "admin.programme_verification_token.issue_failed",
         actorId: authorization.identity.id,

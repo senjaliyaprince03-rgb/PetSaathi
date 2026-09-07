@@ -101,6 +101,19 @@ vi.mock("@/lib/db", () => ({
         mockDb.paymentEvents.set(data.providerEventId, record);
         return record;
       }),
+      updateMany: vi.fn(async ({ where, data }: { where: { id: string; attempts?: number }; data: any }) => {
+        for (const [key, ev] of mockDb.paymentEvents.entries()) {
+          if (ev.id === where.id) {
+            if (where.attempts !== undefined && ev.attempts !== where.attempts) {
+              return { count: 0 };
+            }
+            const updated = { ...ev, ...data };
+            mockDb.paymentEvents.set(key, updated);
+            return { count: 1 };
+          }
+        }
+        return { count: 0 };
+      }),
       update: vi.fn(async ({ where, data }: { where: { id: string }; data: any }) => {
         for (const [key, ev] of mockDb.paymentEvents.entries()) {
           if (ev.id === where.id) {

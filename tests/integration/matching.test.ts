@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
-import { PrismaClient, BookingStatus, RiskLevel, SitterStatus, PermissionStatus } from "@prisma/client";
+import { PrismaClient, BookingStatus, RiskLevel, SitterStatus, PermissionStatus, type ServiceCode } from "@prisma/client";
 import { NextRequest } from "next/server";
 import { randomUUID } from "crypto";
 import { GET as MatchGET, POST as MatchPOST } from "@/app/api/admin/bookings/[id]/match/route";
@@ -7,6 +7,9 @@ import { GET as MatchGET, POST as MatchPOST } from "@/app/api/admin/bookings/[id
 const testIdentity = vi.hoisted(() => ({ id: "", roles: ["OPERATIONS_ADMIN"] as const }));
 vi.mock("@/modules/auth/session", () => ({
   getCurrentIdentity: vi.fn(() => Promise.resolve(testIdentity)),
+  // Real semantics so route-level RBAC behaves as in production.
+  hasAnyRole: (identity: { roles: readonly string[] } | null, allowed: readonly string[]) =>
+    Boolean(identity?.roles?.some((role) => (allowed as readonly string[]).includes(role))),
 }));
 
 const prisma = new PrismaClient();
@@ -14,10 +17,12 @@ const prisma = new PrismaClient();
 describe("Phase 11: Assisted Matching Integration", () => {
   let customerId: string;
   let sitterId: string;
+  let sitterUserId: string;
   let adminId: string;
   let petId: string;
   let addressId: string;
   let serviceTypeId: string;
+  let serviceTypeCode: ServiceCode;
   let bookingId: string;
 
   beforeEach(async () => {
@@ -42,6 +47,23 @@ describe("Phase 11: Assisted Matching Integration", () => {
     });
     customerId = customer.id;
 
+    // Service Type — canonical enum code shared by the whole catalogue.
+    // Isolation comes from purging every permission for it below so ONLY this
+    // test's sitter is eligible, regardless of seed or cross-file leftovers.
+    const serviceType = await prisma.serviceType.upsert({
+      where: { code: "DOG_WALK_30" },
+      update: {},
+      create: {
+        code: "DOG_WALK_30",
+        name: "Dog Walking 30m",
+        description: "30 min walk",
+        basePricePaise: 20000,
+      }
+    });
+    serviceTypeId = serviceType.id;
+    serviceTypeCode = serviceType.code;
+    await prisma.sitterServicePermission.deleteMany({ where: { serviceTypeId } });
+
     // Pet
     const pet = await prisma.pet.create({
       data: {
@@ -53,7 +75,7 @@ describe("Phase 11: Assisted Matching Integration", () => {
         weightKg: 30,
         riskAssessments: {
           create: [{
-            serviceCode: "DOG_WALK_30",
+            serviceCode: serviceTypeCode,
             suggestedLevel: RiskLevel.GREEN,
             finalLevel: RiskLevel.GREEN,
             factorSnapshot: {}
@@ -85,6 +107,7 @@ describe("Phase 11: Assisted Matching Integration", () => {
         roles: { create: [{ role: "SITTER" }] }
       }
     });
+    sitterUserId = sitterUser.id;
     const sitter = await prisma.sitterProfile.create({
       data: {
         userId: sitterUser.id,
@@ -94,19 +117,6 @@ describe("Phase 11: Assisted Matching Integration", () => {
       }
     });
     sitterId = sitter.id;
-
-    // Service Type
-    const serviceType = await prisma.serviceType.upsert({
-      where: { code: "DOG_WALK_30" },
-      update: {},
-      create: {
-        code: "DOG_WALK_30",
-        name: "Dog Walking 30m",
-        description: "30 min walk",
-        basePricePaise: 20000,
-      }
-    });
-    serviceTypeId = serviceType.id;
 
     // Sitter Permission
     await prisma.sitterServicePermission.create({
@@ -136,16 +146,23 @@ describe("Phase 11: Assisted Matching Integration", () => {
   });
 
   afterEach(async () => {
-    await prisma.auditLog.deleteMany();
-    await prisma.bookingAssignment.deleteMany();
-    await prisma.booking.deleteMany();
-    await prisma.sitterServicePermission.deleteMany();
-    await prisma.sitterProfile.deleteMany();
-    await prisma.address.deleteMany();
-    await prisma.petHealthEvent.deleteMany();
-    await prisma.petRiskAssessment.deleteMany();
-    await prisma.pet.deleteMany();
-    await prisma.user.deleteMany();
+    // Scope every delete to rows this test created: global deleteMany()s
+    // collide with bookings that other spec files legitimately still own.
+    await prisma.auditLog.deleteMany({ where: { OR: [{ actorId: adminId }, { resourceType: "booking", resourceId: bookingId }] } });
+    await prisma.bookingAssignment.deleteMany({ where: { bookingId } });
+    if (bookingId) {
+      await prisma.payment.deleteMany({ where: { bookingId } });
+      await prisma.bookingStatusHistory.deleteMany({ where: { bookingId } });
+      await prisma.booking.deleteMany({ where: { id: bookingId } });
+    }
+    await prisma.sitterServicePermission.deleteMany({ where: { sitterId } });
+    await prisma.sitterProfile.deleteMany({ where: { id: sitterId } });
+    await prisma.address.deleteMany({ where: { id: addressId } });
+    await prisma.petHealthEvent.deleteMany({ where: { petId } });
+    await prisma.petRiskAssessment.deleteMany({ where: { petId } });
+    await prisma.pet.deleteMany({ where: { id: petId } });
+    await prisma.user.deleteMany({ where: { id: { in: [adminId, customerId, sitterUserId].filter(Boolean) } } });
+    bookingId = "";
   });
 
   it("should match an eligible sitter and allow proposing them", async () => {

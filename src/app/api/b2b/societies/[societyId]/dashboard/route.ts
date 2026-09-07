@@ -1,14 +1,15 @@
 import { NextResponse } from "next/server";
 import { getSocietyDashboard } from "@/modules/b2b/service";
 
+import { getCurrentIdentity } from "@/modules/auth/session";
+
 export async function GET(
   req: Request,
   { params }: { params: Promise<{ societyId: string }> }
 ) {
   try {
-    const userId = req.headers.get("x-user-id");
-    // In a real implementation, we would check if this user is a society manager for this society.
-    if (!userId) {
+    const identity = await getCurrentIdentity();
+    if (!identity) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 

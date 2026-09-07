@@ -109,6 +109,22 @@ async function processNotifications(request: Request) {
           },
         });
         await syncIncidentNotificationStatus(tx, candidate.id, status);
+
+        // Fallback: If external channel (PUSH, SMS, WHATSAPP, EMAIL) fails permanently, deliver as reliable IN_APP notification
+        if (finalFailure && candidate.channel !== "IN_APP" && candidate.userId) {
+          await tx.notificationOutbox.upsert({
+            where: { idempotencyKey: `in-app-fallback:${candidate.id}` },
+            create: {
+              userId: candidate.userId,
+              channel: "IN_APP",
+              templateKey: candidate.templateKey,
+              destination: candidate.userId,
+              payload: (candidate.payload as Prisma.InputJsonObject) ?? {},
+              idempotencyKey: `in-app-fallback:${candidate.id}`
+            },
+            update: {}
+          });
+        }
       });
       failed += 1;
     }

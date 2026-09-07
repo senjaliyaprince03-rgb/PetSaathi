@@ -104,6 +104,14 @@ const adminAccessRules = [
     roles: ["FINANCE_ADMIN", "OPERATIONS_ADMIN", "SUPER_ADMIN"],
   },
   {
+    prefix: "/admin/vaccination-camps",
+    roles: ["OPERATIONS_ADMIN", "SUPER_ADMIN"],
+  },
+  {
+    prefix: "/admin/plans",
+    roles: ["FINANCE_ADMIN", "SUPER_ADMIN"],
+  },
+  {
     prefix: "/admin/cities",
     roles: ["OPERATIONS_ADMIN", "SUPER_ADMIN"],
   },

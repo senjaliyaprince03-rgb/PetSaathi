@@ -8,7 +8,7 @@ import { MobileNav } from "@/components/marketing/mobile-nav";
 
 export function PublicShell({ children }: { children: ReactNode }) {
   return (
-    <main className="relative min-h-screen bg-paper" suppressHydrationWarning>
+    <div className="relative min-h-screen bg-paper" suppressHydrationWarning>
       <header className="absolute inset-x-0 top-0 z-40 py-5">
         <div className="container-shell">
           <div className="glass-panel flex min-h-[4.5rem] items-center justify-between rounded-full border border-paper/40 bg-paper/85 px-4 py-2 shadow-lifted backdrop-blur-md sm:px-5">
@@ -29,7 +29,9 @@ export function PublicShell({ children }: { children: ReactNode }) {
         </div>
       </header>
 
-      {children}
+      <main id="main-content">
+        {children}
+      </main>
 
       <footer className="mt-28 border-t border-white/10 bg-[#301F30] pb-28 pt-14 lg:pb-14">
         <div className="container-shell grid gap-10 md:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr]">
@@ -77,7 +79,7 @@ export function PublicShell({ children }: { children: ReactNode }) {
           </div>
         </div>
       </footer>
-    </main>
+    </div>
   );
 }
 

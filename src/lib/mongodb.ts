@@ -33,11 +33,32 @@ const cache = mongoGlobal.__petsaathiMongo ?? {};
 
 if (process.env.NODE_ENV !== "production") mongoGlobal.__petsaathiMongo = cache;
 
+function assertSafeMongoUri(uri: string) {
+  if (process.env.NODE_ENV !== "test") return;
+  try {
+    const parsed = new URL(uri);
+    const hostname = parsed.hostname.toLowerCase();
+    const dbName = parsed.pathname.replace(/^\//, "").toLowerCase();
+    const isLocalHost = hostname === "127.0.0.1" || hostname === "localhost";
+    const isApprovedTestDb = dbName === "petsaathi_test" || dbName === "petsaathi_ci";
+
+    if (!isLocalHost || !isApprovedTestDb) {
+      throw new Error(
+        `[Database Safety Guard] REFUSING CONNECTION: NODE_ENV is 'test' but database connection does not target an approved local test database (127.0.0.1/localhost with petsaathi_test or petsaathi_ci). Attempted target: host='${hostname}', db='${dbName}'.`
+      );
+    }
+  } catch (err: any) {
+    if (err.message?.includes("[Database Safety Guard]")) throw err;
+    throw new Error(`[Database Safety Guard] Invalid MongoDB URI in test environment: ${uri}`);
+  }
+}
+
 function mongoUri() {
   const uri = process.env.MONGODB_PRISMA_URI?.trim() || process.env.MONGODB_URI?.trim();
   if (!uri || !/^mongodb(?:\+srv)?:\/\//.test(uri)) {
     throw new Error("MONGODB_URI is not configured with a MongoDB connection string.");
   }
+  assertSafeMongoUri(uri);
   return uri;
 }
 
@@ -67,7 +88,12 @@ export function getMongoClient() {
       maxPoolSize: 20,
       minPoolSize: 0,
       serverSelectionTimeoutMS: mongoConnectionTimeoutMs(),
-    }).connect();
+    })
+      .connect()
+      .catch((error) => {
+        delete cache.clientPromise;
+        throw error;
+      });
   }
   return cache.clientPromise;
 }
@@ -75,7 +101,12 @@ export function getMongoClient() {
 export function getMongoDatabase() {
   if (!cache.databasePromise) {
     const uri = mongoUri();
-    cache.databasePromise = getMongoClient().then((client) => client.db(databaseName(uri)));
+    cache.databasePromise = getMongoClient()
+      .then((client) => client.db(databaseName(uri)))
+      .catch((error) => {
+        delete cache.databasePromise;
+        throw error;
+      });
   }
   return cache.databasePromise;
 }

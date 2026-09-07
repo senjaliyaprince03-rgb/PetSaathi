@@ -32,9 +32,9 @@ for (const path of publicPages) {
     await gotoWithTransportRetry(page, path);
     await page.locator("main").first().waitFor({ state: "attached" });
     const results = await new AxeBuilder({ page })
-      .include("main")
       .withTags(["wcag2a", "wcag2aa"])
       .disableRules(["color-contrast"])
+      .exclude("iframe")
       .analyze();
     const violations = results.violations.filter(({ impact }) => impact === "serious" || impact === "critical");
     expect(violations, `${path}: ${violations.map(({ id, help }) => `${id} — ${help}`).join("; ")}`).toEqual([]);
@@ -50,8 +50,9 @@ test("custom cursor hides on touch screens and respects reduced motion", async (
     return;
   }
 
-  const cursor = page.getByTestId("luxury-cursor-halo");
   await page.mouse.move(320, 240);
+  const cursor = page.getByTestId("luxury-cursor-halo");
+  await expect(cursor).toBeAttached({ timeout: 30_000 });
   await expect(cursor).toHaveAttribute("data-ready", "true", { timeout: 30_000 });
 
   await page.emulateMedia({ colorScheme: "light", reducedMotion: "reduce" });

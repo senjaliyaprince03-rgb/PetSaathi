@@ -17,7 +17,7 @@ export default async function AdminVaccinationCampsPage() {
 
   // Fetch camps (simulated by SocietyEvent containing 'Vaccination' in title)
   const camps = await prisma.societyEvent.findMany({
-    where: { title: { contains: "Vaccination", mode: "insensitive" } },
+    where: { title: { contains: "Vaccination" } },
     orderBy: { startsAt: "desc" },
     include: { society: { select: { name: true } } }
   });

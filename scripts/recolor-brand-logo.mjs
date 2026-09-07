@@ -1,71 +1,89 @@
 import sharp from "sharp";
+import fs from "fs";
 
-const sourcePath = "public/images/petsaathi-logo-horizontal.png";
-const outputPath = "public/images/petsaathi-logo-horizontal-brand.png";
+async function buildAllLogos() {
+  // 1. Get high-res colored mascot mark trimmed cleanly
+  const mark = await sharp("public/images/petsaathi-logo-mark-colored.png")
+    .trim()
+    .resize(160, 160, { fit: "contain", background: { r: 0, g: 0, b: 0, alpha: 0 } })
+    .png()
+    .toBuffer();
 
-const { data, info } = await sharp(sourcePath)
-  .ensureAlpha()
-  .raw()
-  .toBuffer({ resolveWithObject: true });
+  // 2. Get authentic stylized wordmark trimmed and scaled cleanly
+  const wordmark = await sharp("public/images/petsaathi-logo-wordmark.png")
+    .trim()
+    .resize(340, 90, { fit: "contain", background: { r: 0, g: 0, b: 0, alpha: 0 } })
+    .png()
+    .toBuffer();
 
-for (let index = 0; index < data.length; index += info.channels) {
-  const alpha = data[index + 3];
-  if (alpha === 0) continue;
+  // 3. Compose Light Horizontal Logo (Width: 540, Height: 160)
+  const lightBuffer = await sharp({
+    create: {
+      width: 540,
+      height: 160,
+      channels: 4,
+      background: { r: 0, g: 0, b: 0, alpha: 0 }
+    }
+  })
+    .composite([
+      { input: mark, left: 10, top: 0 },
+      { input: wordmark, left: 180, top: 35 }
+    ])
+    .png({ compressionLevel: 9 })
+    .toBuffer();
 
-  const red = data[index];
-  const green = data[index + 1];
-  const blue = data[index + 2];
-  const luminance = (red + green + blue) / 3;
-  const isNeutral = Math.max(red, green, blue) - Math.min(red, green, blue) < 8;
+  await sharp(lightBuffer).toFile("public/images/petsaathi-logo-horizontal-brand.png");
+  await sharp(lightBuffer).toFile("public/logo-header.png");
+  await sharp(lightBuffer).toFile("public/logo.png");
 
-  if (isNeutral && alpha < 180 && luminance >= 35 && luminance <= 115) {
-    // Preserve the original soft fill opacity while moving pet accents into brand indigo.
-    data[index] = 91;
-    data[index + 1] = 61;
-    data[index + 2] = 122;
-    continue;
+  // 4. Inverted Wordmark for Dark Backgrounds
+  // Recolor the wordmark pixels to bright white & coral
+  const { data: wmRaw, info: wmInfo } = await sharp(wordmark)
+    .ensureAlpha()
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+
+  for (let i = 0; i < wmRaw.length; i += wmInfo.channels) {
+    const alpha = wmRaw[i + 3];
+    if (alpha < 30) continue;
+    const r = wmRaw[i];
+    const g = wmRaw[i + 1];
+    const b = wmRaw[i + 2];
+    const lum = (r + g + b) / 3;
+    if (lum < 150) {
+      // Dark text -> white
+      wmRaw[i] = 255;
+      wmRaw[i + 1] = 255;
+      wmRaw[i + 2] = 255;
+    }
   }
 
-  if (luminance < 105) {
-    // Keep all line art and lettering crisp in the site's dark plum ink.
-    data[index] = 48;
-    data[index + 1] = 32;
-    data[index + 2] = 48;
-  }
+  const invertedWordmark = await sharp(wmRaw, {
+    raw: { width: wmInfo.width, height: wmInfo.height, channels: wmInfo.channels }
+  })
+    .png()
+    .toBuffer();
+
+  const darkBuffer = await sharp({
+    create: {
+      width: 540,
+      height: 160,
+      channels: 4,
+      background: { r: 0, g: 0, b: 0, alpha: 0 }
+    }
+  })
+    .composite([
+      { input: mark, left: 10, top: 0 },
+      { input: invertedWordmark, left: 180, top: 35 }
+    ])
+    .png({ compressionLevel: 9 })
+    .toBuffer();
+
+  await sharp(darkBuffer).toFile("public/images/petsaathi-logo-horizontal-inverted.png");
+
+  console.log("Successfully rebuilt authentic high-DPI PetSaathi brand logos!");
 }
 
-await sharp(data, {
-  raw: {
-    width: info.width,
-    height: info.height,
-    channels: info.channels
-  }
-})
-  .png({ compressionLevel: 9 })
-  .toFile(outputPath);
+buildAllLogos().catch(console.error);
 
-const mark = await sharp(outputPath)
-  .extract({ left: 0, top: 0, width: 160, height: 160 })
-  .resize(404, 404, { fit: "contain" })
-  .png()
-  .toBuffer();
 
-const favicon = sharp({
-  create: {
-    width: 512,
-    height: 512,
-    channels: 4,
-    background: "#fffdf8"
-  }
-})
-  .composite([{ input: mark, left: 54, top: 54 }])
-  .png({ compressionLevel: 9 })
-  .toBuffer();
-
-await Promise.all([
-  sharp(await favicon).toFile("src/app/icon.png"),
-  sharp(await favicon).resize(192, 192).toFile("public/icons/petsaathi-favicon-v2.png"),
-  sharp(await favicon).toFile("public/icons/petsaathi-app-icon-v2.png")
-]);
-
-console.log(`Created ${outputPath} and refreshed the dog-and-cat favicon family`);

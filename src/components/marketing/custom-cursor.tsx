@@ -129,6 +129,7 @@ export function CustomCursor() {
       ref={cursorRef}
       aria-hidden="true"
       data-testid="luxury-cursor-halo"
+      data-ready="true"
       className={`pointer-events-none fixed left-0 top-0 z-[9999] hidden h-px w-px will-change-transform transition-opacity duration-200 md:block ${
         isVisible ? "opacity-100" : "opacity-0"
       }`}

@@ -5,8 +5,9 @@ import { useRouter } from "next/navigation";
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { LoaderCircle, Save, Calendar, Plus, Trash2, Clock } from "lucide-react";
+import { LoaderCircle, Save, Calendar, Plus, Trash2, Clock, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
+import { PortalShell } from "@/components/portal/portal-shell";
 
 const ruleSchema = z.object({
   weekday: z.number().min(0).max(6),
@@ -25,7 +26,7 @@ const DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", 
 
 export default function EditAvailabilityPage() {
   const router = useRouter();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -34,7 +35,7 @@ export default function EditAvailabilityPage() {
     defaultValues: { rules: [] }
   });
 
-  const { fields, append, remove } = useFieldArray({
+  const { fields, append, remove, replace } = useFieldArray({
     control,
     name: "rules"
   });
@@ -45,7 +46,6 @@ export default function EditAvailabilityPage() {
         const res = await fetch("/api/saathi/availability");
         if (res.ok) {
           const data = await res.json();
-          // Initialize with fetched rules or empty array
           reset({ rules: data.rules || [] });
         }
       } catch (err) {
@@ -56,6 +56,26 @@ export default function EditAvailabilityPage() {
     }
     loadAvailability();
   }, [reset]);
+
+  const applyFullWeekPreset = () => {
+    const fullWeek = [1, 2, 3, 4, 5, 6].map((day) => ({
+      weekday: day,
+      startTime: "08:00",
+      endTime: "20:00",
+      active: true,
+    }));
+    replace(fullWeek);
+  };
+
+  const applyWeekdaysPreset = () => {
+    const weekdays = [1, 2, 3, 4, 5].map((day) => ({
+      weekday: day,
+      startTime: "09:00",
+      endTime: "18:00",
+      active: true,
+    }));
+    replace(weekdays);
+  };
 
   async function onSubmit(data: AvailabilityFormValues) {
     setSaving(true);
@@ -82,35 +102,47 @@ export default function EditAvailabilityPage() {
     }
   }
 
-  if (loading) {
-    return (
-      <div className="flex h-64 items-center justify-center">
-        <LoaderCircle className="h-8 w-8 animate-spin text-indigo" />
-      </div>
-    );
-  }
-
   return (
-    <div className="mx-auto max-w-3xl px-4 py-8">
-      <div className="mb-8 flex items-center justify-between">
-        <div>
-          <h1 className="font-display text-4xl font-semibold tracking-tight text-ink">Availability</h1>
-          <p className="mt-2 text-ink/80">Set your weekly recurring schedule.</p>
-        </div>
-        <button
-          type="button"
-          onClick={() => append({ weekday: 1, startTime: "09:00", endTime: "17:00", active: true })}
-          className="flex items-center gap-2 rounded-xl bg-ink/5 px-4 py-2 text-sm font-bold text-ink transition hover:bg-ink/10"
-        >
-          <Plus className="h-4 w-4" /> Add Slot
-        </button>
-      </div>
+    <PortalShell mode="saathi" displayName="Saathi Caregiver">
+      <div className="max-w-4xl pb-16">
+        {/* Header */}
+        <section className="mt-4 rounded-[2rem] border border-black/[0.06] bg-gradient-to-r from-paper via-cream to-[#fbf2ea] p-6 shadow-sm sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="flex h-2.5 w-2.5 rounded-full bg-indigo animate-pulse" />
+              <p className="text-[0.7rem] font-bold uppercase tracking-[0.2em] text-indigo">Availability Manager</p>
+            </div>
+            <h1 className="mt-2 font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+              Edit Weekly Schedule
+            </h1>
+            <p className="mt-2 max-w-xl text-xs sm:text-sm text-ink/70 leading-relaxed">
+              Add or remove daily working windows. Our matching engine will dispatch walks and visits only during your active hours.
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center gap-2">
+            <button
+              type="button"
+              onClick={applyFullWeekPreset}
+              className="inline-flex items-center gap-1.5 rounded-xl border border-black/[0.08] bg-white px-3.5 py-2 text-xs font-bold text-ink shadow-sm transition hover:bg-cream"
+            >
+              <Sparkles className="h-3.5 w-3.5 text-coral" /> Mon–Sat (8AM–8PM)
+            </button>
+            <button
+              type="button"
+              onClick={() => append({ weekday: 1, startTime: "09:00", endTime: "18:00", active: true })}
+              className="inline-flex items-center gap-1.5 rounded-xl bg-indigo px-3.5 py-2 text-xs font-bold text-white shadow-sm transition hover:bg-indigo/90"
+            >
+              <Plus className="h-3.5 w-3.5" /> Add Day Slot
+            </button>
+          </div>
+        </section>
 
-      <motion.div 
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="rounded-4xl border border-indigo/10 bg-paper p-6 shadow-lifted sm:p-10"
-      >
+        {loading ? (
+          <div className="mt-12 flex h-64 items-center justify-center">
+            <LoaderCircle className="h-8 w-8 animate-spin text-indigo" />
+          </div>
+        ) : (
+          <div className="mt-8 rounded-[2rem] border border-black/[0.06] bg-white p-6 sm:p-8 shadow-sm">
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
           {error && (
             <div className="rounded-2xl bg-coral/10 p-4 text-sm font-semibold text-coral">
@@ -206,7 +238,9 @@ export default function EditAvailabilityPage() {
             </button>
           </div>
         </form>
-      </motion.div>
-    </div>
+      </div>
+    )}
+  </div>
+</PortalShell>
   );
 }

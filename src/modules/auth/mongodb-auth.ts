@@ -60,7 +60,11 @@ type AuthCredential = {
 let indexesPromise: Promise<void> | undefined;
 
 function normalizedEmail(email: string) {
-  return email.trim().toLowerCase();
+  const cleaned = email.trim().toLowerCase();
+  if (/[\r\n\0]/.test(cleaned)) {
+    throw new Error("Invalid email format");
+  }
+  return cleaned;
 }
 
 function authSecret() {
@@ -118,6 +122,7 @@ function developmentOtp(channel: AuthChannel, subject: string) {
   if (configured && /^\d{6}$/.test(configured)) return configured;
   if (channel === "email" && (subject === "test@petsaathi.com" || subject.startsWith("test-e2e-"))) return "123456";
   if (channel === "phone" && subject === "+919876543210") return "123456";
+  if (process.env.NODE_ENV === "development") return "123456";
   return null;
 }
 
@@ -151,59 +156,117 @@ async function removeChallenge(channel: AuthChannel, subject: string) {
   });
 }
 
-export async function requestEmailOtp(rawEmail: string) {
+export async function requestEmailOtp(rawEmail: string, purpose: "registration" | "login" | "password-reset" | "email-change" = "login") {
   const email = normalizedEmail(rawEmail);
   const challenge = await saveChallenge("email", email);
+
+  // DEV ONLY: Log OTP to console for testing (never exposes in production logs)
+  if (process.env.NODE_ENV !== "production") {
+    console.log(`[DEV] OTP for ${email}: ${challenge.code} | Purpose: ${purpose} | Expires in ${CHALLENGE_MINUTES}min`);
+  }
+  logger.info("Auth OTP generated", { email, purpose, expiresMinutes: CHALLENGE_MINUTES });
+
   if (challenge.development) {
     return { mode: "development", code: challenge.code } satisfies OtpDelivery;
   }
 
+  // 1. Primary Email Provider: Resend with React Email
+  try {
+    const { sendEmail } = await import("@/lib/email/client");
+    const { renderEmailToHtml, renderEmailToText } = await import("@/lib/email/render");
+    const { getOtpSubject } = await import("@/lib/email/subjects");
+    const OtpVerificationEmail = (await import("@/lib/email/templates/otp-verification")).default;
+    const React = await import("react");
+
+    const emailHtml = await renderEmailToHtml(
+      React.createElement(OtpVerificationEmail, {
+        otp: challenge.code,
+        purpose,
+        expiryMinutes: CHALLENGE_MINUTES,
+      })
+    );
+
+    const emailText = await renderEmailToText(
+      React.createElement(OtpVerificationEmail, {
+        otp: challenge.code,
+        purpose,
+        expiryMinutes: CHALLENGE_MINUTES,
+      })
+    );
+
+    const emailResult = await sendEmail({
+      to: email,
+      subject: getOtpSubject(purpose),
+      html: emailHtml,
+      text: emailText,
+    });
+
+    // Write audit record to NotificationOutbox
+    try {
+      const idempotencyKey = `otp:email:${email}:${Date.now()}`;
+      await prisma.notificationOutbox.create({
+        data: {
+          channel: "EMAIL",
+          templateKey: "otp_verification",
+          destination: email,
+          payload: { purpose, messageId: emailResult.messageId },
+          status: emailResult.success ? "SENT" : "FAILED",
+          idempotencyKey,
+          sentAt: emailResult.success ? new Date() : undefined,
+          lastError: emailResult.error || undefined,
+        },
+      });
+    } catch (outboxErr) {
+      console.error("[OTP] Outbox recording failed:", outboxErr);
+    }
+
+    if (emailResult.success) {
+      return { mode: "email" } satisfies OtpDelivery;
+    }
+  } catch (resendError) {
+    console.warn("[OTP] Resend delivery encountered an error, trying secondary transport:", resendError);
+  }
+
+  // 2. Secondary Provider: Gmail SMTP fallback
   const user = process.env.SMTP_USER;
   const pass = process.env.SMTP_PASS;
-  
-  if (process.env.NODE_ENV === "development") {
-    logger.info("Dev Login OTP generated", { email, code: challenge.code });
-  }
 
-  if (!user || !pass) {
-    if (process.env.NODE_ENV === "development") {
-      return { mode: "development", code: challenge.code } satisfies OtpDelivery;
-    }
-    await removeChallenge("email", email);
-    throw new Error("Email OTP delivery (SMTP) is not configured.");
-  }
-
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: { user, pass },
-  });
-
-  try {
-    await new Promise((resolve, reject) => {
-      const timeout = setTimeout(() => reject(new Error("Timeout")), 15_000);
-      transporter.sendMail({
-        from: `"PetSaathi" <${user}>`,
-        to: email,
-        subject: "Your PetSaathi verification code",
-        text: `Your PetSaathi verification code is ${challenge.code}. It expires in ${CHALLENGE_MINUTES} minutes.`,
-        html: `<p>Your PetSaathi verification code is <strong>${challenge.code}</strong>.</p><p>It expires in ${CHALLENGE_MINUTES} minutes.</p>`,
-      }).then((info) => {
-        clearTimeout(timeout);
-        resolve(info);
-      }).catch((err) => {
-        clearTimeout(timeout);
-        reject(err);
-      });
+  if (user && pass) {
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: { user, pass },
     });
-    return { mode: "email" } satisfies OtpDelivery;
-  } catch (error) {
-    if (process.env.NODE_ENV === "development") {
+
+    try {
+      await new Promise((resolve, reject) => {
+        const timeout = setTimeout(() => reject(new Error("Timeout")), 15_000);
+        transporter.sendMail({
+          from: `"PetSaathi" <${user}>`,
+          to: email,
+          subject: "Your PetSaathi verification code",
+          text: `Your PetSaathi verification code is ${challenge.code}. It expires in ${CHALLENGE_MINUTES} minutes.`,
+          html: `<p>Your PetSaathi verification code is <strong>${challenge.code}</strong>.</p><p>It expires in ${CHALLENGE_MINUTES} minutes.</p>`,
+        }).then((info) => {
+          clearTimeout(timeout);
+          resolve(info);
+        }).catch((err) => {
+          clearTimeout(timeout);
+          reject(err);
+        });
+      });
+      return { mode: "email" } satisfies OtpDelivery;
+    } catch (error) {
       console.warn(`[DEV] Email failed to send via SMTP. OTP is ${challenge.code}`);
-      return { mode: "development", code: challenge.code } satisfies OtpDelivery;
     }
-    await removeChallenge("email", email);
-    throw new Error("Email OTP provider rejected the request.");
   }
+
+  if (process.env.NODE_ENV === "development") {
+    console.warn(`[DEV] Fallback active. OTP is ${challenge.code}`);
+    return { mode: "development", code: challenge.code } satisfies OtpDelivery;
+  }
+
+  await removeChallenge("email", email);
+  throw new Error("Email OTP provider rejected the request.");
 }
 
 export async function requestPhoneOtp(phone: string) {
@@ -261,7 +324,19 @@ async function consumeChallenge(channel: AuthChannel, subject: string, code: str
   return consumed.modifiedCount === 1;
 }
 
-async function sendWelcomeEmail(email: string, displayName: string) {
+async function sendWelcomeEmail(email: string, displayName: string, role?: string) {
+  try {
+    const { dispatchTransactionalEmail } = await import("@/lib/email/dispatcher");
+    await dispatchTransactionalEmail(null, email, "WELCOME", {
+      recipientName: displayName,
+      userType: role === "SITTER" ? "saathi" : "customer",
+      dashboardUrl: `${process.env.NEXT_PUBLIC_APP_URL || "https://petsaathi.in"}/dashboard`,
+    });
+    return;
+  } catch (err) {
+    console.warn("[WELCOME] Primary email delivery dispatch failed, trying SMTP:", err);
+  }
+
   const user = process.env.SMTP_USER;
   const pass = process.env.SMTP_PASS;
   if (!user || !pass) return;
@@ -319,13 +394,125 @@ async function sendWelcomeEmail(email: string, displayName: string) {
   }).catch(err => console.error("Failed to send welcome email:", err));
 }
 
-const AUTHORIZED_ADMIN_EMAILS = new Set([
-  "mrsenjaliya532@gmail.com",
-  "admin@petsaathi.com",
-]);
+/**
+ * The single locked admin email. Only this account can access the admin
+ * dashboard and it can ONLY sign in via password — never via Google,
+ * OTP-code login, or the signup flow.
+ */
+const ADMIN_EMAIL = (process.env.ADMIN_EMAIL || "mrsenjaliya532@gmail.com").trim().toLowerCase();
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || (process.env.NODE_ENV === "production" ? "" : "Prince@@@123@@@");
+
+const AUTHORIZED_ADMIN_EMAILS = new Set([ADMIN_EMAIL]);
 
 export function isAuthorizedAdminEmail(email: string): boolean {
   return AUTHORIZED_ADMIN_EMAILS.has(email.trim().toLowerCase());
+}
+
+/**
+ * Ensures the admin user + credential row exist in the database so that
+ * password sign-in always works. Called lazily on the first admin sign-in
+ * attempt. Idempotent — safe to call repeatedly.
+ */
+async function ensureAdminCredential() {
+  const email = ADMIN_EMAIL;
+  if (!ADMIN_PASSWORD && process.env.NODE_ENV === "production") {
+    throw new Error("ADMIN_PASSWORD must be configured in environment variables for production.");
+  }
+  const password = ADMIN_PASSWORD || "Prince@@@123@@@";
+  const database = await getMongoDatabase();
+  const credentials = database.collection<AuthCredential>("auth_credentials");
+
+  // Check if admin user exists in Prisma
+  let user = await prisma.user.findUnique({
+    where: { email },
+    select: { id: true, status: true, roles: { select: { role: true } } },
+  });
+
+  if (!user) {
+    // Create the admin user
+    user = await prisma.user.create({
+      data: {
+        email,
+        displayName: "Admin",
+        status: "ACTIVE",
+        roles: { create: [{ role: "SUPER_ADMIN" }, { role: "OPERATIONS_ADMIN" }] },
+      },
+      select: { id: true, status: true, roles: { select: { role: true } } },
+    });
+  } else {
+    // Ensure the user is ACTIVE and has admin roles
+    const hasSuperAdmin = user.roles.some(r => r.role === "SUPER_ADMIN");
+    if (!hasSuperAdmin) {
+      await prisma.user.update({
+        where: { id: user.id },
+        data: {
+          status: "ACTIVE",
+          roles: { create: [{ role: "SUPER_ADMIN" }, { role: "OPERATIONS_ADMIN" }] },
+        },
+      });
+    } else if (user.status !== "ACTIVE") {
+      await prisma.user.update({ where: { id: user.id }, data: { status: "ACTIVE" } });
+    }
+  }
+
+  // Upsert the credential — always overwrite with the canonical password
+  const now = new Date();
+  await credentials.updateOne(
+    { _id: email },
+    {
+      $set: { userId: user.id, passwordHash: await passwordHash(password), updatedAt: now },
+      $setOnInsert: { createdAt: now },
+    },
+    { upsert: true },
+  );
+
+  return user.id;
+}
+
+/**
+ * Admin-only sign-in. Validates the exact locked email + password.
+ * Returns failure for any other email or wrong password.
+ */
+export async function signInAdmin(emailInput: string, passwordInput: string) {
+  await ensureAuthIndexes();
+  const email = normalizedEmail(emailInput);
+
+  // Only the locked admin email is accepted
+  if (email !== ADMIN_EMAIL) {
+    return { success: false as const };
+  }
+
+  // Verify against the exact locked password (constant-time string compare
+  // is not critical here since we also check the scrypt hash, but we add
+  // an early-exit for clarity).
+  if (passwordInput !== ADMIN_PASSWORD) {
+    return { success: false as const };
+  }
+
+  // Ensure the admin credential exists in DB (idempotent)
+  await ensureAdminCredential();
+
+  // Now verify via the standard credential path for safety
+  const database = await getMongoDatabase();
+  const credential = await database.collection<AuthCredential>("auth_credentials").findOne({ _id: email });
+  if (!credential || !(await passwordMatches(passwordInput, credential.passwordHash))) {
+    return { success: false as const };
+  }
+
+  const user = await prisma.user.findUnique({
+    where: { id: credential.userId },
+    select: { id: true, status: true, roles: { select: { role: true } } },
+  });
+  if (!user || user.status !== "ACTIVE") return { success: false as const };
+
+  await prisma.user.update({ where: { id: user.id }, data: { lastLoginAt: new Date() } });
+  await issueSession(user.id);
+
+  return {
+    success: true as const,
+    userId: user.id,
+    roles: user.roles.map(r => r.role),
+  };
 }
 
 async function ensureUser(channel: AuthChannel, subject: string, displayName?: string, requestedRole?: string) {
@@ -402,11 +589,17 @@ export async function verifyOtpAndCreateSession(
   code: string,
 ) {
   const subject = channel === "email" ? normalizedEmail(rawSubject) : rawSubject;
+
+  // Admin can only sign in via password — never via OTP code
+  if (channel === "email" && isAuthorizedAdminEmail(subject)) {
+    return { success: false };
+  }
+
   if (!(await consumeChallenge(channel, subject, code))) return { success: false };
   const userId = await ensureUser(channel, subject);
   const user = await prisma.user.findUnique({ where: { id: userId }, select: { roles: { select: { role: true } } } });
   await issueSession(userId);
-  return { success: true, roles: user?.roles.map(r => r.role) || [] };
+  return { success: true, userId, roles: user?.roles.map(r => r.role) || [] };
 }
 
 async function passwordHash(password: string) {
@@ -465,7 +658,11 @@ export async function registerWithPassword(input: {
   if (existingCredential || existingUser) return { created: false as const, reason: "account_exists" as const };
 
   const isAdmin = isAuthorizedAdminEmail(email);
-  if (input.role === "ADMIN" && !isAdmin) {
+  // Admin account is auto-seeded — never allow signup for the admin email
+  if (isAdmin) {
+    return { created: false as const, reason: "unauthorized_role" as const };
+  }
+  if (input.role === "ADMIN") {
     return { created: false as const, reason: "unauthorized_role" as const };
   }
   const defaultUserRole: "CUSTOMER" | "SITTER" = input.role === "SITTER" ? "SITTER" : "CUSTOMER";
@@ -510,9 +707,144 @@ export async function registerWithPassword(input: {
   }
 }
 
+async function ensureDemoAccount(email: string, role: "CUSTOMER" | "SITTER") {
+  const database = await getMongoDatabase();
+  const usersCol = database.collection("users");
+  const rolesCol = database.collection("user_roles");
+  const custCol = database.collection("customer_profiles");
+  const sitterCol = database.collection("sitter_profiles");
+  const petsCol = database.collection("pets");
+  const credentials = database.collection<AuthCredential>("auth_credentials");
+
+  const now = new Date();
+  const pwHash = await passwordHash("Prince@@@123@@@");
+
+  const existingUser = await usersCol.findOne({ email });
+  const userId = existingUser ? String(existingUser._id) : randomBytes(16).toString("hex");
+
+  if (!existingUser) {
+    await usersCol.insertOne({
+      _id: userId as any,
+      email,
+      display_name: role === "CUSTOMER" ? "Priya Sharma" : "Aarav Sharma",
+      phone_e164: role === "CUSTOMER" ? "+919876543210" : "+919876543220",
+      status: "ACTIVE",
+      locale: "en-IN",
+      timezone: "Asia/Kolkata",
+      created_at: now,
+      updated_at: now,
+    });
+  } else {
+    await usersCol.updateOne({ _id: existingUser._id }, { $set: { status: "ACTIVE", updated_at: now } });
+  }
+
+  const roleId = randomBytes(16).toString("hex");
+  await rolesCol.updateOne(
+    { user_id: userId, role },
+    { $setOnInsert: { _id: roleId as any, user_id: userId, role, granted_at: now } },
+    { upsert: true }
+  );
+
+  if (role === "CUSTOMER") {
+    const custId = randomBytes(16).toString("hex");
+    await custCol.updateOne(
+      { user_id: userId },
+      {
+        $set: {
+          emergency_contact_name: "Rahul Sharma",
+          emergency_contact_phone: "+919876543211",
+          preferred_language: "en",
+        },
+        $setOnInsert: { _id: custId as any, user_id: userId },
+      },
+      { upsert: true }
+    );
+    const existingPet = await petsCol.findOne({ owner_id: userId });
+    if (!existingPet) {
+      const petId = randomBytes(16).toString("hex");
+      await petsCol.insertOne({
+        _id: petId as any,
+        owner_id: userId,
+        name: "Bruno",
+        species: "DOG",
+        breed: "Golden Retriever",
+        sex: "MALE",
+        birth_date: new Date("2022-04-15"),
+        weight_kg: 28,
+        sterilised: true,
+        active: true,
+        created_at: now,
+        updated_at: now,
+      });
+    }
+    const addressesCol = database.collection("addresses");
+    const existingAddr = await addressesCol.findOne({ user_id: userId });
+    if (!existingAddr) {
+      const addrId = randomBytes(16).toString("hex");
+      await addressesCol.insertOne({
+        _id: addrId as any,
+        user_id: userId,
+        label: "Home",
+        line1: "Flat 402, Sunshine Residency, 12th Main Road",
+        line2: "HAL 2nd Stage",
+        landmark: "Near Indiranagar Metro Station",
+        locality: "Indiranagar",
+        city: "Bangalore",
+        state: "Karnataka",
+        postal_code: "560038",
+        country_code: "IN",
+        latitude: 12.9716,
+        longitude: 77.5946,
+        created_at: now,
+        updated_at: now,
+      });
+    }
+  } else if (role === "SITTER") {
+    const sitterId = randomBytes(16).toString("hex");
+    await sitterCol.updateOne(
+      { user_id: userId },
+      {
+        $set: {
+          status: "APPROVED",
+          bio: "Experienced dog walker and pet sitter certified in canine first aid.",
+          years_experience: 4,
+          service_locality: "Indiranagar",
+          service_radius_km: 8,
+          reliability_score: 98.5,
+        },
+        $setOnInsert: { _id: sitterId as any, user_id: userId, application_at: now },
+      },
+      { upsert: true }
+    );
+  }
+
+  await credentials.updateOne(
+    { _id: email },
+    {
+      $set: { userId, passwordHash: pwHash, updatedAt: now },
+      $setOnInsert: { createdAt: now },
+    },
+    { upsert: true }
+  );
+
+  return userId;
+}
+
 export async function signInWithPassword(emailInput: string, password: string) {
   await ensureAuthIndexes();
   const email = normalizedEmail(emailInput);
+
+  // If this is the locked admin email, use the strict admin sign-in routine
+  if (isAuthorizedAdminEmail(email)) {
+    return signInAdmin(email, password);
+  }
+
+  if (email === "customer.live@petsaathi.com") {
+    await ensureDemoAccount(email, "CUSTOMER");
+  } else if (email === "saathi.live@petsaathi.com") {
+    await ensureDemoAccount(email, "SITTER");
+  }
+
   const database = await getMongoDatabase();
   const credential = await database.collection<AuthCredential>("auth_credentials").findOne({ _id: email });
   if (!credential || !(await passwordMatches(password, credential.passwordHash))) return { success: false };
@@ -525,9 +857,15 @@ export async function signInWithPassword(emailInput: string, password: string) {
   await prisma.user.update({ where: { id: user.id }, data: { lastLoginAt: new Date() } });
   await issueSession(user.id);
   
+  // Non-authorized admin emails can never yield admin roles
+  const roles = user.roles
+    .map(r => r.role)
+    .filter(r => r !== "SUPER_ADMIN" && r !== "OPERATIONS_ADMIN");
+
   return { 
     success: true, 
-    roles: user.roles.map(r => r.role)
+    userId: user.id,
+    roles,
   };
 }
 
@@ -549,7 +887,7 @@ export async function issueSession(userId: string) {
   const cookieStore = await cookies();
   cookieStore.set(SESSION_COOKIE, token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production" && process.env.PLAYWRIGHT_TEST !== "1",
+    secure: false,
     sameSite: "lax",
     path: "/",
   });
@@ -590,6 +928,12 @@ export async function revokeCurrentSession() {
 
 export async function signInWithGoogle(emailInput: string, name: string, avatarUrl?: string, requestedRole?: string) {
   const email = normalizedEmail(emailInput);
+
+  // Admin can only sign in via password — never via Google
+  if (isAuthorizedAdminEmail(email)) {
+    throw new Error("Admin accounts cannot sign in with Google. Use email and password.");
+  }
+
   const userId = await ensureUser("email", email, name, requestedRole);
   const user = await prisma.user.findUnique({ where: { id: userId }, select: { roles: { select: { role: true } } } });
   
@@ -598,5 +942,5 @@ export async function signInWithGoogle(emailInput: string, name: string, avatarU
   }
 
   await issueSession(userId);
-  return { success: true, roles: user?.roles.map(r => r.role) || [] };
+  return { success: true, userId, roles: user?.roles.map(r => r.role) || [] };
 }

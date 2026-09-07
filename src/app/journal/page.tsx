@@ -9,8 +9,8 @@ import { isDatabaseConfigured, prisma } from "@/lib/db";
 import { logger } from "@/lib/logger";
 
 export const metadata: Metadata = {
-  title: "Care Journal | PetSaathi",
-  description: "Reviewed PetSaathi guides for calmer local pet care and safer handovers."
+  title: "Pet Care Journal & Expert Guides",
+  description: "Veterinarian-reviewed guides, training advice, and canine wellness handbooks for pet parents in India."
 };
 export const dynamic = "force-dynamic";
 

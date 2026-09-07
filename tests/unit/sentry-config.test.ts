@@ -4,7 +4,16 @@ import { isSentryEnabled } from "../../src/lib/public-config";
 
 describe("isSentryEnabled", () => {
   it("disables Sentry in development by default", () => {
-    expect(isSentryEnabled("https://public@o0.ingest.sentry.io/1", "development")).toBe(false);
+    const origPublic = process.env.NEXT_PUBLIC_SENTRY_ENABLE;
+    const origServer = process.env.SENTRY_ENABLE;
+    delete process.env.NEXT_PUBLIC_SENTRY_ENABLE;
+    delete process.env.SENTRY_ENABLE;
+    try {
+      expect(isSentryEnabled("https://public@o0.ingest.sentry.io/1", "development")).toBe(false);
+    } finally {
+      if (origPublic !== undefined) process.env.NEXT_PUBLIC_SENTRY_ENABLE = origPublic;
+      if (origServer !== undefined) process.env.SENTRY_ENABLE = origServer;
+    }
   });
 
   it("enables Sentry in development when explicitly opted in", () => {

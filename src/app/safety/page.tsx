@@ -6,7 +6,10 @@ import { ArrowRight, BadgeCheck, FileClock, ShieldAlert, UserRoundCheck } from "
 import { PublicShell } from "@/components/marketing/public-shell";
 import { buttonVariants } from "@/components/ui/button";
 
-export const metadata: Metadata = { title: "Safety | PetSaathi" };
+export const metadata: Metadata = { 
+  title: "Safety & Trust Protocols",
+  description: "Explore PetSaathi's multi-layered trust ecosystem: ₹50,000 Vet Guarantee, background-verified Saathis, GPS-tracked sessions, and SOS protocols."
+};
 
 const safetyCards = [
   [UserRoundCheck, "Evidence-specific checks", "Identity, interview, training and service permissions are separate records with status and expiry—not one vague verified label."],

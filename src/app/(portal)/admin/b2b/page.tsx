@@ -16,24 +16,36 @@ export default async function EnterpriseB2BPage() {
     redirect("/login?returnTo=/admin/b2b");
   }
 
-  const orgs = await listOrganizations({ page: 1, pageSize: 1 });
-  const progs = await listProgrammes({ status: "ACTIVE_PROGRAMME", page: 1, pageSize: 1 });
-  const pipeline = await getPipelineSummary();
-  const totalPipelineOpps = pipeline.reduce((acc, curr) => acc + curr.count, 0);
+  let orgsCount = 0;
+  let progsCount = 0;
+  let totalPipelineOpps = 0;
+
+  try {
+    const [orgs, progs, pipeline] = await Promise.all([
+      listOrganizations({ page: 1, pageSize: 1 }).catch(() => ({ items: [], total: 0 })),
+      listProgrammes({ status: "ACTIVE_PROGRAMME", page: 1, pageSize: 1 }).catch(() => ({ items: [], total: 0 })),
+      getPipelineSummary().catch(() => []),
+    ]);
+    orgsCount = orgs?.total || 0;
+    progsCount = progs?.total || 0;
+    totalPipelineOpps = pipeline?.reduce((acc, curr) => acc + (curr.count || 0), 0) || 0;
+  } catch (err) {
+    console.error("B2B page metrics error:", err);
+  }
 
   return (
-    <PortalShell mode="admin" displayName={identity.displayName}>
+    <PortalShell mode="admin" displayName={identity.displayName} showSummaryCards={false}>
       <div className="mt-5">
         <h1 className="font-display text-4xl font-semibold tracking-[-0.04em]">Enterprise B2B Dashboard</h1>
         
         <div className="mt-8 grid gap-5 sm:grid-cols-3">
           <section className="rounded-4xl border border-indigo/10 bg-paper p-6 shadow-lifted">
             <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-ink/80">Total Organizations</h3>
-            <p className="mt-2 font-display text-4xl font-semibold">{orgs.total}</p>
+            <p className="mt-2 font-display text-4xl font-semibold">{orgsCount}</p>
           </section>
           <section className="rounded-4xl border border-indigo/10 bg-paper p-6 shadow-lifted">
             <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-ink/80">Active Programmes</h3>
-            <p className="mt-2 font-display text-4xl font-semibold">{progs.total}</p>
+            <p className="mt-2 font-display text-4xl font-semibold">{progsCount}</p>
           </section>
           <section className="rounded-4xl border border-indigo/10 bg-paper p-6 shadow-lifted">
             <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-ink/80">Pipeline Opportunities</h3>

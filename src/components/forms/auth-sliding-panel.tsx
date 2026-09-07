@@ -8,6 +8,7 @@ import Script from "next/script";
 import { useEffect } from "react";
 
 import { hasUsableGoogleClientId } from "@/lib/public-config";
+import { PetSaathiLogo } from "@/components/brand/logo";
 
 // Decorative animation: loaded lazily so lottie-react + the animation JSON
 // stay out of the login route's first-load JS.
@@ -52,8 +53,13 @@ export function AuthSlidingPanel() {
   }
 
   function redirectToDashboardOrPortal(roles?: string[]) {
-    router.replace(redirectForRoles(roles), { scroll: false });
-    router.refresh();
+    const target = redirectForRoles(roles);
+    if (typeof window !== "undefined") {
+      window.location.href = target;
+    } else {
+      router.replace(target, { scroll: false });
+      router.refresh();
+    }
   }
 
   async function handleGoogleCredentialResponse(response: any) {
@@ -78,6 +84,8 @@ export function AuthSlidingPanel() {
     window.google.accounts.id.initialize({
       client_id: googleClientId!,
       callback: handleGoogleCredentialResponse,
+      use_fedcm_for_prompt: false,
+      auto_select: false,
     });
 
     const options = { theme: "outline", size: "large", shape: "rectangular", width: 320, logo_alignment: "left" };
@@ -141,17 +149,23 @@ export function AuthSlidingPanel() {
         return;
       }
 
-      const { response, payload } = await submit("/api/auth/password/signup", { displayName, email, password, role });
+      const { response, payload } = await submit("/api/auth/password/signup", {
+        displayName: displayName.trim(),
+        email: email.trim().toLowerCase(),
+        password,
+        role,
+      });
       if (!response.ok) {
         setError(errorMessage(payload, "Account creation is unavailable."));
         return;
       }
       setVerificationPending(true);
-      setMessage(
-        payload?.developmentOtp
-          ? `Local development verification code: ${payload.developmentOtp}`
-          : "We sent a six-digit verification code to your email.",
-      );
+      if (payload?.developmentOtp) {
+        setOtp(payload.developmentOtp);
+        setMessage(`Local development verification code: ${payload.developmentOtp}`);
+      } else {
+        setMessage("We sent a six-digit verification code to your email.");
+      }
     } finally {
       setPending(false);
     }
@@ -162,7 +176,10 @@ export function AuthSlidingPanel() {
     setPending(true);
     setError(null);
     try {
-      const { response, payload } = await submit("/api/auth/email/verify", { email, otp });
+      const { response, payload } = await submit("/api/auth/email/verify", {
+        email: email.trim().toLowerCase(),
+        otp: otp.trim(),
+      });
       if (!response.ok) {
         setError(errorMessage(payload, "The verification code was rejected."));
         return;
@@ -185,15 +202,19 @@ export function AuthSlidingPanel() {
     setError(null);
     setMessage(null);
     try {
-      const { response, payload } = await submit("/api/auth/email/request", { email });
+      const normalized = email.trim().toLowerCase();
+      const { response, payload } = await submit("/api/auth/email/request", { email: normalized });
       if (!response.ok) {
         setError(errorMessage(payload, "We couldn't send the code right now."));
         return;
       }
       setVerificationPending(true);
-      setMessage(payload?.developmentOtp
-        ? `Local development code: ${payload.developmentOtp}`
-        : `We sent a six-digit code to ${email}. It expires shortly.`);
+      if (payload?.developmentOtp) {
+        setOtp(payload.developmentOtp);
+        setMessage(`Local development code: ${payload.developmentOtp}`);
+      } else {
+        setMessage(`We sent a six-digit code to ${normalized}. It expires shortly.`);
+      }
     } finally {
       setPending(false);
     }
@@ -231,9 +252,13 @@ export function AuthSlidingPanel() {
     setError(null);
     setMessage(null);
     try {
-      const { response, payload } = await submit("/api/auth/password/signin", { email, password });
+      const endpoint = role === "ADMIN" ? "/api/auth/admin/signin" : "/api/auth/password/signin";
+      const { response, payload } = await submit(endpoint, {
+        email: email.trim().toLowerCase(),
+        password,
+      });
       if (!response.ok) {
-        setError(errorMessage(payload, "Sign in failed. Please try again."));
+        setError(errorMessage(payload, "Sign in failed. Please check your credentials and try again."));
         return;
       }
       redirectToDashboardOrPortal(payload?.roles);
@@ -251,6 +276,9 @@ export function AuthSlidingPanel() {
           isSignUp ? "translate-x-0 opacity-100 pointer-events-auto" : "translate-x-0 opacity-0 invisible pointer-events-none sm:translate-x-[100%]"
         }`}
       >
+        <div className="flex justify-center mb-2">
+          <PetSaathiLogo compact={true} />
+        </div>
         <h2 className="mb-2 text-center font-display text-2xl font-bold text-ink sm:mb-3 sm:text-3xl">
           {verificationPending ? "Verify your email" : "Create Account"}
         </h2>
@@ -262,6 +290,9 @@ export function AuthSlidingPanel() {
           <form onSubmit={handleVerification} className="flex flex-col gap-3 sm:gap-4">
             <Field aria-label="Verification code" autoComplete="one-time-code" icon={<KeyRound />} inputMode="numeric" maxLength={6} name="otp" onChange={setOtp} pattern="[0-9]{6}" placeholder="6-digit code" type="text" value={otp} />
             <SubmitButton pending={pending} label="VERIFY & CONTINUE" color="bg-indigo hover:bg-indigo/90" />
+            <button type="button" onClick={() => { setVerificationPending(false); setError(null); setMessage(null); }} className="text-center text-xs font-bold text-indigo transition hover:text-coral">
+              Entered wrong email? Go back
+            </button>
           </form>
         ) : (
           <form onSubmit={handleSignUp} className="flex flex-col gap-3 sm:gap-4">
@@ -290,17 +321,6 @@ export function AuthSlidingPanel() {
                   />
                   Saathi
                 </label>
-                <label className="flex items-center gap-2 cursor-pointer text-sm font-medium text-ink/80">
-                  <input
-                    type="radio"
-                    name="role"
-                    value="ADMIN"
-                    checked={role === "ADMIN"}
-                    onChange={() => setRole("ADMIN")}
-                    className="h-4 w-4 text-indigo focus:ring-indigo accent-indigo"
-                  />
-                  Admin
-                </label>
               </div>
             </div>
             <Field aria-label="Full name" autoComplete="name" icon={<User />} maxLength={80} minLength={2} name="displayName" onChange={setDisplayName} placeholder="Full Name" type="text" value={displayName} />
@@ -323,6 +343,9 @@ export function AuthSlidingPanel() {
           isSignUp ? "translate-x-0 opacity-0 invisible pointer-events-none sm:-translate-x-[100%]" : "translate-x-0 opacity-100 pointer-events-auto"
         }`}
       >
+        <div className="flex justify-center mb-2">
+          <PetSaathiLogo compact={true} />
+        </div>
         <h2 className="mb-2 text-center font-display text-2xl font-bold text-ink sm:mb-3 sm:text-3xl">
           {mode === "emailCode" ? (verificationPending ? "Enter your email code" : "Log in with an email code") : mode === "setPassword" ? "Choose a new password" : "Sign In"}
         </h2>
@@ -331,18 +354,26 @@ export function AuthSlidingPanel() {
             ? verificationPending ? "Enter the code we emailed you" : "We'll email you a one-time code — no password needed"
             : mode === "setPassword"
               ? "Your identity was verified by email code"
-              : "Use your verified email account"}
+              : role === "ADMIN"
+                ? "Admin portal sign in"
+                : "Use your verified email account"}
         </p>
         {mode === "emailCode" ? (
           verificationPending ? (
             <form onSubmit={handleVerification} className="flex flex-col gap-3 sm:gap-4">
               <Field aria-label="Email code" autoComplete="one-time-code" icon={<KeyRound />} inputMode="numeric" maxLength={6} name="otp" onChange={setOtp} pattern="[0-9]{6}" placeholder="6-digit code" type="text" value={otp} />
               <SubmitButton pending={pending} label="VERIFY & CONTINUE" color="bg-indigo hover:bg-indigo/90" />
+              <button type="button" onClick={() => { setVerificationPending(false); setError(null); setMessage(null); }} className="text-center text-xs font-bold text-indigo transition hover:text-coral">
+                Entered wrong email? Request a new code
+              </button>
             </form>
           ) : (
             <form onSubmit={handleEmailCodeRequest} className="flex flex-col gap-3 sm:gap-4">
               <Field aria-label="Email address" autoComplete="email" icon={<Mail />} maxLength={254} name="email" onChange={setEmail} placeholder="Email Address" type="email" value={email} />
               <SubmitButton pending={pending} label="EMAIL ME A CODE" color="bg-indigo hover:bg-indigo/90" />
+              <button type="button" onClick={() => { setMode("signin"); setError(null); setMessage(null); }} className="text-center text-xs font-bold text-indigo transition hover:text-coral">
+                ← Back to Password Sign In
+              </button>
             </form>
           )
         ) : mode === "setPassword" ? (
@@ -394,15 +425,17 @@ export function AuthSlidingPanel() {
           <Field aria-label="Email address" autoComplete="email" icon={<Mail />} maxLength={254} name="email" onChange={setEmail} placeholder="Email Address" type="email" value={email} />
           <Field aria-label="Password" autoComplete="current-password" icon={<Lock />} maxLength={128} name="password" onChange={setPassword} placeholder="Password" type="password" value={password} />
           <SubmitButton pending={pending} label="SIGN IN" color="bg-[#301F30] hover:bg-[#301F30]/90" />
-          <button type="button" onClick={startEmailCodeLogin} className="text-center text-xs font-bold text-indigo transition hover:text-coral">
-            Forgot password? Log in with an email code
-          </button>
-          {hasGoogleAuth && <div className="relative my-2 flex items-center py-2">
+          {role !== "ADMIN" && (
+            <button type="button" onClick={startEmailCodeLogin} className="text-center text-xs font-bold text-indigo transition hover:text-coral">
+              Forgot password? Log in with an email code
+            </button>
+          )}
+          {hasGoogleAuth && role !== "ADMIN" && <div className="relative my-2 flex items-center py-2">
             <div className="flex-grow border-t border-ink/10"></div>
             <span className="mx-4 flex-shrink-0 text-xs font-semibold text-ink/80 uppercase">Or continue with</span>
             <div className="flex-grow border-t border-ink/10"></div>
           </div>}
-          {hasGoogleAuth && <div ref={googleButtonSignInRef} className="flex justify-center w-full min-h-[40px]"></div>}
+          {hasGoogleAuth && role !== "ADMIN" && <div ref={googleButtonSignInRef} className="flex justify-center w-full min-h-[40px]"></div>}
           </form>
         )}
         {!isSignUp && <Feedback error={error} message={message} />}
@@ -432,7 +465,12 @@ export function AuthSlidingPanel() {
           </p>
           <button
             type="button"
-            onClick={() => setMode(isSignUp ? "signin" : "signup")}
+            onClick={() => {
+              if (!isSignUp && role === "ADMIN") {
+                setRole("CUSTOMER");
+              }
+              setMode(isSignUp ? "signin" : "signup");
+            }}
             className="rounded-full border-2 border-white px-8 py-2.5 text-sm font-bold uppercase tracking-wider text-white transition hover:bg-white hover:text-[#5B3D7A] active:scale-95 sm:px-12 sm:py-3 sm:text-base"
           >
             {isSignUp ? "Sign In" : mode === "signin" ? "Sign Up" : "Sign In"}

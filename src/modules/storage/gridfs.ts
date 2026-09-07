@@ -3,6 +3,7 @@ import "server-only";
 import { createHmac, timingSafeEqual } from "node:crypto";
 import { Readable } from "node:stream";
 
+import { getAuthSecret } from "@/lib/auth-secret";
 import { getGridFsBucket } from "@/lib/mongodb";
 
 const TOKEN_TTL_SECONDS = 10 * 60;
@@ -17,12 +18,9 @@ type StoredObjectMetadata = {
 };
 
 function signingSecret() {
-  const configured = process.env.UPLOAD_SIGNING_SECRET;
+  const configured = process.env.UPLOAD_SIGNING_SECRET?.trim();
   if (configured && configured.length >= 32) return configured;
-  if (process.env.NODE_ENV !== "production") {
-    return "petsaathi-local-upload-secret-change-before-production";
-  }
-  throw new Error("UPLOAD_SIGNING_SECRET must contain at least 32 characters in production.");
+  return getAuthSecret();
 }
 
 function signature(uploadId: string, expiresAt: number) {

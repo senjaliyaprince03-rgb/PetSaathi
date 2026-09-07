@@ -359,10 +359,105 @@ export async function rankCandidates(bookingId: string): Promise<MatchCandidate[
         riskReasons
       })
     });
-    
+
     return scored as MatchCandidate[];
-  } catch (error) {
-    console.error("FastAPI matching failed, falling back to empty candidates:", error);
-    return [];
+  } catch {
+    // FastAPI unavailable (single-node deploys, CI, local dev): fall back to
+    // the deterministic in-process implementation of the exact same formula
+    // served by api-service/main.py (/api/score-candidates), so ranking
+    // degrades instead of silently returning an empty field.
+    return scoreCandidatesLocally(candidatesPayload, riskReasons);
   }
+}
+
+type LocalCandidateInput = {
+  sitterId: string;
+  sitterName: string;
+  completedWithPet: number;
+  reliabilityScore: number;
+  ratings: number[];
+  localityScore: number;
+  localityExplanation: string;
+  availabilityScore: number;
+  availabilityExplanation: string;
+};
+
+/**
+ * TypeScript mirror of api-service/main.py `score_candidates`.
+ * Keep both implementations in sync when weights change.
+ */
+export function scoreCandidatesLocally(
+  candidates: LocalCandidateInput[],
+  riskReasons: string[],
+): MatchCandidate[] {
+  const FACTOR_WEIGHTS_LOCAL = { history: 0.30, reliability: 0.25, quality: 0.20, locality: 0.15, availability: 0.10 } as const;
+
+  const scored = candidates.map((candidate) => {
+    const approvalReasons = [...riskReasons];
+    const factors: MatchFactor[] = [];
+
+    const historyScore = Math.min(candidate.completedWithPet / 10.0, 1.0);
+    factors.push({
+      name: "history",
+      score: historyScore,
+      weight: FACTOR_WEIGHTS_LOCAL.history,
+      explanation:
+        candidate.completedWithPet > 0
+          ? `Completed ${candidate.completedWithPet} service(s) with this pet`
+          : "No prior history with this pet",
+    });
+
+    const reliabilityScore = candidate.reliabilityScore ?? 50;
+    factors.push({
+      name: "reliability",
+      score: Math.min(reliabilityScore / 100.0, 1.0),
+      weight: FACTOR_WEIGHTS_LOCAL.reliability,
+      explanation:
+        candidate.reliabilityScore != null
+          ? `${reliabilityScore}% reliability score`
+          : "Reliability data not yet available",
+    });
+
+    const averageRating =
+      candidate.ratings.length > 0
+        ? candidate.ratings.reduce((sum, rating) => sum + rating, 0) / candidate.ratings.length
+        : 3.0;
+    factors.push({
+      name: "quality",
+      score: (averageRating - 1) / 4.0,
+      weight: FACTOR_WEIGHTS_LOCAL.quality,
+      explanation:
+        candidate.ratings.length > 0
+          ? `${averageRating.toFixed(1)} avg rating from ${candidate.ratings.length} review(s)`
+          : "No reviews yet",
+    });
+
+    if (candidate.localityScore < 1.0) approvalReasons.push(candidate.localityExplanation);
+    factors.push({
+      name: "locality",
+      score: candidate.localityScore,
+      weight: FACTOR_WEIGHTS_LOCAL.locality,
+      explanation: candidate.localityExplanation,
+    });
+
+    factors.push({
+      name: "availability",
+      score: candidate.availabilityScore,
+      weight: FACTOR_WEIGHTS_LOCAL.availability,
+      explanation: candidate.availabilityExplanation,
+    });
+
+    return {
+      sitterId: candidate.sitterId,
+      sitterName: candidate.sitterName,
+      totalScore: factors.reduce((sum, factor) => sum + factor.score * factor.weight, 0),
+      rank: 0,
+      factors,
+      requiresHumanApproval: approvalReasons.length > 0,
+      approvalReasons,
+    } satisfies MatchCandidate;
+  });
+
+  scored.sort((left, right) => right.totalScore - left.totalScore || left.sitterId.localeCompare(right.sitterId));
+  return scored.map((candidate, index) => ({ ...candidate, rank: index + 1 }));
 }

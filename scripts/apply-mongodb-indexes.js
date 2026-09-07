@@ -36,6 +36,16 @@ const partialUniqueIndexes = [
   ],
 ];
 
+const performanceCompoundIndexes = [
+  ["bookings", "bookings_status_created_at_idx", { status: 1, created_at: -1 }],
+  ["bookings", "bookings_customer_id_status_idx", { customer_id: 1, status: 1 }],
+  ["booking_assignments", "booking_assignments_sitter_id_status_idx", { sitter_id: 1, status: 1 }],
+  ["tracking_sessions", "tracking_sessions_booking_id_idx", { booking_id: 1 }],
+  ["tracking_points", "tracking_points_session_id_recorded_at_idx", { session_id: 1, recorded_at: 1 }],
+  ["society_sitter_pools", "society_sitter_pools_society_id_status_idx", { society_id: 1, status: 1 }],
+  ["societies", "societies_city_locality_status_idx", { city: 1, locality: 1, status: 1 }],
+];
+
 const collectionValidators = [
   [
     "incidents",
@@ -88,6 +98,13 @@ async function main() {
       if (indexes.some((index) => index.name === name)) await collection.dropIndex(name);
       await collection.createIndex(key, { name, unique: true, partialFilterExpression });
     }
+    for (const [collectionName, name, key] of performanceCompoundIndexes) {
+      const collection = database.collection(collectionName);
+      const indexes = await collection.listIndexes().toArray();
+      if (!indexes.some((index) => index.name === name)) {
+        await collection.createIndex(key, { name, background: true });
+      }
+    }
     for (const [collectionName, validator] of collectionValidators) {
       await database.command({
         collMod: collectionName,
@@ -97,7 +114,7 @@ async function main() {
       });
     }
     console.log(
-      `Applied ${partialUniqueIndexes.length} partial unique indexes and ${collectionValidators.length} collection validators.`,
+      `Applied ${partialUniqueIndexes.length} partial unique indexes, ${performanceCompoundIndexes.length} compound performance indexes, and ${collectionValidators.length} collection validators.`,
     );
   } finally {
     await client.close();

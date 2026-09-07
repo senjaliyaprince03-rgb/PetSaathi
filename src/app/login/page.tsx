@@ -4,7 +4,11 @@ import { AuthSlidingPanel } from "@/components/forms/auth-sliding-panel";
 import { ParallaxTotemBackground } from "@/components/motion/parallax-totem-background";
 import { getCurrentIdentity } from "@/modules/auth/session";
 
-export const metadata: Metadata = { title: "Sign in", robots: { index: false, follow: false } };
+export const metadata: Metadata = { 
+  title: "Parent & Saathi Sign In", 
+  description: "Access your PetSaathi customer dashboard, pet passports, live walk tracking, and caregiver assignments.",
+  robots: { index: false, follow: false } 
+};
 
 export default async function LoginPage() {
   const identity = await getCurrentIdentity();

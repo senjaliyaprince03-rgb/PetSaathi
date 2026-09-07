@@ -7,8 +7,7 @@ import {
 } from "@/modules/payments/signature";
 import {
   canTransitionPayment,
-  paymentStatuses,
-  type PaymentStatus,
+  PaymentStatus,
 } from "@/modules/payments/state-machine";
 import {
   canTransitionRefund,
@@ -102,10 +101,11 @@ describe("Payment State Machine Transitions", () => {
     expect(canTransitionPayment("CAPTURED", "PENDING")).toBe(false);
   });
 
-  it("terminal states cannot transition backwards", () => {
-    const terminalStates = ["FAILED", "CANCELLED"] as const;
+  it("prevents transitions from terminal states", () => {
+    const terminalStates: PaymentStatus[] = ["FAILED", "CANCELLED"];
+    const allStates: PaymentStatus[] = ["CREATED", "PENDING", "AUTHORIZED", "CAPTURED", "FAILED", "CANCELLED", "PARTIALLY_REFUNDED", "REFUNDED", "DISPUTED"];
     for (const status of terminalStates) {
-      for (const target of paymentStatuses) {
+      for (const target of allStates) {
         expect(canTransitionPayment(status, target)).toBe(false);
       }
     }

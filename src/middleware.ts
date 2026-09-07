@@ -39,6 +39,19 @@ export async function middleware(request: NextRequest) {
   );
   headers.set("x-request-id", requestId);
 
+  // Phase 11: Franchise Subdomain Multi-Tenancy
+  const hostname = request.headers.get("host") ?? "";
+  const rootDomain = process.env.NEXT_PUBLIC_ROOT_DOMAIN || "petsaathi.com";
+  // Extract subdomain: e.g. "pune.petsaathi.com" -> "pune"
+  const subdomain = hostname.replace(`.${rootDomain}`, "").replace(/:\d+$/, "");
+  if (subdomain && subdomain !== "www" && subdomain !== "localhost" && hostname.includes(rootDomain)) {
+    if (!request.nextUrl.pathname.startsWith("/api") && !request.nextUrl.pathname.startsWith("/_next")) {
+      const rewriteUrl = request.nextUrl.clone();
+      rewriteUrl.pathname = `/operator-portal/${subdomain}${request.nextUrl.pathname}`;
+      return NextResponse.rewrite(rewriteUrl);
+    }
+  }
+
   const nonce = crypto.randomUUID();
   const cspHeader = `
     default-src 'self';
@@ -65,9 +78,15 @@ export async function middleware(request: NextRequest) {
 
   if (request.nextUrl.pathname.startsWith("/api/") && process.env.PLAYWRIGHT_TEST !== "1") {
     const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "127.0.0.1";
-    const { success, limit, reset, remaining } = upstashConfigured
-      ? await ratelimit!.limit(`ratelimit_${ip}`)
-      : await memoryRatelimit.limit(`ratelimit_${ip}`);
+    let result: { success: boolean; limit: number; reset: number; remaining: number };
+    try {
+      result = upstashConfigured
+        ? await ratelimit!.limit(`ratelimit_${ip}`)
+        : await memoryRatelimit.limit(`ratelimit_${ip}`);
+    } catch {
+      result = await memoryRatelimit.limit(`ratelimit_${ip}`);
+    }
+    const { success, limit, reset, remaining } = result;
     if (!success) {
       const rejected = NextResponse.json(
         { error: "Too Many Requests" },
@@ -170,19 +189,37 @@ export async function middleware(request: NextRequest) {
       const userRole = token.role as string;
       const path = request.nextUrl.pathname;
 
-      if ((path.startsWith("/admin") || isAdminApi) && userRole !== "SUPER_ADMIN") {
+      const isAdminRole = [
+        "SUPER_ADMIN",
+        "OPERATIONS_ADMIN",
+        "VERIFICATION_ADMIN",
+        "SAFETY_ADMIN",
+        "FINANCE_ADMIN",
+        "CONTENT_ADMIN",
+      ].includes(userRole);
+
+      if (isAdminApi && !isAdminRole) {
+        const rejected = NextResponse.json(
+          { error: "forbidden", message: "Admin privileges required" },
+          { status: 403, headers: { "Cache-Control": "no-store" } }
+        );
+        applySecurityHeaders(rejected, cspHeader, requestId);
+        return rejected;
+      }
+
+      if (path.startsWith("/admin") && !isAdminRole) {
         const url = request.nextUrl.clone();
-        url.pathname = userRole === "SITTER" ? "/saathi/profile" : "/dashboard";
+        url.pathname = userRole === "SITTER" ? "/saathi" : "/dashboard";
         return NextResponse.redirect(url);
       }
 
-      if (path.startsWith("/dashboard") && userRole !== "CUSTOMER" && userRole !== "SUPER_ADMIN") {
+      if ((path.startsWith("/dashboard") || path.startsWith("/customer")) && userRole !== "CUSTOMER" && userRole !== "SUPER_ADMIN") {
          const url = request.nextUrl.clone();
-         url.pathname = "/saathi/profile";
+         url.pathname = "/saathi";
          return NextResponse.redirect(url);
       }
 
-      if (path.startsWith("/saathi/profile") && userRole !== "SITTER" && userRole !== "SUPER_ADMIN") {
+      if (path.startsWith("/saathi") && userRole !== "SITTER" && userRole !== "SUPER_ADMIN") {
          const url = request.nextUrl.clone();
          url.pathname = "/dashboard";
          return NextResponse.redirect(url);

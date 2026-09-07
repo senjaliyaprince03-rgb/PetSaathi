@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { assertBookingTransition, canTransitionBooking } from "@/modules/bookings/state-machine";
+import { validateBookingTransition, canTransitionBooking } from "@/modules/bookings/state-machine";
 
 describe("booking state machine", () => {
   it("permits the normal paid-service path", () => {
@@ -15,7 +15,7 @@ describe("booking state machine", () => {
   });
 
   it("throws for invalid mutations", () => {
-    expect(() => assertBookingTransition("DRAFT", "COMPLETED")).toThrow("Invalid booking transition");
+    expect(() => validateBookingTransition("DRAFT", "COMPLETED")).toThrow("Invalid booking transition");
   });
 
   it("supports paid replacement approval and recoverable no-show handling", () => {

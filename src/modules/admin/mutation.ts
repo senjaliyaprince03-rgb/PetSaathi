@@ -3,7 +3,7 @@ import "server-only";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
-export const adminResourceIdSchema = z.string().uuid();
+export const adminResourceIdSchema = z.string().trim().uuid();
 
 export class AdminMutationError extends Error {
   constructor(

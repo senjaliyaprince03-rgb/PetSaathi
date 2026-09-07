@@ -28,6 +28,7 @@ import { CareJourneyExplorer } from "@/components/marketing/care-journey-explore
 import { DiscoveryReviewRail } from "@/components/marketing/discovery-review-rail";
 import { HeroVideoShowcase } from "@/components/marketing/hero-video-showcase";
 import { MarketplaceAssurance } from "@/components/marketing/marketplace-assurance";
+import { MobileNav } from "@/components/marketing/mobile-nav";
 import { ScrollReveal, ParallaxScroll, Scale3D, RotateOnScroll, Float3D } from "@/components/3d/scroll-reveal";
 import { TextReveal, MagneticButton, AnimosCard, ScrollStaggerContainer, ScrollStaggerItem } from "@/components/effects/animos-motion";
 import { buttonVariants } from "@/components/ui/button";
@@ -139,6 +140,7 @@ export function MarketingExperience({
                 Find care <ArrowRight className="ml-1 h-4 w-4" />
               </Link>
             </MagneticButton>
+            <MobileNav />
           </div>
         </div>
       </header>

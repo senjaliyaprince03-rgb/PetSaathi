@@ -185,11 +185,70 @@ export async function updateDSRStatus(params: {
   });
 }
 
-/* ─── Data Retention ──────────────────────────────────────── */
-
 export async function getRetentionPolicies() {
   return prisma.dataRetentionPolicy.findMany({
     where: { isActive: true },
     orderBy: { entityType: "asc" },
+  });
+}
+
+/**
+ * Executes Right to Erasure (DPDP Act 2023).
+ * Redacts all PII, revokes consents, removes stored addresses,
+ * deactivates user record, and writes an indelible compliance audit log.
+ */
+export async function executeAccountErasure(userId: string, requestedById: string) {
+  return prisma.$transaction(async (tx) => {
+    // 1. Revoke all consents
+    await tx.contentConsentRecord.updateMany({
+      where: { userId, revokedAt: null },
+      data: {
+        revokedAt: new Date(),
+        revokedReason: "Account erasure executed (DPDP Act 2023)",
+      },
+    });
+
+    // 2. Anonymize user PII
+    const anonymousId = `erased_${userId.slice(0, 8)}_${Date.now()}`;
+    await tx.user.update({
+      where: { id: userId },
+      data: {
+        displayName: "Erased User",
+        email: `${anonymousId}@erased.petsaathi.test`,
+        phoneE164: null,
+        status: "DEACTIVATED",
+      },
+    });
+
+    // 3. Remove physical addresses
+    await tx.address.deleteMany({
+      where: { userId },
+    });
+
+    // 4. Mark customer profile inactive
+    await tx.customerProfile.updateMany({
+      where: { userId },
+      data: {
+        emergencyContactName: null,
+        emergencyContactPhone: null,
+      },
+    });
+
+    // 5. Compliance Audit Log
+    await tx.auditLog.create({
+      data: {
+        actorId: requestedById,
+        action: "privacy.account_erasure_executed",
+        resourceType: "user",
+        resourceId: userId,
+        reason: "Right to erasure executed under India DPDP Act 2023",
+        after: {
+          erasedUserId: userId,
+          timestamp: new Date().toISOString(),
+        },
+      },
+    });
+
+    return { success: true, erasedUserId: userId };
   });
 }

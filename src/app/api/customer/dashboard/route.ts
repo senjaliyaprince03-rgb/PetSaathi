@@ -70,8 +70,8 @@ export async function GET() {
       scheduledEnd: nextBooking.scheduledEnd,
       pet: nextBooking.pet,
       service: nextBooking.serviceType,
-      sitter: nextBooking.assignments[0]?.sitter.user.displayName ?? null,
-      sitterId: nextBooking.assignments[0]?.sitter.id ?? null,
+      sitter: nextBooking.assignments[0]?.sitter?.user?.displayName ?? null,
+      sitterId: nextBooking.assignments[0]?.sitter?.id ?? null,
     } : null,
     activeSession,
     balances: {

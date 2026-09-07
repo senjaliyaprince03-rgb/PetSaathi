@@ -9,24 +9,75 @@ import { z } from "zod";
 
 import { Button, buttonVariants } from "@/components/ui/button";
 import type { CoreServiceCode } from "@/modules/catalog/services";
-
 import { ServiceAssessmentFlow } from "@/components/forms/service-assessment-flow";
 import { DynamicPricingEngine } from "@/components/forms/dynamic-pricing-engine";
 
-const requestSchema = z.object({ petId: z.string().uuid(), addressId: z.string().uuid(), serviceCode: z.enum(["DOG_WALK_30", "DOG_WALK_60", "HOME_VISIT", "HOME_SITTING_60", "GROOMING_HOME", "VET_SUPPORT", "TRAINING_ASSESSMENT", "PET_TAXI"]), scheduledStart: z.string().min(1, "Choose a date and time"), customerNotes: z.string().trim().max(800).optional(), careConsent: z.literal(true, { errorMap: () => ({ message: "Confirm the care details are accurate" }) }) });
+const requestSchema = z.object({
+  petId: z.string().min(1, "Choose a pet"),
+  addressId: z.string().min(1, "Choose an address"),
+  serviceCode: z.enum([
+    "DOG_WALK_30",
+    "DOG_WALK_60",
+    "HOME_VISIT",
+    "HOME_SITTING_60",
+    "GROOMING_HOME",
+    "VET_SUPPORT",
+    "TRAINING_ASSESSMENT",
+    "PET_TAXI"
+  ]),
+  scheduledStart: z.string().min(1, "Choose a date and time"),
+  customerNotes: z.string().trim().max(800).optional(),
+  careConsent: z.literal(true, {
+    errorMap: () => ({ message: "Confirm the care details are accurate" })
+  })
+});
+
 type RequestInput = z.infer<typeof requestSchema>;
 
 type PetOption = { id: string; name: string; species: string };
 type AddressOption = { id: string; label: string; locality: string; city: string };
 type ServiceOption = { code: CoreServiceCode; name: string; durationMinutes: number | null };
-type PriceOption = { addressId: string; serviceCode: CoreServiceCode; servicePriceId: string; subtotalPaise: number; taxPaise: number; totalPaise: number; currency: string };
+type PriceOption = {
+  addressId: string;
+  serviceCode: CoreServiceCode;
+  servicePriceId: string;
+  subtotalPaise: number;
+  taxPaise: number;
+  totalPaise: number;
+  currency: string;
+};
 
-export function AuthenticatedBookingForm({ pets, addresses, services, prices, initialService }: { pets: PetOption[]; addresses: AddressOption[]; services: ServiceOption[]; prices: PriceOption[]; initialService?: CoreServiceCode }) {
+export function AuthenticatedBookingForm({
+  pets,
+  addresses,
+  services,
+  prices,
+  initialService
+}: {
+  pets: PetOption[];
+  addresses: AddressOption[];
+  services: ServiceOption[];
+  prices: PriceOption[];
+  initialService?: CoreServiceCode;
+}) {
   const [reference, setReference] = useState<string | null>(null);
   const [serverError, setServerError] = useState<string | null>(null);
   const [assessmentData, setAssessmentData] = useState<Record<string, unknown>>({});
-  const availableInitialService = services.some((service) => service.code === initialService) ? initialService : undefined;
-  const form = useForm<RequestInput>({ resolver: zodResolver(requestSchema), defaultValues: { petId: pets[0]?.id ?? "", addressId: addresses[0]?.id ?? "", serviceCode: availableInitialService ?? services[0]?.code ?? "DOG_WALK_30", scheduledStart: "", customerNotes: "" } });
+
+  const availableInitialService = services.some((service) => service.code === initialService)
+    ? initialService
+    : undefined;
+
+  const form = useForm<RequestInput>({
+    resolver: zodResolver(requestSchema),
+    defaultValues: {
+      petId: pets[0]?.id ?? "",
+      addressId: addresses[0]?.id ?? "",
+      serviceCode: availableInitialService ?? services[0]?.code ?? "DOG_WALK_30",
+      scheduledStart: "",
+      customerNotes: ""
+    }
+  });
 
   if (!pets.length || !addresses.length) return <div className="relative overflow-hidden rounded-[1.75rem] border border-dashed border-indigo/15 bg-cream/35 p-8 text-center sm:p-10"><div className="absolute left-1/2 top-0 h-32 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo/10 blur-3xl" /><span className="relative mx-auto flex h-14 w-14 items-center justify-center rounded-[1.25rem] bg-paper text-coral shadow-lifted"><PawPrint className="h-6 w-6 animate-[float_4s_ease-in-out_infinite]" /></span><h2 className="relative mt-5 font-display text-3xl font-semibold tracking-[-0.04em]">Add the care essentials first.</h2><p className="relative mt-3 text-sm leading-6 text-ink/80">A booking needs one private pet profile and one service address before matching can begin.</p><div className="relative mt-6 flex flex-col justify-center gap-3 sm:flex-row">{!pets.length && <Link href="/pets/new" className={buttonVariants({ variant: "accent" })}>Add a pet</Link>}{!addresses.length && <Link href="/addresses/new" className={buttonVariants({ variant: "outline" })}>Add an address</Link>}</div></div>;
 

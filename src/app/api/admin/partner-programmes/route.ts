@@ -147,9 +147,9 @@ export async function GET(request: Request) {
       headers: { "Cache-Control": "no-store" },
     });
   } catch (error) {
-    logger.error(error instanceof Error ? error : "ProgrammeListError", {
-      event: "admin.partner_programme.list_failed",
+    logger.error("ProgrammeListError", {
       actorId: authorization.identity.id,
+      error: error instanceof Error ? error.message : String(error)
     });
     return NextResponse.json(
       { error: "internal_error" },
@@ -194,10 +194,10 @@ export async function POST(request: Request) {
         },
       );
     }
-    logger.error(error instanceof Error ? error : "ProgrammeCreateError", {
-      event: "admin.partner_programme.create_failed",
+    logger.error("ProgrammeCreateError", {
       actorId: authorization.identity.id,
       organizationId: parsed.data.organizationId,
+      error: error instanceof Error ? error.message : String(error)
     });
     return NextResponse.json(
       { error: "internal_error" },

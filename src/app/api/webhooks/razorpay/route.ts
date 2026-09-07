@@ -36,10 +36,22 @@ export async function POST(request: Request) {
   if (!event) return NextResponse.json({ error: "event_storage_failed" }, { status: 500 });
   if (event.processedAt) return NextResponse.json({ accepted: true, duplicate: true });
 
+  // Atomically claim processing execution to serialize concurrent replays
+  const claim = await prisma.paymentEvent.updateMany({
+    where: { id: event.id, attempts: 0 },
+    data: { attempts: 1 }
+  });
+
+  if (claim.count === 0) {
+    // Another concurrent request claimed or already finished this event
+    return NextResponse.json({ accepted: true, duplicate: true });
+  }
+
   try {
     await processEvent(event.id, eventType, payload);
     return NextResponse.json({ accepted: true }, { status: 202 });
   } catch (error) {
+    console.error("[Razorpay Webhook Error]:", error);
     await prisma.paymentEvent.update({ where: { id: event.id }, data: { attempts: { increment: 1 }, processingError: error instanceof Error ? error.message.slice(0, 500) : "Unknown processing error" } });
     return NextResponse.json({ error: "processing_failed" }, { status: 500 });
   }

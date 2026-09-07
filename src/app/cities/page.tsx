@@ -9,8 +9,8 @@ import { isDatabaseConfigured, prisma } from "@/lib/db";
 import { logger } from "@/lib/logger";
 
 export const metadata: Metadata = {
-  title: "Pet Care Locations | PetSaathi",
-  description: "Explore PetSaathi cities: verified caregivers, structured service zones and locally reviewed pet care guides."
+  title: "Pet Care Locations & Society Hubs",
+  description: "Explore PetSaathi operational cities: verified caregivers, structured service zones and locally reviewed pet care guides across India."
 };
 
 export const dynamic = "force-dynamic";

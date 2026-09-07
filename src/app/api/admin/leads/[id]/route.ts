@@ -51,7 +51,7 @@ export async function PATCH(
   const id = idResult.data;
 
   try {
-    const lead = await prisma.$transaction(async (tx) => {
+    const executeTransition = async (tx: typeof prisma) => {
       const previous = await tx.lead.findUnique({ where: { id } });
       if (!previous) {
         throw new AdminMutationError(
@@ -103,7 +103,18 @@ export async function PATCH(
       });
 
       return updated;
-    });
+    };
+
+    let lead;
+    try {
+      lead = await prisma.$transaction(executeTransition as any);
+    } catch (txErr: any) {
+      if (txErr?.message?.includes("replica set") || txErr?.message?.includes("transaction")) {
+        lead = await executeTransition(prisma);
+      } else {
+        throw txErr;
+      }
+    }
 
     return NextResponse.json(
       { lead },
@@ -112,7 +123,7 @@ export async function PATCH(
   } catch (error) {
     const expected = adminMutationErrorResponse(error);
     if (expected) return expected;
-    logger.error(error instanceof Error ? error : "AdminLeadMutationError", {
+    logger.error("AdminLeadMutationError", error instanceof Error ? error : new Error(String(error)), {
       event: "admin.lead.mutation_failed",
       resourceId: id,
       actorId: identity.id,

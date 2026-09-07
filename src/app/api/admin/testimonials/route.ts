@@ -1,11 +1,12 @@
 import { NextResponse } from "next/server";
 import { recordConsent, publishTestimonial } from "@/modules/content/testimonial.service";
 
+import { getCurrentIdentity } from "@/modules/auth/session";
+
 export async function POST(req: Request) {
   try {
-    const adminId = req.headers.get("x-user-id");
-    // Ensure admin role check here in real code
-    if (!adminId) {
+    const identity = await getCurrentIdentity();
+    if (!identity || !identity.roles.some(r => ["SUPER_ADMIN", "CONTENT_ADMIN", "OPERATIONS_ADMIN"].includes(r))) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 

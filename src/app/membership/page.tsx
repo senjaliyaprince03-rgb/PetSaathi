@@ -10,7 +10,11 @@ import { isDatabaseConfigured, prisma } from "@/lib/db";
 import { getCurrentIdentity } from "@/modules/auth/session";
 import { isFeatureEnabled } from "@/modules/features/server";
 
-export const metadata: Metadata = { title: "Membership | PetSaathi", robots: { index: false, follow: true } };
+export const metadata: Metadata = { 
+  title: "Membership & Care Passes", 
+  description: "Unlock unlimited priority booking, zero dispatch fees, and exclusive member discounts on routine dog walking and sitting.",
+  robots: { index: true, follow: true } 
+};
 export const dynamic = "force-dynamic";
 
 export default async function MembershipPage() {

@@ -9,6 +9,15 @@ dotenv.config({ path: path.resolve(process.cwd(), ".env.local"), override: true,
 const checks = [];
 const timeoutMs = Number(process.env.PROVIDER_DOCTOR_TIMEOUT_MS ?? 10_000);
 
+// Providers listed here are provisioned with credentials but NOT wired into
+// application code yet. Transactional/auth email actually goes through Gmail
+// SMTP (nodemailer) — see src/modules/auth/mongodb-auth.ts and
+// src/modules/notifications/providers.ts. The src/lib/email/* files are
+// logging stubs with "In a real implementation" comments referencing Resend.
+// Invalid credentials for an unwired provider must not block the doctor, but
+// they are surfaced loudly so nobody mistakes them for healthy.
+const OPTIONAL_UNWIRED_PROVIDERS = new Set(["resend"]);
+
 function isPlaceholder(value) {
   return !value || /(?:example|placeholder|your[_ -]?|xxx|generate_a_random)/i.test(value);
 }
@@ -46,12 +55,16 @@ async function safeResponseDetail(response) {
 async function checkResend() {
   const apiKey = process.env.RESEND_API_KEY?.trim();
   const fromEmail = process.env.RESEND_FROM_EMAIL?.trim();
+  const optional = OPTIONAL_UNWIRED_PROVIDERS.has("resend");
+  const note = optional
+    ? " Resend is not imported by application code (email uses SMTP_USER/SMTP_PASS via nodemailer), so this is reported as a warning, not a blocker."
+    : "";
   if (isPlaceholder(apiKey) || isPlaceholder(fromEmail)) {
-    push("resend", "failed", "RESEND_API_KEY and RESEND_FROM_EMAIL must be real production or sandbox values.");
+    push("resend", optional ? "skipped" : "failed", `RESEND_API_KEY and RESEND_FROM_EMAIL must be real production or sandbox values.${note}`);
     return;
   }
   if (fromEmail.toLowerCase().endsWith("@resend.dev")) {
-    push("resend", "failed", "RESEND_FROM_EMAIL uses Resend's shared test sender; configure a verified custom sender domain.");
+    push("resend", optional ? "warning" : "failed", `RESEND_FROM_EMAIL uses Resend's shared test sender; configure a verified custom sender domain.${note}`);
     return;
   }
 
@@ -60,7 +73,7 @@ async function checkResend() {
       headers: { Authorization: `Bearer ${apiKey}` },
     });
     if (!response.ok) {
-      push("resend", "failed", `Resend domain check returned ${await safeResponseDetail(response)}.`);
+      push("resend", optional ? "warning" : "failed", `Resend domain check returned ${await safeResponseDetail(response)}.${note}`);
       return;
     }
     const body = await response.json();
@@ -68,18 +81,31 @@ async function checkResend() {
     const senderDomain = fromEmail.split("@").pop()?.toLowerCase();
     const matchingDomain = domains.find((domain) => String(domain.name).toLowerCase() === senderDomain);
     if (!matchingDomain) {
-      push("resend", "failed", `No Resend domain matches RESEND_FROM_EMAIL domain ${senderDomain}.`);
+      push("resend", optional ? "warning" : "failed", `No Resend domain matches RESEND_FROM_EMAIL domain ${senderDomain}.${note}`);
       return;
     }
     const status = String(matchingDomain.status ?? "").toLowerCase();
     if (status && status !== "verified") {
-      push("resend", "failed", `Resend domain ${senderDomain} is not verified; current status is ${status}.`);
+      push("resend", optional ? "warning" : "failed", `Resend domain ${senderDomain} is not verified; current status is ${status}.${note}`);
       return;
     }
     push("resend", "passed", `Verified sender domain ${senderDomain} is visible to the API key.`);
   } catch (error) {
-    push("resend", "failed", `Resend verification failed: ${redactError(error)}`);
+    push("resend", optional ? "warning" : "failed", `Resend verification failed: ${redactError(error)}${note}`);
   }
+}
+
+async function checkSmtpEmail() {
+  // This is the delivery path actually used by auth OTP emails and
+  // notification messages. Presence-only check: real delivery can only be
+  // exercised by the live OTP flow.
+  const user = process.env.SMTP_USER?.trim();
+  const pass = process.env.SMTP_PASS?.trim();
+  if (isPlaceholder(user) || isPlaceholder(pass)) {
+    push("smtp-email", "failed", "SMTP_USER and SMTP_PASS must be configured — auth OTP and notification emails are delivered through this provider.");
+    return;
+  }
+  push("smtp-email", "passed", `SMTP credentials configured for sender identity ${user.replace(/^(.).*(@.*)$/, "$1***$2")} (delivery exercised by the live OTP flow).`);
 }
 
 async function checkSentry() {
@@ -159,7 +185,7 @@ async function checkNvidia() {
 }
 
 async function main() {
-  await Promise.all([checkResend(), checkSentry(), checkRazorpay(), checkNvidia()]);
+  await Promise.all([checkResend(), checkSmtpEmail(), checkSentry(), checkRazorpay(), checkNvidia()]);
   const failures = checks.filter((check) => check.status === "failed");
   console.log(JSON.stringify({
     status: failures.length === 0 ? "ok" : "failed",

@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState, useCallback, ReactNode, useEffect } from "react";
-import { X } from "lucide-react";
+import { AlertCircle, AlertTriangle, CheckCircle2, Info, X } from "lucide-react";
 import { createPortal } from "react-dom";
 
 type ToastType = "default" | "success" | "error" | "warning";
@@ -53,29 +53,49 @@ function ToastItem({ toast, onDismiss }: { toast: Toast; onDismiss: () => void }
     return () => clearTimeout(timer);
   }, [onDismiss]);
 
-  const bg =
+  const Icon =
     toast.type === "error"
-      ? "bg-coral/10 border-coral/20 text-coral"
+      ? AlertCircle
       : toast.type === "success"
-        ? "bg-leaf/10 border-leaf/20 text-leaf"
+        ? CheckCircle2
         : toast.type === "warning"
-          ? "bg-saffron/20 border-saffron/30 text-saffron-dark"
-          : "bg-paper border-indigo/10 text-ink";
+          ? AlertTriangle
+          : Info;
+
+  const styleConfig =
+    toast.type === "error"
+      ? "bg-[#FFF5F3] border-[#FCA5A5] text-[#991B1B] shadow-[0_8px_30px_rgba(239,68,68,0.15)]"
+      : toast.type === "success"
+        ? "bg-[#F0FDF4] border-[#86EFAC] text-[#166534] shadow-[0_8px_30px_rgba(34,197,94,0.15)]"
+        : toast.type === "warning"
+          ? "bg-[#FFFBEB] border-[#FDE68A] text-[#92400E] shadow-[0_8px_30px_rgba(245,158,11,0.15)]"
+          : "bg-white border-ink/10 text-ink shadow-[0_8px_30px_rgba(48,31,48,0.12)]";
+
+  const iconColor =
+    toast.type === "error"
+      ? "text-red-600 bg-red-100"
+      : toast.type === "success"
+        ? "text-emerald-600 bg-emerald-100"
+        : toast.type === "warning"
+          ? "text-amber-600 bg-amber-100"
+          : "text-indigo bg-indigo/10";
 
   return (
-    <div className={`pointer-events-auto relative flex w-full flex-col overflow-hidden rounded-2xl border p-4 shadow-lifted backdrop-blur-xl transition-all data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-right-full data-[state=open]:slide-in-from-bottom-full sm:data-[state=open]:slide-in-from-bottom-0 sm:data-[state=open]:slide-in-from-right-full ${bg}`}>
-      <div className="flex items-start justify-between gap-4">
-        <div className="flex flex-col gap-1">
-          <p className="text-sm font-semibold">{toast.title}</p>
-          {toast.description && <p className="text-xs opacity-90">{toast.description}</p>}
-        </div>
-        <button
-          onClick={onDismiss}
-          className="inline-flex shrink-0 rounded-md p-1 opacity-50 transition-opacity hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-indigo/40"
-        >
-          <X className="h-4 w-4" />
-        </button>
+    <div className={`pointer-events-auto relative flex w-full items-start gap-3.5 overflow-hidden rounded-2xl border p-4 backdrop-blur-xl transition-all duration-300 animate-in fade-in slide-in-from-bottom-5 ${styleConfig}`}>
+      <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${iconColor}`}>
+        <Icon className="h-5 w-5" />
+      </span>
+      <div className="flex flex-1 flex-col gap-0.5 pt-0.5">
+        <p className="text-sm font-bold tracking-tight">{toast.title}</p>
+        {toast.description && <p className="text-xs opacity-90 leading-relaxed font-medium">{toast.description}</p>}
       </div>
+      <button
+        onClick={onDismiss}
+        aria-label="Dismiss notification"
+        className="inline-flex shrink-0 rounded-lg p-1.5 opacity-60 transition-opacity hover:opacity-100 focus:opacity-100 hover:bg-black/5"
+      >
+        <X className="h-4 w-4" />
+      </button>
     </div>
   );
 }

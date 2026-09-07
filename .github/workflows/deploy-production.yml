@@ -1,0 +1,57 @@
+name: Production Deployment & Verification
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  verify:
+    name: Production Gate Verification
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20.18.0"
+          cache: "npm"
+      - name: Install dependencies
+        run: npm ci
+      - name: TypeScript Typecheck
+        run: npm run typecheck
+      - name: Run Unit and Integration Tests
+        run: npm test
+      - name: Security Vulnerability Audit
+        run: npm audit --audit-level=high
+
+  deploy:
+    name: Deploy to Vercel (Production)
+    needs: verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: "--prod"
+          working-directory: ./
+
+  healthcheck:
+    name: Post-Deploy Health Check
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Query /api/health
+        run: |
+          for i in {1..5}; do
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://petsaathi.com/api/health || true)
+            if [ "$STATUS" -eq 200 ]; then
+              echo "Production /api/health returned 200 OK"
+              exit 0
+            fi
+            echo "Waiting for health check... ($STATUS)"
+            sleep 10
+          done
+          echo "Health check failed after 5 retries"
+          exit 1

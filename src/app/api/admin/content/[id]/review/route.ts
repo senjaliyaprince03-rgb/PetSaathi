@@ -1,13 +1,15 @@
 import { NextResponse } from "next/server";
 import { attachExpertReview } from "@/modules/content/expert.service";
 
+import { getCurrentIdentity } from "@/modules/auth/session";
+
 export async function POST(
   req: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const userId = req.headers.get("x-user-id");
-    if (!userId) {
+    const identity = await getCurrentIdentity();
+    if (!identity || !identity.roles.some(r => ["SUPER_ADMIN", "CONTENT_ADMIN", "OPERATIONS_ADMIN"].includes(r))) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 

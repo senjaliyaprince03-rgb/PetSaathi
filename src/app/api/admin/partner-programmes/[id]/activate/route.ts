@@ -46,7 +46,7 @@ export async function POST(
         },
       );
     }
-    logger.error(error instanceof Error ? error : "ProgrammeActivateError", {
+    logger.error("ProgrammeActivateError", error instanceof Error ? error : new Error(String(error)), {
       event: "admin.partner_programme.activate_failed",
       actorId: authorization.identity.id,
       programmeId: id.data,

@@ -1,24 +1,30 @@
 import { NextResponse } from "next/server";
 import { getHealthTimeline, addHealthEvent } from "@/modules/health/service";
 
+import { getCurrentIdentity } from "@/modules/auth/session";
+
 export async function GET(
   req: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const userId = req.headers.get("x-user-id");
-    if (!userId) {
+    const identity = await getCurrentIdentity();
+    if (!identity) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const { searchParams } = new URL(req.url);
     const limit = parseInt(searchParams.get("limit") || "50", 10);
 
-    const timeline = await getHealthTimeline((await params).id, limit);
+    const isStaff = identity.roles.some((r) => ["SUPER_ADMIN", "OPERATIONS_ADMIN", "SITTER"].includes(r));
+    const timeline = await getHealthTimeline((await params).id, limit, isStaff ? undefined : identity.id);
     return NextResponse.json({ timeline }, { status: 200 });
   } catch (error: any) {
     if (error.code === "pet_not_found") {
       return NextResponse.json({ error: "not_found", message: error.message }, { status: 404 });
+    }
+    if (error.code === "forbidden") {
+      return NextResponse.json({ error: "forbidden", message: error.message }, { status: 403 });
     }
     console.error("Error in GET health API:", error);
     return NextResponse.json(
@@ -33,8 +39,8 @@ export async function POST(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const userId = req.headers.get("x-user-id");
-    if (!userId) {
+    const identity = await getCurrentIdentity();
+    if (!identity) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -45,21 +51,26 @@ export async function POST(
       return NextResponse.json({ error: "bad_request", message: "Missing required fields" }, { status: 400 });
     }
 
+    const isStaff = identity.roles.some((r) => ["SUPER_ADMIN", "OPERATIONS_ADMIN", "SITTER"].includes(r));
     const event = await addHealthEvent(
       (await params).id,
-      userId,
+      identity.id,
       eventType,
       summary,
       new Date(occurredAt),
       source || "USER",
       details,
-      providerRef
+      providerRef,
+      isStaff ? undefined : identity.id
     );
 
     return NextResponse.json({ event }, { status: 201 });
   } catch (error: any) {
     if (error.code === "pet_not_found") {
       return NextResponse.json({ error: "not_found", message: error.message }, { status: 404 });
+    }
+    if (error.code === "forbidden") {
+      return NextResponse.json({ error: "forbidden", message: error.message }, { status: 403 });
     }
     console.error("Error in POST health API:", error);
     return NextResponse.json(

@@ -7,7 +7,10 @@ import { PublicShell } from "@/components/marketing/public-shell";
 import { buttonVariants } from "@/components/ui/button";
 import { services } from "@/modules/catalog/services";
 
-export const metadata: Metadata = { title: "Services | PetSaathi" };
+export const metadata: Metadata = { 
+  title: "Doorstep Pet Care Services",
+  description: "Verified doorstep dog walking, at-home pet sitting, professional grooming, and on-call tele-vet consultations across India."
+};
 
 export default function ServicesPage() {
   return (

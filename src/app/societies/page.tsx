@@ -6,7 +6,10 @@ import { ArrowRight, Building2, CalendarCheck, UsersRound } from "lucide-react";
 import { PublicShell } from "@/components/marketing/public-shell";
 import { buttonVariants } from "@/components/ui/button";
 
-export const metadata: Metadata = { title: "For Societies | PetSaathi" };
+export const metadata: Metadata = { 
+  title: "Society Pet Care Hubs",
+  description: "Bring certified pet care, GPS-tracked walks, and automated society gate visitor passes to your residential gated community."
+};
 
 const societyFeatures = [
   [Building2, "Controlled Access", "Document local gate and caregiver-access procedures with clear digital verification."],

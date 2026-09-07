@@ -46,7 +46,7 @@ export async function POST(
         },
       );
     }
-    logger.error(error instanceof Error ? error : "ProgrammePauseError", {
+    logger.error("ProgrammePauseError", error instanceof Error ? error : new Error(String(error)), {
       event: "admin.partner_programme.pause_failed",
       actorId: authorization.identity.id,
       programmeId: id.data,

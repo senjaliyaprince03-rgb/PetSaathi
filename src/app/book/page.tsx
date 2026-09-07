@@ -13,7 +13,10 @@ import { calculateQuote } from "@/modules/pricing/economics";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = { title: "Find pet care" };
+export const metadata: Metadata = { 
+  title: "Book Doorstep Pet Care",
+  description: "Schedule instant GPS-tracked dog walking, at-home pet sitting, grooming, or veterinary consultations in your society."
+};
 
 type BookSearchParams = Promise<Record<string, string | string[] | undefined>>;
 
@@ -41,11 +44,17 @@ export default async function BookPage({ searchParams }: { searchParams: BookSea
   ]);
   const normalize = (value: string) => value.trim().toLocaleLowerCase("en-IN");
   const priceOptions = addresses.flatMap((address) => {
-    const area = serviceAreas.find((candidate) => normalize(candidate.city.name) === normalize(address.city) && normalize(candidate.city.state) === normalize(address.state) && candidate.postalCodes.includes(address.postalCode));
-    if (!area) return [];
+    const area =
+      serviceAreas.find((candidate) => normalize(candidate.city.name) === normalize(address.city) && normalize(candidate.city.state) === normalize(address.state) && candidate.postalCodes.includes(address.postalCode)) ??
+      serviceAreas.find((candidate) => normalize(candidate.city.name) === normalize(address.city)) ??
+      serviceAreas[0];
+
     return serviceRows.flatMap((service) => {
       const candidates = priceRows.filter((price) => price.serviceTypeId === service.id);
-      const selected = candidates.find((price) => price.serviceAreaId === area.id) ?? candidates.find((price) => price.serviceAreaId === null);
+      const selected =
+        (area ? candidates.find((price) => price.serviceAreaId === area.id) : null) ??
+        candidates.find((price) => price.serviceAreaId === null) ??
+        candidates[0];
       if (!selected) return [];
       return [{ addressId: address.id, serviceCode: service.code as CoreServiceCode, servicePriceId: selected.id, ...calculateQuote(selected.amountPaise, selected.taxBasisPoints), currency: selected.currency }];
     });

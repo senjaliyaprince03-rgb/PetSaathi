@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { OAuth2Client } from "google-auth-library";
+
+import * as Sentry from "@sentry/nextjs";
 import { signInWithGoogle } from "@/modules/auth/mongodb-auth";
 import { consumeRateLimit, requestIp } from "@/modules/security/rate-limit";
 
@@ -31,6 +33,9 @@ export async function POST(request: Request) {
     }
 
     const result = await signInWithGoogle(payload.email, payload.name || "Pet Parent", payload.picture, selectedRole);
+    
+    // Set Sentry user context for error tracking
+    Sentry.setUser({ id: result.userId, email: payload.email });
     
     return NextResponse.json({ authenticated: true, roles: result.roles });
   } catch (error) {

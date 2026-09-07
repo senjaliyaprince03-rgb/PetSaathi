@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
+import * as Sentry from "@sentry/nextjs";
 import { verifyOtpAndCreateSession } from "@/modules/auth/mongodb-auth";
 import { consumeRateLimit, requestIp } from "@/modules/security/rate-limit";
 
@@ -14,7 +15,9 @@ export async function POST(request: Request) {
     consumeRateLimit("otp-verify-phone", parsed.data.phone, 6, 15 * 60_000)
   ]);
   if (!ipLimit.allowed || !phoneLimit.allowed) return NextResponse.json({ error: "too_many_attempts" }, { status: 429, headers: { "Retry-After": String(Math.max(ipLimit.retryAfterSeconds, phoneLimit.retryAfterSeconds)) } });
-  const verified = await verifyOtpAndCreateSession("phone", parsed.data.phone, parsed.data.otp);
-  if (!verified) return NextResponse.json({ error: "invalid_or_expired_otp" }, { status: 401 });
+  const result = await verifyOtpAndCreateSession("phone", parsed.data.phone, parsed.data.otp);
+  if (!result.success) return NextResponse.json({ error: "invalid_or_expired_otp" }, { status: 401 });
+  // Set Sentry user context for error tracking
+  Sentry.setUser({ id: result.userId });
   return NextResponse.json({ verified: true });
 }
