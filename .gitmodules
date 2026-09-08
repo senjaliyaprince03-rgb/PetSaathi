@@ -1,0 +1,3 @@
+[submodule "petsaathi-web"]
+    path = petsaathi-web
+    url = https://github.com/example/petsaathi-web-placeholder.git
