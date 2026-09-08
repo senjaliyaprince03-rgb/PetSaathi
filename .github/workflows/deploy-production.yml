@@ -89,7 +89,7 @@ jobs:
             exit 0
           fi
           for i in {1..5}; do
-            STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://petsaathi.com/api/health || true)
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://petsaathi-blue.vercel.app/api/health || true)
             if [ "$STATUS" -eq 200 ]; then
               echo "Production /api/health returned 200 OK"
               exit 0
