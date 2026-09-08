@@ -255,7 +255,7 @@ export default function LineMaskSplit({
       }
       const isAligned = elementPoint <= viewportBottom && rect.bottom >= 0;
       setIsInView(isAligned);
-      const completelyOutOfView = rect.top > viewportHeight;
+      const completelyOutOfView = rect.top > viewportHeight || rect.bottom < 0;
       setIsOutOfView(completelyOutOfView);
     };
     const handleScroll = () => {
@@ -296,20 +296,34 @@ export default function LineMaskSplit({
   useEffect(() => {
     if (!scrollElementsRef.current) return;
     const elements = scrollElementsRef.current;
-    animationControlsRef.current.forEach((control) => control.stop());
-    animationControlsRef.current = [];
+    
     if (isOutOfView) {
       if (reverse) {
+        animationControlsRef.current.forEach((control) => control.stop());
+        animationControlsRef.current = [];
         elements.forEach((el: HTMLElement) => {
           el.style.opacity = opacityInitial.toString();
           el.style.transform = `translate(${translateXInitial}px, ${translateYInitial}px) rotate(${rotateInitial}deg) scale(${scaleInitial})`;
           el.style.filter = `blur(${blurInitial}px)`;
         });
         hasAnimatedRef.current = false;
+      } else {
+        // Force to final state if we scroll past it so it doesn't get stuck halfway
+        if (hasAnimatedRef.current) {
+          animationControlsRef.current.forEach((control) => control.stop());
+          animationControlsRef.current = [];
+          elements.forEach((el: HTMLElement) => {
+            el.style.opacity = "1";
+            el.style.transform = "translate(0px, 0px) rotate(0deg) scale(1)";
+            el.style.filter = "blur(0px)";
+          });
+        }
       }
       return;
     }
-    if (isInView && areElementsInInitialState(elements)) {
+    if (isInView && (!hasAnimatedRef.current || areElementsInInitialState(elements))) {
+      animationControlsRef.current.forEach((control) => control.stop());
+      animationControlsRef.current = [];
       hasAnimatedRef.current = true;
       animateElements(elements, true);
     }
