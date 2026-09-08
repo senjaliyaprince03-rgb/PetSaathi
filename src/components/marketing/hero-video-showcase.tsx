@@ -172,6 +172,7 @@ export function HeroVideoShowcase() {
                 }}
                 aria-label={`${activeFilm.title} care film`}
                 aria-describedby="hero-care-film-description"
+                aria-hidden="true"
               >
                 <source src={`/videos/${activeFilm.slug}.mp4?v=clean2026_v3`} type="video/mp4" />
                 Your browser does not support embedded video.
