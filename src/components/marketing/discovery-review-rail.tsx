@@ -180,7 +180,7 @@ export function DiscoveryReviewRail() {
                       </span>
                     </div>
                     <div className="flex flex-1 flex-col p-6">
-                      <p className="text-[0.62rem] font-bold uppercase tracking-[0.17em] text-coral">{story.context ?? "PetSaathi care"}</p>
+                      <p className="text-[0.62rem] font-bold uppercase tracking-[0.17em] text-[#A8321B]">{story.context ?? "PetSaathi care"}</p>
                       <blockquote className="mt-4 font-display text-xl font-semibold leading-8 text-ink">&ldquo;{story.quote}&rdquo;</blockquote>
                       <div className="mt-auto flex items-center justify-between gap-4 border-t border-indigo/10 pt-4">
                         <div>

@@ -204,8 +204,8 @@ export function MarketingExperience({
                   </ScrollStaggerItem>
                   <ScrollStaggerItem>
                     <div className="relative z-10 flex h-16 w-16 flex-col items-center justify-center rounded-full border-2 border-[#D4AF37] bg-[#f8f5f0] shadow-md ring-2 ring-white">
-                      <span className="font-display text-sm font-bold leading-none text-[#987634]">Care</span>
-                      <span className="text-[0.4rem] font-bold tracking-widest text-[#987634] uppercase mt-0.5">Plans</span>
+                      <span className="font-display text-sm font-bold leading-none text-[#725622]">Care</span>
+                      <span className="text-[0.4rem] font-bold tracking-widest text-[#725622] uppercase mt-0.5">Plans</span>
                     </div>
                   </ScrollStaggerItem>
                 </ScrollStaggerContainer>

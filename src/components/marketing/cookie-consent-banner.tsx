@@ -23,6 +23,7 @@ export function CookieConsentBanner({ analyticsId }: { analyticsId?: string }) {
       <CookieConsent
         location="bottom"
         buttonText="Accept All"
+        ariaAcceptLabel="Accept All"
         declineButtonText="Decline"
         enableDeclineButton
         cookieName="petsaathi-cookie-consent"
