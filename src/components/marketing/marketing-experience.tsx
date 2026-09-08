@@ -256,14 +256,14 @@ export function MarketingExperience({
       <TestimonialsSection />
 
       {/* ── Animated Trust Ticker ── */}
-      <section className="relative overflow-hidden border-y border-indigo/10 bg-paper/70 py-0 backdrop-blur-sm">
+      <section className="relative overflow-hidden border-y border-indigo/10 bg-paper/70 py-0">
         {/* left + right fade masks */}
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-paper/90 to-transparent" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-paper/90 to-transparent" />
 
         {/* track 1 — scrolls left */}
         <div
-          className="group flex w-max items-center py-4 hover:[animation-play-state:paused]"
+          className="group flex w-max items-center py-4 hover:[animation-play-state:paused] will-change-transform"
           style={{ animation: "marquee 40s linear infinite" }}
         >
           {[...Array(2)].flatMap(() => trustSignals).map(({ label, icon: Icon }, i) => (
