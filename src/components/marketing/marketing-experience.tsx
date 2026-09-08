@@ -1,7 +1,7 @@
-"use client";
 
-import { useState, type ReactNode } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+
+import { type ReactNode } from "react";
+
 import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -43,10 +43,7 @@ const HowItWorksSection = dynamic(() => import("@/components/marketing/how-it-wo
 
 
 
-const LazyAnimatedLogo = dynamic(() => import("@/components/3d/animated-logo").then(mod => mod.AnimatedLogo), {
-  ssr: false,
-  loading: () => <div className="h-11 w-11 animate-pulse bg-indigo/5 rounded-full" />
-});
+import { LazyAnimatedLogo } from "@/components/marketing/lazy-animated-logo";
 
 const careSteps = [
   { number: "01", title: "Share the care context", copy: "Choose the service, pet, place and time without exposing more information than the request needs.", icon: PawPrint },
@@ -66,34 +63,7 @@ const questions = [
   ["Can I track my dog in real time during a walk?", "Yes. Every walk session includes live GPS tracking, mid-walk photo updates, and a post-walk report card — all visible inside the PetSaathi app."]
 ] as const;
 
-function FaqAccordionItem({ question, answer }: { question: string, answer: string }) {
-  const [isOpen, setIsOpen] = useState(false);
-  return (
-    <div className={cn("group rounded-3xl border border-indigo/10 bg-paper/85 p-5 transition-shadow duration-300", isOpen && "shadow-lifted")}>
-      <button 
-        type="button" 
-        onClick={() => setIsOpen(!isOpen)} 
-        className="flex w-full cursor-pointer items-center justify-between gap-4 text-left font-display text-xl font-semibold outline-none"
-      >
-        <span>{question}</span>
-        <span className={cn("flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-indigo/[0.07] text-indigo transition-transform duration-300", isOpen && "rotate-45")}>+</span>
-      </button>
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="overflow-hidden"
-          >
-            <p className="mt-4 pr-9 text-sm leading-7 text-ink/80">{answer}</p>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-}
+import { FaqAccordionItem } from "@/components/marketing/faq-accordion";
 
 export function MarketingExperience({
   footerContent,
@@ -296,7 +266,7 @@ export function MarketingExperience({
           className="group flex w-max items-center py-4 hover:[animation-play-state:paused]"
           style={{ animation: "marquee 40s linear infinite" }}
         >
-          {[...Array(4)].flatMap(() => trustSignals).map(({ label, icon: Icon }, i) => (
+          {[...Array(2)].flatMap(() => trustSignals).map(({ label, icon: Icon }, i) => (
             <span
               key={`t1-${i}`}
               className="flex shrink-0 items-center gap-2.5 px-8 text-sm font-bold text-ink/80 transition-colors duration-300 hover:text-indigo"
@@ -436,3 +406,6 @@ export function MarketingExperience({
     </main>
   );
 }
+
+
+

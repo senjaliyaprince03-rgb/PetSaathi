@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { createPortal } from "react-dom";
+
+
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { Route } from "next";
@@ -96,3 +97,5 @@ export function MobileNav() {
     </details>
   );
 }
+
+
