@@ -62,7 +62,7 @@ export function TestimonialsSection() {
                 ))}
               </div>
               <blockquote className="text-ink/80 leading-7 flex-1 mb-8">
-                "{t.quote}"
+                &quot;{t.quote}&quot;
               </blockquote>
               <div className="flex items-center gap-4 mt-auto">
                 <div className="w-12 h-12 relative rounded-full overflow-hidden border-2 border-indigo/10">
