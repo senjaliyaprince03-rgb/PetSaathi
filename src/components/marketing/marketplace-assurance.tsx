@@ -21,7 +21,7 @@ import { cn } from "@/lib/cn";
 
 const proposalPreviews = [
   {
-    image: "/images/proposal_home_care_v2.jpg",
+    image: "/images/proposal_home_care_v2.webp",
     service: "Home care",
     locality: "Local care radius",
     availability: "Availability checked",
@@ -29,7 +29,7 @@ const proposalPreviews = [
     evidence: ["Identity reviewed", "Home-care permission", "Pet context checked"]
   },
   {
-    image: "/images/proposal_walks_v2.jpg",
+    image: "/images/proposal_walks_v2.webp",
     service: "Neighbourhood walks",
     locality: "Route-aware matching",
     availability: "Schedule aligned",
@@ -37,7 +37,7 @@ const proposalPreviews = [
     evidence: ["Walk permission", "Milestone reports", "Exception support"]
   },
   {
-    image: "/images/sitter-man-cinematic.png",
+    image: "/images/sitter-man-cinematic.webp",
     service: "Day companionship",
     locality: "Capacity confirmed",
     availability: "Pet fit reviewed",

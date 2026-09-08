@@ -12,8 +12,8 @@ export const metadata: Metadata = {
 };
 
 const profileViews = [
-  { image: "/images/sitter-woman-cinematic.png", label: "Home care", detail: "Routine-led companionship, feeding and careful handovers" },
-  { image: "/images/sitter-park-cinematic.png", label: "Neighbourhood walks", detail: "Service-specific permissions with recorded milestones" },
+  { image: "/images/sitter-woman-cinematic.webp", label: "Home care", detail: "Routine-led companionship, feeding and careful handovers" },
+  { image: "/images/sitter-park-cinematic.webp", label: "Neighbourhood walks", detail: "Service-specific permissions with recorded milestones" },
   { image: "/images/care-handover-editorial-v2.webp", label: "Day care", detail: "Local capacity, pet fit and human-reviewed matching" }
 ];
 
@@ -23,11 +23,9 @@ export default function CaregiversPage() {
       {/* 1. FULL-BLEED HERO BANNER (LEFT ALIGNED) */}
       <section className="relative h-[560px] sm:h-[620px] w-full overflow-hidden bg-ink text-paper">
         <Image
-          src="/images/saathis-hero-luxury-banner.jpg"
+          src="/images/saathis-hero-luxury-banner.webp"
           alt="Verified PetSaathi woman caregiver cuddling a happy cat"
-          fill
-          priority
-          sizes="100vw"
+          fill priority fetchPriority="high" sizes="100vw"
           className="object-cover object-[80%_center] sm:object-[center_45%]"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/60 to-transparent md:w-3/4" />

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { redirect } from 'next/navigation';
 import { 
   ArrowRight, 
@@ -186,11 +187,12 @@ export default async function CustomerDashboardPage() {
         {/* Pet Profile Portrait with 7-Day Care Streak Ring */}
         <div className="relative z-10 shrink-0 flex flex-col items-center">
           <div className="relative w-36 h-36 sm:w-44 sm:h-44 rounded-full border-4 border-amber-300/50 p-1 shadow-2xl bg-white/10 backdrop-blur-md ring-4 ring-amber-300/20">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img 
+            <Image 
               alt={primaryPet.name} 
-              className="w-full h-full object-cover rounded-full" 
-              src="/images/golden-retriever-3d.png" 
+              className="object-cover rounded-full" 
+              src="/images/golden-retriever-3d.webp" 
+              fill
+              sizes="200px"
             />
             {/* 7-Day Streak Badge */}
             <div className="absolute -top-2 -right-2 bg-gradient-to-r from-amber-500 to-amber-600 text-white px-3 py-1 rounded-full text-[11px] font-extrabold shadow-lg border border-white/30 flex items-center gap-1">
@@ -526,11 +528,12 @@ export default async function CustomerDashboardPage() {
               <div className="p-4 sm:p-5 rounded-2xl bg-surface/70 border border-ink/10 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-2xs">
                 <div className="flex items-center gap-3.5">
                   <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-indigo/30 shrink-0 bg-indigo/10 shadow-sm">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img 
-                      src="/images/sitter-woman-cinematic.png" 
+                    <Image 
+                      src="/images/sitter-woman-cinematic.webp" 
                       alt="Certified Sitter" 
-                      className="w-full h-full object-cover" 
+                      className="object-cover" 
+                      fill
+                      sizes="100px"
                     />
                   </div>
                   <div>
@@ -620,11 +623,12 @@ export default async function CustomerDashboardPage() {
 
             <div className="flex items-center gap-3.5 mb-5 p-3.5 rounded-2xl bg-surface/70 border border-ink/5 shadow-2xs">
               <div className="w-12 h-12 rounded-full overflow-hidden bg-amber-500/10 shrink-0 border-2 border-white shadow-sm flex items-center justify-center ring-2 ring-amber-300/30">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img 
+                <Image 
                   alt={primaryPet.name} 
-                  className="w-full h-full object-cover" 
-                  src="/images/golden-retriever-3d.png" 
+                  className="object-cover" 
+                  src="/images/golden-retriever-3d.webp" 
+                  fill
+                  sizes="100px"
                 />
               </div>
               <div className="flex-1 min-w-0">

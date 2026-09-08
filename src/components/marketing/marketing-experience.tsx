@@ -22,19 +22,24 @@ import {
 
 import { PetSaathiLogo } from "@/components/brand/logo";
 import { CareMatchFinder } from "@/components/marketing/care-match-finder";
-import { CareConcierge } from "@/components/marketing/care-concierge";
-import { CareJourneyExplorer } from "@/components/marketing/care-journey-explorer";
 
-import { DiscoveryReviewRail } from "@/components/marketing/discovery-review-rail";
-import { HeroVideoShowcase } from "@/components/marketing/hero-video-showcase";
-import { MarketplaceAssurance } from "@/components/marketing/marketplace-assurance";
 import { MobileNav } from "@/components/marketing/mobile-nav";
 import { ScrollReveal, ParallaxScroll, Scale3D, RotateOnScroll, Float3D } from "@/components/3d/scroll-reveal";
 import { TextReveal, MagneticButton, AnimosCard, ScrollStaggerContainer, ScrollStaggerItem } from "@/components/effects/animos-motion";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
 import { services, trustSignals } from "@/modules/catalog/services";
+import { PartnerStatsBar } from "@/components/marketing/partner-stats";
+import { AuthNav } from "@/components/marketing/auth-nav";
 import dynamic from "next/dynamic";
+
+const CareConcierge = dynamic(() => import("@/components/marketing/care-concierge").then(m => m.CareConcierge));
+const CareJourneyExplorer = dynamic(() => import("@/components/marketing/care-journey-explorer").then(m => m.CareJourneyExplorer));
+const DiscoveryReviewRail = dynamic(() => import("@/components/marketing/discovery-review-rail").then(m => m.DiscoveryReviewRail));
+const HeroVideoShowcase = dynamic(() => import("@/components/marketing/hero-video-showcase").then(m => m.HeroVideoShowcase));
+const MarketplaceAssurance = dynamic(() => import("@/components/marketing/marketplace-assurance").then(m => m.MarketplaceAssurance));
+const TestimonialsSection = dynamic(() => import("@/components/marketing/testimonials").then(m => m.TestimonialsSection));
+const HowItWorksSection = dynamic(() => import("@/components/marketing/how-it-works").then(m => m.HowItWorksSection));
 
 
 
@@ -51,10 +56,14 @@ const careSteps = [
 ] as const;
 
 const questions = [
-  ["Can I browse every Saathi publicly?", "PetSaathi uses assisted matching. A relevant profile is proposed after service, locality, availability and pet-fit checks, protecting both families and caregivers from unnecessary data exposure."],
-  ["When is payment requested?", "Payment opens only after you approve the proposed Saathi. The amount comes from a server-side quote and is verified again before the booking state changes."],
-  ["Is live tracking always enabled?", "No. Tracking is feature-gated, time-limited and visible only for an eligible active service with the required consent basis."],
-  ["What happens if care does not go as planned?", "Support, incident triage, replacement matching, refunds and corrective actions use explicit workflows with authorised decisions and recorded history."]
+  ["How do I book a pet sitting session?", "Download the PetSaathi app, create a profile for your pet, and browse verified partners near you. Pick a time slot, confirm the booking, and receive live GPS updates during the session."],
+  ["Are PetSaathi Partners background verified?", "Yes. Every PetSaathi Partner goes through ID verification, reference checks, and a pet-handling assessment before going live on the platform. We also enforce a no-phone policy during walks."],
+  ["What cities is PetSaathi available in?", "We are currently launching in select neighbourhoods. Sign up for priority access to be notified when we go live in your area."],
+  ["How much does dog walking cost?", "Pricing varies by city and session length. A standard 30-minute walk starts at ₹199. You can see exact pricing after entering your location in the app."],
+  ["What is PetConnect?", "PetConnect is a first-of-its-kind service in India — it lets pet lovers who don't own pets spend quality time with your dog, supervised and verified. It's a win-win: your pet gets extra love and the partner gets joy."],
+  ["Is my pet insured during a session?", "All PetSaathi sessions are covered under our partner protection policy. Any incident during a verified session is handled by our support team immediately."],
+  ["How do I become a PetSaathi Partner?", "Click 'Become a Partner', fill the application form, complete the verification process, and attend a brief onboarding session. You can start earning from flexible hours within a week."],
+  ["Can I track my dog in real time during a walk?", "Yes. Every walk session includes live GPS tracking, mid-walk photo updates, and a post-walk report card — all visible inside the PetSaathi app."]
 ] as const;
 
 function FaqAccordionItem({ question, answer }: { question: string, answer: string }) {
@@ -88,19 +97,9 @@ function FaqAccordionItem({ question, answer }: { question: string, answer: stri
 
 export function MarketingExperience({
   footerContent,
-  currentUser,
 }: {
   footerContent?: ReactNode;
-  currentUser?: { displayName: string; roles: string[] } | null;
 }) {
-  const dashboardUrl = currentUser
-    ? currentUser.roles.includes("SUPER_ADMIN") || currentUser.roles.includes("OPERATIONS_ADMIN")
-      ? "/admin"
-      : currentUser.roles.includes("SITTER")
-      ? "/saathi"
-      : "/dashboard"
-    : "/dashboard";
-
   return (
     <main className="min-h-screen overflow-hidden bg-cream text-ink" data-motion-skip>
       
@@ -115,44 +114,24 @@ export function MarketingExperience({
             <Link href={"/about" as Route} className="text-sm font-bold text-ink/80 transition hover:text-ink">About</Link>
           </nav>
           <div className="flex items-center gap-3">
-            {currentUser ? (
-              <div className="flex items-center gap-3">
-                <Link
-                  href={dashboardUrl as Route}
-                  className="hidden text-sm font-bold text-indigo transition hover:underline sm:block"
-                >
-                  Dashboard ({currentUser.displayName.split(" ")[0]})
-                </Link>
-                <Link
-                  href={"/api/auth/signout" as Route}
-                  className="hidden text-xs font-semibold text-ink/60 transition hover:text-coral sm:block"
-                >
-                  Sign out
-                </Link>
-              </div>
-            ) : (
-              <MagneticButton strength={0.2}>
-                <Link href={"/login" as Route} className="hidden text-sm font-bold text-ink sm:block">Sign in</Link>
-              </MagneticButton>
-            )}
-            <MagneticButton strength={0.4}>
-              <Link href={"/book" as Route} className={cn(buttonVariants({ variant: "primary", size: "default" }), "rounded-full font-bold bg-[#301F30] hover:bg-[#301F30]/90 text-white")}>
-                Find care <ArrowRight className="ml-1 h-4 w-4" />
-              </Link>
-            </MagneticButton>
-            <MobileNav />
+            <AuthNav />
           </div>
         </div>
       </header>
 
+      {/* Sticky Mobile Book CTA */}
+      <div className="fixed bottom-0 left-0 right-0 z-[40] border-t border-ink/10 bg-cream/90 backdrop-blur-md p-3 sm:hidden" data-motion-skip>
+        <Link href={"/book" as Route} className={cn(buttonVariants({ variant: "primary", size: "lg" }), "w-full rounded-2xl font-bold bg-[#E16649] text-white shadow-lg")}>
+          Book a Saathi
+        </Link>
+      </div>
+
       <section data-testid="marketing-hero" className="marketing-hero-backdrop relative flex flex-col justify-center min-h-[95vh] pt-32 pb-16 lg:pt-40 lg:pb-24">
         <ParallaxScroll speed={-0.15} className="absolute inset-0">
           <Image
-            src="/images/hero-dog-woman.jpg"
+            src="/images/hero-dog-woman.webp"
             alt="PetSaathi Hero Background"
-            fill
-            priority
-            sizes="100vw"
+            fill priority fetchPriority="high" sizes="100vw"
             className="object-cover object-center mix-blend-overlay"
             aria-hidden="true"
             data-testid="marketing-hero-background"
@@ -189,17 +168,17 @@ export function MarketingExperience({
                 <ScrollStaggerContainer className="flex -space-x-4">
                   <ScrollStaggerItem>
                     <div className="relative h-16 w-16 overflow-hidden rounded-full border-2 border-white ring-2 ring-white shadow-md">
-                      <Image src="/images/avatar-1.jpg" alt="Pet parent" fill sizes="64px" className="object-cover" />
+                      <Image src="/images/avatar-1.webp" alt="Pet parent" fill sizes="64px" className="object-cover" />
                     </div>
                   </ScrollStaggerItem>
                   <ScrollStaggerItem>
                     <div className="relative h-16 w-16 overflow-hidden rounded-full border-2 border-white ring-2 ring-white shadow-md">
-                      <Image src="/images/avatar-2.jpg" alt="Pet parent" fill sizes="64px" className="object-cover" />
+                      <Image src="/images/avatar-2.webp" alt="Pet parent" fill sizes="64px" className="object-cover" />
                     </div>
                   </ScrollStaggerItem>
                   <ScrollStaggerItem>
                     <div className="relative h-16 w-16 overflow-hidden rounded-full border-2 border-white ring-2 ring-white shadow-md">
-                      <Image src="/images/avatar-3.jpg" alt="Pet parent" fill sizes="64px" className="object-cover" />
+                      <Image src="/images/avatar-3.webp" alt="Pet parent" fill sizes="64px" className="object-cover" />
                     </div>
                   </ScrollStaggerItem>
                   <ScrollStaggerItem>
@@ -252,6 +231,8 @@ export function MarketingExperience({
         </div>
       </section>
 
+      <PartnerStatsBar />
+
       <section className="bg-cream py-12 sm:py-16 border-b border-indigo/10 overflow-hidden">
         <div className="container-shell grid items-start gap-16 lg:grid-cols-[1.15fr_0.85fr]">
           <HeroVideoShowcase />
@@ -298,7 +279,11 @@ export function MarketingExperience({
         </div>
       </section>
 
+      <HowItWorksSection />
+      
       <DiscoveryReviewRail />
+
+      <TestimonialsSection />
 
       {/* ── Animated Trust Ticker ── */}
       <section className="relative overflow-hidden border-y border-indigo/10 bg-paper/70 py-0 backdrop-blur-sm">
@@ -408,7 +393,7 @@ export function MarketingExperience({
 
       <section className="py-12 sm:py-16">
         <div className="container-shell grid gap-12 lg:grid-cols-[1fr_0.92fr]">
-          <ScrollReveal direction="left" className="h-full"><div className="relative h-full min-h-[34rem] overflow-hidden rounded-[3.5rem] border border-indigo/10 bg-gradient-to-br from-[#f3eafa] to-[#fff0e8] shadow-soft"><Image src="/images/privacy-stage-illustration.jpg" alt="A pet parent reviewing a protected PetSaathi care record beside her resting dog" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" /><div className="absolute inset-0 bg-gradient-to-t from-ink/30 via-transparent to-transparent" /><div className="absolute bottom-6 left-6 right-6 rounded-3xl border border-paper/30 bg-paper p-5"><p className="text-xs font-bold uppercase tracking-[0.16em] text-indigo/80">Privacy by stage</p><p className="mt-2 font-display text-2xl font-semibold">The right information appears only when the relationship requires it.</p></div></div></ScrollReveal>
+          <ScrollReveal direction="left" className="h-full"><div className="relative h-full min-h-[34rem] overflow-hidden rounded-[3.5rem] border border-indigo/10 bg-gradient-to-br from-[#f3eafa] to-[#fff0e8] shadow-soft"><Image src="/images/privacy-stage-illustration.webp" alt="A pet parent reviewing a protected PetSaathi care record beside her resting dog" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" /><div className="absolute inset-0 bg-gradient-to-t from-ink/30 via-transparent to-transparent" /><div className="absolute bottom-6 left-6 right-6 rounded-3xl border border-paper/30 bg-paper p-5"><p className="text-xs font-bold uppercase tracking-[0.16em] text-indigo/80">Privacy by stage</p><p className="mt-2 font-display text-2xl font-semibold">The right information appears only when the relationship requires it.</p></div></div></ScrollReveal>
           <ScrollReveal direction="right"><div><p className="eyebrow">Trust without theatre</p><h2 className="section-title mt-5">No single badge can promise perfect care.</h2><p className="mt-6 text-base leading-8 text-ink/80">PetSaathi combines separate checks, service permissions, careful matching, structured proof and a formal exception path. Each layer has a specific job.</p><div className="mt-8 grid gap-3">{[[ShieldCheck, "Service-specific permissions", "A Saathi receives only the work their current evidence permits."], [Clock3, "Traceable service milestones", "Key moments belong to the booking record, not an unstructured chat."], [HeartHandshake, "People for exceptions", "Sensitive concerns move through support and safety workflows with accountable closure."]].map(([Icon, title, copy]) => { const TrustIcon = Icon as typeof ShieldCheck; return <div key={String(title)} className="flex gap-4 rounded-3xl border border-indigo/10 bg-paper/80 p-5 shadow-sm"><span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-leaf/10 text-leaf"><TrustIcon className="h-5 w-5" /></span><div><h3 className="font-bold">{String(title)}</h3><p className="mt-1 text-sm leading-6 text-ink/80">{String(copy)}</p></div></div>; })}</div><Link href="/safety" className={cn(buttonVariants({ variant: "outline" }), "mt-7")}>Explore the safety model <ArrowRight className="h-4 w-4" /></Link></div></ScrollReveal>
         </div>
       </section>

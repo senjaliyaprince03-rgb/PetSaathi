@@ -23,10 +23,9 @@ export default function SocietiesPage() {
       {/* 1. FULL-BLEED HERO BANNER (LEFT ALIGNED) */}
       <section className="relative h-[560px] sm:h-[620px] w-full overflow-hidden bg-ink text-paper">
         <Image
-          src="/images/societies-hero-luxury-banner.jpg"
+          src="/images/societies-hero-luxury-banner.webp"
           alt="Luxury gated residential society pet care in India"
-          fill
-          priority          sizes="100vw"
+          fill priority fetchPriority="high" sizes="100vw"
           className="object-cover object-[75%_center] sm:object-[center_55%]"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/60 to-transparent md:w-3/4" />

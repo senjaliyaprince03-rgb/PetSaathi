@@ -1,0 +1,2069 @@
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ PetSaathi — Super Master Prompt & Action Plan 
+
+ 
+
+  :root{
+
+    --bg:#0d1117;--surface:#161b22;--surface2:#1f2937;--border:#30363d;
+
+    --accent:#f97316;--accent2:#fb923c;--green:#22c55e;--red:#ef4444;
+
+    --yellow:#facc15;--blue:#60a5fa;--purple:#a78bfa;
+
+    --text:#e6edf3;--muted:#8b949e;--code-bg:#0d1117;
+
+    --sidebar-w:260px;
+
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);display:flex;min-height:100vh;font-size:15px;line-height:1.7;}
+
+
+
+  /* ── SIDEBAR ── */
+
+  aside{width:var(--sidebar-w);min-width:var(--sidebar-w);background:var(--surface);border-right:1px solid var(--border);height:100vh;position:sticky;top:0;overflow-y:auto;padding:0 0 40px;}
+
+  .sidebar-logo{padding:20px 16px 16px;border-bottom:1px solid var(--border);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.5px;display:flex;align-items:center;gap:8px;}
+
+  .sidebar-logo span{font-size:20px;}
+
+  nav a{display:block;padding:9px 16px 9px 20px;color:var(--muted);text-decoration:none;font-size:13px;border-left:3px solid transparent;transition:.15s;}
+
+  nav a:hover,nav a.active{color:var(--text);border-left-color:var(--accent);background:rgba(249,115,22,.07);}
+
+  .nav-group{padding:16px 16px 6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted);}
+
+
+
+  /* ── MAIN ── */
+
+  main{flex:1;padding:40px 48px;max-width:1000px;}
+
+
+
+  h1{font-size:28px;font-weight:800;color:var(--accent);margin-bottom:6px;}
+
+  .subtitle{color:var(--muted);font-size:14px;margin-bottom:36px;}
+
+  h2{font-size:20px;font-weight:700;margin:48px 0 16px;padding-top:8px;color:var(--text);border-bottom:1px solid var(--border);padding-bottom:10px;}
+
+  h3{font-size:16px;font-weight:700;color:var(--accent2);margin:24px 0 10px;}
+
+  h4{font-size:14px;font-weight:700;color:var(--blue);margin:18px 0 8px;}
+
+  p{margin-bottom:12px;color:#c9d1d9;}
+
+
+
+  /* ── MEGA PROMPT BOX ── */
+
+  .mega-prompt{background:linear-gradient(135deg,#0d1f12 0%,#0f1a2e 100%);border:1.5px solid var(--green);border-radius:12px;padding:24px 28px;margin:20px 0 32px;position:relative;}
+
+  .mega-prompt-label{position:absolute;top:-12px;left:20px;background:#0d1f12;padding:2px 12px;border:1.5px solid var(--green);border-radius:20px;font-size:11px;font-weight:700;color:var(--green);letter-spacing:.5px;}
+
+  .mega-prompt p{font-family:'Fira Code','JetBrains Mono',monospace;font-size:13px;color:#86efac;line-height:1.8;margin:0;}
+
+  .copy-btn{position:absolute;top:12px;right:12px;background:var(--surface2);border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:6px;font-size:11px;cursor:pointer;transition:.15s;}
+
+  .copy-btn:hover{color:var(--text);border-color:var(--accent);}
+
+
+
+  /* ── SCORE PILLS ── */
+
+  .score-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:20px 0 32px;}
+
+  .score-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center;}
+
+  .score-val{font-size:32px;font-weight:800;margin-bottom:4px;}
+
+  .score-label{font-size:11px;color:var(--muted);}
+
+  .red{color:var(--red);}
+
+  .yellow{color:var(--yellow);}
+
+  .green-text{color:var(--green);}
+
+
+
+  /* ── ISSUE CARDS ── */
+
+  .issue{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px 20px;margin:14px 0;}
+
+  .issue-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+
+  .badge{padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;}
+
+  .badge-critical{background:#7f1d1d;color:#fca5a5;}
+
+  .badge-high{background:#78350f;color:#fcd34d;}
+
+  .badge-medium{background:#1e3a5f;color:#93c5fd;}
+
+  .badge-low{background:#1e3a2f;color:#86efac;}
+
+  .issue-title{font-weight:700;font-size:15px;}
+
+
+
+  /* ── CODE ── */
+
+  pre{background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:16px 18px;margin:12px 0;overflow-x:auto;font-family:'Fira Code','JetBrains Mono',monospace;font-size:13px;line-height:1.6;}
+
+  code{font-family:'Fira Code','JetBrains Mono',monospace;font-size:13px;}
+
+  .kw{color:#ff7b72;}
+
+  .str{color:#a5d6ff;}
+
+  .fn{color:#d2a8ff;}
+
+  .cm{color:var(--muted);}
+
+  .num{color:#79c0ff;}
+
+  .tag{color:#7ee787;}
+
+  .attr{color:#ffa657;}
+
+  .val{color:#a5d6ff;}
+
+
+
+  /* ── CALLOUT BOXES ── */
+
+  .callout{border-radius:8px;padding:14px 16px;margin:16px 0;display:flex;gap:12px;align-items:flex-start;}
+
+  .callout-warn{background:#2d1f00;border-left:3px solid var(--yellow);}
+
+  .callout-tip{background:#0d1f12;border-left:3px solid var(--green);}
+
+  .callout-info{background:#0d1a2e;border-left:3px solid var(--blue);}
+
+  .callout-danger{background:#1f0d0d;border-left:3px solid var(--red);}
+
+  .callout-icon{font-size:18px;line-height:1;}
+
+  .callout-body{font-size:13px;color:#c9d1d9;line-height:1.6;}
+
+  .callout-body strong{color:var(--text);}
+
+
+
+  /* ── STEPS ── */
+
+  .steps{counter-reset:step;list-style:none;margin:12px 0;}
+
+  .steps li{counter-increment:step;padding:10px 0 10px 44px;position:relative;border-bottom:1px solid var(--border);font-size:14px;}
+
+  .steps li:last-child{border-bottom:none;}
+
+  .steps li::before{content:counter(step);position:absolute;left:0;top:10px;width:28px;height:28px;background:var(--accent);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;}
+
+
+
+  /* ── COLLAPSIBLE Q&A ── */
+
+  details{background:var(--surface);border:1px solid var(--border);border-radius:8px;margin:10px 0;}
+
+  summary{padding:14px 16px;cursor:pointer;font-weight:600;font-size:14px;list-style:none;display:flex;align-items:center;gap:8px;}
+
+  summary::before{content:'▶';font-size:10px;color:var(--accent);transition:.2s;}
+
+  details[open] summary::before{content:'▼';}
+
+  details .qa-body{padding:0 16px 14px;border-top:1px solid var(--border);font-size:13px;color:#c9d1d9;line-height:1.7;}
+
+  details .qa-body pre{margin:10px 0;}
+
+
+
+  /* ── TABLE ── */
+
+  table{width:100%;border-collapse:collapse;font-size:13px;margin:14px 0;}
+
+  th{background:var(--surface2);padding:10px 14px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);border-bottom:1px solid var(--border);}
+
+  td{padding:10px 14px;border-bottom:1px solid var(--border);color:#c9d1d9;}
+
+  tr:last-child td{border-bottom:none;}
+
+  tr:hover td{background:rgba(255,255,255,.02);}
+
+
+
+  /* ── PRIORITY CHECKLIST ── */
+
+  .checklist{list-style:none;}
+
+  .checklist li{padding:8px 0 8px 30px;position:relative;border-bottom:1px solid var(--border);font-size:13px;}
+
+  .checklist li::before{content:'☐';position:absolute;left:0;color:var(--muted);font-size:16px;}
+
+  .checklist li:last-child{border-bottom:none;}
+
+
+
+  /* ── TAG CHIPS ── */
+
+  .chip{display:inline-block;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:600;margin:2px;}
+
+  .chip-perf{background:#1e3a2f;color:#86efac;}
+
+  .chip-seo{background:#1e3a5f;color:#93c5fd;}
+
+  .chip-ux{background:#2d1f00;color:#fcd34d;}
+
+  .chip-content{background:#2d0d1f;color:#f9a8d4;}
+
+  .chip-code{background:#1a1a2e;color:#a78bfa;}
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+ 
+
+    🐾  PetSaathi Fix Plan 
+
+   
+
+     🚀 Master Prompt 
+
+     Copy the Super Prompt 
+
+
+
+     📊 Site Analysis 
+
+     Score Breakdown 
+
+     Full Site Audit 
+
+
+
+     🔥 Critical Fixes 
+
+     Content Bugs (Urgent) 
+
+     Performance 
+
+     Image Optimization 
+
+     SEO Fixes 
+
+
+
+     ⚡ Code Fixes 
+
+     Lazy Loading 
+
+     Font Loading 
+
+     CLS Fix 
+
+     JS Defer 
+
+     Next.js / Vercel Tips 
+
+
+
+     🎨 UX Improvements 
+
+     Mobile UX 
+
+     CTA Improvements 
+
+     Trust Signals 
+
+
+
+     ✅ Checklist 
+
+     Priority Checklist 
+
+     Q&A Deep Dives 
+
+   
+
+ 
+
+
+
+ 
+
+ 
+
+
+
+   🐾 PetSaathi — Super Master Prompt 
+
+   Full audit of  petsaathi.blue.vercel.app  (mobile) · PageSpeed Report · September 8, 2026 
+
+
+
+   
+
+   🚀 The Super Master Prompt 
+
+   Copy this  entire prompt  and paste it into a new Claude conversation along with your project's codebase or key files. It will guide Claude to fix everything found in the PageSpeed report + audit: 
+
+
+
+   
+
+     SUPER MASTER PROMPT — COPY THIS 
+
+     📋 Copy 
+
+     
+
+You are a senior full-stack engineer and performance specialist. I am working on PetSaathi — an Indian pet care services startup web app deployed on Vercel at petsaathi.blue.vercel.app. The app offers pet sitting, dog walking, PetConnect hangouts, event partnerships, and customized pet souvenirs — targeting Indian pet parents.
+
+
+
+I ran a Google PageSpeed Insights test (mobile) and need you to audit and fix the entire project. Work through ALL of the following areas in sequence. For each area, give me the EXACT code to change — no summaries, no "consider doing X", only copy-paste-ready code with file paths.
+
+
+
+════════════════════════════════════
+
+AREA 1 — CONTENT BUGS (Fix Immediately)
+
+════════════════════════════════════
+
+1. Remove ALL lorem ipsum / placeholder text from the FAQ section. Replace with real, India-specific pet care questions and answers.
+
+2. Remove dummy FAQ entries like "fdsgdvcbv sdgsg fdg dfg" — replace with meaningful content.
+
+3. Replace the fake phone number "656456456" with a proper placeholder like +91-XXXXXXXXXX or an actual number.
+
+4. Fill any empty or placeholder sections with real copy matching the PetSaathi brand voice.
+
+
+
+════════════════════════════════════
+
+AREA 2 — PERFORMANCE (PageSpeed Core Web Vitals)
+
+════════════════════════════════════
+
+5. Fix LCP (Largest Contentful Paint): The hero image must be preloaded. Add   for the hero image. If using Next.js, add priority prop to the hero  .
+
+6. Fix CLS (Cumulative Layout Shift): All   tags must have explicit width and height attributes. All Next.js   components must have width and height props. Never use layout="fill" without a fixed-height parent.
+
+7. Fix FID/INP: Identify and defer all non-critical JavaScript. Move analytics, chat widgets, and third-party scripts to load after the page is interactive.
+
+8. Fix TBT (Total Blocking Time): Remove unused JavaScript. Split large JS bundles with dynamic import().
+
+9. Fix FCP (First Contentful Paint): Inline critical CSS. Remove render-blocking stylesheets.
+
+
+
+════════════════════════════════════
+
+AREA 3 — IMAGE OPTIMIZATION
+
+════════════════════════════════════
+
+10. All images currently load from external domain qubetatechnolab.com — migrate them to the /public folder or use Vercel's Image Optimization.
+
+11. Convert all PNG/JPG images to WebP format. Provide the next.config.js settings for this.
+
+12. Add loading="lazy" to all images that are below the fold.
+
+13. Add descriptive alt text to every image (use pet-care, India-specific descriptions).
+
+14. Set explicit width and height on every   tag to prevent CLS.
+
+15. Use srcset for responsive images.
+
+
+
+════════════════════════════════════
+
+AREA 4 — SEO
+
+════════════════════════════════════
+
+16. Add a complete   meta block: title, description, og:title, og:description, og:image, og:url, twitter:card, canonical URL, robots, viewport.
+
+17. Add JSON-LD structured data for LocalBusiness schema (pet care service, India).
+
+18. Add JSON-LD for each Service offered (Pet Sitting, Dog Walking, PetConnect, etc.).
+
+19. Create a sitemap.xml and robots.txt. Provide the Next.js route for sitemap.xml generation.
+
+20. Add breadcrumb schema for inner pages.
+
+
+
+════════════════════════════════════
+
+AREA 5 — NEXT.JS / VERCEL SPECIFIC
+
+════════════════════════════════════
+
+21. Show me the complete next.config.js with: image domains whitelist, WebP output, compression enabled, headers for cache-control on static assets.
+
+22. Show me how to add Vercel Speed Insights and Vercel Analytics to the _app.js / layout.js.
+
+23. Add a service worker for offline caching of static assets.
+
+24. Enable ISR (Incremental Static Regeneration) on blog/service pages.
+
+
+
+════════════════════════════════════
+
+AREA 6 — MOBILE UX
+
+════════════════════════════════════
+
+25. Review and fix the mobile nav — hamburger menu must work with no JavaScript lag.
+
+26. All tap targets (buttons, links) must be at minimum 44×44px. Show me CSS fix.
+
+27. Font sizes: body min 16px on mobile, no text smaller than 12px anywhere.
+
+28. Add a sticky "Book Now" CTA button on mobile that follows the user as they scroll.
+
+29. Fix the "Join Waitlist" form — add proper validation, loading state, and success message.
+
+
+
+════════════════════════════════════
+
+AREA 7 — TRUST & CONVERSION
+
+════════════════════════════════════
+
+30. Add a reviews/testimonials section with star ratings (use JSON data, no external API needed for now).
+
+31. Add partner count / pets served / cities stats to the hero or about section.
+
+32. Add a "How It Works" section with proper 3-step flow and icons.
+
+33. Add an FAQ section with accordion/collapsible answers — 8 real questions.
+
+34. Add a WhatsApp floating button for Indian users (+91 contact).
+
+
+
+Give me code for EVERY item above. Start with Area 1, then go through in order. Do not skip any item. Use React/Next.js code where applicable, or plain HTML/CSS if the project is not React-based. Ask me for the framework/stack if unclear.
+
+     
+
+   
+
+
+
+   
+
+    function copyPrompt(){
+
+      const txt = document.getElementById('prompt-text').innerText;
+
+      navigator.clipboard.writeText(txt).then(()=>{
+
+        const btn = document.querySelector('.copy-btn');
+
+        btn.textContent='✅ Copied!';
+
+        setTimeout(()=>btn.textContent='📋 Copy',2000);
+
+      });
+
+    }
+
+   
+
+
+
+   
+
+   📊 Estimated PageSpeed Score Breakdown (Mobile) 
+
+   The report data is JavaScript-rendered so exact numbers weren't extractable — but based on the site audit below, these are the  estimated scores  matching the issues found: 
+
+
+
+   
+
+     
+
+       ~38 
+
+       Performance 
+
+     
+
+     
+
+       ~65 
+
+       Accessibility 
+
+     
+
+     
+
+       ~72 
+
+       Best Practices 
+
+     
+
+     
+
+       ~45 
+
+       SEO 
+
+     
+
+   
+
+
+
+   
+
+     ℹ️ 
+
+      Why these estimates?  External images (qubetatechnolab.com), no image dimensions, placeholder content in production, missing meta tags, and no structured data are the main score killers across all four categories. 
+
+   
+
+
+
+   
+
+   🔍 Full Site Audit — What Was Found 
+
+   
+
+     
+
+        Category  Issue Found  Severity  Impact  
+
+     
+
+     
+
+        Content  Lorem ipsum in FAQ section   CRITICAL   Trust killer, looks unfinished  
+
+        Content  "fdsgdvcbv sdgsg" placeholder text in production   CRITICAL   Immediate credibility damage  
+
+        Content  Fake phone number "656456456"   CRITICAL   Users can't contact you  
+
+        Performance  All images from external domain (qubetatechnolab.com)   HIGH   Extra DNS lookup, slow LCP  
+
+        Performance  No image width/height attributes   HIGH   CLS layout shift  
+
+        Performance  SVG icons loaded from external server   HIGH   Extra network requests  
+
+        SEO  No visible meta description or OG tags   HIGH   Poor search snippet + social share  
+
+        SEO  No JSON-LD structured data   HIGH   No rich results in Google  
+
+        UX  "Join Waitlist" suggests app not launched   MEDIUM   Reduces urgency, no conversion  
+
+        UX  No visible reviews/testimonials   MEDIUM   Low social proof  
+
+        UX  No WhatsApp button (huge miss for India)   MEDIUM   Missed Indian user behavior  
+
+        Performance  No lazy loading on below-fold images   MEDIUM   Slower initial load  
+
+     
+
+   
+
+
+
+   
+
+   🚨 AREA 1: Content Bugs (Fix Before Anything Else) 
+
+
+
+   
+
+     🔴 
+
+      Your site currently has lorem ipsum and gibberish text in production.  This is the first thing to fix — no performance fix matters if users land on a page with placeholder text. Fix this TODAY. 
+
+   
+
+
+
+   
+
+     
+
+       CRITICAL 
+
+       Replace Lorem Ipsum FAQs 
+
+       Content 
+
+     
+
+     Current broken FAQ entries found on live site: 
+
+       /* ❌ CURRENT (broken — placeholder text in production) */ 
+
+FAQ: "In et finibus lectus. Donec scelerisque tortor?"
+
+     "Pellentesque maximus augue orci, quis congue..."
+
+
+
+FAQ: "fdsgdvcbv sdgsg fdg dfg"
+
+     "dghgdhgh gsdfgdfg dfgdsgdsgdf temporibus..."
+
+
+
+FAQ: "Lorem ipsum dolor sit amet consectetur..."
+
+     "temporibus, nobis neque modi numquam dicta..."  
+
+
+
+     ✅ Replace with these real FAQs (India-specific): 
+
+       // faqData.js — Real FAQ content for PetSaathi 
+
+ export const  faqs = [
+
+  {
+
+    q:  "How do I book a pet sitting session?" ,
+
+    a:  "Download the PetSaathi app, create a profile for your pet, and browse verified partners near you. Pick a time slot, confirm the booking, and receive live GPS updates during the session." 
+
+  },
+
+  {
+
+    q:  "Are PetSaathi Partners background verified?" ,
+
+    a:  "Yes. Every PetSaathi Partner goes through ID verification, reference checks, and a pet-handling assessment before going live on the platform. We also enforce a no-phone policy during walks." 
+
+  },
+
+  {
+
+    q:  "What cities is PetSaathi available in?" ,
+
+    a:  "We are currently launching in select neighbourhoods. Join our waitlist to be notified when we go live in your area." 
+
+  },
+
+  {
+
+    q:  "How much does dog walking cost?" ,
+
+    a:  "Pricing varies by city and session length. A standard 30-minute walk starts at ₹199. You can see exact pricing after entering your location in the app." 
+
+  },
+
+  {
+
+    q:  "What is PetConnect?" ,
+
+    a:  "PetConnect is a first-of-its-kind service in India — it lets pet lovers who don't own pets spend quality time with your dog, supervised and verified. It's a win-win: your pet gets extra love and the partner gets joy." 
+
+  },
+
+  {
+
+    q:  "Is my pet insured during a session?" ,
+
+    a:  "All PetSaathi sessions are covered under our partner protection policy. Any incident during a verified session is handled by our support team immediately." 
+
+  },
+
+  {
+
+    q:  "How do I become a PetSaathi Partner?" ,
+
+    a:  "Click 'Become a Partner', fill the application form, complete the verification process, and attend a brief onboarding session. You can start earning from flexible hours within a week." 
+
+  },
+
+  {
+
+    q:  "Can I track my dog in real time during a walk?" ,
+
+    a:  "Yes. Every walk session includes live GPS tracking, mid-walk photo updates, and a post-walk report card — all visible inside the PetSaathi app." 
+
+  }
+
+];
+
+  
+
+   
+
+
+
+   
+
+     
+
+       CRITICAL 
+
+       Fix the Phone Number 
+
+       Content 
+
+     
+
+       /* ❌ Current */ 
+
+< a   href = "tel:656456456" >656456456</ a >
+
+
+
+ /* ✅ Fix — use real number or hide until launch */ 
+
+< a   href = "tel:+911234567890"   class = "phone-link" >+91-12345 67890</ a >
+
+
+
+ /* OR redirect to WhatsApp if no call center yet */ 
+
+< a   href = "https://wa.me/91XXXXXXXXXX?text=Hi%20PetSaathi%2C%20I%20need%20help" 
+
+    target = "_blank" >Chat on WhatsApp</ a >  
+
+   
+
+
+
+   
+
+   ⚡ AREA 2: Performance — Core Web Vitals 
+
+
+
+   
+
+     
+
+       HIGH 
+
+       Fix LCP — Hero Image Preload 
+
+       Performance 
+
+     
+
+     Option A — Plain HTML 
+
+       <!-- Add this in <head> BEFORE all other tags --> 
+
+< link 
+
+   rel = "preload" 
+
+   as = "image" 
+
+   href = "/images/hero-dog.webp" 
+
+   imagesrcset = "/images/hero-dog-400.webp 400w, /images/hero-dog-800.webp 800w" 
+
+   imagesizes = "(max-width:600px) 100vw, 50vw" 
+
+/>  
+
+
+
+     Option B — Next.js (Recommended for Vercel) 
+
+       import  Image  from   'next/image' ;
+
+
+
+ // In your Hero component — priority tells Next.js to preload 
+
+< Image 
+
+   src = "/images/hero-dog.webp" 
+
+   alt = "Happy dog being walked by PetSaathi partner in India" 
+
+   width = {800} 
+
+   height = {600} 
+
+   priority             // ← This is the LCP fix 
+
+   quality = {85} 
+
+   className = "hero-img" 
+
+/>  
+
+   
+
+
+
+   
+
+     
+
+       HIGH 
+
+       Fix CLS — Explicit Image Dimensions 
+
+       Performance 
+
+     
+
+       /* ❌ Bad — causes layout shift */ 
+
+< img   src = "dog.jpg" >
+
+
+
+ /* ✅ Good — browser reserves space before image loads */ 
+
+< img 
+
+   src = "dog.webp" 
+
+   width = "800" 
+
+   height = "600" 
+
+   alt = "Pet sitter walking golden retriever in Mumbai" 
+
+   loading = "lazy" 
+
+/>
+
+
+
+ /* CSS to maintain aspect ratio */ 
+
+ img  {
+
+   width :  100% ;
+
+   height : auto;
+
+   aspect-ratio : attr(width) / attr(height);  /* modern browsers */ 
+
+}  
+
+   
+
+
+
+   
+
+   🖼️ AREA 3: Image Optimization (Biggest Win) 
+
+
+
+   
+
+     ⚠️ 
+
+      Root problem:  All your images are served from  qubetatechnolab.com  — an external server. This means an extra DNS lookup, no Vercel CDN optimization, no WebP conversion, and no lazy loading control. Move images to your own  /public  folder or use Vercel Image Optimization. 
+
+   
+
+
+
+   
+
+     
+
+       HIGH 
+
+       next.config.js — Enable Image Optimization 
+
+       Code 
+
+     
+
+       // next.config.js 
+
+ /** @type {import('next').NextConfig} */ 
+
+ const  nextConfig = {
+
+  images: {
+
+    formats: [ 'image/avif' ,  'image/webp' ],  // serve AVIF → WebP → JPEG fallback 
+
+    remotePatterns: [
+
+      {
+
+        protocol:  'https' ,
+
+        hostname:  'qubetatechnolab.com' ,   // allow current CDN temporarily 
+
+        pathname:  '/public/PetSaathi/**' ,
+
+      },
+
+    ],
+
+    deviceSizes: [ 360 ,  414 ,  768 ,  1024 ,  1280 ],  // India device breakpoints 
+
+    minimumCacheTTL:  86400 ,   // cache images 24h 
+
+  },
+
+  compress:  true ,
+
+  poweredByHeader:  false ,
+
+  async headers() {
+
+     return  [
+
+      {
+
+        source:  '/:path*.{jpg,jpeg,png,gif,webp,avif,svg,ico}' ,
+
+        headers: [
+
+          { key:  'Cache-Control' , value:  'public, max-age=31536000, immutable'  }
+
+        ],
+
+      },
+
+      {
+
+        source:  '/_next/static/:path*' ,
+
+        headers: [
+
+          { key:  'Cache-Control' , value:  'public, max-age=31536000, immutable'  }
+
+        ],
+
+      },
+
+    ];
+
+  },
+
+};
+
+
+
+ module.exports  = nextConfig;
+
+  
+
+   
+
+
+
+   
+
+     
+
+       MEDIUM 
+
+       Batch Convert Existing Images to WebP 
+
+       Performance 
+
+     
+
+       # Run in your terminal — converts all JPG/PNG to WebP 
+
+ # Install: npm install -g sharp-cli 
+
+
+
+find public/images -name "*.jpg" -o -name "*.png" | \
+
+  xargs -I{} sharp --input {} \
+
+  --output {}.webp \
+
+  --webp-quality 82 \
+
+  --webp-lossless false
+
+
+
+ # OR use squoosh-cli 
+
+npx @squoosh/cli --webp '{"quality":82}' public/images/*.{jpg,png}
+
+  
+
+   
+
+
+
+   
+
+   🔍 AREA 4: SEO Fixes 
+
+
+
+   
+
+     
+
+       HIGH 
+
+       Complete Meta Tags (Next.js App Router) 
+
+       SEO 
+
+     
+
+       // app/layout.js OR pages/_app.js 
+
+ import  { Metadata }  from   'next' ;
+
+
+
+ export const  metadata: Metadata = {
+
+  title:  'PetSaathi — Trusted Pet Sitting & Dog Walking in India' ,
+
+  description:  'Book verified pet sitters, dog walkers, and PetConnect sessions in your city. Live GPS tracking, photo updates, and safe care for your pet. India\'s most trusted pet care community.' ,
+
+  keywords: [ 'pet sitter India' ,  'dog walking Mumbai' ,  'pet care Bangalore' ,  'PetSaathi' ],
+
+  openGraph: {
+
+    title:  'PetSaathi — Your Pet\'s Trusted Companion' ,
+
+    description:  'Verified pet sitters & dog walkers near you. Live GPS + photo updates.' ,
+
+    url:  'https://www.petsaathi.in' ,
+
+    siteName:  'PetSaathi' ,
+
+    images: [{ url:  'https://www.petsaathi.in/og-image.png' , width:  1200 , height:  630  }],
+
+    locale:  'en_IN' ,
+
+    type:  'website' ,
+
+  },
+
+  twitter: {
+
+    card:  'summary_large_image' ,
+
+    title:  'PetSaathi — Pet Care You Can Trust' ,
+
+    description:  'Verified pet sitters & dog walkers across India.' ,
+
+    images: [ 'https://www.petsaathi.in/og-image.png' ],
+
+  },
+
+  robots: { index:  true , follow:  true  },
+
+  alternates: { canonical:  'https://www.petsaathi.in'  },
+
+  verification: { google:  'YOUR_GOOGLE_SEARCH_CONSOLE_TOKEN'  },
+
+};
+
+  
+
+   
+
+
+
+   
+
+     
+
+       HIGH 
+
+       JSON-LD Structured Data — LocalBusiness + Services 
+
+       SEO 
+
+     
+
+       // components/StructuredData.jsx 
+
+ export default function   StructuredData () {
+
+   const  schema = {
+
+     "@context" :  "https://schema.org" ,
+
+     "@type" :  "LocalBusiness" ,
+
+     "@id" :  "https://www.petsaathi.in" ,
+
+     "name" :  "PetSaathi" ,
+
+     "description" :  "India's most trusted pet care ecosystem — verified pet sitting, dog walking, and PetConnect services." ,
+
+     "url" :  "https://www.petsaathi.in" ,
+
+     "logo" :  "https://www.petsaathi.in/logo.png" ,
+
+     "image" :  "https://www.petsaathi.in/og-image.png" ,
+
+     "areaServed" : {  "@type" :  "Country" ,  "name" :  "India"  },
+
+     "hasOfferCatalog" : {
+
+       "@type" :  "OfferCatalog" ,
+
+       "name" :  "PetSaathi Services" ,
+
+       "itemListElement" : [
+
+        {  "@type" :  "Offer" ,  "itemOffered" : {  "@type" :  "Service" ,  "name" :  "Dog Walking"  } },
+
+        {  "@type" :  "Offer" ,  "itemOffered" : {  "@type" :  "Service" ,  "name" :  "Pet Sitting"  } },
+
+        {  "@type" :  "Offer" ,  "itemOffered" : {  "@type" :  "Service" ,  "name" :  "PetConnect"  } }
+
+      ]
+
+    },
+
+     "sameAs" : [
+
+       "https://www.instagram.com/petsaathi" ,
+
+       "https://www.facebook.com/petsaathi" 
+
+    ]
+
+  };
+
+
+
+   return  (
+
+    < script 
+
+       type = "application/ld+json" 
+
+       dangerouslySetInnerHTML = {{ __html: JSON.stringify(schema) }} 
+
+    />
+
+  );
+
+}  
+
+   
+
+
+
+   
+
+   🐌 AREA 5: Lazy Loading 
+
+
+
+   
+
+     
+
+       MEDIUM 
+
+       Native Lazy Loading — Add to All Below-Fold Images 
+
+       Performance 
+
+     
+
+       <!-- ❌ No lazy loading — all images load on page open --> 
+
+< img   src = "service-pet-sitting.jpg" >
+
+
+
+ <!-- ✅ Lazy load below-fold images --> 
+
+< img 
+
+   src = "service-pet-sitting.webp" 
+
+   width = "400" 
+
+   height = "300" 
+
+   loading = "lazy"         <!-- Browser handles this natively, no JS needed --> 
+
+   decoding = "async"      <!-- Decodes off main thread --> 
+
+   alt = "PetSaathi partner sitting with dog at home" 
+
+/>
+
+
+
+ /* RULE: Hero image = NO lazy loading (it's LCP)
+
+          All other images = loading="lazy" */   
+
+   
+
+
+
+   
+
+   🔤 AREA 6: Font Loading 
+
+   
+
+     
+
+       MEDIUM 
+
+       Optimize Google Fonts Loading 
+
+       Performance 
+
+     
+
+       <!-- ❌ Render-blocking font import --> 
+
+< link   href = "https://fonts.googleapis.com/css2?family=Inter"   rel = "stylesheet" >
+
+
+
+ <!-- ✅ Preconnect + non-blocking load --> 
+
+< link   rel = "preconnect"   href = "https://fonts.googleapis.com" >
+
+< link   rel = "preconnect"   href = "https://fonts.gstatic.com"   crossorigin >
+
+< link 
+
+   rel = "stylesheet" 
+
+   href = "https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" 
+
+   media = "print" 
+
+   onload = "this.media='all'" 
+
+>
+
+
+
+ /* Next.js — use built-in font optimization (zero layout shift) */ 
+
+ import  { Inter }  from   'next/font/google' ;
+
+
+
+ const  inter =  Inter ({
+
+  subsets: [ 'latin' ],
+
+  display:  'swap' ,    // show system font first, swap to Inter when ready 
+
+  weight: [ '400' ,  '600' ,  '700' ],
+
+  preload:  true ,
+
+});  
+
+   
+
+
+
+   
+
+   📐 AREA 7: CLS Fix — Stop Layout Shifts 
+
+   
+
+     
+
+       HIGH 
+
+       Reserve Space for All Dynamic Content 
+
+       Performance 
+
+     
+
+       /* ─── CSS Skeleton Loaders (prevents CLS on dynamic content) ─── */ 
+
+
+
+.skeleton {
+
+  background: linear-gradient(90deg, #1f2937 25%, #374151 50%, #1f2937 75%);
+
+  background-size: 200% 100%;
+
+  animation: shimmer 1.5s infinite;
+
+  border-radius: 8px;
+
+}
+
+
+
+@keyframes shimmer {
+
+  0% { background-position: 200% 0; }
+
+  100% { background-position: -200% 0; }
+
+}
+
+
+
+ /* Reserve exact space for partner card images */ 
+
+.partner-card img {
+
+  aspect-ratio: 4 / 3;
+
+  width: 100%;
+
+  object-fit: cover;
+
+}
+
+
+
+ /* Reserve space for hero */ 
+
+.hero-section {
+
+  min-height: 500px;   /* prevents hero collapse before image loads */ 
+
+  display: flex;
+
+  align-items: center;
+
+}  
+
+   
+
+
+
+   
+
+   ⏳ AREA 8: JS Deferring & Bundle Splitting 
+
+   
+
+     
+
+       HIGH 
+
+       Defer Non-Critical Scripts 
+
+       Code 
+
+     
+
+       <!-- ❌ Blocks parsing --> 
+
+< script   src = "analytics.js" ></ script >
+
+
+
+ <!-- ✅ Defer analytics + third-party scripts --> 
+
+< script   src = "analytics.js"   defer ></ script >
+
+
+
+ // Next.js Script component — load analytics after page is interactive 
+
+ import  Script  from   'next/script' ;
+
+
+
+< Script 
+
+   src = "https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXX" 
+
+   strategy = "afterInteractive"     // ← loads after page is interactive 
+
+/>
+
+
+
+ // Dynamic import for heavy components (map, chat widget, etc.) 
+
+ import  dynamic  from   'next/dynamic' ;
+
+
+
+ const  MapComponent =  dynamic (() =>  import ( './MapComponent' ), {
+
+  loading: () => < div   className = "skeleton"  style= {{height:'300px'}}  />,
+
+  ssr:  false ,   // don't SSR map (reduces server payload) 
+
+});  
+
+   
+
+
+
+   
+
+   🔧 AREA 9: Vercel/Next.js Specific Wins 
+
+
+
+   
+
+     
+
+       MEDIUM 
+
+       Add Vercel Analytics + Speed Insights 
+
+       Performance 
+
+     
+
+       # Install Vercel's official analytics packages 
+
+npm install @vercel/analytics @vercel/speed-insights
+
+
+
+ // app/layout.js (App Router) 
+
+ import  { Analytics }  from   '@vercel/analytics/react' ;
+
+ import  { SpeedInsights }  from   '@vercel/speed-insights/next' ;
+
+
+
+ export default function   RootLayout ({ children }) {
+
+   return  (
+
+    < html >
+
+      < body >
+
+        {children}
+
+        < Analytics  />          // track page views & events 
+
+        < SpeedInsights  />     // real user CWV data in Vercel dashboard 
+
+      </ body >
+
+    </ html >
+
+  );
+
+}  
+
+   
+
+
+
+   
+
+     
+
+       MEDIUM 
+
+       ISR for Service & Blog Pages 
+
+       Code 
+
+     
+
+       // app/services/[slug]/page.js 
+
+ export const  revalidate =  3600 ;  // rebuild every 1 hour (ISR) 
+
+
+
+ export async function   generateStaticParams () {
+
+   const  services = [ 'pet-sitting' ,  'dog-walking' ,  'petconnect' ,  'events' ,  'souvenirs' ];
+
+   return  services.map(slug => ({ slug }));
+
+}
+
+
+
+ export default async function   ServicePage ({ params }) {
+
+   const  service =  await   fetchService (params.slug);
+
+   return  < ServiceDetail  service={service} />;
+
+}  
+
+   
+
+
+
+   
+
+   📱 AREA 10: Mobile UX (India-Specific) 
+
+
+
+   
+
+     
+
+       HIGH 
+
+       WhatsApp Floating Button — Critical for India 
+
+       UX 
+
+     
+
+       // components/WhatsAppButton.jsx 
+
+ export default function   WhatsAppButton () {
+
+   const  message =  encodeURIComponent ( 'Hi PetSaathi! I want to book a pet care service.' );
+
+   const  phone =  '91XXXXXXXXXX' ;  // replace with real number 
+
+
+
+   return  (
+
+    < a 
+
+       href ={`https://wa.me/${phone}?text=${message}`}
+
+       target = "_blank" 
+
+       rel = "noopener noreferrer" 
+
+       aria-label = "Chat with PetSaathi on WhatsApp" 
+
+       style = {{
+
+        position: 'fixed', bottom: '24px', right: '24px',
+
+        width: '56px', height: '56px', borderRadius: '50%',
+
+        background: '#25D366', display: 'flex',
+
+        alignItems: 'center', justifyContent: 'center',
+
+        boxShadow: '0 4px 20px rgba(37,211,102,.4)',
+
+        zIndex: 9999, textDecoration: 'none',
+
+        transition: 'transform .2s'
+
+      }} 
+
+       onMouseEnter ={e => e.currentTarget.style.transform =  'scale(1.1)' }
+
+       onMouseLeave ={e => e.currentTarget.style.transform =  'scale(1)' }
+
+    >
+
+       /* WhatsApp SVG icon */ 
+
+      < svg   width = "28"   height = "28"   fill = "white"   viewBox = "0 0 24 24" >
+
+        < path   d = "M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+
+        < path   d = "M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.115 1.524 5.843L0 24l6.347-1.501A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.797 9.797 0 01-5.031-1.387l-.361-.214-3.737.883.939-3.648-.236-.374A9.794 9.794 0 012.182 12C2.182 6.578 6.578 2.182 12 2.182c5.423 0 9.818 4.396 9.818 9.818 0 5.423-4.395 9.818-9.818 9.818z"/>
+
+      </ svg >
+
+    </ a >
+
+  );
+
+}  
+
+   
+
+
+
+   
+
+     
+
+       MEDIUM 
+
+       Sticky Mobile "Book Now" CTA 
+
+       UX 
+
+     
+
+       /* Sticky bottom bar — mobile only */ 
+
+@media (max-width: 768px) {
+
+  .sticky-cta {
+
+    position: fixed;
+
+    bottom: 0;
+
+    left: 0;
+
+    right: 0;
+
+    padding: 12px 16px;
+
+    background: #fff;
+
+    border-top: 1px solid #e5e7eb;
+
+    box-shadow: 0 -4px 20px rgba(0,0,0,.08);
+
+    display: flex;
+
+    gap: 10px;
+
+    z-index: 100;
+
+  }
+
+
+
+  .sticky-cta .btn-book {
+
+    flex: 1;
+
+    background: #f97316;    /* PetSaathi brand orange */ 
+
+    color: #fff;
+
+    border: none;
+
+    border-radius: 10px;
+
+    padding: 14px;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    min-height: 48px;       /* 48px tap target */ 
+
+    cursor: pointer;
+
+  }
+
+
+
+  .sticky-cta .btn-wa {
+
+    width: 48px;
+
+    height: 48px;
+
+    background: #25D366;
+
+    border: none;
+
+    border-radius: 10px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    cursor: pointer;
+
+  }
+
+}  
+
+   
+
+
+
+   
+
+   🎯 AREA 11: CTA Improvements 
+
+   
+
+     
+
+       MEDIUM 
+
+       Replace "Join Waitlist" with Urgency-Driven CTAs 
+
+       UX 
+
+     
+
+     
+
+       💡 
+
+        "Join Waitlist"  signals the app is not ready. Even if you are in beta, frame it differently to build excitement and reduce drop-off. 
+
+     
+
+       /* ❌ Low-converting CTAs */ 
+
+"Join Waitlist"    →  feels inactive, not launched
+
+"Become a Partner" →  vague
+
+
+
+ /* ✅ Higher-converting alternatives */ 
+
+"Book Your First Walk →"
+
+"Get Early Access + ₹200 Welcome Credit"
+
+"Find a Sitter Near Me"
+
+"I Want a Partner for My Pet"   // emotional, India-specific voice 
+
+
+
+ // Urgency example with city counter 
+
+< button   className = "btn-primary" >
+
+  Book My Pet's First Walk
+
+  < span   className = "badge-new" >Free first session</ span >
+
+</ button >  
+
+   
+
+
+
+   
+
+   🏅 AREA 12: Trust Signals 
+
+
+
+   
+
+     
+
+       MEDIUM 
+
+       Stats Bar + Testimonials Component 
+
+       UX 
+
+     
+
+       // components/StatsBar.jsx 
+
+ const  stats = [
+
+  { number:  '100+' , label:  'Verified Partners' , icon:  '✅'  },
+
+  { number:  '4.9★' , label:  'Avg. Rating' ,        icon:  '⭐'  },
+
+  { number:  '500+' , label:  'Happy Pets Served' ,  icon:  '🐶'  },
+
+  { number:  '3' ,    label:  'Cities Live' ,        icon:  '📍'  },
+
+];
+
+
+
+ // components/Testimonials.jsx 
+
+ const  reviews = [
+
+  {
+
+    name:  "Priya S." , city:  "Mumbai" , pet:  "Labrador" , stars:  5 ,
+
+    text:  "Rocky used to get so anxious when I left. With PetSaathi, I get live photos every 20 mins. Absolute peace of mind!" 
+
+  },
+
+  {
+
+    name:  "Arjun M." , city:  "Bangalore" , pet:  "Beagle" , stars:  5 ,
+
+    text:  "Affordable, verified, and genuinely loving partners. My dog refuses to come home after walks now 😂" 
+
+  },
+
+  {
+
+    name:  "Sneha K." , city:  "Pune" , pet:  "Persian Cat" , stars:  5 ,
+
+    text:  "First-ever cat sitting service that actually understood cats. Mitti was so calm when I came back!" 
+
+  },
+
+];  
+
+   
+
+
+
+   
+
+   ✅ Priority Checklist — Do This in Order 
+
+   Work through these  top to bottom . Items 1–5 are  today . Items 6–15 are  this week . 
+
+
+
+   
+
+      [TODAY]  Remove all lorem ipsum / gibberish placeholder text from FAQ section 
+
+      [TODAY]  Replace fake phone number "656456456" with real/WhatsApp contact 
+
+      [TODAY]  Fill all empty FAQ entries with real India-specific pet care content 
+
+      [TODAY]  Add complete meta description, og:title, og:image to <head> 
+
+      [TODAY]  Add canonical URL and robots meta tag 
+
+      [WEEK 1]  Add  priority  prop to hero <Image> (LCP fix) 
+
+      [WEEK 1]  Add  width  and  height  to every <img> tag (CLS fix) 
+
+      [WEEK 1]  Add  loading="lazy"  to all below-fold images 
+
+      [WEEK 1]  Move images from qubetatechnolab.com to /public + use Vercel Image 
+
+      [WEEK 1]  Defer all analytics / third-party scripts with  strategy="afterInteractive"  
+
+      [WEEK 1]  Add WhatsApp floating button 
+
+      [WEEK 1]  Add JSON-LD LocalBusiness structured data 
+
+      [WEEK 2]  Convert all images to WebP 
+
+      [WEEK 2]  Add testimonials/reviews section 
+
+      [WEEK 2]  Add stats bar (partners count, rating, pets served) 
+
+      [WEEK 2]  Add Vercel Analytics + SpeedInsights 
+
+      [WEEK 2]  Enable ISR on service/blog pages 
+
+      [WEEK 3]  Add sitemap.xml and robots.txt 
+
+      [WEEK 3]  Enable next/font for zero-CLS font loading 
+
+      [WEEK 3]  Add dynamic import() for map / heavy components 
+
+   
+
+
+
+   
+
+   ❓ Q&A Deep Dives 
+
+
+
+   
+
+     🤔 Why is mobile score lower than desktop? 
+
+     
+
+       Mobile PageSpeed is harder because: (1) CPU throttled to 4x slower than desktop, (2) bandwidth simulated at ~1.6 Mbps 3G, (3) viewport is narrow so images/fonts must be mobile-optimized. India's user base is predominantly mobile (85%+ on Android), so fixing mobile score is your highest priority. 
+
+       The biggest mobile killers for PetSaathi are: large unoptimized images, external image CDN (qubetatechnolab.com), and render-blocking resources. 
+
+     
+
+   
+
+
+
+   
+
+     🤔 What is LCP and how do I fix it specifically? 
+
+     
+
+        LCP = Largest Contentful Paint  — the time until the biggest visible element is rendered. For PetSaathi it's almost certainly the hero image or hero headline. 
+
+        Target: under 2.5s on mobile.  
+
+       Fix it in 3 steps: 
+
+       
+
+         Put the hero image in your own  /public  folder (not qubetatechnolab.com) 
+
+         Add  priority  prop to the Next.js <Image> (this generates a <link rel="preload">) 
+
+         Convert the hero to WebP and serve at the right size (max 800px wide for mobile) 
+
+       
+
+     
+
+   
+
+
+
+   
+
+     🤔 What is CLS and why does it hurt my score? 
+
+     
+
+        CLS = Cumulative Layout Shift  — measures how much content jumps around as the page loads. Users hate it. Google penalizes it. 
+
+       On PetSaathi, CLS is caused by images loading without explicit dimensions — the browser doesn't know how tall the image will be, so it reserves no space, then shifts everything down when the image appears. 
+
+        Fix:  Add  width  and  height  attributes to every single image. One-line fix, huge score improvement. 
+
+        < img   src = "dog.webp"   width = "400"   height = "300"   alt = "..." >  
+
+     
+
+   
+
+
+
+   
+
+     🤔 How do I check my actual PageSpeed score after fixing? 
+
+     
+
+       Run:  pagespeed.web.dev  — paste your URL and select Mobile tab. 
+
+       Also run locally using Lighthouse in Chrome DevTools → Lighthouse tab → Mobile → Analyze. This gives you line-by-line breakdowns without waiting for the public report. 
+
+       After each batch of fixes, re-run the report and compare. Target:  Performance > 70  on mobile. 
+
+     
+
+   
+
+
+
+   
+
+     🤔 Should I move off qubetatechnolab.com for hosting images? 
+
+     
+
+        Yes, as soon as possible.  When images come from a third-party domain, users' browsers must: 
+
+       
+
+         Look up qubetatechnolab.com's DNS (extra ~50–200ms on mobile) 
+
+         Establish a new HTTPS connection (another ~100ms) 
+
+         Download the image (unoptimized, probably JPG/PNG not WebP) 
+
+       
+
+       When you host on Vercel, Next.js's Image Optimization automatically converts to WebP/AVIF, resizes for device, caches on CDN, and serves from the same domain — saving 300–500ms per image on mobile. 
+
+     
+
+   
+
+
+
+   
+
+     🤔 How do I target Indian users specifically in PageSpeed? 
+
+     
+
+       PageSpeed uses US-based servers. Your real Indian users may have different results. To get India-specific data: 
+
+       
+
+         Use  WebPageTest.org  → set location to "Bangalore" or "Mumbai", connection to "4G India" 
+
+         Enable  Vercel Speed Insights  — shows real user CWV data segmented by country/device 
+
+         Use  GTmetrix  → select Mumbai server location 
+
+       
+
+       Also: optimize for low-end Android phones (the dominant India device). Simulate in Chrome DevTools → CPU throttle 6x, Network throttle "Fast 3G". 
+
+     
+
+   
+
+
+
+   
+
+     🐾 
+
+     PetSaathi Super Master Prompt 
+
+     Generated from PageSpeed Report · September 8, 2026 · petsaathi.blue.vercel.app (Mobile) 
+
+     Copy the Super Master Prompt at the top and paste into Claude with your codebase to fix all 20 items automatically. 
+
+   
+
+
+
+ 
+
+ 
+
+ 
+ 
+ 
+The current local time is: 2026-09-08T12:19:02+05:30.
+ 
+ 
+The user changed setting `Model Selection` from Gemini 3.8 Flash (Medium) to Gemini 3.1 Pro (Low). No need to comment on this change if the user doesn't ask about it. If reporting what model you are, please use a human readable name instead of the exact string.
+ 

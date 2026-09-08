@@ -124,7 +124,7 @@ export function CareConcierge() {
             <div className="grid lg:grid-cols-[0.9fr_1.1fr]">
               <div className="relative min-h-[31rem] overflow-hidden lg:min-h-[43rem]">
                 <Image
-                  src="/images/care-handover-courtyard.png"
+                  src="/images/care-handover-courtyard.webp"
                   alt="A PetSaathi caregiver and pet parent calmly reviewing care needs with their dog"
                   fill
                   priority={false}

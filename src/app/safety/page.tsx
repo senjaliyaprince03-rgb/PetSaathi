@@ -24,10 +24,9 @@ export default function SafetyPage() {
       {/* 1. FULL-BLEED HERO BANNER (LEFT ALIGNED) */}
       <section className="relative h-[560px] sm:h-[620px] w-full overflow-hidden bg-ink text-paper" suppressHydrationWarning>
         <Image
-          src="/images/safety-hero-luxury-banner.jpg"
+          src="/images/safety-hero-luxury-banner.webp"
           alt="Veterinary safety & wellness check for PetSaathi pets"
-          fill
-          priority          sizes="100vw"
+          fill priority fetchPriority="high" sizes="100vw"
           className="object-cover object-[80%_center] sm:object-[center_65%]"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/60 to-transparent md:w-3/4" />

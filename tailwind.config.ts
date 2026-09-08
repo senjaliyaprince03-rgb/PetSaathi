@@ -113,10 +113,10 @@ const config: Config = {
           "sans": ["var(--font-inter)", "Inter", "sans-serif"],
       },
       "fontSize": {
-          "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+          "body-sm": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
           "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
           "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
-          "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+          "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
           "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
           "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
           "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],

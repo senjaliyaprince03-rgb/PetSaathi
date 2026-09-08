@@ -1,0 +1,1039 @@
+<USER_REQUEST>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>PetSaathi — Super Master Prompt & Action Plan</title>
+<style>
+  :root{
+    --bg:#0d1117;--surface:#161b22;--surface2:#1f2937;--border:#30363d;
+    --accent:#f97316;--accent2:#fb923c;--green:#22c55e;--red:#ef4444;
+    --yellow:#facc15;--blue:#60a5fa;--purple:#a78bfa;
+    --text:#e6edf3;--muted:#8b949e;--code-bg:#0d1117;
+    --sidebar-w:260px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);display:flex;min-height:100vh;font-size:15px;line-height:1.7;}
+
+  /* ── SIDEBAR ── */
+  aside{width:var(--sidebar-w);min-width:var(--sidebar-w);background:var(--surface);border-right:1px solid var(--border);height:100vh;position:sticky;top:0;overflow-y:auto;padding:0 0 40px;}
+  .sidebar-logo{padding:20px 16px 16px;border-bottom:1px solid var(--border);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.5px;display:flex;align-items:center;gap:8px;}
+  .sidebar-logo span{font-size:20px;}
+  nav a{display:block;padding:9px 16px 9px 20px;color:var(--muted);text-decoration:none;font-size:13px;border-left:3px solid transparent;transition:.15s;}
+  nav a:hover,nav a.active{color:var(--text);border-left-color:var(--accent);background:rgba(249,115,22,.07);}
+  .nav-group{padding:16px 16px 6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted);}
+
+  /* ── MAIN ── */
+  main{flex:1;padding:40px 48px;max-width:1000px;}
+
+  h1{font-size:28px;font-weight:800;color:var(--accent);margin-bottom:6px;}
+  .subtitle{color:var(--muted);font-size:14px;margin-bottom:36px;}
+  h2{font-size:20px;font-weight:700;margin:48px 0 16px;padding-top:8px;color:var(--text);border-bottom:1px solid var(--border);padding-bottom:10px;}
+  h3{font-size:16px;font-weight:700;color:var(--accent2);margin:24px 0 10px;}
+  h4{font-size:14px;font-weight:700;color:var(--blue);margin:18px 0 8px;}
+  p{margin-bottom:12px;color:#c9d1d9;}
+
+  /* ── MEGA PROMPT BOX ── */
+  .mega-prompt{background:linear-gradient(135deg,#0d1f12 0%,#0f1a2e 100%);border:1.5px solid var(--green);border-radius:12px;padding:24px 28px;margin:20px 0 32px;position:relative;}
+  .mega-prompt-label{position:absolute;top:-12px;left:20px;background:#0d1f12;padding:2px 12px;border:1.5px solid var(--green);border-radius:20px;font-size:11px;font-weight:700;color:var(--green);letter-spacing:.5px;}
+  .mega-prompt p{font-family:'Fira Code','JetBrains Mono',monospace;font-size:13px;color:#86efac;line-height:1.8;margin:0;}
+  .copy-btn{position:absolute;top:12px;right:12px;background:var(--surface2);border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:6px;font-size:11px;cursor:pointer;transition:.15s;}
+  .copy-btn:hover{color:var(--text);border-color:var(--accent);}
+
+  /* ── SCORE PILLS ── */
+  .score-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:20px 0 32px;}
+  .score-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center;}
+  .score-val{font-size:32px;font-weight:800;margin-bottom:4px;}
+  .score-label{font-size:11px;color:var(--muted);}
+  .red{color:var(--red);}
+  .yellow{color:var(--yellow);}
+  .green-text{color:var(--green);}
+
+  /* ── ISSUE CARDS ── */
+  .issue{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px 20px;margin:14px 0;}
+  .issue-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+  .badge{padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;}
+  .badge-critical{background:#7f1d1d;color:#fca5a5;}
+  .badge-high{background:#78350f;color:#fcd34d;}
+  .badge-medium{background:#1e3a5f;color:#93c5fd;}
+  .badge-low{background:#1e3a2f;color:#86efac;}
+  .issue-title{font-weight:700;font-size:15px;}
+
+  /* ── CODE ── */
+  pre{background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:16px 18px;margin:12px 0;overflow-x:auto;font-family:'Fira Code','JetBrains Mono',monospace;font-size:13px;line-height:1.6;}
+  code{font-family:'Fira Code','JetBrains Mono',monospace;font-size:13px;}
+  .kw{color:#ff7b72;}
+  .str{color:#a5d6ff;}
+  .fn{color:#d2a8ff;}
+  .cm{color:var(--muted);}
+  .num{color:#79c0ff;}
+  .tag{color:#7ee787;}
+  .attr{color:#ffa657;}
+  .val{color:#a5d6ff;}
+
+  /* ── CALLOUT BOXES ── */
+  .callout{border-radius:8px;padding:14px 16px;margin:16px 0;display:flex;gap:12px;align-items:flex-start;}
+  .callout-warn{background:#2d1f00;border-left:3px solid var(--yellow);}
+  .callout-tip{background:#0d1f12;border-left:3px solid var(--green);}
+  .callout-info{background:#0d1a2e;border-left:3px solid var(--blue);}
+  .callout-danger{background:#1f0d0d;border-left:3px solid var(--red);}
+  .callout-icon{font-size:18px;line-height:1;}
+  .callout-body{font-size:13px;color:#c9d1d9;line-height:1.6;}
+  .callout-body strong{color:var(--text);}
+
+  /* ── STEPS ── */
+  .steps{counter-reset:step;list-style:none;margin:12px 0;}
+  .steps li{counter-increment:step;padding:10px 0 10px 44px;position:relative;border-bottom:1px solid var(--border);font-size:14px;}
+  .steps li:last-child{border-bottom:none;}
+  .steps li::before{content:counter(step);position:absolute;left:0;top:10px;width:28px;height:28px;background:var(--accent);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;}
+
+  /* ── COLLAPSIBLE Q&A ── */
+  details{background:var(--surface);border:1px solid var(--border);border-radius:8px;margin:10px 0;}
+  summary{padding:14px 16px;cursor:pointer;font-weight:600;font-size:14px;list-style:none;display:flex;align-items:center;gap:8px;}
+  summary::before{content:'▶';font-size:10px;color:var(--accent);transition:.2s;}
+  details[open] summary::before{content:'▼';}
+  details .qa-body{padding:0 16px 14px;border-top:1px solid var(--border);font-size:13px;color:#c9d1d9;line-height:1.7;}
+  details .qa-body pre{margin:10px 0;}
+
+  /* ── TABLE ── */
+  table{width:100%;border-collapse:collapse;font-size:13px;margin:14px 0;}
+  th{background:var(--surface2);padding:10px 14px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);border-bottom:1px solid var(--border);}
+  td{padding:10px 14px;border-bottom:1px solid var(--border);color:#c9d1d9;}
+  tr:last-child td{border-bottom:none;}
+  tr:hover td{background:rgba(255,255,255,.02);}
+
+  /* ── PRIORITY CHECKLIST ── */
+  .checklist{list-style:none;}
+  .checklist li{padding:8px 0 8px 30px;position:relative;border-bottom:1px solid var(--border);font-size:13px;}
+  .checklist li::before{content:'☐';position:absolute;left:0;color:var(--muted);font-size:16px;}
+  .checklist li:last-child{border-bottom:none;}
+
+  /* ── TAG CHIPS ── */
+  .chip{display:inline-block;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:600;margin:2px;}
+  .chip-perf{background:#1e3a2f;color:#86efac;}
+  .chip-seo{background:#1e3a5f;color:#93c5fd;}
+  .chip-ux{background:#2d1f00;color:#fcd34d;}
+  .chip-content{background:#2d0d1f;color:#f9a8d4;}
+  .chip-code{background:#1a1a2e;color:#a78bfa;}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ SIDEBAR ═══════════ -->
+<aside>
+  <div class="sidebar-logo"><span>🐾</span> PetSaathi Fix Plan</div>
+  <nav>
+    <div class="nav-group">🚀 Master Prompt</div>
+    <a href="#master-prompt">Copy the Super Prompt</a>
+
+    <div class="nav-group">📊 Site Analysis</div>
+    <a href="#scores">Score Breakdown</a>
+    <a href="#site-audit">Full Site Audit</a>
+
+    <div class="nav-group">🔥 Critical Fixes</div>
+    <a href="#content-bugs">Content Bugs (Urgent)</a>
+    <a href="#performance">Performance</a>
+    <a href="#images">Image Optimization</a>
+    <a href="#seo">SEO Fixes</a>
+
+    <div class="nav-group">⚡ Code Fixes</div>
+    <a href="#lazy-loading">Lazy Loading</a>
+    <a href="#fonts">Font Loading</a>
+    <a href="#cls-fix">CLS Fix</a>
+    <a href="#js-defer">JS Defer</a>
+    <a href="#nextjs-tips">Next.js / Vercel Tips</a>
+
+    <div class="nav-group">🎨 UX Improvements</div>
+    <a href="#ux-mobile">Mobile UX</a>
+    <a href="#cta">CTA Improvements</a>
+    <a href="#trust">Trust Signals</a>
+
+    <div class="nav-group">✅ Checklist</div>
+    <a href="#final-checklist">Priority Checklist</a>
+    <a href="#qa">Q&A Deep Dives</a>
+  </nav>
+</aside>
+
+<!-- ═══════════ MAIN ═══════════ -->
+<main>
+
+  <h1>🐾 PetSaathi — Super Master Prompt</h1>
+  <p class="subtitle">Full audit of <code>petsaathi.blue.vercel.app</code> (mobile) · PageSpeed Report · September 8, 2026</p>
+
+  <!-- ─── MASTER PROMPT ─── -->
+  <h2 id="master-prompt">🚀 The Super Master Prompt</h2>
+  <p>Copy this <strong>entire prompt</strong> and paste it into a new Claude conversation along with your project's codebase or key files. It will guide Claude to fix everything found in the PageSpeed report + audit:</p>
+
+  <div class="mega-prompt">
+    <div class="mega-prompt-label">SUPER MASTER PROMPT — COPY THIS</div>
+    <button class="copy-btn" onclick="copyPrompt()">📋 Copy</button>
+    <p id="prompt-text">
+You are a senior full-stack engineer and performance specialist. I am working on PetSaathi — an Indian pet care services startup web app deployed on Vercel at petsaathi.blue.vercel.app. The app offers pet sitting, dog walking, PetConnect hangouts, event partnerships, and customized pet souvenirs — targeting Indian pet parents.
+
+I ran a Google PageSpeed Insights test (mobile) and need you to audit and fix the entire project. Work through ALL of the following areas in sequence. For each area, give me the EXACT code to change — no summaries, no "consider doing X", only copy-paste-ready code with file paths.
+
+════════════════════════════════════
+AREA 1 — CONTENT BUGS (Fix Immediately)
+════════════════════════════════════
+1. Remove ALL lorem ipsum / placeholder text from the FAQ section. Replace with real, India-specific pet care questions and answers.
+2. Remove dummy FAQ entries like "fdsgdvcbv sdgsg fdg dfg" — replace with meaningful content.
+3. Replace the fake phone number "656456456" with a proper placeholder like +91-XXXXXXXXXX or an actual number.
+4. Fill any empty or placeholder sections with real copy matching the PetSaathi brand voice.
+
+════════════════════════════════════
+AREA 2 — PERFORMANCE (PageSpeed Core Web Vitals)
+════════════════════════════════════
+5. Fix LCP (Largest Contentful Paint): The hero image must be preloaded. Add <link rel="preload"> for the hero image. If using Next.js, add priority prop to the hero <Image>.
+6. Fix CLS (Cumulative Layout Shift): All <img> tags must have explicit width and height attributes. All Next.js <Image> components must have width and height props. Never use layout="fill" without a fixed-height parent.
+7. Fix FID/INP: Identify and defer all non-critical JavaScript. Move analytics, chat widgets, and third-party scripts to load after the page is interactive.
+8. Fix TBT (Total Blocking Time): Remove unused JavaScript. Split large JS bundles with dynamic import().
+9. Fix FCP (First Contentful Paint): Inline critical CSS. Remove render-blocking stylesheets.
+
+════════════════════════════════════
+AREA 3 — IMAGE OPTIMIZATION
+════════════════════════════════════
+10. All images currently load from external domain qubetatechnolab.com — migrate them to the /public folder or use Vercel's Image Optimization.
+11. Convert all PNG/JPG images to WebP format. Provide the next.config.js settings for this.
+12. Add loading="lazy" to all images that are below the fold.
+13. Add descriptive alt text to every image (use pet-care, India-specific descriptions).
+14. Set explicit width and height on every <img> tag to prevent CLS.
+15. Use srcset for responsive images.
+
+════════════════════════════════════
+AREA 4 — SEO
+════════════════════════════════════
+16. Add a complete <head> meta block: title, description, og:title, og:description, og:image, og:url, twitter:card, canonical URL, robots, viewport.
+17. Add JSON-LD structured data for LocalBusiness schema (pet care service, India).
+18. Add JSON-LD for each Service offered (Pet Sitting, Dog Walking, PetConnect, etc.).
+19. Create a sitemap.xml and robots.txt. Provide the Next.js route for sitemap.xml generation.
+20. Add breadcrumb schema for inner pages.
+
+════════════════════════════════════
+AREA 5 — NEXT.JS / VERCEL SPECIFIC
+════════════════════════════════════
+21. Show me the complete next.config.js with: image domains whitelist, WebP output, compression enabled, headers for cache-control on static assets.
+22. Show me how to add Vercel Speed Insights and Vercel Analytics to the _app.js / layout.js.
+23. Add a service worker for offline caching of static assets.
+24. Enable ISR (Incremental Static Regeneration) on blog/service pages.
+
+════════════════════════════════════
+AREA 6 — MOBILE UX
+════════════════════════════════════
+25. Review and fix the mobile nav — hamburger menu must work with no JavaScript lag.
+26. All tap targets (buttons, links) must be at minimum 44×44px. Show me CSS fix.
+27. Font sizes: body min 16px on mobile, no text smaller than 12px anywhere.
+28. Add a sticky "Book Now" CTA button on mobile that follows the user as they scroll.
+29. Fix the "Join Waitlist" form — add proper validation, loading state, and success message.
+
+════════════════════════════════════
+AREA 7 — TRUST & CONVERSION
+════════════════════════════════════
+30. Add a reviews/testimonials section with star ratings (use JSON data, no external API needed for now).
+31. Add partner count / pets served / cities stats to the hero or about section.
+32. Add a "How It Works" section with proper 3-step flow and icons.
+33. Add an FAQ section with accordion/collapsible answers — 8 real questions.
+34. Add a WhatsApp floating button for Indian users (+91 contact).
+
+Give me code for EVERY item above. Start with Area 1, then go through in order. Do not skip any item. Use React/Next.js code where applicable, or plain HTML/CSS if the project is not React-based. Ask me for the framework/stack if unclear.
+    </p>
+  </div>
+
+  <script>
+    function copyPrompt(){
+      const txt = document.getElementById('prompt-text').innerText;
+      navigator.clipboard.writeText(txt).then(()=>{
+        const btn = document.querySelector('.copy-btn');
+        btn.textContent='✅ Copied!';
+        setTimeout(()=>btn.textContent='📋 Copy',2000);
+      });
+    }
+  </script>
+
+  <!-- ─── SCORES ─── -->
+  <h2 id="scores">📊 Estimated PageSpeed Score Breakdown (Mobile)</h2>
+  <p>The report data is JavaScript-rendered so exact numbers weren't extractable — but based on the site audit below, these are the <strong>estimated scores</strong> matching the issues found:</p>
+
+  <div class="score-grid">
+    <div class="score-card">
+      <div class="score-val red">~38</div>
+      <div class="score-label">Performance</div>
+    </div>
+    <div class="score-card">
+      <div class="score-val yellow">~65</div>
+      <div class="score-label">Accessibility</div>
+    </div>
+    <div class="score-card">
+      <div class="score-val yellow">~72</div>
+      <div class="score-label">Best Practices</div>
+    </div>
+    <div class="score-card">
+      <div class="score-val red">~45</div>
+      <div class="score-label">SEO</div>
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div class="callout-body"><strong>Why these estimates?</strong> External images (qubetatechnolab.com), no image dimensions, placeholder content in production, missing meta tags, and no structured data are the main score killers across all four categories.</div>
+  </div>
+
+  <!-- ─── SITE AUDIT ─── -->
+  <h2 id="site-audit">🔍 Full Site Audit — What Was Found</h2>
+  <table>
+    <thead>
+      <tr><th>Category</th><th>Issue Found</th><th>Severity</th><th>Impact</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Content</td><td>Lorem ipsum in FAQ section</td><td><span class="badge badge-critical">CRITICAL</span></td><td>Trust killer, looks unfinished</td></tr>
+      <tr><td>Content</td><td>"fdsgdvcbv sdgsg" placeholder text in production</td><td><span class="badge badge-critical">CRITICAL</span></td><td>Immediate credibility damage</td></tr>
+      <tr><td>Content</td><td>Fake phone number "656456456"</td><td><span class="badge badge-critical">CRITICAL</span></td><td>Users can't contact you</td></tr>
+      <tr><td>Performance</td><td>All images from external domain (qubetatechnolab.com)</td><td><span class="badge badge-high">HIGH</span></td><td>Extra DNS lookup, slow LCP</td></tr>
+      <tr><td>Performance</td><td>No image width/height attributes</td><td><span class="badge badge-high">HIGH</span></td><td>CLS layout shift</td></tr>
+      <tr><td>Performance</td><td>SVG icons loaded from external server</td><td><span class="badge badge-high">HIGH</span></td><td>Extra network requests</td></tr>
+      <tr><td>SEO</td><td>No visible meta description or OG tags</td><td><span class="badge badge-high">HIGH</span></td><td>Poor search snippet + social share</td></tr>
+      <tr><td>SEO</td><td>No JSON-LD structured data</td><td><span class="badge badge-high">HIGH</span></td><td>No rich results in Google</td></tr>
+      <tr><td>UX</td><td>"Join Waitlist" suggests app not launched</td><td><span class="badge badge-medium">MEDIUM</span></td><td>Reduces urgency, no conversion</td></tr>
+      <tr><td>UX</td><td>No visible reviews/testimonials</td><td><span class="badge badge-medium">MEDIUM</span></td><td>Low social proof</td></tr>
+      <tr><td>UX</td><td>No WhatsApp button (huge miss for India)</td><td><span class="badge badge-medium">MEDIUM</span></td><td>Missed Indian user behavior</td></tr>
+      <tr><td>Performance</td><td>No lazy loading on below-fold images</td><td><span class="badge badge-medium">MEDIUM</span></td><td>Slower initial load</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ─── CONTENT BUGS ─── -->
+  <h2 id="content-bugs">🚨 AREA 1: Content Bugs (Fix Before Anything Else)</h2>
+
+  <div class="callout callout-danger">
+    <div class="callout-icon">🔴</div>
+    <div class="callout-body"><strong>Your site currently has lorem ipsum and gibberish text in production.</strong> This is the first thing to fix — no performance fix matters if users land on a page with placeholder text. Fix this TODAY.</div>
+  </div>
+
+  <div class="issue">
+    <div class="issue-header">
+      <span class="badge badge-critical">CRITICAL</span>
+      <span class="issue-title">Replace Lorem Ipsum FAQs</span>
+      <span class="chip chip-content">Content</span>
+    </div>
+    <p>Current broken FAQ entries found on live site:</p>
+    <pre><code><span class="cm">/* ❌ CURRENT (broken — placeholder text in production) */</span>
+FAQ: "In et finibus lectus. Donec scelerisque tortor?"
+     "Pellentesque maximus augue orci, quis congue..."
+
+FAQ: "fdsgdvcbv sdgsg fdg dfg"
+     "dghgdhgh gsdfgdfg dfgdsgdsgdf temporibus..."
+
+FAQ: "Lorem ipsum dolor sit amet consectetur..."
+     "temporibus, nobis neque modi numquam dicta..."</code></pre>
+
+    <h4>✅ Replace with these real FAQs (India-specific):</h4>
+    <pre><code><span class="cm">// faqData.js — Real FAQ content for PetSaathi</span>
+<span class="kw">export const</span> faqs = [
+  {
+    q: <span class="str">"How do I book a pet sitting session?"</span>,
+    a: <span class="str">"Download the PetSaathi app, create a profile for your pet, and browse verified partners near you. Pick a time slot, confirm the booking, and receive live GPS updates during the session."</span>
+  },
+  {
+    q: <span class="str">"Are PetSaathi Partners background verified?"</span>,
+    a: <span class="str">"Yes. Every PetSaathi Partner goes through ID verification, reference checks, and a pet-handling assessment before going live on the platform. We also enforce a no-phone policy during walks."</span>
+  },
+  {
+    q: <span class="str">"What cities is PetSaathi available in?"</span>,
+    a: <span class="str">"We are currently launching in select neighbourhoods. Join our waitlist to be notified when we go live in your area."</span>
+  },
+  {
+    q: <span class="str">"How much does dog walking cost?"</span>,
+    a: <span class="str">"Pricing varies by city and session length. A standard 30-minute walk starts at ₹199. You can see exact pricing after entering your location in the app."</span>
+  },
+  {
+    q: <span class="str">"What is PetConnect?"</span>,
+    a: <span class="str">"PetConnect is a first-of-its-kind service in India — it lets pet lovers who don't own pets spend quality time with your dog, supervised and verified. It's a win-win: your pet gets extra love and the partner gets joy."</span>
+  },
+  {
+    q: <span class="str">"Is my pet insured during a session?"</span>,
+    a: <span class="str">"All PetSaathi sessions are covered under our partner protection policy. Any incident during a verified session is handled by our support team immediately."</span>
+  },
+  {
+    q: <span class="str">"How do I become a PetSaathi Partner?"</span>,
+    a: <span class="str">"Click 'Become a Partner', fill the application form, complete the verification process, and attend a brief onboarding session. You can start earning from flexible hours within a week."</span>
+  },
+  {
+    q: <span class="str">"Can I track my dog in real time during a walk?"</span>,
+    a: <span class="str">"Yes. Every walk session includes live GPS tracking, mid-walk photo updates, and a post-walk report card — all visible inside the PetSaathi app."</span>
+  }
+];
+</code></pre>
+  </div>
+
+  <div class="issue">
+    <div class="issue-header">
+      <span class="badge badge-critical">CRITICAL</span>
+      <span class="issue-title">Fix the Phone Number</span>
+      <span class="chip chip-content">Content</span>
+    </div>
+    <pre><code><span class="cm">/* ❌ Current */</span>
+&lt;<span class="tag">a</span> <span class="attr">href</span>=<span class="val">"tel:656456456"</span>&gt;656456456&lt;/<span class="tag">a</span>&gt;
+
+<span class="cm">/* ✅ Fix — use real number or hide until launch */</span>
+&lt;<span class="tag">a</span> <span class="attr">href</span>=<span class="val">"tel:+911234567890"</span> <span class="attr">class</span>=<span class="val">"phone-link"</span>&gt;+91-12345 67890&lt;/<span class="tag">a</span>&gt;
+
+<span class="cm">/* OR redirect to WhatsApp if no call center yet */</span>
+&lt;<span class="tag">a</span> <span class="attr">href</span>=<span class="val">"https://wa.me/91XXXXXXXXXX?text=Hi%20PetSaathi%2C%20I%20need%20help"</span>
+   <span class="attr">target</span>=<span class="val">"_blank"</span>&gt;Chat on WhatsApp&lt;/<span class="tag">a</span>&gt;</code></pre>
+  </div>
+
+  <!-- ─── PERFORMANCE ─── -->
+  <h2 id="performance">⚡ AREA 2: Performance — Core Web Vitals</h2>
+
+  <div class="issue">
+    <div class="issue-header">
+      <span class="badge badge-high">HIGH</span>
+      <span class="issue-title">Fix LCP — Hero Image Preload</span>
+      <span class="chip chip-perf">Performance</span>
+    </div>
+    <h4>Option A — Plain HTML</h4>
+    <pre><code><span class="cm">&lt;!-- Add this in &lt;head&gt; BEFORE all other tags --&gt;</span>
+&lt;<span class="tag">link</span>
+  <span class="attr">rel</span>=<span class="val">"preload"</span>
+  <span class="attr">as</span>=<span class="val">"image"</span>
+  <span class="attr">href</span>=<span class="val">"/images/hero-dog.webp"</span>
+  <span class="attr">imagesrcset</span>=<span class="val">"/images/hero-dog-400.webp 400w, /images/hero-dog-800.webp 800w"</span>
+  <span class="attr">imagesizes</span>=<span class="val">"(max-width:600px) 100vw, 50vw"</span>
+/&gt;</code></pre>
+
+    <h4>Option B — Next.js (Recommended for Vercel)</h4>
+    <pre><code><span class="kw">import</span> Image <span class="kw">from</span> <span class="str">'next/image'</span>;
+
+<span class="cm">// In your Hero component — priority tells Next.js to preload</span>
+&lt;<span class="tag">Image</span>
+  <span class="attr">src</span>=<span class="val">"/images/hero-dog.webp"</span>
+  <span class="attr">alt</span>=<span class="val">"Happy dog being walked by PetSaathi partner in India"</span>
+  <span class="attr">width</span>=<span class="val">{800}</span>
+  <span class="attr">height</span>=<span class="val">{600}</span>
+  <span class="attr">priority</span>           <span class="cm">// ← This is the LCP fix</span>
+  <span class="attr">quality</span>=<span class="val">{85}</span>
+  <span class="attr">className</span>=<span class="val">"hero-img"</span>
+/&gt;</code></pre>
+  </div>
+
+  <div class="issue">
+    <div class="issue-header">
+      <span class="badge badge-high">HIGH</span>
+      <span class="issue-title">Fix CLS — Explicit Image Dimensions</span>
+      <span class="chip chip-perf">Performance</span>
+    </div>
+    <pre><code><span class="cm">/* ❌ Bad — causes layout shift */</span>
+&lt;<span class="tag">img</span> <span class="attr">src</span>=<span class="val">"dog.jpg"</span>&gt;
+
+<span class="cm">/* ✅ Good — browser reserves space before image loads */</span>
+&lt;<span class="tag">img</span>
+  <span class="attr">src</span>=<span class="val">"dog.webp"</span>
+  <span class="attr">width</span>=<span class="val">"800"</span>
+  <span class="attr">height</span>=<span class="val">"600"</span>
+  <span class="attr">alt</span>=<span class="val">"Pet sitter walking golden retriever in Mumbai"</span>
+  <span class="attr">loading</span>=<span class="val">"lazy"</span>
+/&gt;
+
+<span class="cm">/* CSS to maintain aspect ratio */</span>
+<span class="fn">img</span> {
+  <span class="attr">width</span>: <span class="num">100%</span>;
+  <span class="attr">height</span>: auto;
+  <span class="attr">aspect-ratio</span>: attr(width) / attr(height); <span class="cm">/* modern browsers */</span>
+}</code></pre>
+  </div>
+
+  <!-- ─── IMAGES ─── -->
+  <h2 id="images">🖼️ AREA 3: Image Optimization (Biggest Win)</h2>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div class="callout-body"><strong>Root problem:</strong> All your images are served from <code>qubetatechnolab.com</code> — an external server. This means an extra DNS lookup, no Vercel CDN optimization, no WebP conversion, and no lazy loading control. Move images to your own <code>/public</code> folder or use Vercel Image Optimization.</div>
+  </div>
+
+  <div class="issue">
+    <div class="issue-header">
+      <span class="badge badge-high">HIGH</span>
+      <span class="issue-title">next.config.js — Enable Image Optimization</span>
+      <span class="chip chip-code">Code</span>
+    </div>
+    <pre><code><span class="cm">// next.config.js</span>
+<span class="cm">/** @type {import('next').NextConfig} */</span>
+<span class="kw">const</span> nextConfig = {
+  images: {
+    formats: [<span class="str">'image/avif'</span>, <span class="str">'image/webp'</span>], <span class="cm">// serve AVIF → WebP → JPEG fallback</span>
+    remotePatterns: [
+      {
+        protocol: <span class="str">'https'</span>,
+        hostname: <span class="str">'qubetatechnolab.com'</span>,  <span class="cm">// allow current CDN temporarily</span>
+        pathname: <span class="str">'/public/PetSaathi/**'</span>,
+      },
+    ],
+    deviceSizes: [<span class="num">360</span>, <span class="num">414</span>, <span class="num">768</span>, <span class="num">1024</span>, <span class="num">1280</span>], <span class="cm">// India device breakpoints</span>
+    minimumCacheTTL: <span class="num">86400</span>,  <span class="cm">// cache images 24h</span>
+  },
+  compress: <span class="kw">true</span>,
+  poweredByHeader: <span class="kw">false</span>,
+  async headers() {
+    <span class="kw">return</span> [
+      {
+        source: <span class="str">'/:path*.{jpg,jpeg,png,gif,webp,avif,svg,ico}'</span>,
+        headers: [
+          { key: <span class="str">'Cache-Control'</span>, value: <span class="str">'public, max-age=31536000, immutable'</span> }
+        ],
+      },
+      {
+        source: <span class="str">'/_next/static/:path*'</span>,
+        headers: [
+          { key: <span class="str">'Cache-Control'</span>, value: <span class="str">'public, max-age=31536000, immutable'</span> }
+        ],
+      },
+    ];
+  },
+};
+
+<span class="kw">module.exports</span> = nextConfig;
+</code></pre>
+  </div>
+
+  <div class="issue">
+    <div class="issue-header">
+      <span class="badge badge-medium">MEDIUM</span>
+      <span class="issue-title">Batch Convert Existing Images to WebP</span>
+      <span class="chip chip-perf">Performance</span>
+    </div>
+    <pre><code><span class="cm"># Run in your terminal — converts all JPG/PNG to WebP</span>
+<span class="cm"># Install: npm install -g sharp-cli</span>
+
+find public/images -name "*.jpg" -o -name "*.png" | \
+  xargs -I{} sharp --input {} \
+  --output {}.webp \
+  --webp-quality 82 \
+  --webp-lossless false
+
+<span class="cm"># OR use squoosh-cli</span>
+npx @squoosh/cli --webp '{"quality":82}' public/images/*.{jpg,png}
+</code></pre>
+  </div>
+
+  <!-- ─── SEO ─── -->
+  <h2 id="seo">🔍 AREA 4: SEO Fixes</h2>
+
+  <div class="issue">
+    <div class="issue-header">
+      <span class="badge badge-high">HIGH</span>
+      <span class="issue-title">Complete Meta Tags (Next.js App Router)</span>
+      <span class="chip chip-seo">SEO</span>
+    </div>
+    <pre><code><span class="cm">// app/layout.js OR pages/_app.js</span>
+<span class="kw">import</span> { Metadata } <span class="kw">from</span> <span class="str">'next'</span>;
+
+<span class="kw">export const</span> metadata: Metadata = {
+  title: <span class="str">'PetSaathi — Trusted Pet Sitting & Dog Walking in India'</span>,
+  description: <span class="str">'Book verified pet sitters, dog walkers, and PetConnect sessions in your city. Live GPS tracking, photo updates, and safe care for your pet. India\'s most trusted pet care community.'</span>,
+  keywords: [<span class="str">'pet sitter India'</span>, <span class="str">'dog walking Mumbai'</span>, <span class="str">'pet care Bangalore'</span>, <span class="str">'PetSaathi'</span>],
+  openGraph: {
+    title: <span class="str">'PetSaathi — Your Pet\'s Trusted Companion'</span>,
+    description: <span class="str">'Verified pet sitters & dog walkers near you. Live GPS + photo updates.'</span>,
+    url: <span class="str">'https://www.petsaathi.in'</span>,
+    siteName: <span class="str">'PetSaathi'</span>,
+    images: [{ url: <span class="str">'https://www.petsaathi.in/og-image.png'</span>, width: <span class="num">1200</span>, height: <span class="num">630</span> }],
+    locale: <span class="str">'en_IN'</span>,
+    type: <span class="str">'website'</span>,
+  },
+  twitter: {
+    card: <span class="str">'summary_large_image'</span>,
+    title: <span class="str">'PetSaathi — Pet Care You Can Trust'</span>,
+    description: <span class="str">'Verified pet sitters & dog walkers across India.'</span>,
+    images: [<span class="str">'https://www.petsaathi.in/og-image.png'</span>],
+  },
+  robots: { index: <span class="kw">true</span>, follow: <span class="kw">true</span> },
+  alternates: { canonical: <span class="str">'https://www.petsaathi.in'</span> },
+  verification: { google: <span class="str">'YOUR_GOOGLE_SEARCH_CONSOLE_TOKEN'</span> },
+};
+</code></pre>
+  </div>
+
+  <div class="issue">
+    <div class="issue-header">
+      <span class="badge badge-high">HIGH</span>
+      <span class="issue-title">JSON-LD Structured Data — LocalBusiness + Services</span>
+      <span class="chip chip-seo">SEO</span>
+    </div>
+    <pre><code><span class="cm">// components/StructuredData.jsx</span>
+<span class="kw">export default function</span> <span class="fn">StructuredData</span>() {
+  <span class="kw">const</span> schema = {
+    <span class="str">"@context"</span>: <span class="str">"https://schema.org"</span>,
+    <span class="str">"@type"</span>: <span class="str">"LocalBusiness"</span>,
+    <span class="str">"@id"</span>: <span class="str">"https://www.petsaathi.in"</span>,
+    <span class="str">"name"</span>: <span class="str">"PetSaathi"</span>,
+    <span class="str">"description"</span>: <span class="str">"India's most trusted pet care ecosystem — verified pet sitting, dog walking, and PetConnect services."</span>,
+    <span class="str">"url"</span>: <span class="str">"https://www.petsaathi.in"</span>,
+    <span class="str">"logo"</span>: <span class="str">"https://www.petsaathi.in/logo.png"</span>,
+    <span class="str">"image"</span>: <span class="str">"https://www.petsaathi.in/og-image.png"</span>,
+    <span class="str">"areaServed"</span>: { <span class="str">"@type"</span>: <span class="str">"Country"</span>, <span class="str">"name"</span>: <span class="str">"India"</span> },
+    <span class="str">"hasOfferCatalog"</span>: {
+      <span class="str">"@type"</span>: <span class="str">"OfferCatalog"</span>,
+      <span class="str">"name"</span>: <span class="str">"PetSaathi Services"</span>,
+      <span class="str">"itemListElement"</span>: [
+        { <span class="str">"@type"</span>: <span class="str">"Offer"</span>, <span class="str">"itemOffered"</span>: { <span class="str">"@type"</span>: <span class="str">"Service"</span>, <span class="str">"name"</span>: <span class="str">"Dog Walking"</span> } },
+        { <span class="str">"@type"</span>: <span class="str">"Offer"</span>, <span class="str">"itemOffered"</span>: { <span class="str">"@type"</span>: <span class="str">"Service"</span>, <span class="str">"name"</span>: <span class="str">"Pet Sitting"</span> } },
+        { <span class="str">"@type"</span>: <span class="str">"Offer"</span>, <span class="str">"itemOffered"</span>: { <span class="str">"@type"</span>: <span class="str">"Service"</span>, <span class="str">"name"</span>: <span class="str">"PetConnect"</span> } }
+      ]
+    },
+    <span class="str">"sameAs"</span>: [
+      <span class="str">"https://www.instagram.com/petsaathi"</span>,
+      <span class="str">"https://www.facebook.com/petsaathi"</span>
+    ]
+  };
+
+  <span class="kw">return</span> (
+    &lt;<span class="tag">script</span>
+      <span class="attr">type</span>=<span class="val">"application/ld+json"</span>
+      <span class="attr">dangerouslySetInnerHTML</span>=<span class="val">{{ __html: JSON.stringify(schema) }}</span>
+    /&gt;
+  );
+}</code></pre>
+  </div>
+
+  <!-- ─── LAZY LOADING ─── -->
+  <h2 id="lazy-loading">🐌 AREA 5: Lazy Loading</h2>
+
+  <div class="issue">
+    <div class="issue-header">
+      <span class="badge badge-medium">MEDIUM</span>
+      <span class="issue-title">Native Lazy Loading — Add to All Below-Fold Images</span>
+      <span class="chip chip-perf">Performance</span>
+    </div>
+    <pre><code><span class="cm">&lt;!-- ❌ No lazy loading — all images load on page open --&gt;</span>
+&lt;<span class="tag">img</span> <span class="attr">src</span>=<span class="val">"service-pet-sitting.jpg"</span>&gt;
+
+<span class="cm">&lt;!-- ✅ Lazy load below-fold images --&gt;</span>
+&lt;<span class="tag">img</span>
+  <span class="attr">src</span>=<span class="val">"service-pet-sitting.webp"</span>
+  <span class="attr">width</span>=<span class="val">"400"</span>
+  <span class="attr">height</span>=<span class="val">"300"</span>
+  <span class="attr">loading</span>=<span class="val">"lazy"</span>       <span class="cm">&lt;!-- Browser handles this natively, no JS needed --&gt;</span>
+  <span class="attr">decoding</span>=<span class="val">"async"</span>    <span class="cm">&lt;!-- Decodes off main thread --&gt;</span>
+  <span class="attr">alt</span>=<span class="val">"PetSaathi partner sitting with dog at home"</span>
+/&gt;
+
+<span class="cm">/* RULE: Hero image = NO lazy loading (it's LCP)
+          All other images = loading="lazy" */</span></code></pre>
+  </div>
+
+  <!-- ─── FONTS ─── -->
+  <h2 id="fonts">🔤 AREA 6: Font Loading</h2>
+  <div class="issue">
+    <div class="issue-header">
+      <span class="badge badge-medium">MEDIUM</span>
+      <span class="issue-title">Optimize Google Fonts Loading</span>
+      <span class="chip chip-perf">Performance</span>
+    </div>
+    <pre><code><span class="cm">&lt;!-- ❌ Render-blocking font import --&gt;</span>
+&lt;<span class="tag">link</span> <span class="attr">href</span>=<span class="val">"https://fonts.googleapis.com/css2?family=Inter"</span> <span class="attr">rel</span>=<span class="val">"stylesheet"</span>&gt;
+
+<span class="cm">&lt;!-- ✅ Preconnect + non-blocking load --&gt;</span>
+&lt;<span class="tag">link</span> <span class="attr">rel</span>=<span class="val">"preconnect"</span> <span class="attr">href</span>=<span class="val">"https://fonts.googleapis.com"</span>&gt;
+&lt;<span class="tag">link</span> <span class="attr">rel</span>=<span class="val">"preconnect"</span> <span class="attr">href</span>=<span class="val">"https://fonts.gstatic.com"</span> <span class="attr">crossorigin</span>&gt;
+&lt;<span class="tag">link</span>
+  <span class="attr">rel</span>=<span class="val">"stylesheet"</span>
+  <span class="attr">href</span>=<span class="val">"https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"</span>
+  <span class="attr">media</span>=<span class="val">"print"</span>
+  <span class="attr">onload</span>=<span class="val">"this.media='all'"</span>
+&gt;
+
+<span class="cm">/* Next.js — use built-in font optimization (zero layout shift) */</span>
+<span class="kw">import</span> { Inter } <span class="kw">from</span> <span class="str">'next/font/google'</span>;
+
+<span class="kw">const</span> inter = <span class="fn">Inter</span>({
+  subsets: [<span class="str">'latin'</span>],
+  display: <span class="str">'swap'</span>,   <span class="cm">// show system font first, swap to Inter when ready</span>
+  weight: [<span class="str">'400'</span>, <span class="str">'600'</span>, <span class="str">'700'</span>],
+  preload: <span class="kw">true</span>,
+});</code></pre>
+  </div>
+
+  <!-- ─── CLS ─── -->
+  <h2 id="cls-fix">📐 AREA 7: CLS Fix — Stop Layout Shifts</h2>
+  <div class="issue">
+    <div class="issue-header">
+      <span class="badge badge-high">HIGH</span>
+      <span class="issue-title">Reserve Space for All Dynamic Content</span>
+      <span class="chip chip-perf">Performance</span>
+    </div>
+    <pre><code><span class="cm">/* ─── CSS Skeleton Loaders (prevents CLS on dynamic content) ─── */</span>
+
+.skeleton {
+  background: linear-gradient(90deg, #1f2937 25%, #374151 50%, #1f2937 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+<span class="cm">/* Reserve exact space for partner card images */</span>
+.partner-card img {
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  object-fit: cover;
+}
+
+<span class="cm">/* Reserve space for hero */</span>
+.hero-section {
+  min-height: 500px;  <span class="cm">/* prevents hero collapse before image loads */</span>
+  display: flex;
+  align-items: center;
+}</code></pre>
+  </div>
+
+  <!-- ─── JS DEFER ─── -->
+  <h2 id="js-defer">⏳ AREA 8: JS Deferring & Bundle Splitting</h2>
+  <div class="issue">
+    <div class="issue-header">
+      <span class="badge badge-high">HIGH</span>
+      <span class="issue-title">Defer Non-Critical Scripts</span>
+      <span class="chip chip-code">Code</span>
+    </div>
+    <pre><code><span class="cm">&lt;!-- ❌ Blocks parsing --&gt;</span>
+&lt;<span class="tag">script</span> <span class="attr">src</span>=<span class="val">"analytics.js"</span>&gt;&lt;/<span class="tag">script</span>&gt;
+
+<span class="cm">&lt;!-- ✅ Defer analytics + third-party scripts --&gt;</span>
+&lt;<span class="tag">script</span> <span class="attr">src</span>=<span class="val">"analytics.js"</span> <span class="attr">defer</span>&gt;&lt;/<span class="tag">script</span>&gt;
+
+<span class="cm">// Next.js Script component — load analytics after page is interactive</span>
+<span class="kw">import</span> Script <span class="kw">from</span> <span class="str">'next/script'</span>;
+
+&lt;<span class="tag">Script</span>
+  <span class="attr">src</span>=<span class="val">"https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXX"</span>
+  <span class="attr">strategy</span>=<span class="val">"afterInteractive"</span>   <span class="cm">// ← loads after page is interactive</span>
+/&gt;
+
+<span class="cm">// Dynamic import for heavy components (map, chat widget, etc.)</span>
+<span class="kw">import</span> dynamic <span class="kw">from</span> <span class="str">'next/dynamic'</span>;
+
+<span class="kw">const</span> MapComponent = <span class="fn">dynamic</span>(() =&gt; <span class="kw">import</span>(<span class="str">'./MapComponent'</span>), {
+  loading: () =&gt; &lt;<span class="tag">div</span> <span class="attr">className</span>=<span class="val">"skeleton"</span> style=<span class="val">{{height:'300px'}}</span> /&gt;,
+  ssr: <span class="kw">false</span>,  <span class="cm">// don't SSR map (reduces server payload)</span>
+});</code></pre>
+  </div>
+
+  <!-- ─── NEXT.JS TIPS ─── -->
+  <h2 id="nextjs-tips">🔧 AREA 9: Vercel/Next.js Specific Wins</h2>
+
+  <div class="issue">
+    <div class="issue-header">
+      <span class="badge badge-medium">MEDIUM</span>
+      <span class="issue-title">Add Vercel Analytics + Speed Insights</span>
+      <span class="chip chip-perf">Performance</span>
+    </div>
+    <pre><code><span class="cm"># Install Vercel's official analytics packages</span>
+npm install @vercel/analytics @vercel/speed-insights
+
+<span class="cm">// app/layout.js (App Router)</span>
+<span class="kw">import</span> { Analytics } <span class="kw">from</span> <span class="str">'@vercel/analytics/react'</span>;
+<span class="kw">import</span> { SpeedInsights } <span class="kw">from</span> <span class="str">'@vercel/speed-insights/next'</span>;
+
+<span class="kw">export default function</span> <span class="fn">RootLayout</span>({ children }) {
+  <span class="kw">return</span> (
+    &lt;<span class="tag">html</span>&gt;
+      &lt;<span class="tag">body</span>&gt;
+        {children}
+        &lt;<span class="tag">Analytics</span> /&gt;         <span class="cm">// track page views & events</span>
+        &lt;<span class="tag">SpeedInsights</span> /&gt;    <span class="cm">// real user CWV data in Vercel dashboard</span>
+      &lt;/<span class="tag">body</span>&gt;
+    &lt;/<span class="tag">html</span>&gt;
+  );
+}</code></pre>
+  </div>
+
+  <div class="issue">
+    <div class="issue-header">
+      <span class="badge badge-medium">MEDIUM</span>
+      <span class="issue-title">ISR for Service & Blog Pages</span>
+      <span class="chip chip-code">Code</span>
+    </div>
+    <pre><code><span class="cm">// app/services/[slug]/page.js</span>
+<span class="kw">export const</span> revalidate = <span class="num">3600</span>; <span class="cm">// rebuild every 1 hour (ISR)</span>
+
+<span class="kw">export async function</span> <span class="fn">generateStaticParams</span>() {
+  <span class="kw">const</span> services = [<span class="str">'pet-sitting'</span>, <span class="str">'dog-walking'</span>, <span class="str">'petconnect'</span>, <span class="str">'events'</span>, <span class="str">'souvenirs'</span>];
+  <span class="kw">return</span> services.map(slug =&gt; ({ slug }));
+}
+
+<span class="kw">export default async function</span> <span class="fn">ServicePage</span>({ params }) {
+  <span class="kw">const</span> service = <span class="kw">await</span> <span class="fn">fetchService</span>(params.slug);
+  <span class="kw">return</span> &lt;<span class="tag">ServiceDetail</span> service={service} /&gt;;
+}</code></pre>
+  </div>
+
+  <!-- ─── MOBILE UX ─── -->
+  <h2 id="ux-mobile">📱 AREA 10: Mobile UX (India-Specific)</h2>
+
+  <div class="issue">
+    <div class="issue-header">
+      <span class="badge badge-high">HIGH</span>
+      <span class="issue-title">WhatsApp Floating Button — Critical for India</span>
+      <span class="chip chip-ux">UX</span>
+    </div>
+    <pre><code><span class="cm">// components/WhatsAppButton.jsx</span>
+<span class="kw">export default function</span> <span class="fn">WhatsAppButton</span>() {
+  <span class="kw">const</span> message = <span class="fn">encodeURIComponent</span>(<span class="str">'Hi PetSaathi! I want to book a pet care service.'</span>);
+  <span class="kw">const</span> phone = <span class="str">'91XXXXXXXXXX'</span>; <span class="cm">// replace with real number</span>
+
+  <span class="kw">return</span> (
+    &lt;<span class="tag">a</span>
+      <span class="attr">href</span>={`https://wa.me/${phone}?text=${message}`}
+      <span class="attr">target</span>=<span class="val">"_blank"</span>
+      <span class="attr">rel</span>=<span class="val">"noopener noreferrer"</span>
+      <span class="attr">aria-label</span>=<span class="val">"Chat with PetSaathi on WhatsApp"</span>
+      <span class="attr">style</span>=<span class="val">{{
+        position: 'fixed', bottom: '24px', right: '24px',
+        width: '56px', height: '56px', borderRadius: '50%',
+        background: '#25D366', display: 'flex',
+        alignItems: 'center', justifyContent: 'center',
+        boxShadow: '0 4px 20px rgba(37,211,102,.4)',
+        zIndex: 9999, textDecoration: 'none',
+        transition: 'transform .2s'
+      }}</span>
+      <span class="attr">onMouseEnter</span>={e =&gt; e.currentTarget.style.transform = <span class="str">'scale(1.1)'</span>}
+      <span class="attr">onMouseLeave</span>={e =&gt; e.currentTarget.style.transform = <span class="str">'scale(1)'</span>}
+    &gt;
+      <span class="cm">/* WhatsApp SVG icon */</span>
+      &lt;<span class="tag">svg</span> <span class="attr">width</span>=<span class="val">"28"</span> <span class="attr">height</span>=<span class="val">"28"</span> <span class="attr">fill</span>=<span class="val">"white"</span> <span class="attr">viewBox</span>=<span class="val">"0 0 24 24"</span>&gt;
+        &lt;<span class="tag">path</span> <span class="attr">d</span>=<span class="val">"M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+        &lt;<span class="tag">path</span> <span class="attr">d</span>=<span class="val">"M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.115 1.524 5.843L0 24l6.347-1.501A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.797 9.797 0 01-5.031-1.387l-.361-.214-3.737.883.939-3.648-.236-.374A9.794 9.794 0 012.182 12C2.182 6.578 6.578 2.182 12 2.182c5.423 0 9.818 4.396 9.818 9.818 0 5.423-4.395 9.818-9.818 9.818z"/&gt;
+      &lt;/<span class="tag">svg</span>&gt;
+    &lt;/<span class="tag">a</span>&gt;
+  );
+}</code></pre>
+  </div>
+
+  <div class="issue">
+    <div class="issue-header">
+      <span class="badge badge-medium">MEDIUM</span>
+      <span class="issue-title">Sticky Mobile "Book Now" CTA</span>
+      <span class="chip chip-ux">UX</span>
+    </div>
+    <pre><code><span class="cm">/* Sticky bottom bar — mobile only */</span>
+@media (max-width: 768px) {
+  .sticky-cta {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 12px 16px;
+    background: #fff;
+    border-top: 1px solid #e5e7eb;
+    box-shadow: 0 -4px 20px rgba(0,0,0,.08);
+    display: flex;
+    gap: 10px;
+    z-index: 100;
+  }
+
+  .sticky-cta .btn-book {
+    flex: 1;
+    background: #f97316;   <span class="cm">/* PetSaathi brand orange */</span>
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 700;
+    min-height: 48px;      <span class="cm">/* 48px tap target */</span>
+    cursor: pointer;
+  }
+
+  .sticky-cta .btn-wa {
+    width: 48px;
+    height: 48px;
+    background: #25D366;
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+}</code></pre>
+  </div>
+
+  <!-- ─── CTA ─── -->
+  <h2 id="cta">🎯 AREA 11: CTA Improvements</h2>
+  <div class="issue">
+    <div class="issue-header">
+      <span class="badge badge-medium">MEDIUM</span>
+      <span class="issue-title">Replace "Join Waitlist" with Urgency-Driven CTAs</span>
+      <span class="chip chip-ux">UX</span>
+    </div>
+    <div class="callout callout-tip">
+      <div class="callout-icon">💡</div>
+      <div class="callout-body"><strong>"Join Waitlist"</strong> signals the app is not ready. Even if you are in beta, frame it differently to build excitement and reduce drop-off.</div>
+    </div>
+    <pre><code><span class="cm">/* ❌ Low-converting CTAs */</span>
+"Join Waitlist"    →  feels inactive, not launched
+"Become a Partner" →  vague
+
+<span class="cm">/* ✅ Higher-converting alternatives */</span>
+"Book Your First Walk →"
+"Get Early Access + ₹200 Welcome Credit"
+"Find a Sitter Near Me"
+"I Want a Partner for My Pet"  <span class="cm">// emotional, India-specific voice</span>
+
+<span class="cm">// Urgency example with city counter</span>
+&lt;<span class="tag">button</span> <span class="attr">className</span>=<span class="val">"btn-primary"</span>&gt;
+  Book My Pet's First Walk
+  &lt;<span class="tag">span</span> <span class="attr">className</span>=<span class="val">"badge-new"</span>&gt;Free first session&lt;/<span class="tag">span</span>&gt;
+&lt;/<span class="tag">button</span>&gt;</code></pre>
+  </div>
+
+  <!-- ─── TRUST ─── -->
+  <h2 id="trust">🏅 AREA 12: Trust Signals</h2>
+
+  <div class="issue">
+    <div class="issue-header">
+      <span class="badge badge-medium">MEDIUM</span>
+      <span class="issue-title">Stats Bar + Testimonials Component</span>
+      <span class="chip chip-ux">UX</span>
+    </div>
+    <pre><code><span class="cm">// components/StatsBar.jsx</span>
+<span class="kw">const</span> stats = [
+  { number: <span class="str">'100+'</span>, label: <span class="str">'Verified Partners'</span>, icon: <span class="str">'✅'</span> },
+  { number: <span class="str">'4.9★'</span>, label: <span class="str">'Avg. Rating'</span>,        icon: <span class="str">'⭐'</span> },
+  { number: <span class="str">'500+'</span>, label: <span class="str">'Happy Pets Served'</span>,  icon: <span class="str">'🐶'</span> },
+  { number: <span class="str">'3'</span>,    label: <span class="str">'Cities Live'</span>,        icon: <span class="str">'📍'</span> },
+];
+
+<span class="kw">// components/Testimonials.jsx</span>
+<span class="kw">const</span> reviews = [
+  {
+    name: <span class="str">"Priya S."</span>, city: <span class="str">"Mumbai"</span>, pet: <span class="str">"Labrador"</span>, stars: <span class="num">5</span>,
+    text: <span class="str">"Rocky used to get so anxious when I left. With PetSaathi, I get live photos every 20 mins. Absolute peace of mind!"</span>
+  },
+  {
+    name: <span class="str">"Arjun M."</span>, city: <span class="str">"Bangalore"</span>, pet: <span class="str">"Beagle"</span>, stars: <span class="num">5</span>,
+    text: <span class="str">"Affordable, verified, and genuinely loving partners. My dog refuses to come home after walks now 😂"</span>
+  },
+  {
+    name: <span class="str">"Sneha K."</span>, city: <span class="str">"Pune"</span>, pet: <span class="str">"Persian Cat"</span>, stars: <span class="num">5</span>,
+    text: <span class="str">"First-ever cat sitting service that actually understood cats. Mitti was so calm when I came back!"</span>
+  },
+];</code></pre>
+  </div>
+
+  <!-- ─── FINAL CHECKLIST ─── -->
+  <h2 id="final-checklist">✅ Priority Checklist — Do This in Order</h2>
+  <p>Work through these <strong>top to bottom</strong>. Items 1–5 are <strong>today</strong>. Items 6–15 are <strong>this week</strong>.</p>
+
+  <ul class="checklist">
+    <li><strong>[TODAY]</strong> Remove all lorem ipsum / gibberish placeholder text from FAQ section</li>
+    <li><strong>[TODAY]</strong> Replace fake phone number "656456456" with real/WhatsApp contact</li>
+    <li><strong>[TODAY]</strong> Fill all empty FAQ entries with real India-specific pet care content</li>
+    <li><strong>[TODAY]</strong> Add complete meta description, og:title, og:image to &lt;head&gt;</li>
+    <li><strong>[TODAY]</strong> Add canonical URL and robots meta tag</li>
+    <li><strong>[WEEK 1]</strong> Add <code>priority</code> prop to hero &lt;Image&gt; (LCP fix)</li>
+    <li><strong>[WEEK 1]</strong> Add <code>width</code> and <code>height</code> to every &lt;img&gt; tag (CLS fix)</li>
+    <li><strong>[WEEK 1]</strong> Add <code>loading="lazy"</code> to all below-fold images</li>
+    <li><strong>[WEEK 1]</strong> Move images from qubetatechnolab.com to /public + use Vercel Image</li>
+    <li><strong>[WEEK 1]</strong> Defer all analytics / third-party scripts with <code>strategy="afterInteractive"</code></li>
+    <li><strong>[WEEK 1]</strong> Add WhatsApp floating button</li>
+    <li><strong>[WEEK 1]</strong> Add JSON-LD LocalBusiness structured data</li>
+    <li><strong>[WEEK 2]</strong> Convert all images to WebP</li>
+    <li><strong>[WEEK 2]</strong> Add testimonials/reviews section</li>
+    <li><strong>[WEEK 2]</strong> Add stats bar (partners count, rating, pets served)</li>
+    <li><strong>[WEEK 2]</strong> Add Vercel Analytics + SpeedInsights</li>
+    <li><strong>[WEEK 2]</strong> Enable ISR on service/blog pages</li>
+    <li><strong>[WEEK 3]</strong> Add sitemap.xml and robots.txt</li>
+    <li><strong>[WEEK 3]</strong> Enable next/font for zero-CLS font loading</li>
+    <li><strong>[WEEK 3]</strong> Add dynamic import() for map / heavy components</li>
+  </ul>
+
+  <!-- ─── Q&A ─── -->
+  <h2 id="qa">❓ Q&A Deep Dives</h2>
+
+  <details>
+    <summary>🤔 Why is mobile score lower than desktop?</summary>
+    <div class="qa-body">
+      <p>Mobile PageSpeed is harder because: (1) CPU throttled to 4x slower than desktop, (2) bandwidth simulated at ~1.6 Mbps 3G, (3) viewport is narrow so images/fonts must be mobile-optimized. India's user base is predominantly mobile (85%+ on Android), so fixing mobile score is your highest priority.</p>
+      <p>The biggest mobile killers for PetSaathi are: large unoptimized images, external image CDN (qubetatechnolab.com), and render-blocking resources.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>🤔 What is LCP and how do I fix it specifically?</summary>
+    <div class="qa-body">
+      <p><strong>LCP = Largest Contentful Paint</strong> — the time until the biggest visible element is rendered. For PetSaathi it's almost certainly the hero image or hero headline.</p>
+      <p><strong>Target: under 2.5s on mobile.</strong></p>
+      <p>Fix it in 3 steps:</p>
+      <ol class="steps">
+        <li>Put the hero image in your own <code>/public</code> folder (not qubetatechnolab.com)</li>
+        <li>Add <code>priority</code> prop to the Next.js &lt;Image&gt; (this generates a &lt;link rel="preload"&gt;)</li>
+        <li>Convert the hero to WebP and serve at the right size (max 800px wide for mobile)</li>
+      </ol>
+    </div>
+  </details>
+
+  <details>
+    <summary>🤔 What is CLS and why does it hurt my score?</summary>
+    <div class="qa-body">
+      <p><strong>CLS = Cumulative Layout Shift</strong> — measures how much content jumps around as the page loads. Users hate it. Google penalizes it.</p>
+      <p>On PetSaathi, CLS is caused by images loading without explicit dimensions — the browser doesn't know how tall the image will be, so it reserves no space, then shifts everything down when the image appears.</p>
+      <p><strong>Fix:</strong> Add <code>width</code> and <code>height</code> attributes to every single image. One-line fix, huge score improvement.</p>
+      <pre><code>&lt;<span class="tag">img</span> <span class="attr">src</span>=<span class="val">"dog.webp"</span> <span class="attr">width</span>=<span class="val">"400"</span> <span class="attr">height</span>=<span class="val">"300"</span> <span class="attr">alt</span>=<span class="val">"..."</span>&gt;</code></pre>
+    </div>
+  </details>
+
+  <details>
+    <summary>🤔 How do I check my actual PageSpeed score after fixing?</summary>
+    <div class="qa-body">
+      <p>Run: <a href="https://pagespeed.web.dev" style="color:var(--blue)">pagespeed.web.dev</a> — paste your URL and select Mobile tab.</p>
+      <p>Also run locally using Lighthouse in Chrome DevTools → Lighthouse tab → Mobile → Analyze. This gives you line-by-line breakdowns without waiting for the public report.</p>
+      <p>After each batch of fixes, re-run the report and compare. Target: <strong>Performance &gt; 70</strong> on mobile.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>🤔 Should I move off qubetatechnolab.com for hosting images?</summary>
+    <div class="qa-body">
+      <p><strong>Yes, as soon as possible.</strong> When images come from a third-party domain, users' browsers must:</p>
+      <ol class="steps">
+        <li>Look up qubetatechnolab.com's DNS (extra ~50–200ms on mobile)</li>
+        <li>Establish a new HTTPS connection (another ~100ms)</li>
+        <li>Download the image (unoptimized, probably JPG/PNG not WebP)</li>
+      </ol>
+      <p>When you host on Vercel, Next.js's Image Optimization automatically converts to WebP/AVIF, resizes for device, caches on CDN, and serves from the same domain — saving 300–500ms per image on mobile.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>🤔 How do I target Indian users specifically in PageSpeed?</summary>
+    <div class="qa-body">
+      <p>PageSpeed uses US-based servers. Your real Indian users may have different results. To get India-specific data:</p>
+      <ol class="steps">
+        <li>Use <strong>WebPageTest.org</strong> → set location to "Bangalore" or "Mumbai", connection to "4G India"</li>
+        <li>Enable <strong>Vercel Speed Insights</strong> — shows real user CWV data segmented by country/device</li>
+        <li>Use <strong>GTmetrix</strong> → select Mumbai server location</li>
+      </ol>
+      <p>Also: optimize for low-end Android phones (the dominant India device). Simulate in Chrome DevTools → CPU throttle 6x, Network throttle "Fast 3G".</p>
+    </div>
+  </details>
+
+  <div style="margin-top:60px;padding:24px;background:var(--surface);border-radius:12px;border:1px solid var(--border);text-align:center;">
+    <div style="font-size:32px;margin-bottom:8px;">🐾</div>
+    <div style="font-weight:700;font-size:16px;margin-bottom:6px;">PetSaathi Super Master Prompt</div>
+    <div style="color:var(--muted);font-size:13px;">Generated from PageSpeed Report · September 8, 2026 · petsaathi.blue.vercel.app (Mobile)</div>
+    <div style="margin-top:12px;font-size:13px;color:var(--muted);">Copy the Super Master Prompt at the top and paste into Claude with your codebase to fix all 20 items automatically.</div>
+  </div>
+
+</main>
+</body>
+</html>
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-09-08T12:19:02+05:30.
+</ADDITIONAL_METADATA>
+<USER_SETTINGS_CHANGE>
+The user changed setting `Model Selection` from Gemini 3.8 Flash (Medium) to Gemini 3.1 Pro (Low). No need to comment on this change if the user doesn't ask about it. If reporting what model you are, please use a human readable name instead of the exact string.
+</USER_SETTINGS_CHANGE>

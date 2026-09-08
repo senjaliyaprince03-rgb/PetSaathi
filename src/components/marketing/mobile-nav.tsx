@@ -9,29 +9,6 @@ import { ArrowRight, Menu, X } from "lucide-react";
 import { PetSaathiLogo } from "@/components/brand/logo";
 
 export function MobileNav() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
-  const pathname = usePathname();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    setIsOpen(false);
-  }, [pathname]);
-
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isOpen]);
-
   const links = [
     { href: "/services", label: "Services" },
     { href: "/caregivers", label: "Saathis" },
@@ -43,78 +20,79 @@ export function MobileNav() {
     { href: "/contact", label: "Contact Us" },
   ];
 
-  const modalContent = isOpen && mounted ? createPortal(
-    <div className="fixed inset-0 z-[99999] flex flex-col bg-[#FAF6F1] md:hidden animate-in fade-in duration-150">
-      {/* Top Header */}
-      <div className="flex min-h-[4.5rem] items-center justify-between px-5 py-4 border-b border-ink/10 bg-white shadow-xs shrink-0">
-        <PetSaathiLogo />
-        <button
-          type="button"
-          className="flex h-10 w-10 items-center justify-center rounded-xl bg-surface text-ink shadow-soft transition hover:bg-ink/5 border border-ink/10"
-          onClick={() => setIsOpen(false)}
-          aria-label="Close menu"
-        >
-          <X className="h-5 w-5" />
-        </button>
-      </div>
-      
-      {/* Nav List */}
-      <nav className="flex flex-1 flex-col justify-between overflow-y-auto px-6 py-6 bg-[#FAF6F1]">
-        <ul className="flex flex-col gap-4">
-          {links.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href as Route}
-                className="font-display text-2xl font-bold tracking-tight text-ink transition hover:text-[#E16649] flex items-center justify-between py-1"
-              >
-                <span>{link.label}</span>
-                <ArrowRight className="w-4 h-4 text-ink/30" />
-              </Link>
-            </li>
-          ))}
-        </ul>
-        
-        {/* Bottom Actions */}
-        <div className="mt-8 flex flex-col gap-3 border-t border-ink/10 pt-6">
-          <Link
-            href={"/book" as Route}
-            className="w-full py-3.5 bg-[#E16649] hover:bg-[#d05538] text-white font-bold text-sm text-center rounded-2xl shadow-md"
-          >
-            Find Care & Book
-          </Link>
-          <div className="grid grid-cols-2 gap-2 mt-1">
-            <Link
-              href={"/login" as Route}
-              className="py-2.5 text-center font-bold text-xs rounded-xl bg-white border border-ink/10 text-ink hover:bg-surface transition-colors"
-            >
-              Sign In
-            </Link>
-            <Link
-              href={"/become-a-saathi" as Route}
-              className="py-2.5 text-center font-bold text-xs rounded-xl bg-white border border-ink/10 text-ink hover:bg-surface transition-colors"
-            >
-              Become a Saathi
-            </Link>
-          </div>
-        </div>
-      </nav>
-    </div>,
-    document.body
-  ) : null;
-
   return (
-    <div className="lg:hidden">
-      <button
-        type="button"
-        className="flex h-10 w-10 items-center justify-center rounded-full text-ink transition hover:bg-ink/5 border border-ink/10 bg-white/80 shadow-2xs"
-        onClick={() => setIsOpen(true)}
+    <details className="group lg:hidden">
+      <summary 
+        className="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-full border border-ink/10 bg-white/80 text-ink shadow-2xs transition hover:bg-ink/5 [&::-webkit-details-marker]:hidden"
         aria-label="Open menu"
-        aria-expanded={isOpen}
       >
         <Menu className="h-5 w-5" />
-      </button>
+      </summary>
 
-      {modalContent}
-    </div>
+      {/* Full Screen Modal */}
+      <div className="fixed inset-0 z-[99999] flex flex-col bg-[#FAF6F1] md:hidden">
+        {/* Top Header */}
+        <div className="flex min-h-[4.5rem] shrink-0 items-center justify-between border-b border-ink/10 bg-white px-5 py-4 shadow-xs">
+          <PetSaathiLogo />
+          {/* Close button triggers the summary to close via a hack or we can just let React handle it later, but for 0-JS we wrap it in a label if it was a checkbox, but with details we can't easily close it without JS. Let's use a bit of JS just for closing, or better, the checkbox hack! */}
+          <button
+            type="button"
+            className="flex h-11 w-11 items-center justify-center rounded-xl border border-ink/10 bg-surface text-ink shadow-soft transition hover:bg-ink/5"
+            onClick={(e) => {
+              const details = e.currentTarget.closest("details");
+              if (details) details.removeAttribute("open");
+            }}
+            aria-label="Close menu"
+          >
+            <X className="h-5 w-5" />
+          </button>
+        </div>
+        
+        {/* Nav List */}
+        <nav className="flex flex-1 flex-col justify-between overflow-y-auto bg-[#FAF6F1] px-6 py-6">
+          <ul className="flex flex-col gap-4">
+            {links.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href as Route}
+                  onClick={(e) => {
+                    const details = e.currentTarget.closest("details");
+                    if (details) details.removeAttribute("open");
+                  }}
+                  className="flex items-center justify-between py-1 font-display text-2xl font-bold tracking-tight text-ink transition hover:text-[#E16649]"
+                >
+                  <span>{link.label}</span>
+                  <ArrowRight className="h-4 w-4 text-ink/30" />
+                </Link>
+              </li>
+            ))}
+          </ul>
+          
+          {/* Bottom Actions */}
+          <div className="mt-8 flex flex-col gap-3 border-t border-ink/10 pt-6">
+            <Link
+              href={"/book" as Route}
+              className="w-full rounded-2xl bg-[#E16649] py-3.5 text-center text-sm font-bold text-white shadow-md hover:bg-[#d05538]"
+            >
+              Find Care & Book
+            </Link>
+            <div className="mt-1 grid grid-cols-2 gap-2">
+              <Link
+                href={"/login" as Route}
+                className="rounded-xl border border-ink/10 bg-white py-2.5 text-center text-xs font-bold text-ink transition-colors hover:bg-surface"
+              >
+                Sign In
+              </Link>
+              <Link
+                href={"/become-a-saathi" as Route}
+                className="rounded-xl border border-ink/10 bg-white py-2.5 text-center text-xs font-bold text-ink transition-colors hover:bg-surface"
+              >
+                Become a Saathi
+              </Link>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </details>
   );
 }

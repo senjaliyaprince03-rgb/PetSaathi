@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import { headers } from "next/headers";
 import Script from "next/script";
 
 import { SiteMotion } from "@/components/motion/site-motion";
@@ -10,6 +9,9 @@ import { hasUsableAnalyticsId } from "@/lib/public-config";
 import "./globals.css";
 import { CookieConsentBanner } from "@/components/marketing/cookie-consent-banner";
 import { ServiceWorkerRegistration } from "@/components/pwa/service-worker-registration";
+import { WhatsAppButton } from "@/components/ui/whatsapp-button";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const viewport: Viewport = {
   themeColor: "#fffdf8",
@@ -37,7 +39,7 @@ export const metadata: Metadata = {
     description: "Elevating the standard of trusted pet care in India. Find verified pet sitters, groomers, and vets near you.",
     images: [
       {
-        url: "/images/hero-care-handover-highres.jpg",
+        url: "/images/hero-care-handover-highres.webp",
         width: 1200,
         height: 630,
         alt: "PetSaathi - Trusted Pet Care Services"
@@ -48,7 +50,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "PetSaathi | Trusted Pet Care Services",
     description: "Elevating the standard of trusted pet care in India. Find verified pet sitters, groomers, and vets near you.",
-    images: ["/images/hero-care-handover-highres.jpg"]
+    images: ["/images/hero-care-handover-highres.webp"]
   },
   icons: {
     icon: [
@@ -58,7 +60,10 @@ export const metadata: Metadata = {
     shortcut: "/favicon.ico",
     apple: "/icons/petsaathi-app-icon-v2.png"
   },
-  manifest: "/manifest.webmanifest"
+  manifest: "/manifest.webmanifest",
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
+  },
 };
 
 import { Hanken_Grotesk, Inter } from "next/font/google";
@@ -80,8 +85,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Read the middleware request nonce so Next can attach it to framework scripts.
-  await headers();
   const analyticsId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
   const metaPixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID;
   const clarityId = process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID;
@@ -109,7 +112,7 @@ export default async function RootLayout({
         {/* Meta Pixel - Marketing conversion tracking */}
         {metaPixelId && (
           <>
-            <Script id="meta-pixel" strategy="afterInteractive">
+            <Script id="meta-pixel" strategy="lazyOnload">
               {`
                 !function(f,b,e,v,n,t,s)
                 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -138,7 +141,7 @@ export default async function RootLayout({
 
         {/* Microsoft Clarity - Session recording and heatmaps */}
         {clarityId && (
-          <Script id="ms-clarity" strategy="afterInteractive">
+          <Script id="ms-clarity" strategy="lazyOnload">
             {`
               (function(c,l,a,r,i,t,y){
                 c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -153,7 +156,10 @@ export default async function RootLayout({
         <CustomCursor />
         <ServiceWorkerRegistration />
         {children}
+        <WhatsAppButton />
         <CookieConsentBanner analyticsId={analyticsId} />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

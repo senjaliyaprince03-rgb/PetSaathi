@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Camera, CheckCircle2, HeartPulse, Scissors } from "lucide-react";
 
 import { DashboardPanel } from "@/components/portal/dashboard-ui";
@@ -85,15 +86,13 @@ export function GroomingReportCard({ report }: { report: GroomingReport }) {
               <div className="mt-2 flex gap-3 overflow-x-auto pb-2">
                 {report.beforePhotos?.map((url, idx) => (
                   <div key={`before-${idx}`} className="relative h-20 w-20 shrink-0 rounded-xl bg-ink/5 overflow-hidden">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={url} alt="Before grooming" className="h-full w-full object-cover" />
+                    <Image src={url} alt="Before grooming" className="object-cover" fill sizes="80px" />
                     <span className="absolute bottom-0 left-0 right-0 bg-ink/50 text-[10px] text-paper text-center py-0.5">Before</span>
                   </div>
                 ))}
                 {report.afterPhotos?.map((url, idx) => (
                   <div key={`after-${idx}`} className="relative h-20 w-20 shrink-0 rounded-xl bg-ink/5 overflow-hidden">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={url} alt="After grooming" className="h-full w-full object-cover" />
+                    <Image src={url} alt="After grooming" className="object-cover" fill sizes="80px" />
                     <span className="absolute bottom-0 left-0 right-0 bg-leaf/80 text-[10px] text-paper text-center py-0.5">After</span>
                   </div>
                 ))}

@@ -70,9 +70,7 @@ export default function NotFound() {
               <Image
                 src="/images/404-dog.jpg"
                 alt="Confused cute dog looking for a page"
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 50vw"
+                fill priority fetchPriority="high" sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-contain drop-shadow-xl"
                 style={{ mixBlendMode: 'multiply' }}
               />

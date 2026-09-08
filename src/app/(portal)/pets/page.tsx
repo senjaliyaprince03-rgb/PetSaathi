@@ -264,7 +264,7 @@ export default async function PetsPage() {
                       <div className="relative shrink-0">
                         <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full ring-4 ring-white/20 overflow-hidden shadow-xl bg-ink/20 relative">
                           <Image
-                            src="/images/hero-care-handover-highres.jpg"
+                            src="/images/hero-care-handover-highres.webp"
                             alt={pet.name}
                             fill
                             className="object-cover"

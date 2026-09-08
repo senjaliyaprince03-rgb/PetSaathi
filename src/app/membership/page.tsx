@@ -61,10 +61,12 @@ export default async function MembershipPage() {
       {/* 1. FULL-BLEED HERO BANNER (LEFT ALIGNED) */}
       <section className="relative h-[560px] sm:h-[620px] w-full overflow-hidden bg-ink text-paper">
         <Image
-          src="/images/membership-hero-luxury-banner.jpg"
+          src="/images/membership-hero-luxury-banner.webp"
           alt="Luxury pet lounge membership experience"
           fill
-          priority          sizes="100vw"
+          priority
+          fetchPriority="high"
+          sizes="100vw"
           className="object-cover object-[75%_center] sm:object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/60 to-transparent md:w-3/4" />

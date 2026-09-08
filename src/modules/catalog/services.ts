@@ -11,7 +11,7 @@ export const services = [
     description: "Assisted local matching with structured start, completion and care-report events. Live tracking appears only when the gated service is eligible and consented.",
     tone: "saffron",
     icon: MapPinned,
-    image: "/images/service_dog_walking_v2.jpg"
+    image: "/images/service_dog_walking_v2.webp"
   },
   {
     slug: "home-pet-sitting",
@@ -20,7 +20,7 @@ export const services = [
     description: "Nutritional feeding, fresh water, playful interaction, and home safety checks tailored to your pet's routine.",
     tone: "coral",
     icon: Home,
-    image: "/images/service_pet_sitting_v2.jpg"
+    image: "/images/service_pet_sitting_v2.webp"
   },
   {
     slug: "boarding-beta",
@@ -29,7 +29,7 @@ export const services = [
     description: "Request-only boarding for property-assessed hosts and compatible pets, enabled only after the pilot gate and operating controls are approved.",
     tone: "leaf",
     icon: ShieldCheck,
-    image: "/images/service-pet-boarding.jpg"
+    image: "/images/service-pet-boarding.webp"
   },
   {
     slug: "grooming",
@@ -38,7 +38,7 @@ export const services = [
     description: "Partner-delivered grooming requested for the pet's home, with exact service scope and provider availability confirmed before an order proceeds.",
     tone: "blue",
     icon: PawPrint,
-    image: "/images/service-pet-grooming.jpg"
+    image: "/images/service-pet-grooming.webp"
   },
   {
     slug: "veterinary",
@@ -47,7 +47,7 @@ export const services = [
     description: "Request-only coordination with approved veterinary partners. PetSaathi does not diagnose, promise clinic availability or replace emergency services.",
     tone: "teal",
     icon: ShieldCheck,
-    image: "/images/service-vet-care.jpg"
+    image: "/images/service-vet-care.webp"
   },
   {
     slug: "training",
@@ -56,7 +56,7 @@ export const services = [
     description: "A request for reward-led behaviour and training intake with an approved specialist, subject to fit, scope and availability.",
     tone: "indigo",
     icon: HeartHandshake,
-    image: "/images/service-dog-training.jpg"
+    image: "/images/service-dog-training.webp"
   }
 ] as const;
 

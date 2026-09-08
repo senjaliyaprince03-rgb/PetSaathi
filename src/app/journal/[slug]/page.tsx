@@ -11,6 +11,8 @@ import { publicEnv } from "@/lib/env";
 
 type Props = { params: Promise<{ slug: string }> };
 
+export const revalidate = 3600;
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   if (!isDatabaseConfigured()) notFound();

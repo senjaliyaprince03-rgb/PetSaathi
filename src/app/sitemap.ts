@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 
 import { publicEnv } from "@/lib/env";
+import { getCanonicalBaseUrl } from "@/lib/app-url";
 import { isDatabaseConfigured, prisma } from "@/lib/db";
 
 export const dynamic = "force-dynamic";
@@ -11,7 +12,7 @@ const isProductionSlug = (slug: string): boolean =>
   !slug.startsWith("test-") && !/^c-\d+$/.test(slug);
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = publicEnv.NEXT_PUBLIC_APP_URL;
+  const baseUrl = getCanonicalBaseUrl();
 
   // Static pages
   const staticPages: MetadataRoute.Sitemap = [

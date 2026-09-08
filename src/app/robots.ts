@@ -1,8 +1,9 @@
 import type { MetadataRoute } from "next";
 
-import { publicEnv } from "@/lib/env";
+import { getCanonicalBaseUrl } from "@/lib/app-url";
 
 export default function robots(): MetadataRoute.Robots {
+  const baseUrl = getCanonicalBaseUrl();
   return {
     rules: {
       userAgent: "*",
@@ -26,6 +27,6 @@ export default function robots(): MetadataRoute.Robots {
         "/api/"
       ]
     },
-    sitemap: `${publicEnv.NEXT_PUBLIC_APP_URL}/sitemap.xml`
+    sitemap: `${baseUrl}/sitemap.xml`
   };
 }

@@ -12,16 +12,17 @@ export const metadata: Metadata = {
   description: "Verified doorstep dog walking, at-home pet sitting, professional grooming, and on-call tele-vet consultations across India."
 };
 
+export const revalidate = 3600;
+
 export default function ServicesPage() {
   return (
     <PublicShell>
       {/* 1. FULL-BLEED ULTRA-LUXURY HERO BANNER (LEFT ALIGNED) */}
       <section className="relative h-[560px] sm:h-[640px] lg:h-[680px] w-full overflow-hidden bg-ink text-paper">
         <Image
-          src="/images/services-hero-luxury-banner.jpg"
+          src="/images/services-hero-luxury-banner.webp"
           alt="Luxury pet care outing with verified Saathi"
-          fill
-          priority          sizes="100vw"
+          fill priority fetchPriority="high" sizes="100vw"
           className="object-cover object-[70%_center] sm:object-[center_85%]"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/60 to-transparent md:w-3/4" />

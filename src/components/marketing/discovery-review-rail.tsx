@@ -81,9 +81,9 @@ const previewStories: StoryCard[] = [
 ];
 
 const storyImages = [
-  "/images/golden-retriever-3d.png",
-  "/images/dog-boarding-3d.png",
-  "/images/pet-sitter-3d.png"
+  "/images/golden-retriever-3d.webp",
+  "/images/dog-boarding-3d.webp",
+  "/images/pet-sitter-3d.webp"
 ] as const;
 
 export function DiscoveryReviewRail() {

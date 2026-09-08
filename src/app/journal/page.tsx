@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: "Pet Care Journal & Expert Guides",
   description: "Veterinarian-reviewed guides, training advice, and canine wellness handbooks for pet parents in India."
 };
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 type JournalEntry = {
   slug: string;
@@ -54,11 +54,9 @@ export default async function JournalPage() {
       {/* 1. FULL-BLEED HERO BANNER (LEFT ALIGNED) */}
       <section className="relative h-[560px] sm:h-[620px] w-full overflow-hidden bg-ink text-paper">
         <Image
-          src="/images/journal-hero-luxury-banner.jpg"
+          src="/images/journal-hero-luxury-banner.webp"
           alt="PetSaathi care journal study with pet parent and Golden Retriever"
-          fill
-          priority
-          sizes="(max-width: 640px) 100vw, (max-width: 1280px) 90vw, 1400px"
+          fill priority fetchPriority="high" sizes="(max-width: 640px) 100vw, (max-width: 1280px) 90vw, 1400px"
           className="object-cover object-[75%_center] sm:object-[center_35%]"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/60 to-transparent md:w-3/4" />

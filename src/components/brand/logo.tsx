@@ -29,9 +29,7 @@ export function PetSaathiLogo({
         className={cn(
           "w-auto object-contain transition-all duration-200",
           compact ? "h-9 sm:h-9" : "h-11 sm:h-12 md:h-13"
-        )}
-        priority
-      />
+        )} priority fetchPriority="high" />
     </Link>
   );
 }
