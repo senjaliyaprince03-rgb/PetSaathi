@@ -60,8 +60,9 @@ jobs:
         id: check-creds
         run: |
           if [ -z "${{ secrets.VERCEL_TOKEN }}" ]; then
-            echo "::warning::VERCEL_TOKEN secret is not set in GitHub repository settings. Skipping Vercel automated push."
-            echo "has_token=false" >> $GITHUB_OUTPUT
+            
+            echo "::error::VERCEL_TOKEN secret is required for production deployment."
+            exit 1
           else
             echo "has_token=true" >> $GITHUB_OUTPUT
           fi
