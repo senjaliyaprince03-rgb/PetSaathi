@@ -17,7 +17,7 @@ const careOptions = [
   { value: "PET_TAXI", label: "Pet taxi", note: "A planned, traceable pet journey" }
 ] as const;
 
-const citySuggestions = ["Bengaluru", "Pune", "Mumbai", "Gurugram", "Ahmedabad", "Surat"];
+const citySuggestions = ["Ahmedabad", "Bangalore", "Pune", "Mumbai (Waitlist)", "Delhi NCR (Waitlist)"];
 
 type PetType = "DOG" | "CAT" | "RABBIT" | "BIRD" | "FISH" | "TURTLE" | "RAT";
 

@@ -26,15 +26,15 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
         {/* Clickable Direct Contact Channels */}
         <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
           <a
-            href="mailto:care@petsaathi.com"
+            href="mailto:support@petsaathi.com"
             className="flex items-center gap-3.5 p-4 rounded-2xl bg-paper border border-ink/10 shadow-soft hover:border-indigo/40 transition-all group"
           >
             <span className="w-10 h-10 rounded-xl bg-indigo/10 text-indigo flex items-center justify-center group-hover:scale-110 transition-transform">
               <Mail className="w-5 h-5" />
             </span>
             <div>
-              <span className="text-xs text-ink/60 block font-medium">Direct Email Desk</span>
-              <span className="text-sm font-bold text-ink group-hover:text-indigo transition-colors">care@petsaathi.com</span>
+              <span className="text-xs text-ink/60 block font-medium">Customer Support Desk</span>
+              <span className="text-sm font-bold text-ink group-hover:text-indigo transition-colors">support@petsaathi.com</span>
             </div>
           </a>
 

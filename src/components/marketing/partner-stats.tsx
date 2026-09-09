@@ -12,8 +12,8 @@ export function PartnerStatsBar() {
             <span className="text-xs font-bold uppercase tracking-widest text-ink/80 mt-2">Happy Pets</span>
           </div>
           <div className="flex flex-col">
-            <span className="text-4xl font-display font-bold text-leaf">45+</span>
-            <span className="text-xs font-bold uppercase tracking-widest text-ink/80 mt-2">Cities in India</span>
+            <span className="text-4xl font-display font-bold text-leaf">3+</span>
+            <span className="text-xs font-bold uppercase tracking-widest text-ink/80 mt-2">Active Cities</span>
           </div>
           <div className="flex flex-col">
             <span className="text-4xl font-display font-bold text-[#8C6212]">4.9/5</span>

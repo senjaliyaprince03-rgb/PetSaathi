@@ -33,28 +33,28 @@ export default function TermsPage() {
           <div>
             <h2 className="font-display text-2xl font-semibold text-ink">2. Caregiver Verification & Trust Standards</h2>
             <p className="mt-4 leading-7">
-              All Saathis undergo mandatory multi-step identity verification, criminal background checks, behavioral handling interviews, and emergency care training prior to receiving active service dispatch permissions. Parents agree to provide accurate medical, dietary, and behavioral notes for their pets in their digital passports.
+              Saathis undergo structured identity document verification, reference interviews, behavioral handling reviews, and emergency protocol orientation prior to receiving active service dispatch permissions. Where automated third-party criminal checks are pending integration, in-person document scrutiny and manual background interviews are enforced. Parents agree to provide accurate medical, dietary, and behavioral notes for their pets in their digital passports.
             </p>
           </div>
 
           <div>
-            <h2 className="font-display text-2xl font-semibold text-ink">3. ₹50,000 Vet Medical Guarantee</h2>
+            <h2 className="font-display text-2xl font-semibold text-ink">3. ₹50,000 Vet Medical Assistance Protocol (Beta)</h2>
             <p className="mt-4 leading-7">
-              Every confirmed booking executed through the PetSaathi platform is protected by our ₹50,000 Emergency Veterinary Medical Guarantee. In the unlikely event of an accidental illness or injury occurring directly during an active service window, PetSaathi reimburses documented emergency medical expenses subject to our safety review protocols.
+              PetSaathi operates a managed emergency medical assistance protocol covering up to ₹50,000 for documented veterinary emergency medical treatments necessitated by incidents occurring directly during an active, tracked service window. This platform safeguard is discretionary assistance subject to incident review, verified receipts from a registered veterinary practitioner, and compliance with our pet disclosure rules. It is not an insurance policy or contract of underwriting.
             </p>
           </div>
 
           <div>
             <h2 className="font-display text-2xl font-semibold text-ink">4. Live GPS Tracking & Society Handoffs</h2>
             <p className="mt-4 leading-7">
-              During outdoor walks and doorstep care sessions, real-time geofenced GPS tracking, milestone photo check-ins, and pee/poop records are generated and securely transmitted to the parent portal. Caregivers adhere strictly to residential gated community entry protocols and double-leash safety standards.
+              During outdoor walks and doorstep care sessions, real-time geofenced GPS tracking, milestone photo check-ins, and pee/poop records are generated and securely transmitted to the parent portal. In web and PWA browsers, continuous GPS tracking requires the caregiver&apos;s device screen to remain active; background telemetry is optimized across session check-ins. Caregivers adhere strictly to residential gated community entry protocols and double-leash safety standards.
             </p>
           </div>
 
           <div>
             <h2 className="font-display text-2xl font-semibold text-ink">5. Payments, Cancellations & Refunds</h2>
             <p className="mt-4 leading-7">
-              All transactions are securely escrowed and processed through Razorpay. Cancellations strictly follow our verified tier structure:
+              Transactions are processed securely through Razorpay PCI-DSS compliant banking channels. Booking funds are held until session fulfilment and milestone review. Cancellations strictly follow our verified tier structure:
             </p>
             <ul className="mt-3 list-disc pl-6 space-y-1.5 text-sm leading-relaxed">
               <li><strong>More than 24 hours notice:</strong> 100% full refund to original payment source or wallet.</li>

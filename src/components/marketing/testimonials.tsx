@@ -8,16 +8,16 @@ const testimonials = [
   {
     id: 1,
     name: "Priya Sharma",
-    city: "Mumbai",
+    city: "Ahmedabad",
     service: "Dog Walking",
     rating: 5,
-    quote: "PetSaathi has completely changed how I manage my work trips. My Labrador gets the same loving walk every evening, and the live GPS tracking gives me total peace of mind.",
+    quote: "PetSaathi has completely changed how I manage my work trips. My Labrador gets the same loving walk every evening, and the milestone updates give me total peace of mind.",
     image: "/images/avatar-1.webp"
   },
   {
     id: 2,
     name: "Rahul Verma",
-    city: "Delhi",
+    city: "Pune",
     service: "Home Pet Sitting",
     rating: 5,
     quote: "Finding a reliable sitter for my indie dog was stressful until I found PetSaathi. The caregiver was incredibly professional, shared photos twice a day, and followed his diet perfectly.",

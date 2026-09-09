@@ -28,16 +28,16 @@ export default function PrivacyPage() {
               At PetSaathi, we collect only the information necessary to facilitate safe, reliable pet care services. This includes:
             </p>
             <ul className="mt-4 list-disc pl-6 space-y-2 leading-7">
-              <li><strong>Profile Information:</strong> Name, phone number, address, and pet medical records securely stored in encrypted database partitions.</li>
-              <li><strong>Location Data:</strong> To match you with nearby verified caregivers and enable live GPS session tracking during walks. This tracking is active strictly during the scheduled care window.</li>
-              <li><strong>Payment Details:</strong> Transaction records and billing receipts processed securely via Razorpay PCI-DSS compliant infrastructure.</li>
+              <li><strong>Profile Information:</strong> Name, phone number, address, and pet medical records stored in MongoDB Atlas with encryption at rest (AES-256) and TLS encryption in transit, isolated by strict application-layer role-based access control.</li>
+              <li><strong>Location Data:</strong> Used to match you with nearby verified caregivers and enable live session tracking during walks. In browser/PWA sessions, location sharing is caregiver-initiated and active strictly during the scheduled care window.</li>
+              <li><strong>Payment Details:</strong> Transaction records and billing receipts processed securely via Razorpay PCI-DSS compliant infrastructure. PetSaathi never stores raw card or bank credentials.</li>
             </ul>
           </div>
 
           <div>
             <h2 className="font-display text-2xl font-semibold text-ink">2. How Data is Used & Stored</h2>
             <p className="mt-4 leading-7">
-              Your data is never sold to third parties. We use it solely to authorize bookings, coordinate safe doorstep handoffs, process payments, and ensure pet safety. Location telemetry collected during outdoor sessions is archived for safety verification and dispute resolution.
+              Your data is never sold to third parties. We use it solely to authorize bookings, coordinate safe doorstep handoffs, process payments, and ensure pet safety. Location telemetry collected during outdoor sessions is archived on a 30-day retention schedule for safety verification and dispute resolution, after which detailed coordinates are automatically purged.
             </p>
           </div>
 

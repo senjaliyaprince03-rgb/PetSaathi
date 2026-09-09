@@ -55,12 +55,12 @@ const careSteps = [
 const questions = [
   ["How do I book a pet sitting session?", "Download the PetSaathi app, create a profile for your pet, and browse verified partners near you. Pick a time slot, confirm the booking, and receive live GPS updates during the session."],
   ["Are PetSaathi Partners background verified?", "Yes. Every PetSaathi Partner goes through ID verification, reference checks, and a pet-handling assessment before going live on the platform. We also enforce a no-phone policy during walks."],
-  ["What cities is PetSaathi available in?", "We are currently launching in select neighbourhoods. Sign up for priority access to be notified when we go live in your area."],
+  ["What cities is PetSaathi available in?", "PetSaathi is currently live in select residential societies and neighbourhoods across Ahmedabad, Bangalore, and Pune. We are expanding to Mumbai and Delhi NCR next. Explore our Cities page or check your locality above."],
   ["How much does dog walking cost?", "Pricing varies by city and session length. A standard 30-minute walk starts at ₹199. You can see exact pricing after entering your location in the app."],
   ["What is PetConnect?", "PetConnect is a first-of-its-kind service in India — it lets pet lovers who don't own pets spend quality time with your dog, supervised and verified. It's a win-win: your pet gets extra love and the partner gets joy."],
-  ["Is my pet insured during a session?", "All PetSaathi sessions are covered under our partner protection policy. Any incident during a verified session is handled by our support team immediately."],
+  ["Is my pet insured during a session?", "All PetSaathi sessions are covered under our partner protection policy and emergency veterinary assistance protocol. Any incident during an active session is handled by our safety team immediately."],
   ["How do I become a PetSaathi Partner?", "Click 'Become a Partner', fill the application form, complete the verification process, and attend a brief onboarding session. You can start earning from flexible hours within a week."],
-  ["Can I track my dog in real time during a walk?", "Yes. Every walk session includes live GPS tracking, mid-walk photo updates, and a post-walk report card — all visible inside the PetSaathi app."]
+  ["Can I track my dog in real time during a walk?", "Yes. Outdoor sessions feature browser-based location check-ins, milestone photo updates, and a post-walk report card. In web browsers, GPS updates require the caregiver's device screen to remain active; our upcoming native apps will support continuous background telemetry."]
 ] as const;
 
 import { FaqAccordionItem } from "@/components/marketing/faq-accordion";

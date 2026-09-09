@@ -31,7 +31,7 @@ export default function RefundPolicyPage() {
               <h2 className="font-display text-xl font-bold text-emerald-900">Parent Protection Guarantee</h2>
             </div>
             <p className="mt-3 text-sm leading-relaxed text-emerald-800">
-              At PetSaathi, your booking funds are securely held in escrow via Razorpay until your pet care session is completed. If you ever cancel within permitted cancellation windows or if a sitter is unable to fulfill a service, your money is returned automatically to your source payment method or PetSaathi wallet.
+              At PetSaathi, booking payments are held securely through Razorpay until your pet care session is completed and milestone check-ins are verified. If you ever cancel within permitted cancellation windows or if a sitter is unable to fulfill a service, your refund is credited automatically to your source payment method or PetSaathi wallet.
             </p>
           </div>
 
@@ -117,14 +117,14 @@ export default function RefundPolicyPage() {
             </ul>
           </div>
 
-          {/* ₹50,000 Emergency Vet Guarantee */}
+          {/* ₹50,000 Emergency Vet Assistance Protocol (Beta) */}
           <div>
-            <h2 className="font-display text-2xl font-bold text-ink">4. ₹50,000 Emergency Vet Guarantee</h2>
+            <h2 className="font-display text-2xl font-bold text-ink">4. ₹50,000 Emergency Vet Medical Assistance Protocol (Beta)</h2>
             <p className="mt-3 leading-relaxed">
-              Pet safety is our primary pledge. Every booking active on PetSaathi is covered under our ₹50,000 Vet Medical Guarantee. If any medical accident occurs during an active, tracked service window:
+              Pet safety is our primary pledge. Confirmed, active bookings on PetSaathi are protected by our ₹50,000 Emergency Veterinary Medical Assistance Protocol (Beta). If any unexpected medical emergency occurs directly during an active, tracked care window:
             </p>
             <p className="mt-2 text-sm leading-relaxed">
-              Submit your veterinarian invoice, prescription, and session summary within 72 hours via the app or email. Our Trust &amp; Safety board reviews and reimburses qualifying clinical emergency treatments up to ₹50,000.
+              Submit your veterinarian invoice, formal clinical prescription, and session summary within 72 hours via the app or email. Our Trust &amp; Safety board reviews and reimburses qualifying clinical emergency treatments up to ₹50,000 in accordance with our safety guidelines and pet passport disclosures. This protocol represents platform-sponsored assistance and is not an insurance policy.
             </p>
           </div>
 
