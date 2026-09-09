@@ -71,7 +71,7 @@ export function MarketingExperience({
   footerContent?: ReactNode;
 }) {
   return (
-    <main className="min-h-screen overflow-hidden bg-cream text-ink" data-motion-skip>
+    <main id="main-content" className="min-h-screen overflow-hidden bg-cream text-ink" data-motion-skip>
       
       <header className="absolute inset-x-0 top-4 z-50 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto flex min-h-[4.5rem] max-w-container-max items-center justify-between rounded-full border border-paper/80 bg-paper/95 px-4 shadow-lifted backdrop-blur-2xl sm:px-6">
@@ -91,7 +91,7 @@ export function MarketingExperience({
 
       {/* Sticky Mobile Book CTA */}
       <div className="fixed bottom-0 left-0 right-0 z-[40] border-t border-ink/10 bg-cream/90 backdrop-blur-md p-3 sm:hidden" data-motion-skip>
-        <Link href={"/book" as Route} className={cn(buttonVariants({ variant: "primary", size: "lg" }), "w-full rounded-2xl font-bold bg-[#E16649] text-white shadow-lg")}>
+        <Link href={"/book" as Route} className={cn(buttonVariants({ variant: "primary", size: "lg" }), "w-full rounded-2xl font-bold bg-[#C84B31] hover:bg-[#B33E26] text-white shadow-lg")}>
           Book a Saathi
         </Link>
       </div>

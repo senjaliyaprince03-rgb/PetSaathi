@@ -69,8 +69,8 @@ export function TestimonialsSection() {
                   <Image src={t.image} alt={t.name} fill className="object-cover" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-ink text-sm">{t.name}</h4>
-                  <p className="text-xs text-ink/60">{t.city} • {t.service}</p>
+                  <h3 className="font-bold text-ink text-sm">{t.name}</h3>
+                  <p className="text-xs text-ink/80 font-medium">{t.city} • {t.service}</p>
                 </div>
               </div>
             </div>

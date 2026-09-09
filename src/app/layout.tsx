@@ -12,6 +12,7 @@ import { ServiceWorkerRegistration } from "@/components/pwa/service-worker-regis
 import { WhatsAppButton } from "@/components/ui/whatsapp-button";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { SkipToContent } from "@/components/layout/skip-to-content";
 
 export const viewport: Viewport = {
   themeColor: "#fffdf8",
@@ -152,6 +153,7 @@ export default async function RootLayout({
           </Script>
         )}
 
+        <SkipToContent />
         <SiteMotion />
         <CustomCursor />
         <ServiceWorkerRegistration />
