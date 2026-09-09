@@ -51,6 +51,20 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
             </div>
           </a>
         </div>
+
+        {/* Operational Signals: SLA & Active Booking Guidance */}
+        <div className="mt-6 max-w-2xl mx-auto rounded-2xl border border-indigo/15 bg-paper/90 p-5 text-center shadow-soft">
+          <p className="text-xs font-semibold text-ink/80">
+            ⚡ <span className="font-bold text-ink">Response Time:</span> General inquiries are acknowledged within <span className="font-bold text-indigo">2–4 business hours</span> (Mon–Sat, 8 AM – 8 PM IST).
+          </p>
+          <div className="mt-3 pt-3 border-t border-ink/10 text-xs text-ink/70">
+            <span>Have an active service in progress? </span>
+            <Link href="/dashboard" className="font-bold text-coral underline hover:text-coral/80">
+              Open Help &amp; Safety inside your booking dashboard
+            </Link>
+            <span> for real-time operational assistance.</span>
+          </div>
+        </div>
       </section>
     </PublicShell>
   );

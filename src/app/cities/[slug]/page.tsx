@@ -31,6 +31,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export const dynamic = "force-dynamic";
 
+const PILOT_LOCALITIES: Record<string, Array<{ name: string; status: string; dot: string }>> = {
+  ahmedabad: [
+    { name: "Bopal", status: "Limited Availability", dot: "bg-leaf" },
+    { name: "Ambli", status: "Waitlist", dot: "bg-saffron" },
+    { name: "Prahlad Nagar", status: "Limited Availability", dot: "bg-leaf" },
+    { name: "South Bopal", status: "Waitlist", dot: "bg-saffron" },
+    { name: "Thaltej", status: "Early Access", dot: "bg-indigo" },
+    { name: "Bodakdev", status: "Early Access", dot: "bg-indigo" },
+  ],
+  bangalore: [
+    { name: "Indiranagar", status: "Limited Availability", dot: "bg-leaf" },
+    { name: "HSR Layout", status: "Limited Availability", dot: "bg-leaf" },
+    { name: "Koramangala", status: "Waitlist", dot: "bg-saffron" },
+    { name: "Whitefield", status: "Early Access", dot: "bg-indigo" },
+    { name: "Bellandur", status: "Early Access", dot: "bg-indigo" },
+  ],
+  pune: [
+    { name: "Koregaon Park", status: "Limited Availability", dot: "bg-leaf" },
+    { name: "Baner", status: "Limited Availability", dot: "bg-leaf" },
+    { name: "Kalyani Nagar", status: "Waitlist", dot: "bg-saffron" },
+    { name: "Viman Nagar", status: "Early Access", dot: "bg-indigo" },
+  ],
+};
+
 export default async function CityHubPage({ params }: Props) {
   const { slug } = await params;
   if (!isDatabaseConfigured()) notFound();
@@ -127,26 +151,53 @@ export default async function CityHubPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Service Zones */}
-      {activeZones.length > 0 && (
-        <section className="container-shell mt-20">
-          <h2 className="font-display text-4xl font-semibold">Service areas</h2>
-          <p className="mt-3 max-w-2xl text-lg leading-8 text-ink/80">
-            We currently serve the following areas in {city.name}.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            {activeZones.map((zone) => (
-              <span
-                key={zone.id}
-                className="inline-flex items-center gap-2 rounded-full border border-ink/10 bg-paper px-4 py-2 text-sm font-medium shadow-sm"
-              >
-                <MapPin className="h-3.5 w-3.5 text-leaf" />
-                {zone.name}
-              </span>
-            ))}
+      {/* Service Zones / Neighborhood Pilot Availability */}
+      <section className="container-shell mt-20">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+          <div>
+            <h2 className="font-display text-4xl font-semibold">Neighborhood availability</h2>
+            <p className="mt-3 max-w-2xl text-base leading-7 text-ink/80">
+              {city.name} operates on a neighborhood-first rollout to ensure high caregiver quality, zero rush, and strict safety compliance.
+            </p>
           </div>
-        </section>
-      )}
+          <Link
+            href={`/book` as Route}
+            className="inline-flex items-center gap-2 rounded-full border border-indigo/20 bg-paper px-5 py-2 text-xs font-bold text-indigo hover:border-indigo/40 hover:bg-indigo/5 w-fit"
+          >
+            Check My Specific Area <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
+        </div>
+
+        <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {(activeZones.length > 0
+            ? activeZones.map((z) => ({
+                id: z.id,
+                name: z.name,
+                status: z.status.replaceAll("_", " "),
+                dot: z.status === "ACTIVE" ? "bg-leaf" : "bg-saffron",
+              }))
+            : (PILOT_LOCALITIES[slug] ?? [
+                { id: "1", name: "Central District", status: "Waitlist", dot: "bg-saffron" },
+                { id: "2", name: "North Zone", status: "Early Access", dot: "bg-indigo" },
+                { id: "3", name: "South Zone", status: "Waitlist", dot: "bg-saffron" },
+              ])
+          ).map((zone) => (
+            <div
+              key={zone.name}
+              className="flex items-center justify-between rounded-2xl border border-ink/10 bg-paper p-4 shadow-sm"
+            >
+              <div className="flex items-center gap-2.5">
+                <MapPin className="h-4 w-4 text-ink/60" />
+                <span className="text-sm font-semibold text-ink">{zone.name}</span>
+              </div>
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-ink/5 px-2.5 py-1 text-[0.68rem] font-bold text-ink/80">
+                <span className={`h-1.5 w-1.5 rounded-full ${zone.dot}`} />
+                {zone.status}
+              </span>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* Local Guides */}
       {publishedGuides.length > 0 && (

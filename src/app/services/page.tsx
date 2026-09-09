@@ -56,7 +56,7 @@ export default function ServicesPage() {
       <section className="bg-paper pb-28 pt-12">
         <div className="container-shell">
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {services.map(({ slug, name, kicker, description, icon: Icon, image }) => (
+            {services.map(({ slug, name, kicker, description, startingPrice, icon: Icon, image }) => (
               <article
                 key={slug}
                 className="group flex flex-col mx-auto overflow-hidden rounded-[2.5rem] border border-indigo/10 bg-paper p-5 shadow-lifted transition-all duration-500 hover:border-indigo/30 hover:shadow-2xl"
@@ -84,7 +84,12 @@ export default function ServicesPage() {
                 </div>
 
                 <div className="flex flex-1 flex-col pt-6">
-                  <p className="text-[0.65rem] font-bold uppercase tracking-[0.22em] text-coral font-outfit">{kicker}</p>
+                  <div className="flex items-center justify-between gap-2">
+                    <p className="text-[0.65rem] font-bold uppercase tracking-[0.22em] text-coral font-outfit">{kicker}</p>
+                    <span className="rounded-full bg-leaf/10 px-2.5 py-0.5 text-[0.68rem] font-bold text-leaf font-outfit shrink-0">
+                      {startingPrice}
+                    </span>
+                  </div>
                   <div className="mt-2 h-[40px]">
                     <h2 className="font-display text-3xl font-bold tracking-[-0.04em] text-ink">{name}</h2>
                   </div>
