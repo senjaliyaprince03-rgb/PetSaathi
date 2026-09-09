@@ -89,10 +89,10 @@ export function MarketingExperience({
         </div>
       </header>
 
-      {/* Sticky Mobile Book CTA */}
+      {/* Sticky Mobile Availability CTA */}
       <div className="fixed bottom-0 left-0 right-0 z-[40] border-t border-ink/10 bg-cream/90 backdrop-blur-md p-3 sm:hidden" data-motion-skip>
         <Link href={"/book" as Route} className={cn(buttonVariants({ variant: "primary", size: "lg" }), "w-full rounded-2xl font-bold bg-[#C84B31] hover:bg-[#B33E26] text-white shadow-lg")}>
-          Book a Saathi
+          Check Availability
         </Link>
       </div>
 

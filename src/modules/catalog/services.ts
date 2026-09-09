@@ -1,4 +1,4 @@
-import { CheckCircle2, Clock3, HeartHandshake, Home, MapPinned, PawPrint, ShieldCheck, UserCheck, Video } from "lucide-react";
+import { CheckCircle2, Clock3, HeartHandshake, Home, MapPinned, Navigation, PawPrint, ShieldCheck, UserCheck, Video } from "lucide-react";
 
 export const coreServiceCodes = ["DOG_WALK_30", "DOG_WALK_60", "HOME_VISIT", "HOME_SITTING_60", "GROOMING_HOME", "VET_SUPPORT", "TRAINING_ASSESSMENT", "PET_TAXI"] as const;
 export type CoreServiceCode = (typeof coreServiceCodes)[number];
@@ -57,6 +57,15 @@ export const services = [
     tone: "indigo",
     icon: HeartHandshake,
     image: "/images/service-dog-training.webp"
+  },
+  {
+    slug: "pet-taxi",
+    name: "Pet Taxi",
+    kicker: "Scheduled & Safe Transport",
+    description: "Traceable doorstep-to-destination pet transit with vetted drivers, stress-free crates, and real-time status updates.",
+    tone: "saffron",
+    icon: Navigation,
+    image: "/images/service_dog_walking_v2.webp"
   }
 ] as const;
 

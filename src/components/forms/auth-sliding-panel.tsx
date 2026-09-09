@@ -30,7 +30,7 @@ export function AuthSlidingPanel() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [otp, setOtp] = useState("");
-  const [role, setRole] = useState<"CUSTOMER" | "SITTER" | "ADMIN">("CUSTOMER");
+  const [role, setRole] = useState<"CUSTOMER" | "SITTER">("CUSTOMER");
   const [error, setError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
   const googleButtonSignUpRef = useRef<HTMLDivElement>(null);
@@ -47,7 +47,6 @@ export function AuthSlidingPanel() {
 
   function redirectForRoles(roles?: string[]) {
     if (roles?.includes("SUPER_ADMIN") || roles?.includes("OPERATIONS_ADMIN") || roles?.includes("ADMIN")) return "/admin";
-    if (role === "ADMIN") return "/admin";
     if (role === "SITTER" && roles?.includes("SITTER")) return "/saathi";
     return "/dashboard";
   }
@@ -252,7 +251,7 @@ export function AuthSlidingPanel() {
     setError(null);
     setMessage(null);
     try {
-      const endpoint = role === "ADMIN" ? "/api/auth/admin/signin" : "/api/auth/password/signin";
+      const endpoint = "/api/auth/password/signin";
       const { response, payload } = await submit(endpoint, {
         email: email.trim().toLowerCase(),
         password,
@@ -354,9 +353,7 @@ export function AuthSlidingPanel() {
             ? verificationPending ? "Enter the code we emailed you" : "We'll email you a one-time code — no password needed"
             : mode === "setPassword"
               ? "Your identity was verified by email code"
-              : role === "ADMIN"
-                ? "Admin portal sign in"
-                : "Use your verified email account"}
+              : "Use your verified email account"}
         </p>
         {mode === "emailCode" ? (
           verificationPending ? (
@@ -409,33 +406,20 @@ export function AuthSlidingPanel() {
                 />
                 Saathi
               </label>
-              <label className="flex items-center gap-2 cursor-pointer text-sm font-medium text-ink/80">
-                <input
-                  type="radio"
-                  name="signinRole"
-                  value="ADMIN"
-                  checked={role === "ADMIN"}
-                  onChange={() => setRole("ADMIN")}
-                  className="h-4 w-4 text-indigo focus:ring-indigo accent-indigo"
-                />
-                Admin
-              </label>
             </div>
           </div>
           <Field aria-label="Email address" autoComplete="email" icon={<Mail />} maxLength={254} name="email" onChange={setEmail} placeholder="Email Address" type="email" value={email} />
           <Field aria-label="Password" autoComplete="current-password" icon={<Lock />} maxLength={128} name="password" onChange={setPassword} placeholder="Password" type="password" value={password} />
           <SubmitButton pending={pending} label="SIGN IN" color="bg-[#301F30] hover:bg-[#301F30]/90" />
-          {role !== "ADMIN" && (
-            <button type="button" onClick={startEmailCodeLogin} className="text-center text-xs font-bold text-indigo transition hover:text-coral">
-              Forgot password? Log in with an email code
-            </button>
-          )}
-          {hasGoogleAuth && role !== "ADMIN" && <div className="relative my-2 flex items-center py-2">
+          <button type="button" onClick={startEmailCodeLogin} className="text-center text-xs font-bold text-indigo transition hover:text-coral">
+            Forgot password? Log in with an email code
+          </button>
+          {hasGoogleAuth && <div className="relative my-2 flex items-center py-2">
             <div className="flex-grow border-t border-ink/10"></div>
             <span className="mx-4 flex-shrink-0 text-xs font-semibold text-ink/80 uppercase">Or continue with</span>
             <div className="flex-grow border-t border-ink/10"></div>
           </div>}
-          {hasGoogleAuth && role !== "ADMIN" && <div ref={googleButtonSignInRef} className="flex justify-center w-full min-h-[40px]"></div>}
+          {hasGoogleAuth && <div ref={googleButtonSignInRef} className="flex justify-center w-full min-h-[40px]"></div>}
           </form>
         )}
         {!isSignUp && <Feedback error={error} message={message} />}
@@ -466,9 +450,6 @@ export function AuthSlidingPanel() {
           <button
             type="button"
             onClick={() => {
-              if (!isSignUp && role === "ADMIN") {
-                setRole("CUSTOMER");
-              }
               setMode(isSignUp ? "signin" : "signup");
             }}
             className="rounded-full border-2 border-white px-8 py-2.5 text-sm font-bold uppercase tracking-wider text-white transition hover:bg-white hover:text-[#5B3D7A] active:scale-95 sm:px-12 sm:py-3 sm:text-base"

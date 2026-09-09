@@ -100,10 +100,28 @@ export default async function CityHubPage({ params }: Props) {
               </Link>
             ))
           ) : (
-            <div className="rounded-5xl border border-dashed border-ink/15 bg-paper p-10 text-center md:col-span-2 lg:col-span-3">
-              <MapPin className="mx-auto h-10 w-10 text-saffron" />
-              <h3 className="mt-4 font-display text-2xl font-semibold">Services launching soon.</h3>
-              <p className="mt-2 text-ink/80">We are building caregiver capacity in {city.name}.</p>
+            <div className="rounded-5xl border border-dashed border-ink/15 bg-paper p-10 text-center md:col-span-2 lg:col-span-3 shadow-lifted">
+              <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-saffron/15 text-saffron">
+                <MapPin className="h-7 w-7" />
+              </span>
+              <h3 className="mt-5 font-display text-2xl font-bold text-ink">Neighborhood Pilot in {city.name}</h3>
+              <p className="mx-auto mt-2 max-w-xl text-sm leading-relaxed text-ink/80">
+                We are onboarding and safety-vetting caregivers across {city.name}. Check your neighborhood availability to request early access, or apply to join our local caregiver roster.
+              </p>
+              <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
+                <Link
+                  href={"/book" as Route}
+                  className="inline-flex items-center gap-2 rounded-full bg-[#C84B31] px-6 py-2.5 text-sm font-bold text-white shadow-md transition hover:bg-[#B33E26]"
+                >
+                  Check My Neighborhood Availability <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link
+                  href={"/apply/sitter" as Route}
+                  className="inline-flex items-center gap-2 rounded-full border border-indigo/20 bg-paper px-6 py-2.5 text-sm font-bold text-indigo transition hover:border-indigo/40 hover:bg-indigo/5"
+                >
+                  Become a Saathi in {city.name} <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
             </div>
           )}
         </div>

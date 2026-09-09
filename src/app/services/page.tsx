@@ -52,7 +52,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* 2. 6 SERVICES GRID SECTION */}
+      {/* 2. SERVICES GRID SECTION */}
       <section className="bg-paper pb-28 pt-12">
         <div className="container-shell">
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">

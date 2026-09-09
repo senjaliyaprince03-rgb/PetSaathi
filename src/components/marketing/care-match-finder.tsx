@@ -129,13 +129,13 @@ export function CareMatchFinder() {
         </div>
         <Button type="submit" size="lg" disabled={isPending} className="shrink-0 font-outfit bg-[#301F30] hover:bg-[#301F30]/90 text-white border-transparent">
           {isPending ? <Search className="h-4 w-4 animate-pulse" /> : null}
-          {isPending ? "Opening request..." : "Start Assisted Matching"}
+          {isPending ? "Checking availability..." : "Check Availability in My Area"}
           <ArrowRight className="h-4 w-4" />
         </Button>
       </div>
 
       <p className="relative mt-3 text-[0.65rem] font-medium leading-5 text-ink/80">
-        No payment is requested here. Availability, permissions, capacity, and the current quote are checked before confirmation.
+        No upfront payment required. Caregiver availability, service capacity, and exact quotes are confirmed before your session is scheduled.
       </p>
     </form>
   );
