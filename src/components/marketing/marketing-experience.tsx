@@ -192,9 +192,7 @@ export function MarketingExperience({
 
           <div className="relative z-10 w-full pt-8 self-center">
             <ScrollReveal direction="up" delay={0.24}>
-              <AnimosCard glare={false}>
-                <CareMatchFinder />
-              </AnimosCard>
+              <CareMatchFinder />
             </ScrollReveal>
             <ScrollReveal direction="up" delay={0.32}>
               <div className="mt-4 flex flex-wrap items-center justify-between gap-y-3 text-xs font-bold text-white drop-shadow-md w-full">
