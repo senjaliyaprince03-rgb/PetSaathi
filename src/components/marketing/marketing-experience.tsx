@@ -104,7 +104,7 @@ export function MarketingExperience({
             src="/images/hero-dog-woman.webp"
             alt="PetSaathi Hero Background"
             fill priority fetchPriority="high" sizes="100vw"
-            className="object-cover object-center lg:scale-[1.08] lg:-translate-x-[5%] lg:origin-center"
+            className="object-cover object-center lg:object-[35%_center]"
             aria-hidden="true"
             data-testid="marketing-hero-background"
           />
