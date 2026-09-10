@@ -24,7 +24,7 @@ import { PetSaathiLogo } from "@/components/brand/logo";
 import { CareMatchFinder } from "@/components/marketing/care-match-finder";
 
 import { MobileNav } from "@/components/marketing/mobile-nav";
-import { ScrollReveal, ParallaxScroll, Scale3D, RotateOnScroll, Float3D } from "@/components/3d/scroll-reveal";
+import { ScrollReveal, Scale3D, RotateOnScroll, Float3D } from "@/components/3d/scroll-reveal";
 import { TextReveal, MagneticButton, AnimosCard, ScrollStaggerContainer, ScrollStaggerItem } from "@/components/effects/animos-motion";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
@@ -98,8 +98,8 @@ export function MarketingExperience({
         </Link>
       </div>
 
-      <section data-testid="marketing-hero" className="relative flex flex-col justify-center min-h-[95vh] pt-32 pb-16 lg:pt-40 lg:pb-24 bg-[#1e1322] text-white overflow-hidden">
-        <ParallaxScroll speed={-0.15} className="absolute inset-0">
+      <section data-testid="marketing-hero" className="relative flex flex-col justify-center min-h-screen pt-28 pb-12 lg:pt-36 lg:pb-16 bg-[#1e1322] text-white overflow-hidden">
+        <div className="absolute inset-0">
           <Image
             src="/images/hero-dog-woman.webp"
             alt="PetSaathi Hero Background"
@@ -110,8 +110,7 @@ export function MarketingExperience({
           />
           {/* Subtle soft gradient scrim on left only for text readability while leaving the middle (dog & woman) and right completely bright, clear, and visible */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/20 to-transparent lg:w-3/5" />
-          <div className="absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-black/25 to-transparent" />
-        </ParallaxScroll>
+        </div>
         
         <div className="container-shell relative grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:min-h-[60vh]">
           <div className="relative z-10 max-w-xl self-center">
