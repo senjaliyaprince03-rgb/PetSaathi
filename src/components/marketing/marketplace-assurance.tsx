@@ -65,7 +65,7 @@ export function MarketplaceAssurance() {
                 <ScrollTextReveal 
                   text="Compare care evidence, not an endless directory." 
                   tag="h2" 
-                  className="section-title mt-5 max-w-[13ch]" 
+                  className="section-title mt-5 max-w-xl" 
                   color="inherit" 
                   font={{ fontSize: "inherit", fontWeight: "inherit", lineHeight: "inherit" }} 
                 />
