@@ -76,12 +76,15 @@ export function MarketingExperience({
       <header className="absolute inset-x-0 top-4 z-50 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto flex min-h-[4.5rem] max-w-container-max items-center justify-between rounded-full border border-paper/80 bg-paper/95 px-4 shadow-lifted backdrop-blur-2xl sm:px-6">
           <PetSaathiLogo />
-          <nav aria-label="Primary navigation" className="hidden items-center gap-7 lg:flex">
+          <nav aria-label="Primary navigation" className="hidden items-center gap-5 xl:gap-6 lg:flex">
             <Link href={"/services" as Route} className="text-sm font-bold text-ink/80 transition hover:text-ink">Services</Link>
             <Link href={"/caregivers" as Route} className="text-sm font-bold text-ink/80 transition hover:text-ink">Saathis</Link>
-            <Link href={"/safety" as Route} className="text-sm font-bold text-ink/80 transition hover:text-ink">Safety</Link>
+            <Link href={"/safety" as Route} className="text-sm font-bold text-ink/80 transition hover:text-ink">Safety &amp; Trust</Link>
             <Link href={"/societies" as Route} className="text-sm font-bold text-ink/80 transition hover:text-ink">Societies</Link>
+            <Link href={"/membership" as Route} className="text-sm font-bold text-ink/80 transition hover:text-ink">Membership</Link>
             <Link href={"/about" as Route} className="text-sm font-bold text-ink/80 transition hover:text-ink">About</Link>
+            <Link href={"/journal" as Route} className="text-sm font-bold text-ink/80 transition hover:text-ink">Journal</Link>
+            <Link href={"/contact" as Route} className="text-sm font-bold text-ink/80 transition hover:text-ink">Contact Us</Link>
           </nav>
           <div className="flex items-center gap-3">
             <AuthNav />
@@ -96,16 +99,18 @@ export function MarketingExperience({
         </Link>
       </div>
 
-      <section data-testid="marketing-hero" className="marketing-hero-backdrop relative flex flex-col justify-center min-h-[95vh] pt-32 pb-16 lg:pt-40 lg:pb-24">
+      <section data-testid="marketing-hero" className="relative flex flex-col justify-center min-h-[95vh] pt-32 pb-16 lg:pt-40 lg:pb-24 bg-[#1e1322] text-white overflow-hidden">
         <ParallaxScroll speed={-0.15} className="absolute inset-0">
           <Image
             src="/images/hero-dog-woman.webp"
             alt="PetSaathi Hero Background"
             fill priority fetchPriority="high" sizes="100vw"
-            className="object-cover object-center mix-blend-overlay"
+            className="object-cover object-center opacity-50"
             aria-hidden="true"
             data-testid="marketing-hero-background"
           />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#1e1322]/95 via-[#1e1322]/85 to-[#1e1322]/55" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1e1322] via-transparent to-[#1e1322]/50" />
         </ParallaxScroll>
         
         <div className="container-shell relative grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:min-h-[60vh]">
@@ -117,20 +122,18 @@ export function MarketingExperience({
             </ScrollReveal>
             <ScrollReveal direction="up" delay={0.08}>
               <h1 className="sr-only">Care That Feels Like Family.</h1>
-              {/* filter: drop-shadow follows the exact letter shapes — no box, just a soft white glow behind each character */}
               <div
                 className="mt-2 relative inline-block"
                 aria-hidden="true"
                 style={{
-                  filter:
-                    "drop-shadow(0 0 6px rgba(255,255,255,0.60)) drop-shadow(0 0 16px rgba(255,255,255,0.38)) drop-shadow(0 0 32px rgba(255,255,255,0.20))",
+                  filter: "drop-shadow(0 2px 18px rgba(0,0,0,0.5))",
                 }}
               >
-                <TextReveal text="Care That Feels Like Family." className="max-w-[10ch] font-display text-[3.7rem] font-semibold leading-[0.91] tracking-[-0.065em] text-[#301F30] sm:text-[5.4rem] xl:text-[6.6rem]" delay={0.08} />
+                <TextReveal text="Care That Feels Like Family." className="max-w-[10ch] font-display text-[3.7rem] font-semibold leading-[0.91] tracking-[-0.065em] text-white sm:text-[5.4rem] xl:text-[6.6rem]" delay={0.08} />
               </div>
             </ScrollReveal>
             <ScrollReveal direction="up" delay={0.16}>
-                <p className="mt-7 max-w-xl text-base font-semibold leading-8 text-white drop-shadow-md sm:text-lg">Plan local care with clear service context for walks, home visits, grooming and non-emergency veterinary support. Availability and permissions are checked before confirmation.</p>
+                <p className="mt-7 max-w-xl text-base font-medium leading-8 text-white/90 sm:text-lg">Plan local care with clear service context for walks, home visits, grooming and non-emergency veterinary support. Availability and permissions are checked before confirmation.</p>
             </ScrollReveal>
             <ScrollReveal direction="up" delay={0.24}>
               <Float3D className="mt-12 flex flex-col items-start gap-6 sm:flex-row sm:items-center">
@@ -193,8 +196,8 @@ export function MarketingExperience({
             <ScrollReveal direction="up" delay={0.32}>
               <div className="mt-4 flex flex-wrap items-center justify-between gap-y-3 text-xs font-bold text-white drop-shadow-md w-full">
                 <Link href={"/caregivers" as Route} className="inline-flex items-center gap-1.5 text-white transition hover:text-coral">How matching works <ArrowRight className="h-3.5 w-3.5" /></Link>
-                <span className="flex items-center gap-1.5"><Clock3 className="h-4 w-4 text-black" />Structured service history</span>
-                <span className="flex items-center gap-1.5"><HeartHandshake className="h-4 w-4 text-black" />Human exception support</span>
+                <span className="flex items-center gap-1.5"><Clock3 className="h-4 w-4 text-saffron" />Structured service history</span>
+                <span className="flex items-center gap-1.5"><HeartHandshake className="h-4 w-4 text-saffron" />Human exception support</span>
               </div>
             </ScrollReveal>
           </div>

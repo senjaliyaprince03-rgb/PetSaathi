@@ -10,6 +10,10 @@ export async function GET(request: NextRequest) {
   // State = base64(userId:timestamp) — prevents CSRF
   const state = Buffer.from(`${identity.id}:${Date.now()}`).toString("base64");
 
+  if (!process.env.DIGILOCKER_CLIENT_ID || !process.env.DIGILOCKER_REDIRECT_URI) {
+    return NextResponse.json({ error: "digilocker_not_configured", message: "DigiLocker is not configured in the environment variables." }, { status: 503 });
+  }
+
   const params = new URLSearchParams({
     response_type: "code",
     client_id: process.env.DIGILOCKER_CLIENT_ID!,

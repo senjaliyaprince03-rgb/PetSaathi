@@ -11,6 +11,10 @@ export async function GET(request: NextRequest) {
   const state = searchParams.get("state");
   const error = searchParams.get("error");
 
+  if (!process.env.DIGILOCKER_CLIENT_ID || !process.env.DIGILOCKER_CLIENT_SECRET || !process.env.DIGILOCKER_REDIRECT_URI) {
+    return NextResponse.json({ error: "digilocker_not_configured", message: "DigiLocker is not configured in the environment variables." }, { status: 503 });
+  }
+
   if (error || !code || !state) {
     // Redirect to verification page with error message
     return NextResponse.redirect(

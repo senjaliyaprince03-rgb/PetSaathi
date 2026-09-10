@@ -1,10 +1,6 @@
 "use client";
 
-
-
-
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import type { Route } from "next";
 import { ArrowRight, Menu, X } from "lucide-react";
 import { PetSaathiLogo } from "@/components/brand/logo";
@@ -31,11 +27,10 @@ export function MobileNav() {
       </summary>
 
       {/* Full Screen Modal */}
-      <div className="fixed inset-0 z-[99999] flex flex-col bg-[#FAF6F1] md:hidden">
+      <div className="fixed inset-0 z-[99999] flex flex-col bg-[#FAF6F1] lg:hidden">
         {/* Top Header */}
         <div className="flex min-h-[4.5rem] shrink-0 items-center justify-between border-b border-ink/10 bg-white px-5 py-4 shadow-xs">
           <PetSaathiLogo />
-          {/* Close button triggers the summary to close via a hack or we can just let React handle it later, but for 0-JS we wrap it in a label if it was a checkbox, but with details we can't easily close it without JS. Let's use a bit of JS just for closing, or better, the checkbox hack! */}
           <button
             type="button"
             className="flex h-11 w-11 items-center justify-center rounded-xl border border-ink/10 bg-surface text-ink shadow-soft transition hover:bg-ink/5"
@@ -97,5 +92,3 @@ export function MobileNav() {
     </details>
   );
 }
-
-
