@@ -109,8 +109,8 @@ export function MarketingExperience({
             data-testid="marketing-hero-background"
           />
           {/* Subtle soft gradient scrim on left only for text readability while leaving the middle (dog & woman) and right completely bright, clear, and visible */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/25 to-transparent lg:w-3/5" />
-          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#1e1322] to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/20 to-transparent lg:w-3/5" />
+          <div className="absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-black/25 to-transparent" />
         </ParallaxScroll>
         
         <div className="container-shell relative grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:min-h-[60vh]">
