@@ -104,12 +104,12 @@ export function MarketingExperience({
             src="/images/hero-dog-woman.webp"
             alt="PetSaathi Hero Background"
             fill priority fetchPriority="high" sizes="100vw"
-            className="object-cover object-center lg:object-[35%_center]"
+            className="object-cover object-center lg:scale-[1.18] lg:-translate-x-[5.5%] lg:origin-center"
             aria-hidden="true"
             data-testid="marketing-hero-background"
           />
           {/* Subtle soft gradient scrim on left only for text readability while leaving the middle (dog & woman) and right completely bright, clear, and visible */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/20 to-transparent lg:w-[45%]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/20 to-transparent lg:w-[40%]" />
         </div>
         
         <div className="container-shell relative grid gap-8 xl:gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:min-h-[60vh]">
@@ -190,7 +190,7 @@ export function MarketingExperience({
             </ScrollReveal>
           </div>
 
-          <div className="relative z-10 w-full lg:max-w-[510px] xl:max-w-[530px] lg:ml-auto pt-8 self-center">
+          <div className="relative z-10 w-full lg:max-w-[450px] xl:max-w-[460px] lg:ml-auto pt-8 self-center">
             <ScrollReveal direction="up" delay={0.24}>
               <CareMatchFinder />
             </ScrollReveal>
