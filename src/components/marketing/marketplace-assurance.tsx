@@ -65,6 +65,7 @@ export function MarketplaceAssurance() {
                 <ScrollTextReveal 
                   text="Compare care evidence, not an endless directory." 
                   tag="h2" 
+                  splitMode="words"
                   className="section-title mt-5 max-w-xl" 
                   color="inherit" 
                   font={{ fontSize: "inherit", fontWeight: "inherit", lineHeight: "inherit" }} 
@@ -156,7 +157,8 @@ export function MarketplaceAssurance() {
                   <ScrollTextReveal 
                     text="Every important moment stays attached to the care." 
                     tag="h2" 
-                    className="mt-5 max-w-[11ch] font-display text-5xl font-semibold leading-[0.98] tracking-[-0.055em] sm:text-6xl" 
+                    splitMode="words"
+                    className="mt-5 max-w-xl font-display text-5xl font-semibold leading-[0.98] tracking-[-0.055em] sm:text-6xl" 
                     color="inherit" 
                     font={{ fontSize: "inherit", fontWeight: "inherit", lineHeight: "inherit" }} 
                   />
