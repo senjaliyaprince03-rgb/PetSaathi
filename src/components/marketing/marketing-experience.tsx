@@ -98,7 +98,7 @@ export function MarketingExperience({
         </Link>
       </div>
 
-      <section data-testid="marketing-hero" className="relative flex flex-col justify-center min-h-screen pt-28 pb-12 lg:pt-36 lg:pb-16 bg-[#1e1322] text-white overflow-hidden">
+      <section data-testid="marketing-hero" className="relative flex flex-col justify-center min-h-screen pt-28 pb-12 lg:pt-36 lg:pb-28 bg-[#1e1322] text-white overflow-hidden">
         <div className="absolute inset-0">
           <Image
             src="/images/hero-dog-woman.webp"
@@ -190,7 +190,7 @@ export function MarketingExperience({
             </ScrollReveal>
           </div>
 
-          <div className="relative z-10 w-full lg:max-w-[490px] xl:max-w-[510px] 2xl:max-w-[520px] lg:ml-auto pt-8 self-center">
+          <div className="relative z-10 w-full lg:max-w-[490px] xl:max-w-[510px] 2xl:max-w-[520px] lg:ml-auto pt-8 self-end lg:translate-y-16 xl:translate-y-20">
             <ScrollReveal direction="up" delay={0.24}>
               <CareMatchFinder />
             </ScrollReveal>
