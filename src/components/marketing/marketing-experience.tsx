@@ -109,7 +109,7 @@ export function MarketingExperience({
           <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/20 to-transparent lg:w-[42%]" />
         </div>
         
-        <div className="container-shell relative grid gap-8 xl:gap-12 lg:grid-cols-[1.1fr_460px] xl:grid-cols-[1.1fr_480px] 2xl:grid-cols-[1.2fr_500px] lg:min-h-[60vh]">
+        <div className="container-shell relative grid gap-8 xl:gap-12 lg:grid-cols-[1fr_560px] xl:grid-cols-[1fr_600px] 2xl:grid-cols-[1.05fr_640px] lg:min-h-[60vh]">
           <div className="relative z-10 max-w-xl self-center">
             <ScrollReveal direction="up">
               <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2.5 text-xs font-bold text-white shadow-lg backdrop-blur-md">
@@ -183,7 +183,7 @@ export function MarketingExperience({
             </ScrollReveal>
           </div>
 
-          <div className="relative z-10 w-full lg:max-w-[460px] xl:max-w-[480px] 2xl:max-w-[500px] lg:ml-auto pt-6 self-end lg:translate-y-[120px] xl:translate-y-[130px]">
+          <div className="relative z-10 w-full lg:max-w-[560px] xl:max-w-[600px] 2xl:max-w-[640px] lg:ml-auto pt-6 self-end lg:-translate-y-8 xl:-translate-y-9">
             <ScrollReveal direction="up" delay={0.24}>
               <CareMatchFinder />
             </ScrollReveal>
