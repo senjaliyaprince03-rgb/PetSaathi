@@ -5,6 +5,7 @@ import { ArrowRight, BadgeCheck, FileClock, ShieldAlert, UserRoundCheck } from "
 
 import { PublicShell } from "@/components/marketing/public-shell";
 import { buttonVariants } from "@/components/ui/button";
+import { VerificationProtocol } from "@/components/marketing/verification-protocol";
 
 export const metadata: Metadata = { 
   title: "Safety & Trust Protocols",
@@ -57,7 +58,7 @@ export default function SafetyPage() {
       </section>
 
       {/* 2. SAFETY CARDS GRID */}
-      <section className="bg-paper pb-28 pt-16">
+      <section className="bg-paper pb-16 pt-16">
         <div className="container-shell">
           <div className="grid gap-8 md:grid-cols-2">
             {safetyCards.map(([Icon, title, copy]) => (
@@ -70,8 +71,16 @@ export default function SafetyPage() {
               </article>
             ))}
           </div>
+        </div>
+      </section>
 
-          <div className="mt-12 rounded-[2.5rem] bg-ink p-8 text-paper shadow-lifted sm:p-12">
+      {/* 3. 4-STEP VERIFICATION PROTOCOL */}
+      <VerificationProtocol />
+
+      {/* 4. IMPORTANT BOUNDARY */}
+      <section className="bg-paper pb-28 pt-12">
+        <div className="container-shell">
+          <div className="rounded-[2.5rem] bg-ink p-8 text-paper shadow-lifted sm:p-12">
             <p className="eyebrow !text-paper/80 font-outfit">Important Boundary</p>
             <h2 className="mt-4 font-display text-4xl font-bold">Emergency referral support is not veterinary care.</h2>
             <p className="mt-4 max-w-3xl text-sm leading-7 text-paper/80">

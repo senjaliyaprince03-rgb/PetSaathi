@@ -40,8 +40,7 @@ const HeroVideoShowcase = dynamic(() => import("@/components/marketing/hero-vide
 const MarketplaceAssurance = dynamic(() => import("@/components/marketing/marketplace-assurance").then(m => m.MarketplaceAssurance));
 const TestimonialsSection = dynamic(() => import("@/components/marketing/testimonials").then(m => m.TestimonialsSection));
 const HowItWorksSection = dynamic(() => import("@/components/marketing/how-it-works").then(m => m.HowItWorksSection));
-
-
+const VerificationProtocol = dynamic(() => import("@/components/marketing/verification-protocol").then(m => m.VerificationProtocol));
 
 import { LazyAnimatedLogo } from "@/components/marketing/lazy-animated-logo";
 
@@ -105,12 +104,13 @@ export function MarketingExperience({
             src="/images/hero-dog-woman.webp"
             alt="PetSaathi Hero Background"
             fill priority fetchPriority="high" sizes="100vw"
-            className="object-cover object-center opacity-50"
+            className="object-cover object-center"
             aria-hidden="true"
             data-testid="marketing-hero-background"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#1e1322]/95 via-[#1e1322]/85 to-[#1e1322]/55" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1e1322] via-transparent to-[#1e1322]/50" />
+          {/* Subtle soft gradient scrim on left only for text readability while leaving the middle (dog & woman) and right completely bright, clear, and visible */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/25 to-transparent lg:w-3/5" />
+          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#1e1322] to-transparent" />
         </ParallaxScroll>
         
         <div className="container-shell relative grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:min-h-[60vh]">
@@ -371,6 +371,8 @@ export function MarketingExperience({
         </div>
       </section>
 
+      <VerificationProtocol />
+
       <section className="pb-12 sm:pb-16">
         <div className="container-shell">
           <Scale3D>
@@ -390,12 +392,15 @@ export function MarketingExperience({
             <ScrollReveal direction="up" className="relative max-w-3xl">
               <p className="text-[0.65rem] font-bold uppercase tracking-[0.22em] text-paper/80">Ready when their day needs you</p>
               <h2 className="mt-5 font-display text-5xl font-semibold leading-[0.98] tracking-[-0.055em] sm:text-7xl">Plan thoughtful care in one calm flow.</h2>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
                 <MagneticButton strength={0.3}>
-                  <Link href="/book" className={cn(buttonVariants({ variant: "primary", size: "lg" }), "bg-paper text-ink hover:bg-ink hover:text-paper")}>Start a care request <ArrowRight className="h-5 w-5" /></Link>
+                  <Link href="/book" className={cn(buttonVariants({ variant: "primary", size: "lg" }), "bg-paper text-ink hover:bg-ink hover:text-paper font-bold")}>Find Care &amp; Book <ArrowRight className="h-5 w-5" /></Link>
                 </MagneticButton>
                 <MagneticButton strength={0.2}>
                   <Link href="/become-a-saathi" className="inline-flex min-h-14 items-center justify-center rounded-full border border-paper/30 px-7 text-sm font-bold text-paper transition hover:bg-paper/10">Become a Saathi</Link>
+                </MagneticButton>
+                <MagneticButton strength={0.2}>
+                  <Link href="/membership" className="inline-flex min-h-14 items-center justify-center rounded-full bg-paper/10 px-7 text-sm font-bold text-paper transition hover:bg-paper/20">Join Membership</Link>
                 </MagneticButton>
               </div>
             </ScrollReveal>

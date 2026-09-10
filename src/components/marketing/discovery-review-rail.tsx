@@ -147,9 +147,29 @@ export function DiscoveryReviewRail() {
                 <p className="eyebrow">Care stories with permission</p>
                 <h2 id="care-stories-title" className="section-title mt-5 max-w-[13ch]">See the details families can compare.</h2>
               </div>
-              <p className="max-w-md text-base leading-relaxed text-ink/80 md:pb-2 md:text-right">
-                We believe in absolute transparency. Explore real, verified care routines from local families—published securely with their explicit consent—to help you make the best choice for your pet&apos;s well-being.
-              </p>
+              <div className="flex flex-col gap-4 md:items-end">
+                <p className="max-w-md text-base leading-relaxed text-ink/80 md:pb-2 md:text-right">
+                  We believe in absolute transparency. Explore real, verified care routines from local families—published securely with their explicit consent—to help you make the best choice for your pet&apos;s well-being.
+                </p>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={showPrevious}
+                    aria-label="Previous care story"
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-indigo/20 bg-paper text-ink transition hover:bg-indigo hover:text-paper shadow-xs"
+                  >
+                    <ArrowLeft className="h-4 w-4" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={showNext}
+                    aria-label="Next care story"
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-indigo/20 bg-paper text-ink transition hover:bg-indigo hover:text-paper shadow-xs"
+                  >
+                    <ArrowRight className="h-4 w-4" />
+                  </button>
+                </div>
+              </div>
             </div>
           </ScrollReveal>
 

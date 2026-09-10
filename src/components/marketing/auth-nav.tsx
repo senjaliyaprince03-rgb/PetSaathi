@@ -73,13 +73,21 @@ export function AuthNav() {
           </Link>
         </div>
       ) : (
-        <MagneticButton strength={0.2}>
-          <Link href={"/login" as Route} className="hidden text-sm font-bold text-ink sm:block">Sign in</Link>
-        </MagneticButton>
+        <>
+          <Link
+            href={"/become-a-saathi" as Route}
+            className="hidden text-xs font-bold uppercase tracking-wider text-ink/70 transition hover:text-coral xl:inline-block"
+          >
+            Become a Saathi
+          </Link>
+          <MagneticButton strength={0.2}>
+            <Link href={"/login" as Route} className="hidden text-sm font-bold text-ink sm:block">Sign in</Link>
+          </MagneticButton>
+        </>
       )}
       <MagneticButton strength={0.4}>
-        <Link href={"/book" as Route} className={cn(buttonVariants({ variant: "primary", size: "default" }), "rounded-full font-bold bg-[#301F30] hover:bg-[#301F30]/90 text-white")}>
-          Find care <ArrowRight className="ml-1 h-4 w-4" />
+        <Link href={"/book" as Route} className={cn(buttonVariants({ variant: "primary", size: "default" }), "rounded-full font-bold bg-[#301F30] hover:bg-[#301F30]/90 text-white whitespace-nowrap")}>
+          Find Care &amp; Book <ArrowRight className="ml-1 h-4 w-4" />
         </Link>
       </MagneticButton>
       <MobileNav />
