@@ -1,0 +1,72 @@
+{
+  "baseline": {
+    "mobile": [
+      {
+        "Score": 76,
+        "FCP": "2.0 s",
+        "LCP": "4.6 s",
+        "TBT": "300 ms",
+        "CLS": "0",
+        "SpeedIndex": "2.4 s",
+        "LCP_TTFB": 40.7860000038147,
+        "LCP_RLD": 21.149999996185304,
+        "LCP_RLDur": 38.901,
+        "LCP_ERD": 959.205,
+        "MT_Script": 26.139999999999986,
+        "MT_StyleLayout": 2378.9240000000004,
+        "MT_Paint": 115.99200000000003,
+        "MT_Other": 544.1840000000001
+      },
+      {
+        "Score": 75,
+        "FCP": "1.9 s",
+        "LCP": "4.6 s",
+        "TBT": "270 ms",
+        "CLS": "0",
+        "SpeedIndex": "4.3 s",
+        "LCP_TTFB": 29.253,
+        "LCP_RLD": 16.419,
+        "LCP_RLDur": 39.151,
+        "LCP_ERD": 2342.838,
+        "MT_Script": 32.92399999999998,
+        "MT_StyleLayout": 1927.6360000000002,
+        "MT_Paint": 78.98000000000006,
+        "MT_Other": 606.6359999999995
+      },
+      {
+        "Score": 70,
+        "FCP": "1.9 s",
+        "LCP": "4.6 s",
+        "TBT": "390 ms",
+        "CLS": "0",
+        "SpeedIndex": "4.3 s",
+        "LCP_TTFB": 32.629,
+        "LCP_RLD": 12.197,
+        "LCP_RLDur": 32.11,
+        "LCP_ERD": 2391.728,
+        "MT_Script": 28.515999999999977,
+        "MT_StyleLayout": 2422.6,
+        "MT_Paint": 56.963999999999984,
+        "MT_Other": 513.5800000000015
+      }
+    ],
+    "desktop": [
+      {
+        "Score": 99,
+        "FCP": "0.5 s",
+        "LCP": "1.0 s",
+        "TBT": "10 ms",
+        "CLS": "0",
+        "SpeedIndex": "0.8 s",
+        "LCP_TTFB": 47.875,
+        "LCP_RLD": 15.554,
+        "LCP_RLDur": 60.383,
+        "LCP_ERD": 678.995,
+        "MT_Script": 4.111999999999985,
+        "MT_StyleLayout": 536.2829999999999,
+        "MT_Paint": 33.604000000000006,
+        "MT_Other": 175.42200000000275
+      }
+    ]
+  }
+}

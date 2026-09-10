@@ -1,0 +1,72 @@
+{
+  "phase24": {
+    "mobile": [
+      {
+        "Score": 71,
+        "FCP": "1.9 s",
+        "LCP": "4.5 s",
+        "TBT": "370 ms",
+        "CLS": "0",
+        "SpeedIndex": "4.6 s",
+        "LCP_TTFB": 45.399,
+        "LCP_RLD": 17.923,
+        "LCP_RLDur": 55.051,
+        "LCP_ERD": 2461.986,
+        "MT_Script": 40.25199999999999,
+        "MT_StyleLayout": 2438.4120000000003,
+        "MT_Paint": 48.184,
+        "MT_Other": 571.3919999999991
+      },
+      {
+        "Score": 74,
+        "FCP": "2.0 s",
+        "LCP": "4.6 s",
+        "TBT": "330 ms",
+        "CLS": "0",
+        "SpeedIndex": "2.5 s",
+        "LCP_TTFB": 48.465,
+        "LCP_RLD": 31.104,
+        "LCP_RLDur": 72.826,
+        "LCP_ERD": 923.091,
+        "MT_Script": 25.507999999999974,
+        "MT_StyleLayout": 2426.7520000000004,
+        "MT_Paint": 104.21600000000001,
+        "MT_Other": 581.8879999999981
+      },
+      {
+        "Score": 80,
+        "FCP": "1.9 s",
+        "LCP": "4.5 s",
+        "TBT": "200 ms",
+        "CLS": "0",
+        "SpeedIndex": "3.0 s",
+        "LCP_TTFB": 28.169,
+        "LCP_RLD": 16.017,
+        "LCP_RLDur": 28.257,
+        "LCP_ERD": 1414.2,
+        "MT_Script": 24.983999999999966,
+        "MT_StyleLayout": 2186.9080000000004,
+        "MT_Paint": 92.16800000000002,
+        "MT_Other": 516.795999999999
+      }
+    ],
+    "desktop": [
+      {
+        "Score": 99,
+        "FCP": "0.5 s",
+        "LCP": "1.0 s",
+        "TBT": "10 ms",
+        "CLS": "0",
+        "SpeedIndex": "0.8 s",
+        "LCP_TTFB": 31.705000003814696,
+        "LCP_RLD": 14.419999996185302,
+        "LCP_RLDur": 36.055,
+        "LCP_ERD": 672.337,
+        "MT_Script": 3.5419999999999954,
+        "MT_StyleLayout": 530.8999999999999,
+        "MT_Paint": 22.84300000000001,
+        "MT_Other": 178.1009999999978
+      }
+    ]
+  }
+}

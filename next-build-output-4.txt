@@ -1,0 +1,32 @@
+[@sentry/nextjs] Importing `withSentryConfig` from `@sentry/nextjs` is deprecated and will stop working in v11. Import it from `@sentry/nextjs/config` instead:
+  import { withSentryConfig } from '@sentry/nextjs/config';
+   ▲ Next.js 15.5.25
+   - Environments: .env.local, .env
+   - Experiments (use with caution):
+     · clientTraceMetadata
+
+   Creating an optimized production build ...
+[@sentry/nextjs] DEPRECATION WARNING: It is recommended renaming your `sentry.client.config.ts` file, or moving its content to `instrumentation-client.ts`. When using Turbopack `sentry.client.config.ts` will no longer work. Read more about the `instrumentation-client.ts` file: https://nextjs.org/docs/app/api-reference/file-conventions/instrumentation-client
+Failed to compile.
+
+./src/components/marketing/marketing-experience.tsx
+Error:   x `ssr: false` is not allowed with `next/dynamic` in Server Components. Please move it into a Client Component.
+    ,-[C:\Users\Prince\Downloads\PetSaathi\src\components\marketing\marketing-experience.tsx:46:1]
+ 43 |     
+ 44 |     
+ 45 |     
+ 46 | ,-> const LazyAnimatedLogo = dynamic(() => import("@/components/3d/animated-logo").then(mod => mod.AnimatedLogo), {
+ 47 | |     ssr: false,
+ 48 | |     loading: () => <div className="h-11 w-11 animate-pulse bg-indigo/5 rounded-full" />
+ 49 | `-> });
+ 50 |     
+ 51 |     const careSteps = [
+ 51 |       { number: "01", title: "Share the care context", copy: "Choose the service, pet, place and time without exposing more information than the request needs.", icon: PawPrint },
+    `----
+
+Import trace for requested module:
+./src/components/marketing/marketing-experience.tsx
+./src/app/page.tsx
+
+
+> Build failed because of webpack errors

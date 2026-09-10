@@ -59,36 +59,32 @@ export function CareMatchFinder() {
       onSubmit={submit}
       action="/book"
       method="get"
-      className="relative overflow-hidden rounded-[2.25rem] border border-white/80 bg-white/95 p-6 sm:p-7 shadow-[0_24px_70px_rgba(0,0,0,0.22)] backdrop-blur-2xl"
+      className="relative overflow-hidden rounded-[2rem] sm:rounded-[2.5rem] border border-white/80 bg-white/95 p-4 sm:p-6 lg:p-7 shadow-[0_24px_70px_rgba(0,0,0,0.18)] backdrop-blur-2xl"
       aria-label="Start a PetSaathi care match"
       noValidate
     >
-      {/* Subtle luxury ambient glows inside card */}
-      <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-saffron/20 blur-3xl" />
-      <div className="pointer-events-none absolute -left-16 -bottom-16 h-48 w-48 rounded-full bg-coral/10 blur-3xl" />
-
       {/* Header */}
-      <div className="relative flex items-center justify-between gap-4 border-b border-indigo/10 pb-4">
+      <div className="relative flex items-center justify-between gap-3">
         <div>
-          <span className="inline-flex items-center gap-2 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-[#C84B31] font-outfit">
-            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+          <span className="inline-flex items-center gap-1.5 text-[0.65rem] sm:text-[0.68rem] font-bold uppercase tracking-[0.16em] text-[#d45638] font-outfit">
+            <span className="h-2 w-2 rounded-full bg-emerald-500" />
             Instant Care Match
           </span>
-          <h2 className="mt-1 font-display text-xl font-bold tracking-tight text-ink sm:text-2xl">
+          <h2 className="mt-1 font-display text-[1.35rem] sm:text-[1.7rem] font-bold tracking-tight text-[#1e1322]">
             Find trusted local care
           </h2>
         </div>
-        <span className="inline-flex items-center gap-1.5 rounded-full border border-leaf/20 bg-leaf/10 px-3 py-1.5 text-[0.68rem] font-bold text-leaf shrink-0 shadow-2xs font-outfit">
-          <ShieldCheck className="h-3.5 w-3.5" /> 100% Vetted
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-[#eaf4ec] px-2.5 sm:px-3.5 py-1 sm:py-1.5 text-[0.68rem] sm:text-[0.72rem] font-bold text-[#357a4e] shrink-0 font-outfit">
+          <ShieldCheck className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-[#357a4e]" /> 100% Vetted
         </span>
       </div>
 
-      {/* Fields Grid */}
-      <div className="relative mt-5 grid gap-3 sm:grid-cols-2">
-        {/* Care Service Selection */}
-        <label className="sm:col-span-2 group relative flex flex-col gap-1 rounded-2xl border border-indigo/15 bg-cream/40 p-3 transition focus-within:border-indigo/50 focus-within:bg-white focus-within:ring-2 focus-within:ring-indigo/10 hover:border-indigo/30 hover:bg-cream/70">
-          <span className="flex items-center gap-1.5 text-[0.68rem] font-bold uppercase tracking-wider text-ink/70">
-            <PawPrint className="h-3.5 w-3.5 text-coral" />
+      {/* Fields Grid - 2 columns side by side on both mobile & desktop */}
+      <div className="relative mt-4 sm:mt-5 grid grid-cols-2 gap-2 sm:gap-3">
+        {/* Care Service Selection (Full Width) */}
+        <label className="col-span-2 group relative flex flex-col gap-1 rounded-2xl border border-[#e8e2e9] bg-[#fbf9fa] px-3.5 py-2.5 sm:px-4 sm:py-3 transition focus-within:border-indigo/40 focus-within:bg-white focus-within:ring-2 focus-within:ring-indigo/10 hover:border-[#d9cfdc]">
+          <span className="flex items-center gap-1.5 text-[0.65rem] sm:text-[0.68rem] font-bold uppercase tracking-wider text-[#938290]">
+            <PawPrint className="h-3.5 w-3.5 text-[#d45638]" />
             Care Service
           </span>
           <div className="relative flex items-center">
@@ -96,7 +92,7 @@ export function CareMatchFinder() {
               name="service"
               value={service}
               onChange={(event) => setService(event.target.value as typeof service)}
-              className="w-full appearance-none bg-transparent pr-8 text-sm font-bold text-ink focus:outline-none cursor-pointer"
+              className="w-full appearance-none bg-transparent pr-8 text-[0.84rem] sm:text-[0.92rem] font-bold text-[#231526] focus:outline-none cursor-pointer truncate"
             >
               {careOptions.map((option) => (
                 <option key={option.value} value={option.value}>
@@ -104,14 +100,14 @@ export function CareMatchFinder() {
                 </option>
               ))}
             </select>
-            <ChevronDown className="pointer-events-none absolute right-0 h-4 w-4 text-ink/50 transition group-focus-within:text-ink" />
+            <ChevronDown className="pointer-events-none absolute right-0 h-4 w-4 text-[#938290] transition group-focus-within:text-[#231526]" />
           </div>
         </label>
 
-        {/* Pet Type Selection */}
-        <label className="group relative flex flex-col gap-1 rounded-2xl border border-indigo/15 bg-cream/40 p-3 transition focus-within:border-indigo/50 focus-within:bg-white focus-within:ring-2 focus-within:ring-indigo/10 hover:border-indigo/30 hover:bg-cream/70">
-          <span className="flex items-center gap-1.5 text-[0.68rem] font-bold uppercase tracking-wider text-ink/70">
-            <CheckCircle2 className="h-3.5 w-3.5 text-leaf" />
+        {/* Pet Type Selection (Column 1) */}
+        <label className="col-span-1 group relative flex flex-col gap-1 rounded-2xl border border-[#e8e2e9] bg-[#fbf9fa] px-3 py-2.5 sm:px-4 sm:py-3 transition focus-within:border-indigo/40 focus-within:bg-white focus-within:ring-2 focus-within:ring-indigo/10 hover:border-[#d9cfdc]">
+          <span className="flex items-center gap-1.5 text-[0.65rem] sm:text-[0.68rem] font-bold uppercase tracking-wider text-[#938290]">
+            <CheckCircle2 className="h-3.5 w-3.5 text-[#357a4e]" />
             Pet Type
           </span>
           <div className="relative flex items-center">
@@ -119,7 +115,7 @@ export function CareMatchFinder() {
               name="petType"
               value={petType}
               onChange={(event) => setPetType(event.target.value as PetType)}
-              className="w-full appearance-none bg-transparent pr-8 text-sm font-bold text-ink focus:outline-none cursor-pointer"
+              className="w-full appearance-none bg-transparent pr-7 text-[0.84rem] sm:text-[0.92rem] font-bold text-[#231526] focus:outline-none cursor-pointer"
             >
               <option value="DOG">Dog 🐕</option>
               <option value="CAT">Cat 🐈</option>
@@ -129,14 +125,14 @@ export function CareMatchFinder() {
               <option value="TURTLE">Turtle 🐢</option>
               <option value="RAT">Small Pet 🐹</option>
             </select>
-            <ChevronDown className="pointer-events-none absolute right-0 h-4 w-4 text-ink/50 transition group-focus-within:text-ink" />
+            <ChevronDown className="pointer-events-none absolute right-0 h-4 w-4 text-[#938290] transition group-focus-within:text-[#231526]" />
           </div>
         </label>
 
-        {/* City or Locality Input */}
-        <label className="group relative flex flex-col gap-1 rounded-2xl border border-indigo/15 bg-cream/40 p-3 transition focus-within:border-indigo/50 focus-within:bg-white focus-within:ring-2 focus-within:ring-indigo/10 hover:border-indigo/30 hover:bg-cream/70">
-          <span className="flex items-center gap-1.5 text-[0.68rem] font-bold uppercase tracking-wider text-ink/70">
-            <MapPin className="h-3.5 w-3.5 text-saffron" />
+        {/* City or Locality Input (Column 2) */}
+        <label className="col-span-1 group relative flex flex-col gap-1 rounded-2xl border border-[#e8e2e9] bg-[#fbf9fa] px-3 py-2.5 sm:px-4 sm:py-3 transition focus-within:border-indigo/40 focus-within:bg-white focus-within:ring-2 focus-within:ring-indigo/10 hover:border-[#d9cfdc]">
+          <span className="flex items-center gap-1.5 text-[0.65rem] sm:text-[0.68rem] font-bold uppercase tracking-wider text-[#938290]">
+            <MapPin className="h-3.5 w-3.5 text-[#d97706]" />
             City or Locality
           </span>
           <input
@@ -146,16 +142,16 @@ export function CareMatchFinder() {
               setLocality(event.target.value);
               if (error) setError(null);
             }}
-            className="w-full bg-transparent text-sm font-bold text-ink placeholder:text-ink/40 focus:outline-none"
-            placeholder="e.g. Indiranagar, Bengaluru"
+            className="w-full bg-transparent text-[0.84rem] sm:text-[0.92rem] font-bold text-[#231526] placeholder:text-[#938290]/50 placeholder:font-normal focus:outline-none truncate"
+            placeholder="e.g. Indiranagar, BLR"
             autoComplete="address-level2"
           />
         </label>
       </div>
 
       {/* Suggested Cities Quick Pills */}
-      <div className="relative mt-3.5 flex flex-wrap items-center gap-1.5" aria-label="Suggested cities">
-        <span className="text-[0.65rem] font-bold text-ink/60 uppercase tracking-wider mr-1">Popular:</span>
+      <div className="relative mt-3.5 sm:mt-4 flex flex-wrap items-center gap-1.5 sm:gap-2" aria-label="Suggested cities">
+        <span className="text-[0.65rem] sm:text-[0.68rem] font-bold text-[#716573] uppercase tracking-wider mr-0.5">Popular:</span>
         {citySuggestions.map((item) => {
           const isSelected = locality.toLowerCase().includes(item.name.toLowerCase());
           return (
@@ -167,12 +163,12 @@ export function CareMatchFinder() {
                 setError(null);
               }}
               className={cn(
-                "rounded-full px-3 py-1 text-[0.68rem] font-bold transition-all duration-200",
+                "rounded-full px-2.5 sm:px-3 py-0.5 sm:py-1 text-[0.65rem] sm:text-[0.7rem] font-semibold transition-all duration-200",
                 isSelected
-                  ? "bg-[#241727] text-white shadow-xs scale-105"
+                  ? "bg-[#231526] text-white shadow-xs"
                   : item.isLive
-                  ? "border border-indigo/15 bg-white text-ink/80 hover:border-indigo/30 hover:bg-cream"
-                  : "border border-dashed border-ink/20 bg-surface-container-low text-ink/60 hover:text-ink"
+                  ? "border border-[#e5dfe6] bg-white text-[#453648] hover:border-[#d0c6d2] hover:bg-[#faf7f9]"
+                  : "border border-dashed border-[#d8b4e2] bg-[#fbf5fd] text-[#553b5c] hover:bg-[#f5eafd]"
               )}
             >
               {item.label ?? item.name}
@@ -182,25 +178,25 @@ export function CareMatchFinder() {
       </div>
 
       {error ? (
-        <p className="relative mt-3 text-xs font-semibold text-coral animate-shake" role="alert">
+        <p className="relative mt-2.5 text-xs font-semibold text-coral animate-shake" role="alert">
           {error}
         </p>
       ) : null}
 
-      {/* Bottom Quote Strip & Action */}
-      <div className="relative mt-5 flex flex-col gap-3.5 border-t border-indigo/10 pt-4 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-coral/10 text-coral font-bold text-sm shrink-0">
+      {/* Bottom Quote Strip & Action - Side by side on all screen sizes */}
+      <div className="relative mt-4 sm:mt-5 flex items-center justify-between gap-2.5 sm:gap-4">
+        <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+          <div className="flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-xl sm:rounded-2xl bg-[#faece7] text-[#cf4d30] font-bold text-sm sm:text-base shrink-0">
             ₹
           </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-bold text-ink">{selectedService.label}</span>
-              <span className="rounded-full bg-leaf/10 px-2 py-0.5 text-[0.65rem] font-bold text-leaf">
+          <div className="min-w-0">
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <span className="text-[0.78rem] sm:text-[0.84rem] font-bold text-[#1e1322] truncate">{selectedService.label}</span>
+              <span className="rounded-full bg-[#eaf4ec] px-1.5 sm:px-2 py-0.5 text-[0.62rem] sm:text-[0.66rem] font-bold text-[#357a4e] shrink-0">
                 {selectedService.price}
               </span>
             </div>
-            <p className="text-[0.68rem] text-ink/70">{selectedService.note}</p>
+            <p className="text-[0.65rem] sm:text-[0.72rem] text-[#6d616f] truncate">{selectedService.note}</p>
           </div>
         </div>
 
@@ -208,17 +204,18 @@ export function CareMatchFinder() {
           type="submit"
           size="lg"
           disabled={isPending}
-          className="shrink-0 rounded-2xl bg-gradient-to-r from-[#241727] via-[#371f3a] to-[#241727] px-6 py-4 font-outfit text-sm font-bold text-white shadow-lifted hover:from-[#371f3a] hover:to-[#4a2b52] hover:shadow-xl transition-all duration-300 border-transparent"
+          className="shrink-0 rounded-xl sm:rounded-2xl bg-[#231526] hover:bg-[#341d39] px-3.5 sm:px-6 py-2.5 sm:py-3.5 font-outfit text-xs sm:text-sm font-bold text-white shadow-lifted hover:shadow-xl transition-all duration-300 border-transparent whitespace-nowrap"
         >
-          {isPending ? <Search className="h-4 w-4 animate-pulse" /> : null}
-          {isPending ? "Checking availability..." : "Check Availability in My Area"}
-          <ArrowRight className="ml-1 h-4 w-4" />
+          {isPending ? <Search className="h-3.5 w-3.5 sm:h-4 sm:w-4 animate-pulse" /> : null}
+          <span>{isPending ? "Checking..." : "Check Availability in My Area"}</span>
+          <ArrowRight className="ml-1 sm:ml-1.5 h-3.5 w-3.5 sm:h-4 sm:w-4" />
         </Button>
       </div>
 
-      <div className="relative mt-3.5 flex items-center gap-2 rounded-xl bg-leaf/5 px-3 py-2 text-[0.68rem] font-medium text-ink/80">
-        <CheckCircle2 className="h-3.5 w-3.5 text-leaf shrink-0" />
-        <span>No upfront payment · Capacity & transparent quotes confirmed before booking</span>
+      {/* Bottom Guarantee Pill */}
+      <div className="relative mt-3.5 sm:mt-4 flex items-center gap-2 rounded-xl sm:rounded-2xl bg-[#f2f6f3] px-3 sm:px-3.5 py-2 sm:py-2.5 text-[0.66rem] sm:text-[0.72rem] font-medium text-[#415647]">
+        <CheckCircle2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-[#357a4e] shrink-0" />
+        <span className="leading-snug">No upfront payment · Capacity & transparent quotes confirmed before booking</span>
       </div>
     </form>
   );
