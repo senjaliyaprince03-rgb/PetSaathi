@@ -115,24 +115,26 @@ export function MarketingExperience({
         <div className="container-shell relative grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:min-h-[60vh]">
           <div className="relative z-10 max-w-xl self-center">
             <ScrollReveal direction="up">
-              <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/40 px-5 py-2 text-xs font-bold text-white shadow-xl backdrop-blur-md">
+              <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2.5 text-xs font-bold text-white shadow-lg backdrop-blur-md">
                 <span className="status-dot bg-leaf" />Verified Local Caregivers, Managed With Love
               </div>
             </ScrollReveal>
             <ScrollReveal direction="up" delay={0.08}>
               <h1 className="sr-only">Care That Feels Like Family.</h1>
+              {/* filter: drop-shadow follows the exact letter shapes — no box, just a soft white glow behind each character */}
               <div
                 className="mt-2 relative inline-block"
                 aria-hidden="true"
                 style={{
-                  filter: "drop-shadow(0 2px 18px rgba(0,0,0,0.5))",
+                  filter:
+                    "drop-shadow(0 0 6px rgba(255,255,255,0.60)) drop-shadow(0 0 16px rgba(255,255,255,0.38)) drop-shadow(0 0 32px rgba(255,255,255,0.20))",
                 }}
               >
-                <TextReveal text="Care That Feels Like Family." className="max-w-[10ch] font-display text-[3.7rem] font-semibold leading-[0.91] tracking-[-0.065em] text-white sm:text-[5.4rem] xl:text-[6.6rem]" delay={0.08} />
+                <TextReveal text="Care That Feels Like Family." className="max-w-[10ch] font-display text-[3.7rem] font-semibold leading-[0.91] tracking-[-0.065em] text-[#301F30] sm:text-[5.4rem] xl:text-[6.6rem]" delay={0.08} />
               </div>
             </ScrollReveal>
             <ScrollReveal direction="up" delay={0.16}>
-              <p className="mt-7 max-w-xl text-base font-medium leading-8 text-white/90 sm:text-lg drop-shadow-sm">
+              <p className="mt-7 max-w-xl text-base font-semibold leading-8 text-white drop-shadow-md sm:text-lg">
                 Plan local care with clear service context for walks, home visits, grooming and non-emergency veterinary support. Availability and permissions are checked before confirmation.
               </p>
             </ScrollReveal>
