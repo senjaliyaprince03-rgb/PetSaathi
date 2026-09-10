@@ -59,7 +59,7 @@ export function CareMatchFinder() {
       onSubmit={submit}
       action="/book"
       method="get"
-      className="relative w-full min-w-0 overflow-hidden rounded-[2rem] border border-white/80 bg-white/95 p-4 sm:p-5 shadow-[0_16px_50px_rgba(0,0,0,0.16)] backdrop-blur-2xl"
+      className="relative w-full min-w-0 overflow-hidden rounded-[2rem] border border-white/80 bg-white/95 p-4 sm:p-5 lg:p-5 shadow-[0_16px_50px_rgba(0,0,0,0.16)] backdrop-blur-2xl"
       aria-label="Start a PetSaathi care match"
       noValidate
     >
