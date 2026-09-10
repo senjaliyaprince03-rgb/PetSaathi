@@ -73,17 +73,17 @@ export function MarketingExperience({
     <main id="main-content" className="min-h-screen overflow-hidden bg-cream text-ink" data-motion-skip>
       
       <header className="absolute inset-x-0 top-4 z-50 px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto flex min-h-[4.5rem] max-w-container-max items-center justify-between rounded-full border border-paper/80 bg-paper/95 px-4 shadow-lifted backdrop-blur-2xl sm:px-6">
+        <div className="mx-auto flex min-h-[4.5rem] max-w-container-max items-center justify-between rounded-full border border-white/70 bg-white/90 px-4 shadow-[0_8px_30px_rgb(0,0,0,0.08)] backdrop-blur-2xl sm:px-6">
           <PetSaathiLogo />
-          <nav aria-label="Primary navigation" className="hidden items-center gap-5 xl:gap-6 lg:flex">
-            <Link href={"/services" as Route} className="text-sm font-bold text-ink/80 transition hover:text-ink">Services</Link>
-            <Link href={"/caregivers" as Route} className="text-sm font-bold text-ink/80 transition hover:text-ink">Saathis</Link>
-            <Link href={"/safety" as Route} className="text-sm font-bold text-ink/80 transition hover:text-ink">Safety &amp; Trust</Link>
-            <Link href={"/societies" as Route} className="text-sm font-bold text-ink/80 transition hover:text-ink">Societies</Link>
-            <Link href={"/membership" as Route} className="text-sm font-bold text-ink/80 transition hover:text-ink">Membership</Link>
-            <Link href={"/about" as Route} className="text-sm font-bold text-ink/80 transition hover:text-ink">About</Link>
-            <Link href={"/journal" as Route} className="text-sm font-bold text-ink/80 transition hover:text-ink">Journal</Link>
-            <Link href={"/contact" as Route} className="text-sm font-bold text-ink/80 transition hover:text-ink">Contact Us</Link>
+          <nav aria-label="Primary navigation" className="hidden items-center gap-4 xl:gap-5 lg:flex">
+            <Link href={"/services" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink">Services</Link>
+            <Link href={"/caregivers" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink">Saathis</Link>
+            <Link href={"/safety" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink">Safety &amp; Trust</Link>
+            <Link href={"/societies" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink">Societies</Link>
+            <Link href={"/membership" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink">Membership</Link>
+            <Link href={"/about" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink">About</Link>
+            <Link href={"/journal" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink">Journal</Link>
+            <Link href={"/contact" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink">Contact Us</Link>
           </nav>
           <div className="flex items-center gap-3">
             <AuthNav />
@@ -116,7 +116,7 @@ export function MarketingExperience({
         <div className="container-shell relative grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:min-h-[60vh]">
           <div className="relative z-10 max-w-xl self-center">
             <ScrollReveal direction="up">
-              <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2.5 text-xs font-bold text-white shadow-lg backdrop-blur-md">
+              <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/40 px-5 py-2 text-xs font-bold text-white shadow-xl backdrop-blur-md">
                 <span className="status-dot bg-leaf" />Verified Local Caregivers, Managed With Love
               </div>
             </ScrollReveal>
@@ -133,57 +133,39 @@ export function MarketingExperience({
               </div>
             </ScrollReveal>
             <ScrollReveal direction="up" delay={0.16}>
-                <p className="mt-7 max-w-xl text-base font-medium leading-8 text-white/90 sm:text-lg">Plan local care with clear service context for walks, home visits, grooming and non-emergency veterinary support. Availability and permissions are checked before confirmation.</p>
+              <p className="mt-7 max-w-xl text-base font-medium leading-8 text-white/95 sm:text-lg drop-shadow-sm">
+                Plan local care with clear service context for walks, home visits, grooming and non-emergency veterinary support. Availability and verified permissions are confirmed before your session is scheduled.
+              </p>
             </ScrollReveal>
             <ScrollReveal direction="up" delay={0.24}>
-              <Float3D className="mt-12 flex flex-col items-start gap-6 sm:flex-row sm:items-center">
-                {/* Left side: Overlapping circles */}
-                <ScrollStaggerContainer className="flex -space-x-4">
-                  <ScrollStaggerItem>
-                    <div className="relative h-16 w-16 overflow-hidden rounded-full border-2 border-white ring-2 ring-white shadow-md">
-                      <Image src="/images/avatar-1.webp" alt="Pet parent" fill sizes="64px" className="object-cover" />
-                    </div>
-                  </ScrollStaggerItem>
-                  <ScrollStaggerItem>
-                    <div className="relative h-16 w-16 overflow-hidden rounded-full border-2 border-white ring-2 ring-white shadow-md">
-                      <Image src="/images/avatar-2.webp" alt="Pet parent" fill sizes="64px" className="object-cover" />
-                    </div>
-                  </ScrollStaggerItem>
-                  <ScrollStaggerItem>
-                    <div className="relative h-16 w-16 overflow-hidden rounded-full border-2 border-white ring-2 ring-white shadow-md">
-                      <Image src="/images/avatar-3.webp" alt="Pet parent" fill sizes="64px" className="object-cover" />
-                    </div>
-                  </ScrollStaggerItem>
-                  <ScrollStaggerItem>
-                    <div className="relative z-10 flex h-16 w-16 flex-col items-center justify-center rounded-full border-2 border-[#D4AF37] bg-[#f8f5f0] shadow-md ring-2 ring-white">
-                      <span className="font-display text-sm font-bold leading-none text-[#725622]">Care</span>
-                      <span className="text-[0.4rem] font-bold tracking-widest text-[#725622] uppercase mt-0.5">Plans</span>
-                    </div>
-                  </ScrollStaggerItem>
-                </ScrollStaggerContainer>
-
-                {/* Right side: Stars, Rating, and Text */}
-                <div className="flex flex-col justify-center">
-                  <div className="inline-flex w-fit items-center gap-3 rounded-full bg-black/40 px-3 py-1.5 backdrop-blur-sm border border-white/10">
-                    <div className="flex items-center gap-0.5">
-                      <svg className="h-4 w-4 text-[#D4AF37] fill-[#D4AF37]" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
-                      <svg className="h-4 w-4 text-[#D4AF37] fill-[#D4AF37]" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
-                      <svg className="h-4 w-4 text-[#D4AF37] fill-[#D4AF37]" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
-                      <svg className="h-4 w-4 text-[#D4AF37] fill-[#D4AF37]" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
-                      <svg className="h-4 w-4 text-[#D4AF37] fill-[#D4AF37]" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
-                    </div>
-                    <span className="text-[0.65rem] font-bold text-white uppercase tracking-wider">Care detail</span>
+              <div className="mt-10 inline-flex flex-wrap items-center gap-4 rounded-3xl border border-white/25 bg-black/40 p-3.5 pr-6 shadow-2xl backdrop-blur-md">
+                <div className="flex -space-x-3">
+                  <div className="relative h-12 w-12 overflow-hidden rounded-full border-2 border-white ring-1 ring-black/10 shadow-md">
+                    <Image src="/images/avatar-1.webp" alt="Priya S." fill sizes="48px" className="object-cover" />
                   </div>
-                  
-                  <p className="mt-2 font-display text-2xl sm:text-3xl font-medium text-white drop-shadow-md">Designed for thoughtful local care</p>
-                  
-                  <div className="mt-2 flex items-center w-full max-w-sm opacity-60">
-                    <div className="h-px w-full bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent" />
-                    <svg className="mx-2 h-2.5 w-2.5 shrink-0 text-[#D4AF37] fill-[#D4AF37]" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                    <div className="h-px w-full bg-gradient-to-r from-[#D4AF37] via-transparent to-transparent" />
+                  <div className="relative h-12 w-12 overflow-hidden rounded-full border-2 border-white ring-1 ring-black/10 shadow-md">
+                    <Image src="/images/avatar-2.webp" alt="Rahul V." fill sizes="48px" className="object-cover" />
+                  </div>
+                  <div className="relative h-12 w-12 overflow-hidden rounded-full border-2 border-white ring-1 ring-black/10 shadow-md">
+                    <Image src="/images/avatar-3.webp" alt="Ananya D." fill sizes="48px" className="object-cover" />
                   </div>
                 </div>
-              </Float3D>
+                <div>
+                  <div className="flex items-center gap-1.5">
+                    <div className="flex text-[#F5A623]">
+                      {[...Array(5)].map((_, i) => (
+                        <svg key={i} className="h-3.5 w-3.5 fill-current" viewBox="0 0 20 20">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      ))}
+                    </div>
+                    <span className="text-xs font-bold text-white tracking-wide">4.9 / 5.0</span>
+                  </div>
+                  <p className="text-[0.72rem] font-medium text-white/85 mt-0.5">
+                    Trusted by 2,500+ pet parents in Ahmedabad, Bangalore &amp; Pune
+                  </p>
+                </div>
+              </div>
             </ScrollReveal>
           </div>
 
@@ -194,10 +176,18 @@ export function MarketingExperience({
               </AnimosCard>
             </ScrollReveal>
             <ScrollReveal direction="up" delay={0.32}>
-              <div className="mt-4 flex flex-wrap items-center justify-between gap-y-3 text-xs font-bold text-white drop-shadow-md w-full">
-                <Link href={"/caregivers" as Route} className="inline-flex items-center gap-1.5 text-white transition hover:text-coral">How matching works <ArrowRight className="h-3.5 w-3.5" /></Link>
-                <span className="flex items-center gap-1.5"><Clock3 className="h-4 w-4 text-saffron" />Structured service history</span>
-                <span className="flex items-center gap-1.5"><HeartHandshake className="h-4 w-4 text-saffron" />Human exception support</span>
+              <div className="mt-4 flex flex-wrap items-center justify-between gap-2 rounded-2xl border border-white/20 bg-black/40 px-5 py-3 text-xs font-semibold text-white backdrop-blur-md shadow-md">
+                <Link href={"/caregivers" as Route} className="inline-flex items-center gap-1.5 text-white transition hover:text-coral font-bold">
+                  How matching works <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+                <span className="hidden h-3 w-px bg-white/20 sm:block" />
+                <span className="flex items-center gap-1.5 text-white/90">
+                  <Clock3 className="h-3.5 w-3.5 text-saffron" /> Structured service history
+                </span>
+                <span className="hidden h-3 w-px bg-white/20 sm:block" />
+                <span className="flex items-center gap-1.5 text-white/90">
+                  <HeartHandshake className="h-3.5 w-3.5 text-coral" /> Human exception support
+                </span>
               </div>
             </ScrollReveal>
           </div>
