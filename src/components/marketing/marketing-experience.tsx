@@ -183,25 +183,9 @@ export function MarketingExperience({
             </ScrollReveal>
           </div>
 
-          <div className="relative z-10 w-full lg:max-w-[560px] xl:max-w-[600px] 2xl:max-w-[640px] lg:ml-auto self-end lg:-translate-y-16 xl:-translate-y-16">
+          <div className="relative z-10 w-full lg:max-w-[560px] xl:max-w-[600px] 2xl:max-w-[640px] lg:ml-auto self-end lg:-translate-y-8 xl:-translate-y-10">
             <ScrollReveal direction="up" delay={0.24}>
               <CareMatchFinder />
-            </ScrollReveal>
-            <ScrollReveal direction="up" delay={0.32}>
-              <div className="mt-3.5 flex flex-wrap items-center justify-between gap-y-2 text-[0.72rem] font-medium text-white/90 drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)] w-full px-2">
-                <Link href={"/caregivers" as Route} className="inline-flex items-center gap-1.5 font-bold text-white transition hover:text-coral">
-                  <span>How matching works</span>
-                  <ArrowRight className="h-3.5 w-3.5" />
-                </Link>
-                <span className="inline-flex items-center gap-1.5 text-white/90">
-                  <Clock3 className="h-3.5 w-3.5 text-[#e5a84b]" />
-                  <span>Structured service history</span>
-                </span>
-                <span className="inline-flex items-center gap-1.5 text-white/90">
-                  <ShieldCheck className="h-3.5 w-3.5 text-[#e5a84b]" />
-                  <span>Human exception support</span>
-                </span>
-              </div>
             </ScrollReveal>
           </div>
         </div>
