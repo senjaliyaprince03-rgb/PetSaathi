@@ -2,8 +2,6 @@
 
 import { useEffect, useState } from "react";
 import CookieConsent, { getCookieConsentValue } from "react-cookie-consent";
-import { GoogleAnalytics } from "@next/third-parties/google";
-import { hasUsableAnalyticsId } from "@/lib/public-config";
 
 export function CookieConsentBanner({ analyticsId }: { analyticsId?: string }) {
   const [isClient, setIsClient] = useState(false);
@@ -54,9 +52,6 @@ export function CookieConsentBanner({ analyticsId }: { analyticsId?: string }) {
           Read our <a href="/privacy" className="underline hover:text-[#D4AF37]">Privacy Policy</a> for more details.
         </span>
       </CookieConsent>
-      {hasConsented && hasUsableAnalyticsId(analyticsId) && (
-        <GoogleAnalytics gaId={analyticsId!} />
-      )}
     </>
   );
 }

@@ -3,8 +3,6 @@ import Script from "next/script";
 
 import { SiteMotion } from "@/components/motion/site-motion";
 import { CustomCursor } from "@/components/marketing/custom-cursor";
-import { GoogleAnalytics } from "@next/third-parties/google";
-import { hasUsableAnalyticsId } from "@/lib/public-config";
 
 import "./globals.css";
 import { CookieConsentBanner } from "@/components/marketing/cookie-consent-banner";
@@ -86,12 +84,28 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const analyticsId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+  const analyticsId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-JTY8FBB3VB";
   const metaPixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID;
   const clarityId = process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID;
   
   return (
     <html lang="en" className={`scroll-smooth ${hanken.variable} ${inter.variable}`} data-scroll-behavior="smooth" suppressHydrationWarning>
+      <head>
+        {/* Google tag (gtag.js) */}
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${analyticsId}`} />
+        <script
+          id="google-tag-gtag"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+
+              gtag('config', '${analyticsId}');
+            `,
+          }}
+        />
+      </head>
       <body className="relative overflow-x-clip bg-background font-sans text-on-background selection:bg-saffron/35" suppressHydrationWarning>
         <script
           type="application/ld+json"

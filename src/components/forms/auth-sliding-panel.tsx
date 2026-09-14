@@ -78,9 +78,10 @@ export function AuthSlidingPanel() {
   }
 
   function renderGoogleButtons() {
-    if (!hasGoogleAuth || typeof window === "undefined" || !window.google?.accounts) return;
+    const google = typeof window !== "undefined" ? (window as any).google : undefined;
+    if (!hasGoogleAuth || !google?.accounts) return;
     
-    window.google.accounts.id.initialize({
+    google.accounts.id.initialize({
       client_id: googleClientId!,
       callback: handleGoogleCredentialResponse,
       use_fedcm_for_prompt: false,
@@ -90,10 +91,10 @@ export function AuthSlidingPanel() {
     const options = { theme: "outline", size: "large", shape: "rectangular", width: 320, logo_alignment: "left" };
 
     if (googleButtonSignUpRef.current && googleButtonSignUpRef.current.children.length === 0) {
-      window.google.accounts.id.renderButton(googleButtonSignUpRef.current, options);
+      google.accounts.id.renderButton(googleButtonSignUpRef.current, options);
     }
     if (googleButtonSignInRef.current && googleButtonSignInRef.current.children.length === 0) {
-      window.google.accounts.id.renderButton(googleButtonSignInRef.current, options);
+      google.accounts.id.renderButton(googleButtonSignInRef.current, options);
     }
   }
 
