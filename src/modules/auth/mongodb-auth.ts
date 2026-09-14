@@ -889,7 +889,7 @@ export async function issueSession(userId: string) {
   const cookieStore = await cookies();
   cookieStore.set(SESSION_COOKIE, token, {
     httpOnly: true,
-    secure: false,
+    secure: process.env.NODE_ENV === "production" && process.env.PLAYWRIGHT_TEST !== "1",
     sameSite: "lax",
     path: "/",
   });
