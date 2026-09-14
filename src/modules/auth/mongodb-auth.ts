@@ -846,7 +846,9 @@ export async function signInWithPassword(emailInput: string, password: string) {
   }
 
   const database = await getMongoDatabase();
-  const credential = await database.collection<AuthCredential>("auth_credentials").findOne({ _id: email });
+  const credential = await database.collection<AuthCredential>("auth_credentials").findOne({
+    $or: [{ _id: email }, { email }]
+  });
   if (!credential || !(await passwordMatches(password, credential.passwordHash))) return { success: false };
 
   const user = await prisma.user.findUnique({ 

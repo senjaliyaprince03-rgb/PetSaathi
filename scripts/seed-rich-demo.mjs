@@ -43,7 +43,7 @@ async function main() {
 
   await client.connect();
   const db = client.db();
-  const passwordHash = await bcrypt.hash("Password123!", 10);
+  const passwordHash = "scrypt:b3897cc49f1dcbeb2e35513071acfce3:6310dea3dabc4a578abc7c71a586d9d6e9e7bf84b3ba542b7835cd6e8f4b3db309119d0b6d02f9183a0777a23f2cfadbc55286bfe716015210bbdb381b194483";
 
   if (isReset) {
     console.log("🧹 Reset flag detected. Cleaning up demo data collections...");
@@ -250,22 +250,17 @@ async function main() {
   // Helper to ensure user without unique collision on email or phoneE164
   async function ensureUser({ email, displayName, phoneE164, roles, customer = false, sitter = null }) {
     let existing = await prisma.user.findFirst({
-      where: {
-        OR: [
-          { email },
-          ...(phoneE164 ? [{ phoneE164 }] : [])
-        ]
-      },
+      where: { email },
       include: { roles: true, customer: true, sitter: true }
     });
 
     if (existing) {
-      // update email/displayName if needed
+      // update displayName/phone if needed
       await prisma.user.update({
         where: { id: existing.id },
         data: {
-          email,
           displayName,
+          phoneE164: existing.phoneE164 || phoneE164,
           status: AccountStatus.ACTIVE,
         }
       });
@@ -317,16 +312,37 @@ async function main() {
   // Also ensure standard test accounts
   const stdAccounts = [
     { email: "customer@petsaathi.com", name: "Pooja Sharma (Customer)", phone: "+919876543299", roles: [Role.CUSTOMER], customer: true },
+    { email: "customer.test@petsaathi.com", name: "Test Customer", phone: "+919876543281", roles: [Role.CUSTOMER], customer: true },
+    { email: "saathi.test@petsaathi.com", name: "Approved Saathi Test", phone: "+919876543282", roles: [Role.SITTER], sitter: { bio: "Approved Saathi", yearsExperience: 4, status: SitterStatus.APPROVED } },
+    { email: "saathi.applicant@petsaathi.com", name: "Applicant Saathi Test", phone: "+919876543283", roles: [Role.SITTER], sitter: { bio: "Applicant Saathi", yearsExperience: 1, status: SitterStatus.APPLICANT } },
+    { email: "ops.admin@petsaathi.com", name: "Operations Admin Test", phone: "+919876543288", roles: [Role.OPERATIONS_ADMIN] },
+    { email: "super.admin@petsaathi.com", name: "Super Admin Test", phone: "+919876543284", roles: [Role.SUPER_ADMIN, Role.OPERATIONS_ADMIN] },
+    { email: "city.mgr@petsaathi.com", name: "City Manager Test", phone: "+919876543285", roles: [Role.CITY_MANAGER] },
+    { email: "partner.mgr@petsaathi.com", name: "Partner Manager Test", phone: "+919876543286", roles: [Role.PARTNER_MANAGER] },
+    { email: "society.mgr@petsaathi.com", name: "Society Manager Test", phone: "+919876543289", roles: [Role.SOCIETY_MANAGER] },
     { email: "admin@petsaathi.com", name: "PetSaathi Core Admin", phone: "+919876543290", roles: [Role.SUPER_ADMIN, Role.OPERATIONS_ADMIN] },
     { email: "sitter@petsaathi.com", name: "Aarav Sharma (Saathi)", phone: "+919876543211", roles: [Role.SITTER], sitter: { bio: "Senior walker", yearsExperience: 5, status: SitterStatus.APPROVED } },
   ];
   for (const sa of stdAccounts) {
-    const u = await ensureUser(sa);
-    await db.collection("auth_credentials").updateOne(
-      { userId: u.id },
-      { $set: { userId: u.id, email: sa.email, passwordHash, updatedAt: new Date() }, $setOnInsert: { createdAt: new Date() } },
-      { upsert: true }
-    );
+    const u = await ensureUser({
+      email: sa.email,
+      displayName: sa.displayName || sa.name,
+      phoneE164: sa.phone,
+      roles: sa.roles,
+      customer: sa.customer,
+      sitter: sa.sitter
+    });
+    await db.collection("auth_credentials").deleteMany({
+      $or: [{ userId: u.id }, { email: sa.email }, { _id: sa.email }]
+    });
+    await db.collection("auth_credentials").insertOne({
+      _id: sa.email,
+      userId: u.id,
+      email: sa.email.toLowerCase(),
+      passwordHash,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    });
   }
 
   // 4. 10 SAATHIS (Walkers with Academy records, badges, slots, radius, ratings)
@@ -566,9 +582,12 @@ async function main() {
     const scheduledStart = new Date(Date.now() + (bookingIndex % 5 - 2) * 86400000);
     const scheduledEnd = new Date(scheduledStart.getTime() + 30 * 60000);
 
-    const booking = await prisma.booking.create({
-      data: {
-        reference: `BK-DEMO-${1000 + bookingIndex}`,
+    const bookingRef = `BK-DEMO-${1000 + bookingIndex}`;
+    const booking = await prisma.booking.upsert({
+      where: { reference: bookingRef },
+      update: { status: bStatus },
+      create: {
+        reference: bookingRef,
         customerId: petRef.user.id,
         petId: petRef.pet.id,
         serviceTypeId: serviceTypeMap[ServiceCode.DOG_WALK_30],
@@ -591,25 +610,38 @@ async function main() {
       if (bStatus === BookingStatus.COMPLETED) asgnStatus = AssignmentStatus.COMPLETED;
       if (bStatus === BookingStatus.CUSTOMER_CANCELLED) asgnStatus = AssignmentStatus.CANCELLED;
 
-      await prisma.bookingAssignment.create({
-        data: {
-          bookingId: booking.id,
-          sitterId: saathiRef.sitterId,
-          type: AssignmentType.PRIMARY,
-          status: asgnStatus,
-          payoutPaise: 21000,
-          respondedAt: new Date(),
-        }
+      const existingAsgn = await prisma.bookingAssignment.findFirst({
+        where: { bookingId: booking.id }
       });
+      if (existingAsgn) {
+        await prisma.bookingAssignment.update({
+          where: { id: existingAsgn.id },
+          data: { status: asgnStatus, sitterId: saathiRef.sitterId }
+        });
+      } else {
+        await prisma.bookingAssignment.create({
+          data: {
+            bookingId: booking.id,
+            sitterId: saathiRef.sitterId,
+            type: AssignmentType.PRIMARY,
+            status: asgnStatus,
+            payoutPaise: 21000,
+            respondedAt: new Date(),
+          }
+        });
+      }
     }
 
     // Payment for confirmed/completed/in-progress
     if ([BookingStatus.CONFIRMED, BookingStatus.SITTER_EN_ROUTE, BookingStatus.IN_PROGRESS, BookingStatus.COMPLETED].includes(bStatus)) {
-      await prisma.payment.create({
-        data: {
+      const orderId = `order_demo_${booking.id.slice(0, 8)}_${bookingIndex}`;
+      await prisma.payment.upsert({
+        where: { providerOrderId: orderId },
+        update: { status: PaymentStatus.CAPTURED },
+        create: {
           bookingId: booking.id,
           provider: "razorpay",
-          providerOrderId: `order_demo_${booking.id.slice(0, 8)}_${bookingIndex}`,
+          providerOrderId: orderId,
           providerPaymentId: `pay_demo_${booking.id.slice(0, 8)}_${bookingIndex}`,
           amountPaise: 29900,
           currency: "INR",
@@ -653,8 +685,10 @@ async function main() {
 
       // If COMPLETED, add End of Service Report & Review
       if (bStatus === BookingStatus.COMPLETED) {
-        const report = await prisma.bookingReport.create({
-          data: {
+        const report = await prisma.bookingReport.upsert({
+          where: { bookingId_version: { bookingId: booking.id, version: 1 } },
+          update: { reviewStatus: ReportReviewStatus.APPROVED },
+          create: {
             bookingId: booking.id,
             submittedBy: saathiRef.userId,
             version: 1,
@@ -677,17 +711,22 @@ async function main() {
           }
         });
 
-        await prisma.reportMedia.create({
-          data: {
-            reportId: report.id,
-            objectPath: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=800&auto=format&fit=crop",
-            mediaType: "IMAGE_JPEG",
-            capturedAt: new Date(),
-          }
-        });
+        const existingMedia = await prisma.reportMedia.findFirst({ where: { reportId: report.id } });
+        if (!existingMedia) {
+          await prisma.reportMedia.create({
+            data: {
+              reportId: report.id,
+              objectPath: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=800&auto=format&fit=crop",
+              mediaType: "IMAGE_JPEG",
+              capturedAt: new Date(),
+            }
+          });
+        }
 
-        await prisma.review.create({
-          data: {
+        await prisma.review.upsert({
+          where: { bookingId: booking.id },
+          update: { rating: 5 },
+          create: {
             bookingId: booking.id,
             customerId: petRef.user.id,
             rating: 5,
@@ -734,11 +773,14 @@ async function main() {
       }
     });
 
-    const programme = await prisma.partnerProgramme.create({
-      data: {
+    const progSlug = `perk-${corp.name.toLowerCase().replace(/[^a-z0-9]/g, "-")}`;
+    const programme = await prisma.partnerProgramme.upsert({
+      where: { slug: progSlug },
+      update: { status: ProgrammeStatus.ACTIVE_PROGRAMME },
+      create: {
         organizationId: org.id,
         name: `${corp.name} Employee Pet Wellness`,
-        slug: `perk-${corp.name.toLowerCase().replace(/[^a-z0-9]/g, "-")}`,
+        slug: progSlug,
         programmeType: ProgrammeType.CORPORATE_WALLET,
         eligibilityMethod: EligibilityMethod.DOMAIN_EMAIL,
         eligibilityDomain: corp.domain,
@@ -750,7 +792,10 @@ async function main() {
     // Attach 2 customer employees with benefit wallets
     for (let emp = 0; emp < 2; emp++) {
       const empUser = customerEntities[(cIdx * 2 + emp) % customerEntities.length];
-      const membership = await prisma.programmeMembership.create({
+      const existingMem = await prisma.programmeMembership.findFirst({
+        where: { programmeId: programme.id, customerId: empUser.id }
+      });
+      const membership = existingMem || await prisma.programmeMembership.create({
         data: {
           programmeId: programme.id,
           customerId: empUser.id,
@@ -761,34 +806,42 @@ async function main() {
         }
       });
 
-      const wallet = await prisma.benefitWallet.create({
+      const existingWallet = await prisma.benefitWallet.findUnique({
+        where: { programmeMembershipId: membership.id }
+      });
+      const wallet = existingWallet || await prisma.benefitWallet.create({
         data: {
           programmeMembershipId: membership.id,
           status: WalletStatus.ACTIVE_WALLET,
         }
       });
 
-      // Credit issued
-      await prisma.benefitLedgerEntry.create({
-        data: {
-          walletId: wallet.id,
-          entryType: BenefitEntryType.CREDIT_ISSUED,
-          amountPaise: corp.monthlyCredits * 50000,
-          balanceAfter: corp.monthlyCredits * 50000,
-          reference: "Monthly Corporate Allocation",
-        }
+      const existingEntries = await prisma.benefitLedgerEntry.findFirst({
+        where: { walletId: wallet.id }
       });
+      if (!existingEntries) {
+        // Credit issued
+        await prisma.benefitLedgerEntry.create({
+          data: {
+            walletId: wallet.id,
+            entryType: BenefitEntryType.CREDIT_ISSUED,
+            amountPaise: corp.monthlyCredits * 50000,
+            balanceAfter: corp.monthlyCredits * 50000,
+            reference: "Monthly Corporate Allocation",
+          }
+        });
 
-      // Usage tracked (1 walk redeemed)
-      await prisma.benefitLedgerEntry.create({
-        data: {
-          walletId: wallet.id,
-          entryType: BenefitEntryType.CREDIT_REDEEMED,
-          amountPaise: 49900,
-          balanceAfter: (corp.monthlyCredits * 50000) - 49900,
-          reference: "Redeemed for 60-min Dog Walk",
-        }
-      });
+        // Usage tracked (1 walk redeemed)
+        await prisma.benefitLedgerEntry.create({
+          data: {
+            walletId: wallet.id,
+            entryType: BenefitEntryType.CREDIT_REDEEMED,
+            amountPaise: 49900,
+            balanceAfter: (corp.monthlyCredits * 50000) - 49900,
+            reference: "Redeemed for 60-min Dog Walk",
+          }
+        });
+      }
     }
   }
 

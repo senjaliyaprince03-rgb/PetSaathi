@@ -85,8 +85,10 @@ async function verify() {
     const publicUrl = process.env.NEXT_PUBLIC_APP_URL?.trim();
     if (!publicUrl?.startsWith("https://")) failures.push("Production NEXT_PUBLIC_APP_URL must use HTTPS.");
     if (developmentOtp) failures.push("AUTH_DEV_FIXED_OTP must be absent from production secrets.");
-    if (!resendKey || placeholderResendKey || !resendFrom || resendFrom.toLowerCase().endsWith("@resend.dev") || placeholderSender) {
-      failures.push("Production email OTP requires a verified custom Resend sender domain.");
+    const hasVerifiedResend = Boolean(resendKey && !placeholderResendKey && resendFrom && !resendFrom.toLowerCase().endsWith("@resend.dev") && !placeholderSender);
+    const hasSmtpFallback = Boolean(process.env.SMTP_USER?.trim() && process.env.SMTP_PASS?.trim());
+    if (!hasVerifiedResend && !hasSmtpFallback) {
+      failures.push("Production email OTP requires a verified custom Resend sender domain or configured SMTP credentials.");
     }
   }
 

@@ -125,9 +125,19 @@ async function checkSentry() {
   url.searchParams.set("per_page", "1");
 
   try {
-    const response = await fetchWithTimeout(url, { headers: { Authorization: `Bearer ${token}` } });
+    let response = await fetchWithTimeout(url, { headers: { Authorization: `Bearer ${token}` } });
+    if (!response.ok && response.status === 403) {
+      // Sentry CI tokens (with org:ci scope for source maps and releases) do not have issue:read.
+      // Verify project access via the releases endpoint.
+      const releaseUrl = new URL(`/api/0/projects/${encodeURIComponent(org)}/${encodeURIComponent(project)}/releases/`, baseUrl);
+      const releaseResponse = await fetchWithTimeout(releaseUrl, { headers: { Authorization: `Bearer ${token}` } });
+      if (releaseResponse.ok) {
+        push("sentry", "passed", `CI and release access confirmed for ${org}/${project}.`);
+        return;
+      }
+    }
     if (!response.ok) {
-      push("sentry", "failed", `Sentry issue check returned ${await safeResponseDetail(response)}.`);
+      push("sentry", "failed", `Sentry check returned ${await safeResponseDetail(response)}.`);
       return;
     }
     push("sentry", "passed", `Read access confirmed for ${org}/${project}.`);

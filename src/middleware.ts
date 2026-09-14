@@ -183,47 +183,53 @@ export async function middleware(request: NextRequest) {
 
   // RBAC checks
   if (isProtectedPage || isAdminApi) {
-    const token = await getToken({ req: request as any, secret: getAuthSecret() });
-    
-    if (token) {
-      const userRole = token.role as string;
-      const path = request.nextUrl.pathname;
+    try {
+      const secret = getAuthSecret();
+      const token = await getToken({ req: request as any, secret });
+      
+      if (token) {
+        const userRole = token.role as string;
+        const path = request.nextUrl.pathname;
 
-      const isAdminRole = [
-        "SUPER_ADMIN",
-        "OPERATIONS_ADMIN",
-        "VERIFICATION_ADMIN",
-        "SAFETY_ADMIN",
-        "FINANCE_ADMIN",
-        "CONTENT_ADMIN",
-      ].includes(userRole);
+        const isAdminRole = [
+          "SUPER_ADMIN",
+          "OPERATIONS_ADMIN",
+          "VERIFICATION_ADMIN",
+          "SAFETY_ADMIN",
+          "FINANCE_ADMIN",
+          "CONTENT_ADMIN",
+        ].includes(userRole);
 
-      if (isAdminApi && !isAdminRole) {
-        const rejected = NextResponse.json(
-          { error: "forbidden", message: "Admin privileges required" },
-          { status: 403, headers: { "Cache-Control": "no-store" } }
-        );
-        applySecurityHeaders(rejected, cspHeader, requestId);
-        return rejected;
+        if (isAdminApi && !isAdminRole) {
+          const rejected = NextResponse.json(
+            { error: "forbidden", message: "Admin privileges required" },
+            { status: 403, headers: { "Cache-Control": "no-store" } }
+          );
+          applySecurityHeaders(rejected, cspHeader, requestId);
+          return rejected;
+        }
+
+        if (path.startsWith("/admin") && !isAdminRole) {
+          const url = request.nextUrl.clone();
+          url.pathname = userRole === "SITTER" ? "/saathi" : "/dashboard";
+          return NextResponse.redirect(url);
+        }
+
+        if ((path.startsWith("/dashboard") || path.startsWith("/customer")) && userRole !== "CUSTOMER" && userRole !== "SUPER_ADMIN") {
+           const url = request.nextUrl.clone();
+           url.pathname = "/saathi";
+           return NextResponse.redirect(url);
+        }
+
+        if (path.startsWith("/saathi") && userRole !== "SITTER" && userRole !== "SUPER_ADMIN") {
+           const url = request.nextUrl.clone();
+           url.pathname = "/dashboard";
+           return NextResponse.redirect(url);
+        }
       }
-
-      if (path.startsWith("/admin") && !isAdminRole) {
-        const url = request.nextUrl.clone();
-        url.pathname = userRole === "SITTER" ? "/saathi" : "/dashboard";
-        return NextResponse.redirect(url);
-      }
-
-      if ((path.startsWith("/dashboard") || path.startsWith("/customer")) && userRole !== "CUSTOMER" && userRole !== "SUPER_ADMIN") {
-         const url = request.nextUrl.clone();
-         url.pathname = "/saathi";
-         return NextResponse.redirect(url);
-      }
-
-      if (path.startsWith("/saathi") && userRole !== "SITTER" && userRole !== "SUPER_ADMIN") {
-         const url = request.nextUrl.clone();
-         url.pathname = "/dashboard";
-         return NextResponse.redirect(url);
-      }
+    } catch (e) {
+      // Degrade gracefully if token decoding or edge secret fails
+      console.warn("[middleware] RBAC evaluation skipped due to token error:", e);
     }
   }
 

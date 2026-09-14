@@ -1,6 +1,6 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { withSentryConfig } from "@sentry/nextjs";
+import { withSentryConfig } from "@sentry/nextjs/config";
 import withBundleAnalyzer from "@next/bundle-analyzer";
 
 const bundleAnalyzer = withBundleAnalyzer({
@@ -53,7 +53,7 @@ const nextConfig = {
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://accounts.google.com",
               "img-src 'self' data: https: blob:",
               "font-src 'self' data: https://fonts.gstatic.com",
-              "connect-src 'self' https://api.razorpay.com https://integrate.api.nvidia.com wss: https://www.google-analytics.com https://region1.google-analytics.com https://connect.facebook.net https://www.clarity.ms",
+              "connect-src 'self' https://api.razorpay.com https://lumberjack.razorpay.com https://integrate.api.nvidia.com wss: https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://connect.facebook.net https://www.clarity.ms https://accounts.google.com",
               "frame-src https://api.razorpay.com https://checkout.razorpay.com https://accounts.google.com",
               "object-src 'none'",
               "base-uri 'self'",
