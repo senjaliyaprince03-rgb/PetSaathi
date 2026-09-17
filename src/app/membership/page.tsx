@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, BadgeCheck, Clock3, LockKeyhole, Repeat2, ShieldCheck, Users } from "lucide-react";
@@ -11,8 +11,17 @@ import { getCurrentIdentity } from "@/modules/auth/session";
 import { isFeatureEnabled } from "@/modules/features/server";
 
 export const metadata: Metadata = { 
-  title: "Membership & Care Passes", 
-  description: "Unlock unlimited priority booking, zero dispatch fees, and exclusive member discounts on routine dog walking and sitting.",
+  title: "Membership & Care Passes | PetSaathi", 
+  description: "Predictable routine care passes, priority Saathi assignment, ledger-backed credits, and dedicated supervisor support for your pets.",
+  openGraph: {
+    title: "Membership & Care Passes | PetSaathi",
+    description: "Predictable routine care passes, priority Saathi assignment, and dedicated supervisor support for your pets.",
+    url: "https://petsaathi.in/membership",
+    siteName: "PetSaathi",
+    images: [{ url: "/images/membership-hero-luxury-banner.webp", width: 1200, height: 630, alt: "PetSaathi Membership" }],
+    locale: "en_IN",
+    type: "website",
+  },
   robots: { index: true, follow: true } 
 };
 export const dynamic = "force-dynamic";
@@ -59,7 +68,7 @@ export default async function MembershipPage() {
   return (
     <PublicShell>
       {/* 1. FULL-BLEED HERO BANNER (LEFT ALIGNED) */}
-      <section className="relative h-[560px] sm:h-[620px] w-full overflow-hidden bg-ink text-paper">
+      <section className="relative h-[480px] sm:h-[560px] lg:h-[620px] w-full overflow-hidden bg-ink text-paper">
         <Image
           src="/images/membership-hero-luxury-banner.webp"
           alt="Luxury pet lounge membership experience"
@@ -67,7 +76,7 @@ export default async function MembershipPage() {
           priority
           fetchPriority="high"
           sizes="100vw"
-          className="object-cover object-[75%_center] sm:object-center"
+          className="object-cover object-[70%_center] sm:object-[60%_center] lg:object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/60 to-transparent md:w-3/4" />
         <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent" />
@@ -99,17 +108,7 @@ export default async function MembershipPage() {
       {/* 2. MEMBERSHIP FLOW CONTENT */}
       <section className="bg-paper pb-16 pt-16">
         <div className="container-shell">
-          <section className="grid gap-3 rounded-5xl border border-indigo/10 bg-gradient-to-br from-[#f3eafa] via-paper to-[#fff0e8] p-5 shadow-soft md:grid-cols-2 xl:grid-cols-4">
-            {membershipSteps.map(([number, title, copy]) => (
-              <article key={number} className="rounded-3xl bg-paper/80 p-5">
-                <p className="font-display text-3xl font-semibold text-coral">{number}</p>
-                <h2 className="mt-4 font-display text-2xl font-semibold">{title}</h2>
-                <p className="mt-2 text-sm leading-6 text-ink/80">{copy}</p>
-              </article>
-            ))}
-          </section>
-
-          <section className="mt-12 grid gap-5 lg:grid-cols-[1fr_1fr]">
+          <section className="grid gap-5 lg:grid-cols-[1fr_1fr]">
             <article className="rounded-[2.5rem] bg-[#281d2b] p-8 text-paper shadow-lifted">
               <span className="inline-flex items-center gap-2 rounded-full border border-saffron/40 bg-saffron/15 px-4 py-1.5 text-[0.68rem] font-bold uppercase tracking-[0.2em] text-saffron">
                 <BadgeCheck className="h-3.5 w-3.5" />
@@ -123,13 +122,18 @@ export default async function MembershipPage() {
                 and fewer surprises around scheduling.
               </p>
               <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                {membershipBenefits.slice(0, 2).map(({ icon: Icon, title, copy }) => (
-                  <div key={title} className="rounded-3xl border border-paper/10 bg-paper/[0.05] p-5">
-                    <Icon className="h-6 w-6 text-saffron" />
-                    <h3 className="mt-4 font-display text-xl font-semibold">{title}</h3>
-                    <p className="mt-2 text-sm leading-6 text-paper/80">{copy}</p>
-                  </div>
-                ))}
+                <div className="rounded-3xl border border-paper/10 bg-paper/[0.05] p-5">
+                  <p className="font-display text-2xl font-bold text-saffron">Zero Rush</p>
+                  <p className="mt-2 text-xs leading-6 text-paper/80">
+                    Every session is scheduled with ample buffer time so no caregiver rushes through feeding or walks.
+                  </p>
+                </div>
+                <div className="rounded-3xl border border-paper/10 bg-paper/[0.05] p-5">
+                  <p className="font-display text-2xl font-bold text-saffron">Same Saathi</p>
+                  <p className="mt-2 text-xs leading-6 text-paper/80">
+                    Guaranteed primary caregiver consistency so your pets bond with a familiar, trusted companion.
+                  </p>
+                </div>
               </div>
             </article>
 
@@ -157,26 +161,36 @@ export default async function MembershipPage() {
             </article>
           </section>
 
-          <div className="mx-auto mt-10 max-w-2xl rounded-[2.5rem] border border-saffron/25 bg-saffron/10 p-10 text-center shadow-lifted">
-            <LockKeyhole className="mx-auto h-12 w-12 text-indigo" />
-            <h2 className="mt-4 font-display text-3xl font-bold text-ink">Membership Enrollment Controlled</h2>
+          <div className="mx-auto mt-10 max-w-2xl rounded-[2.5rem] border border-saffron/25 bg-saffron/10 p-8 sm:p-10 text-center shadow-lifted">
+            <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-saffron/20 text-saffron">
+              <LockKeyhole className="h-6 w-6" />
+            </span>
+            <h2 className="mt-4 font-display text-3xl font-bold text-ink">Membership Waitlist Active</h2>
             <p className="mt-3 text-sm leading-7 text-ink/80">
-              Membership plans remain server-gated until final pricing mandates, local capacity, and cancellation rules are approved in your locality.
+              PetSaathi memberships roll out society-by-society to guarantee dedicated caregiver density, zero rush, and strict safety SLA compliance. Register your society to unlock member passes.
             </p>
-            <Link href="/book" className={buttonVariants({ variant: "primary", size: "lg", className: "mt-6 rounded-full px-8 font-outfit" })}>
-              Book Pay-As-You-Go Care <ArrowRight className="h-4 w-4 ml-1" />
-            </Link>
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+              <Link href="/book" className={buttonVariants({ variant: "primary", size: "lg", className: "rounded-full px-8 font-outfit" })}>
+                Book Pay-As-You-Go Care <ArrowRight className="h-4 w-4 ml-1" />
+              </Link>
+              <Link
+                href={"/contact?topic=SOCIETY_PARTNERSHIP" as Route}
+                className="inline-flex items-center gap-1.5 rounded-full border border-indigo/20 bg-paper px-6 py-3 text-sm font-bold text-indigo hover:border-indigo/40 hover:bg-indigo/5"
+              >
+                Join Society Waitlist <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
           </div>
 
-          {plans.length ? (
+          {plans.length > 0 ? (
             <div className="mt-10 grid gap-8 lg:grid-cols-3">
               {plans.map((plan) => (
                 <article key={plan.id} className="rounded-[2.5rem] border border-ink/10 bg-paper p-8 shadow-lifted">
                   <Repeat2 className="h-7 w-7 text-indigo" />
                   <p className="mt-8 text-xs font-bold uppercase tracking-[0.17em] text-ink/80">{plan.audience}</p>
                   <h2 className="mt-2 font-display text-4xl font-semibold">{plan.name}</h2>
-                  <p className="mt-5 font-display text-3xl font-semibold">
-                    ₹{(plan.pricePaise / 100).toLocaleString("en-IN")} <span className="font-sans text-sm text-ink/80">/ {plan.billingInterval.toLowerCase()}</span>
+                  <p className="mt-5 font-display text-2xl font-semibold text-ink">
+                    Pricing coming soon
                   </p>
                   <div className="mt-5 flex items-start gap-2 text-sm text-ink/80">
                     <BadgeCheck className="mt-0.5 h-4 w-4 shrink-0 text-leaf" />
@@ -192,7 +206,88 @@ export default async function MembershipPage() {
                 </article>
               ))}
             </div>
-          ) : null}
+          ) : (
+            <div className="mt-12">
+              <div className="text-center">
+                <span className="text-xs font-bold uppercase tracking-widest text-indigo font-outfit">Upcoming Pass Tiers</span>
+                <h3 className="mt-2 font-display text-3xl font-bold text-ink">Preview Membership Plans</h3>
+                <p className="mt-2 text-sm text-ink/70 max-w-xl mx-auto">
+                  Fixed predictable monthly rates for recurring care routines in launched society clusters.
+                </p>
+              </div>
+              <div className="mt-8 grid gap-6 md:grid-cols-3">
+                {[
+                  {
+                    name: "Care Pass Starter",
+                    audience: "Working Pet Parents",
+                    price: "Pricing coming soon",
+                    badge: "Most Popular",
+                    features: [
+                      "8 Scheduled Routine Walks / Visits",
+                      "Dedicated Primary Saathi + Vetted Backup",
+                      "Zero Booking or Peak Surcharge Fees",
+                      "Real-Time Milestone Photos & GPS Route"
+                    ]
+                  },
+                  {
+                    name: "Daily Routine Pass",
+                    audience: "Active Canine Routines",
+                    price: "Pricing coming soon",
+                    badge: "Best Value",
+                    features: [
+                      "24 Monthly Care Outings or Sitting Sessions",
+                      "Guaranteed Same Dedicated Saathi",
+                      "Free Rollover of Unused Sessions (Up to 4)",
+                      "Priority Clinical & Vet Dispatch Access"
+                    ]
+                  },
+                  {
+                    name: "Society VIP Concierge",
+                    audience: "Multi-Pet Households",
+                    price: "Pricing coming soon",
+                    badge: "All-Inclusive",
+                    features: [
+                      "Unlimited Priority Dispatch Scheduling",
+                      "Multi-Pet Household Coverage (Up to 3 Pets)",
+                      "Guaranteed Holiday Boarding Host Allocation",
+                      "Direct Senior Ops Supervisor Support"
+                    ]
+                  }
+                ].map((tier) => (
+                  <article key={tier.name} className="flex flex-col justify-between rounded-[2.5rem] border border-ink/10 bg-paper p-8 shadow-lifted transition hover:-translate-y-1 hover:border-indigo/30">
+                    <div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-[0.68rem] font-bold uppercase tracking-wider text-indigo bg-indigo/10 px-3 py-1 rounded-full">
+                          {tier.badge}
+                        </span>
+                        <Repeat2 className="h-5 w-5 text-ink/40" />
+                      </div>
+                      <h4 className="mt-4 font-display text-2xl font-bold text-ink">{tier.name}</h4>
+                      <p className="text-xs text-ink/60 font-medium mt-1">{tier.audience}</p>
+                      <div className="mt-4 flex items-baseline gap-1">
+                        <span className="font-display text-xl font-bold text-ink">{tier.price}</span>
+                        <span className="text-xs font-medium text-ink/60">(society launch)</span>
+                      </div>
+                      <ul className="mt-6 space-y-2.5 text-xs text-ink/80 border-t border-ink/10 pt-6">
+                        {tier.features.map((feat) => (
+                          <li key={feat} className="flex items-start gap-2">
+                            <BadgeCheck className="h-4 w-4 shrink-0 text-leaf mt-0.5" />
+                            <span>{feat}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <Link
+                      href={"/contact?topic=SOCIETY_PARTNERSHIP" as Route}
+                      className="mt-8 block text-center w-full rounded-full bg-ink py-3 text-xs font-bold text-paper transition hover:bg-ink/90 shadow-sm"
+                    >
+                      Request Early Access
+                    </Link>
+                  </article>
+                ))}
+              </div>
+            </div>
+          )}
 
           <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             {membershipBenefits.map(({ icon: Icon, title, copy }) => (

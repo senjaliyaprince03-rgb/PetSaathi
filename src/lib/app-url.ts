@@ -10,7 +10,7 @@ export function getCanonicalBaseUrl(): string {
     if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
       return "https://" + process.env.VERCEL_PROJECT_PRODUCTION_URL;
     }
-    return "https://petsaathi-blue.vercel.app";
+    return "https://petsaathi-two.vercel.app";
   }
 
   if (envUrl && !envUrl.startsWith("http://127.0.0.1") && !envUrl.startsWith("http://localhost")) {
@@ -25,5 +25,5 @@ export function getCanonicalBaseUrl(): string {
     return "https://" + process.env.VERCEL_URL;
   }
 
-  return (envUrl || "https://petsaathi-blue.vercel.app").replace(/\/+$/, "");
+  return (envUrl || "https://petsaathi-two.vercel.app").replace(/\/+$/, "");
 }

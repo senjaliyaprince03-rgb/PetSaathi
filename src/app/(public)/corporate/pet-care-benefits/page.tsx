@@ -74,7 +74,7 @@ export default function CorporateBenefitsPage() {
               <Building2 className="h-4 w-4" />
               Employer and association programmes
             </span>
-            <h1 className="mt-7 max-w-[12ch] font-display text-5xl font-semibold tracking-[-0.055em] text-ink sm:text-7xl">
+            <h1 className="mt-7 max-w-[12ch] font-display text-3xl font-semibold tracking-[-0.055em] text-ink sm:text-5xl lg:text-7xl">
               Pet-care benefits with accountable controls.
             </h1>
             <p className="mt-6 max-w-2xl text-base leading-8 text-ink/80">

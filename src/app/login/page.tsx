@@ -5,8 +5,17 @@ import { ParallaxTotemBackground } from "@/components/motion/parallax-totem-back
 import { getCurrentIdentity } from "@/modules/auth/session";
 
 export const metadata: Metadata = { 
-  title: "Parent & Saathi Sign In", 
+  title: "Parent & Saathi Sign In | PetSaathi", 
   description: "Access your PetSaathi customer dashboard, pet passports, live walk tracking, and caregiver assignments.",
+  openGraph: {
+    title: "Parent & Saathi Sign In | PetSaathi",
+    description: "Access your PetSaathi customer dashboard, pet passports, live walk tracking, and caregiver assignments.",
+    url: "https://petsaathi.in/login",
+    siteName: "PetSaathi",
+    images: [{ url: "/images/hero-care-handover-highres.webp", width: 1200, height: 630, alt: "PetSaathi Sign In" }],
+    locale: "en_IN",
+    type: "website",
+  },
   robots: { index: false, follow: false } 
 };
 

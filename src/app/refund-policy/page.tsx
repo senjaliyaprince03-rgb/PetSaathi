@@ -132,7 +132,7 @@ export default function RefundPolicyPage() {
           <div className="border-t border-ink/10 pt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
               <h3 className="font-display text-base font-bold text-ink">Need assistance with a refund?</h3>
-              <p className="text-xs text-ink/70 mt-1">Our dedicated PetSaathi Trust &amp; Safety desk is available 24/7 across India.</p>
+              <p className="text-xs text-ink/70 mt-1">Our Care Concierge desk operates Mon–Sat, 8 AM – 8 PM IST, with 24/7 priority incident routing for active bookings.</p>
             </div>
             <div className="flex gap-3">
               <a href="mailto:support@petsaathi.com" className="inline-flex items-center gap-2 rounded-xl bg-ink px-4 py-2.5 text-xs font-bold text-paper transition hover:bg-ink/90">

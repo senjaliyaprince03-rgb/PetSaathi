@@ -6,8 +6,18 @@ import { PageIntro, PublicShell } from "@/components/marketing/public-shell";
 import { getCurrentIdentity } from "@/modules/auth/session";
 
 export const metadata: Metadata = { 
-  title: "Become a Certified Saathi Caregiver",
-  description: "Join India's leading managed pet care network. Earn competitive pay with guaranteed payouts, vet emergency cover, and local society assignments."
+  title: "Become a Certified Saathi Caregiver | PetSaathi",
+  description: "Join India's leading managed pet care network. Earn competitive pay with guaranteed weekly payouts, emergency vet assistance coordination, and local society assignments.",
+  openGraph: {
+    title: "Become a Certified Saathi Caregiver | PetSaathi",
+    description: "Join India's leading managed pet care network. Earn competitive pay with guaranteed weekly payouts, emergency vet assistance coordination, and local society assignments.",
+    url: "https://petsaathi.in/become-a-saathi",
+    siteName: "PetSaathi",
+    images: [{ url: "/images/hero-care-handover-highres.webp", width: 1200, height: 630, alt: "Become a Certified Saathi" }],
+    locale: "en_IN",
+    type: "website",
+  },
+  robots: { index: true, follow: true }
 };
 
 export default async function BecomeASaathiPage() {
@@ -87,25 +97,25 @@ export default async function BecomeASaathiPage() {
           <article className="rounded-5xl border border-indigo/10 bg-paper p-8 shadow-lifted">
             <span className="inline-flex items-center gap-2 rounded-full border border-coral/20 bg-coral/10 px-4 py-1.5 text-[0.68rem] font-bold uppercase tracking-[0.2em] text-coral-text">
               <CalendarDays className="h-3.5 w-3.5" />
-              Review flow
+              Prerequisites & Standards
             </span>
             <h2 className="mt-5 font-display text-3xl font-semibold tracking-[-0.04em]">
-              How the application moves forward.
+              What you need before applying.
             </h2>
             <div className="mt-7 grid gap-4">
               {[
-                ["1", "Apply with real experience", "Tell the team about the care you already know how to give."],
-                ["2", "Pass the checks", "Identity and practical readiness are verified before any assignment."],
-                ["3", "Join only the right services", "Permission is granted for the exact care type you can handle well."],
-                ["4", "Start with support", "Early work is guided so the first jobs feel clear and manageable."],
-              ].map(([number, title, copy]) => (
-                <div key={number} className="flex gap-4 rounded-3xl border border-ink/10 bg-cream/40 p-5">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-indigo/10 font-display text-lg font-semibold text-indigo">
-                    {number}
+                ["Aadhaar / Photo ID", "Valid government ID with permanent and local address verification."],
+                ["Handling Experience", "Demonstrated hands-on experience handling dogs, cats, or both breeds."],
+                ["Character References", "Two verifiable professional or personal references vetted by ops."],
+                ["Conduct Pledge", "Adherence to zero phone distractions, punctuality, and live session updates."]
+              ].map(([title, copy], idx) => (
+                <div key={title} className="flex gap-4 rounded-3xl border border-ink/10 bg-cream/40 p-5">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-indigo/10 font-display text-sm font-bold text-indigo">
+                    0{idx + 1}
                   </div>
                   <div>
-                    <h3 className="font-display text-xl font-semibold">{title}</h3>
-                    <p className="mt-1 text-sm leading-6 text-ink/80">{copy}</p>
+                    <h3 className="font-display text-lg font-semibold">{title}</h3>
+                    <p className="mt-1 text-xs leading-5 text-ink/80">{copy}</p>
                   </div>
                 </div>
               ))}

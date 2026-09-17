@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowRight, CalendarDays, CheckCircle2, LoaderCircle, PawPrint } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -11,6 +11,8 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import type { CoreServiceCode } from "@/modules/catalog/services";
 import { ServiceAssessmentFlow } from "@/components/forms/service-assessment-flow";
 import { DynamicPricingEngine } from "@/components/forms/dynamic-pricing-engine";
+
+const defaultPetDetails = { size: "MEDIUM" as const };
 
 const requestSchema = z.object({
   petId: z.string().min(1, "Choose a pet"),
@@ -52,17 +54,28 @@ export function AuthenticatedBookingForm({
   addresses,
   services,
   prices,
-  initialService
+  initialService,
+  requestBoarding = false
 }: {
   pets: PetOption[];
   addresses: AddressOption[];
   services: ServiceOption[];
   prices: PriceOption[];
   initialService?: CoreServiceCode;
+  requestBoarding?: boolean;
 }) {
   const [reference, setReference] = useState<string | null>(null);
   const [serverError, setServerError] = useState<string | null>(null);
   const [assessmentData, setAssessmentData] = useState<Record<string, unknown>>({});
+  const [emergencyWarning, setEmergencyWarning] = useState<string | null>(null);
+
+  const handleAssessmentComplete = useCallback((data: Record<string, unknown>) => {
+    setAssessmentData(data);
+  }, []);
+
+  const handleEmergency = useCallback(() => {
+    setEmergencyWarning("Emergency Protocol: This situation requires immediate on-site veterinary attention. Please take your pet to the nearest emergency clinic immediately.");
+  }, []);
 
   const availableInitialService = services.some((service) => service.code === initialService)
     ? initialService
@@ -73,9 +86,10 @@ export function AuthenticatedBookingForm({
     defaultValues: {
       petId: pets[0]?.id ?? "",
       addressId: addresses[0]?.id ?? "",
-      serviceCode: availableInitialService ?? services[0]?.code ?? "DOG_WALK_30",
+      serviceCode: initialService ?? (requestBoarding ? "HOME_SITTING_60" : (services[0]?.code ?? "DOG_WALK_30")),
       scheduledStart: "",
-      customerNotes: ""
+      customerNotes: requestBoarding ? "Boarding Request (Pilot Society Host)" : "",
+      careConsent: true
     }
   });
 
@@ -97,15 +111,30 @@ export function AuthenticatedBookingForm({
   const selectedPrice = prices.find((price) => price.addressId === form.watch("addressId") && price.serviceCode === form.watch("serviceCode"));
   return <form onSubmit={form.handleSubmit(submit)} className="rounded-[1.75rem] border border-ink/[0.07] bg-paper p-5 shadow-[0_18px_55px_-42px_rgb(var(--ink)/0.35)] sm:p-7" noValidate>
     <div className="flex items-center gap-3"><span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-indigo text-paper"><CalendarDays className="h-5 w-5" /></span><div><p className="text-[0.58rem] font-bold uppercase tracking-[0.2em] text-coral">Authenticated request</p><h2 className="mt-1 font-display text-3xl font-semibold tracking-[-0.04em]">Choose the care window</h2></div></div>
+    {requestBoarding && (
+      <div className="mt-6 rounded-2xl border border-saffron/30 bg-saffron/10 p-4 text-xs leading-relaxed text-ink/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <strong className="text-ink">Host Boarding Beta Active:</strong> Property-vetted host boarding is currently running in limited pilot across select societies. You can submit your host sitting request below or join our dedicated host waitlist.
+        </div>
+        <Link href={"/contact?topic=BOARDING_PILOT"} className="shrink-0 font-bold text-coral underline hover:text-coral-text">
+          Join Boarding Waitlist →
+        </Link>
+      </div>
+    )}
     {serverError && <p className="mt-6 rounded-2xl bg-coral/10 p-4 text-sm font-semibold text-coral" role="alert">{serverError}</p>}
+    {emergencyWarning && (
+      <div className="mt-6 rounded-2xl border border-coral/30 bg-coral/10 p-4 text-sm font-semibold text-coral" role="alert">
+        {emergencyWarning}
+      </div>
+    )}
     <div className="mt-8 grid gap-5 sm:grid-cols-2"><Field label="Pet" error={form.formState.errors.petId?.message}><select {...form.register("petId")} className="booking-input">{pets.map((pet) => <option key={pet.id} value={pet.id}>{pet.name} · {pet.species.toLowerCase()}</option>)}</select></Field><Field label="Care address" error={form.formState.errors.addressId?.message}><select {...form.register("addressId")} className="booking-input">{addresses.map((address) => <option key={address.id} value={address.id}>{address.label} · {address.locality}</option>)}</select></Field><Field label="Service" error={form.formState.errors.serviceCode?.message}><select {...form.register("serviceCode")} className="booking-input">{services.map((service) => <option key={service.code} value={service.code}>{service.name}</option>)}</select></Field><Field label="Start date and time" error={form.formState.errors.scheduledStart?.message}><input type="datetime-local" {...form.register("scheduledStart")} className="booking-input" /></Field><div className="sm:col-span-2"><Field label="Care notes (optional)" error={form.formState.errors.customerNotes?.message}><textarea {...form.register("customerNotes")} className="booking-input min-h-28 resize-y" placeholder="Routine, temperament and handover guidance" /></Field></div></div>
     
     {(form.watch("serviceCode") === "GROOMING_HOME" || form.watch("serviceCode") === "VET_SUPPORT" || form.watch("serviceCode") === "TRAINING_ASSESSMENT" || form.watch("serviceCode") === "PET_TAXI") && (
       <div className="mt-6">
         <ServiceAssessmentFlow 
           serviceCode={form.watch("serviceCode")} 
-          onComplete={(data) => setAssessmentData(data)} 
-          onEmergency={() => alert("This is an emergency. Please contact the nearest clinic immediately.")} 
+          onComplete={handleAssessmentComplete} 
+          onEmergency={handleEmergency} 
         />
       </div>
     )}
@@ -117,7 +146,7 @@ export function AuthenticatedBookingForm({
             serviceCode={form.watch("serviceCode")} 
             basePrice={selectedPrice.subtotalPaise / 100} 
             assessmentData={assessmentData} 
-            petDetails={{ size: 'MEDIUM' }} // Hardcoded for prototype, usually from pet profile
+            petDetails={defaultPetDetails} 
           />
         ) : (
           <div className="mt-6 flex items-center justify-between rounded-3xl bg-indigo p-5 text-paper"><div><p className="text-[0.62rem] font-bold uppercase tracking-[0.18em] text-paper/80">Approved quote · {selectedService?.name}</p><p className="mt-1 text-sm text-paper/80">₹{(selectedPrice.subtotalPaise / 100).toLocaleString("en-IN")} + ₹{(selectedPrice.taxPaise / 100).toLocaleString("en-IN")} tax · rechecked on submit</p></div><p className="font-display text-3xl font-semibold">₹{(selectedPrice.totalPaise / 100).toLocaleString("en-IN")}</p></div>

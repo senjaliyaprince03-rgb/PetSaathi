@@ -23,43 +23,57 @@ export default function PrivacyPage() {
         <div className="mx-auto max-w-4xl space-y-8 rounded-5xl border border-ink/10 bg-paper p-8 text-ink/80 shadow-lifted sm:p-12">
           
           <div>
-            <h2 className="font-display text-2xl font-semibold text-ink">1. Data We Collect</h2>
+            <h2 className="font-display text-2xl font-semibold text-ink">1. Data We Collect & Data Fiduciary Role</h2>
             <p className="mt-4 leading-7">
-              At PetSaathi, we collect only the information necessary to facilitate safe, reliable pet care services. This includes:
+              PetSaathi acts as a Data Fiduciary under the Digital Personal Data Protection (DPDP) Act, 2023. We collect only the data necessary to coordinate safe, reliable pet care services:
             </p>
             <ul className="mt-4 list-disc pl-6 space-y-2 leading-7">
-              <li><strong>Profile Information:</strong> Name, phone number, address, and pet medical records stored in MongoDB Atlas with encryption at rest (AES-256) and TLS encryption in transit, isolated by strict application-layer role-based access control.</li>
-              <li><strong>Location Data:</strong> Used to match you with nearby verified caregivers and enable live session tracking during walks. In browser/PWA sessions, location sharing is caregiver-initiated and active strictly during the scheduled care window.</li>
-              <li><strong>Payment Details:</strong> Transaction records and billing receipts processed securely via Razorpay PCI-DSS compliant infrastructure. PetSaathi never stores raw card or bank credentials.</li>
+              <li><strong>Profile Information:</strong> Name, verified mobile number, email, address, and digital pet passport health records. All data is stored in ISO 27001/SOC 2 certified secure cloud infrastructure with AES-256 encryption at rest, TLS in transit, and role-based access isolation.</li>
+              <li><strong>Location Data:</strong> Used to match you with nearby verified caregivers and enable live session telemetry during walks. Location sharing is caregiver-initiated and active strictly during scheduled, consented care windows.</li>
+              <li><strong>Payment Details:</strong> Transaction records and billing receipts processed securely via Razorpay PCI-DSS Level 1 compliant infrastructure. PetSaathi never stores raw payment card numbers or banking passwords.</li>
             </ul>
           </div>
 
           <div>
-            <h2 className="font-display text-2xl font-semibold text-ink">2. How Data is Used & Stored</h2>
+            <h2 className="font-display text-2xl font-semibold text-ink">2. How Data is Used & Third-Party Processors</h2>
             <p className="mt-4 leading-7">
-              Your data is never sold to third parties. We use it solely to authorize bookings, coordinate safe doorstep handoffs, process payments, and ensure pet safety. Location telemetry collected during outdoor sessions is archived on a 30-day retention schedule for safety verification and dispute resolution, after which detailed coordinates are automatically purged.
+              Your personal data is never sold, rented, or monetized. We share data only with authorized service processors strictly necessary for platform operations:
+            </p>
+            <ul className="mt-3 list-disc pl-6 space-y-2 leading-7">
+              <li><strong>Razorpay:</strong> Secure payment collection, escrow milestone verification, and refund disbursement.</li>
+              <li><strong>Vercel Cloud:</strong> Secure web application hosting and content delivery network.</li>
+              <li><strong>Sentry:</strong> Real-time software error monitoring and diagnostics (all personal identifying telemetry is scrubbed prior to ingestion).</li>
+            </ul>
+            <p className="mt-4 leading-7">
+              Location telemetry collected during outdoor sessions is maintained on a 30-day retention schedule for safety verification and dispute resolution, after which detailed coordinates are permanently purged. Account profile records are retained only while your account remains active.
             </p>
           </div>
 
           <div>
-            <h2 className="font-display text-2xl font-semibold text-ink">3. Analytics & Cookies</h2>
+            <h2 className="font-display text-2xl font-semibold text-ink">3. Children&apos;s Privacy Policy</h2>
             <p className="mt-4 leading-7">
-              With your explicit consent via our cookie banner, we use privacy-compliant telemetry to improve app performance and user experience. You can modify your preferences at any time in Account Settings.
+              PetSaathi services and caregiver applications are strictly intended for individuals who are 18 years of age or older. We do not knowingly collect or process personal data relating to minors.
             </p>
           </div>
 
           <div>
-            <h2 className="font-display text-2xl font-semibold text-ink">4. Data Deletion & Privacy Inquiries</h2>
+            <h2 className="font-display text-2xl font-semibold text-ink">4. Cookies & Consent Management</h2>
             <p className="mt-4 leading-7">
-              Under Indian data protection frameworks and PetSaathi safety charters, you may request complete account data deletion, export your pet passport records, or raise privacy inquiries by contacting our Data Protection Officer at{" "}
-              <a href="mailto:privacy@petsaathi.com" className="font-bold text-[#E16649] hover:underline">
-                privacy@petsaathi.com
-              </a>{" "}
-              or via our{" "}
-              <Link href="/contact" className="font-bold text-indigo hover:underline">
-                Contact Page
-              </Link>.
+              We deploy essential functional cookies and, with your explicit consent via our cookie banner, anonymized analytics cookies to enhance browsing stability. You may withdraw or modify cookie preferences at any time.
             </p>
+          </div>
+
+          <div>
+            <h2 className="font-display text-2xl font-semibold text-ink">5. Your Rights & Grievance Officer</h2>
+            <p className="mt-4 leading-7">
+              Under the DPDP Act 2023, you have the right to access, correct, update, or withdraw consent and request erasure of your personal data. To exercise any data rights or raise inquiries, contact our Data Protection &amp; Grievance Redressal Desk:
+            </p>
+            <div className="mt-4 rounded-2xl border border-ink/10 bg-ink/5 p-4 text-sm leading-relaxed">
+              <p><strong>Grievance Officer:</strong> Data Protection &amp; Privacy Officer</p>
+              <p><strong>Email:</strong> <a href="mailto:privacy@petsaathi.com" className="font-bold text-indigo hover:underline">privacy@petsaathi.com</a> / <a href="mailto:grievance@petsaathi.com" className="font-bold text-indigo hover:underline">grievance@petsaathi.com</a></p>
+              <p><strong>Response Timeline:</strong> Acknowledged within 48 hours; resolved within 30 days under Indian statutory rules.</p>
+              <p><strong>Physical Address:</strong> PetSaathi Technologies, Ahmedabad, Gujarat 380058, India.</p>
+            </div>
           </div>
 
         </div>

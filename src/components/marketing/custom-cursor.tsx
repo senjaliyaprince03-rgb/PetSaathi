@@ -19,12 +19,12 @@ const INTERACTIVE_SELECTOR = [
 
 export function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
+  const ringRef = useRef<HTMLDivElement>(null);
+  const dotRef = useRef<HTMLSpanElement>(null);
   const animationFrameRef = useRef<number | null>(null);
   const nextPositionRef = useRef({ x: -100, y: -100 });
   const visibilityRef = useRef(false);
   const [isEnabled, setIsEnabled] = useState(false);
-  const [isInteractive, setIsInteractive] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const finePointer = window.matchMedia("(pointer: fine)");
@@ -42,8 +42,7 @@ export function CustomCursor() {
 
       if (!enabled) {
         visibilityRef.current = false;
-        setIsVisible(false);
-        setIsInteractive(false);
+        if (cursorRef.current) cursorRef.current.style.opacity = "0";
       }
     };
 
@@ -64,11 +63,13 @@ export function CustomCursor() {
   useEffect(() => {
     if (!isEnabled) return;
     const cursorElement = cursorRef.current;
+    const ringElement = ringRef.current;
+    const dotElement = dotRef.current;
 
     const commitPosition = () => {
       animationFrameRef.current = null;
       const { x, y } = nextPositionRef.current;
-      cursorRef.current?.style.setProperty(
+      cursorElement?.style.setProperty(
         "transform",
         `translate3d(${x}px, ${y}px, 0)`
       );
@@ -77,7 +78,6 @@ export function CustomCursor() {
     const updatePosition = (event: PointerEvent) => {
       if (event.pointerType !== "mouse") return;
 
-      // Viewport coordinates and a body portal keep the halo locked to the OS pointer during scroll.
       nextPositionRef.current = { x: event.clientX, y: event.clientY };
       if (animationFrameRef.current === null) {
         animationFrameRef.current = window.requestAnimationFrame(commitPosition);
@@ -85,21 +85,39 @@ export function CustomCursor() {
 
       if (!visibilityRef.current) {
         visibilityRef.current = true;
-        setIsVisible(true);
+        if (cursorElement) cursorElement.style.opacity = "1";
       }
     };
 
     const updateInteraction = (event: PointerEvent) => {
       const target = event.target;
-      setIsInteractive(
-        target instanceof Element && Boolean(target.closest(INTERACTIVE_SELECTOR))
-      );
+      const isInteractive =
+        target instanceof Element && Boolean(target.closest(INTERACTIVE_SELECTOR));
+      
+      if (ringElement && dotElement) {
+        if (isInteractive) {
+          ringElement.style.width = "3rem";
+          ringElement.style.height = "3rem";
+          ringElement.style.borderColor = "rgba(244, 185, 96, 0.9)";
+          ringElement.style.backgroundColor = "rgba(244, 185, 96, 0.15)";
+          dotElement.style.width = "0.375rem";
+          dotElement.style.height = "0.375rem";
+          dotElement.style.backgroundColor = "rgb(225, 102, 73)";
+        } else {
+          ringElement.style.width = "1.75rem";
+          ringElement.style.height = "1.75rem";
+          ringElement.style.borderColor = "rgba(91, 61, 122, 0.35)";
+          ringElement.style.backgroundColor = "rgba(255, 253, 250, 0.12)";
+          dotElement.style.width = "0.25rem";
+          dotElement.style.height = "0.25rem";
+          dotElement.style.backgroundColor = "rgb(91, 61, 122)";
+        }
+      }
     };
 
     const hideCursor = () => {
       visibilityRef.current = false;
-      setIsVisible(false);
-      setIsInteractive(false);
+      if (cursorElement) cursorElement.style.opacity = "0";
     };
 
     window.addEventListener("pointermove", updatePosition, { passive: true });
@@ -130,21 +148,16 @@ export function CustomCursor() {
       aria-hidden="true"
       data-testid="luxury-cursor-halo"
       data-ready="true"
-      className={`pointer-events-none fixed left-0 top-0 z-[9999] hidden h-px w-px will-change-transform transition-opacity duration-200 md:block ${
-        isVisible ? "opacity-100" : "opacity-0"
-      }`}
+      style={{ opacity: 0 }}
+      className="pointer-events-none fixed left-0 top-0 z-[9999] hidden h-px w-px will-change-transform transition-opacity duration-200 md:block"
     >
       <div
-        className={`absolute left-0 top-0 -translate-x-1/2 -translate-y-1/2 rounded-full border shadow-[0_4px_24px_rgba(48,31,48,0.12)] backdrop-blur-[1.5px] transition-[width,height,border-color,background-color,box-shadow] duration-300 ease-out ${
-          isInteractive
-            ? "h-12 w-12 border-saffron/90 bg-saffron/[0.12] shadow-[0_4px_30px_rgba(244,185,96,0.28)]"
-            : "h-7 w-7 border-indigo/35 bg-paper/[0.08]"
-        }`}
+        ref={ringRef}
+        className="absolute left-0 top-0 -translate-x-1/2 -translate-y-1/2 rounded-full border border-indigo/35 bg-paper/[0.12] shadow-[0_2px_16px_rgba(48,31,48,0.08)] transition-[width,height,border-color,background-color] duration-200 ease-out h-7 w-7"
       >
         <span
-          className={`absolute left-1/2 top-1/2 block -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo shadow-[0_0_10px_rgba(91,61,122,0.38)] transition-[width,height,background-color] duration-300 ${
-            isInteractive ? "h-1.5 w-1.5 bg-coral" : "h-1 w-1"
-          }`}
+          ref={dotRef}
+          className="absolute left-1/2 top-1/2 block -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo transition-[width,height,background-color] duration-200 h-1 w-1"
         />
       </div>
     </div>,

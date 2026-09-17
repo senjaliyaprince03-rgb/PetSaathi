@@ -38,12 +38,18 @@ const services = [
   ["HOME_VISIT", "Home visit", "Food, water and a reassuring check-in"],
   ["HOME_SITTING_60", "One-hour sitting", "Company, play and routine at home"],
   ["GROOMING_HOME", "Home grooming", "Professional grooming at your doorstep"],
-  ["VET_SUPPORT", "Vet consultation", "Primary veterinary support and checkups"],
+  ["VET_SUPPORT", "Veterinary Support", "Non-emergency partner coordination & triage support"],
   ["TRAINING_ASSESSMENT", "Training assessment", "Expert evaluation of behavioral needs"],
   ["PET_TAXI", "Pet taxi", "Safe transport for your pet"]
 ] as const;
 
-export function BookingWizard({ initialValues = {} }: { initialValues?: BookingPrefill }) {
+export function BookingWizard({ 
+  initialValues = {}, 
+  requestBoarding = false 
+}: { 
+  initialValues?: BookingPrefill; 
+  requestBoarding?: boolean;
+}) {
   const [step, setStep] = useState(0);
   const [attemptedStep, setAttemptedStep] = useState<number | null>(null);
   const [submitted, setSubmitted] = useState(false);
@@ -51,7 +57,7 @@ export function BookingWizard({ initialValues = {} }: { initialValues?: BookingP
     resolver: zodResolver(bookingSchema),
     shouldUnregister: false,
     defaultValues: {
-      service: initialValues.service ?? "DOG_WALK_30",
+      service: initialValues.service ?? (requestBoarding ? "HOME_SITTING_60" : "DOG_WALK_30"),
       petType: initialValues.petType ?? "DOG",
       petName: "",
       date: "",
@@ -59,7 +65,7 @@ export function BookingWizard({ initialValues = {} }: { initialValues?: BookingP
       locality: initialValues.locality ?? "",
       parentName: "",
       phone: "",
-      notes: ""
+      notes: requestBoarding ? "Boarding Request (Pilot Society Host)" : ""
     }
   });
 
@@ -86,6 +92,16 @@ export function BookingWizard({ initialValues = {} }: { initialValues?: BookingP
 
   return (
     <form onSubmit={form.handleSubmit(() => setSubmitted(true), () => setAttemptedStep(3))} className="glass-panel mx-auto max-w-3xl rounded-5xl p-5 sm:p-9" noValidate>
+      {requestBoarding && (
+        <div className="mb-6 rounded-3xl border border-saffron/30 bg-saffron/10 p-4 text-xs leading-relaxed text-ink/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <strong className="text-ink">Host Boarding Beta Active:</strong> Property-vetted host boarding is currently running in limited pilot across select societies. You can submit your host sitting request below or join our dedicated host waitlist.
+          </div>
+          <Link href={"/contact?topic=BOARDING_PILOT"} className="shrink-0 font-bold text-coral underline hover:text-coral-text">
+            Join Boarding Waitlist →
+          </Link>
+        </div>
+      )}
       <div className="mb-8 flex items-center gap-2" aria-label={`Step ${step + 1} of 4`}>
         {[0, 1, 2, 3].map((index) => <span key={index} className={cn("h-2 flex-1 rounded-full transition", index <= step ? "bg-saffron" : "bg-ink/10")} />)}
       </div>

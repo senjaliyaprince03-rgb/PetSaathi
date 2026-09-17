@@ -4,8 +4,10 @@ import { notFound } from "next/navigation";
 import { PageIntro, PublicShell } from "@/components/marketing/public-shell";
 import { services } from "@/modules/catalog/services";
 import { ServiceJsonLd } from "@/components/seo/service-json-ld";
-
 import { BreadcrumbJsonLd } from "@/components/seo/breadcrumb-json-ld";
+import { getCanonicalBaseUrl } from "@/lib/app-url";
+import Link from "next/link";
+import type { Route } from "next";
 
 export const revalidate = 3600;
 
@@ -16,7 +18,23 @@ export function generateStaticParams() { return services.map(({ slug }) => ({ sl
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const service = services.find((item) => item.slug === slug);
-  return { title: service?.name ?? "Service" };
+  const baseUrl = getCanonicalBaseUrl();
+  return { 
+    title: `${service?.name ?? "Service"} | PetSaathi`,
+    description: service?.description,
+    alternates: {
+      canonical: `${baseUrl}/services/${slug}`,
+    },
+    openGraph: {
+      title: `${service?.name ?? "Service"} | PetSaathi`,
+      description: service?.description,
+      url: `${baseUrl}/services/${slug}`,
+      siteName: "PetSaathi",
+      images: [{ url: service?.image ?? "/images/services-hero-luxury-banner.webp", width: 1200, height: 630, alt: service?.name ?? "Pet Care Service" }],
+      locale: "en_IN",
+      type: "website",
+    }
+  };
 }
 
 export default async function ServicePage({ params }: Props) {
@@ -24,10 +42,32 @@ export default async function ServicePage({ params }: Props) {
   const service = services.find((item) => item.slug === slug);
   if (!service) notFound();
   const Icon = service.icon;
+  const baseUrl = getCanonicalBaseUrl();
+
+  const bookingHref = (
+    slug === "boarding-beta"
+      ? "/book?service=HOME_SITTING_60&requestBoarding=true"
+      : slug === "dog-walking"
+      ? "/book?service=DOG_WALK_30"
+      : slug === "home-pet-sitting"
+      ? "/book?service=HOME_SITTING_60"
+      : slug === "grooming"
+      ? "/book?service=GROOMING_HOME"
+      : slug === "veterinary"
+      ? "/book?service=VET_SUPPORT"
+      : slug === "training"
+      ? "/book?service=TRAINING_ASSESSMENT"
+      : slug === "pet-taxi"
+      ? "/book?service=PET_TAXI"
+      : "/book"
+  ) as Route;
+
+  const ctaLabel = slug === "boarding-beta" ? "Request Boarding Host Pilot" : "Check Availability";
+
   return (
     <PublicShell>
-      <ServiceJsonLd name={service.name} description={service.description} url={`https://petsaathi.com/services/${slug}`} />
-      <BreadcrumbJsonLd items={[{ name: "Home", url: "https://petsaathi.com" }, { name: "Services", url: "https://petsaathi.com/services" }, { name: service.name, url: `https://petsaathi.com/services/${slug}` }]} />
+      <ServiceJsonLd name={service.name} description={service.description} url={`${baseUrl}/services/${slug}`} />
+      <BreadcrumbJsonLd items={[{ name: "Home", url: baseUrl }, { name: "Services", url: `${baseUrl}/services` }, { name: service.name, url: `${baseUrl}/services/${slug}` }]} />
       <PageIntro eyebrow={service.kicker} title={service.name} description={service.description} />
       <section className="container-shell">
         <div className="mx-auto grid max-w-5xl gap-6 lg:grid-cols-2">
@@ -36,10 +76,19 @@ export default async function ServicePage({ params }: Props) {
             <h2 className="mt-14 font-display text-4xl font-semibold">What the service records</h2>
             <ul className="mt-7 space-y-3 text-paper/80">{["Authorised start and finish milestones","Relevant care observations and concerns","Structured report card after completion","A clear path to human support when needed"].map((item) => <li key={item} className="border-b border-paper/10 pb-3">{item}</li>)}</ul>
           </article>
-          <article className="glass-panel rounded-5xl p-8 sm:p-10">
-            <h2 className="font-display text-4xl font-semibold">Before a booking</h2>
-            <p className="mt-5 leading-7 text-ink/80">Pet details, risk factors, caregiver permissions, schedule and local capacity are checked before a match is confirmed. Exact availability and price are shown in the booking context.</p>
-            <a href="/book" className="mt-8 inline-flex rounded-full bg-saffron px-6 py-4 text-sm font-bold">Check Availability</a>
+          <article className="glass-panel rounded-5xl p-8 sm:p-10 flex flex-col justify-between">
+            <div>
+              <h2 className="font-display text-4xl font-semibold">Before a booking</h2>
+              <p className="mt-5 leading-7 text-ink/80">Pet details, risk factors, caregiver permissions, schedule and local capacity are checked before a match is confirmed. Exact availability and price are shown in the booking context.</p>
+              {slug === "boarding-beta" && (
+                <p className="mt-3 text-xs text-ink/70">
+                  Controlled pilot: Host premises are pre-assessed for balcony safety, double doors, and pet compatibility.
+                </p>
+              )}
+            </div>
+            <Link href={bookingHref} className="mt-8 inline-flex w-fit rounded-full bg-saffron px-6 py-4 text-sm font-bold text-ink shadow-md transition hover:bg-saffron/90">
+              {ctaLabel}
+            </Link>
           </article>
         </div>
 

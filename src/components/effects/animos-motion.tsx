@@ -91,6 +91,7 @@ interface MagneticButtonProps {
 
 export function MagneticButton({ children, className = "", strength = 0.45 }: MagneticButtonProps) {
   const buttonRef = useRef<HTMLDivElement>(null);
+  const rectRef = useRef<DOMRect | null>(null);
   const shouldReduceMotion = useReducedMotion();
 
   const x = useMotionValue(0);
@@ -100,9 +101,18 @@ export function MagneticButton({ children, className = "", strength = 0.45 }: Ma
   const springX = useSpring(x, springConfig);
   const springY = useSpring(y, springConfig);
 
+  const handleMouseEnter = () => {
+    if (buttonRef.current) {
+      rectRef.current = buttonRef.current.getBoundingClientRect();
+    }
+  };
+
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
     if (shouldReduceMotion || !buttonRef.current) return;
-    const { left, top, width, height } = buttonRef.current.getBoundingClientRect();
+    if (!rectRef.current) {
+      rectRef.current = buttonRef.current.getBoundingClientRect();
+    }
+    const { left, top, width, height } = rectRef.current;
     const centerX = left + width / 2;
     const centerY = top + height / 2;
     const distanceX = (e.clientX - centerX) * strength;
@@ -113,6 +123,7 @@ export function MagneticButton({ children, className = "", strength = 0.45 }: Ma
   };
 
   const handleMouseLeave = () => {
+    rectRef.current = null;
     x.set(0);
     y.set(0);
   };
@@ -120,6 +131,7 @@ export function MagneticButton({ children, className = "", strength = 0.45 }: Ma
   return (
     <motion.div
       ref={buttonRef}
+      onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{
@@ -147,8 +159,9 @@ interface AnimosCardProps {
 
 export function AnimosCard({ children, className = "", glare = true }: AnimosCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
+  const cardRectRef = useRef<DOMRect | null>(null);
+  const glareRef = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
-  const [glarePos, setGlarePos] = useState({ x: 50, y: 50, opacity: 0 });
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -160,9 +173,18 @@ export function AnimosCard({ children, className = "", glare = true }: AnimosCar
   const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["16deg", "-16deg"]);
   const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-16deg", "16deg"]);
 
+  const handleMouseEnter = () => {
+    if (cardRef.current) {
+      cardRectRef.current = cardRef.current.getBoundingClientRect();
+    }
+  };
+
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
     if (shouldReduceMotion || !cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
+    if (!cardRectRef.current) {
+      cardRectRef.current = cardRef.current.getBoundingClientRect();
+    }
+    const rect = cardRectRef.current;
     const width = rect.width;
     const height = rect.height;
 
@@ -175,26 +197,25 @@ export function AnimosCard({ children, className = "", glare = true }: AnimosCar
     x.set(xPct);
     y.set(yPct);
 
-    if (glare) {
-      setGlarePos({
-        x: (mouseX / width) * 100,
-        y: (mouseY / height) * 100,
-        opacity: 0.45,
-      });
+    if (glare && glareRef.current) {
+      glareRef.current.style.opacity = "0.45";
+      glareRef.current.style.background = `radial-gradient(circle 320px at ${(mouseX / width) * 100}% ${(mouseY / height) * 100}%, rgba(255,255,255,0.45), transparent 70%)`;
     }
   };
 
   const handleMouseLeave = () => {
+    cardRectRef.current = null;
     x.set(0);
     y.set(0);
-    if (glare) {
-      setGlarePos((prev) => ({ ...prev, opacity: 0 }));
+    if (glare && glareRef.current) {
+      glareRef.current.style.opacity = "0";
     }
   };
 
   return (
     <motion.div
       ref={cardRef}
+      onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{
@@ -211,11 +232,9 @@ export function AnimosCard({ children, className = "", glare = true }: AnimosCar
 
       {glare && (
         <div
-          className="pointer-events-none absolute inset-0 transition-opacity duration-300 rounded-4xl"
-          style={{
-            opacity: glarePos.opacity,
-            background: `radial-gradient(circle 320px at ${glarePos.x}% ${glarePos.y}%, rgba(255,255,255,0.45), transparent 70%)`,
-          }}
+          ref={glareRef}
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 rounded-4xl will-change-transform"
         />
       )}
     </motion.div>

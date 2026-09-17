@@ -25,6 +25,7 @@ import {
   ShieldAlert,
   ShieldCheck,
   Compass,
+  PawPrint,
   Stethoscope,
   Turtle
 } from "lucide-react";
@@ -33,7 +34,7 @@ import { ScrollReveal } from "@/components/3d/scroll-reveal";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
 
-type PetChoice = "DOG" | "CAT" | "RABBIT" | "BIRD" | "FISH" | "TURTLE" | "RAT";
+type PetChoice = "DOG" | "CAT" | "RABBIT" | "BIRD" | "FISH" | "TURTLE" | "RAT" | "OTHER";
 type CareNeed = "movement" | "routine" | "grooming" | "health";
 
 const petChoices = [
@@ -43,7 +44,8 @@ const petChoices = [
   { value: "BIRD", label: "Bird", icon: Bird },
   { value: "FISH", label: "Fish", icon: Fish },
   { value: "TURTLE", label: "Turtle", icon: Turtle },
-  { value: "RAT", label: "Rat / Mouse", icon: Rat }
+  { value: "RAT", label: "Rat / Mouse", icon: Rat },
+  { value: "OTHER", label: "Other", icon: PawPrint }
 ] as const;
 
 const careNeeds = [

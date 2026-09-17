@@ -31,19 +31,24 @@ export function CookieConsentBanner({ analyticsId }: { analyticsId?: string }) {
         expires={150}
         onAccept={() => {
           setHasConsented(true);
-          // Trigger analytics if accepted
-          if (typeof window !== "undefined" && (window as any).gtag) {
-            (window as any).gtag("consent", "update", {
-              analytics_storage: "granted",
-            });
+          if (typeof window !== "undefined") {
+            localStorage.setItem("petsaathi_consent", "granted");
+            if ((window as any).gtag) {
+              (window as any).gtag("consent", "update", {
+                analytics_storage: "granted",
+              });
+            }
           }
         }}
         onDecline={() => {
           setHasConsented(false);
-          if (typeof window !== "undefined" && (window as any).gtag) {
-            (window as any).gtag("consent", "update", {
-              analytics_storage: "denied",
-            });
+          if (typeof window !== "undefined") {
+            localStorage.setItem("petsaathi_consent", "denied");
+            if ((window as any).gtag) {
+              (window as any).gtag("consent", "update", {
+                analytics_storage: "denied",
+              });
+            }
           }
         }}
       >

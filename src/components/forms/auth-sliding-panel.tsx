@@ -272,7 +272,7 @@ export function AuthSlidingPanel() {
     {hasGoogleAuth && <Script src="https://accounts.google.com/gsi/client" onReady={renderGoogleButtons} />}
     <div className="relative flex min-h-[720px] w-full max-w-[900px] overflow-hidden rounded-3xl bg-white shadow-2xl shadow-black/30 sm:min-h-[600px]">
       <div
-        className={`absolute left-0 top-[42%] z-10 flex h-[58%] w-full flex-col justify-center px-8 transition-all duration-700 ease-in-out sm:top-0 sm:h-full sm:w-1/2 sm:px-14 ${
+        className={`absolute left-0 top-[40%] z-10 flex h-[60%] w-full flex-col justify-center px-6 pt-4 transition-all duration-700 ease-in-out sm:top-0 sm:h-full sm:w-1/2 sm:px-14 sm:pt-0 ${
           isSignUp ? "translate-x-0 opacity-100 pointer-events-auto" : "translate-x-0 opacity-0 invisible pointer-events-none sm:translate-x-[100%]"
         }`}
       >
@@ -339,7 +339,7 @@ export function AuthSlidingPanel() {
       </div>
 
       <div
-        className={`absolute right-0 top-[42%] z-10 flex h-[58%] w-full flex-col justify-center px-8 transition-all duration-700 ease-in-out sm:top-0 sm:h-full sm:w-1/2 sm:px-14 ${
+        className={`absolute right-0 top-[40%] z-10 flex h-[60%] w-full flex-col justify-center px-6 pt-4 transition-all duration-700 ease-in-out sm:top-0 sm:h-full sm:w-1/2 sm:px-14 sm:pt-0 ${
           isSignUp ? "translate-x-0 opacity-0 invisible pointer-events-none sm:-translate-x-[100%]" : "translate-x-0 opacity-100 pointer-events-auto"
         }`}
       >
@@ -427,13 +427,13 @@ export function AuthSlidingPanel() {
       </div>
 
       <div
-        className={`absolute left-0 top-0 z-50 flex h-[42%] w-full flex-col items-center justify-center rounded-b-[28%] bg-gradient-to-br from-[#5B3D7A] to-[#301F30] px-6 text-center text-white shadow-[0_0_40px_rgba(91,61,122,0.5)] transition-all duration-700 ease-in-out sm:h-full sm:w-1/2 sm:px-10 ${
+        className={`absolute left-0 top-0 z-50 flex h-[40%] w-full flex-col items-center justify-center rounded-b-3xl bg-gradient-to-br from-[#5B3D7A] to-[#301F30] px-6 text-center text-white shadow-[0_0_40px_rgba(91,61,122,0.5)] transition-all duration-700 ease-in-out sm:h-full sm:w-1/2 sm:px-10 ${
           isSignUp
             ? "sm:translate-x-full sm:rounded-[30%_0_0_30%]"
             : "sm:translate-x-0 sm:rounded-[0_30%_30%_0]"
         }`}
       >
-        <div className="pointer-events-none h-28 w-28 drop-shadow-2xl sm:mb-4 sm:h-64 sm:w-64">
+        <div className="pointer-events-none h-24 w-24 drop-shadow-2xl sm:mb-4 sm:h-64 sm:w-64">
           <LottiePetAnimation />
         </div>
         <div

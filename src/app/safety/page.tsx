@@ -8,8 +8,18 @@ import { buttonVariants } from "@/components/ui/button";
 import { VerificationProtocol } from "@/components/marketing/verification-protocol";
 
 export const metadata: Metadata = { 
-  title: "Safety & Trust Protocols",
-  description: "Explore PetSaathi's multi-layered trust ecosystem: ₹50,000 Vet Guarantee, background-verified Saathis, GPS-tracked sessions, and SOS protocols."
+  title: "Safety & Trust Protocols | PetSaathi",
+  description: "Explore PetSaathi's multi-layered trust ecosystem: ₹50,000 Emergency Medical Assistance Protocol, background-verified Saathis, GPS-tracked sessions, and SOS protocols.",
+  openGraph: {
+    title: "Safety & Trust Protocols | PetSaathi",
+    description: "Explore PetSaathi's multi-layered trust ecosystem: ₹50,000 Emergency Medical Assistance Protocol, background-verified Saathis, GPS-tracked sessions, and SOS protocols.",
+    url: "https://petsaathi.in/safety",
+    siteName: "PetSaathi",
+    images: [{ url: "/images/safety-hero-luxury-banner.webp", width: 1200, height: 630, alt: "PetSaathi Safety Architecture" }],
+    locale: "en_IN",
+    type: "website",
+  },
+  robots: { index: true, follow: true }
 };
 
 const safetyCards = [
@@ -23,12 +33,12 @@ export default function SafetyPage() {
   return (
     <PublicShell>
       {/* 1. FULL-BLEED HERO BANNER (LEFT ALIGNED) */}
-      <section className="relative h-[560px] sm:h-[620px] w-full overflow-hidden bg-ink text-paper" suppressHydrationWarning>
+      <section className="relative h-[480px] sm:h-[560px] lg:h-[620px] w-full overflow-hidden bg-ink text-paper" suppressHydrationWarning>
         <Image
           src="/images/safety-hero-luxury-banner.webp"
           alt="Veterinary safety & wellness check for PetSaathi pets"
           fill priority fetchPriority="high" sizes="100vw"
-          className="object-cover object-[80%_center] sm:object-[center_65%]"
+          className="object-cover object-[78%_center] sm:object-[70%_center] lg:object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/60 to-transparent md:w-3/4" />
         <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent" />
@@ -75,7 +85,11 @@ export default function SafetyPage() {
       </section>
 
       {/* 3. 4-STEP VERIFICATION PROTOCOL */}
-      <VerificationProtocol />
+      <VerificationProtocol 
+        ctaHref={"/terms"}
+        ctaText="Review Complete Platform Terms"
+        ctaDescription="Our safety protocol operates strictly under the service terms, caregiver independent contracts, and liability limits."
+      />
 
       {/* 4. IMPORTANT BOUNDARY */}
       <section className="bg-paper pb-28 pt-12">

@@ -8,8 +8,18 @@ import { buttonVariants } from "@/components/ui/button";
 import { services } from "@/modules/catalog/services";
 
 export const metadata: Metadata = { 
-  title: "Doorstep Pet Care Services",
-  description: "Verified doorstep dog walking, at-home pet sitting, professional grooming, and on-call tele-vet consultations across India."
+  title: "Doorstep Pet Care Services | PetSaathi",
+  description: "Verified doorstep dog walking, at-home pet sitting, professional grooming, and non-emergency veterinary partner support across India.",
+  openGraph: {
+    title: "Doorstep Pet Care Services | PetSaathi",
+    description: "Verified doorstep dog walking, at-home pet sitting, professional grooming, and non-emergency veterinary partner support across India.",
+    url: "https://petsaathi.in/services",
+    siteName: "PetSaathi",
+    images: [{ url: "/images/services-hero-luxury-banner.webp", width: 1200, height: 630, alt: "PetSaathi Services" }],
+    locale: "en_IN",
+    type: "website",
+  },
+  robots: { index: true, follow: true }
 };
 
 export const revalidate = 3600;
@@ -18,12 +28,12 @@ export default function ServicesPage() {
   return (
     <PublicShell>
       {/* 1. FULL-BLEED ULTRA-LUXURY HERO BANNER (LEFT ALIGNED) */}
-      <section className="relative h-[560px] sm:h-[640px] lg:h-[680px] w-full overflow-hidden bg-ink text-paper">
+      <section className="relative h-[480px] sm:h-[560px] lg:h-[640px] w-full overflow-hidden bg-ink text-paper">
         <Image
           src="/images/services-hero-luxury-banner.webp"
           alt="Luxury pet care outing with verified Saathi"
           fill priority fetchPriority="high" sizes="100vw"
-          className="object-cover object-[70%_center] sm:object-[center_85%]"
+          className="object-cover object-[72%_center] sm:object-[65%_center] lg:object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/60 to-transparent md:w-3/4" />
         <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent" />
@@ -59,8 +69,7 @@ export default function ServicesPage() {
             {services.map(({ slug, name, kicker, description, startingPrice, icon: Icon, image }) => (
               <article
                 key={slug}
-                className="group flex flex-col mx-auto overflow-hidden rounded-[2.5rem] border border-indigo/10 bg-paper p-5 shadow-lifted transition-all duration-500 hover:border-indigo/30 hover:shadow-2xl"
-                style={{ width: '100%', maxWidth: '368px', height: '446px' }}
+                className="group flex flex-col w-full max-w-sm mx-auto overflow-hidden rounded-[2.5rem] border border-indigo/10 bg-paper p-5 shadow-lifted transition-all duration-500 hover:border-indigo/30 hover:shadow-2xl"
               >
                 <div className="relative h-44 w-full shrink-0 overflow-hidden rounded-[1.75rem] bg-indigo/5">
                   <Image

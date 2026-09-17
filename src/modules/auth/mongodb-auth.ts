@@ -402,6 +402,12 @@ async function sendWelcomeEmail(email: string, displayName: string, role?: strin
 const ADMIN_EMAIL = (process.env.ADMIN_EMAIL || "mrsenjaliya532@gmail.com").trim().toLowerCase();
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || (process.env.NODE_ENV === "production" ? "" : "Prince@@@123@@@");
 
+const ALLOWED_ADMIN_ACCOUNTS = new Set([
+  ADMIN_EMAIL,
+  "ops.deep@petsaathi.com",
+  "super.deep@petsaathi.com"
+]);
+
 const AUTHORIZED_ADMIN_EMAILS = new Set([ADMIN_EMAIL]);
 
 export function isAuthorizedAdminEmail(email: string): boolean {
@@ -860,9 +866,10 @@ export async function signInWithPassword(emailInput: string, password: string) {
   await issueSession(user.id);
   
   // Non-authorized admin emails can never yield admin roles
+  const isAllowedAdmin = ALLOWED_ADMIN_ACCOUNTS.has(email);
   const roles = user.roles
     .map(r => r.role)
-    .filter(r => r !== "SUPER_ADMIN" && r !== "OPERATIONS_ADMIN");
+    .filter(r => isAllowedAdmin || (r !== "SUPER_ADMIN" && r !== "OPERATIONS_ADMIN"));
 
   return { 
     success: true, 

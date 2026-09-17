@@ -8,9 +8,23 @@ import { buttonVariants } from "@/components/ui/button";
 import { isDatabaseConfigured, prisma } from "@/lib/db";
 import { logger } from "@/lib/logger";
 
+import { getCanonicalBaseUrl } from "@/lib/app-url";
+
 export const metadata: Metadata = {
-  title: "Pet Care Journal & Expert Guides",
-  description: "Veterinarian-reviewed guides, training advice, and canine wellness handbooks for pet parents in India."
+  title: "Pet Care Journal & Expert Guides | PetSaathi",
+  description: "Veterinarian-reviewed guides, training advice, and canine wellness handbooks for pet parents in India.",
+  alternates: {
+    canonical: `${getCanonicalBaseUrl()}/journal`,
+  },
+  openGraph: {
+    title: "Pet Care Journal & Expert Guides | PetSaathi",
+    description: "Veterinarian-reviewed guides, training advice, and canine wellness handbooks for pet parents in India.",
+    url: `${getCanonicalBaseUrl()}/journal`,
+    siteName: "PetSaathi",
+    images: [{ url: "/images/hero-care-handover-highres.webp", width: 1200, height: 630, alt: "PetSaathi Journal" }],
+    locale: "en_IN",
+    type: "website",
+  }
 };
 export const revalidate = 3600;
 
@@ -52,12 +66,12 @@ export default async function JournalPage() {
   return (
     <PublicShell>
       {/* 1. FULL-BLEED HERO BANNER (LEFT ALIGNED) */}
-      <section className="relative h-[560px] sm:h-[620px] w-full overflow-hidden bg-ink text-paper">
+      <section className="relative h-[480px] sm:h-[560px] lg:h-[620px] w-full overflow-hidden bg-ink text-paper">
         <Image
           src="/images/journal-hero-luxury-banner.webp"
           alt="PetSaathi care journal study with pet parent and Golden Retriever"
           fill priority fetchPriority="high" sizes="(max-width: 640px) 100vw, (max-width: 1280px) 90vw, 1400px"
-          className="object-cover object-[75%_center] sm:object-[center_35%]"
+          className="object-cover object-[72%_center] sm:object-[60%_center] lg:object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/60 to-transparent md:w-3/4" />
         <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent" />
@@ -110,10 +124,17 @@ export default async function JournalPage() {
                     <div className="mt-auto pt-6">
                       <div className="flex items-center gap-2 rounded-2xl bg-leaf/10 p-3 text-xs font-bold text-leaf">
                         <ShieldCheck className="h-4 w-4 shrink-0" />
-                        Reviewed by {entry.expertReview.reviewerName}
+                        Veterinary Editorial Review
                       </div>
                     </div>
-                  ) : null}
+                  ) : (
+                    <div className="mt-auto pt-6">
+                      <div className="flex items-center gap-2 rounded-2xl bg-indigo/5 p-3 text-xs font-semibold text-indigo">
+                        <ShieldCheck className="h-4 w-4 shrink-0" />
+                        PetSaathi Editorial Review
+                      </div>
+                    </div>
+                  )}
                 </Link>
               ))
             ) : (

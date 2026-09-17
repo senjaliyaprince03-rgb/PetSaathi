@@ -44,8 +44,13 @@ export function TestimonialsSection() {
             <h2 className="section-title mt-4 text-4xl sm:text-5xl font-display font-semibold text-ink">
               Stories from our community
             </h2>
+            <div className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-indigo/15 bg-indigo/5 px-3.5 py-1 text-[0.68rem] font-semibold text-indigo">
+              <span>Sample Community Experiences</span>
+              <span>•</span>
+              <span>Live verified reviews activating post-pilot</span>
+            </div>
             <p className="mt-4 text-ink/80 text-lg">
-              Hear what pet parents across India have to say about their PetSaathi experience.
+              Hear what pet parents across India experience when relying on PetSaathi caregivers.
             </p>
           </div>
         </ScrollReveal>

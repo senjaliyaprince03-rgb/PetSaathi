@@ -53,7 +53,7 @@ const questions = [
   ["Are PetSaathi Partners background verified?", "Yes. Every PetSaathi Partner goes through ID verification, reference checks, and a pet-handling assessment before going live on the platform. We also enforce a no-phone policy during walks."],
   ["What cities is PetSaathi available in?", "PetSaathi is currently live in select residential societies and neighbourhoods across Ahmedabad, Bangalore, and Pune. We are expanding to Mumbai and Delhi NCR next. Explore our Cities page or check your locality above."],
   ["How much does dog walking cost?", "Pricing varies by city and session length. A standard 30-minute walk starts at ₹199. You can see exact pricing after entering your location in the app."],
-  ["What is PetConnect?", "PetConnect is a first-of-its-kind service in India — it lets pet lovers who don't own pets spend quality time with your dog, supervised and verified. It's a win-win: your pet gets extra love and the partner gets joy."],
+  ["How does PetSaathi verify caregivers?", "Every applicant undergoes multi-stage verification including government photo ID authentication, residential address validation, practical handling assessments, and reference checks. Saathis are only approved for specific pet-risk tiers and service categories."],
   ["Is my pet insured during a session?", "All PetSaathi sessions are covered under our partner protection policy and emergency veterinary assistance protocol. Any incident during an active session is handled by our safety team immediately."],
   ["How do I become a PetSaathi Partner?", "Click 'Become a Partner', fill the application form, complete the verification process, and attend a brief onboarding session. You can start earning from flexible hours within a week."],
   ["Can I track my dog in real time during a walk?", "Yes. Outdoor sessions feature browser-based location check-ins, milestone photo updates, and a post-walk report card. In web browsers, GPS updates require the caregiver's device screen to remain active; our upcoming native apps will support continuous background telemetry."]
@@ -69,8 +69,8 @@ export function MarketingExperience({
   return (
     <main id="main-content" className="min-h-screen overflow-hidden bg-cream text-ink" data-motion-skip>
       
-      <header className="absolute inset-x-0 top-4 z-50 px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto flex min-h-[4.5rem] max-w-container-max items-center justify-between rounded-full border border-white/70 bg-white/90 px-4 shadow-[0_8px_30px_rgb(0,0,0,0.08)] backdrop-blur-2xl sm:px-6">
+      <header className="absolute inset-x-0 top-3 sm:top-4 z-50 px-3 sm:px-6 lg:px-8">
+        <div className="mx-auto flex min-h-[4rem] sm:min-h-[4.5rem] w-full max-w-container-max items-center justify-between rounded-full border border-white/70 bg-white/90 px-3.5 sm:px-6 shadow-[0_8px_30px_rgb(0,0,0,0.08)] backdrop-blur-2xl">
           <PetSaathiLogo />
           <nav aria-label="Primary navigation" className="hidden items-center gap-4 xl:gap-5 lg:flex">
             <Link href={"/services" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink">Services</Link>
@@ -88,53 +88,61 @@ export function MarketingExperience({
         </div>
       </header>
 
-      {/* Sticky Mobile Availability CTA */}
-      <div className="fixed bottom-0 left-0 right-0 z-[40] border-t border-ink/10 bg-cream/90 backdrop-blur-md p-3 sm:hidden" data-motion-skip>
-        <Link href={"/book" as Route} className={cn(buttonVariants({ variant: "primary", size: "lg" }), "w-full rounded-2xl font-bold bg-[#C84B31] hover:bg-[#B33E26] text-white shadow-lg")}>
-          Check Availability
-        </Link>
-      </div>
-
-      <section data-testid="marketing-hero" className="relative flex flex-col justify-center min-h-screen pt-28 pb-12 lg:pt-28 lg:pb-28 xl:pb-32 bg-[#1e1322] text-white overflow-hidden">
+      <section data-testid="marketing-hero" className="relative flex flex-col justify-center min-h-[90vh] lg:min-h-screen pt-24 pb-12 sm:pt-28 sm:pb-16 lg:pt-28 lg:pb-28 xl:pb-32 bg-[#1e1322] text-white overflow-hidden">
         <div className="absolute inset-0">
           <Image
             src="/images/hero-dog-woman.webp"
             alt="PetSaathi Hero Background"
             fill priority fetchPriority="high" sizes="100vw"
-            className="object-cover object-[center_20%] lg:object-[22%_5%] xl:object-[18%_5%]"
+            className="object-cover object-[58%_25%] md:object-[56%_20%] lg:object-[52%_center] xl:object-[50%_center] opacity-90 sm:opacity-95 lg:opacity-100"
             aria-hidden="true"
             data-testid="marketing-hero-background"
           />
-          {/* Subtle soft gradient scrim on left only for text readability while leaving the middle (dog & woman) and right completely bright, clear, and visible */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/20 to-transparent lg:w-[42%]" />
+          {/* Subtle soft gradient scrim: on desktop, keeps text readable on left while letting center dog & pet parent shine; on mobile provides soft readable contrast */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#1e1322]/85 via-[#1e1322]/50 to-[#1e1322]/90 lg:bg-gradient-to-r lg:from-[#1e1322]/90 lg:via-[#1e1322]/30 lg:to-transparent lg:w-[48%]" />
         </div>
         
         <div className="container-shell relative grid items-center gap-8 xl:gap-12 lg:grid-cols-[1fr_560px] xl:grid-cols-[1fr_600px] 2xl:grid-cols-[1.05fr_640px] lg:min-h-[60vh]">
           <div className="relative z-10 max-w-xl self-center">
             <ScrollReveal direction="up">
-              <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2.5 text-xs font-bold text-white shadow-lg backdrop-blur-md">
+              <div className="mb-6 sm:mb-8 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 sm:px-5 sm:py-2.5 text-xs font-bold text-white shadow-lg backdrop-blur-md">
                 <span className="status-dot bg-leaf" />Verified Local Caregivers, Managed With Love
               </div>
             </ScrollReveal>
             <ScrollReveal direction="up" delay={0.08}>
               <h1 className="sr-only">Care That Feels Like Family.</h1>
-              {/* filter: drop-shadow follows the exact letter shapes — no box, just a soft white glow behind each character */}
               <div
-                className="mt-2 relative inline-block"
+                className="mt-2 relative block"
                 aria-hidden="true"
-                style={{
-                  filter:
-                    "drop-shadow(0 0 6px rgba(255,255,255,0.60)) drop-shadow(0 0 16px rgba(255,255,255,0.38)) drop-shadow(0 0 32px rgba(255,255,255,0.20))",
-                }}
               >
-                <TextReveal text="Care That Feels Like Family." className="max-w-[10ch] font-display text-[3.7rem] font-semibold leading-[0.91] tracking-[-0.065em] text-[#301F30] sm:text-[5.4rem] xl:text-[6.6rem]" delay={0.08} />
+                <TextReveal text="Care That Feels Like Family." className="font-display text-[2.75rem] font-semibold leading-[0.98] tracking-[-0.05em] text-white sm:text-[4.75rem] xl:text-[5.75rem] drop-shadow-[0_4px_24px_rgba(0,0,0,0.5)]" delay={0.08} />
               </div>
             </ScrollReveal>
             <ScrollReveal direction="up" delay={0.16}>
-              <p className="mt-7 max-w-xl text-base font-semibold leading-8 text-white drop-shadow-md sm:text-lg">
+              <p className="mt-5 sm:mt-7 max-w-xl text-sm sm:text-base font-medium leading-relaxed text-white/95 drop-shadow break-words">
                 Plan local care with clear service context for walks, home visits, grooming and non-emergency veterinary support. Availability and permissions are checked before confirmation.
               </p>
             </ScrollReveal>
+
+            {/* Dedicated Mobile & Tablet Hero Image Showcase: Shows the golden retriever & caregiver full and sharp */}
+            <div className="relative my-6 w-full aspect-[16/10] sm:aspect-[16/9] overflow-hidden rounded-3xl border border-white/20 shadow-2xl xl:hidden">
+              <Image
+                src="/images/hero-dog-woman.webp"
+                alt="PetSaathi caregiver and smiling golden retriever in a sunlit home"
+                fill
+                sizes="(max-width: 768px) 100vw, 80vw"
+                className="object-cover object-[58%_35%]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between gap-2 rounded-2xl bg-black/50 backdrop-blur-md px-3.5 py-2 border border-white/20 text-white">
+                <div className="flex items-center gap-2">
+                  <span className="flex h-2.5 w-2.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="text-xs font-bold tracking-tight">Verified In-Home &amp; Walk Care</span>
+                </div>
+                <span className="text-[11px] font-bold text-amber-300">★ 4.95 Rating</span>
+              </div>
+            </div>
+
             <ScrollReveal direction="up" delay={0.24}>
               <Float3D className="mt-12 flex flex-col items-start gap-6 sm:flex-row sm:items-center">
                 {/* Left side: Overlapping circles */}
@@ -200,7 +208,7 @@ export function MarketingExperience({
           <ScrollReveal direction="right">
             <div className="flex h-full flex-col justify-center">
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-coral font-outfit">The PetSaathi Standard</p>
-              <h2 className="mt-5 font-display text-5xl font-semibold leading-[1.05] tracking-[-0.04em] text-ink sm:text-[4rem]">Every detail, meticulously managed.</h2>
+              <h2 className="mt-5 font-display text-3xl font-semibold leading-[1.05] tracking-[-0.04em] text-ink sm:text-5xl lg:text-[4rem]">Every detail, meticulously managed.</h2>
               <p className="mt-6 max-w-md text-base leading-8 text-ink/80">We go beyond simple connections. From health support to specialized grooming, discover our ecosystem designed for pet longevity and owner peace of mind.</p>
               
               <ul className="mt-10 flex flex-col gap-6">
@@ -332,9 +340,9 @@ export function MarketingExperience({
       <section className="relative overflow-hidden bg-[#2f2032] py-12 text-paper sm:py-16">
         <div className="absolute inset-0 luxury-grid opacity-[0.08]" />
         <div className="container-shell relative">
-          <ScrollReveal direction="up"><div className="max-w-3xl"><p className="eyebrow !text-saffron">A care protocol, not a loose transaction</p><h2 className="mt-5 font-display text-5xl font-semibold leading-[0.98] tracking-[-0.055em] sm:text-7xl">Four clear moments. One accountable thread.</h2></div></ScrollReveal>
+          <ScrollReveal direction="up"><div className="max-w-3xl"><p className="eyebrow !text-saffron">A care protocol, not a loose transaction</p><h2 className="mt-5 font-display text-3xl font-semibold leading-[0.98] tracking-[-0.055em] sm:text-5xl lg:text-7xl">Four clear moments. One accountable thread.</h2></div></ScrollReveal>
 
-          <ScrollStaggerContainer className="mt-14 grid gap-4 lg:grid-cols-4">
+          <ScrollStaggerContainer className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {careSteps.map(({ number, title, copy, icon: Icon }) => (
               <ScrollStaggerItem key={number}>
                   <article className="h-full rounded-4xl border border-paper/10 bg-[#3f2a44] p-6 transition duration-300 hover:border-saffron/30">
@@ -353,7 +361,7 @@ export function MarketingExperience({
 
       <section className="py-12 sm:py-16">
         <div className="container-shell grid gap-12 lg:grid-cols-[1fr_0.92fr]">
-          <ScrollReveal direction="left" className="h-full"><div className="relative h-full min-h-[34rem] overflow-hidden rounded-[3.5rem] border border-indigo/10 bg-gradient-to-br from-[#f3eafa] to-[#fff0e8] shadow-soft"><Image src="/images/privacy-stage-illustration.webp" alt="A pet parent reviewing a protected PetSaathi care record beside her resting dog" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" /><div className="absolute inset-0 bg-gradient-to-t from-ink/30 via-transparent to-transparent" /><div className="absolute bottom-6 left-6 right-6 rounded-3xl border border-paper/30 bg-paper p-5"><p className="text-xs font-bold uppercase tracking-[0.16em] text-indigo/80">Privacy by stage</p><p className="mt-2 font-display text-2xl font-semibold">The right information appears only when the relationship requires it.</p></div></div></ScrollReveal>
+          <ScrollReveal direction="left" className="h-full"><div className="relative h-full min-h-[24rem] sm:min-h-[34rem] overflow-hidden rounded-3xl sm:rounded-[3.5rem] border border-indigo/10 bg-gradient-to-br from-[#f3eafa] to-[#fff0e8] shadow-soft"><Image src="/images/privacy-stage-illustration.webp" alt="A pet parent reviewing a protected PetSaathi care record beside her resting dog" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" /><div className="absolute inset-0 bg-gradient-to-t from-ink/30 via-transparent to-transparent" /><div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 rounded-2xl sm:rounded-3xl border border-paper/30 bg-paper p-4 sm:p-5"><p className="text-xs font-bold uppercase tracking-[0.16em] text-indigo/80">Privacy by stage</p><p className="mt-2 font-display text-xl sm:text-2xl font-semibold">The right information appears only when the relationship requires it.</p></div></div></ScrollReveal>
           <ScrollReveal direction="right"><div><p className="eyebrow">Trust without theatre</p><h2 className="section-title mt-5">No single badge can promise perfect care.</h2><p className="mt-6 text-base leading-8 text-ink/80">PetSaathi combines separate checks, service permissions, careful matching, structured proof and a formal exception path. Each layer has a specific job.</p><div className="mt-8 grid gap-3">{[[ShieldCheck, "Service-specific permissions", "A Saathi receives only the work their current evidence permits."], [Clock3, "Traceable service milestones", "Key moments belong to the booking record, not an unstructured chat."], [HeartHandshake, "People for exceptions", "Sensitive concerns move through support and safety workflows with accountable closure."]].map(([Icon, title, copy]) => { const TrustIcon = Icon as typeof ShieldCheck; return <div key={String(title)} className="flex gap-4 rounded-3xl border border-indigo/10 bg-paper/80 p-5 shadow-sm"><span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-leaf/10 text-leaf"><TrustIcon className="h-5 w-5" /></span><div><h3 className="font-bold">{String(title)}</h3><p className="mt-1 text-sm leading-6 text-ink/80">{String(copy)}</p></div></div>; })}</div><Link href="/safety" className={cn(buttonVariants({ variant: "outline" }), "mt-7")}>Explore the safety model <ArrowRight className="h-4 w-4" /></Link></div></ScrollReveal>
         </div>
       </section>
@@ -363,8 +371,8 @@ export function MarketingExperience({
       <section className="pb-12 sm:pb-16">
         <div className="container-shell">
           <Scale3D>
-            <div className="luxury-grid overflow-hidden rounded-[3.5rem] border border-indigo/10 bg-gradient-to-br from-[#f3eafa] via-paper to-[#fff0e8] p-7 shadow-soft sm:p-12 lg:p-16">
-              <div className="grid gap-12 lg:grid-cols-[0.86fr_1.14fr] lg:items-start"><div><p className="eyebrow">Questions before the first request</p><h2 className="mt-5 font-display text-5xl font-semibold leading-[1] tracking-[-0.055em] sm:text-6xl">Clarity is part of care.</h2><p className="mt-5 max-w-md text-sm leading-7 text-ink/80">PetSaathi should be easy to understand before you share pet details, approve a match or pay.</p></div><div className="grid gap-3">{questions.map(([question, answer]) => <FaqAccordionItem key={question} question={question} answer={answer} />)}</div></div>
+            <div className="luxury-grid overflow-hidden rounded-3xl sm:rounded-[3.5rem] border border-indigo/10 bg-gradient-to-br from-[#f3eafa] via-paper to-[#fff0e8] p-5 shadow-soft sm:p-12 lg:p-16">
+              <div className="grid gap-12 lg:grid-cols-[0.86fr_1.14fr] lg:items-start"><div><p className="eyebrow">Questions before the first request</p><h2 className="mt-5 font-display text-3xl font-semibold leading-[1] tracking-[-0.055em] sm:text-5xl lg:text-6xl">Clarity is part of care.</h2><p className="mt-5 max-w-md text-sm leading-7 text-ink/80">PetSaathi should be easy to understand before you share pet details, approve a match or pay.</p></div><div className="grid gap-3">{questions.map(([question, answer]) => <FaqAccordionItem key={question} question={question} answer={answer} />)}</div></div>
             </div>
           </Scale3D>
         </div>
@@ -372,13 +380,13 @@ export function MarketingExperience({
 
       <section className="pb-12">
         <div className="container-shell">
-          <div className="relative overflow-hidden rounded-[3.5rem] bg-coral p-8 text-paper shadow-soft sm:p-14 lg:p-16">
+          <div className="relative overflow-hidden rounded-3xl sm:rounded-[3.5rem] bg-coral p-6 text-paper shadow-soft sm:p-14 lg:p-16">
             <RotateOnScroll className="absolute -right-20 -top-20 h-80 w-80">
               <div className="h-full w-full rounded-full border-[54px] border-paper/10" />
             </RotateOnScroll>
             <ScrollReveal direction="up" className="relative max-w-3xl">
               <p className="text-[0.65rem] font-bold uppercase tracking-[0.22em] text-paper/80">Ready when their day needs you</p>
-              <h2 className="mt-5 font-display text-5xl font-semibold leading-[0.98] tracking-[-0.055em] sm:text-7xl">Plan thoughtful care in one calm flow.</h2>
+              <h2 className="mt-5 font-display text-3xl font-semibold leading-[0.98] tracking-[-0.055em] sm:text-5xl lg:text-7xl">Plan thoughtful care in one calm flow.</h2>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
                 <MagneticButton strength={0.3}>
                   <Link href="/book" className={cn(buttonVariants({ variant: "primary", size: "lg" }), "bg-paper text-ink hover:bg-ink hover:text-paper font-bold")}>Find Care &amp; Book <ArrowRight className="h-5 w-5" /></Link>

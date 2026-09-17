@@ -13,7 +13,7 @@ export function PublicShell({ children }: { children: ReactNode }) {
         <div className="container-shell">
           <div className="glass-panel flex min-h-[4.5rem] items-center justify-between rounded-full border border-paper/40 bg-paper/85 px-4 py-2 shadow-lifted backdrop-blur-md sm:px-5">
             <PetSaathiLogo />
-            <nav aria-label="Primary navigation" className="hidden items-center gap-6 md:flex">
+            <nav aria-label="Primary navigation" className="hidden items-center gap-6 lg:flex">
               <Link href="/services" className="text-sm font-semibold text-ink/80 transition hover:text-indigo">Services</Link>
               <Link href={"/caregivers" as Route} className="text-sm font-semibold text-ink/80 transition hover:text-indigo">Saathis</Link>
               <Link href="/safety" className="text-sm font-semibold text-ink/80 transition hover:text-indigo">Safety</Link>

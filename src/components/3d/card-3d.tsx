@@ -12,6 +12,8 @@ interface Card3DProps {
 export function Card3D({ children, className = "" }: Card3DProps) {
   const ref = useRef<HTMLDivElement>(null);
 
+  const rectRef = useRef<DOMRect | null>(null);
+
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
@@ -21,11 +23,18 @@ export function Card3D({ children, className = "" }: Card3DProps) {
   const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["17.5deg", "-17.5deg"]);
   const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-17.5deg", "17.5deg"]);
 
+  const handleMouseEnter = () => {
+    if (ref.current) {
+      rectRef.current = ref.current.getBoundingClientRect();
+    }
+  };
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!ref.current) return;
-
-    const rect = ref.current.getBoundingClientRect();
-
+    if (!rectRef.current) {
+      rectRef.current = ref.current.getBoundingClientRect();
+    }
+    const rect = rectRef.current;
     const width = rect.width;
     const height = rect.height;
 
@@ -40,6 +49,7 @@ export function Card3D({ children, className = "" }: Card3DProps) {
   };
 
   const handleMouseLeave = () => {
+    rectRef.current = null;
     x.set(0);
     y.set(0);
   };
@@ -47,6 +57,7 @@ export function Card3D({ children, className = "" }: Card3DProps) {
   return (
     <motion.div
       ref={ref}
+      onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{

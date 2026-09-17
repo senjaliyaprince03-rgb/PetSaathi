@@ -12,6 +12,8 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SkipToContent } from "@/components/layout/skip-to-content";
 
+import { getCanonicalBaseUrl } from "@/lib/app-url";
+
 export const viewport: Viewport = {
   themeColor: "#fffdf8",
   width: "device-width",
@@ -20,7 +22,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://petsaathi.com"),
+  metadataBase: new URL(getCanonicalBaseUrl()),
   title: {
     default: "PetSaathi | Trusted Pet Care Services",
     template: "%s | PetSaathi"
@@ -32,7 +34,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://petsaathi.com",
+    url: "https://petsaathi.in",
     siteName: "PetSaathi",
     title: "PetSaathi | Trusted Pet Care Services",
     description: "Elevating the standard of trusted pet care in India. Find verified pet sitters, groomers, and vets near you.",
@@ -114,8 +116,8 @@ export default async function RootLayout({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
               "name": "PetSaathi",
-              "url": "https://petsaathi.com",
-              "logo": "https://petsaathi.com/icons/petsaathi-favicon-v2.png",
+              "url": getCanonicalBaseUrl(),
+              "logo": `${getCanonicalBaseUrl()}/icons/petsaathi-favicon-v2.png`,
               "description": "Elevating the standard of trusted pet care in India. Find verified pet sitters, groomers, and vets near you.",
               "address": {
                 "@type": "PostalAddress",
@@ -174,8 +176,12 @@ export default async function RootLayout({
         {children}
         <WhatsAppButton />
         <CookieConsentBanner analyticsId={analyticsId} />
-        <Analytics />
-        <SpeedInsights />
+        {Boolean(process.env.VERCEL || process.env.NEXT_PUBLIC_VERCEL_ENV) && (
+          <>
+            <Analytics />
+            <SpeedInsights />
+          </>
+        )}
       </body>
     </html>
   );

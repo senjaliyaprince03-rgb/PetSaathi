@@ -12,7 +12,7 @@ Sentry.init({
   enabled: true,
   environment: process.env.VERCEL_ENV ?? process.env.NODE_ENV ?? "development",
   release: process.env.VERCEL_GIT_COMMIT_SHA,
-  tracesSampleRate: 1.0,
+  tracesSampleRate: process.env.NODE_ENV === "production" ? 0.2 : 1.0,
   sendDefaultPii: false,
   beforeSend(event) {
     if (event.request) {

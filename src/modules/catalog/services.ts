@@ -79,7 +79,7 @@ export const services = [
     pricingNotes: "Base trip covers first 5 km; per-kilometer rate applies for inter-locality travel.",
     tone: "saffron",
     icon: Navigation,
-    image: "/images/service_dog_walking_v2.webp"
+    image: "/images/care-handover-courtyard.webp"
   }
 ] as const;
 

@@ -5,6 +5,11 @@ import { prisma } from "@/lib/db";
 import { getMongoDatabase } from "@/lib/mongodb";
 import { getAuthSecret } from "@/lib/auth-secret";
 
+import { scrypt as nodeScrypt, timingSafeEqual } from "node:crypto";
+import { promisify } from "node:util";
+
+const scryptAsync = promisify(nodeScrypt);
+
 export const authOptions: NextAuthOptions = {
   session: { strategy: "jwt" },
   providers: [
@@ -30,8 +35,18 @@ export const authOptions: NextAuthOptions = {
         
         if (!cred) return null;
 
-        // Verify password hash
-        const isValid = await bcrypt.compare(credentials.password, cred.passwordHash);
+        let isValid = false;
+        if (typeof cred.passwordHash === "string" && cred.passwordHash.startsWith("scrypt:")) {
+          const [algorithm, salt, expectedHex] = cred.passwordHash.split(":");
+          if (algorithm === "scrypt" && salt && expectedHex) {
+            const expected = Buffer.from(expectedHex, "hex");
+            const received = (await scryptAsync(credentials.password, salt, expected.length)) as Buffer;
+            isValid = expected.length === received.length && timingSafeEqual(expected, received);
+          }
+        } else if (typeof cred.passwordHash === "string") {
+          isValid = await bcrypt.compare(credentials.password, cred.passwordHash);
+        }
+
         if (!isValid) return null;
 
         const role = (user.roles && user.roles.length > 0) ? (user.roles[0]?.role ?? "CUSTOMER") : "CUSTOMER";

@@ -13,7 +13,10 @@ interface ServiceAssessmentProps {
 export function ServiceAssessmentFlow({ serviceCode, onComplete, onEmergency }: ServiceAssessmentProps) {
   const [data, setData] = useState<Record<string, unknown>>({});
 
+  const prevCodeRef = React.useRef<string | null>(null);
   useEffect(() => {
+    if (prevCodeRef.current === serviceCode) return;
+    prevCodeRef.current = serviceCode;
     if (serviceCode !== 'VET_SUPPORT' && serviceCode !== 'GROOMING_HOME' && serviceCode !== 'TRAINING_ASSESSMENT' && serviceCode !== 'PET_TAXI') {
       onComplete({});
     }

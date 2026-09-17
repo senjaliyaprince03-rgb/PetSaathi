@@ -17,6 +17,25 @@ export const dynamic = "force-dynamic";
 
 const STATUS_ORDER = ["LAUNCHED", "ACTIVE_LIMITED", "MANUAL_BETA", "BETA", "PREPARING", "RESEARCH"];
 
+function formatCityStatus(status: string): string {
+  switch (status) {
+    case "LAUNCHED":
+      return "Operational Care Network";
+    case "ACTIVE_LIMITED":
+      return "Pilot Operational";
+    case "MANUAL_BETA":
+    case "BETA":
+      return "Active Pilot Zone";
+    case "PREPARING":
+      return "Caregiver Onboarding";
+    case "RESEARCH":
+    case "VALIDATED":
+      return "Neighborhood Rollout";
+    default:
+      return "Care Network Active";
+  }
+}
+
 export default async function CitiesIndexPage() {
   let cities: Array<{ id: string; slug: string; name: string; state: string; status: string }> = [];
   if (isDatabaseConfigured()) {
@@ -64,7 +83,7 @@ export default async function CitiesIndexPage() {
                   <h2 className="mt-5 font-display text-2xl font-bold text-ink transition group-hover:text-indigo">{city.name}</h2>
                   <p className="mt-1 text-sm font-medium text-ink/80">{city.state}</p>
                   <span className="mt-4 w-fit rounded-full bg-indigo/10 px-3 py-1 text-[0.65rem] font-bold uppercase tracking-wider text-indigo">
-                    {city.status.replaceAll("_", " ")}
+                    {formatCityStatus(city.status)}
                   </span>
                   <span className="mt-auto inline-flex items-center gap-1 pt-6 text-sm font-semibold text-indigo">
                     Explore {city.name} <ArrowRight className="h-4 w-4" />

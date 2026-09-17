@@ -14,8 +14,18 @@ import { calculateQuote } from "@/modules/pricing/economics";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = { 
-  title: "Book Doorstep Pet Care",
-  description: "Schedule instant GPS-tracked dog walking, at-home pet sitting, grooming, or veterinary consultations in your society."
+  title: "Book Doorstep Pet Care | PetSaathi",
+  description: "Schedule instant GPS-tracked dog walking, at-home pet sitting, grooming, or veterinary support in your society.",
+  openGraph: {
+    title: "Book Doorstep Pet Care | PetSaathi",
+    description: "Schedule instant GPS-tracked dog walking, at-home pet sitting, grooming, or veterinary support in your society.",
+    url: "https://petsaathi.in/book",
+    siteName: "PetSaathi",
+    images: [{ url: "/images/hero-care-handover-highres.webp", width: 1200, height: 630, alt: "Book Pet Care on PetSaathi" }],
+    locale: "en_IN",
+    type: "website",
+  },
+  robots: { index: true, follow: true }
 };
 
 type BookSearchParams = Promise<Record<string, string | string[] | undefined>>;
@@ -29,13 +39,16 @@ export default async function BookPage({ searchParams }: { searchParams: BookSea
   const requestedService = firstParam(query.service);
   const requestedPetType = firstParam(query.petType);
   const requestedLocality = firstParam(query.locality)?.trim().slice(0, 120);
-  const initialService = coreServiceCodes.includes(requestedService as CoreServiceCode) ? requestedService as CoreServiceCode : undefined;
+  const requestBoarding = firstParam(query.requestBoarding) === "true" || requestedService === "BOARDING";
+  const initialService = coreServiceCodes.includes(requestedService as CoreServiceCode) 
+    ? (requestedService as CoreServiceCode) 
+    : (requestBoarding ? "HOME_SITTING_60" : undefined);
   const validPetTypes = ["DOG", "CAT", "RABBIT", "BIRD", "FISH", "TURTLE", "RAT", "OTHER"] as const;
   const initialPetType = validPetTypes.includes(requestedPetType as (typeof validPetTypes)[number])
     ? (requestedPetType as (typeof validPetTypes)[number])
     : undefined;
   const identity = await getCurrentIdentity();
-  if (!identity?.roles.includes("CUSTOMER")) return <PublicShell><PageIntro eyebrow="care protocol request" title="Let’s plan the right kind of care." description="Start with the service, your pet and the time. A suitable Saathi is proposed only after eligibility and local availability are checked." /><div className="container-shell"><CareProtocolGuide /><BookingWizard initialValues={{ service: initialService, petType: initialPetType, locality: requestedLocality }} /></div></PublicShell>;
+  if (!identity?.roles.includes("CUSTOMER")) return <PublicShell><PageIntro eyebrow="care protocol request" title="Let’s plan the right kind of care." description="Start with the service, your pet and the time. A suitable Saathi is proposed only after eligibility and local availability are checked." /><div className="container-shell"><CareProtocolGuide /><BookingWizard initialValues={{ service: initialService, petType: initialPetType, locality: requestedLocality }} requestBoarding={requestBoarding} /></div></PublicShell>;
 
   const now = new Date();
   const [pets, addresses, serviceRows, serviceAreas, priceRows] = await Promise.all([
@@ -74,7 +87,7 @@ export default async function BookPage({ searchParams }: { searchParams: BookSea
       <DashboardHeading eyebrow="Private care request" title="Plan care with every safeguard in view." description="A guided workflow reveals only the decisions needed now, while pricing and eligibility remain server controlled." />
       <div className="mt-7 grid gap-5 xl:grid-cols-[0.7fr_1.3fr]">
         <CareProtocolGuide />
-        <AuthenticatedBookingForm pets={pets} addresses={addressOptions} services={activeServices} prices={priceOptions} initialService={initialService} />
+        <AuthenticatedBookingForm pets={pets} addresses={addressOptions} services={activeServices} prices={priceOptions} initialService={initialService} requestBoarding={requestBoarding} />
       </div>
     </DashboardPanel>
   </PortalShell>;

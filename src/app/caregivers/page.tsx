@@ -21,12 +21,12 @@ export default function CaregiversPage() {
   return (
     <PublicShell>
       {/* 1. FULL-BLEED HERO BANNER (LEFT ALIGNED) */}
-      <section className="relative h-[560px] sm:h-[620px] w-full overflow-hidden bg-ink text-paper">
+      <section className="relative h-[480px] sm:h-[560px] lg:h-[620px] w-full overflow-hidden bg-ink text-paper">
         <Image
           src="/images/saathis-hero-luxury-banner.webp"
           alt="Verified PetSaathi woman caregiver cuddling a happy cat"
           fill priority fetchPriority="high" sizes="100vw"
-          className="object-cover object-[80%_center] sm:object-[center_45%]"
+          className="object-cover object-[76%_center] sm:object-[68%_center] lg:object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/60 to-transparent md:w-3/4" />
         <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent" />

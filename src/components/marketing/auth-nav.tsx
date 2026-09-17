@@ -86,8 +86,17 @@ export function AuthNav() {
         </>
       )}
       <MagneticButton strength={0.4}>
-        <Link href={"/book" as Route} className={cn(buttonVariants({ variant: "primary", size: "default" }), "rounded-full font-bold bg-[#301F30] hover:bg-[#301F30]/90 text-white whitespace-nowrap")}>
-          Find Care &amp; Book <ArrowRight className="ml-1 h-4 w-4" />
+        <Link
+          href={"/book" as Route}
+          className={cn(
+            buttonVariants({ variant: "primary", size: "sm" }),
+            "rounded-full font-bold bg-[#301F30] hover:bg-[#301F30]/90 text-white whitespace-nowrap text-xs sm:text-sm px-3 sm:px-4 py-1.5 sm:py-2"
+          )}
+        >
+          <span className="sm:hidden">Book</span>
+          <span className="hidden sm:inline-flex items-center">
+            Find Care &amp; Book <ArrowRight className="ml-1 h-3.5 w-3.5" />
+          </span>
         </Link>
       </MagneticButton>
       <MobileNav />

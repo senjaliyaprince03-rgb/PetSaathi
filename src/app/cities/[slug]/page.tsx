@@ -8,6 +8,7 @@ import { PageIntro, PublicShell } from "@/components/marketing/public-shell";
 import { isDatabaseConfigured, prisma } from "@/lib/db";
 import { publicEnv } from "@/lib/env";
 import { LocalBusinessJsonLd } from "@/components/seo/json-ld";
+import { services } from "@/modules/catalog/services";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -55,6 +56,25 @@ const PILOT_LOCALITIES: Record<string, Array<{ name: string; status: string; dot
   ],
 };
 
+function formatCityStatus(status: string): string {
+  switch (status) {
+    case "LAUNCHED":
+      return "Operational Care Network";
+    case "ACTIVE_LIMITED":
+      return "Pilot Operational";
+    case "MANUAL_BETA":
+    case "BETA":
+      return "Active Pilot Zone";
+    case "PREPARING":
+      return "Caregiver Onboarding";
+    case "RESEARCH":
+    case "VALIDATED":
+      return "Neighborhood Rollout";
+    default:
+      return "Caregiver Network";
+  }
+}
+
 export default async function CityHubPage({ params }: Props) {
   const { slug } = await params;
   if (!isDatabaseConfigured()) notFound();
@@ -93,21 +113,35 @@ export default async function CityHubPage({ params }: Props) {
       />
 
       <PageIntro
-        eyebrow={`${city.state} · ${city.status.replaceAll("_", " ").toLowerCase()}`}
+        eyebrow={`${city.state} · ${formatCityStatus(city.status)}`}
         title={`Pet care in ${city.name}.`}
         description={`Verified caregivers, structured updates and human support for pet parents in ${city.name}.`}
       />
 
       {/* Active Services */}
       <section className="container-shell">
-        <h2 className="font-display text-4xl font-semibold">Available services</h2>
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+          <div>
+            <h2 className="font-display text-4xl font-semibold">Available services</h2>
+            <p className="mt-2 text-sm text-ink/80">
+              Tailored pet care programs available across {city.name} neighborhoods.
+            </p>
+          </div>
+          <Link
+            href={`/book` as Route}
+            className="inline-flex items-center gap-1.5 text-sm font-bold text-indigo hover:underline"
+          >
+            Check all booking slots <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+
         <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {activeServices.length > 0 ? (
             activeServices.map((config) => (
               <Link
                 key={config.id}
                 href={`/cities/${slug}/${config.serviceType.code.toLowerCase().replaceAll("_", "-")}` as Route<string>}
-                className="group rounded-5xl border border-ink/10 bg-paper p-7 shadow-lifted transition hover:-translate-y-1"
+                className="group rounded-5xl border border-ink/10 bg-paper p-7 shadow-lifted transition hover:-translate-y-1 hover:border-indigo/30"
               >
                 <p className="text-xs font-bold uppercase tracking-[0.17em] text-coral-text">
                   {config.status.replaceAll("_", " ")}
@@ -124,30 +158,60 @@ export default async function CityHubPage({ params }: Props) {
               </Link>
             ))
           ) : (
-            <div className="rounded-5xl border border-dashed border-ink/15 bg-paper p-10 text-center md:col-span-2 lg:col-span-3 shadow-lifted">
-              <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-saffron/15 text-saffron">
-                <MapPin className="h-7 w-7" />
-              </span>
-              <h3 className="mt-5 font-display text-2xl font-bold text-ink">Neighborhood Pilot in {city.name}</h3>
-              <p className="mx-auto mt-2 max-w-xl text-sm leading-relaxed text-ink/80">
-                We are onboarding and safety-vetting caregivers across {city.name}. Check your neighborhood availability to request early access, or apply to join our local caregiver roster.
-              </p>
-              <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-                <Link
-                  href={"/book" as Route}
-                  className="inline-flex items-center gap-2 rounded-full bg-[#C84B31] px-6 py-2.5 text-sm font-bold text-white shadow-md transition hover:bg-[#B33E26]"
-                >
-                  Check My Neighborhood Availability <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link
-                  href={"/apply/sitter" as Route}
-                  className="inline-flex items-center gap-2 rounded-full border border-indigo/20 bg-paper px-6 py-2.5 text-sm font-bold text-indigo transition hover:border-indigo/40 hover:bg-indigo/5"
-                >
-                  Become a Saathi in {city.name} <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
-            </div>
+            services.slice(0, 6).map((srv) => (
+              <Link
+                key={srv.slug}
+                href={`/services/${srv.slug}` as Route}
+                className="group rounded-5xl border border-ink/10 bg-paper p-7 shadow-lifted transition hover:-translate-y-1 hover:border-indigo/30 flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center justify-between">
+                    <span className="inline-flex rounded-full bg-leaf/10 px-2.5 py-0.5 text-[0.68rem] font-bold uppercase tracking-wider text-leaf">
+                      Pilot Operational
+                    </span>
+                    <span className="text-xs font-semibold text-ink/60">{(srv.startingPrice.split("(")[0] ?? srv.startingPrice).trim()}</span>
+                  </div>
+                  <h3 className="mt-4 font-display text-2xl font-semibold group-hover:text-indigo">
+                    {srv.name}
+                  </h3>
+                  <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-ink/80">
+                    {srv.description}
+                  </p>
+                </div>
+                <div className="mt-6 flex items-center justify-between border-t border-ink/5 pt-4">
+                  <span className="text-xs font-bold text-coral-text">{srv.kicker}</span>
+                  <span className="inline-flex items-center gap-1 text-xs font-semibold text-indigo">
+                    View Details <ArrowRight className="h-3.5 w-3.5" />
+                  </span>
+                </div>
+              </Link>
+            ))
           )}
+        </div>
+
+        {/* Neighborhood Pilot Onboarding Box */}
+        <div className="mt-10 rounded-5xl border border-dashed border-ink/15 bg-paper p-8 text-center sm:p-10 shadow-lifted">
+          <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-saffron/15 text-saffron">
+            <MapPin className="h-6 w-6" />
+          </span>
+          <h3 className="mt-4 font-display text-2xl font-bold text-ink">Neighborhood Caregiver Network in {city.name}</h3>
+          <p className="mx-auto mt-2 max-w-xl text-sm leading-relaxed text-ink/80">
+            We onboard and identity-vet pet caregivers neighborhood by neighborhood across {city.name}. Request care for your locality or apply to join our local caregiver roster.
+          </p>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+            <Link
+              href={"/book" as Route}
+              className="inline-flex items-center gap-2 rounded-full bg-[#C84B31] px-6 py-2.5 text-sm font-bold text-white shadow-md transition hover:bg-[#B33E26]"
+            >
+              Check My Neighborhood <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link
+              href={"/become-a-saathi" as Route}
+              className="inline-flex items-center gap-2 rounded-full border border-indigo/20 bg-paper px-6 py-2.5 text-sm font-bold text-indigo transition hover:border-indigo/40 hover:bg-indigo/5"
+            >
+              Become a Saathi in {city.name} <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
         </div>
       </section>
 

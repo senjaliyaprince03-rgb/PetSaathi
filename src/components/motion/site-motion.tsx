@@ -59,36 +59,33 @@ export function SiteMotion() {
           element.dataset.motionVisible = "true";
           intersectionObserver?.unobserve(element);
         });
-      }, { rootMargin: "0px 0px -8%", threshold: 0.08 });
+      }, { rootMargin: "50px 0px 50px 0px", threshold: 0.02 });
 
       const prepare = (scope: ParentNode) => {
-        scope.querySelectorAll<HTMLElement>(motionSelector).forEach((element) => {
+        const elements = scope.querySelectorAll<HTMLElement>(motionSelector);
+        if (elements.length === 0) return;
+
+        elements.forEach((element) => {
           if (prepared.has(element) || element.closest("[data-motion-skip]")) return;
           prepared.add(element);
           element.dataset.motionAuto = motionKind(element);
 
           const siblings = element.parentElement ? Array.from(element.parentElement.children) : [];
           const siblingIndex = Math.max(0, siblings.indexOf(element));
-          element.style.setProperty("--motion-delay", `${Math.min(siblingIndex % 6, 5) * 55}ms`);
+          element.style.setProperty("--motion-delay", `${Math.min(siblingIndex % 6, 5) * 45}ms`);
 
-          const rect = element.getBoundingClientRect();
-          if (rect.top < window.innerHeight * 0.92 && rect.bottom > 0) {
-            element.dataset.motionVisible = "true";
-          } else {
-            intersectionObserver?.observe(element);
-          }
+          intersectionObserver?.observe(element);
         });
       };
 
       prepare(document);
-      mutationObserver = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-          mutation.addedNodes.forEach((node) => {
-            if (!(node instanceof HTMLElement)) return;
-            if (node.closest("[data-motion-skip]")) return;
-            if (node.matches(motionSelector)) prepare(node.parentElement ?? document);
-            else prepare(node);
-          });
+
+      let rafMutationId: number | null = null;
+      mutationObserver = new MutationObserver(() => {
+        if (rafMutationId !== null) return;
+        rafMutationId = window.requestAnimationFrame(() => {
+          rafMutationId = null;
+          prepare(document);
         });
       });
       mutationObserver.observe(document.body, { childList: true, subtree: true });

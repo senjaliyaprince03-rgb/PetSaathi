@@ -44,12 +44,18 @@ function generatePrismaClient() {
   process.exit(result.status ?? 1);
 }
 
-// Keep the typecheck as an explicit gate, then avoid Next's duplicate worker
-// so builds remain reliable in restricted Windows/CI process environments.
+// Enforce linting and typechecking as explicit build gates before production bundling.
+console.log("==> [1/4] Running ESLint...");
+run(process.execPath, [path.join(projectRoot, "node_modules/eslint/bin/eslint.js"), ".", "--max-warnings=0"]);
+
+console.log("==> [2/4] Running TypeScript typecheck...");
 run(process.execPath, [path.join(projectRoot, "node_modules/typescript/bin/tsc"), "--noEmit"]);
+
+console.log("==> [3/4] Generating Prisma Client...");
 generatePrismaClient();
 process.env.PETSAATHI_BUILD_SKIP_TYPECHECK = "1";
 
+console.log("==> [4/4] Running Next.js build...");
 run(process.execPath, [
   path.join(projectRoot, "node_modules/next/dist/bin/next"),
   "build",

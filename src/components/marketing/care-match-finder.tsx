@@ -28,7 +28,7 @@ const citySuggestions = [
   { name: "Delhi NCR", isLive: false, label: "Delhi NCR · Waitlist" }
 ];
 
-type PetType = "DOG" | "CAT" | "RABBIT" | "BIRD" | "FISH" | "TURTLE" | "RAT";
+type PetType = "DOG" | "CAT" | "RABBIT" | "BIRD" | "FISH" | "TURTLE" | "RAT" | "OTHER";
 
 export function CareMatchFinder() {
   const router = useRouter();
@@ -81,10 +81,10 @@ export function CareMatchFinder() {
         </span>
       </div>
 
-      {/* Fields Grid - 2 columns side by side */}
-      <div className="relative mt-3.5 grid grid-cols-2 gap-2.5">
+      {/* Fields Grid - 1 column on mobile, 2 columns on tablet/desktop */}
+      <div className="relative mt-3.5 grid grid-cols-1 sm:grid-cols-2 gap-2.5">
         {/* Care Service Selection (Full Width) */}
-        <label className="group relative col-span-2 flex min-w-0 flex-col gap-0.5 rounded-xl border border-[#e8e2e9] bg-[#fbf9fa] px-3.5 py-2 transition focus-within:border-indigo/40 focus-within:bg-white focus-within:ring-2 focus-within:ring-indigo/10 hover:border-[#d9cfdc]">
+        <label className="group relative col-span-1 sm:col-span-2 flex min-w-0 flex-col gap-0.5 rounded-xl border border-[#e8e2e9] bg-[#fbf9fa] px-3.5 py-2 transition focus-within:border-indigo/40 focus-within:bg-white focus-within:ring-2 focus-within:ring-indigo/10 hover:border-[#d9cfdc]">
           <span className="flex items-center gap-1.5 text-[0.64rem] sm:text-[0.68rem] font-bold uppercase tracking-wider text-[#938290]">
             <PawPrint className="h-3.5 w-3.5 text-[#d45638]" />
             Care Service
@@ -126,6 +126,7 @@ export function CareMatchFinder() {
               <option value="FISH">Fish 🐠</option>
               <option value="TURTLE">Turtle 🐢</option>
               <option value="RAT">Small Pet 🐹</option>
+              <option value="OTHER">Other Pet 🐾</option>
             </select>
             <ChevronDown className="pointer-events-none absolute right-0 h-4 w-4 text-[#938290] transition group-focus-within:text-[#231526]" />
           </div>

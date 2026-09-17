@@ -527,7 +527,7 @@ export default async function CustomerDashboardPage() {
               {/* Verified Caregiver On-Call Card */}
               <div className="p-4 sm:p-5 rounded-2xl bg-surface/70 border border-ink/10 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-2xs">
                 <div className="flex items-center gap-3.5">
-                  <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-indigo/30 shrink-0 bg-indigo/10 shadow-sm">
+                  <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-indigo/30 shrink-0 bg-indigo/10 shadow-sm">
                     <Image 
                       src="/images/sitter-woman-cinematic.webp" 
                       alt="Certified Sitter" 
@@ -622,7 +622,7 @@ export default async function CustomerDashboardPage() {
             </div>
 
             <div className="flex items-center gap-3.5 mb-5 p-3.5 rounded-2xl bg-surface/70 border border-ink/5 shadow-2xs">
-              <div className="w-12 h-12 rounded-full overflow-hidden bg-amber-500/10 shrink-0 border-2 border-white shadow-sm flex items-center justify-center ring-2 ring-amber-300/30">
+              <div className="relative w-12 h-12 rounded-full overflow-hidden bg-amber-500/10 shrink-0 border-2 border-white shadow-sm flex items-center justify-center ring-2 ring-amber-300/30">
                 <Image 
                   alt={primaryPet.name} 
                   className="object-cover" 

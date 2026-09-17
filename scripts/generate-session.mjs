@@ -8,7 +8,10 @@ function digest(value) {
 }
 
 async function main() {
-  const userId = "3f8d690d-b050-4e32-b612-e0d86d796f99"; // customer@petsaathi.test
+  const email = process.argv[2] || "ops.admin@petsaathi.com";
+  const user = await prisma.user.findUnique({ where: { email } });
+  if (!user) throw new Error(`User not found: ${email}`);
+  const userId = user.id;
   
   const token = randomBytes(32).toString("base64url");
   const now = new Date();

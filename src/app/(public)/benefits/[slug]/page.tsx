@@ -49,7 +49,7 @@ export default async function CompanyBenefitProgrammePage({
               <Building2 className="h-4 w-4" />
               {programme.organization.displayName}
             </p>
-            <h1 className="mt-3 max-w-[12ch] font-display text-5xl font-semibold tracking-[-0.055em] sm:text-7xl">
+            <h1 className="mt-3 max-w-[12ch] font-display text-3xl font-semibold tracking-[-0.055em] sm:text-5xl lg:text-7xl">
               {programme.name}
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-8 text-ink/80">

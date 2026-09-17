@@ -38,7 +38,7 @@ export default async function DigitalPetIdPage({ params }: { params: Promise<{ i
           <div className="relative flex flex-col justify-between gap-10 sm:flex-row">
             <div>
               <p className="text-[0.62rem] font-bold uppercase tracking-[0.22em] text-saffron">PetSaathi digital pet ID</p>
-              <h1 className="mt-5 font-display text-6xl font-semibold tracking-[-0.055em]">{pet.name}</h1>
+              <h1 className="mt-5 font-display text-4xl sm:text-6xl font-semibold tracking-[-0.055em]">{pet.name}</h1>
               <p className="mt-3 text-paper/80">
                 {pet.species.toLowerCase()}
                 {pet.breed ? ` · ${pet.breed}` : ""}

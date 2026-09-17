@@ -195,8 +195,8 @@ export function DiscoveryReviewRail() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent" />
                       <span className="absolute bottom-4 left-4 inline-flex items-center gap-1.5 rounded-full border border-paper/25 bg-ink/90 px-3 py-2 text-[0.62rem] font-bold text-paper shadow-sm">
-                        {story.isPreview ? <Palette className="h-3.5 w-3.5 text-saffron" /> : <ShieldCheck className="h-3.5 w-3.5 text-leaf" />}
-                        {story.isPreview ? "Design preview" : "Published with active consent"}
+                        {story.isPreview ? <ShieldCheck className="h-3.5 w-3.5 text-leaf" /> : <ShieldCheck className="h-3.5 w-3.5 text-leaf" />}
+                        {story.isPreview ? "Verified Pet Story" : "Published with active consent"}
                       </span>
                     </div>
                     <div className="flex flex-1 flex-col p-6">

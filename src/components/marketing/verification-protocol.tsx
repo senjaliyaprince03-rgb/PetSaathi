@@ -25,14 +25,14 @@ const verificationSteps = [
   {
     step: "01",
     title: "Government ID Verification",
-    description: "Official government identification (Aadhaar / Passport) is cross-checked with biometric records and primary address documentation.",
+    description: "Official government identification (Aadhaar / Passport / Voter ID) is verified against primary residential address documentation and identity records.",
     icon: UserCheck,
     tag: "Identity Validated"
   },
   {
     step: "02",
     title: "Background & Address Check",
-    description: "Multi-point criminal history screening, permanent residential address verification, and professional character reference checks.",
+    description: "In-person identity document scrutiny, residential address verification, and character reference interviews (automated criminal database integration pending).",
     icon: Lock,
     tag: "Safety Screened"
   },
@@ -64,8 +64,8 @@ const safetyHighlights = [
     icon: CheckCircle2
   },
   {
-    title: "24/7 Emergency Care Guarantee",
-    desc: "Partner network of accredited veterinary clinics, guaranteed backup caregiver dispatch, and ₹50,000 emergency medical cover.",
+    title: "Emergency Medical Assistance",
+    desc: "Partner network of accredited veterinary clinics, backup caregiver coordination, and up to ₹50,000 discretionary emergency medical assistance.",
     icon: Stethoscope
   },
   {
@@ -75,7 +75,15 @@ const safetyHighlights = [
   }
 ] as const;
 
-export function VerificationProtocol() {
+export function VerificationProtocol({
+  ctaHref = "/safety" as Route,
+  ctaText = "Explore Complete Safety Architecture",
+  ctaDescription = "Want to review our ₹50,000 emergency medical assistance protocol, zero-tolerance policy, and incident response SLA?"
+}: {
+  ctaHref?: Route;
+  ctaText?: string;
+  ctaDescription?: string;
+}) {
   return (
     <section className="relative overflow-hidden bg-[#241727] py-16 text-paper sm:py-24" id="verification-protocol">
       <div className="absolute inset-0 luxury-grid opacity-[0.06]" />
@@ -90,7 +98,7 @@ export function VerificationProtocol() {
                 <ShieldCheck className="h-3.5 w-3.5" /> 4-Step Verification Protocol
               </span>
               <h2 className="mt-5 font-display text-4xl font-semibold leading-[1.05] tracking-[-0.04em] text-paper sm:text-6xl">
-                Only the top 8% of applicants earn the Saathi badge.
+                Every caregiver is vetted through our multi-stage safety protocol.
               </h2>
             </div>
             <p className="max-w-md text-sm leading-7 text-paper/80 lg:text-right">
@@ -138,16 +146,16 @@ export function VerificationProtocol() {
           ))}
         </div>
 
-        {/* Bottom CTA to Safety Page */}
+        {/* Bottom CTA to Safety or Terms Page */}
         <div className="mt-10 flex flex-col items-center justify-between gap-4 rounded-2xl border border-paper/10 bg-paper/5 px-6 py-4 sm:flex-row">
           <p className="text-xs text-paper/80 text-center sm:text-left">
-            Want to review our comprehensive ₹50,000 medical guarantee, zero-tolerance policy, and incident response SLA?
+            {ctaDescription}
           </p>
           <Link
-            href={"/safety" as Route}
+            href={ctaHref}
             className={cn(buttonVariants({ variant: "outline", size: "sm" }), "shrink-0 rounded-full border-paper/30 text-paper hover:bg-paper hover:text-ink font-bold")}
           >
-            Explore Complete Safety Architecture <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
+            {ctaText} <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
           </Link>
         </div>
       </div>

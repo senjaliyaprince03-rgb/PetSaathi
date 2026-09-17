@@ -7,8 +7,18 @@ import Link from "next/link";
 import { Mail, Phone, ShieldCheck } from "lucide-react";
 
 export const metadata: Metadata = { 
-  title: "Contact Care Concierge",
-  description: "Get in touch with PetSaathi care specialists for booking assistance, society onboarding, or emergency support."
+  title: "Contact Care Concierge | PetSaathi",
+  description: "Get in touch with PetSaathi care specialists for booking assistance, society onboarding, or emergency support.",
+  openGraph: {
+    title: "Contact Care Concierge | PetSaathi",
+    description: "Get in touch with PetSaathi care specialists for booking assistance, society onboarding, or emergency support.",
+    url: "https://petsaathi.in/contact",
+    siteName: "PetSaathi",
+    images: [{ url: "/images/hero-care-handover-highres.webp", width: 1200, height: 630, alt: "Contact PetSaathi Care Concierge" }],
+    locale: "en_IN",
+    type: "website",
+  },
+  robots: { index: true, follow: true }
 };
 
 export default async function ContactPage({ searchParams }: { searchParams: Promise<{ topic?: string }> }) {
@@ -47,7 +57,7 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
             </span>
             <div>
               <span className="text-xs text-ink/60 block font-medium">Priority Hotline</span>
-              <span className="text-sm font-bold text-ink group-hover:text-emerald-700 transition-colors">+91 8000 PETSAATHI</span>
+              <span className="text-sm font-bold text-ink group-hover:text-emerald-700 transition-colors">+91 80007 38722</span>
             </div>
           </a>
         </div>
