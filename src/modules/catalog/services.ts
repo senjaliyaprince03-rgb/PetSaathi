@@ -54,7 +54,7 @@ export const services = [
     kicker: "Non-Emergency Coordination",
     description: "Request-only coordination with approved veterinary partners. PetSaathi does not diagnose, promise clinic availability or replace emergency services.",
     startingPrice: "From ₹349 / consult",
-    pricingNotes: "Tele-triage with certified vet partners; direct clinic diagnostic fees billed per partner clinic schedule.",
+    pricingNotes: "Tele-consultation with certified vet partners; direct clinic diagnostic fees billed per partner clinic schedule.",
     tone: "teal",
     icon: ShieldCheck,
     image: "/images/service-vet-care.webp"
@@ -91,7 +91,7 @@ export const trustSignals = [
   { label: "Real-time Location Tracking", icon: MapPinned },
   { label: "Secure Digital Payments", icon: ShieldCheck },
   { label: "Photo & Video Updates", icon: Video },
-  { label: "Quality Assurance Guarantee", icon: CheckCircle2 },
+  { label: "Quality Assurance Standard", icon: CheckCircle2 },
   { label: "Emergency Vet Support Contacts", icon: HeartHandshake },
   { label: "Locally Vetted and Trained", icon: UserCheck },
   { label: "No Vague Verified Labels", icon: ShieldCheck },

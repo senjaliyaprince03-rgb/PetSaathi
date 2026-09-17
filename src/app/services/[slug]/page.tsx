@@ -46,7 +46,7 @@ export default async function ServicePage({ params }: Props) {
 
   const bookingHref = (
     slug === "boarding-beta"
-      ? "/book?service=HOME_SITTING_60&requestBoarding=true"
+      ? "/contact?topic=BOARDING_PILOT"
       : slug === "dog-walking"
       ? "/book?service=DOG_WALK_30"
       : slug === "home-pet-sitting"
@@ -62,7 +62,7 @@ export default async function ServicePage({ params }: Props) {
       : "/book"
   ) as Route;
 
-  const ctaLabel = slug === "boarding-beta" ? "Request Boarding Host Pilot" : "Check Availability";
+  const ctaLabel = slug === "boarding-beta" ? "Join Boarding Waitlist" : "Check Availability";
 
   return (
     <PublicShell>

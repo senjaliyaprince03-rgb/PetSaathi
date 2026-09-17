@@ -69,7 +69,7 @@ const safetyHighlights = [
     icon: Stethoscope
   },
   {
-    title: "Substitute Caregiver Guarantee",
+    title: "Substitute Caregiver Backup",
     desc: "If your assigned Saathi experiences an unexpected emergency, our ops team dispatches an equally qualified substitute immediately.",
     icon: HeartHandshake
   }
@@ -78,7 +78,7 @@ const safetyHighlights = [
 export function VerificationProtocol({
   ctaHref = "/safety" as Route,
   ctaText = "Explore Complete Safety Architecture",
-  ctaDescription = "Want to review our ₹50,000 emergency medical assistance protocol, zero-tolerance policy, and incident response SLA?"
+  ctaDescription = "Want to review our ₹50,000 emergency medical assistance protocol, zero-tolerance policy, and incident response guidelines?"
 }: {
   ctaHref?: Route;
   ctaText?: string;

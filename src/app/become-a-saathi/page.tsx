@@ -7,10 +7,10 @@ import { getCurrentIdentity } from "@/modules/auth/session";
 
 export const metadata: Metadata = { 
   title: "Become a Certified Saathi Caregiver | PetSaathi",
-  description: "Join India's leading managed pet care network. Earn competitive pay with guaranteed weekly payouts, emergency vet assistance coordination, and local society assignments.",
+  description: "Join India's leading managed pet care network. Earn competitive pay with reliable weekly payouts, emergency vet assistance coordination, and local society assignments.",
   openGraph: {
     title: "Become a Certified Saathi Caregiver | PetSaathi",
-    description: "Join India's leading managed pet care network. Earn competitive pay with guaranteed weekly payouts, emergency vet assistance coordination, and local society assignments.",
+    description: "Join India's leading managed pet care network. Earn competitive pay with reliable weekly payouts, emergency vet assistance coordination, and local society assignments.",
     url: "https://petsaathi.in/become-a-saathi",
     siteName: "PetSaathi",
     images: [{ url: "/images/hero-care-handover-highres.webp", width: 1200, height: 630, alt: "Become a Certified Saathi" }],

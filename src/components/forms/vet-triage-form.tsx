@@ -64,7 +64,7 @@ export function VetTriageForm({ pets }: { pets: Pet[] }) {
         <div className="bg-paper p-6 text-ink sm:p-7">
           {step === 1 && (
             <div className="space-y-4 animate-in fade-in zoom-in duration-300">
-              <h4 className="font-semibold text-lg">Step 1: Triage Assessment</h4>
+              <h4 className="font-semibold text-lg">Step 1: Wellness Assessment</h4>
               <p className="text-sm text-ink/80 mb-4">Please select the condition that best describes your pet&apos;s current situation.</p>
               
               <button onClick={() => setUrgency("RED")} className={`w-full text-left p-4 rounded-2xl border transition-all ${urgency === "RED" ? "border-coral bg-coral/10 ring-2 ring-coral/20" : "border-ink/10 hover:border-coral/50"}`}>

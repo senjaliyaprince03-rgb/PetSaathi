@@ -124,14 +124,14 @@ export default async function JournalPage() {
                     <div className="mt-auto pt-6">
                       <div className="flex items-center gap-2 rounded-2xl bg-leaf/10 p-3 text-xs font-bold text-leaf">
                         <ShieldCheck className="h-4 w-4 shrink-0" />
-                        Veterinary Editorial Review
+                        PetSaathi Editorial Team — general care information, not veterinary advice
                       </div>
                     </div>
                   ) : (
                     <div className="mt-auto pt-6">
                       <div className="flex items-center gap-2 rounded-2xl bg-indigo/5 p-3 text-xs font-semibold text-indigo">
                         <ShieldCheck className="h-4 w-4 shrink-0" />
-                        PetSaathi Editorial Review
+                        PetSaathi Editorial Team — general care information, not veterinary advice
                       </div>
                     </div>
                   )}

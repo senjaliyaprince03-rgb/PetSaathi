@@ -211,6 +211,7 @@ enum LeadType {
   SOCIETY
   PARTNER
   SAFETY
+  BOARDING_PILOT
 }
 
 enum LeadStatus {

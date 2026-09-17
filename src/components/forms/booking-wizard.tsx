@@ -38,7 +38,7 @@ const services = [
   ["HOME_VISIT", "Home visit", "Food, water and a reassuring check-in"],
   ["HOME_SITTING_60", "One-hour sitting", "Company, play and routine at home"],
   ["GROOMING_HOME", "Home grooming", "Professional grooming at your doorstep"],
-  ["VET_SUPPORT", "Veterinary Support", "Non-emergency partner coordination & triage support"],
+  ["VET_SUPPORT", "Veterinary Support", "Non-emergency partner clinic coordination"],
   ["TRAINING_ASSESSMENT", "Training assessment", "Expert evaluation of behavioral needs"],
   ["PET_TAXI", "Pet taxi", "Safe transport for your pet"]
 ] as const;
@@ -57,7 +57,7 @@ export function BookingWizard({
     resolver: zodResolver(bookingSchema),
     shouldUnregister: false,
     defaultValues: {
-      service: initialValues.service ?? (requestBoarding ? "HOME_SITTING_60" : "DOG_WALK_30"),
+      service: initialValues.service ?? "DOG_WALK_30",
       petType: initialValues.petType ?? "DOG",
       petName: "",
       date: "",

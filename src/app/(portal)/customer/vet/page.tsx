@@ -11,8 +11,8 @@ import { getCurrentIdentity } from "@/modules/auth/session";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Tele-Vet Triage & Consultations",
-  description: "Connect with certified veterinarians for non-emergency medical triage, dietary prescriptions, and society vaccination drives."
+  title: "Tele-Vet Support & Consultations",
+  description: "Connect with certified veterinarians for non-emergency guidance, dietary prescriptions, and society vaccination drives."
 };
 
 export const dynamic = "force-dynamic";
@@ -95,7 +95,7 @@ export default async function CustomerVetPage() {
       </div>
 
       <DashboardPanel className="mt-5">
-        <DashboardHeading eyebrow="Triage & Care" title="Request a Vet Consultation" description="Book an online consultation, home visit, or clinic referral based on your pet's needs." />
+        <DashboardHeading eyebrow="Consultation & Care" title="Request a Vet Consultation" description="Book an online consultation, home visit, or clinic referral based on your pet's needs." />
         <VetTriageForm pets={pets} />
       </DashboardPanel>
 

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 import { BadgeCheck, CalendarDays, MapPin, PawPrint } from "lucide-react";
 
 import { BookingWizard } from "@/components/forms/booking-wizard";
@@ -40,9 +41,14 @@ export default async function BookPage({ searchParams }: { searchParams: BookSea
   const requestedPetType = firstParam(query.petType);
   const requestedLocality = firstParam(query.locality)?.trim().slice(0, 120);
   const requestBoarding = firstParam(query.requestBoarding) === "true" || requestedService === "BOARDING";
+
+  if (requestBoarding) {
+    redirect("/contact?topic=BOARDING_PILOT");
+  }
+
   const initialService = coreServiceCodes.includes(requestedService as CoreServiceCode) 
     ? (requestedService as CoreServiceCode) 
-    : (requestBoarding ? "HOME_SITTING_60" : undefined);
+    : undefined;
   const validPetTypes = ["DOG", "CAT", "RABBIT", "BIRD", "FISH", "TURTLE", "RAT", "OTHER"] as const;
   const initialPetType = validPetTypes.includes(requestedPetType as (typeof validPetTypes)[number])
     ? (requestedPetType as (typeof validPetTypes)[number])

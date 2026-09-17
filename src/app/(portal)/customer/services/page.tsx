@@ -40,7 +40,7 @@ const SERVICES: Array<{
   {
     slug: "vet",
     title: "Veterinary Support",
-    description: "Triage-guided vet consultations, home visits, and clinic referrals.",
+    description: "Expert vet consultations, home visits, and clinic referrals.",
     icon: Stethoscope,
     href: "/customer/vet" as Route,
     status: "ACTIVE",
@@ -116,7 +116,7 @@ export default async function CustomerServicesHubPage() {
         <DashboardHeading
           eyebrow="Service Expansion Hub"
           title="All your pet's care in one trusted place."
-          description="From daily walks to professional grooming, veterinary triage, and specialist training — unified under one pet profile."
+          description="From daily walks to professional grooming, veterinary support, and specialist training — unified under one pet profile."
         />
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

@@ -131,7 +131,7 @@ export default async function MembershipPage() {
                 <div className="rounded-3xl border border-paper/10 bg-paper/[0.05] p-5">
                   <p className="font-display text-2xl font-bold text-saffron">Same Saathi</p>
                   <p className="mt-2 text-xs leading-6 text-paper/80">
-                    Guaranteed primary caregiver consistency so your pets bond with a familiar, trusted companion.
+                    Dedicated primary caregiver consistency so your pets bond with a familiar, trusted companion.
                   </p>
                 </div>
               </div>
@@ -167,7 +167,7 @@ export default async function MembershipPage() {
             </span>
             <h2 className="mt-4 font-display text-3xl font-bold text-ink">Membership Waitlist Active</h2>
             <p className="mt-3 text-sm leading-7 text-ink/80">
-              PetSaathi memberships roll out society-by-society to guarantee dedicated caregiver density, zero rush, and strict safety SLA compliance. Register your society to unlock member passes.
+              PetSaathi memberships roll out society-by-society to ensure dedicated caregiver density, zero rush, and strict safety standards. Register your society to unlock member passes.
             </p>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
               <Link href="/book" className={buttonVariants({ variant: "primary", size: "lg", className: "rounded-full px-8 font-outfit" })}>
@@ -236,7 +236,7 @@ export default async function MembershipPage() {
                     badge: "Best Value",
                     features: [
                       "24 Monthly Care Outings or Sitting Sessions",
-                      "Guaranteed Same Dedicated Saathi",
+                      "Dedicated Primary Saathi Pairing",
                       "Free Rollover of Unused Sessions (Up to 4)",
                       "Priority Clinical & Vet Dispatch Access"
                     ]
@@ -249,7 +249,7 @@ export default async function MembershipPage() {
                     features: [
                       "Unlimited Priority Dispatch Scheduling",
                       "Multi-Pet Household Coverage (Up to 3 Pets)",
-                      "Guaranteed Holiday Boarding Host Allocation",
+                      "Priority Holiday Boarding Host Allocation",
                       "Direct Senior Ops Supervisor Support"
                     ]
                   }

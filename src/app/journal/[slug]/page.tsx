@@ -64,12 +64,12 @@ export default async function JournalDetailPage({ params }: Props) {
           {entry.expertReview?.verdict === "APPROVED" ? (
             <div className="mx-auto mt-7 inline-flex items-center gap-2 rounded-full border border-leaf/20 bg-leaf/10 px-4 py-2 text-xs font-semibold text-leaf">
               <ShieldCheck className="h-4 w-4" />
-              Reviewed by PetSaathi Veterinary Editorial Board
+              PetSaathi Editorial Team — general care information, not veterinary advice
             </div>
           ) : (
             <div className="mx-auto mt-7 inline-flex items-center gap-2 rounded-full border border-indigo/20 bg-indigo/5 px-4 py-2 text-xs font-semibold text-indigo">
               <ShieldCheck className="h-4 w-4" />
-              PetSaathi Editorial · Reviewed against veterinary care guidelines
+              PetSaathi Editorial Team — general care information, not veterinary advice
             </div>
           )}
         </header>
