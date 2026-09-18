@@ -32,7 +32,9 @@ const serverSchema = z.object({
   SENTRY_ORG: z.string().min(1).optional(),
   SENTRY_PROJECT: z.string().min(1).optional(),
   REQUIRED_SITTER_VERIFICATIONS: z.string().min(1).optional(),
-  REQUIRED_SITTER_TRAINING_MODULES: z.string().min(1).optional()
+  REQUIRED_SITTER_TRAINING_MODULES: z.string().min(1).optional(),
+  ADMIN_EMAIL: z.string().email().optional(),
+  ADMIN_PASSWORD: z.string().min(8).optional()
 }).superRefine((values, context) => {
   // Fail closed if a development-only OTP leaks into a production process.
   if (values.NODE_ENV === "production" && values.AUTH_DEV_FIXED_OTP) {
@@ -42,6 +44,75 @@ const serverSchema = z.object({
       message: "AUTH_DEV_FIXED_OTP must be absent when NODE_ENV is production.",
     });
   }
+
+  // Production strict fail-fast validation:
+  if (values.NODE_ENV === "production") {
+    if (!values.DATABASE_URL && !values.MONGODB_URI) {
+      context.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["DATABASE_URL"],
+        message: "Either DATABASE_URL or MONGODB_URI must be provided in production.",
+      });
+    }
+    if (!values.AUTH_SECRET && !values.NEXTAUTH_SECRET) {
+      context.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["AUTH_SECRET"],
+        message: "Either AUTH_SECRET or NEXTAUTH_SECRET (min 32 chars) must be provided in production.",
+      });
+    }
+    if (!values.RAZORPAY_KEY_SECRET) {
+      context.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["RAZORPAY_KEY_SECRET"],
+        message: "RAZORPAY_KEY_SECRET is required in production.",
+      });
+    }
+    if (!values.RAZORPAY_WEBHOOK_SECRET) {
+      context.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["RAZORPAY_WEBHOOK_SECRET"],
+        message: "RAZORPAY_WEBHOOK_SECRET is required in production.",
+      });
+    }
+    if (!values.CRON_SECRET) {
+      context.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["CRON_SECRET"],
+        message: "CRON_SECRET is required in production.",
+      });
+    }
+    if (!values.ADMIN_EMAIL) {
+      context.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["ADMIN_EMAIL"],
+        message: "ADMIN_EMAIL is required in production.",
+      });
+    }
+    if (!values.ADMIN_PASSWORD) {
+      context.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["ADMIN_PASSWORD"],
+        message: "ADMIN_PASSWORD is required in production.",
+      });
+    }
+  } else {
+    // Non-production (dev/test): log clear warnings for missing core variables
+    const recommended = [
+      "DATABASE_URL",
+      "AUTH_SECRET",
+      "RAZORPAY_KEY_SECRET",
+      "RAZORPAY_WEBHOOK_SECRET",
+      "ADMIN_EMAIL",
+      "ADMIN_PASSWORD",
+    ] as const;
+    for (const key of recommended) {
+      if (!values[key] && !process.env[key]) {
+        console.warn(`[env:warning] Recommended variable ${key} is unset in ${values.NODE_ENV} mode.`);
+      }
+    }
+  }
+
   // A loopback public URL in production silently poisons sitemap, robots,
   // canonical tags and JSON-LD. Warn loudly instead of failing startup so
   // local production-mode testing still works.
