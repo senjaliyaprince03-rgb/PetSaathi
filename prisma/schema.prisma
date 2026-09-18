@@ -537,6 +537,7 @@ model User {
   lastLoginAt              DateTime?                 @map("last_login_at")
   createdAt                DateTime                  @default(now()) @map("created_at")
   updatedAt                DateTime                  @updatedAt @map("updated_at")
+  deletedAt                DateTime?                 @map("deleted_at")
   roles                    UserRole[]
   customer                 CustomerProfile?
   sitter                   SitterProfile?
@@ -722,7 +723,8 @@ model Pet {
   active               Boolean               @default(true)
   createdAt            DateTime              @default(now()) @map("created_at")
   updatedAt            DateTime              @updatedAt @map("updated_at")
-  owner                User                  @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  deletedAt            DateTime?             @map("deleted_at")
+  owner                User                  @relation(fields: [ownerId], references: [id], onDelete: Restrict)
   medicalProfile       PetMedicalProfile?
   emergencyContacts    PetEmergencyContact[]
   riskAssessments      PetRiskAssessment[]
@@ -2890,6 +2892,8 @@ model BenefitWallet {
   programmeMembershipId String       @unique @map("programme_membership_id")
   currency              String       @default("INR")
   status                WalletStatus @default(ACTIVE_WALLET)
+  balancePaise          Int          @default(0) @map("balance_paise")
+  version               Int          @default(0)
   expiresAt             DateTime?    @map("expires_at")
   createdAt             DateTime     @default(now()) @map("created_at")
   updatedAt             DateTime     @updatedAt @map("updated_at")

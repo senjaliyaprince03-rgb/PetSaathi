@@ -58,7 +58,7 @@ export default async function BookPage({ searchParams }: { searchParams: BookSea
 
   const now = new Date();
   const [pets, addresses, serviceRows, serviceAreas, priceRows] = await Promise.all([
-    prisma.pet.findMany({ where: { ownerId: identity.id, active: true }, orderBy: { createdAt: "asc" }, select: { id: true, name: true, species: true } }),
+    prisma.pet.findMany({ where: { ownerId: identity.id, active: true, deletedAt: null }, orderBy: { createdAt: "asc" }, select: { id: true, name: true, species: true } }),
     prisma.address.findMany({ where: { userId: identity.id }, orderBy: { createdAt: "asc" }, select: { id: true, label: true, locality: true, city: true, state: true, postalCode: true } }),
     prisma.serviceType.findMany({ where: { active: true, code: { in: [...coreServiceCodes] } }, orderBy: { name: "asc" }, select: { id: true, code: true, name: true, durationMinutes: true } }),
     prisma.serviceArea.findMany({ where: { status: "ACTIVE", city: { status: "PUBLIC_LIMITED" } }, select: { id: true, postalCodes: true, city: { select: { name: true, state: true } } } }),

@@ -1,0 +1,1290 @@
+[
+  {
+    "route": "/api/account-requests/route.ts",
+    "methods": "GET, POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/account-requests/[id]/cancel/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/addresses/route.ts",
+    "methods": "GET, POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/account-requests/[id]/transition/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/approvals/route.ts",
+    "methods": "GET, POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/b2b/contracts/route.ts",
+    "methods": "GET, POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/b2b/programmes/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/bookings/[id]/assignments/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/bookings/[id]/match/route.ts",
+    "methods": "GET, POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/bookings/[id]/no-show/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/bookings/[id]/risk-review/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/capacity-limits/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/cities/route.ts",
+    "methods": "GET, POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/cities/[id]/launch/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/cities/[id]/managers/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/cities/[id]/services/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/community/memberships/[id]/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/complaints/[id]/transition/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/content/route.ts",
+    "methods": "POST, PATCH",
+    "hasAuthCheck": true,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/content/[id]/expert-review/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/content/[id]/review/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/content/[id]/route.ts",
+    "methods": "PUT",
+    "hasAuthCheck": true,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/content/[id]/transition/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/contracts/route.ts",
+    "methods": "GET, POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/contracts/[id]/route.ts",
+    "methods": "GET, PATCH",
+    "hasAuthCheck": true,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/enterprise-invoices/route.ts",
+    "methods": "GET, POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/enterprise-invoices/[id]/credit-note/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/enterprise-invoices/[id]/record-payment/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/enterprise-invoices/[id]/route.ts",
+    "methods": "GET",
+    "hasAuthCheck": true,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/enterprise-invoices/[id]/send/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/features/[key]/route.ts",
+    "methods": "PATCH",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/incidents/[id]/corrective-actions/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/incidents/[id]/corrective-actions/[actionId]/complete/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/incidents/[id]/events/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/incidents/[id]/sitter-hold/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/incidents/[id]/transition/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/kpis/route.ts",
+    "methods": "GET",
+    "hasAuthCheck": true,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/leads/[id]/route.ts",
+    "methods": "PATCH",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/opportunities/route.ts",
+    "methods": "GET, POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/opportunities/[id]/change-stage/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/opportunities/[id]/route.ts",
+    "methods": "PATCH",
+    "hasAuthCheck": true,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/organizations/route.ts",
+    "methods": "GET, POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/organizations/[id]/route.ts",
+    "methods": "GET, PATCH",
+    "hasAuthCheck": true,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/partner-orders/[id]/transition/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/partner-programmes/route.ts",
+    "methods": "GET, POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/partner-programmes/[id]/activate/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/partner-programmes/[id]/pause/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/partner-programmes/[id]/route.ts",
+    "methods": "PATCH",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/partner-programmes/[id]/verification-tokens/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/partners/route.ts",
+    "methods": "GET, POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/partners/[id]/locations/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/partners/[id]/route.ts",
+    "methods": "GET, PATCH",
+    "hasAuthCheck": true,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/partners/[id]/services/route.ts",
+    "methods": "GET, POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/partners/[id]/verifications/route.ts",
+    "methods": "GET, POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/payments/route.ts",
+    "methods": "GET, POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/payouts/[id]/transition/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/plan-versions/route.ts",
+    "methods": "GET, POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/reconciliation-runs/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/reconciliation-runs/[id]/complete/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/refunds/[id]/transition/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/reports/investor-metrics/route.ts",
+    "methods": "GET",
+    "hasAuthCheck": true,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/reports/[id]/review/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/scale/audits/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/scale/cities/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/scale/partners/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/service-areas/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/service-prices/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/services/route.ts",
+    "methods": "GET, POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/sitters/[id]/permissions/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/sitters/[id]/police-check/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/sitters/[id]/status/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/sitters/[id]/training-attempts/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/sitters/[id]/verifications/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/societies/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/societies/[id]/route.ts",
+    "methods": "GET, PATCH",
+    "hasAuthCheck": true,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/support-cases/[id]/transition/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/testimonials/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/testimonials/[id]/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/users/route.ts",
+    "methods": "GET, POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/admin/vaccination-camps/route.ts",
+    "methods": "GET, POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/ai/chat/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/ai/health/route.ts",
+    "methods": "GET",
+    "hasAuthCheck": false,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/ai/metrics/route.ts",
+    "methods": "GET",
+    "hasAuthCheck": true,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/auth/admin/signin/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/auth/email/request/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/auth/email/verify/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/auth/google/signin/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/auth/otp/request/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/auth/otp/resend/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/auth/otp/verify/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/auth/password/reset/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/auth/password/signin/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/auth/password/signup/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/auth/register/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/auth/signout/route.ts",
+    "methods": "GET, POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/auth/[...nextauth]/route.ts",
+    "methods": "UNKNOWN",
+    "hasAuthCheck": true,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/b2b/memberships/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/b2b/societies/[societyId]/dashboard/route.ts",
+    "methods": "GET",
+    "hasAuthCheck": true,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/bookings/route.ts",
+    "methods": "GET, POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/bookings/[id]/approve-assignment/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/bookings/[id]/cancel/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/bookings/[id]/complaints/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/bookings/[id]/incidents/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/bookings/[id]/payment-order/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/bookings/[id]/refunds/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/bookings/[id]/review/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/bookings/[id]/simulate-payment/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": false,
+    "suspectedIdor": true
+  },
+  {
+    "route": "/api/bookings/[id]/tracking/route.ts",
+    "methods": "GET",
+    "hasAuthCheck": true,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/communication-preferences/route.ts",
+    "methods": "GET, PUT",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/contact/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/content/cities/[cityId]/route.ts",
+    "methods": "GET, POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/cron/expire-employees/route.ts",
+    "methods": "GET",
+    "hasAuthCheck": false,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/customer/bookings/[id]/live/route.ts",
+    "methods": "GET",
+    "hasAuthCheck": true,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/customer/dashboard/route.ts",
+    "methods": "GET",
+    "hasAuthCheck": true,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/customer/grooming/route.ts",
+    "methods": "GET, POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/customer/grooming/[orderId]/report/route.ts",
+    "methods": "GET",
+    "hasAuthCheck": true,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/customer/loyalty/route.ts",
+    "methods": "GET",
+    "hasAuthCheck": true,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/customer/pets/sync/route.ts",
+    "methods": "GET",
+    "hasAuthCheck": true,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/customer/pets/[id]/health/route.ts",
+    "methods": "GET, POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/customer/pets/[id]/timeline/events/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/customer/pets/[id]/timeline/route.ts",
+    "methods": "GET",
+    "hasAuthCheck": true,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/customer/society/link/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/customer/taxi/route.ts",
+    "methods": "GET, POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/customer/training/route.ts",
+    "methods": "GET, POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/customer/vaccinations/route.ts",
+    "methods": "GET, POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/customer/vet/route.ts",
+    "methods": "GET, POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/health/route.ts",
+    "methods": "GET",
+    "hasAuthCheck": false,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/jobs/notifications/route.ts",
+    "methods": "GET, POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/jobs/route.ts",
+    "methods": "GET, POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/jobs/tracking-retention/route.ts",
+    "methods": "GET, POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/jobs/upload-retention/route.ts",
+    "methods": "GET, POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/kyc/digilocker/callback/route.ts",
+    "methods": "GET",
+    "hasAuthCheck": false,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/kyc/digilocker/route.ts",
+    "methods": "GET",
+    "hasAuthCheck": true,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/leads/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/notifications/delivery/route.ts",
+    "methods": "GET, POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/notifications/outbox/route.ts",
+    "methods": "GET, POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/notifications/push-subscribe/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/notifications/route.ts",
+    "methods": "GET, PATCH",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/partner-orders/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/partner-programmes/[slug]/benefits/route.ts",
+    "methods": "GET",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/partner-programmes/[slug]/enroll/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/partner-programmes/[slug]/route.ts",
+    "methods": "GET",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/partner-programmes/[slug]/verify/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/payments/refund/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/payments/verify/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/payments/webhook/route.ts",
+    "methods": "UNKNOWN",
+    "hasAuthCheck": false,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/pets/route.ts",
+    "methods": "GET, POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/pets/[id]/care-instructions/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": true
+  },
+  {
+    "route": "/api/pets/[id]/health-events/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/pets/[id]/medications/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/pets/[id]/medications/[medicationId]/route.ts",
+    "methods": "PATCH",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": true
+  },
+  {
+    "route": "/api/pets/[id]/route.ts",
+    "methods": "GET, PUT",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/pets/[id]/vaccinations/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/privacy/consent/route.ts",
+    "methods": "GET, POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/privacy/dsr/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/privacy/erase-account/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/public/community/join/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/public/lead-magnets/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/public/leads/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/public/testimonials/route.ts",
+    "methods": "GET, POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/ready/route.ts",
+    "methods": "GET",
+    "hasAuthCheck": false,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/saathi/application/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/saathi/assignments/route.ts",
+    "methods": "GET",
+    "hasAuthCheck": true,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/saathi/assignments/[id]/cancel/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/saathi/assignments/[id]/events/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": true
+  },
+  {
+    "route": "/api/saathi/assignments/[id]/report/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/saathi/assignments/[id]/response/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": true
+  },
+  {
+    "route": "/api/saathi/assignments/[id]/tracking/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": true
+  },
+  {
+    "route": "/api/saathi/availability/route.ts",
+    "methods": "GET, PUT",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/saathi/profile/route.ts",
+    "methods": "GET, PUT",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/saathi/verification/route.ts",
+    "methods": "GET, POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/services/catalogue/route.ts",
+    "methods": "GET",
+    "hasAuthCheck": false,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/services/route.ts",
+    "methods": "GET",
+    "hasAuthCheck": false,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/society/events/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/society/events/[id]/route.ts",
+    "methods": "PATCH",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/society/gate-protocol/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/subscriptions/activate/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/subscriptions/route.ts",
+    "methods": "GET, POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/support-cases/route.ts",
+    "methods": "GET, POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/uploads/sign/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": true,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/uploads/[id]/route.ts",
+    "methods": "PUT",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": true
+  },
+  {
+    "route": "/api/webhooks/razorpay/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/webhooks/sanity-publish/route.ts",
+    "methods": "POST",
+    "hasAuthCheck": false,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
+    "route": "/api/webhooks/scanner/route.ts",
+    "methods": "POST, PUT",
+    "hasAuthCheck": false,
+    "hasZodValidation": true,
+    "suspectedIdor": false
+  }
+]

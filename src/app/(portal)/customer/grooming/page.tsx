@@ -25,7 +25,7 @@ export default async function CustomerGroomingPage() {
 
   const [dbPets, dbOrders] = await Promise.all([
     prisma.pet.findMany({
-      where: { ownerId: identity.id, active: true },
+      where: { ownerId: identity.id, active: true, deletedAt: null },
       orderBy: { name: "asc" },
       select: { id: true, name: true, species: true, breed: true },
     }),

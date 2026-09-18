@@ -42,7 +42,7 @@ export default async function PetsPage() {
   if (!identity?.roles.includes("CUSTOMER")) redirect("/login?returnTo=/pets");
 
   const dbPets = await prisma.pet.findMany({
-    where: { ownerId: identity.id, active: true },
+    where: { ownerId: identity.id, active: true, deletedAt: null },
     orderBy: { createdAt: "asc" },
     select: {
       id: true,

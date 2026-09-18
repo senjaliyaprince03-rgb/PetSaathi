@@ -95,7 +95,7 @@ export default async function CustomerServicesHubPage() {
 
   const [dbPets, dbOrdersCount] = await Promise.all([
     prisma.pet.findMany({
-      where: { ownerId: identity.id, active: true },
+      where: { ownerId: identity.id, active: true, deletedAt: null },
       select: { id: true, name: true },
     }),
     prisma.partnerOrder.count({ where: { customerId: identity.id } }),

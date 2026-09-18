@@ -16,7 +16,7 @@ export default async function PartnerServicesPage() {
 
   const enabled = await isFeatureEnabled("partner_marketplace");
   const [pets, services, orders] = await Promise.all([
-    prisma.pet.findMany({ where: { ownerId: identity.id, active: true }, orderBy: { name: "asc" }, select: { id: true, name: true } }),
+    prisma.pet.findMany({ where: { ownerId: identity.id, active: true, deletedAt: null }, orderBy: { name: "asc" }, select: { id: true, name: true } }),
     enabled ? prisma.partnerService.findMany({ where: { status: "ACTIVE", partner: { status: "ACTIVE", verifications: { some: { status: "PASSED", OR: [{ expiresAt: null }, { expiresAt: { gt: new Date() } }] } } } }, orderBy: { partner: { displayName: "asc" } }, select: { id: true, serviceCode: true, partner: { select: { displayName: true } } } }) : Promise.resolve([]),
     prisma.partnerOrder.findMany({ where: { customerId: identity.id }, orderBy: { updatedAt: "desc" }, take: 25, select: { id: true, reference: true, status: true, scheduledAt: true, updatedAt: true, partnerService: { select: { serviceCode: true, partner: { select: { displayName: true } } } }, pet: { select: { name: true } } } }),
   ]);

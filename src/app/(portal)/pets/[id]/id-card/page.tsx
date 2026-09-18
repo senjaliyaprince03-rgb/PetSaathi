@@ -14,7 +14,7 @@ export default async function DigitalPetIdPage({ params }: { params: Promise<{ i
   if (!identity?.roles.includes("CUSTOMER")) redirect(`/login?returnTo=/pets/${id}/id-card`);
 
   const pet = await prisma.pet.findFirst({
-    where: { id, ownerId: identity.id, active: true },
+    where: { id, ownerId: identity.id, active: true, deletedAt: null },
     include: {
       medicalProfile: true,
       emergencyContacts: { orderBy: { priority: "asc" }, take: 1 },

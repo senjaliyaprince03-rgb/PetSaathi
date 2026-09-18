@@ -14,7 +14,7 @@ export type { PaymentStatus, RefundStatus, PayoutStatus } from "@prisma/client";
  * Valid payment state transitions
  */
 export const paymentTransitions: Record<PaymentStatus, readonly PaymentStatus[]> = {
-  CREATED: ["PENDING", "AUTHORIZED", "FAILED", "CANCELLED"],
+  CREATED: ["PENDING", "AUTHORIZED", "CAPTURED", "FAILED", "CANCELLED"],
   PENDING: ["AUTHORIZED", "CAPTURED", "FAILED", "CANCELLED"],
   AUTHORIZED: ["CAPTURED", "FAILED", "CANCELLED"],
   CAPTURED: ["PARTIALLY_REFUNDED", "REFUNDED", "DISPUTED"],

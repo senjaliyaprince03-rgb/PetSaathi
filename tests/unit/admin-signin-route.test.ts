@@ -40,7 +40,7 @@ describe("admin signin route", () => {
 
     const response = await POST(adminSigninRequest({
       email: "mrsenjaliya532@gmail.com",
-      password: "Prince@@@123@@@",
+      password: "TestAdminPassword!123",
     }));
 
     expect(response.status).toBe(200);
@@ -48,7 +48,7 @@ describe("admin signin route", () => {
       authenticated: true,
       roles: ["SUPER_ADMIN", "OPERATIONS_ADMIN"],
     });
-    expect(mocks.signInAdmin).toHaveBeenCalledWith("mrsenjaliya532@gmail.com", "Prince@@@123@@@");
+    expect(mocks.signInAdmin).toHaveBeenCalledWith("mrsenjaliya532@gmail.com", "TestAdminPassword!123");
   });
 
   it("rejects non-admin email or wrong password with 401", async () => {
@@ -71,7 +71,7 @@ describe("admin signin route", () => {
 
     const response = await POST(adminSigninRequest({
       email: "mrsenjaliya532@gmail.com",
-      password: "Prince@@@123@@@",
+      password: "TestAdminPassword!123",
     }));
 
     expect(response.status).toBe(429);

@@ -12,7 +12,7 @@ export async function GET() {
   if (!identity?.roles.includes("CUSTOMER")) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
 
   const pets = await prisma.pet.findMany({
-    where: { ownerId: identity.id, active: true },
+    where: { ownerId: identity.id, active: true, deletedAt: null },
     orderBy: { createdAt: "asc" },
     select: { id: true, name: true, species: true, breed: true, sex: true, birthDate: true, weightKg: true, sterilised: true, photoPath: true }
   });

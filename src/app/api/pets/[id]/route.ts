@@ -14,7 +14,7 @@ export async function GET(_request: Request, context: { params: Promise<{ id: st
 
   const { id } = await context.params;
   const pet = await prisma.pet.findFirst({
-    where: { id, ownerId: identity.id, active: true },
+    where: { id, ownerId: identity.id, active: true, deletedAt: null },
     select: {
       id: true,
       name: true,

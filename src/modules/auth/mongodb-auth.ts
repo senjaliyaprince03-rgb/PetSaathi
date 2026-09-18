@@ -399,19 +399,25 @@ async function sendWelcomeEmail(email: string, displayName: string, role?: strin
  * dashboard and it can ONLY sign in via password — never via Google,
  * OTP-code login, or the signup flow.
  */
-const ADMIN_EMAIL = (process.env.ADMIN_EMAIL || "mrsenjaliya532@gmail.com").trim().toLowerCase();
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || (process.env.NODE_ENV === "production" ? "" : "Prince@@@123@@@");
+function getAdminEmail(): string {
+  return (process.env.ADMIN_EMAIL || "").trim().toLowerCase();
+}
 
-const ALLOWED_ADMIN_ACCOUNTS = new Set([
-  ADMIN_EMAIL,
-  "ops.deep@petsaathi.com",
-  "super.deep@petsaathi.com"
-]);
+function getAdminPassword(): string {
+  return process.env.ADMIN_PASSWORD || "";
+}
 
-const AUTHORIZED_ADMIN_EMAILS = new Set([ADMIN_EMAIL]);
+function getAllowedAdminAccounts(): Set<string> {
+  const accounts = new Set<string>(["ops.deep@petsaathi.com", "super.deep@petsaathi.com"]);
+  const adminEmail = getAdminEmail();
+  if (adminEmail) accounts.add(adminEmail);
+  return accounts;
+}
 
 export function isAuthorizedAdminEmail(email: string): boolean {
-  return AUTHORIZED_ADMIN_EMAILS.has(email.trim().toLowerCase());
+  const adminEmail = getAdminEmail();
+  if (!adminEmail) return false;
+  return email.trim().toLowerCase() === adminEmail;
 }
 
 /**
@@ -419,12 +425,18 @@ export function isAuthorizedAdminEmail(email: string): boolean {
  * password sign-in always works. Called lazily on the first admin sign-in
  * attempt. Idempotent — safe to call repeatedly.
  */
-async function ensureAdminCredential() {
-  const email = ADMIN_EMAIL;
-  if (!ADMIN_PASSWORD && process.env.NODE_ENV === "production") {
-    throw new Error("ADMIN_PASSWORD must be configured in environment variables for production.");
+async function ensureAdminCredential(): Promise<string | null> {
+  const email = getAdminEmail();
+  const password = getAdminPassword();
+
+  if (!email || !password) {
+    if (process.env.NODE_ENV === "production") {
+      throw new Error("ADMIN_EMAIL and ADMIN_PASSWORD must be configured in environment variables for production.");
+    }
+    console.warn("[auth] Admin login disabled: ADMIN_EMAIL or ADMIN_PASSWORD is not configured in environment.");
+    return null;
   }
-  const password = ADMIN_PASSWORD || "Prince@@@123@@@";
+
   const database = await getMongoDatabase();
   const credentials = database.collection<AuthCredential>("auth_credentials");
 
@@ -461,12 +473,13 @@ async function ensureAdminCredential() {
     }
   }
 
-  // Upsert the credential — always overwrite with the canonical password
+  // Upsert the credential — store hashed password
   const now = new Date();
+  const hashedPw = await passwordHash(password);
   await credentials.updateOne(
     { _id: email },
     {
-      $set: { userId: user.id, passwordHash: await passwordHash(password), updatedAt: now },
+      $set: { userId: user.id, passwordHash: hashedPw, updatedAt: now },
       $setOnInsert: { createdAt: now },
     },
     { upsert: true },
@@ -481,24 +494,30 @@ async function ensureAdminCredential() {
  */
 export async function signInAdmin(emailInput: string, passwordInput: string) {
   await ensureAuthIndexes();
+  const adminEmail = getAdminEmail();
+  const adminPassword = getAdminPassword();
+
+  if (!adminEmail || !adminPassword) {
+    if (process.env.NODE_ENV !== "production") {
+      console.warn("[auth] Admin login disabled: ADMIN_EMAIL or ADMIN_PASSWORD is not configured in environment.");
+    }
+    return { success: false as const };
+  }
+
   const email = normalizedEmail(emailInput);
 
-  // Only the locked admin email is accepted
-  if (email !== ADMIN_EMAIL) {
+  // Only the configured admin email is accepted
+  if (email !== adminEmail) {
     return { success: false as const };
   }
 
-  // Verify against the exact locked password (constant-time string compare
-  // is not critical here since we also check the scrypt hash, but we add
-  // an early-exit for clarity).
-  if (passwordInput !== ADMIN_PASSWORD) {
+  // Ensure the admin credential exists in DB (idempotent, stores hash)
+  const adminUserId = await ensureAdminCredential();
+  if (!adminUserId) {
     return { success: false as const };
   }
 
-  // Ensure the admin credential exists in DB (idempotent)
-  await ensureAdminCredential();
-
-  // Now verify via the standard credential path for safety
+  // Verify against the standard credential path via constant-time scrypt compare
   const database = await getMongoDatabase();
   const credential = await database.collection<AuthCredential>("auth_credentials").findOne({ _id: email });
   if (!credential || !(await passwordMatches(passwordInput, credential.passwordHash))) {
@@ -723,7 +742,7 @@ async function ensureDemoAccount(email: string, role: "CUSTOMER" | "SITTER") {
   const credentials = database.collection<AuthCredential>("auth_credentials");
 
   const now = new Date();
-  const pwHash = await passwordHash("Prince@@@123@@@");
+  const pwHash = await passwordHash(process.env.DEMO_ACCOUNT_PASSWORD || "DemoPetSaathi!2026");
 
   const existingUser = await usersCol.findOne({ email });
   const userId = existingUser ? String(existingUser._id) : randomBytes(16).toString("hex");
@@ -866,7 +885,7 @@ export async function signInWithPassword(emailInput: string, password: string) {
   await issueSession(user.id);
   
   // Non-authorized admin emails can never yield admin roles
-  const isAllowedAdmin = ALLOWED_ADMIN_ACCOUNTS.has(email);
+  const isAllowedAdmin = getAllowedAdminAccounts().has(email);
   const roles = user.roles
     .map(r => r.role)
     .filter(r => isAllowedAdmin || (r !== "SUPER_ADMIN" && r !== "OPERATIONS_ADMIN"));

@@ -21,7 +21,7 @@ export async function createBookingWithQuote(customerId: string, input: CreateBo
       return await prisma.$transaction(async (tx) => {
         const now = new Date();
         const [pet, address, service] = await Promise.all([
-          tx.pet.findFirst({ where: { id: input.petId, ownerId: customerId, active: true }, select: { id: true } }),
+          tx.pet.findFirst({ where: { id: input.petId, ownerId: customerId, active: true, deletedAt: null }, select: { id: true } }),
           tx.address.findFirst({ where: { id: input.addressId, userId: customerId }, select: { id: true, city: true, state: true, locality: true, postalCode: true } }),
           tx.serviceType.findUnique({ where: { code: input.serviceCode as ServiceCode }, select: { id: true, code: true, active: true, durationMinutes: true } })
         ]);

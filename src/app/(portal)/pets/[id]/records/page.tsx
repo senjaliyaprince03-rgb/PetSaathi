@@ -29,6 +29,7 @@ export default async function PetHealthRecordsPage({ params }: { params: Promise
       where: {
         id,
         active: true,
+        deletedAt: null,
         ...(isStaff ? {} : { ownerId: identity.id }),
       },
       select: { id: true, name: true, ownerId: true },

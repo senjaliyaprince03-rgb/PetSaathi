@@ -45,7 +45,7 @@ export default async function CustomerDashboardPage() {
 
   // Fetch customer pets and bookings
   const [pets, activeBooking, recentBookings, totalBookingsCount] = await Promise.all([
-    prisma.pet.findMany({ where: { ownerId: identity.id }, orderBy: { createdAt: 'desc' } }),
+    prisma.pet.findMany({ where: { ownerId: identity.id, active: true, deletedAt: null }, orderBy: { createdAt: 'desc' } }),
     prisma.booking.findFirst({
       where: { 
         customerId: identity.id, 

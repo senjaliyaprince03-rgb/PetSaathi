@@ -8,7 +8,7 @@ export async function GET() {
   if (!identity) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
 
   const pets = await prisma.pet.findMany({
-    where: { ownerId: identity.id, active: true },
+    where: { ownerId: identity.id, active: true, deletedAt: null },
     select: {
       id: true,
       name: true,
