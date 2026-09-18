@@ -128,3 +128,135 @@ Cascade Integrity Summary: ALL TESTS PASSED
 ```
 
 ---
+
+## Wave 2: Auth, RBAC, Build Gates, and URLs
+
+#### BUG-006: Build gates bypassed type-checking and linting
+- **Files Modified**:
+  - `next.config.mjs`
+  - `scripts/build.mjs`
+- **Fix Summary**:
+  - Removed `typescript: { ignoreBuildErrors: true }` from Next.js config so Next.js build strictly fails on type errors.
+  - Removed `--no-lint` and `PETSAATHI_BUILD_SKIP_TYPECHECK` flags from `scripts/build.mjs`. Build now sequentially executes ESLint, TypeScript `tsc --noEmit`, Prisma Client generation, and Next.js production build.
+- **Verification Command & Raw Output**:
+```
+$ npm run build
+
+> petsaathi@0.1.0 build
+> node scripts/build.mjs
+
+==> [1/4] Running ESLint...
+==> [2/4] Running TypeScript typecheck...
+==> [3/4] Generating Prisma Client...
+Prisma schema loaded from prisma\schema.prisma
+
+✔ Generated Prisma Client (v6.19.3) to .\node_modules\@prisma\client in 666ms
+
+Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+
+Loaded Prisma config from prisma.config.ts.
+
+Prisma config detected, skipping environment variable loading.
+==> [4/4] Running Next.js build...
+   ▲ Next.js 15.5.25
+   - Environments: .env.local, .env
+   - Experiments (use with caution):
+     · clientTraceMetadata
+
+   Creating an optimized production build ...
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/113) ...
+   Generating static pages (28/113) 
+   Generating static pages (56/113) 
+   Generating static pages (84/113) 
+ ✓ Generating static pages (113/113)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                                           Size  First Load JS
+...
++ First Load JS shared by all                                          203 kB
+ƒ Middleware                                                           165 kB
+
+Exit code: 0
+```
+
+#### BUG-003, BUG-008, BUG-009: Broken canonical URL & og:image domain pointing to outdated Vercel deployment
+- **Files Modified**:
+  - `src/lib/app-url.ts`
+  - `.env.local`
+- **Fix Summary**:
+  - Rewrote `getCanonicalBaseUrl()` in `src/lib/app-url.ts` to derive the base URL dynamically: `NEXT_PUBLIC_APP_URL` -> `VERCEL_URL` (with `https://`) -> `http://localhost:3000`. Removed hardcoded references to `petsaathi-two.vercel.app`.
+  - Configured `NEXT_PUBLIC_APP_URL=http://localhost:3000` and `NEXTAUTH_URL=http://localhost:3000` in `.env.local`.
+  - Confirmed og:image asset `public/images/hero-care-handover-highres.webp` exists locally and serves HTTP 200 `image/webp`.
+- **Verification Command & Raw Output**:
+```
+$ git grep -n "petsaathi-two.vercel.app" src/
+(0 results)
+
+$ curl.exe -I http://localhost:3000/images/hero-care-handover-highres.webp
+HTTP/1.1 200 OK
+Accept-Ranges: bytes
+Content-Length: 76092
+Content-Type: image/webp
+Last-Modified: Sun, 15 Mar 2026 04:54:02 GMT
+```
+
+#### BUG-011: Dual incompatible authentication systems
+- **Files Modified**:
+  - `src/modules/auth/mongodb-auth.ts`
+  - `src/app/api/auth/register/route.ts`
+  - `src/lib/auth.ts`
+- **Fix Summary**:
+  - Unified credential storage: `registerWithPassword`, `setPasswordForUser`, `ensureDemoAccount`, and `/api/auth/register` now write both `_id: normalizedEmail` and `email: normalizedEmail` in `auth_credentials`.
+  - Added dual query compatibility: NextAuth Credentials provider now looks up `{ $or: [{ _id: email }, { email }] }`.
+  - Added algorithm fallback and auto-upgrade: `passwordMatches()` checks scrypt format, falls back to `bcryptjs.compare()` if formatted as bcrypt `$2...`, and transparently re-hashes legacy bcrypt passwords to scrypt on successful login.
+- **Verification Command & Raw Output**:
+```
+$ node qa/test-auth-incompatibility.mjs
+Starting auth incompatibility reproduction test...
+Step 1: Registered user test-compat-1773834375990@example.com via /api/auth/register. Status: 201
+Step 2: Attempting native auth login with test-compat-1773834375990@example.com...
+Native auth login SUCCESS: user authenticated with id 69bbdeab71d6f46141a0522c
+Step 3: Creating bcrypt user directly in auth_credentials to simulate NextAuth user...
+Step 4: Attempting native auth login on bcrypt user test-compat-bcrypt-1773834375990@example.com...
+Native auth login on bcrypt user SUCCESS: status=200
+Upgraded password hash format in DB: scrypt$16384$8$1$669b...
+SUCCESS: Both registration and login work seamlessly across auth systems!
+```
+
+#### BUG-012: Middleware RBAC bypass on protected admin/operator/partners portal routes
+- **Files Modified**:
+  - `src/modules/auth/mongodb-auth.ts`
+  - `src/middleware.ts`
+- **Fix Summary**:
+  - Native sessions: `issueSession` now signs the user's primary role into the cookie token payload (`${token}.${role}.${sig}`) using HMAC-SHA256.
+  - Edge Middleware: Added `verifyNativeSessionRole()` using the Edge-compatible Web Crypto API (`crypto.subtle`). Middleware verifies the signature and checks role against route permission requirements (`/admin`, `/api/admin/*`, `/operator`, `/partners`).
+  - NextAuth sessions: Middleware continues to verify role from NextAuth JWT `getToken`.
+  - Server-side defense-in-depth: Verified role assertions on layouts and server components (`/admin/layout.tsx`, `/operator/page.tsx`, `/partners/page.tsx`, `/saathi/page.tsx`).
+- **Verification Command & Raw Output**:
+```
+$ node qa/test-wave2-rbac.mjs
+Testing unauthenticated/unauthorized access to protected portal routes...
+Testing GET /admin (Unauthenticated/Unauthorized):
+Status: 307
+Location header: http://127.0.0.1:3000/dashboard
+[PASS] GET /admin redirected unauthorized user to /dashboard
+
+Testing GET /api/admin/cities (Unauthorized):
+Status: 403
+[PASS] GET /api/admin/cities returned 403 Forbidden
+
+Testing GET /operator (Unauthorized):
+Status: 307
+Location header: http://127.0.0.1:3000/dashboard
+[PASS] GET /operator redirected unauthorized user to /dashboard
+
+Testing GET /partners (Unauthorized):
+Status: 307
+Location header: http://127.0.0.1:3000/dashboard
+[PASS] GET /partners redirected unauthorized user to /dashboard
+```
+
+---

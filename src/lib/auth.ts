@@ -31,7 +31,7 @@ export const authOptions: NextAuthOptions = {
         if (!user) return null;
 
         const db = await getMongoDatabase();
-        const cred = await db.collection("auth_credentials").findOne({ email });
+        const cred = await db.collection<any>("auth_credentials").findOne({ $or: [{ _id: email }, { email }] });
         
         if (!cred) return null;
 

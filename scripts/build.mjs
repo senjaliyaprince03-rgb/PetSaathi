@@ -53,11 +53,9 @@ run(process.execPath, [path.join(projectRoot, "node_modules/typescript/bin/tsc")
 
 console.log("==> [3/4] Generating Prisma Client...");
 generatePrismaClient();
-process.env.PETSAATHI_BUILD_SKIP_TYPECHECK = "1";
 
 console.log("==> [4/4] Running Next.js build...");
 run(process.execPath, [
   path.join(projectRoot, "node_modules/next/dist/bin/next"),
   "build",
-  "--no-lint",
 ]);

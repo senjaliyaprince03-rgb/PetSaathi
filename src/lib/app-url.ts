@@ -1,29 +1,17 @@
-import { publicEnv } from "@/lib/env";
-
 export function getCanonicalBaseUrl(): string {
-  const envUrl =
-    process.env.NEXT_PUBLIC_SITE_URL ||
-    process.env.NEXT_PUBLIC_APP_URL ||
-    publicEnv.NEXT_PUBLIC_APP_URL;
-
-  if (process.env.NODE_ENV === "production" && envUrl && envUrl.includes("petsaathi.vercel.app")) {
-    if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
-      return "https://" + process.env.VERCEL_PROJECT_PRODUCTION_URL;
+  const envUrl = process.env.NEXT_PUBLIC_APP_URL || process.env.NEXT_PUBLIC_SITE_URL;
+  if (envUrl && envUrl.trim().length > 0) {
+    let url = envUrl.trim().replace(/\/+$/, "");
+    if (!/^https?:\/\//i.test(url)) {
+      url = `https://${url}`;
     }
-    return "https://petsaathi-two.vercel.app";
+    return url;
   }
 
-  if (envUrl && !envUrl.startsWith("http://127.0.0.1") && !envUrl.startsWith("http://localhost")) {
-    return envUrl.replace(/\/+$/, "");
+  const vercelUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL || process.env.VERCEL_URL;
+  if (vercelUrl && vercelUrl.trim().length > 0) {
+    return `https://${vercelUrl.trim().replace(/\/+$/, "")}`;
   }
 
-  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
-    return "https://" + process.env.VERCEL_PROJECT_PRODUCTION_URL;
-  }
-
-  if (process.env.VERCEL_URL) {
-    return "https://" + process.env.VERCEL_URL;
-  }
-
-  return (envUrl || "https://petsaathi-two.vercel.app").replace(/\/+$/, "");
+  return "http://localhost:3000";
 }

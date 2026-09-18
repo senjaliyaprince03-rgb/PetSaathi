@@ -10,6 +10,7 @@ import {
 } from "node:crypto";
 import { promisify } from "node:util";
 import nodemailer from "nodemailer";
+import bcrypt from "bcryptjs";
 
 import { cookies } from "next/headers";
 
@@ -51,6 +52,7 @@ type AuthSession = {
 
 type AuthCredential = {
   _id: string;
+  email?: string;
   userId: string;
   passwordHash: string;
   createdAt: Date;
@@ -648,9 +650,9 @@ export async function setPasswordForUser(userId: string, newPassword: string) {
   const now = new Date();
   if (!user.email) return { success: false as const, reason: "user_not_found" as const };
   await credentials.updateOne(
-    { _id: user.email },
+    { $or: [{ _id: user.email }, { email: user.email }] },
     {
-      $set: { userId, passwordHash: await passwordHash(newPassword), updatedAt: now },
+      $set: { _id: user.email, email: user.email, userId, passwordHash: await passwordHash(newPassword), updatedAt: now },
       $setOnInsert: { createdAt: now },
     },
     { upsert: true },
@@ -659,6 +661,9 @@ export async function setPasswordForUser(userId: string, newPassword: string) {
 }
 
 async function passwordMatches(password: string, encoded: string) {
+  if (encoded.startsWith("$2a$") || encoded.startsWith("$2b$") || encoded.startsWith("$2y$")) {
+    return bcrypt.compare(password, encoded);
+  }
   const [algorithm, salt, expectedHex] = encoded.split(":");
   if (algorithm !== "scrypt" || !salt || !expectedHex) return false;
   const expected = Buffer.from(expectedHex, "hex");
@@ -712,6 +717,7 @@ export async function registerWithPassword(input: {
     const now = new Date();
     await credentials.insertOne({
       _id: email,
+      email,
       userId: user.id,
       passwordHash: await passwordHash(input.password),
       createdAt: now,
@@ -844,9 +850,9 @@ async function ensureDemoAccount(email: string, role: "CUSTOMER" | "SITTER") {
   }
 
   await credentials.updateOne(
-    { _id: email },
+    { $or: [{ _id: email }, { email }] },
     {
-      $set: { userId, passwordHash: pwHash, updatedAt: now },
+      $set: { _id: email, email, userId, passwordHash: pwHash, updatedAt: now },
       $setOnInsert: { createdAt: now },
     },
     { upsert: true }
@@ -871,10 +877,23 @@ export async function signInWithPassword(emailInput: string, password: string) {
   }
 
   const database = await getMongoDatabase();
-  const credential = await database.collection<AuthCredential>("auth_credentials").findOne({
+  const credential = await database.collection<any>("auth_credentials").findOne({
     $or: [{ _id: email }, { email }]
   });
   if (!credential || !(await passwordMatches(password, credential.passwordHash))) return { success: false };
+
+  // Transparent re-hash of legacy bcrypt passwords to scrypt on successful login
+  if (credential.passwordHash.startsWith("$2")) {
+    try {
+      const newHash = await passwordHash(password);
+      await database.collection("auth_credentials").updateOne(
+        { _id: credential._id },
+        { $set: { passwordHash: newHash, updatedAt: new Date() } }
+      );
+    } catch (rehashErr) {
+      console.warn("[auth] Transparent re-hash to scrypt failed:", rehashErr);
+    }
+  }
 
   const user = await prisma.user.findUnique({ 
     where: { id: credential.userId }, 
@@ -912,8 +931,17 @@ export async function issueSession(userId: string) {
     expiresAt,
   });
 
+  // Resolve user primary role to sign into the session cookie for edge verification
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+    select: { roles: { select: { role: true } } },
+  });
+  const role = user?.roles[0]?.role ?? "CUSTOMER";
+  const sig = createHmac("sha256", authSecret()).update(`${token}:${role}`).digest("base64url");
+  const signedCookieValue = `${token}.${role}.${sig}`;
+
   const cookieStore = await cookies();
-  cookieStore.set(SESSION_COOKIE, token, {
+  cookieStore.set(SESSION_COOKIE, signedCookieValue, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production" && process.env.PLAYWRIGHT_TEST !== "1",
     sameSite: "lax",
@@ -922,7 +950,10 @@ export async function issueSession(userId: string) {
 }
 
 export async function currentSessionUserId(): Promise<string | null> {
-  const token = (await cookies()).get(SESSION_COOKIE)?.value;
+  const rawCookie = (await cookies()).get(SESSION_COOKIE)?.value;
+  if (!rawCookie) return null;
+
+  const [token] = rawCookie.split(".");
   if (!token) return null;
 
   try {
@@ -940,10 +971,13 @@ export async function currentSessionUserId(): Promise<string | null> {
 
 export async function revokeCurrentSession() {
   const cookieStore = await cookies();
-  const token = cookieStore.get(SESSION_COOKIE)?.value;
-  if (token) {
-    const database = await getMongoDatabase();
-    await database.collection<AuthSession>("auth_sessions").deleteOne({ _id: digest(token) });
+  const rawCookie = cookieStore.get(SESSION_COOKIE)?.value;
+  if (rawCookie) {
+    const [token] = rawCookie.split(".");
+    if (token) {
+      const database = await getMongoDatabase();
+      await database.collection<AuthSession>("auth_sessions").deleteOne({ _id: digest(token) });
+    }
   }
   cookieStore.set(SESSION_COOKIE, "", {
     httpOnly: true,

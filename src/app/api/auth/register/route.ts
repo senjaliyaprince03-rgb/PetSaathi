@@ -63,13 +63,22 @@ export async function POST(request: Request) {
 
     // Save credentials in the native mongo collection for NextAuth compatibility
     const db = await getMongoDatabase();
-    await db.collection("auth_credentials").insertOne({
-      email: normalizedEmail,
-      userId: user.id,
-      passwordHash: passwordHash,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    });
+    await db.collection<any>("auth_credentials").updateOne(
+      { $or: [{ _id: normalizedEmail }, { email: normalizedEmail }] },
+      {
+        $set: {
+          _id: normalizedEmail,
+          email: normalizedEmail,
+          userId: user.id,
+          passwordHash: passwordHash,
+          updatedAt: new Date(),
+        },
+        $setOnInsert: {
+          createdAt: new Date(),
+        },
+      },
+      { upsert: true }
+    );
 
     return NextResponse.json(
       { message: "User registered successfully", userId: user.id },

@@ -1,3 +1,34 @@
+async function verifyNativeSessionRole(cookieVal: string, secret: string): Promise<string | null> {
+  const parts = cookieVal.split(".");
+  if (parts.length !== 3) return null;
+  const [token, role, signature] = parts;
+  try {
+    const encoder = new TextEncoder();
+    const key = await crypto.subtle.importKey(
+      "raw",
+      encoder.encode(secret),
+      { name: "HMAC", hash: "SHA-256" },
+      false,
+      ["sign"]
+    );
+    const data = encoder.encode(`${token}:${role}`);
+    const sigBuffer = await crypto.subtle.sign("HMAC", key, data);
+    const bytes = new Uint8Array(sigBuffer);
+    let binary = "";
+    for (let i = 0; i < bytes.byteLength; i++) {
+      const b = bytes[i];
+      if (b !== undefined) binary += String.fromCharCode(b);
+    }
+    const expectedSig = btoa(binary).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+    if (expectedSig === signature) {
+      return role || null;
+    }
+  } catch (err) {
+    console.warn("[middleware] Failed to verify native session signature:", err);
+  }
+  return null;
+}
+
 import { type NextRequest, NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
 import { Ratelimit } from "@upstash/ratelimit";
@@ -186,10 +217,19 @@ export async function middleware(request: NextRequest) {
   if (isProtectedPage || isAdminApi) {
     try {
       const secret = getAuthSecret();
+      let userRole: string | null = null;
       const token = await getToken({ req: request as any, secret });
       
-      if (token) {
-        const userRole = token.role as string;
+      if (token && typeof token.role === "string") {
+        userRole = token.role;
+      } else if (isLegacySession) {
+        const legacyCookie = request.cookies.get("petsaathi_session")?.value;
+        if (legacyCookie) {
+          userRole = await verifyNativeSessionRole(legacyCookie, secret);
+        }
+      }
+
+      if (userRole) {
         const path = request.nextUrl.pathname;
 
         const isAdminRole = [
@@ -216,6 +256,18 @@ export async function middleware(request: NextRequest) {
           return NextResponse.redirect(url);
         }
 
+        if (path.startsWith("/operator") && userRole !== "OPERATOR" && userRole !== "CITY_MANAGER" && userRole !== "SUPER_ADMIN" && userRole !== "OPERATIONS_ADMIN") {
+          const url = request.nextUrl.clone();
+          url.pathname = "/dashboard";
+          return NextResponse.redirect(url);
+        }
+
+        if (path.startsWith("/partners") && userRole !== "PARTNER_MANAGER" && userRole !== "SUPER_ADMIN") {
+          const url = request.nextUrl.clone();
+          url.pathname = "/dashboard";
+          return NextResponse.redirect(url);
+        }
+
         if ((path.startsWith("/dashboard") || path.startsWith("/customer")) && userRole !== "CUSTOMER" && userRole !== "SUPER_ADMIN") {
            const url = request.nextUrl.clone();
            url.pathname = "/saathi";
@@ -227,6 +279,17 @@ export async function middleware(request: NextRequest) {
            url.pathname = "/dashboard";
            return NextResponse.redirect(url);
         }
+      } else if (isAdminApi) {
+        const rejected = NextResponse.json(
+          { error: "forbidden", message: "Admin privileges required" },
+          { status: 403, headers: { "Cache-Control": "no-store" } }
+        );
+        applySecurityHeaders(rejected, cspHeader, requestId);
+        return rejected;
+      } else if (request.nextUrl.pathname.startsWith("/admin") || request.nextUrl.pathname.startsWith("/operator") || request.nextUrl.pathname.startsWith("/partners")) {
+        const url = request.nextUrl.clone();
+        url.pathname = "/dashboard";
+        return NextResponse.redirect(url);
       }
     } catch (e) {
       // Degrade gracefully if token decoding or edge secret fails

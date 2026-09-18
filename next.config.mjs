@@ -21,11 +21,6 @@ const nextConfig = {
   typedRoutes: true,
   transpilePackages: ["leaflet", "react-leaflet"],
   serverExternalPackages: ["@prisma/client", "bcryptjs", "node:inspector", "inspector"],
-  // The repository runs `npm run typecheck` as a separate release gate. Keep
-  // Next's duplicate worker-based check opt-in for restricted build runners.
-  typescript: {
-    ignoreBuildErrors: process.env.PETSAATHI_BUILD_SKIP_TYPECHECK === "1",
-  },
   outputFileTracingRoot: projectRoot,
   images: {
     formats: ["image/avif", "image/webp"],
