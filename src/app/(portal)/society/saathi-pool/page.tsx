@@ -27,6 +27,7 @@ export default async function SocietySaathiPoolPage() {
 
   const poolEntries = await prisma.societySitterPool.findMany({
     where: { societyId: membership.societyId },
+    take: 100,
     include: {
       sitter: {
         include: {

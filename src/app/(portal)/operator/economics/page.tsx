@@ -24,12 +24,13 @@ export default async function OperatorEconomicsPage() {
 
   const scopedCities = scope.unrestricted
     ? await prisma.city.findMany({ take: 20, orderBy: { name: "asc" } })
-    : await prisma.city.findMany({ where: { id: { in: scope.cityIds } }, orderBy: { name: "asc" } });
+    : await prisma.city.findMany({ where: { id: { in: scope.cityIds } }, orderBy: { name: "asc" }, take: 50 });
 
   const financialRecords = await prisma.cityFinancialRecord.findMany({
     where: { cityId: { in: scopedCities.map((c) => c.id) } },
     orderBy: [{ periodYear: "desc" }, { periodMonth: "desc" }],
     distinct: ["cityId"],
+    take: 50,
   });
 
   const financialByCity = new Map(financialRecords.map((fr) => [fr.cityId, fr]));

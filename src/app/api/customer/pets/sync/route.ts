@@ -9,6 +9,7 @@ export async function GET() {
 
   const pets = await prisma.pet.findMany({
     where: { ownerId: identity.id, active: true, deletedAt: null },
+    take: 50,
     select: {
       id: true,
       name: true,

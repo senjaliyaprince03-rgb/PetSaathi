@@ -17,7 +17,7 @@ export default async function ReferralProtocolPage() {
   const identity = await getCurrentIdentity();
   if (!identity?.roles.includes("CUSTOMER")) redirect("/login?returnTo=/customer/referrals");
 
-  const dbReferrals = await prisma.referral.findMany({ where: { referrerId: identity.id }, orderBy: { createdAt: "desc" }, include: { referred: { select: { displayName: true } } } });
+  const dbReferrals = await prisma.referral.findMany({ where: { referrerId: identity.id }, orderBy: { createdAt: "desc" }, take: 50, include: { referred: { select: { displayName: true } } } });
 
   const referrals = dbReferrals.length > 0 ? dbReferrals : [
     {

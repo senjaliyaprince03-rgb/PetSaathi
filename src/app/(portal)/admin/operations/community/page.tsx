@@ -22,6 +22,7 @@ export default async function AdminCommunityPage() {
       },
     },
     orderBy: { createdAt: "desc" },
+    take: 50,
   });
 
   return (

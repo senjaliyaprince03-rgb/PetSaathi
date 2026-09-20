@@ -61,6 +61,7 @@ export async function GET() {
 
   const pets = await prisma.pet.findMany({
     where: { ownerId: identity.id, active: true, deletedAt: null },
+    take: 50,
     select: { id: true }
   });
 
@@ -69,6 +70,7 @@ export async function GET() {
   const records = await prisma.vaccination.findMany({
     where: { petId: { in: petIds } },
     orderBy: { administeredAt: "desc" },
+    take: 100,
     include: { pet: { select: { name: true } } }
   });
 

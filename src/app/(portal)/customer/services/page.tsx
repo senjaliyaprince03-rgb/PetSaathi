@@ -97,6 +97,7 @@ export default async function CustomerServicesHubPage() {
     prisma.pet.findMany({
       where: { ownerId: identity.id, active: true, deletedAt: null },
       select: { id: true, name: true },
+      take: 50,
     }),
     prisma.partnerOrder.count({ where: { customerId: identity.id } }),
   ]);

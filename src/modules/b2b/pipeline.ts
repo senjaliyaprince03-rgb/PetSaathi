@@ -117,6 +117,7 @@ export async function listOpportunities(filters: {
 
 export async function getPipelineSummary() {
   const opps = await prisma.b2bOpportunity.findMany({
+    take: 1000,
     select: {
       pipelineStage: true,
       estimatedValue: true,

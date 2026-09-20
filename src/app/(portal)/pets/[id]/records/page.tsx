@@ -10,6 +10,7 @@ import { PortalShell } from "@/components/portal/portal-shell";
 import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { toISTDateString } from "@/lib/date-utils";
 
 export default async function PetHealthRecordsPage({ params }: { params: Promise<{ id: string }> }) {
   const identity = await getCurrentIdentity();
@@ -39,6 +40,7 @@ export default async function PetHealthRecordsPage({ params }: { params: Promise
     const events = await tx.petHealthEvent.findMany({
       where: { petId: pet.id },
       orderBy: { occurredAt: "desc" },
+      take: 50,
     });
 
     if (isStaff && actorRole && pet.ownerId !== identity.id) {
@@ -107,7 +109,7 @@ export default async function PetHealthRecordsPage({ params }: { params: Promise
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-col items-start justify-between gap-3 sm:flex-row">
                     <div>
-                      <span className="text-xs font-bold uppercase tracking-[0.16em] text-ink/80">{record.occurredAt.toISOString().split('T')[0]}</span>
+                      <span className="text-xs font-bold uppercase tracking-[0.16em] text-ink/80">{toISTDateString(record.occurredAt)}</span>
                       <h3 className="mt-2 font-display text-2xl font-semibold tracking-tight">{record.summary}</h3>
                       <p className="mt-1 text-sm font-semibold text-ink/80">{record.source}</p>
                     </div>

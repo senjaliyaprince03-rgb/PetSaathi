@@ -49,7 +49,8 @@ export default async function SaathiAssignmentsPage() {
     const releasedAddresses = releasedBookingIds.length
       ? await prisma.booking.findMany({
           where: { id: { in: releasedBookingIds } },
-          select: { id: true, address: { select: { line1: true, line2: true, landmark: true, locality: true, city: true } } }
+          select: { id: true, address: { select: { line1: true, line2: true, landmark: true, locality: true, city: true } } },
+          take: 50,
         })
       : [];
     addressByBooking = new Map(releasedAddresses.map(({ id, address }) => [id, address]));

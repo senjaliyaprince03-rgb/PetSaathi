@@ -35,6 +35,7 @@ export async function getCityPages(cityId: string) {
       cityId,
       status: ContentStatus.PUBLISHED
     },
+    take: 100,
     include: {
       contentEntry: true
     }

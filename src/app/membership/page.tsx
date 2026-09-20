@@ -61,6 +61,7 @@ export default async function MembershipPage() {
     ? await prisma.planVersion.findMany({
         where: { active: true, providerPlanId: { not: null } },
         orderBy: { pricePaise: "asc" },
+        take: 50,
         select: { id: true, name: true, audience: true, pricePaise: true, billingInterval: true, entitlements: true }
       })
     : [];

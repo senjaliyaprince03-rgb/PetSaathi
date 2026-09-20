@@ -61,11 +61,11 @@ export default async function BookPage({ searchParams }: { searchParams: BookSea
 
   const now = new Date();
   const [pets, addresses, serviceRows, serviceAreas, priceRows] = await Promise.all([
-    prisma.pet.findMany({ where: { ownerId: identity.id, active: true, deletedAt: null }, orderBy: { createdAt: "asc" }, select: { id: true, name: true, species: true } }),
-    prisma.address.findMany({ where: { userId: identity.id }, orderBy: { createdAt: "asc" }, select: { id: true, label: true, locality: true, city: true, state: true, postalCode: true } }),
-    prisma.serviceType.findMany({ where: { active: true, code: { in: [...coreServiceCodes] } }, orderBy: { name: "asc" }, select: { id: true, code: true, name: true, durationMinutes: true } }),
-    prisma.serviceArea.findMany({ where: { status: "ACTIVE", city: { status: "PUBLIC_LIMITED" } }, select: { id: true, postalCodes: true, city: { select: { name: true, state: true } } } }),
-    prisma.servicePrice.findMany({ where: { variantId: null, effectiveAt: { lte: now }, OR: [{ expiresAt: null }, { expiresAt: { gt: now } }], serviceType: { active: true, code: { in: [...coreServiceCodes] } } }, orderBy: [{ version: "desc" }, { effectiveAt: "desc" }], select: { id: true, serviceTypeId: true, serviceAreaId: true, version: true, amountPaise: true, taxBasisPoints: true, currency: true } })
+    prisma.pet.findMany({ where: { ownerId: identity.id, active: true, deletedAt: null }, orderBy: { createdAt: "asc" }, take: 50, select: { id: true, name: true, species: true } }),
+    prisma.address.findMany({ where: { userId: identity.id }, orderBy: { createdAt: "asc" }, take: 50, select: { id: true, label: true, locality: true, city: true, state: true, postalCode: true } }),
+    prisma.serviceType.findMany({ where: { active: true, code: { in: [...coreServiceCodes] } }, orderBy: { name: "asc" }, take: 50, select: { id: true, code: true, name: true, durationMinutes: true } }),
+    prisma.serviceArea.findMany({ where: { status: "ACTIVE", city: { status: "PUBLIC_LIMITED" } }, take: 100, select: { id: true, postalCodes: true, city: { select: { name: true, state: true } } } }),
+    prisma.servicePrice.findMany({ where: { variantId: null, effectiveAt: { lte: now }, OR: [{ expiresAt: null }, { expiresAt: { gt: now } }], serviceType: { active: true, code: { in: [...coreServiceCodes] } } }, orderBy: [{ version: "desc" }, { effectiveAt: "desc" }], take: 200, select: { id: true, serviceTypeId: true, serviceAreaId: true, version: true, amountPaise: true, taxBasisPoints: true, currency: true } })
   ]);
   const normalize = (value: string) => value.trim().toLocaleLowerCase("en-IN");
   const priceOptions = addresses.flatMap((address) => {

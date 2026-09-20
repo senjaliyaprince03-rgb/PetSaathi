@@ -62,6 +62,7 @@ export async function resolveTerritoryScope(
   if (roles.includes("CITY_MANAGER")) {
     const assignments = await prisma.cityManager.findMany({
       where: { userId, status: "ACTIVE" },
+      take: 50,
       select: { cityId: true },
     });
     for (const a of assignments) {
@@ -73,6 +74,7 @@ export async function resolveTerritoryScope(
   if (roles.includes("OPERATOR")) {
     const partnerLinks = await prisma.operatingPartner.findMany({
       where: { contactPersonId: userId, status: { in: ["PILOT", "ACTIVE_OP"] } },
+      take: 50,
       select: {
         id: true,
         territories: {

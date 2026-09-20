@@ -200,6 +200,15 @@ export async function middleware(request: NextRequest) {
         request.nextUrl.pathname.startsWith(`${prefix}/`),
     );
 
+  function createProtectedRedirect(url: URL) {
+    const res = NextResponse.redirect(url);
+    res.headers.set("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate");
+    res.headers.set("Pragma", "no-cache");
+    res.headers.set("Expires", "0");
+    applySecurityHeaders(res, cspHeader, requestId);
+    return res;
+  }
+
   if (isProtectedPage && !isAuthenticated) {
     const loginUrl = request.nextUrl.clone();
     loginUrl.pathname = "/login";
@@ -208,9 +217,7 @@ export async function middleware(request: NextRequest) {
       "returnTo",
       `${request.nextUrl.pathname}${request.nextUrl.search}`,
     );
-    const redirected = NextResponse.redirect(loginUrl);
-    applySecurityHeaders(redirected, cspHeader, requestId);
-    return redirected;
+    return createProtectedRedirect(loginUrl);
   }
 
   // RBAC checks
@@ -253,31 +260,31 @@ export async function middleware(request: NextRequest) {
         if (path.startsWith("/admin") && !isAdminRole) {
           const url = request.nextUrl.clone();
           url.pathname = userRole === "SITTER" ? "/saathi" : "/dashboard";
-          return NextResponse.redirect(url);
+          return createProtectedRedirect(url);
         }
 
         if (path.startsWith("/operator") && userRole !== "OPERATOR" && userRole !== "CITY_MANAGER" && userRole !== "SUPER_ADMIN" && userRole !== "OPERATIONS_ADMIN") {
           const url = request.nextUrl.clone();
           url.pathname = "/dashboard";
-          return NextResponse.redirect(url);
+          return createProtectedRedirect(url);
         }
 
         if (path.startsWith("/partners") && userRole !== "PARTNER_MANAGER" && userRole !== "SUPER_ADMIN") {
           const url = request.nextUrl.clone();
           url.pathname = "/dashboard";
-          return NextResponse.redirect(url);
+          return createProtectedRedirect(url);
         }
 
         if ((path.startsWith("/dashboard") || path.startsWith("/customer")) && userRole !== "CUSTOMER" && userRole !== "SUPER_ADMIN") {
            const url = request.nextUrl.clone();
            url.pathname = "/saathi";
-           return NextResponse.redirect(url);
+           return createProtectedRedirect(url);
         }
 
         if (path.startsWith("/saathi") && userRole !== "SITTER" && userRole !== "SUPER_ADMIN") {
            const url = request.nextUrl.clone();
            url.pathname = "/dashboard";
-           return NextResponse.redirect(url);
+           return createProtectedRedirect(url);
         }
       } else if (isAdminApi) {
         const rejected = NextResponse.json(
@@ -289,7 +296,7 @@ export async function middleware(request: NextRequest) {
       } else if (request.nextUrl.pathname.startsWith("/admin") || request.nextUrl.pathname.startsWith("/operator") || request.nextUrl.pathname.startsWith("/partners")) {
         const url = request.nextUrl.clone();
         url.pathname = "/dashboard";
-        return NextResponse.redirect(url);
+        return createProtectedRedirect(url);
       }
     } catch (e) {
       // Degrade gracefully if token decoding or edge secret fails

@@ -15,12 +15,14 @@ export default async function PartnerMembershipPage() {
   const availablePlans = await prisma.planVersion.findMany({
     where: { active: true, audience: "SITTER" },
     orderBy: { pricePaise: "asc" },
+    take: 50,
   });
 
   // Fetch user's active subscriptions
   const userSubscriptions = await prisma.subscription.findMany({
     where: { userId: identity.id, status: { in: ["ACTIVE", "INCOMPLETE"] } },
-    select: { planVersionId: true }
+    select: { planVersionId: true },
+    take: 50,
   });
 
   const activePlanIds = new Set(userSubscriptions.map((sub) => sub.planVersionId));

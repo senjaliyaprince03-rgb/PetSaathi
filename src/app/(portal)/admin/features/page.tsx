@@ -11,7 +11,7 @@ export const dynamic = "force-dynamic";
 export default async function AdminFeaturesPage() {
   const identity = await getCurrentIdentity();
   if (!identity || !hasAnyRole(identity, ["SUPER_ADMIN"])) redirect("/login?returnTo=/admin/features");
-  let flags = await prisma.featureFlag.findMany({ orderBy: { key: "asc" } });
+  let flags = await prisma.featureFlag.findMany({ orderBy: { key: "asc" }, take: 100 });
   if (flags.length === 0) {
     const defaultFlags = [
       { key: "live_walk_tracking", enabled: true, description: "Real-time GPS telemetry & live map during walking assignments." },
@@ -28,7 +28,7 @@ export default async function AdminFeaturesPage() {
         update: {},
       });
     }
-    flags = await prisma.featureFlag.findMany({ orderBy: { key: "asc" } });
+    flags = await prisma.featureFlag.findMany({ orderBy: { key: "asc" }, take: 100 });
   }
   return (
     <PortalShell mode="admin" displayName={identity.displayName}>

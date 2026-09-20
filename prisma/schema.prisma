@@ -3,8 +3,8 @@ generator client {
 }
 
 datasource db {
-  provider = "mongodb"
-  url      = env("MONGODB_URI")
+  provider     = "mongodb"
+  url          = env("MONGODB_URI")
   relationMode = "prisma"
 }
 
@@ -653,8 +653,8 @@ model SitterProfile {
   bio                    String?
   yearsExperience        Int                       @default(0) @map("years_experience")
   serviceLocality        String?                   @map("service_locality")
-  serviceRadiusKm        Float                   @default(5) @map("service_radius_km")
-  reliabilityScore       Float?                  @map("reliability_score")
+  serviceRadiusKm        Float                     @default(5) @map("service_radius_km")
+  reliabilityScore       Float?                    @map("reliability_score")
   applicationAt          DateTime                  @default(now()) @map("application_at")
   approvedAt             DateTime?                 @map("approved_at")
   suspendedAt            DateTime?                 @map("suspended_at")
@@ -706,6 +706,7 @@ model Address {
   orgBillingFor Organization[]
 
   @@index([city, locality])
+  @@index([userId])
   @@map("addresses")
 }
 
@@ -717,7 +718,7 @@ model Pet {
   breed                String?
   sex                  String?
   birthDate            DateTime?             @map("birth_date")
-  weightKg             Float?              @map("weight_kg")
+  weightKg             Float?                @map("weight_kg")
   sterilised           Boolean?
   photoPath            String?               @map("photo_path")
   active               Boolean               @default(true)
@@ -945,6 +946,7 @@ model Booking {
   @@index([status, scheduledStart])
   @@index([serviceTypeId, scheduledStart])
   @@index([petId, scheduledStart, status])
+  @@index([addressId])
   @@map("bookings")
 }
 
@@ -980,6 +982,7 @@ model BookingStatusHistory {
   booking   Booking        @relation(fields: [bookingId], references: [id], onDelete: Cascade)
 
   @@index([bookingId, createdAt])
+  @@index([actorId])
   @@map("booking_status_history")
 }
 
@@ -996,6 +999,7 @@ model ServiceEvent {
   booking    Booking  @relation(fields: [bookingId], references: [id], onDelete: Cascade)
 
   @@index([bookingId, occurredAt])
+  @@index([actorId])
   @@map("service_events")
 }
 
@@ -1020,7 +1024,7 @@ model TrackingPoint {
   sessionId  String          @map("session_id")
   latitude   Float
   longitude  Float
-  accuracyM  Float?        @map("accuracy_m")
+  accuracyM  Float?          @map("accuracy_m")
   recordedAt DateTime        @map("recorded_at")
   session    TrackingSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
 
@@ -1133,6 +1137,7 @@ model ReportMedia {
   capturedAt DateTime?     @map("captured_at")
   report     BookingReport @relation(fields: [reportId], references: [id], onDelete: Cascade)
 
+  @@index([reportId])
   @@map("report_media")
 }
 
@@ -1180,6 +1185,9 @@ model Incident {
 
   @@index([status, severity, detectedAt])
   @@index([bookingId])
+  @@index([petId])
+  @@index([sitterId])
+  @@index([customerId])
   @@map("incidents")
 }
 
@@ -1193,6 +1201,7 @@ model IncidentEvent {
   incident   Incident @relation(fields: [incidentId], references: [id], onDelete: Cascade)
 
   @@index([incidentId, occurredAt])
+  @@index([actorId])
   @@map("incident_events")
 }
 
@@ -1207,6 +1216,7 @@ model CorrectiveAction {
   incident    Incident  @relation(fields: [incidentId], references: [id], onDelete: Cascade)
 
   @@index([incidentId, completedAt])
+  @@index([ownerId])
   @@map("corrective_actions")
 }
 
@@ -1227,6 +1237,7 @@ model NotificationOutbox {
   deliveries     NotificationDelivery[]
 
   @@index([status, scheduledAt])
+  @@index([userId])
   @@map("notification_outbox")
 }
 
@@ -1240,6 +1251,7 @@ model NotificationDelivery {
   notification      NotificationOutbox @relation(fields: [notificationId], references: [id], onDelete: Cascade)
 
   @@index([notificationId, occurredAt])
+  @@index([providerMessageId])
   @@map("notification_deliveries")
 }
 
@@ -1360,7 +1372,7 @@ model SocietyAccessRule {
 }
 
 model SocietyMember {
-  id        String   @id @default(uuid()) @map("_id")
+  id         String    @id @default(uuid()) @map("_id")
   societyId  String    @map("society_id")
   userId     String    @map("user_id")
   unitRef    String?   @map("unit_ref")
@@ -1408,6 +1420,7 @@ model Subscription {
   events                 SubscriptionEvent[]
 
   @@index([userId, status])
+  @@index([planVersionId])
   @@map("subscriptions")
 }
 
@@ -1424,6 +1437,7 @@ model EntitlementLedger {
   subscription   Subscription @relation(fields: [subscriptionId], references: [id], onDelete: Restrict)
 
   @@index([subscriptionId, entitlementKey, createdAt])
+  @@index([referenceId])
   @@map("entitlement_ledger")
 }
 
@@ -1449,6 +1463,8 @@ model ContentEntry {
 
   @@index([status, publishedAt])
   @@index([city, serviceCode])
+  @@index([authorId])
+  @@index([expertReviewId])
   @@map("content_entries")
 }
 
@@ -1481,6 +1497,7 @@ model ContentVersion {
 
   @@unique([contentId, version])
   @@index([contentId, createdAt])
+  @@index([authorId])
   @@map("content_versions")
 }
 
@@ -1500,6 +1517,7 @@ model AuditLog {
 
   @@index([resourceType, resourceId, createdAt])
   @@index([actorId, createdAt])
+  @@index([requestId])
   @@map("audit_logs")
 }
 
@@ -1596,7 +1614,7 @@ model CapacityLimit {
 }
 
 model SocietySitterPool {
-  id        String   @id @default(uuid()) @map("_id")
+  id         String        @id @default(uuid()) @map("_id")
   societyId  String        @map("society_id")
   sitterId   String        @map("sitter_id")
   status     GateStatus    @default(DRAFT)
@@ -1737,6 +1755,7 @@ model PartnerOrder {
 
   @@index([customerId, createdAt])
   @@index([partnerServiceId, status, scheduledAt])
+  @@index([petId])
   @@map("partner_orders")
 }
 
@@ -1752,6 +1771,7 @@ model EntitlementConsumption {
   booking        Booking?     @relation(fields: [bookingId], references: [id], onDelete: Restrict)
 
   @@index([subscriptionId, entitlementKey, consumedAt])
+  @@index([bookingId])
   @@map("entitlement_consumption")
 }
 
@@ -1768,6 +1788,7 @@ model LoyaltyLedger {
   user           User     @relation(fields: [userId], references: [id], onDelete: Restrict)
 
   @@index([userId, createdAt])
+  @@index([referenceId])
   @@map("loyalty_ledger")
 }
 
@@ -1805,6 +1826,7 @@ model Testimonial {
   consent     TestimonialConsent? @relation(fields: [consentId], references: [id], onDelete: Restrict)
 
   @@index([status, publishedAt])
+  @@index([userId])
   @@map("testimonials")
 }
 
@@ -1889,6 +1911,7 @@ model DataAccessLog {
 
   @@index([resourceType, resourceId, createdAt])
   @@index([actorId, createdAt])
+  @@index([requestId])
   @@map("data_access_logs")
 }
 
@@ -1960,7 +1983,7 @@ model AdminPermission {
 }
 
 model HouseholdMember {
-  id        String   @id @default(uuid()) @map("_id")
+  id         String     @id @default(uuid()) @map("_id")
   customerId String     @map("customer_id")
   memberId   String     @map("member_id")
   role       String
@@ -1989,6 +2012,7 @@ model PetMedia {
   upload     UploadObject @relation(fields: [uploadId], references: [id], onDelete: Restrict)
 
   @@index([petId, status, createdAt])
+  @@index([uploadId])
   @@map("pet_media")
 }
 
@@ -2107,6 +2131,7 @@ model PracticalAssessment {
   sitter      SitterProfile      @relation(fields: [sitterId], references: [id], onDelete: Restrict)
 
   @@index([sitterId, serviceCode, assessedAt])
+  @@index([assessorId])
   @@map("practical_assessments")
 }
 
@@ -2217,6 +2242,7 @@ model PriceQuote {
 
   @@index([bookingId, createdAt])
   @@index([expiresAt, acceptedAt])
+  @@index([servicePriceId])
   @@map("price_quotes")
 }
 
@@ -2241,11 +2267,13 @@ model Complaint {
 
   @@index([status, severity, createdAt])
   @@index([customerId, createdAt])
+  @@index([bookingId])
+  @@index([sitterId])
   @@map("complaints")
 }
 
 model CommunicationPreference {
-  id        String   @id @default(uuid()) @map("_id")
+  id         String              @id @default(uuid()) @map("_id")
   userId     String              @map("user_id")
   channel    NotificationChannel
   purpose    String
@@ -2296,6 +2324,7 @@ model SupportCase {
 
   @@index([status, priority, createdAt])
   @@index([userId, createdAt])
+  @@index([bookingId])
   @@map("support_cases")
 }
 
@@ -2361,6 +2390,7 @@ model IncidentEvidence {
   upload       UploadObject @relation(fields: [uploadId], references: [id], onDelete: Restrict)
 
   @@index([incidentId, status, collectedAt])
+  @@index([uploadId])
   @@map("incident_evidence")
 }
 
@@ -2497,6 +2527,8 @@ model CityServiceConfiguration {
   serviceType ServiceType @relation(fields: [serviceTypeId], references: [id], onDelete: Restrict)
 
   @@unique([cityId, serviceTypeId])
+  @@index([cancellationPolicyId])
+  @@index([supportPolicyId])
   @@map("city_service_configurations")
 }
 
@@ -2515,6 +2547,7 @@ model ZoneServiceConfiguration {
   serviceType ServiceType @relation(fields: [serviceTypeId], references: [id], onDelete: Restrict)
 
   @@unique([serviceZoneId, serviceTypeId])
+  @@index([capacityPolicyId])
   @@map("zone_service_configurations")
 }
 
@@ -2555,6 +2588,7 @@ model ServiceCredit {
   transactions ServiceCreditTransaction[]
 
   @@index([userId, isActive, expiresAt])
+  @@index([referenceId])
   @@map("service_credits")
 }
 
@@ -2570,6 +2604,7 @@ model ServiceCreditTransaction {
   credit         ServiceCredit @relation(fields: [creditId], references: [id], onDelete: Restrict)
 
   @@index([creditId, createdAt])
+  @@index([bookingId])
   @@map("service_credit_transactions")
 }
 
@@ -2733,6 +2768,8 @@ model Organization {
 
   @@index([organizationType, status])
   @@index([primaryCityId])
+  @@index([billingAddressId])
+  @@index([accountOwnerId])
   @@map("organizations")
 }
 
@@ -2808,6 +2845,8 @@ model B2bContract {
 
   @@index([organizationId])
   @@index([status])
+  @@index([opportunityId])
+  @@index([signedDocumentId])
   @@map("b2b_contracts")
 }
 
@@ -2839,6 +2878,8 @@ model PartnerProgramme {
 
   @@index([organizationId])
   @@index([status])
+  @@index([contractId])
+  @@index([accountManagerId])
   @@map("partner_programmes")
 }
 
@@ -2921,6 +2962,8 @@ model BenefitLedgerEntry {
   wallet BenefitWallet @relation(fields: [walletId], references: [id], onDelete: Cascade)
 
   @@index([walletId])
+  @@index([bookingId])
+  @@index([invoiceId])
   @@map("benefit_ledger_entries")
 }
 
@@ -2982,6 +3025,7 @@ model EnterpriseInvoice {
   @@index([organizationId])
   @@index([status])
   @@index([dueDate])
+  @@index([contractId])
   @@map("enterprise_invoices")
 }
 
@@ -3057,6 +3101,7 @@ model CityManager {
   user User @relation(fields: [userId], references: [id], onDelete: Restrict)
 
   @@index([cityId, status])
+  @@index([userId])
   @@map("city_managers")
 }
 
@@ -3093,6 +3138,7 @@ model ProviderSuspension {
   liftedByUser User?     @relation("SuspensionLifter", fields: [liftedBy], references: [id])
 
   @@index([sitterId])
+  @@index([incidentId])
   @@map("provider_suspensions")
 }
 
@@ -3112,6 +3158,7 @@ model SafetyAudit {
   auditor User @relation("AuditorUsers", fields: [auditorId], references: [id])
 
   @@index([sitterId])
+  @@index([auditorId])
   @@map("safety_audits")
 }
 
@@ -3141,6 +3188,7 @@ model OperatingPartner {
   territories   Territory[]
 
   @@index([status])
+  @@index([contactPersonId])
   @@map("operating_partners")
 }
 
@@ -3209,6 +3257,7 @@ model DataSubjectRequest {
 
   @@index([userId])
   @@index([status])
+  @@index([handledById])
   @@map("data_subject_requests")
 }
 

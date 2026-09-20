@@ -17,6 +17,7 @@ export default async function AddressesPage() {
   const addresses = await prisma.address.findMany({
     where: { userId: identity.id },
     orderBy: { createdAt: "desc" },
+    take: 25,
   });
 
   return (

@@ -18,6 +18,7 @@ export default async function SaathiDashboardPage() {
   // Fetch real assignment data
   const assignments = await prisma.bookingAssignment.findMany({
     where: { sitterId: identity.id },
+    take: 100,
     include: { booking: true }
   });
 

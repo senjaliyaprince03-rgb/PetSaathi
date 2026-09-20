@@ -27,6 +27,7 @@ export default async function CustomerGroomingPage() {
     prisma.pet.findMany({
       where: { ownerId: identity.id, active: true, deletedAt: null },
       orderBy: { name: "asc" },
+      take: 50,
       select: { id: true, name: true, species: true, breed: true },
     }),
     prisma.partnerOrder.findMany({
@@ -35,6 +36,7 @@ export default async function CustomerGroomingPage() {
         partnerService: { serviceCode: "GROOMING_HOME" },
       },
       orderBy: { createdAt: "desc" },
+      take: 50,
       include: {
         partnerService: { select: { partner: { select: { displayName: true } } } },
         pet: { select: { name: true } },

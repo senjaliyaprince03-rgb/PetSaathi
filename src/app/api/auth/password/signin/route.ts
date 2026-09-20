@@ -30,6 +30,13 @@ export async function POST(request: Request) {
     });
   }
 
+  const emailRate = await consumeRateLimit("password-signin-email", parsed.data.email.toLowerCase(), 5, 15 * 60_000);
+  if (!emailRate.allowed) {
+    return jsonError("account_temporarily_locked", "Too many sign-in attempts for this account. Please wait 15 minutes before trying again.", 429, {
+      headers: { "Retry-After": String(emailRate.retryAfterSeconds) },
+    });
+  }
+
   try {
     const result = await signInWithPassword(parsed.data.email, parsed.data.password);
     if (!result.success) return jsonError("invalid_credentials", "Incorrect email or password.", 401);

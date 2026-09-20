@@ -31,10 +31,12 @@ export default async function CustomerSubscriptionsPage() {
     dbPlans = await prisma.planVersion.findMany({
       where: { active: true, audience: "CUSTOMER" },
       orderBy: { pricePaise: "asc" },
+      take: 50,
     });
     userSubscriptions = await prisma.subscription.findMany({
       where: { userId: identity.id, status: { in: ["ACTIVE", "INCOMPLETE"] } },
-      select: { planVersionId: true, status: true }
+      select: { planVersionId: true, status: true },
+      take: 50,
     });
   } catch (err) {
     console.warn("Failed to fetch database subscriptions/plans, using static presets:", err);

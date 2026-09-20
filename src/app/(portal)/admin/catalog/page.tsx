@@ -15,8 +15,8 @@ export default async function AdminCatalogPage() {
   if (!identity || !hasAnyRole(identity, ["OPERATIONS_ADMIN", "FINANCE_ADMIN", "SUPER_ADMIN"])) redirect("/login?returnTo=/admin/catalog");
   const today = new Date(); today.setUTCHours(0, 0, 0, 0);
   const [serviceRows, areaRows, priceRows, capacityRows] = await Promise.all([
-    prisma.serviceType.findMany({ orderBy: { name: "asc" }, select: { code: true, name: true, active: true } }),
-    prisma.serviceArea.findMany({ where: { status: { not: "ARCHIVED" } }, orderBy: [{ city: { name: "asc" } }, { name: "asc" }], select: { id: true, name: true, status: true, postalCodes: true, city: { select: { name: true, state: true } } } }),
+    prisma.serviceType.findMany({ orderBy: { name: "asc" }, take: 50, select: { code: true, name: true, active: true } }),
+    prisma.serviceArea.findMany({ where: { status: { not: "ARCHIVED" } }, orderBy: [{ city: { name: "asc" } }, { name: "asc" }], take: 100, select: { id: true, name: true, status: true, postalCodes: true, city: { select: { name: true, state: true } } } }),
     prisma.servicePrice.findMany({ orderBy: [{ createdAt: "desc" }], take: 100, select: { id: true, version: true, amountPaise: true, sitterPaise: true, taxBasisPoints: true, effectiveAt: true, expiresAt: true, serviceType: { select: { name: true } }, serviceArea: { select: { name: true, city: { select: { name: true } } } } } }),
     prisma.capacityLimit.findMany({ where: { serviceDate: { gte: today } }, orderBy: [{ serviceDate: "asc" }, { serviceCode: "asc" }], take: 100, select: { id: true, serviceCode: true, serviceDate: true, maximum: true, reserved: true, reason: true, serviceArea: { select: { name: true, city: { select: { name: true } } } } } })
   ]);

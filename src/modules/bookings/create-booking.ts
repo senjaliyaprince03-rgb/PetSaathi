@@ -5,6 +5,7 @@ import { Prisma, type ServiceCode } from "@prisma/client";
 import { prisma } from "@/lib/db";
 import type { CreateBookingInput } from "@/modules/bookings/input";
 import { calculateQuote, indiaServiceDate } from "@/modules/pricing/economics";
+import { sanitizeFreeText } from "@/lib/sanitize-text";
 
 export type BookingGateCode = "resource_not_found" | "service_unavailable" | "outside_service_area" | "pricing_not_configured" | "pricing_changed" | "capacity_not_configured" | "daily_capacity_reached" | "booking_conflict";
 
@@ -175,7 +176,7 @@ export async function createBookingWithQuote(customerId: string, input: CreateBo
             status: bookingStatus,
             scheduledStart,
             scheduledEnd,
-            customerNotes: input.customerNotes,
+            customerNotes: input.customerNotes ? sanitizeFreeText(input.customerNotes) : null,
             idempotencyKey: input.idempotencyKey,
             quoteAmountPaise: quote.totalPaise,
             currency: price.currency,

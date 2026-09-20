@@ -16,7 +16,7 @@ const channels = ["EMAIL", "WHATSAPP", "PUSH"] as const;
 export async function GET() {
   const identity = await getCurrentIdentity();
   if (!identity) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
-  const rows = await prisma.communicationPreference.findMany({ where: { userId: identity.id, purpose: "CARE_UPDATES" }, select: { channel: true, enabled: true, quietHours: true } });
+  const rows = await prisma.communicationPreference.findMany({ where: { userId: identity.id, purpose: "CARE_UPDATES" }, take: 20, select: { channel: true, enabled: true, quietHours: true } });
   return NextResponse.json({ preferences: rows }, { headers: { "Cache-Control": "private, no-store" } });
 }
 

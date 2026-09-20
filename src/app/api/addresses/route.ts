@@ -13,6 +13,7 @@ export async function GET() {
   const addresses = await prisma.address.findMany({
     where: { userId: identity.id },
     orderBy: { createdAt: "asc" },
+    take: 50,
     select: { id: true, label: true, line1: true, line2: true, landmark: true, locality: true, city: true, state: true, postalCode: true }
   });
   return NextResponse.json({ addresses }, { headers: { "Cache-Control": "private, no-store" } });

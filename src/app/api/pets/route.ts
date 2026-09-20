@@ -14,6 +14,7 @@ export async function GET() {
   const pets = await prisma.pet.findMany({
     where: { ownerId: identity.id, active: true, deletedAt: null },
     orderBy: { createdAt: "asc" },
+    take: 50,
     select: { id: true, name: true, species: true, breed: true, sex: true, birthDate: true, weightKg: true, sterilised: true, photoPath: true }
   });
   return NextResponse.json({ pets }, { headers: { "Cache-Control": "private, no-store" } });

@@ -228,5 +228,6 @@ export async function getWalletHistory(walletId: string): Promise<BenefitLedgerE
   return await prisma.benefitLedgerEntry.findMany({
     where: { walletId },
     orderBy: { createdAt: "desc" },
+    take: 100,
   });
 }

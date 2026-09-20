@@ -58,6 +58,7 @@ export default async function OperatorDashboard() {
           operatingPartner: true,
         },
         orderBy: { city: { name: "asc" } },
+        take: 50,
       });
 
   // Fetch city-level summary stats scoped to the operator's territory
@@ -66,6 +67,7 @@ export default async function OperatorDashboard() {
     : await prisma.city.findMany({
         where: { id: { in: scope.cityIds } },
         orderBy: { name: "asc" },
+        take: 50,
       });
 
   // Fetch latest financial records for scoped cities
@@ -75,6 +77,7 @@ export default async function OperatorDashboard() {
     },
     orderBy: [{ periodYear: "desc" }, { periodMonth: "desc" }],
     distinct: ["cityId"],
+    take: 50,
   });
 
   const financialByCity = new Map(
@@ -88,6 +91,7 @@ export default async function OperatorDashboard() {
     },
     orderBy: { periodDate: "desc" },
     distinct: ["cityId"],
+    take: 50,
   });
 
   const healthByCity = new Map(

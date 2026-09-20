@@ -22,6 +22,7 @@ export async function GET(request: Request) {
           lt: twentyFourHoursAgo
         }
       },
+      take: 100,
       include: { user: true }
     });
 

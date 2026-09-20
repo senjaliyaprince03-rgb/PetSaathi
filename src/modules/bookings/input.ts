@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { sanitizeFreeText } from "@/lib/sanitize-text";
 
 export const createBookingSchema = z.object({
   petId: z.string().min(1, "Choose a pet"),
@@ -6,7 +7,7 @@ export const createBookingSchema = z.object({
   servicePriceId: z.string().min(1, "Price is required"),
   addressId: z.string().min(1, "Choose an address"),
   scheduledStart: z.string().datetime({ offset: true }),
-  customerNotes: z.string().trim().max(800).optional(),
+  customerNotes: z.string().trim().max(800).transform(sanitizeFreeText).optional(),
   idempotencyKey: z.string().min(8).max(128).optional()
 }).superRefine(({ scheduledStart }, context) => {
   const startDate = new Date(scheduledStart);

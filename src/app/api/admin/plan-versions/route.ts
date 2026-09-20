@@ -1,6 +1,6 @@
 import type { NextRequest} from "next/server";
 import { NextResponse } from "next/server";
-import { getAdminSession } from "@/modules/auth/server";
+import { getAdminSession, handleAuthError } from "@/modules/auth/server";
 import { createPlanVersion } from "@/modules/subscriptions/service";
 import { prisma } from "@/lib/db";
 import { z } from "zod";
@@ -30,6 +30,9 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json(planVersion, { status: 201 });
   } catch (error) {
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
+
     if (error instanceof z.ZodError) {
       return NextResponse.json({ error: "Invalid data", details: error.errors }, { status: 422 });
     }
@@ -47,10 +50,14 @@ export async function GET(req: NextRequest) {
 
     const planVersions = await prisma.planVersion.findMany({
       orderBy: { planKey: "asc" },
+      take: 50,
     });
 
     return NextResponse.json(planVersions, { status: 200 });
   } catch (error) {
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
+
     console.error("Plan version listing error:", error);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }

@@ -12,7 +12,7 @@ export const dynamic = "force-dynamic";
 export default async function NotificationSettingsPage() {
   const identity = await getCurrentIdentity();
   if (!identity) redirect("/login?returnTo=/settings/notifications");
-  const rows = await prisma.communicationPreference.findMany({ where: { userId: identity.id, purpose: "CARE_UPDATES" }, select: { channel: true, enabled: true } });
+  const rows = await prisma.communicationPreference.findMany({ where: { userId: identity.id, purpose: "CARE_UPDATES" }, take: 20, select: { channel: true, enabled: true } });
   const enabled = new Map(rows.map((row) => [row.channel, row.enabled]));
   const mode = identity.roles.includes("SITTER") && !identity.roles.includes("CUSTOMER") ? "saathi" : "customer";
 

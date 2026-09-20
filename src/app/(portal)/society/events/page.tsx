@@ -32,6 +32,7 @@ export default async function SocietyEventsPage() {
   const events = await prisma.societyEvent.findMany({
     where: { societyId: membership.societyId },
     orderBy: { startsAt: "desc" },
+    take: 50,
   });
 
   return (

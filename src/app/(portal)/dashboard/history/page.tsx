@@ -36,6 +36,7 @@ export default async function CustomerHistoryPage() {
     orderBy: {
       scheduledStart: 'desc',
     },
+    take: 50,
   });
 
   const displayBookings = bookings.length > 0 ? bookings : [

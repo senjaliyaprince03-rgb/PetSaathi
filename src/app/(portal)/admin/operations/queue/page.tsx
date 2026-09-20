@@ -20,6 +20,7 @@ export default async function ExceptionQueuePage() {
       sitter: { include: { user: true } },
     },
     orderBy: { createdAt: "asc" },
+    take: 50,
   });
 
   // Find bookings that have been stuck in REQUESTED or MATCHING for > 15 minutes
@@ -31,6 +32,7 @@ export default async function ExceptionQueuePage() {
     },
     include: { pet: true, serviceType: true },
     orderBy: { createdAt: "asc" },
+    take: 50,
   });
 
   return (

@@ -1,6 +1,6 @@
 import type { NextRequest} from "next/server";
 import { NextResponse } from "next/server";
-import { getAdminSession } from "@/modules/auth/server";
+import { getAdminSession, handleAuthError } from "@/modules/auth/server";
 import { addPartnerLocation } from "@/modules/partners/service";
 import { z } from "zod";
 
@@ -29,6 +29,9 @@ export async function POST(
 
     return NextResponse.json(location, { status: 201 });
   } catch (error) {
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
+
     if (error instanceof z.ZodError) {
       return NextResponse.json({ error: "Invalid data", details: error.errors }, { status: 422 });
     }

@@ -158,6 +158,7 @@ export async function getAccessibleCities(userId: string): Promise<string[]> {
   if (isSuperAdmin) {
     // SUPER_ADMIN can access all cities
     const cities = await prisma.city.findMany({
+      take: 100,
       select: { id: true }
     });
     return cities.map(c => c.id);

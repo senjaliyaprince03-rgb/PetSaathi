@@ -22,7 +22,7 @@ export default async function CustomerVetPage() {
   if (!identity?.roles.includes("CUSTOMER")) redirect("/login?returnTo=/customer/vet");
 
   const [dbPets, dbOrders, dbVaccinations] = await Promise.all([
-    prisma.pet.findMany({ where: { ownerId: identity.id, active: true, deletedAt: null }, orderBy: { name: "asc" }, select: { id: true, name: true } }),
+    prisma.pet.findMany({ where: { ownerId: identity.id, active: true, deletedAt: null }, orderBy: { name: "asc" }, take: 50, select: { id: true, name: true } }),
     prisma.partnerOrder.findMany({ 
       where: { customerId: identity.id, partnerService: { serviceCode: "VET_SUPPORT" } }, 
       orderBy: { createdAt: "desc" }, 

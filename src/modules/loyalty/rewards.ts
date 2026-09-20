@@ -62,7 +62,7 @@ export async function getLoyaltySummary(userId: string): Promise<{
   totalSpent: number;
   rewardCount: number;
 }> {
-  const entries = await prisma.loyaltyLedger.findMany({ where: { userId }, select: { delta: true, balanceAfter: true } });
+  const entries = await prisma.loyaltyLedger.findMany({ where: { userId }, take: 200, select: { delta: true, balanceAfter: true } });
 
   if (entries.length === 0) return { balancePaise: 0, totalEarned: 0, totalSpent: 0, rewardCount: 0 };
 

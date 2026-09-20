@@ -29,6 +29,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Dynamic city pages
   const cities = await prisma.city.findMany({
     where: { status: { notIn: ["RESEARCH", "EXITED"] } },
+    take: 100,
     select: {
       slug: true,
       updatedAt: true,
@@ -62,6 +63,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Dynamic journal pages
   const articles = await prisma.contentEntry.findMany({
     where: { status: "PUBLISHED" },
+    take: 100,
     select: { slug: true, updatedAt: true },
   });
 

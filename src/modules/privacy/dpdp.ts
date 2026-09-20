@@ -125,6 +125,7 @@ export async function hasActiveConsent(
 export async function getUserConsents(userId: string) {
   return prisma.contentConsentRecord.findMany({
     where: { userId },
+    take: 100,
     orderBy: { grantedAt: "desc" },
   });
 }
@@ -158,6 +159,7 @@ export async function listPendingDSRs() {
     where: {
       status: { in: ["PENDING_DSR", "IN_PROGRESS_DSR"] },
     },
+    take: 100,
     include: {
       user: { select: { displayName: true, email: true } },
     },
@@ -188,6 +190,7 @@ export async function updateDSRStatus(params: {
 export async function getRetentionPolicies() {
   return prisma.dataRetentionPolicy.findMany({
     where: { isActive: true },
+    take: 50,
     orderBy: { entityType: "asc" },
   });
 }

@@ -51,6 +51,7 @@ async function persistRankedMatchScores(
         async (tx) => {
           const existing = await tx.matchScore.findMany({
             where: { bookingId },
+            take: 100,
           });
           const existingBySitter = new Map(
             existing.map((score) => [score.sitterId, score]),
@@ -165,6 +166,7 @@ async function persistRankedMatchScores(
                 in: candidates.map((candidate) => candidate.sitterId),
               },
             },
+            take: 100,
             select: { id: true, sitterId: true, status: true },
           });
           const persistedBySitter = new Map(

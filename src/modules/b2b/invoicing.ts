@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/db";
 import type { InvoiceStatus } from "@prisma/client";
+import { toISTDateString } from "@/lib/date-utils";
 
 export function computeTax(params: {
   taxableValuePaise: number;
@@ -116,7 +117,7 @@ export async function createInvoice(data: {
         sellerGstin: data.supplierGstin,
         buyerGstin: data.customerGstin,
         invoiceNumber: created.invoiceNumber,
-        invoiceDate: new Date().toISOString().split("T")[0] ?? "2026-09-03",
+        invoiceDate: toISTDateString(new Date()),
         totalAmount: totalAmount / 100,
         cgst: cgst / 100,
         sgst: sgst / 100,

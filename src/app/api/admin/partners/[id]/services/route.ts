@@ -1,6 +1,6 @@
 import type { NextRequest} from "next/server";
 import { NextResponse } from "next/server";
-import { getAdminSession } from "@/modules/auth/server";
+import { getAdminSession, handleAuthError } from "@/modules/auth/server";
 import { addPartnerService } from "@/modules/partners/service";
 import { ServiceCode } from "@prisma/client";
 import { prisma } from "@/lib/db";
@@ -29,6 +29,9 @@ export async function POST(
 
     return NextResponse.json(service, { status: 201 });
   } catch (error) {
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
+
     if (error instanceof z.ZodError) {
       return NextResponse.json({ error: "Invalid data", details: error.errors }, { status: 422 });
     }
@@ -51,11 +54,15 @@ export async function GET(
     
     const services = await prisma.partnerService.findMany({
       where: { partnerId: id },
-      orderBy: { createdAt: "desc" }
+      orderBy: { createdAt: "desc" },
+      take: 50,
     });
 
     return NextResponse.json(services, { status: 200 });
   } catch (error) {
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
+
     console.error("Partner service listing error:", error);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }

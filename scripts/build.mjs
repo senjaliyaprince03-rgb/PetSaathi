@@ -2,6 +2,7 @@ import { spawnSync } from "node:child_process";
 import { existsSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { checkLegalPlaceholders } from "./check-legal-placeholders.mjs";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 function run(command, args) {
@@ -44,17 +45,20 @@ function generatePrismaClient() {
   process.exit(result.status ?? 1);
 }
 
-// Enforce linting and typechecking as explicit build gates before production bundling.
-console.log("==> [1/4] Running ESLint...");
+// Enforce statutory legal placeholders check, linting, and typechecking as explicit build gates before production bundling.
+console.log("==> [1/5] Checking statutory legal disclosures (BUG-034 / BUG-035)...");
+checkLegalPlaceholders();
+
+console.log("==> [2/5] Running ESLint...");
 run(process.execPath, [path.join(projectRoot, "node_modules/eslint/bin/eslint.js"), ".", "--max-warnings=0"]);
 
-console.log("==> [2/4] Running TypeScript typecheck...");
+console.log("==> [3/5] Running TypeScript typecheck...");
 run(process.execPath, [path.join(projectRoot, "node_modules/typescript/bin/tsc"), "--noEmit"]);
 
-console.log("==> [3/4] Generating Prisma Client...");
+console.log("==> [4/5] Generating Prisma Client...");
 generatePrismaClient();
 
-console.log("==> [4/4] Running Next.js build...");
+console.log("==> [5/5] Running Next.js build...");
 run(process.execPath, [
   path.join(projectRoot, "node_modules/next/dist/bin/next"),
   "build",

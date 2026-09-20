@@ -61,6 +61,7 @@ export async function activateContract(contractId: string) {
 export async function getContracts(organizationId?: string) {
   return await prisma.b2bContract.findMany({
     where: organizationId ? { organizationId } : undefined,
+    take: 100,
     orderBy: { createdAt: "desc" }
   });
 }

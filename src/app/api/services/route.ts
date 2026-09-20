@@ -8,6 +8,7 @@ export async function GET() {
       where: {
         status: "APPROVED",
       },
+      take: 100,
       include: {
         user: {
           select: {

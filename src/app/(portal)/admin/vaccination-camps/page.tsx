@@ -19,7 +19,8 @@ export default async function AdminVaccinationCampsPage() {
   const camps = await prisma.societyEvent.findMany({
     where: { title: { contains: "Vaccination" } },
     orderBy: { startsAt: "desc" },
-    include: { society: { select: { name: true } } }
+    include: { society: { select: { name: true } } },
+    take: 50,
   });
 
   const now = new Date();

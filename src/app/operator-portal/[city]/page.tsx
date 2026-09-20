@@ -23,11 +23,13 @@ export default async function OperatorCityPortal({
   // Fetch service areas belonging to this city
   const areas = await prisma.serviceArea.findMany({
     where: { cityId: cityRecord.id },
+    take: 100,
   });
 
   // Fetch territories belonging to this city
   const territories = await prisma.territory.findMany({
     where: { cityId: cityRecord.id },
+    take: 100,
   });
 
   // Fetch operating partner if configured

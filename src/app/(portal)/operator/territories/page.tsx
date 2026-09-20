@@ -33,6 +33,7 @@ export default async function OperatorTerritoriesPage() {
         where: { isActive: true, ...cityWhereFilter(scope) },
         include: { city: true, serviceZone: true, operatingPartner: true },
         orderBy: { city: { name: "asc" } },
+        take: 50,
       });
 
   return (

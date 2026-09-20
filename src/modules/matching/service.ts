@@ -45,6 +45,7 @@ export async function findEligibleSitters(bookingId: string) {
       serviceTypeId: booking.serviceTypeId,
       status: PermissionStatus.ACTIVE,
     },
+    take: 100,
     include: {
       sitter: {
         include: {

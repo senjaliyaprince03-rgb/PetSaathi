@@ -1,9 +1,48 @@
+import { NextResponse } from "next/server";
 import { getCurrentIdentity } from "./session";
+
+export class UnauthorizedError extends Error {
+  readonly status = 401;
+  constructor(message = "Unauthorized") {
+    super(message);
+    this.name = "UnauthorizedError";
+  }
+}
+
+export class ForbiddenError extends Error {
+  readonly status = 403;
+  constructor(message = "Forbidden") {
+    super(message);
+    this.name = "ForbiddenError";
+  }
+}
+
+export function handleAuthError(error: unknown): NextResponse | null {
+  if (
+    error instanceof UnauthorizedError ||
+    (error instanceof Error && (error.message === "Unauthorized" || error.name === "UnauthorizedError"))
+  ) {
+    return NextResponse.json(
+      { error: "unauthorized" },
+      { status: 401, headers: { "Cache-Control": "no-store" } }
+    );
+  }
+  if (
+    error instanceof ForbiddenError ||
+    (error instanceof Error && (error.message === "Forbidden" || error.name === "ForbiddenError"))
+  ) {
+    return NextResponse.json(
+      { error: "forbidden" },
+      { status: 403, headers: { "Cache-Control": "no-store" } }
+    );
+  }
+  return null;
+}
 
 export async function getAdminSession(): Promise<string> {
   const identity = await getCurrentIdentity();
   if (!identity) {
-    throw new Error("Unauthorized");
+    throw new UnauthorizedError("Unauthorized");
   }
   
   // Basic check for admin role
@@ -12,8 +51,9 @@ export async function getAdminSession(): Promise<string> {
   );
 
   if (!isAdmin) {
-    throw new Error("Forbidden");
+    throw new ForbiddenError("Forbidden");
   }
 
   return identity.id;
 }
+

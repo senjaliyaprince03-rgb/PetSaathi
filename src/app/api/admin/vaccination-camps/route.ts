@@ -65,6 +65,7 @@ export async function GET() {
         title: { contains: "Vaccination", mode: "insensitive" }
       },
       orderBy: { startsAt: "desc" },
+      take: 50,
     });
     
     return NextResponse.json({ camps });

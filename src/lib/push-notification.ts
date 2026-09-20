@@ -24,6 +24,7 @@ export async function sendPushToUser(userId: string, payload: PushPayload): Prom
       templateKey: "push_subscription",
       status: "QUEUED",
     },
+    take: 20,
   });
 
   for (const sub of subscriptions) {

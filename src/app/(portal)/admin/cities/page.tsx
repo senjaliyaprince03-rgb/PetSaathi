@@ -18,7 +18,8 @@ export default async function AdminCitiesPage() {
         include: { serviceType: true }
       }
     },
-    orderBy: { createdAt: "desc" }
+    orderBy: { createdAt: "desc" },
+    take: 50,
   });
 
   return (

@@ -20,6 +20,7 @@ export async function predictOptimalSitter(bookingId: string): Promise<Recurring
       status: "COMPLETED",
       booking: { petId: booking.petId, serviceTypeId: booking.serviceTypeId },
     },
+    take: 100,
     select: { sitterId: true },
   });
 

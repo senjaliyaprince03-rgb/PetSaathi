@@ -21,7 +21,7 @@ export default async function CustomerTrainingPage() {
   if (!identity?.roles.includes("CUSTOMER")) redirect("/login?returnTo=/customer/training");
 
   const [dbPets, dbOrders] = await Promise.all([
-    prisma.pet.findMany({ where: { ownerId: identity.id, active: true, deletedAt: null }, orderBy: { name: "asc" }, select: { id: true, name: true } }),
+    prisma.pet.findMany({ where: { ownerId: identity.id, active: true, deletedAt: null }, orderBy: { name: "asc" }, take: 50, select: { id: true, name: true } }),
     prisma.partnerOrder.findMany({ 
       where: { customerId: identity.id, partnerService: { serviceCode: "TRAINING_ASSESSMENT" } }, 
       orderBy: { createdAt: "desc" }, 

@@ -12,7 +12,7 @@ export async function POST(request: Request) {
 
   const existing = await prisma.sitterProfile.findUnique({ where: { userId: identity.id }, select: { id: true, status: true } });
   if (existing && !["APPLICANT", "REJECTED"].includes(existing.status)) return NextResponse.json({ error: "application_already_in_review", status: existing.status }, { status: 409 });
-  const serviceTypes = await prisma.serviceType.findMany({ where: { code: { in: parsed.data.services } }, select: { id: true } });
+  const serviceTypes = await prisma.serviceType.findMany({ where: { code: { in: parsed.data.services } }, take: 50, select: { id: true } });
   if (serviceTypes.length !== new Set(parsed.data.services).size) return NextResponse.json({ error: "service_catalog_incomplete" }, { status: 503 });
 
   const sitter = await prisma.$transaction(async (tx) => {

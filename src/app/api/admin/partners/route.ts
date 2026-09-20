@@ -38,6 +38,7 @@ export async function GET(request: Request) {
   const partners = await prisma.partner.findMany({
     where,
     orderBy: { createdAt: "desc" },
+    take: 50,
     include: {
       _count: {
         select: { verifications: true, services: true },

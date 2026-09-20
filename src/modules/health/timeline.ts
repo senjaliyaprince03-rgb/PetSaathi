@@ -17,12 +17,14 @@ export async function getPetTimeline(petId: string): Promise<TimelineEvent[]> {
   const manualEvents = await prisma.healthTimelineEvent.findMany({
     where: { petId },
     orderBy: { eventDate: "desc" },
+    take: 100,
   });
 
   // 2. Fetch service completions (automated timeline events)
   const services = await prisma.booking.findMany({
     where: { petId, status: "COMPLETED" },
     orderBy: { scheduledEnd: "desc" },
+    take: 100,
     select: { id: true, reference: true, scheduledEnd: true, serviceType: { select: { name: true } } },
   });
 

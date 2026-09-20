@@ -151,6 +151,7 @@ export async function generateCorporateReport(
           },
         },
       },
+      take: 500,
       select: { createdAt: true, resolvedAt: true },
     }),
   ]);
@@ -226,6 +227,7 @@ export async function generateSocietyReport(
         booking: memberBookings,
         sitter: { status: "APPROVED" },
       },
+      take: 500,
       select: { sitterId: true },
       distinct: ["sitterId"],
     }),
@@ -235,6 +237,7 @@ export async function generateSocietyReport(
     where: {
       id: { in: groupedBookings.map((group) => group.serviceTypeId) },
     },
+    take: 100,
     select: { id: true, name: true },
   });
   const serviceNames = new Map(
@@ -277,6 +280,7 @@ export async function generateBrandReport(
       prisma.programmeMembership.count({ where: { programmeId } }),
       prisma.promotionCode.findMany({
         where: { programmeId },
+        take: 500,
         select: { code: true },
       }),
       prisma.auditLog.count({

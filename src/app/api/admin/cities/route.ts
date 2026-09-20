@@ -1,6 +1,6 @@
 import type { NextRequest} from "next/server";
 import { NextResponse } from "next/server";
-import { getAdminSession } from "@/modules/auth/server";
+import { getAdminSession, handleAuthError } from "@/modules/auth/server";
 import { createCity } from "@/modules/cities/service";
 import { prisma } from "@/lib/db";
 import { unstable_cache } from "next/cache";
@@ -27,6 +27,9 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json(city, { status: 201 });
   } catch (error) {
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
+
     if (error instanceof z.ZodError) {
       return NextResponse.json({ error: "Invalid data", details: error.errors }, { status: 422 });
     }
@@ -46,7 +49,8 @@ export async function GET(req: NextRequest) {
       async () => {
         return prisma.city.findMany({
           orderBy: { name: "asc" },
-          include: { cityServiceConfigs: true }
+          include: { cityServiceConfigs: true },
+          take: 100,
         });
       },
       ["admin-cities-list"],
@@ -57,6 +61,9 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json(cities, { status: 200 });
   } catch (error) {
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
+
     console.error("City listing error:", error);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }

@@ -42,6 +42,7 @@ export default async function CitiesIndexPage() {
     try {
       cities = await prisma.city.findMany({
         orderBy: [{ status: "asc" }, { name: "asc" }],
+        take: 100,
         select: { id: true, slug: true, name: true, state: true, status: true },
       });
       cities.sort((a, b) => {

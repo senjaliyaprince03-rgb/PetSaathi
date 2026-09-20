@@ -128,7 +128,7 @@ export async function listCodes(filters: {
     prisma.promotionCode.findMany({
       where,
       skip,
-      take,
+      take: take,
       orderBy: { createdAt: 'desc' }
     }),
     prisma.promotionCode.count({ where })

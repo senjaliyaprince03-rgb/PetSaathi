@@ -33,7 +33,8 @@ export async function GET(request: Request) {
   try {
     const rules = await prisma.availabilityRule.findMany({
       where: { sitterId: sitter.id },
-      orderBy: { weekday: "asc" }
+      orderBy: { weekday: "asc" },
+      take: 50
     });
     return NextResponse.json({ rules });
   } catch (error) {

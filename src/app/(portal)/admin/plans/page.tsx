@@ -13,6 +13,7 @@ export default async function AdminPlansPage() {
   const plans = await prisma.planVersion.findMany({
     where: { active: true },
     orderBy: { createdAt: "desc" },
+    take: 50,
   });
 
   return (

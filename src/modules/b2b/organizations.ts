@@ -139,6 +139,7 @@ export async function updateContact(
 export async function listContacts(organizationId: string) {
   return prisma.organizationContact.findMany({
     where: { organizationId },
+    take: 100,
     orderBy: [
       { isDecisionMaker: "desc" },
       { name: "asc" },

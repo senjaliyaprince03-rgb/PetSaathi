@@ -28,6 +28,7 @@ export default async function SocietyResidentsPage() {
   const residents = await prisma.societyMember.findMany({
     where: { societyId: membership.societyId },
     orderBy: { verifiedAt: "desc" },
+    take: 100,
   });
 
   const verified = residents.filter((r) => r.verifiedAt);

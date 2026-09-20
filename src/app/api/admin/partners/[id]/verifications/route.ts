@@ -1,6 +1,6 @@
 import type { NextRequest} from "next/server";
 import { NextResponse } from "next/server";
-import { getAdminSession } from "@/modules/auth/server";
+import { getAdminSession, handleAuthError } from "@/modules/auth/server";
 import { recordPartnerVerification } from "@/modules/partners/service";
 import { VerificationStatus } from "@prisma/client";
 import { z } from "zod";
@@ -34,6 +34,9 @@ export async function POST(
 
     return NextResponse.json(verification, { status: 201 });
   } catch (error) {
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
+
     if (error instanceof z.ZodError) {
       return NextResponse.json({ error: "Invalid data", details: error.errors }, { status: 422 });
     }
@@ -43,17 +46,26 @@ export async function POST(
 }
 
 export async function GET(request: NextRequest, props: { params: Promise<{ id: string }> }) {
-  const params = await props.params;
-  const adminId = await getAdminSession();
-  if (!adminId) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  try {
+    const params = await props.params;
+    const adminId = await getAdminSession();
+    if (!adminId) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const { prisma } = await import("@/lib/db");
+    const verifications = await prisma.partnerVerification.findMany({
+      where: { partnerId: params.id },
+      orderBy: { createdAt: "desc" },
+      take: 50,
+    });
+
+    return NextResponse.json({ verifications });
+  } catch (error) {
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
+
+    console.error("Partner verifications listing error:", error);
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
-
-  const { prisma } = await import("@/lib/db");
-  const verifications = await prisma.partnerVerification.findMany({
-    where: { partnerId: params.id },
-    orderBy: { createdAt: "desc" },
-  });
-
-  return NextResponse.json({ verifications });
 }

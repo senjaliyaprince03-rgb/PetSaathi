@@ -66,6 +66,7 @@ export async function GET() {
       partnerService: { serviceCode: "VET_SUPPORT" }
     },
     orderBy: { createdAt: "desc" },
+    take: 50,
     include: {
       pet: { select: { name: true } },
       partnerService: { include: { partner: { select: { displayName: true } } } }

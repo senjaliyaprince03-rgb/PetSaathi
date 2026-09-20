@@ -63,6 +63,7 @@ export async function GET() {
       partnerService: { serviceCode: "PET_TAXI" }
     },
     orderBy: { createdAt: "desc" },
+    take: 50,
     include: {
       pet: { select: { name: true } },
       partnerService: { include: { partner: { select: { displayName: true } } } }

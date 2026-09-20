@@ -211,6 +211,7 @@ export async function rankCandidates(bookingId: string): Promise<MatchCandidate[
 
   // ── Hard filters: only APPROVED sitters with no active holds ──
   const eligibleSitters = await prisma.sitterProfile.findMany({
+    take: 200,
     where: {
       status: "APPROVED",
       holds: {
@@ -289,6 +290,7 @@ export async function rankCandidates(bookingId: string): Promise<MatchCandidate[
   const sitterIds = eligibleSitters.map((s) => s.id);
   const reviewsByAssignment = await prisma.review.findMany({
     where: { booking: { assignments: { some: { sitterId: { in: sitterIds }, status: "COMPLETED" } } } },
+    take: 500,
     select: { rating: true, booking: { select: { assignments: { where: { status: "COMPLETED" }, select: { sitterId: true } } } } },
   });
 

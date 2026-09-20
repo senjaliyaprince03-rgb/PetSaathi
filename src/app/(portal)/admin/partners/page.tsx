@@ -17,6 +17,7 @@ export default async function AdminPartnersPage() {
 
   const partners = await prisma.partner.findMany({
     orderBy: { createdAt: "desc" },
+    take: 50,
     include: {
       _count: {
         select: { verifications: true, services: true },

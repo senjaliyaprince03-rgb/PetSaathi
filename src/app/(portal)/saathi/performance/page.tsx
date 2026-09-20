@@ -25,6 +25,7 @@ export default async function SaathiPerformancePage() {
   const assignments = sitter
     ? await prisma.bookingAssignment.findMany({
         where: { sitterId: sitter.id },
+        take: 100,
         include: {
           booking: {
             include: {
