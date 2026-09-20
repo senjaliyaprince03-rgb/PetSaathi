@@ -15,8 +15,11 @@ import { calculateQuote } from "@/modules/pricing/economics";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = { 
-  title: "Book Doorstep Pet Care | PetSaathi",
+  title: "Book Doorstep Pet Care",
   description: "Schedule instant GPS-tracked dog walking, at-home pet sitting, grooming, or veterinary support in your society.",
+  alternates: {
+    canonical: "/book",
+  },
   openGraph: {
     title: "Book Doorstep Pet Care | PetSaathi",
     description: "Schedule instant GPS-tracked dog walking, at-home pet sitting, grooming, or veterinary support in your society.",

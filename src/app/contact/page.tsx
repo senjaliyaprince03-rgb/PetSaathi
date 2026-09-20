@@ -7,8 +7,11 @@ import Link from "next/link";
 import { Mail, Phone, ShieldCheck } from "lucide-react";
 
 export const metadata: Metadata = { 
-  title: "Contact Care Concierge | PetSaathi",
+  title: "Contact Care Concierge",
   description: "Get in touch with PetSaathi care specialists for booking assistance, society onboarding, or emergency support.",
+  alternates: {
+    canonical: "/contact",
+  },
   openGraph: {
     title: "Contact Care Concierge | PetSaathi",
     description: "Get in touch with PetSaathi care specialists for booking assistance, society onboarding, or emergency support.",

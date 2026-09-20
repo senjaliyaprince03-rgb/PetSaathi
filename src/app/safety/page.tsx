@@ -8,7 +8,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { VerificationProtocol } from "@/components/marketing/verification-protocol";
 
 export const metadata: Metadata = { 
-  title: "Safety & Trust Protocols | PetSaathi",
+  title: "Safety & Trust Protocols",
   description: "Explore PetSaathi's multi-layered trust ecosystem: ₹50,000 Emergency Medical Assistance Protocol, background-verified Saathis, GPS-tracked sessions, and SOS protocols.",
   openGraph: {
     title: "Safety & Trust Protocols | PetSaathi",

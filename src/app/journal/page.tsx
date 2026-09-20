@@ -11,7 +11,7 @@ import { logger } from "@/lib/logger";
 import { getCanonicalBaseUrl } from "@/lib/app-url";
 
 export const metadata: Metadata = {
-  title: "Pet Care Journal & Expert Guides | PetSaathi",
+  title: "Pet Care Journal & Expert Guides",
   description: "Veterinarian-reviewed guides, training advice, and canine wellness handbooks for pet parents in India.",
   alternates: {
     canonical: `${getCanonicalBaseUrl()}/journal`,

@@ -8,7 +8,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { services } from "@/modules/catalog/services";
 
 export const metadata: Metadata = { 
-  title: "Doorstep Pet Care Services | PetSaathi",
+  title: "Doorstep Pet Care Services",
   description: "Verified doorstep dog walking, at-home pet sitting, professional grooming, and non-emergency veterinary partner support across India.",
   openGraph: {
     title: "Doorstep Pet Care Services | PetSaathi",

@@ -312,8 +312,10 @@ export function AuthSlidingPanel({ returnTo }: { returnTo?: string }) {
             <div className="flex flex-col gap-2 px-1">
               <span className="text-sm font-semibold text-ink/80"><span className="text-coral">*</span>Role</span>
               <div className="flex items-center gap-4 sm:gap-6">
-                <label className="flex items-center gap-2 cursor-pointer text-sm font-medium text-ink/80">
+                <label htmlFor="signup-role-customer" className="flex items-center gap-2 cursor-pointer text-sm font-medium text-ink/80">
                   <input
+                    id="signup-role-customer"
+                    aria-label="Customer role"
                     type="radio"
                     name="role"
                     value="CUSTOMER"
@@ -323,8 +325,10 @@ export function AuthSlidingPanel({ returnTo }: { returnTo?: string }) {
                   />
                   Customer
                 </label>
-                <label className="flex items-center gap-2 cursor-pointer text-sm font-medium text-ink/80">
+                <label htmlFor="signup-role-sitter" className="flex items-center gap-2 cursor-pointer text-sm font-medium text-ink/80">
                   <input
+                    id="signup-role-sitter"
+                    aria-label="Saathi role"
                     type="radio"
                     name="role"
                     value="SITTER"
@@ -398,8 +402,10 @@ export function AuthSlidingPanel({ returnTo }: { returnTo?: string }) {
           <div className="flex flex-col gap-2 px-1">
             <span className="text-sm font-semibold text-ink/80"><span className="text-coral">*</span>Role</span>
             <div className="flex items-center gap-4 sm:gap-6">
-              <label className="flex items-center gap-2 cursor-pointer text-sm font-medium text-ink/80">
+              <label htmlFor="signin-role-customer" className="flex items-center gap-2 cursor-pointer text-sm font-medium text-ink/80">
                 <input
+                  id="signin-role-customer"
+                  aria-label="Customer signin role"
                   type="radio"
                   name="signinRole"
                   value="CUSTOMER"
@@ -409,8 +415,10 @@ export function AuthSlidingPanel({ returnTo }: { returnTo?: string }) {
                 />
                 Customer
               </label>
-              <label className="flex items-center gap-2 cursor-pointer text-sm font-medium text-ink/80">
+              <label htmlFor="signin-role-sitter" className="flex items-center gap-2 cursor-pointer text-sm font-medium text-ink/80">
                 <input
+                  id="signin-role-sitter"
+                  aria-label="Saathi signin role"
                   type="radio"
                   name="signinRole"
                   value="SITTER"

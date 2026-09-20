@@ -93,7 +93,7 @@ export async function middleware(request: NextRequest) {
     img-src 'self' blob: data: https://maps.googleapis.com https://*.tile.openstreetmap.org https://unpkg.com https://www.google-analytics.com https://www.google.com https:;
     font-src 'self' data: https://fonts.gstatic.com;
     style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://accounts.google.com;
-    script-src 'self' 'unsafe-inline' 'unsafe-eval' https://checkout.razorpay.com https://api.razorpay.com https://accounts.google.com https://www.googletagmanager.com https://www.google-analytics.com https://connect.facebook.net https://www.clarity.ms https://*.clarity.ms https://scripts.clarity.ms;
+    script-src 'self' 'unsafe-inline' ${process.env.NODE_ENV !== "production" ? "'unsafe-eval'" : ""} https://checkout.razorpay.com https://api.razorpay.com https://accounts.google.com https://www.googletagmanager.com https://www.google-analytics.com https://connect.facebook.net https://www.clarity.ms https://*.clarity.ms https://scripts.clarity.ms;
     worker-src 'self' blob:;
     connect-src 'self' https://api.razorpay.com https://lumberjack.razorpay.com https://www.google-analytics.com https://region1.google-analytics.com https://www.google.com https://accounts.google.com https://integrate.api.nvidia.com https://connect.facebook.net https://www.clarity.ms https://*.clarity.ms;
     frame-src 'self' https://api.razorpay.com https://checkout.razorpay.com https://*.razorpay.com https://accounts.google.com https://*.google.com;

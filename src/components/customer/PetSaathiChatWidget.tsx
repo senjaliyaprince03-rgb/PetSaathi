@@ -102,7 +102,7 @@ export function PetSaathiChatWidget() {
 
       {/* Chat Modal Window */}
       {isOpen && (
-        <div className="fixed bottom-24 right-4 sm:right-6 z-50 flex h-[620px] max-h-[85vh] w-[90vw] sm:w-[420px] flex-col overflow-hidden rounded-3xl bg-white shadow-2xl border border-ink/10">
+        <div className="fixed bottom-24 right-4 left-4 sm:left-auto sm:right-6 z-50 flex h-[620px] max-h-[85vh] w-[calc(100vw-2rem)] sm:w-[400px] max-w-[420px] flex-col overflow-hidden rounded-3xl bg-white shadow-2xl border border-ink/10">
           
           {/* Header */}
           <div className="flex items-center justify-between border-b border-ink/10 bg-emerald-700 text-white px-5 py-4">

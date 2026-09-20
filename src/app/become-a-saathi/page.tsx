@@ -6,7 +6,7 @@ import { PageIntro, PublicShell } from "@/components/marketing/public-shell";
 import { getCurrentIdentity } from "@/modules/auth/session";
 
 export const metadata: Metadata = { 
-  title: "Become a Certified Saathi Caregiver | PetSaathi",
+  title: "Become a Certified Saathi Caregiver",
   description: "Join India's leading managed pet care network. Earn competitive pay with reliable weekly payouts, emergency vet assistance coordination, and local society assignments.",
   openGraph: {
     title: "Become a Certified Saathi Caregiver | PetSaathi",

@@ -6,7 +6,7 @@ import { getCurrentIdentity } from "@/modules/auth/session";
 import { sanitizeReturnTo } from "@/lib/sanitize-url";
 
 export const metadata: Metadata = { 
-  title: "Parent & Saathi Sign In | PetSaathi", 
+  title: "Parent & Saathi Sign In", 
   description: "Access your PetSaathi customer dashboard, pet passports, live walk tracking, and caregiver assignments.",
   openGraph: {
     title: "Parent & Saathi Sign In | PetSaathi",

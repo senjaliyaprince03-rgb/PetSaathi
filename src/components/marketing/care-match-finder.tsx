@@ -84,13 +84,15 @@ export function CareMatchFinder() {
       {/* Fields Grid - 1 column on mobile, 2 columns on tablet/desktop */}
       <div className="relative mt-3.5 grid grid-cols-1 sm:grid-cols-2 gap-2.5">
         {/* Care Service Selection (Full Width) */}
-        <label className="group relative col-span-1 sm:col-span-2 flex min-w-0 flex-col gap-0.5 rounded-xl border border-[#e8e2e9] bg-[#fbf9fa] px-3.5 py-2 transition focus-within:border-indigo/40 focus-within:bg-white focus-within:ring-2 focus-within:ring-indigo/10 hover:border-[#d9cfdc]">
+        <label htmlFor="hero-care-service-select" className="group relative col-span-1 sm:col-span-2 flex min-w-0 flex-col gap-0.5 rounded-xl border border-[#e8e2e9] bg-[#fbf9fa] px-3.5 py-2 transition focus-within:border-indigo/40 focus-within:bg-white focus-within:ring-2 focus-within:ring-indigo/10 hover:border-[#d9cfdc]">
           <span className="flex items-center gap-1.5 text-[0.64rem] sm:text-[0.68rem] font-bold uppercase tracking-wider text-[#938290]">
             <PawPrint className="h-3.5 w-3.5 text-[#d45638]" />
             Care Service
           </span>
           <div className="relative flex items-center">
             <select
+              id="hero-care-service-select"
+              aria-label="Care Service"
               name="service"
               value={service}
               onChange={(event) => setService(event.target.value as typeof service)}
@@ -107,13 +109,15 @@ export function CareMatchFinder() {
         </label>
 
         {/* Pet Type Selection (Column 1) */}
-        <label className="group relative col-span-1 flex min-w-0 flex-col gap-0.5 rounded-xl border border-[#e8e2e9] bg-[#fbf9fa] px-3.5 py-2 transition focus-within:border-indigo/40 focus-within:bg-white focus-within:ring-2 focus-within:ring-indigo/10 hover:border-[#d9cfdc]">
+        <label htmlFor="hero-pet-type-select" className="group relative col-span-1 flex min-w-0 flex-col gap-0.5 rounded-xl border border-[#e8e2e9] bg-[#fbf9fa] px-3.5 py-2 transition focus-within:border-indigo/40 focus-within:bg-white focus-within:ring-2 focus-within:ring-indigo/10 hover:border-[#d9cfdc]">
           <span className="flex items-center gap-1.5 text-[0.64rem] sm:text-[0.68rem] font-bold uppercase tracking-wider text-[#938290]">
             <CheckCircle2 className="h-3.5 w-3.5 text-[#357a4e]" />
             Pet Type
           </span>
           <div className="relative flex items-center">
             <select
+              id="hero-pet-type-select"
+              aria-label="Pet Type"
               name="petType"
               value={petType}
               onChange={(event) => setPetType(event.target.value as PetType)}
@@ -133,12 +137,14 @@ export function CareMatchFinder() {
         </label>
 
         {/* City or Locality Input (Column 2) */}
-        <label className="group relative col-span-1 flex min-w-0 flex-col gap-0.5 rounded-xl border border-[#e8e2e9] bg-[#fbf9fa] px-3.5 py-2 transition focus-within:border-indigo/40 focus-within:bg-white focus-within:ring-2 focus-within:ring-indigo/10 hover:border-[#d9cfdc]">
+        <label htmlFor="hero-locality-search-input" className="group relative col-span-1 flex min-w-0 flex-col gap-0.5 rounded-xl border border-[#e8e2e9] bg-[#fbf9fa] px-3.5 py-2 transition focus-within:border-indigo/40 focus-within:bg-white focus-within:ring-2 focus-within:ring-indigo/10 hover:border-[#d9cfdc]">
           <span className="flex items-center gap-1.5 text-[0.64rem] sm:text-[0.68rem] font-bold uppercase tracking-wider text-[#938290]">
             <MapPin className="h-3.5 w-3.5 text-[#d97706]" />
             City or Locality
           </span>
           <input
+            id="hero-locality-search-input"
+            aria-label="Search city or neighborhood"
             value={locality}
             name="locality"
             onChange={(event) => {

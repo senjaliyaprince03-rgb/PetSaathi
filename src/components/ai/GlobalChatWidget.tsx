@@ -22,7 +22,7 @@ export function GlobalChatWidget() {
       {isOpen && (
         <div 
           id="global-chat-panel"
-          className="fixed bottom-24 right-4 z-50 flex h-[600px] max-h-[calc(100vh-8rem)] w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-2xl bg-paper shadow-2xl sm:right-6 sm:w-[400px] border border-indigo/10"
+          className="fixed bottom-24 right-4 left-4 sm:left-auto sm:right-6 z-50 flex h-[600px] max-h-[calc(100vh-8rem)] w-[calc(100vw-2rem)] sm:w-[400px] max-w-[420px] flex-col overflow-hidden rounded-2xl bg-paper shadow-2xl border border-indigo/10"
         >
           <div className="flex items-center justify-between border-b border-indigo/10 bg-indigo/5 p-4">
             <div className="flex items-center gap-2">

@@ -17,16 +17,16 @@ type TotemCard = {
 // Uses imagery already present across PetSaathi's customer-facing website.
 const LEFT_COLUMN: TotemCard[] = [
   { src: "/images/care-story-home-v1.webp", width: 92, x: 18, depth: -90, rotateY: 30, rotateZ: 1.5 },
-  { src: "/images/sitter-woman-cinematic.png", width: 116, x: -16, depth: 170, rotateY: 20, rotateZ: -1 },
-  { src: "/images/golden-retriever-3d.png", width: 82, x: 24, depth: -10, rotateY: 38, rotateZ: 2 },
+  { src: "/images/sitter-woman-cinematic.webp", width: 116, x: -16, depth: 170, rotateY: 20, rotateZ: -1 },
+  { src: "/images/golden-retriever-3d.webp", width: 82, x: 24, depth: -10, rotateY: 38, rotateZ: 2 },
   { src: "/images/care-story-grooming-v1.webp", width: 104, x: -22, depth: 110, rotateY: 26, rotateZ: -1.5 },
 ];
 
 const RIGHT_COLUMN: TotemCard[] = [
   { src: "/images/care-story-walk-v1.webp", width: 108, x: -18, depth: 150, rotateY: -24, rotateZ: -1 },
-  { src: "/images/sitter-man-cinematic.png", width: 84, x: 26, depth: -70, rotateY: -40, rotateZ: 1.5 },
-  { src: "/images/dog-boarding-3d.png", width: 118, x: -20, depth: 210, rotateY: -18, rotateZ: -1.5 },
-  { src: "/images/service-pet-sitting.jpg", width: 90, x: 22, depth: 20, rotateY: -34, rotateZ: 1 },
+  { src: "/images/sitter-man-cinematic.webp", width: 84, x: 26, depth: -70, rotateY: -40, rotateZ: 1.5 },
+  { src: "/images/dog-boarding-3d.webp", width: 118, x: -20, depth: 210, rotateY: -18, rotateZ: -1.5 },
+  { src: "/images/service-pet-sitting.webp", width: 90, x: 22, depth: 20, rotateY: -34, rotateZ: 1 },
 ];
 
 function TotemColumn({ cards, side, delay }: { cards: TotemCard[]; side: "left" | "right"; delay: number }) {

@@ -11,7 +11,7 @@ import { getCurrentIdentity } from "@/modules/auth/session";
 import { isFeatureEnabled } from "@/modules/features/server";
 
 export const metadata: Metadata = { 
-  title: "Membership & Care Passes | PetSaathi", 
+  title: "Membership & Care Passes", 
   description: "Predictable routine care passes, priority Saathi assignment, ledger-backed credits, and dedicated supervisor support for your pets.",
   openGraph: {
     title: "Membership & Care Passes | PetSaathi",

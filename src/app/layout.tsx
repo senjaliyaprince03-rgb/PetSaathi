@@ -23,6 +23,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(getCanonicalBaseUrl()),
+  manifest: "/manifest.webmanifest",
   title: {
     default: "PetSaathi | Trusted Pet Care Services",
     template: "%s | PetSaathi"
@@ -61,7 +62,6 @@ export const metadata: Metadata = {
     shortcut: "/favicon.ico",
     apple: "/icons/petsaathi-app-icon-v2.png"
   },
-  manifest: "/manifest.webmanifest",
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
   },
