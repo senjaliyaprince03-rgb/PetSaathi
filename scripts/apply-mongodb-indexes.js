@@ -34,6 +34,31 @@ const partialUniqueIndexes = [
       status: { $in: ["OFFERED", "ACCEPTED", "CUSTOMER_APPROVED", "ACTIVE"] },
     },
   ],
+  [
+    "bookings",
+    "bookings_one_active_per_pet_slot",
+    { customer_id: 1, pet_id: 1, scheduled_start: 1 },
+    {
+      status: {
+        $in: [
+          "DRAFT",
+          "REQUESTED",
+          "RISK_REVIEW",
+          "MATCHING",
+          "SITTER_PROPOSED",
+          "CUSTOMER_APPROVAL_PENDING",
+          "PAYMENT_PENDING",
+          "CONFIRMED",
+          "SITTER_EN_ROUTE",
+          "IN_PROGRESS",
+          "REPORT_PENDING",
+          "COMPLETED",
+          "REPLACEMENT_REQUIRED",
+          "INCIDENT_HOLD",
+        ],
+      },
+    },
+  ],
 ];
 
 const performanceCompoundIndexes = [

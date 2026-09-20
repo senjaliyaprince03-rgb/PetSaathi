@@ -6,7 +6,7 @@ import { prisma } from "@/lib/db";
 import type { CreateBookingInput } from "@/modules/bookings/input";
 import { calculateQuote, indiaServiceDate } from "@/modules/pricing/economics";
 
-export type BookingGateCode = "resource_not_found" | "service_unavailable" | "outside_service_area" | "pricing_not_configured" | "pricing_changed" | "capacity_not_configured" | "daily_capacity_reached";
+export type BookingGateCode = "resource_not_found" | "service_unavailable" | "outside_service_area" | "pricing_not_configured" | "pricing_changed" | "capacity_not_configured" | "daily_capacity_reached" | "booking_conflict";
 
 export class BookingGateError extends Error {
   constructor(public readonly status: number, public readonly code: BookingGateCode, message: string) {
@@ -16,12 +16,28 @@ export class BookingGateError extends Error {
 }
 
 export async function createBookingWithQuote(customerId: string, input: CreateBookingInput) {
+  if (input.idempotencyKey) {
+    const existing = await prisma.booking.findUnique({
+      where: { idempotencyKey: input.idempotencyKey },
+      select: { id: true, reference: true, status: true, scheduledStart: true, scheduledEnd: true, quoteAmountPaise: true, currency: true }
+    });
+    if (existing) return existing;
+  }
+
   for (let attempt = 0; attempt < 5; attempt += 1) {
     try {
       return await prisma.$transaction(async (tx) => {
         const now = new Date();
         const [pet, address, service] = await Promise.all([
-          tx.pet.findFirst({ where: { id: input.petId, ownerId: customerId, active: true, deletedAt: null }, select: { id: true } }),
+          tx.pet.findFirst({
+            where: {
+              id: input.petId,
+              ownerId: customerId,
+              active: true,
+              OR: [{ deletedAt: null }, { deletedAt: { isSet: false } }],
+            },
+            select: { id: true },
+          }),
           tx.address.findFirst({ where: { id: input.addressId, userId: customerId }, select: { id: true, city: true, state: true, locality: true, postalCode: true } }),
           tx.serviceType.findUnique({ where: { code: input.serviceCode as ServiceCode }, select: { id: true, code: true, active: true, durationMinutes: true } })
         ]);
@@ -75,6 +91,25 @@ export async function createBookingWithQuote(customerId: string, input: CreateBo
         if (price.id !== input.servicePriceId) throw new BookingGateError(409, "pricing_changed", "The approved price changed while you were booking. Review the new total and submit again.");
 
         const scheduledStart = new Date(input.scheduledStart);
+
+        // Check if an active booking already exists for this pet at this exact time slot
+        const conflictingBooking = await tx.booking.findFirst({
+          where: {
+            petId: pet.id,
+            scheduledStart,
+            status: { notIn: ["CUSTOMER_CANCELLED", "SITTER_CANCELLED", "DECLINED"] }
+          },
+          select: { id: true, reference: true }
+        });
+
+        if (conflictingBooking) {
+          throw new BookingGateError(
+            409,
+            "booking_conflict",
+            "A booking for this pet and scheduled time slot already exists or is being confirmed."
+          );
+        }
+
         const serviceDate = indiaServiceDate(scheduledStart);
         const capacity = await tx.capacityLimit.findUnique({
           where: { serviceAreaId_serviceCode_serviceDate: { serviceAreaId: serviceArea.id, serviceCode: service.code, serviceDate } },
@@ -141,6 +176,7 @@ export async function createBookingWithQuote(customerId: string, input: CreateBo
             scheduledStart,
             scheduledEnd,
             customerNotes: input.customerNotes,
+            idempotencyKey: input.idempotencyKey,
             quoteAmountPaise: quote.totalPaise,
             currency: price.currency,
             statusHistory: { create: { toState: bookingStatus, actorId: customerId, reason: entitlementClaimed ? "Covered by membership entitlement" : "Customer submitted booking request" } },
@@ -174,15 +210,25 @@ export async function createBookingWithQuote(customerId: string, input: CreateBo
         }
         
         return booking;
-      }, { maxWait: 5_000, timeout: 15_000 });
+      }, { maxWait: 10_000, timeout: 30_000 });
     } catch (error) {
+      if (error instanceof BookingGateError) {
+        throw error;
+      }
+      if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002") {
+        throw new BookingGateError(
+          409,
+          "booking_conflict",
+          "A booking for this pet and scheduled time slot already exists or is being confirmed."
+        );
+      }
       const isWriteConflict =
         (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2034") ||
-        (error instanceof Error && (error.message.includes("write conflict") || error.message.includes("deadlock")));
+        (error instanceof Error && (error.message.includes("write conflict") || error.message.includes("deadlock") || error.message.includes("TransientTransactionError")));
 
       if (isWriteConflict && attempt < 4) {
-        // Exponential jittered backoff: 30ms, 60ms, 90ms, 120ms + random jitter
-        await new Promise((resolve) => setTimeout(resolve, 30 * (attempt + 1) + Math.floor(Math.random() * 25)));
+        // Exponential jittered backoff: 50ms, 100ms, 150ms, 200ms + random jitter
+        await new Promise((resolve) => setTimeout(resolve, 50 * (attempt + 1) + Math.floor(Math.random() * 50)));
         continue;
       }
       throw error;

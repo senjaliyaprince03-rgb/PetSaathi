@@ -9,6 +9,7 @@ import { useEffect } from "react";
 
 import { hasUsableGoogleClientId } from "@/lib/public-config";
 import { PetSaathiLogo } from "@/components/brand/logo";
+import { sanitizeReturnTo } from "@/lib/sanitize-url";
 
 // Decorative animation: loaded lazily so lottie-react + the animation JSON
 // stay out of the login route's first-load JS.
@@ -20,7 +21,7 @@ const LottiePetAnimation = dynamic(() => import("./lottie-pet-animation"), {
 type ApiResponse = { error?: string; message?: string; developmentOtp?: string; role?: string; roles?: string[] };
 type PanelMode = "signin" | "signup" | "emailCode" | "setPassword";
 
-export function AuthSlidingPanel() {
+export function AuthSlidingPanel({ returnTo }: { returnTo?: string }) {
   const router = useRouter();
   const [mode, setMode] = useState<PanelMode>("signin");
   const [pending, setPending] = useState(false);
@@ -51,12 +52,24 @@ export function AuthSlidingPanel() {
     return "/dashboard";
   }
 
+  function getSafeDestination(roles?: string[]) {
+    let candidate = returnTo;
+    if (!candidate && typeof window !== "undefined") {
+      const searchParam = new URLSearchParams(window.location.search).get("returnTo");
+      candidate = sanitizeReturnTo(searchParam) ?? undefined;
+    }
+    if (candidate) {
+      return candidate;
+    }
+    return redirectForRoles(roles);
+  }
+
   function redirectToDashboardOrPortal(roles?: string[]) {
-    const target = redirectForRoles(roles);
+    const target = getSafeDestination(roles);
     if (typeof window !== "undefined") {
       window.location.href = target;
     } else {
-      router.replace(target, { scroll: false });
+      router.replace(target as any, { scroll: false });
       router.refresh();
     }
   }

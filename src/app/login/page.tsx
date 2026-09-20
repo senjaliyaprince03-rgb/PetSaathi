@@ -3,6 +3,7 @@ import Link from "next/link";
 import { AuthSlidingPanel } from "@/components/forms/auth-sliding-panel";
 import { ParallaxTotemBackground } from "@/components/motion/parallax-totem-background";
 import { getCurrentIdentity } from "@/modules/auth/session";
+import { sanitizeReturnTo } from "@/lib/sanitize-url";
 
 export const metadata: Metadata = { 
   title: "Parent & Saathi Sign In | PetSaathi", 
@@ -19,15 +20,23 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false } 
 };
 
-export default async function LoginPage() {
+type LoginSearchParams = Promise<Record<string, string | string[] | undefined>>;
+
+export default async function LoginPage({ searchParams }: { searchParams?: LoginSearchParams }) {
+  const query = searchParams ? await searchParams : {};
+  const rawReturnTo = Array.isArray(query.returnTo) ? query.returnTo[0] : query.returnTo;
+  const returnTo = sanitizeReturnTo(rawReturnTo);
+
   const identity = await getCurrentIdentity();
-  const dashboardUrl = identity
+  const defaultDashboardUrl = identity
     ? identity.roles.includes("SUPER_ADMIN") || identity.roles.includes("OPERATIONS_ADMIN")
       ? "/admin"
       : identity.roles.includes("SITTER")
       ? "/saathi"
       : "/dashboard"
     : "/dashboard";
+
+  const continueUrl = returnTo ?? defaultDashboardUrl;
 
   return (
     <main className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden p-4 sm:p-8">
@@ -40,8 +49,8 @@ export default async function LoginPage() {
               Currently signed in as <strong className="text-ink">{identity.displayName}</strong> ({identity.roles.includes("SUPER_ADMIN") ? "Admin" : identity.roles.includes("SITTER") ? "Saathi" : "Pet Parent"})
             </p>
             <div className="flex items-center gap-3 text-xs font-bold">
-              <Link href={dashboardUrl} className="text-indigo hover:underline">
-                Go to Dashboard →
+              <Link href={continueUrl as any} className="text-indigo hover:underline">
+                {returnTo ? "Continue to your page →" : "Go to Dashboard →"}
               </Link>
               <span className="text-ink/30">|</span>
               <Link href={"/api/auth/signout"} className="text-coral hover:underline">
@@ -51,7 +60,7 @@ export default async function LoginPage() {
           </div>
         )}
 
-        <AuthSlidingPanel />
+        <AuthSlidingPanel returnTo={returnTo ?? undefined} />
       </div>
     </main>
   );

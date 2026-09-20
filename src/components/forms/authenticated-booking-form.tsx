@@ -3,7 +3,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowRight, CalendarDays, CheckCircle2, LoaderCircle, PawPrint } from "lucide-react";
 import Link from "next/link";
-import { useCallback, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -64,8 +65,10 @@ export function AuthenticatedBookingForm({
   initialService?: CoreServiceCode;
   requestBoarding?: boolean;
 }) {
+  const router = useRouter();
   const [reference, setReference] = useState<string | null>(null);
   const [serverError, setServerError] = useState<string | null>(null);
+  const [currentPrices, setCurrentPrices] = useState<PriceOption[]>(prices);
   const [assessmentData, setAssessmentData] = useState<Record<string, unknown>>({});
   const [emergencyWarning, setEmergencyWarning] = useState<string | null>(null);
 
@@ -93,22 +96,74 @@ export function AuthenticatedBookingForm({
     }
   });
 
+  // Restore draft state from unauthenticated wizard session storage (BUG-017)
+  useEffect(() => {
+    try {
+      const draftRaw = sessionStorage.getItem("petsaathi_booking_wizard_draft");
+      if (draftRaw) {
+        const draft = JSON.parse(draftRaw);
+        if (draft.service && services.some((s) => s.code === draft.service)) {
+          form.setValue("serviceCode", draft.service);
+        }
+        if (draft.date && draft.time) {
+          form.setValue("scheduledStart", `${draft.date}T${draft.time}`);
+        }
+        if (draft.notes) {
+          form.setValue("customerNotes", draft.notes);
+        }
+      }
+    } catch {}
+  }, [form, services]);
+
   if (!pets.length || !addresses.length) return <div className="relative overflow-hidden rounded-[1.75rem] border border-dashed border-indigo/15 bg-cream/35 p-8 text-center sm:p-10"><div className="absolute left-1/2 top-0 h-32 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo/10 blur-3xl" /><span className="relative mx-auto flex h-14 w-14 items-center justify-center rounded-[1.25rem] bg-paper text-coral shadow-lifted"><PawPrint className="h-6 w-6 animate-[float_4s_ease-in-out_infinite]" /></span><h2 className="relative mt-5 font-display text-3xl font-semibold tracking-[-0.04em]">Add the care essentials first.</h2><p className="relative mt-3 text-sm leading-6 text-ink/80">A booking needs one private pet profile and one service address before matching can begin.</p><div className="relative mt-6 flex flex-col justify-center gap-3 sm:flex-row">{!pets.length && <Link href="/pets/new" className={buttonVariants({ variant: "accent" })}>Add a pet</Link>}{!addresses.length && <Link href="/addresses/new" className={buttonVariants({ variant: "outline" })}>Add an address</Link>}</div></div>;
 
   if (reference) return <div className="rounded-[1.75rem] border border-leaf/15 bg-leaf/[0.06] p-8 text-center sm:p-10" role="status"><span className="mx-auto flex h-16 w-16 items-center justify-center rounded-3xl bg-leaf text-paper"><CheckCircle2 className="h-8 w-8" /></span><h2 className="mt-7 font-display text-4xl font-semibold">Request received.</h2><p className="mt-4 leading-7 text-ink/80">Reference <strong>{reference}</strong> is now in the eligibility and matching queue. Payment is requested only after you approve a proposed Saathi.</p><Link href="/dashboard" className={`${buttonVariants({ variant: "accent" })} mt-7`}>Open my dashboard</Link></div>;
 
   async function submit(values: RequestInput) {
     setServerError(null);
-    const approvedPrice = prices.find((price) => price.addressId === values.addressId && price.serviceCode === values.serviceCode);
+    const approvedPrice = currentPrices.find((price) => price.addressId === values.addressId && price.serviceCode === values.serviceCode);
     if (!approvedPrice) return setServerError("This service and address do not have an approved price yet.");
-    const response = await fetch("/api/bookings", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...values, servicePriceId: approvedPrice.servicePriceId, scheduledStart: new Date(values.scheduledStart).toISOString(), careConsent: undefined }) });
+    const response = await fetch("/api/bookings", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        ...values,
+        servicePriceId: approvedPrice.servicePriceId,
+        scheduledStart: new Date(values.scheduledStart).toISOString(),
+        careConsent: undefined
+      })
+    });
     const result = await response.json().catch(() => null) as { booking?: { reference: string }; error?: string; message?: string } | null;
+
+    // Handle 409 pricing changed dynamically (BUG-019)
+    if (response.status === 409 && result?.error === "pricing_changed") {
+      try {
+        const pricingRes = await fetch(`/api/pricing?addressId=${encodeURIComponent(values.addressId)}&serviceCode=${encodeURIComponent(values.serviceCode)}`);
+        if (pricingRes.ok) {
+          const freshPrice = await pricingRes.json();
+          if (freshPrice?.servicePriceId) {
+            setCurrentPrices((prev) => prev.map((p) => (p.addressId === values.addressId && p.serviceCode === values.serviceCode ? { ...p, ...freshPrice } : p)));
+            setServerError(`The pricing was updated to ₹${(freshPrice.totalPaise / 100).toLocaleString("en-IN")}. Please review the new rate and submit again.`);
+            return;
+          }
+        }
+      } catch {}
+      router.refresh();
+      return setServerError(result.message ?? "The approved price changed while booking. Pricing refreshed; review and submit again.");
+    }
+
     if (!response.ok || !result?.booking) return setServerError(result?.message ?? "The request could not be created. Check the time and try again.");
+
+    // Clear saved draft on successful submission
+    try {
+      sessionStorage.removeItem("petsaathi_booking_wizard_draft");
+    } catch {}
+
     setReference(result.booking.reference);
   }
 
   const selectedService = services.find(({ code }) => code === form.watch("serviceCode"));
-  const selectedPrice = prices.find((price) => price.addressId === form.watch("addressId") && price.serviceCode === form.watch("serviceCode"));
+  const selectedPrice = currentPrices.find((price) => price.addressId === form.watch("addressId") && price.serviceCode === form.watch("serviceCode"));
   return <form onSubmit={form.handleSubmit(submit)} className="rounded-[1.75rem] border border-ink/[0.07] bg-paper p-5 shadow-[0_18px_55px_-42px_rgb(var(--ink)/0.35)] sm:p-7" noValidate>
     <div className="flex items-center gap-3"><span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-indigo text-paper"><CalendarDays className="h-5 w-5" /></span><div><p className="text-[0.58rem] font-bold uppercase tracking-[0.2em] text-coral">Authenticated request</p><h2 className="mt-1 font-display text-3xl font-semibold tracking-[-0.04em]">Choose the care window</h2></div></div>
     {requestBoarding && (

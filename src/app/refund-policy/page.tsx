@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ShieldCheck, RefreshCw, AlertCircle, Clock, CheckCircle2 } from "lucide-react";
 import { PageIntro, PublicShell } from "@/components/marketing/public-shell";
+import { PUBLISHED_REFUND_TIERS } from "@/modules/payments/refund-policy";
 
 export const metadata: Metadata = {
   title: "Refund & Cancellation Policy",
@@ -45,34 +46,46 @@ export default function RefundPolicyPage() {
             <div className="mt-6 grid gap-4 sm:grid-cols-3">
               <div className="rounded-2xl border border-ink/10 bg-surface-raised p-5">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded-full">100% Refund</span>
+                  <span className="text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded-full">
+                    {PUBLISHED_REFUND_TIERS.MORE_THAN_24_HOURS.badge}
+                  </span>
                   <Clock className="h-4 w-4 text-emerald-700" />
                 </div>
-                <h3 className="mt-3 font-display text-lg font-bold text-ink">&gt; 24 Hours Notice</h3>
+                <h3 className="mt-3 font-display text-lg font-bold text-ink">
+                  {PUBLISHED_REFUND_TIERS.MORE_THAN_24_HOURS.label}
+                </h3>
                 <p className="mt-2 text-xs leading-relaxed text-ink/70">
-                  Cancel anytime at least 24 hours prior to service start for a full 100% refund with zero cancellation fee.
+                  {PUBLISHED_REFUND_TIERS.MORE_THAN_24_HOURS.description}
                 </p>
               </div>
 
               <div className="rounded-2xl border border-ink/10 bg-surface-raised p-5">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold uppercase tracking-wider text-amber-800 bg-amber-100 px-2.5 py-1 rounded-full">50% Refund</span>
+                  <span className="text-xs font-bold uppercase tracking-wider text-amber-800 bg-amber-100 px-2.5 py-1 rounded-full">
+                    {PUBLISHED_REFUND_TIERS.BETWEEN_4_AND_24_HOURS.badge}
+                  </span>
                   <Clock className="h-4 w-4 text-amber-700" />
                 </div>
-                <h3 className="mt-3 font-display text-lg font-bold text-ink">4 – 24 Hours Notice</h3>
+                <h3 className="mt-3 font-display text-lg font-bold text-ink">
+                  {PUBLISHED_REFUND_TIERS.BETWEEN_4_AND_24_HOURS.label}
+                </h3>
                 <p className="mt-2 text-xs leading-relaxed text-ink/70">
-                  50% refund returned to your source account. 50% is disbursed to the caregiver to compensate for reserved schedule time.
+                  {PUBLISHED_REFUND_TIERS.BETWEEN_4_AND_24_HOURS.description}
                 </p>
               </div>
 
               <div className="rounded-2xl border border-ink/10 bg-surface-raised p-5">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold uppercase tracking-wider text-rose-800 bg-rose-100 px-2.5 py-1 rounded-full">No Refund</span>
+                  <span className="text-xs font-bold uppercase tracking-wider text-rose-800 bg-rose-100 px-2.5 py-1 rounded-full">
+                    {PUBLISHED_REFUND_TIERS.LESS_THAN_4_HOURS.badge}
+                  </span>
                   <AlertCircle className="h-4 w-4 text-rose-700" />
                 </div>
-                <h3 className="mt-3 font-display text-lg font-bold text-ink">&lt; 4 Hours Notice</h3>
+                <h3 className="mt-3 font-display text-lg font-bold text-ink">
+                  {PUBLISHED_REFUND_TIERS.LESS_THAN_4_HOURS.label}
+                </h3>
                 <p className="mt-2 text-xs leading-relaxed text-ink/70">
-                  Cancellations within 4 hours are non-refundable as the caregiver has already mobilized and committed their schedule.
+                  {PUBLISHED_REFUND_TIERS.LESS_THAN_4_HOURS.description}
                 </p>
               </div>
             </div>

@@ -1,6 +1,7 @@
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/db";
 import { canTransitionBooking, type BookingStatus } from "@/modules/bookings/state-machine";
+import { calculateRefundTier } from "@/modules/payments/refund-policy";
 
 const financiallyCommitted = ["AUTHORIZED", "CAPTURED", "PARTIALLY_REFUNDED", "REFUNDED", "DISPUTED"] as const;
 
@@ -134,23 +135,16 @@ export async function cancelConfirmedBookingWithRefund(
       throw new CancellationError(409, "captured_payment_missing", "No captured payment found for confirmed booking.");
     }
 
-    // Time difference in hours
-    const diffHours = (booking.scheduledStart.getTime() - now.getTime()) / (1000 * 60 * 60);
+    const calculation = calculateRefundTier({
+      scheduledStart: booking.scheduledStart,
+      scheduledEnd: booking.scheduledEnd,
+      cancelledBy: "CUSTOMER",
+      amountPaise: payment.amountPaise,
+      now,
+    });
 
-    let refundRatio = 0.0;
-    let policyTier = "LESS_THAN_4_HOURS";
-    if (diffHours >= 24) {
-      refundRatio = 1.0;
-      policyTier = "GREATER_THAN_24_HOURS";
-    } else if (diffHours >= 4) {
-      refundRatio = 0.5;
-      policyTier = "4_TO_24_HOURS";
-    } else {
-      refundRatio = 0.0;
-      policyTier = "LESS_THAN_4_HOURS";
-    }
-
-    const refundAmountPaise = Math.round(payment.amountPaise * refundRatio);
+    const refundAmountPaise = calculation.refundAmountPaise;
+    const policyTier = calculation.tier;
 
     // Release capacity if held
     if (booking.capacityReservation && ["HELD", "CONFIRMED"].includes(booking.capacityReservation.status)) {

@@ -45,7 +45,12 @@ export async function POST(request: Request) {
   }
 
   const body: unknown = await request.json().catch(() => null);
-  const parsed = createBookingSchema.safeParse(body);
+  const idempotencyHeader = request.headers.get("Idempotency-Key") || request.headers.get("x-idempotency-key");
+  const payloadWithIdempotency =
+    typeof body === "object" && body !== null
+      ? { ...body, ...(idempotencyHeader && !("idempotencyKey" in body) ? { idempotencyKey: idempotencyHeader } : {}) }
+      : body;
+  const parsed = createBookingSchema.safeParse(payloadWithIdempotency);
   if (!parsed.success) return NextResponse.json({ error: "invalid_request", issues: parsed.error.flatten() }, { status: 422 });
 
   const rate = await consumeRateLimit("booking-create-user", identity.id, 10, 60 * 60_000);

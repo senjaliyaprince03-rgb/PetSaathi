@@ -27,64 +27,9 @@ export default async function ServiceWalletPage() {
   const dbBalancePaise = dbWallets.reduce((sum, { wallet }) => sum + (wallet.entries[0]?.balanceAfter ?? 0), 0);
   const dbEntries = dbWallets.flatMap(({ membership, wallet }) => wallet.entries.map((entry) => ({ ...entry, programmeName: membership.programme.name, currency: wallet.currency }))).sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
 
-  const balancePaise = dbBalancePaise > 0 ? dbBalancePaise : 245000;
-  const wallets = dbWallets.length > 0 ? dbWallets : [
-    {
-      membership: {
-        programme: {
-          name: "PetSaathi Resident Care Programme",
-          programmeType: "SOCIETY_BENEFIT",
-          status: "ACTIVE"
-        }
-      },
-      wallet: {
-        id: "mock-w-1",
-        currency: "INR",
-        entries: [{ balanceAfter: 245000 }]
-      }
-    },
-    {
-      membership: {
-        programme: {
-          name: "Wellness & Preventive Vet Cover",
-          programmeType: "ANNUAL_MEMBERSHIP",
-          status: "ACTIVE"
-        }
-      },
-      wallet: {
-        id: "mock-w-2",
-        currency: "INR",
-        entries: [{ balanceAfter: 245000 }]
-      }
-    }
-  ];
-
-  const entries = dbEntries.length > 0 ? dbEntries : [
-    {
-      id: "entry-1",
-      amountPaise: 150000,
-      balanceAfter: 245000,
-      entryType: "WALLET_RECHARGE",
-      programmeName: "PetSaathi 1-Click Pay",
-      createdAt: new Date(Date.now() - 2 * 24 * 3600 * 1000)
-    },
-    {
-      id: "entry-2",
-      amountPaise: -35000,
-      balanceAfter: 95000,
-      entryType: "SERVICE_REDEMPTION",
-      programmeName: "Neighborhood Dog Walk",
-      createdAt: new Date(Date.now() - 4 * 24 * 3600 * 1000)
-    },
-    {
-      id: "entry-3",
-      amountPaise: 50000,
-      balanceAfter: 130000,
-      entryType: "SOCIETY_COMMUNITY_GRANT",
-      programmeName: "Indiranagar Resident Perk",
-      createdAt: new Date(Date.now() - 10 * 24 * 3600 * 1000)
-    }
-  ];
+  const balancePaise = dbBalancePaise;
+  const wallets = dbWallets;
+  const entries = dbEntries;
 
   return (
     <PortalShell mode="customer" displayName={identity.displayName} showSummaryCards={false}>

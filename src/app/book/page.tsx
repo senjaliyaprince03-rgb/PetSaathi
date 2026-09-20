@@ -40,7 +40,10 @@ export default async function BookPage({ searchParams }: { searchParams: BookSea
   const requestedService = firstParam(query.service);
   const requestedPetType = firstParam(query.petType);
   const requestedLocality = firstParam(query.locality)?.trim().slice(0, 120);
-  const requestBoarding = firstParam(query.requestBoarding) === "true" || requestedService === "BOARDING";
+  const requestBoarding = 
+    firstParam(query.requestBoarding) === "true" || 
+    requestedService === "BOARDING" || 
+    requestedService === "boarding-beta";
 
   if (requestBoarding) {
     redirect("/contact?topic=BOARDING_PILOT");

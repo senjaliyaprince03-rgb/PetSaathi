@@ -59,6 +59,13 @@ export async function preparePrismaEnvironment(environment = process.env) {
       .map((record) => `${record.name.replace(/\.$/, "")}:${record.port}`)
       .join(",");
     environment.MONGODB_PRISMA_URI = `mongodb://${credentials}${hosts}${source.pathname}?${options.toString()}`;
+    if (!environment.DATABASE_URL) {
+      environment.DATABASE_URL = environment.MONGODB_PRISMA_URI;
+    }
+    environment.MONGODB_URI = environment.MONGODB_PRISMA_URI;
+    if (!environment.MONGODB_TIMEOUT_MS) {
+      environment.MONGODB_TIMEOUT_MS = "10000";
+    }
   } catch {
     // Leave Prisma on the original URI so deployment and non-Windows hosts
     // retain normal Atlas SRV behavior when DNS is temporarily unavailable.

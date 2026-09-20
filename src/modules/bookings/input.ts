@@ -6,10 +6,27 @@ export const createBookingSchema = z.object({
   servicePriceId: z.string().min(1, "Price is required"),
   addressId: z.string().min(1, "Choose an address"),
   scheduledStart: z.string().datetime({ offset: true }),
-  customerNotes: z.string().trim().max(800).optional()
+  customerNotes: z.string().trim().max(800).optional(),
+  idempotencyKey: z.string().min(8).max(128).optional()
 }).superRefine(({ scheduledStart }, context) => {
-  if (new Date(scheduledStart).getTime() < Date.now() + 30 * 60 * 1000) {
+  const startDate = new Date(scheduledStart);
+  if (startDate.getTime() < Date.now() + 30 * 60 * 1000) {
     context.addIssue({ code: z.ZodIssueCode.custom, path: ["scheduledStart"], message: "Start time must be at least 30 minutes from now" });
+  }
+
+  // Check IST service hours (06:00 to 21:00)
+  const istFormatter = new Intl.DateTimeFormat("en-GB", {
+    timeZone: "Asia/Kolkata",
+    hour: "2-digit",
+    hourCycle: "h23",
+  });
+  const istHour = parseInt(istFormatter.format(startDate), 10);
+  if (istHour < 6 || istHour >= 21) {
+    context.addIssue({
+      code: z.ZodIssueCode.custom,
+      path: ["scheduledStart"],
+      message: "Scheduled start must be within active service hours (06:00 to 21:00 IST)"
+    });
   }
 });
 

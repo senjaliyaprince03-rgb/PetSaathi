@@ -939,10 +939,12 @@ model Booking {
   supportCases            SupportCase[]
   capacityReservation     CapacityReservation?
   testimonial             Testimonial?             @relation("TestimonialBooking")
+  idempotencyKey          String?                  @unique @map("idempotency_key")
 
   @@index([customerId, createdAt])
   @@index([status, scheduledStart])
   @@index([serviceTypeId, scheduledStart])
+  @@index([petId, scheduledStart, status])
   @@map("bookings")
 }
 
