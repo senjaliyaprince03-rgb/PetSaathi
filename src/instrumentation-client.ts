@@ -10,16 +10,21 @@ const dsn =
   process.env.NEXT_PUBLIC_SENTRY_DSN ??
   "https://96a995215329a1ab5351a88c0fa5a729@o4511980811190272.ingest.us.sentry.io/4511980956418048";
 
+const isEnabled = isSentryEnabled(
+  dsn,
+  process.env.NEXT_PUBLIC_VERCEL_ENV ?? process.env.NODE_ENV
+);
+
 Sentry.init({
   dsn,
-  enabled: true,
+  enabled: isEnabled,
   environment: process.env.NEXT_PUBLIC_VERCEL_ENV ?? process.env.NODE_ENV ?? "development",
   release: process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA,
-  integrations: [Sentry.replayIntegration()],
-  tracesSampleRate: 1.0,
-  enableLogs: true,
-  replaysSessionSampleRate: 0.1,
-  replaysOnErrorSampleRate: 1.0,
+  integrations: isEnabled ? [Sentry.replayIntegration()] : [],
+  tracesSampleRate: process.env.NODE_ENV === "production" ? 0.1 : 0.0,
+  enableLogs: isEnabled,
+  replaysSessionSampleRate: 0.05,
+  replaysOnErrorSampleRate: isEnabled ? 1.0 : 0.0,
   sendDefaultPii: false,
   beforeSend(event) {
     if (event.request) {

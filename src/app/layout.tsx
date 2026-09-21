@@ -96,11 +96,11 @@ export default async function RootLayout({
         {/* Google tag (gtag.js) */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${analyticsId}`}
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
         <Script
           id="google-tag-gtag"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         >
           {`
             window.dataLayer = window.dataLayer || [];

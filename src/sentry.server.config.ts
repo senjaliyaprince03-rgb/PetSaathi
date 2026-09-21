@@ -9,7 +9,7 @@ const dsn =
 
 Sentry.init({
   dsn,
-  enabled: true,
+  enabled: isSentryEnabled(dsn, process.env.VERCEL_ENV ?? process.env.NODE_ENV),
   environment: process.env.VERCEL_ENV ?? process.env.NODE_ENV ?? "development",
   release: process.env.VERCEL_GIT_COMMIT_SHA,
   tracesSampleRate: process.env.NODE_ENV === "production" ? 0.2 : 1.0,

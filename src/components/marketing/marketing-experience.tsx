@@ -104,21 +104,21 @@ export function MarketingExperience({
         
         <div className="container-shell relative grid items-center gap-8 xl:gap-12 lg:grid-cols-[1fr_560px] xl:grid-cols-[1fr_600px] 2xl:grid-cols-[1.05fr_640px] lg:min-h-[60vh]">
           <div className="relative z-10 max-w-xl self-center">
-            <ScrollReveal direction="up">
+            <ScrollReveal direction="up" immediate>
               <div className="mb-6 sm:mb-8 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 sm:px-5 sm:py-2.5 text-xs font-bold text-white shadow-lg backdrop-blur-md">
                 <span className="status-dot bg-leaf" />Verified Local Caregivers, Managed With Love
               </div>
             </ScrollReveal>
-            <ScrollReveal direction="up" delay={0.08}>
+            <ScrollReveal direction="up" delay={0.08} immediate>
               <h1 className="sr-only">Care That Feels Like Family.</h1>
               <div
                 className="mt-2 relative block"
                 aria-hidden="true"
               >
-                <TextReveal text="Care That Feels Like Family." className="font-display text-[2.75rem] font-semibold leading-[0.98] tracking-[-0.05em] text-white sm:text-[4.75rem] xl:text-[5.75rem] drop-shadow-[0_4px_24px_rgba(0,0,0,0.5)]" delay={0.08} />
+                <TextReveal text="Care That Feels Like Family." className="font-display text-[2.75rem] font-semibold leading-[0.98] tracking-[-0.05em] text-white sm:text-[4.75rem] xl:text-[5.75rem] drop-shadow-[0_4px_24px_rgba(0,0,0,0.5)]" delay={0.08} immediate />
               </div>
             </ScrollReveal>
-            <ScrollReveal direction="up" delay={0.16}>
+            <ScrollReveal direction="up" delay={0.16} immediate>
               <p className="mt-5 sm:mt-7 max-w-xl text-sm sm:text-base font-medium leading-relaxed text-white/95 drop-shadow break-words">
                 Plan local care with clear service context for walks, home visits, grooming and non-emergency veterinary support. Availability and permissions are checked before confirmation.
               </p>
@@ -130,6 +130,8 @@ export function MarketingExperience({
                 src="/images/hero-dog-woman.webp"
                 alt="PetSaathi caregiver and smiling golden retriever in a sunlit home"
                 fill
+                priority
+                fetchPriority="high"
                 sizes="(max-width: 768px) 100vw, 80vw"
                 className="object-cover object-[58%_35%]"
               />

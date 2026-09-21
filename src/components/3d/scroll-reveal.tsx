@@ -10,6 +10,7 @@ interface ScrollRevealProps {
   delay?: number;
   duration?: number;
   className?: string;
+  immediate?: boolean;
 }
 
 export function ScrollReveal({ 
@@ -17,7 +18,8 @@ export function ScrollReveal({
   direction = "up", 
   delay = 0, 
   duration = 0.8,
-  className = ""
+  className = "",
+  immediate = false
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion();
@@ -53,8 +55,8 @@ export function ScrollReveal({
   return (
     <motion.div
       ref={ref}
-      initial={reduceMotion ? false : "hidden"}
-      animate={reduceMotion || isInView ? "visible" : "hidden"}
+      initial={reduceMotion || immediate ? false : "hidden"}
+      animate={reduceMotion || immediate || isInView ? "visible" : "hidden"}
       variants={variants[direction]}
       transition={{ duration: reduceMotion ? 0 : duration, delay: reduceMotion ? 0 : delay, ease: [0.16, 1, 0.3, 1] }}
       className={className}

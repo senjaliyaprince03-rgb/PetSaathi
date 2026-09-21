@@ -13,15 +13,11 @@ interface TextRevealProps {
   text: string;
   className?: string;
   delay?: number;
+  immediate?: boolean;
 }
 
-export function TextReveal({ text, className = "", delay = 0 }: TextRevealProps) {
+export function TextReveal({ text, className = "", delay = 0, immediate = false }: TextRevealProps) {
   const shouldReduceMotion = useReducedMotion();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const words = text.split(" ");
 
@@ -39,9 +35,9 @@ export function TextReveal({ text, className = "", delay = 0 }: TextRevealProps)
   const wordVariants = {
     hidden: {
       opacity: 0,
-      y: shouldReduceMotion ? 0 : 45,
-      rotateX: shouldReduceMotion ? 0 : -40,
-      scale: shouldReduceMotion ? 1 : 0.88,
+      y: shouldReduceMotion || immediate ? 0 : 45,
+      rotateX: shouldReduceMotion || immediate ? 0 : -40,
+      scale: shouldReduceMotion || immediate ? 1 : 0.88,
     },
     visible: {
       opacity: 1,
@@ -61,8 +57,8 @@ export function TextReveal({ text, className = "", delay = 0 }: TextRevealProps)
     <div className="perspective-1000">
       <motion.div
         variants={containerVariants}
-        initial="hidden"
-        animate={mounted ? "visible" : "hidden"}
+        initial={shouldReduceMotion || immediate ? false : "hidden"}
+        animate="visible"
         className={cn("inline-flex flex-wrap gap-x-[0.28em] gap-y-[0.1em]", className)}
       >
         {words.map((word, idx) => (
