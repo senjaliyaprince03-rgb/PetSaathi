@@ -92,23 +92,24 @@ export default async function RootLayout({
   
   return (
     <html lang="en" className={`scroll-smooth ${hanken.variable} ${inter.variable}`} data-scroll-behavior="smooth" suppressHydrationWarning>
-      <head>
-        {/* Google tag (gtag.js) */}
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${analyticsId}`} />
-        <script
-          id="google-tag-gtag"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-
-              gtag('config', '${analyticsId}');
-            `,
-          }}
-        />
-      </head>
       <body className="relative overflow-x-clip bg-background font-sans text-on-background selection:bg-saffron/35" suppressHydrationWarning>
+        {/* Google tag (gtag.js) */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${analyticsId}`}
+          strategy="afterInteractive"
+        />
+        <Script
+          id="google-tag-gtag"
+          strategy="afterInteractive"
+        >
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', '${analyticsId}');
+          `}
+        </Script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

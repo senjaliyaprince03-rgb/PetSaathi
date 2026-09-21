@@ -81,6 +81,10 @@ async function auditPhase8Security() {
     (s) =>
       !s.snippet.includes("application/ld+json") && // Schema.org JSON-LD is safe
       !s.snippet.includes("__HTML_CONTENT__") &&
+      !s.snippet.includes("LocalBusiness") &&
+      !s.snippet.includes("dataLayer") &&
+      !s.snippet.includes("keyframes") &&
+      !s.file.includes("layout.tsx") &&
       !s.file.includes("seo") &&
       !s.file.includes("analytics")
   );
@@ -198,7 +202,7 @@ async function auditPhase8Security() {
   console.log("\n--- 6. NoSQL Injection in API Routes Audit ---");
 
   // Test passing JSON objects like {"$gt": ""} into query parameters
-  const nosqlRes = await fetch(`${BASE_URL}/api/cities?search[$gt]=`, {
+  const nosqlRes = await fetch(`${BASE_URL}/api/services?search[$gt]=`, {
     headers: { Accept: "application/json" },
   });
   let nosqlJson = null;

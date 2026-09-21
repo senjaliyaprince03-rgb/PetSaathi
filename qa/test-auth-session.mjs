@@ -407,7 +407,7 @@ async function run() {
     // Now try to sign in via /api/auth/password/signin
     const loginRes = await fetch(`${BASE_URL}/api/auth/password/signin`, {
       method: "POST",
-      headers: defaultHeaders,
+      headers: { ...defaultHeaders, "x-forwarded-for": "192.168.1.99" },
       body: JSON.stringify({
         email: regEmail,
         password: "Password123!",

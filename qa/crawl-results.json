@@ -8,7 +8,7 @@
     "canonical": null,
     "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
     "ogUrl": "https://petsaathi.in",
-    "durationMs": 72,
+    "durationMs": 148,
     "imageCheck": {
       "ok": true,
       "status": 200,
@@ -24,7 +24,7 @@
     "canonical": null,
     "ogImage": null,
     "ogUrl": null,
-    "durationMs": 13,
+    "durationMs": 19,
     "imageCheck": {
       "ok": false,
       "error": "Missing og:image"
@@ -39,7 +39,7 @@
     "canonical": null,
     "ogImage": null,
     "ogUrl": null,
-    "durationMs": 7,
+    "durationMs": 12,
     "imageCheck": {
       "ok": false,
       "error": "Missing og:image"
@@ -54,7 +54,7 @@
     "canonical": null,
     "ogImage": null,
     "ogUrl": null,
-    "durationMs": 7,
+    "durationMs": 9,
     "imageCheck": {
       "ok": false,
       "error": "Missing og:image"
@@ -69,7 +69,7 @@
     "canonical": null,
     "ogImage": null,
     "ogUrl": null,
-    "durationMs": 28,
+    "durationMs": 31,
     "imageCheck": {
       "ok": false,
       "error": "Missing og:image"
@@ -84,7 +84,7 @@
     "canonical": null,
     "ogImage": null,
     "ogUrl": null,
-    "durationMs": 16,
+    "durationMs": 18,
     "imageCheck": {
       "ok": false,
       "error": "Missing og:image"
@@ -99,7 +99,7 @@
     "canonical": null,
     "ogImage": null,
     "ogUrl": null,
-    "durationMs": 6,
+    "durationMs": 18,
     "imageCheck": {
       "ok": false,
       "error": "Missing og:image"
@@ -114,7 +114,7 @@
     "canonical": null,
     "ogImage": null,
     "ogUrl": null,
-    "durationMs": 21,
+    "durationMs": 10,
     "imageCheck": {
       "ok": false,
       "error": "Missing og:image"
@@ -129,7 +129,7 @@
     "canonical": null,
     "ogImage": "http://localhost:3000/images/services-hero-luxury-banner.webp",
     "ogUrl": "https://petsaathi.in/services",
-    "durationMs": 31,
+    "durationMs": 60,
     "imageCheck": {
       "ok": true,
       "status": 200,
@@ -145,7 +145,7 @@
     "canonical": null,
     "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
     "ogUrl": "https://petsaathi.in",
-    "durationMs": 33,
+    "durationMs": 46,
     "imageCheck": {
       "ok": true,
       "status": 200,
@@ -161,7 +161,7 @@
     "canonical": null,
     "ogImage": "http://localhost:3000/images/safety-hero-luxury-banner.webp",
     "ogUrl": "https://petsaathi.in/safety",
-    "durationMs": 14,
+    "durationMs": 42,
     "imageCheck": {
       "ok": true,
       "status": 200,
@@ -177,7 +177,7 @@
     "canonical": null,
     "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
     "ogUrl": "https://petsaathi.in",
-    "durationMs": 24,
+    "durationMs": 50,
     "imageCheck": {
       "ok": true,
       "status": 200,
@@ -193,7 +193,7 @@
     "canonical": null,
     "ogImage": "http://localhost:3000/images/membership-hero-luxury-banner.webp",
     "ogUrl": "https://petsaathi.in/membership",
-    "durationMs": 154,
+    "durationMs": 185,
     "imageCheck": {
       "ok": true,
       "status": 200,
@@ -209,7 +209,7 @@
     "canonical": null,
     "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
     "ogUrl": "https://petsaathi.in",
-    "durationMs": 33,
+    "durationMs": 54,
     "imageCheck": {
       "ok": true,
       "status": 200,
@@ -225,7 +225,7 @@
     "canonical": "http://localhost:3000/journal",
     "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
     "ogUrl": "http://localhost:3000/journal",
-    "durationMs": 25,
+    "durationMs": 67,
     "imageCheck": {
       "ok": true,
       "status": 200,
@@ -241,7 +241,7 @@
     "canonical": "http://localhost:3000/contact",
     "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
     "ogUrl": "https://petsaathi.in/contact",
-    "durationMs": 37,
+    "durationMs": 90,
     "imageCheck": {
       "ok": true,
       "status": 200,
@@ -257,7 +257,7 @@
     "canonical": "http://localhost:3000/book",
     "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
     "ogUrl": "https://petsaathi.in/book",
-    "durationMs": 57,
+    "durationMs": 197,
     "imageCheck": {
       "ok": true,
       "status": 200,
@@ -273,7 +273,7 @@
     "canonical": null,
     "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
     "ogUrl": "https://petsaathi.in/login",
-    "durationMs": 39,
+    "durationMs": 96,
     "imageCheck": {
       "ok": true,
       "status": 200,
@@ -289,7 +289,7 @@
     "canonical": null,
     "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
     "ogUrl": "https://petsaathi.in/become-a-saathi",
-    "durationMs": 42,
+    "durationMs": 106,
     "imageCheck": {
       "ok": true,
       "status": 200,
@@ -305,7 +305,7 @@
     "canonical": "http://localhost:3000/book",
     "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
     "ogUrl": "https://petsaathi.in/book",
-    "durationMs": 48,
+    "durationMs": 74,
     "imageCheck": {
       "ok": true,
       "status": 200,
@@ -321,7 +321,7 @@
     "canonical": "http://localhost:3000/book",
     "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
     "ogUrl": "https://petsaathi.in/book",
-    "durationMs": 32,
+    "durationMs": 80,
     "imageCheck": {
       "ok": true,
       "status": 200,
@@ -337,7 +337,7 @@
     "canonical": "http://localhost:3000/book",
     "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
     "ogUrl": "https://petsaathi.in/book",
-    "durationMs": 31,
+    "durationMs": 86,
     "imageCheck": {
       "ok": true,
       "status": 200,
@@ -353,7 +353,7 @@
     "canonical": "http://localhost:3000/book",
     "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
     "ogUrl": "https://petsaathi.in/book",
-    "durationMs": 37,
+    "durationMs": 76,
     "imageCheck": {
       "ok": true,
       "status": 200,
@@ -369,7 +369,7 @@
     "canonical": "http://localhost:3000/book",
     "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
     "ogUrl": "https://petsaathi.in/book",
-    "durationMs": 29,
+    "durationMs": 85,
     "imageCheck": {
       "ok": true,
       "status": 200,
@@ -385,7 +385,7 @@
     "canonical": null,
     "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
     "ogUrl": "https://petsaathi.in",
-    "durationMs": 24,
+    "durationMs": 51,
     "imageCheck": {
       "ok": true,
       "status": 200,
@@ -401,7 +401,7 @@
     "canonical": "http://localhost:3000/services/dog-walking",
     "ogImage": "http://localhost:3000/images/service_dog_walking_v2.webp",
     "ogUrl": "http://localhost:3000/services/dog-walking",
-    "durationMs": 22,
+    "durationMs": 52,
     "imageCheck": {
       "ok": true,
       "status": 200,
@@ -433,7 +433,7 @@
     "canonical": "http://localhost:3000/services/boarding-beta",
     "ogImage": "http://localhost:3000/images/service-pet-boarding.webp",
     "ogUrl": "http://localhost:3000/services/boarding-beta",
-    "durationMs": 38,
+    "durationMs": 49,
     "imageCheck": {
       "ok": true,
       "status": 200,
@@ -449,7 +449,7 @@
     "canonical": "http://localhost:3000/services/grooming",
     "ogImage": "http://localhost:3000/images/service-pet-grooming.webp",
     "ogUrl": "http://localhost:3000/services/grooming",
-    "durationMs": 24,
+    "durationMs": 41,
     "imageCheck": {
       "ok": true,
       "status": 200,
@@ -465,7 +465,7 @@
     "canonical": "http://localhost:3000/services/veterinary",
     "ogImage": "http://localhost:3000/images/service-vet-care.webp",
     "ogUrl": "http://localhost:3000/services/veterinary",
-    "durationMs": 18,
+    "durationMs": 51,
     "imageCheck": {
       "ok": true,
       "status": 200,
@@ -481,7 +481,7 @@
     "canonical": "http://localhost:3000/services/training",
     "ogImage": "http://localhost:3000/images/service-dog-training.webp",
     "ogUrl": "http://localhost:3000/services/training",
-    "durationMs": 22,
+    "durationMs": 50,
     "imageCheck": {
       "ok": true,
       "status": 200,
@@ -497,7 +497,7 @@
     "canonical": "http://localhost:3000/services/pet-taxi",
     "ogImage": "http://localhost:3000/images/care-handover-courtyard.webp",
     "ogUrl": "http://localhost:3000/services/pet-taxi",
-    "durationMs": 27,
+    "durationMs": 46,
     "imageCheck": {
       "ok": true,
       "status": 200,
@@ -513,7 +513,7 @@
     "canonical": null,
     "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
     "ogUrl": "https://petsaathi.in",
-    "durationMs": 85,
+    "durationMs": 103,
     "imageCheck": {
       "ok": true,
       "status": 200,
@@ -529,7 +529,7 @@
     "canonical": null,
     "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
     "ogUrl": "https://petsaathi.in",
-    "durationMs": 18,
+    "durationMs": 40,
     "imageCheck": {
       "ok": true,
       "status": 200,
@@ -545,7 +545,7 @@
     "canonical": null,
     "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
     "ogUrl": "https://petsaathi.in",
-    "durationMs": 22,
+    "durationMs": 42,
     "imageCheck": {
       "ok": true,
       "status": 200,
@@ -561,7 +561,7 @@
     "canonical": "http://localhost:3000/contact",
     "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
     "ogUrl": "https://petsaathi.in/contact",
-    "durationMs": 34,
+    "durationMs": 74,
     "imageCheck": {
       "ok": true,
       "status": 200,
@@ -577,7 +577,7 @@
     "canonical": "http://localhost:3000/contact",
     "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
     "ogUrl": "https://petsaathi.in/contact",
-    "durationMs": 37,
+    "durationMs": 86,
     "imageCheck": {
       "ok": true,
       "status": 200,
@@ -593,7 +593,7 @@
     "canonical": "http://localhost:3000/journal/prepare-home-for-boarding",
     "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
     "ogUrl": "http://localhost:3000/journal/prepare-home-for-boarding",
-    "durationMs": 170,
+    "durationMs": 156,
     "imageCheck": {
       "ok": true,
       "status": 200,
@@ -609,7 +609,7 @@
     "canonical": "http://localhost:3000/journal/what-to-expect-home-visit",
     "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
     "ogUrl": "http://localhost:3000/journal/what-to-expect-home-visit",
-    "durationMs": 114,
+    "durationMs": 128,
     "imageCheck": {
       "ok": true,
       "status": 200,
@@ -625,7 +625,7 @@
     "canonical": "http://localhost:3000/journal/summer-heat-safety-dogs",
     "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
     "ogUrl": "http://localhost:3000/journal/summer-heat-safety-dogs",
-    "durationMs": 78,
+    "durationMs": 168,
     "imageCheck": {
       "ok": true,
       "status": 200,
@@ -641,7 +641,7 @@
     "canonical": "http://localhost:3000/journal/monsoon-paw-skin-care",
     "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
     "ogUrl": "http://localhost:3000/journal/monsoon-paw-skin-care",
-    "durationMs": 76,
+    "durationMs": 153,
     "imageCheck": {
       "ok": true,
       "status": 200,
@@ -657,7 +657,7 @@
     "canonical": "http://localhost:3000/journal/new-puppy-first-30-days-india",
     "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
     "ogUrl": "http://localhost:3000/journal/new-puppy-first-30-days-india",
-    "durationMs": 80,
+    "durationMs": 113,
     "imageCheck": {
       "ok": true,
       "status": 200,
@@ -673,7 +673,7 @@
     "canonical": "http://localhost:3000/journal/choosing-safe-dog-walker",
     "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
     "ogUrl": "http://localhost:3000/journal/choosing-safe-dog-walker",
-    "durationMs": 95,
+    "durationMs": 119,
     "imageCheck": {
       "ok": true,
       "status": 200,
@@ -689,7 +689,7 @@
     "canonical": null,
     "ogImage": null,
     "ogUrl": null,
-    "durationMs": 10,
+    "durationMs": 31,
     "imageStatus": null
   },
   {
@@ -701,7 +701,7 @@
     "canonical": null,
     "ogImage": null,
     "ogUrl": null,
-    "durationMs": 14,
+    "durationMs": 26,
     "imageCheck": {
       "ok": false,
       "error": "Missing og:image"
@@ -716,7 +716,7 @@
     "canonical": null,
     "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
     "ogUrl": "https://petsaathi.in/login",
-    "durationMs": 39,
+    "durationMs": 69,
     "imageCheck": {
       "ok": true,
       "status": 200,
@@ -732,7 +732,7 @@
     "canonical": "http://localhost:3000/book",
     "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
     "ogUrl": "https://petsaathi.in/book",
-    "durationMs": 43,
+    "durationMs": 81,
     "imageCheck": {
       "ok": true,
       "status": 200,
@@ -748,7 +748,7 @@
     "canonical": "http://localhost:3000/contact",
     "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
     "ogUrl": "https://petsaathi.in/contact",
-    "durationMs": 33,
+    "durationMs": 68,
     "imageCheck": {
       "ok": true,
       "status": 200,
@@ -764,7 +764,7 @@
     "canonical": "http://localhost:3000/book",
     "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
     "ogUrl": "https://petsaathi.in/book",
-    "durationMs": 47,
+    "durationMs": 69,
     "imageCheck": {
       "ok": true,
       "status": 200,
@@ -780,7 +780,7 @@
     "canonical": "http://localhost:3000/cities/ahmedabad",
     "ogImage": null,
     "ogUrl": null,
-    "durationMs": 166,
+    "durationMs": 176,
     "imageCheck": {
       "ok": false,
       "error": "Missing og:image"
@@ -795,7 +795,7 @@
     "canonical": "http://localhost:3000/cities/bangalore",
     "ogImage": null,
     "ogUrl": null,
-    "durationMs": 117,
+    "durationMs": 151,
     "imageCheck": {
       "ok": false,
       "error": "Missing og:image"
@@ -810,7 +810,7 @@
     "canonical": "http://localhost:3000/cities/pune",
     "ogImage": null,
     "ogUrl": null,
-    "durationMs": 132,
+    "durationMs": 155,
     "imageCheck": {
       "ok": false,
       "error": "Missing og:image"
@@ -825,7 +825,7 @@
     "canonical": null,
     "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
     "ogUrl": "https://petsaathi.in/login",
-    "durationMs": 28,
+    "durationMs": 100,
     "imageCheck": {
       "ok": true,
       "status": 200,
