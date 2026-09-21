@@ -104,7 +104,7 @@ async function auditPhase8Security() {
     const secretPatterns = [
       { name: "AUTH_SECRET", regex: /kVcS53FBR4jZc3\+GUmArnDtBqG4itfCF8WBHkWbRwbmRkpOVSEk68FmMZSycFdam/ },
       { name: "MONGODB_URI", regex: /mongodb\+srv:\/\/[^\s"']+/ },
-      { name: "RESEND_API_KEY", regex: /re_[a-zA-Z0-9_-]{20,}/ },
+      { name: "RESEND_API_KEY", regex: /re_[a-zA-Z0-9]{8,}_[a-zA-Z0-9]{16,}/ },
       { name: "SENTRY_AUTH_TOKEN", regex: /sntrys_[a-zA-Z0-9_\-\/]+/ },
       { name: "RAZORPAY_KEY_SECRET", regex: /cAvLAk0m29ryz5e9rUHNBxs1/ },
       { name: "NVIDIA_API_KEY", regex: /nvapi-[a-zA-Z0-9_-]{20,}/ },

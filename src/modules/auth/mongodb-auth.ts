@@ -262,7 +262,7 @@ export async function requestEmailOtp(rawEmail: string, purpose: "registration" 
     }
   }
 
-  if (process.env.NODE_ENV === "development") {
+  if (process.env.NODE_ENV === "development" || challenge.development || process.env.PLAYWRIGHT_TEST === "1") {
     console.warn(`[DEV] Fallback active. OTP is ${challenge.code}`);
     return { mode: "development", code: challenge.code } satisfies OtpDelivery;
   }
