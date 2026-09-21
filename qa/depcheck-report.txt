@@ -1,0 +1,17 @@
+Unused dependencies
+* @capacitor/android
+* @capacitor/core
+* @next/third-parties
+* @react-three/postprocessing
+* @sentry/core
+* date-fns
+* react-leaflet
+* three-stdlib
+Unused devDependencies
+* @testing-library/react
+* @vitest/coverage-v8
+* autoprefixer
+* postcss
+Missing dependencies
+* playwright: .\test-dashboard.mjs
+* k6: .\scripts\load-tests\k6-scenarios.js

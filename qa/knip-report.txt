@@ -1,0 +1,440 @@
+Unused files (250)
+ai/agent.mjs                                                   
+ai/chunking.mjs                                                
+ai/context.mjs                                                 
+ai/embeddings.mjs                                              
+ai/evaluation/dataset.mjs                                      
+ai/evaluation/metrics.mjs                                      
+ai/evaluation/runner.mjs                                       
+ai/governance/quality.mjs                                      
+ai/guardrails.mjs                                              
+ai/ingestion.mjs                                               
+ai/reranking.mjs                                               
+ai/retrieval.mjs                                               
+ai/security.mjs                                                
+ai/streaming-adapter.mjs                                       
+ai/tool-executor.mjs                                           
+ai/tool-registry.mjs                                           
+ai/tools.mjs                                                   
+api/middleware/governance.mjs                                  
+api/routes/dashboard.mjs                                       
+convert_dashboard.cjs                                          
+convert_dashboard.mjs                                          
+fix_contrast.js                                                
+fix_grays.js                                                   
+header.jsx                                                     
+list-users.mjs                                                 
+migrations/20260905_001_initial_schema_baseline.ts             
+migrations/20260905_002_add_compound_indexes.ts                
+mobile/tasks/gps-tracking.ts                                   
+nav.jsx                                                        
+petsaathi-web/eslint.config.mjs                                
+petsaathi-web/next.config.ts                                   
+petsaathi-web/postcss.config.mjs                               
+petsaathi-web/prisma.config.ts                                 
+petsaathi-web/prisma/schema.prisma                             
+petsaathi-web/scripts/apply-mongodb-indexes.js                 
+petsaathi-web/src/app/admin/analytics/page.tsx                 
+petsaathi-web/src/app/admin/bookings/page.tsx                  
+petsaathi-web/src/app/admin/layout.tsx                         
+petsaathi-web/src/app/admin/page.tsx                           
+petsaathi-web/src/app/admin/sitters/applications/page.tsx      
+petsaathi-web/src/app/admin/society/page.tsx                   
+petsaathi-web/src/app/api/admin/analytics/route.ts             
+petsaathi-web/src/app/api/admin/bookings/route.ts              
+petsaathi-web/src/app/api/auth/[...nextauth]/route.ts          
+petsaathi-web/src/app/api/auth/register/route.ts               
+petsaathi-web/src/app/api/bookings/[id]/route.ts               
+petsaathi-web/src/app/api/bookings/route.ts                    
+petsaathi-web/src/app/api/match/route.ts                       
+petsaathi-web/src/app/api/payments/create-order/route.ts       
+petsaathi-web/src/app/api/payments/verify/route.ts             
+petsaathi-web/src/app/api/pets/[id]/route.ts                   
+petsaathi-web/src/app/api/pets/route.ts                        
+petsaathi-web/src/app/api/reports/route.ts                     
+petsaathi-web/src/app/api/waitlist/route.ts                    
+petsaathi-web/src/app/apply/sitter/ApplicationForm.tsx         
+petsaathi-web/src/app/apply/sitter/page.tsx                    
+petsaathi-web/src/app/auth/login/LoginForm.tsx                 
+petsaathi-web/src/app/auth/login/page.tsx                      
+petsaathi-web/src/app/auth/register/page.tsx                   
+petsaathi-web/src/app/auth/register/RegisterForm.tsx           
+petsaathi-web/src/app/error.tsx                                
+petsaathi-web/src/app/global-error.tsx                         
+petsaathi-web/src/app/globals.css                              
+petsaathi-web/src/app/layout.tsx                               
+petsaathi-web/src/app/loading.tsx                              
+petsaathi-web/src/app/not-found.tsx                            
+petsaathi-web/src/app/page.tsx                                 
+petsaathi-web/src/app/profile/boarding/waitlist/page.tsx       
+petsaathi-web/src/app/profile/bookings/new/page.tsx            
+petsaathi-web/src/app/profile/community/lost-and-found/page.tsx
+petsaathi-web/src/app/profile/layout.tsx                       
+petsaathi-web/src/app/profile/page.tsx                         
+petsaathi-web/src/app/profile/pets/page.tsx                    
+petsaathi-web/src/app/robots.ts                                
+petsaathi-web/src/app/sitemap.ts                               
+petsaathi-web/src/app/sitter/assignments/page.tsx              
+petsaathi-web/src/app/sitter/dashboard/page.tsx                
+petsaathi-web/src/app/society/[slug]/page.tsx                  
+petsaathi-web/src/components/CustomCursor.tsx                  
+petsaathi-web/src/components/Footer.tsx                        
+petsaathi-web/src/components/Hero.tsx                          
+petsaathi-web/src/components/Hero3DScene.tsx                   
+petsaathi-web/src/components/HowItWorks.tsx                    
+petsaathi-web/src/components/MagneticButton.tsx                
+petsaathi-web/src/components/Navbar.tsx                        
+petsaathi-web/src/components/Pricing.tsx                       
+petsaathi-web/src/components/Services.tsx                      
+petsaathi-web/src/components/SessionProvider.tsx               
+petsaathi-web/src/components/SkipToContent.tsx                 
+petsaathi-web/src/components/TrustSection.tsx                  
+petsaathi-web/src/lib/auth.ts                                  
+petsaathi-web/src/lib/email.ts                                 
+petsaathi-web/src/lib/flags.ts                                 
+petsaathi-web/src/lib/prisma.ts                                
+petsaathi-web/src/lib/utils.ts                                 
+petsaathi-web/src/lib/validation.ts                            
+petsaathi-web/src/middleware.ts                                
+playwright/tests/auth.spec.ts                                  
+playwright/tests/booking.spec.ts                               
+playwright/tests/payment.spec.ts                               
+playwright/tests/pet-listing.spec.ts                           
+public/sw.js                                                   
+qa/audit-phase10-legal-content.mjs                             
+qa/audit-phase11-resilience.mjs                                
+qa/audit-phase7-data-layer.mjs                                 
+qa/audit-phase8-security.mjs                                   
+qa/audit-phase9-perf-a11y.mjs                                  
+qa/check-env.mjs                                               
+qa/crawl.mjs                                                   
+qa/debug-admin-access.mjs                                      
+qa/phase5-booking.spec.ts                                      
+qa/test-api-security.mjs                                       
+qa/test-auth-incompatibility.mjs                               
+qa/test-auth-session.mjs                                       
+qa/test-cascade-integrity.mjs                                  
+qa/test-duplicate-bookings.mjs                                 
+qa/test-phase6-payments.mjs                                    
+qa/test-refund-tiers.mjs                                       
+qa/test-wave2-rbac.mjs                                         
+qa/test-wave3-suite.mjs                                        
+refactor.mjs                                                   
+scripts/add-fetch-priority.mjs                                 
+scripts/add-permissions.ts                                     
+scripts/assign-to-prince.mjs                                   
+scripts/backfill-stuck-created-payments.mjs                    
+scripts/broadcast-to-prince.mjs                                
+scripts/check-permissions.mjs                                  
+scripts/check-seo.mjs                                          
+scripts/check-user.mjs                                         
+scripts/create-image-audit-contact-sheet.mjs                   
+scripts/db/verify-indexes-explain.ts                           
+scripts/diagnose-runtime-errors.mjs                            
+scripts/e2e-server.mjs                                         
+scripts/ensure-all-sitters-active.mjs                          
+scripts/find-and-assign.mjs                                    
+scripts/generate-session.mjs                                   
+scripts/grant-permissions.mjs                                  
+scripts/init-rs.js                                             
+scripts/list-users.mjs                                         
+scripts/load-tests/k6-scenarios.js                             
+scripts/load-tests/run-load-test.ts                            
+scripts/optimize-images.mjs                                    
+scripts/prepare-booking-matrix.mjs                             
+scripts/recolor-brand-logo.mjs                                 
+scripts/replace-image-ext.mjs                                  
+scripts/seed-all-credentials.mjs                               
+scripts/seed-users.mjs                                         
+scripts/send-offer-direct.mjs                                  
+scripts/set-scrypt-passwords.mjs                               
+scripts/test-db-connection.ts                                  
+scripts/test-db.ts                                             
+scripts/test-email.ts                                          
+scripts/test-offer.mjs                                         
+scripts/test-razorpay-webhook.ts                               
+scripts/test-retrieval-precision.ts                            
+scripts/verify-phase1-phase2.mjs                               
+scripts/verify-razorpay-e2e.mjs                                
+scripts/verify-upstash.js                                      
+src/app/api/ai/governance/route.mjs                            
+src/app/api/ai/rag/route.mjs                                   
+src/components/3d/card-3d.tsx                                  
+src/components/effects/cursor-glow.tsx                         
+src/components/ErrorBoundary.tsx                               
+src/components/LeafletMap.tsx                                  
+src/components/Map.tsx                                         
+src/components/marketing/pet-orbit.tsx                         
+src/components/motion/page-transition.tsx                      
+src/components/originkit/ui/blinkingsquares.tsx                
+src/components/originkit/ui/kineticgrid.tsx                    
+src/components/originkit/ui/magnetic-hover-button.tsx          
+src/components/originkit/ui/shiny-pill.tsx                     
+src/components/originkit/ui/stardust.tsx                       
+src/components/originkit/ui/text-emerge.tsx                    
+src/components/payment/checkout-button.tsx                     
+src/components/portal/customer-mobile-drawer.tsx               
+src/components/portal/offline-banner.tsx                       
+src/components/portal/portal-mobile-nav.tsx                    
+src/components/portal/portal-mobile-tabs.tsx                   
+src/components/providers/lenis-provider.tsx                    
+src/components/ui/dialog.tsx                                   
+src/components/ui/drawer.tsx                                   
+src/components/ui/skeleton.tsx                                 
+src/components/ui/toast.tsx                                    
+src/lib/auth-context.ts                                        
+src/lib/authorization.ts                                       
+src/lib/booking-machine.ts                                     
+src/lib/cache.ts                                               
+src/lib/cron-auth.ts                                           
+src/lib/email/booking-confirmation.ts                          
+src/lib/email/payment-receipt.ts                               
+src/lib/idempotency.ts                                         
+src/lib/map-config.ts                                          
+src/lib/marketing-pixels.ts                                    
+src/lib/observability/sentry.ts                                
+src/lib/offline/gps-buffer.ts                                  
+src/lib/push-notification.ts                                   
+src/lib/rate-limit.ts                                          
+src/lib/tenancy.ts                                             
+src/lib/types/partner.ts                                       
+src/lib/whatsapp.ts                                            
+src/middleware/request-id.ts                                   
+src/modules/admin/overrides.ts                                 
+src/modules/b2b/outreach.ts                                    
+src/modules/b2b/promotions.ts                                  
+src/modules/credits/credit-ledger.ts                           
+src/modules/integrations/cleartax-adapter.ts                   
+src/modules/integrations/digilocker-adapter.ts                 
+src/modules/integrations/mygate-adapter.ts                     
+src/modules/loyalty/benefits.ts                                
+src/modules/loyalty/tiers.ts                                   
+src/modules/matching/prediction.ts                             
+src/modules/payments/integrity.ts                              
+src/modules/security/scanner-adapter.ts                        
+src/modules/security/upload-validation.ts                      
+src/modules/societies/service.ts                               
+src/modules/subscriptions/entitlement-ledger.ts                
+src/modules/tracking/validation.ts                             
+studio/sanity.config.ts                                        
+temp_admin.jsx                                                 
+temp_customer.jsx                                              
+temp_saathi.jsx                                                
+temp-session.mjs                                               
+test-dashboard.mjs                                             
+test-db.mjs                                                    
+test-db2.mjs                                                   
+tests/integration/admin-mutations.test.ts                      
+tests/integration/b2b.test.ts                                  
+tests/integration/booking-economics.test.ts                    
+tests/integration/booking-flow.test.ts                         
+tests/integration/care-lifecycle.test.ts                       
+tests/integration/city-expansion.test.ts                       
+tests/integration/content.test.ts                              
+tests/integration/health.test.ts                               
+tests/integration/loyalty.test.ts                              
+tests/integration/matching-approval-gate.test.ts               
+tests/integration/matching.test.ts                             
+tests/integration/partner-management.test.ts                   
+tests/integration/partner-programme-verification.test.ts       
+tests/integration/pet-records-security.test.ts                 
+tests/integration/razorpay-e2e.test.ts                         
+tests/integration/razorpay-security-manipulation.test.ts       
+tests/integration/safety-recovery.test.ts                      
+tests/integration/scale.test.ts                                
+tests/integration/society-partnership.test.ts                  
+tests/integration/subscriptions.test.ts                        
+tools/capture-report-screenshots.mjs                           
+tools/crop-membership-tight.mjs                                
+update_page.cjs                                                
+update_page.mjs                                                
+vitest.integration.config.ts                                   
+Unused dependencies (11)
+@next/third-parties          package.json:59:6 
+@react-three/postprocessing  package.json:65:6 
+@sentry/core                 package.json:66:6 
+date-fns                     package.json:77:6 
+leaflet                      package.json:83:6 
+lenis                        package.json:84:6 
+rate-limiter-flexible        package.json:92:6 
+react-leaflet                package.json:98:6 
+sharp                        package.json:101:6
+three-stdlib                 package.json:104:6
+web-push                     package.json:105:6
+Unused devDependencies (4)
+@testing-library/react  package.json:114:6
+@types/bcryptjs         package.json:115:6
+@types/leaflet          package.json:117:6
+@types/web-push         package.json:123:6
+Unlisted binaries (1)
+gradlew  package.json
+Unused exports (143)
+writeAuditRecord                    function  ai/audit.mjs:40:23                               
+initializeGovernance                function  ai/governance/index.mjs:24:23                    
+abuseStore                                    ai/governance/index.mjs:49:59                    
+CircuitState                                  ai/health.mjs:10:14                              
+getHealthSnapshot                   function  ai/health.mjs:90:17                              
+checkVectorDbHealth                 function  ai/health.mjs:102:23                             
+resetModelCache                     function  ai/router.mjs:54:17                              
+selectModels                        function  ai/router.mjs:62:23                              
+completeNvidia                      function  ai/router.mjs:83:23                              
+prepareMessages                     function  ai/router.mjs:187:17                             
+askNvidiaAuto                       function  ai/router.mjs:330:23                             
+taskProfiles                                  ai/tasks.mjs:6:14                                
+recordAgentTelemetry                function  ai/telemetry.mjs:86:17                           
+recordRagTelemetry                  function  ai/telemetry.mjs:105:17                          
+recordToolTelemetry                 function  ai/telemetry.mjs:123:17                          
+VectorStore                         class     ai/vector-store.mjs:7:14                         
+InMemoryVectorStore                 class     ai/vector-store.mjs:19:14                        
+MongoVectorStore                    class     ai/vector-store.mjs:103:14                       
+governanceHandler                   function  src/api/routes/dashboard.ts:55:23                
+ragHandler                          function  src/api/routes/dashboard.ts:96:23                
+FAQJsonLd                           function  src/components/seo/json-ld.tsx:87:17             
+ServiceJsonLd                       function  src/components/seo/json-ld.tsx:108:17            
+isInfrastructureError               function  src/lib/api-error.ts:31:17                       
+serviceUnavailable                  function  src/lib/api-error.ts:55:17                       
+internalError                       function  src/lib/api-error.ts:63:17                       
+formatDateIST                                 src/lib/date-utils.ts:27:14                      
+formatDateTimeIST                   function  src/lib/date-utils.ts:32:17                      
+withRequestId                       function  src/lib/logger.ts:165:17                         
+generateRequestId                   function  src/lib/logger.ts:177:17                         
+extractRequestId                    function  src/lib/logger.ts:184:17                         
+hasUsableSentryDsn                  function  src/lib/public-config.ts:1:17                    
+hasUsableAnalyticsId                function  src/lib/public-config.ts:21:17                   
+escapeHtml                          function  src/lib/sanitize-text.ts:17:17                   
+PaymentStatusEnum                             src/lib/validation/domain-validators.ts:116:14   
+SitterStatusEnum                              src/lib/validation/domain-validators.ts:128:14   
+loginSchema                                   src/lib/validators/auth.ts:10:14                 
+isAuthorizedAdminEmail              function  src/modules/auth/mongodb-auth.ts:419:17          
+issueSession                        function  src/modules/auth/mongodb-auth.ts:919:23          
+roles                                         src/modules/auth/permissions.ts:3:14             
+permissions                                   src/modules/auth/permissions.ts:20:14            
+rolePermissions                               src/modules/auth/permissions.ts:40:14            
+UnauthorizedError                   class     src/modules/auth/server.ts:4:14                  
+ForbiddenError                      class     src/modules/auth/server.ts:12:14                 
+renewContract                       function  src/modules/b2b/contracts.ts:41:23               
+computeTax                          function  src/modules/b2b/invoicing.ts:5:17                
+generateInvoiceNumber               function  src/modules/b2b/invoicing.ts:30:23               
+addContact                          function  src/modules/b2b/organizations.ts:100:23          
+updateContact                       function  src/modules/b2b/organizations.ts:120:23          
+listContacts                        function  src/modules/b2b/organizations.ts:139:23          
+STAGE_TRANSITIONS                             src/modules/b2b/pipeline.ts:4:14                 
+implementedEligibilityMethods                 src/modules/b2b/programme-policy.ts:12:14        
+generateProgrammeVerificationToken  function  src/modules/b2b/programme-verification.ts:30:17  
+hashProgrammeVerificationToken      function  src/modules/b2b/programme-verification.ts:34:17  
+getProgrammeBySlug                  function  src/modules/b2b/programme.service.ts:63:23       
+getProgrammeBySlug                  function  src/modules/b2b/programmes.ts:13:23              
+listProgrammeMembers                function  src/modules/b2b/programmes.ts:268:23             
+generateCorporateReport             function  src/modules/b2b/reporting.ts:92:23               
+generateSocietyReport               function  src/modules/b2b/reporting.ts:198:23              
+generateBrandReport                 function  src/modules/b2b/reporting.ts:274:23              
+B2BError                            class     src/modules/b2b/service.ts:5:14                  
+InsufficientBenefitCreditsError     class     src/modules/b2b/wallets.ts:6:14                  
+createWallet                        function  src/modules/b2b/wallets.ts:13:23                 
+redeemCredits                       function  src/modules/b2b/wallets.ts:94:23                 
+expireCredits                       function  src/modules/b2b/wallets.ts:170:23                
+getBalance                          function  src/modules/b2b/wallets.ts:214:23                
+getWalletHistory                    function  src/modules/b2b/wallets.ts:227:23                
+bookingTransitions                            src/modules/bookings/state-machine.ts:18:14      
+getValidNextStates                  function  src/modules/bookings/state-machine.ts:157:17     
+isTerminalState                     function  src/modules/bookings/state-machine.ts:164:17     
+getBookingStage                     function  src/modules/bookings/state-machine.ts:198:17     
+canCustomerCancel                   function  src/modules/bookings/state-machine.ts:240:17     
+canSitterCancel                     function  src/modules/bookings/state-machine.ts:247:17     
+requiresPayment                     function  src/modules/bookings/state-machine.ts:254:17     
+isActiveBooking                     function  src/modules/bookings/state-machine.ts:261:17     
+canReceiveTracking                  function  src/modules/bookings/state-machine.ts:273:17     
+getContent                          function  src/modules/content/cms.service.ts:76:23         
+contentTransitions                            src/modules/content/state-machine.ts:3:14        
+HealthError                         class     src/modules/health/service.ts:4:14               
+incidentTransitions                           src/modules/incidents/state-machine.ts:16:14     
+validateIncidentTransition          function  src/modules/incidents/state-machine.ts:39:17     
+requiresAutomaticSitterHold         function  src/modules/incidents/state-machine.ts:55:17     
+requiresVetContact                  function  src/modules/incidents/state-machine.ts:62:17     
+getEscalationTimelineMinutes        function  src/modules/incidents/state-machine.ts:70:17     
+requiresCorrectiveAction            function  src/modules/incidents/state-machine.ts:88:17     
+isActiveResponse                    function  src/modules/incidents/state-machine.ts:104:17    
+isResolved                          function  src/modules/incidents/state-machine.ts:116:17    
+canUploadEvidence                   function  src/modules/incidents/state-machine.ts:128:17    
+getRequiredResponseTimeMinutes      function  src/modules/incidents/state-machine.ts:136:17    
+leadTransitions                               src/modules/leads/state-machine.ts:3:14          
+REWARD_RULES                                  src/modules/loyalty/rewards.ts:9:14              
+awardLoyaltyReward                  function  src/modules/loyalty/rewards.ts:22:23             
+LoyaltyError                        class     src/modules/loyalty/service.ts:6:14              
+awardLoyaltyPoints                  function  src/modules/loyalty/service.ts:29:23             
+redeemLoyaltyPoints                 function  src/modules/loyalty/service.ts:73:23             
+triggerTestimonialRequest           function  src/modules/marketing/automation.ts:11:23        
+testimonialConsentScopes                      src/modules/marketing/testimonials.ts:10:14      
+testimonialConsentEvidence          function  src/modules/marketing/testimonials.ts:192:17     
+MatchScoreRefreshError              class     src/modules/matching/persist-scores.ts:244:14    
+scoreCandidatesLocally              function  src/modules/matching/score-engine.ts:391:17      
+notificationTransitions                       src/modules/notifications/state-machine.ts:3:14  
+EmailDispatchProvider               class     src/modules/partners/dispatch-providers.ts:172:14
+WhatsAppDispatchProvider            class     src/modules/partners/dispatch-providers.ts:366:14
+WebhookDispatchProvider             class     src/modules/partners/dispatch-providers.ts:515:14
+dispatchPartnerOrder                function  src/modules/partners/dispatch-providers.ts:668:23
+partnerOrderTransitions                       src/modules/partners/order-state-machine.ts:3:14 
+registerPartner                     function  src/modules/partners/service.ts:8:23             
+PAYMENT_PROVIDER_TIMEOUT_MS                   src/modules/payments/payment-order.ts:16:14      
+PAYMENT_RECONCILIATION_TIMEOUT_MS             src/modules/payments/payment-order.ts:17:14      
+withTimeout                         function  src/modules/payments/payment-order.ts:424:23     
+payoutTransitions                             src/modules/payments/payout-state-machine.ts:3:14
+APOLOGY_CREDIT_PAISE                          src/modules/payments/refund-policy.ts:23:14      
+refundTransitions                             src/modules/payments/refund-state-machine.ts:3:14
+paymentTransitions                            src/modules/payments/state-machine.ts:16:14      
+validatePaymentTransition           function  src/modules/payments/state-machine.ts:32:17      
+refundTransitions                             src/modules/payments/state-machine.ts:42:14      
+canTransitionRefund                 function  src/modules/payments/state-machine.ts:51:17      
+payoutTransitions                             src/modules/payments/state-machine.ts:58:14      
+canTransitionPayout                 function  src/modules/payments/state-machine.ts:68:17      
+isTerminalPaymentState              function  src/modules/payments/state-machine.ts:75:17      
+canRefund                           function  src/modules/payments/state-machine.ts:82:17      
+isPriceEffective                    function  src/modules/pricing/selection.ts:14:17           
+accountRequestTransitions                     src/modules/privacy/account-request-state.ts:3:14
+hasActiveConsent                    function  src/modules/privacy/dpdp.ts:105:23               
+listPendingDSRs                     function  src/modules/privacy/dpdp.ts:157:23               
+updateDSRStatus                     function  src/modules/privacy/dpdp.ts:170:23               
+getRetentionPolicies                function  src/modules/privacy/dpdp.ts:190:23               
+zoneWhereFilter                     function  src/modules/rbac/territory-scope.ts:122:17       
+reportReviewStatuses                          src/modules/reports/review.ts:3:14               
+configuredTrustedOrigins            function  src/modules/security/origin.ts:15:17             
+sitterTransitions                             src/modules/sitters/status-machine.ts:3:14       
+SubscriptionError                   class     src/modules/subscriptions/service.ts:5:14        
+createSubscription                  function  src/modules/subscriptions/service.ts:36:23       
+handleSubscriptionEvent             function  src/modules/subscriptions/service.ts:53:23       
+consumeEntitlement                  function  src/modules/subscriptions/service.ts:120:23      
+subscriptionTransitions                       src/modules/subscriptions/state-machine.ts:13:14 
+validateSubscriptionTransition      function  src/modules/subscriptions/state-machine.ts:36:17 
+isTerminalSubscriptionState         function  src/modules/subscriptions/state-machine.ts:52:17 
+isActiveSubscription                function  src/modules/subscriptions/state-machine.ts:59:17 
+canCancelSubscription               function  src/modules/subscriptions/state-machine.ts:66:17 
+canPauseSubscription                function  src/modules/subscriptions/state-machine.ts:73:17 
+canResumeSubscription               function  src/modules/subscriptions/state-machine.ts:80:17 
+getGracePeriodDays                  function  src/modules/subscriptions/state-machine.ts:87:17 
+mapRazorpayStatus                   function  src/modules/subscriptions/state-machine.ts:97:17 
+Unused exported types (21)
+ButtonProps            interface  src/components/ui/button.tsx:29:18            
+LogLevel               type       src/lib/observability/logger.ts:6:13          
+LogEntry               interface  src/lib/observability/logger.ts:8:18          
+DependencyState        type       src/lib/readiness.ts:12:3                     
+MessageRole            type       src/lib/types/ai.ts:1:13                      
+Citation               interface  src/lib/types/ai.ts:3:18                      
+ToolActivity           interface  src/lib/types/ai.ts:11:18                     
+RegisterPayload        type       src/lib/validators/auth.ts:15:13              
+LoginPayload           type       src/lib/validators/auth.ts:16:13              
+OtpDelivery            type       src/modules/auth/mongodb-auth.ts:29:13        
+CorporateReport        interface  src/modules/b2b/reporting.ts:15:18            
+SocietyReport          interface  src/modules/b2b/reporting.ts:43:18            
+BrandReport            interface  src/modules/b2b/reporting.ts:60:18            
+BookingStage           type       src/modules/bookings/state-machine.ts:187:13  
+IncidentSeverity       type       src/modules/incidents/state-machine.ts:11:31  
+RewardType             type       src/modules/loyalty/rewards.ts:16:13          
+MatchFactor            interface  src/modules/matching/score-engine.ts:10:18    
+RefundStatus           type       src/modules/payments/state-machine.ts:11:30   
+PayoutStatus           type       src/modules/payments/state-machine.ts:11:44   
+MemoryRateLimitResult  interface  src/modules/security/memory-rate-limit.ts:1:18
+GateApprovalEntry      interface  src/modules/societies/gate-providers.ts:3:18  
+Duplicate exports (1)
+toISTDateString|formatDateIST  src/lib/date-utils.ts
+Configuration hints (1)
+. (root)    .  Create knip.json configuration file, and add entry and/or refine project files (250 unused files)
