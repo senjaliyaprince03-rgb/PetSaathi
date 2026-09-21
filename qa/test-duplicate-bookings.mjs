@@ -19,7 +19,7 @@ async function runTest() {
   console.log("================================================================================");
 
   // 1. Create a clean test customer
-  const email = `qa-concurrency-${Date.now()}@petsaathi.com`;
+  const email = `test-e2e-concurrency-${Date.now()}@petsaathi.com`;
   const signupRes = await fetch(`${BASE_URL}/api/auth/password/signup`, {
     method: "POST",
     headers: { "Content-Type": "application/json", Origin: BASE_URL },

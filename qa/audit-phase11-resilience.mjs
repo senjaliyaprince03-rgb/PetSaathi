@@ -1,3 +1,7 @@
+import dns from "node:dns";
+try { dns.setServers(["8.8.8.8", "8.8.4.4"]); } catch {}
+import { preparePrismaEnvironment } from "../scripts/prepare-prisma-uri.mjs";
+await preparePrismaEnvironment(process.env);
 import fs from "node:fs";
 import path from "node:path";
 import { PrismaClient } from "@prisma/client";
@@ -57,7 +61,7 @@ async function auditPhase11() {
   console.log("\n--- 2. Concurrent Double Booking Creation Race Condition ---");
 
   // Create test customer
-  const email = `qa-resilience-${Date.now()}@petsaathi.com`;
+  const email = `test-e2e-resilience-${Date.now()}@petsaathi.com`;
   const signupRes = await fetch(`${BASE_URL}/api/auth/password/signup`, {
     method: "POST",
     headers: { "Content-Type": "application/json", Origin: BASE_URL },

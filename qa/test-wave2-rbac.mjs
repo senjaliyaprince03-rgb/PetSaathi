@@ -6,7 +6,7 @@ async function testNativeSessionRbac() {
   console.log("================================================================================");
 
   // 1. Create and authenticate a CUSTOMER user using native session
-  const email = `qa-rbac-cust-${Date.now()}@petsaathi.com`;
+  const email = `test-e2e-rbac-cust-${Date.now()}@petsaathi.com`;
   const signupRes = await fetch(`${BASE_URL}/api/auth/password/signup`, {
     method: "POST",
     headers: { "Content-Type": "application/json", Origin: BASE_URL },

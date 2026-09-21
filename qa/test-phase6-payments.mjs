@@ -1,3 +1,7 @@
+import dns from "node:dns";
+try { dns.setServers(["8.8.8.8", "8.8.4.4"]); } catch {}
+import { preparePrismaEnvironment } from "../scripts/prepare-prisma-uri.mjs";
+await preparePrismaEnvironment(process.env);
 import { PrismaClient } from "@prisma/client";
 import { MongoClient } from "mongodb";
 import { createHmac, randomUUID } from "node:crypto";
@@ -26,7 +30,7 @@ async function runPhase6Tests() {
 
   // Helper to register & obtain session cookie
   async function createCustomerSession(tag) {
-    const email = `qa-pay-${tag}-${Date.now()}@petsaathi.com`;
+    const email = `test-e2e-pay-${tag}-${Date.now()}@petsaathi.com`;
     const signupRes = await fetch(`${BASE_URL}/api/auth/password/signup`, {
       method: "POST",
       headers: { "Content-Type": "application/json", Origin: BASE_URL },
