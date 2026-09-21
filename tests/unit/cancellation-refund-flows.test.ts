@@ -81,7 +81,7 @@ describe("Cancellation & Refund Flows (Task 7.1)", () => {
     );
 
     expect(result.refundAmountPaise).toBe(50000);
-    expect(result.policyTier).toBe("GREATER_THAN_24_HOURS");
+    expect(result.policyTier).toBe("MORE_THAN_24_HOURS");
     expect(result.refundId).toBe("ref_100_percent");
     expect(txMock.refund.create).toHaveBeenCalledWith(expect.objectContaining({
       data: expect.objectContaining({
@@ -121,7 +121,7 @@ describe("Cancellation & Refund Flows (Task 7.1)", () => {
     );
 
     expect(result.refundAmountPaise).toBe(25000);
-    expect(result.policyTier).toBe("4_TO_24_HOURS");
+    expect(result.policyTier).toBe("BETWEEN_4_AND_24_HOURS");
     expect(result.refundId).toBe("ref_50_percent");
   });
 

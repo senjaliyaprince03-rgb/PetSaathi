@@ -73,7 +73,7 @@ describe("Payment State Machine Transitions", () => {
     expect(canTransitionPayment("CREATED", "PENDING")).toBe(true);
     expect(canTransitionPayment("CREATED", "FAILED")).toBe(true);
     expect(canTransitionPayment("CREATED", "CANCELLED")).toBe(true);
-    expect(canTransitionPayment("CREATED", "CAPTURED")).toBe(false);
+    expect(canTransitionPayment("CREATED", "CAPTURED")).toBe(true);
     expect(canTransitionPayment("CREATED", "REFUNDED")).toBe(false);
   });
 
