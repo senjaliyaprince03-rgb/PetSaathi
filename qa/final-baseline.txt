@@ -1,0 +1,28 @@
+=== PETSAATHI FORENSIC BASELINE EVIDENCE ===
+Date: 2026-09-21
+Branch: fix/audit-sprint
+Commit: c7fe9e0 chore(qa): refresh api security audit matrices and findings
+
+--- Git Status ---
+On branch fix/audit-sprint
+Your branch is up to date with 'origin/fix/audit-sprint'.
+nothing to commit, working tree clean
+
+--- Prisma Client Generation ---
+v6.19.3 generated in 1.90s
+
+--- TypeScript Check ---
+npx tsc --noEmit: Exit code 0 (0 errors)
+
+--- ESLint Check ---
+npx next lint: Exit code 0 (No ESLint warnings or errors)
+
+--- Production Build ---
+node scripts/build.mjs: Exit code 0 (All 113 routes successfully compiled)
+
+--- npm audit --omit=dev ---
+8 vulnerabilities (3 moderate, 5 high)
+- deepmerge-ts <8.0.0 (high) via prisma/@prisma/config
+- nodemailer <=9.1.0 (high) via next-auth
+- uuid <11.1.1 (moderate) via @capacitor/cli/xcode
+All are transitive dependencies of core frameworks.
