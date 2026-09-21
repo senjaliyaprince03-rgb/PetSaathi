@@ -63,8 +63,10 @@ export function HeroVideoShowcase() {
 
   const activeFilm = careFilms[activeIndex] ?? careFilms[0];
   const [hasVideo, setHasVideo] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
 
   const selectFilm = useCallback((index: number) => {
+    setIsVisible(true);
     setProgress(0);
     setActiveIndex(index);
   }, []);
@@ -82,10 +84,32 @@ export function HeroVideoShowcase() {
     setHasVideo(videoAssetExists(src));
   }, [activeFilm.slug]);
 
+  // Viewport intersection observer: only download video when user scrolls near it (200px margin)
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || typeof IntersectionObserver === "undefined") {
+      setIsVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
+
   // Handle changing videos
   useEffect(() => {
     const video = videoRef.current;
-    if (!video) return;
+    if (!video || !isVisible) return;
 
     if (reduceMotion || userPaused.current) {
       video.pause();
@@ -102,7 +126,7 @@ export function HeroVideoShowcase() {
     } catch {
       setIsPlaying(false);
     }
-  }, [activeIndex, reduceMotion]);
+  }, [activeIndex, reduceMotion, isVisible]);
 
   // Handle muting dynamically without reloading the video
   useEffect(() => {
@@ -159,8 +183,8 @@ export function HeroVideoShowcase() {
                 id="hero-care-film"
                 className="block aspect-video h-auto w-full object-cover rounded-t-[2rem] sm:rounded-t-[2.5rem]"
                 poster={`/videos/${activeFilm.slug}.jpg?v=clean2026_v3`}
-                preload="auto"
-                autoPlay
+                preload={isVisible ? "metadata" : "none"}
+                autoPlay={isVisible}
                 muted={isMuted}
                 playsInline
                 onPlay={() => setIsPlaying(true)}
