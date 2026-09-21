@@ -6,17 +6,17 @@
     "title": "PetSaathi | Trusted Pet Care Services",
     "description": "Elevating the standard of trusted pet care in India. Find verified pet sitters, groomers, and vets near you.",
     "canonical": null,
-    "ogImage": "https://petsaathi.vercel.app/images/hero-care-handover-highres.webp",
+    "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
     "ogUrl": "https://petsaathi.in",
-    "durationMs": 10148,
+    "durationMs": 172,
     "imageCheck": {
-      "ok": false,
+      "ok": true,
       "status": 200,
-      "contentType": "text/html; charset=utf-8"
+      "contentType": "image/webp"
     }
   },
   {
-    "url": "http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__5553048c._.css",
+    "url": "http://localhost:3000/_next/static/css/ebff0463290125ab.css",
     "status": 200,
     "redirectTarget": null,
     "title": null,
@@ -31,7 +31,7 @@
     }
   },
   {
-    "url": "http://localhost:3000/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_2eb8367e._.js",
+    "url": "http://localhost:3000/_next/static/css/45099591e8b85e14.css",
     "status": 200,
     "redirectTarget": null,
     "title": null,
@@ -39,442 +39,25 @@
     "canonical": null,
     "ogImage": null,
     "ogUrl": null,
-    "durationMs": 17,
+    "durationMs": 16,
     "imageCheck": {
       "ok": false,
       "error": "Missing og:image"
     }
   },
   {
-    "url": "http://localhost:3000/services",
+    "url": "http://localhost:3000/_next/static/chunks/webpack-90dad48415216958.js",
     "status": 200,
     "redirectTarget": null,
-    "title": "Doorstep Pet Care Services | PetSaathi | PetSaathi",
-    "description": "Verified doorstep dog walking, at-home pet sitting, professional grooming, and non-emergency veterinary partner support across India.",
+    "title": null,
+    "description": null,
     "canonical": null,
-    "ogImage": "https://petsaathi.vercel.app/images/services-hero-luxury-banner.webp",
-    "ogUrl": "https://petsaathi.in/services",
-    "durationMs": 1388,
+    "ogImage": null,
+    "ogUrl": null,
+    "durationMs": 11,
     "imageCheck": {
       "ok": false,
-      "status": 200,
-      "contentType": "text/html; charset=utf-8"
-    }
-  },
-  {
-    "url": "http://localhost:3000/caregivers",
-    "status": 200,
-    "redirectTarget": null,
-    "title": "Find a Trusted Saathi | PetSaathi",
-    "description": "Browse certified and background-verified pet sitters and dog walkers in your neighborhood society.",
-    "canonical": null,
-    "ogImage": "https://petsaathi.vercel.app/images/hero-care-handover-highres.webp",
-    "ogUrl": "https://petsaathi.in",
-    "durationMs": 1065,
-    "imageCheck": {
-      "ok": false,
-      "status": 200,
-      "contentType": "text/html; charset=utf-8"
-    }
-  },
-  {
-    "url": "http://localhost:3000/safety",
-    "status": 200,
-    "redirectTarget": null,
-    "title": "Safety &amp; Trust Protocols | PetSaathi | PetSaathi",
-    "description": "Explore PetSaathi&#x27;s multi-layered trust ecosystem: ₹50,000 Emergency Medical Assistance Protocol, background-verified Saathis, GPS-tracked sessions, and SOS protocols.",
-    "canonical": null,
-    "ogImage": "https://petsaathi.vercel.app/images/safety-hero-luxury-banner.webp",
-    "ogUrl": "https://petsaathi.in/safety",
-    "durationMs": 1557,
-    "imageCheck": {
-      "ok": false,
-      "status": 200,
-      "contentType": "text/html; charset=utf-8"
-    }
-  },
-  {
-    "url": "http://localhost:3000/societies",
-    "status": 200,
-    "redirectTarget": null,
-    "title": "Society Pet Care Hubs | PetSaathi",
-    "description": "Bring certified pet care, GPS-tracked walks, and automated society gate visitor passes to your residential gated community.",
-    "canonical": null,
-    "ogImage": "https://petsaathi.vercel.app/images/hero-care-handover-highres.webp",
-    "ogUrl": "https://petsaathi.in",
-    "durationMs": 1192,
-    "imageCheck": {
-      "ok": false,
-      "status": 200,
-      "contentType": "text/html; charset=utf-8"
-    }
-  },
-  {
-    "url": "http://localhost:3000/membership",
-    "status": 200,
-    "redirectTarget": null,
-    "title": "Membership &amp; Care Passes | PetSaathi | PetSaathi",
-    "description": "Predictable routine care passes, priority Saathi assignment, ledger-backed credits, and dedicated supervisor support for your pets.",
-    "canonical": null,
-    "ogImage": "https://petsaathi.vercel.app/images/membership-hero-luxury-banner.webp",
-    "ogUrl": "https://petsaathi.in/membership",
-    "durationMs": 4455,
-    "imageCheck": {
-      "ok": false,
-      "status": 200,
-      "contentType": "text/html; charset=utf-8"
-    }
-  },
-  {
-    "url": "http://localhost:3000/about",
-    "status": 200,
-    "redirectTarget": null,
-    "title": "About Us | PetSaathi",
-    "description": "Learn how PetSaathi is elevating pet parenting standards across India with verified caregivers, transparent handoffs, and neighborhood-first care.",
-    "canonical": null,
-    "ogImage": "https://petsaathi.vercel.app/images/hero-care-handover-highres.webp",
-    "ogUrl": "https://petsaathi.in",
-    "durationMs": 1513,
-    "imageCheck": {
-      "ok": false,
-      "status": 200,
-      "contentType": "text/html; charset=utf-8"
-    }
-  },
-  {
-    "url": "http://localhost:3000/journal",
-    "status": 200,
-    "redirectTarget": null,
-    "title": "Pet Care Journal &amp; Expert Guides | PetSaathi | PetSaathi",
-    "description": "Veterinarian-reviewed guides, training advice, and canine wellness handbooks for pet parents in India.",
-    "canonical": "https://petsaathi.vercel.app/journal",
-    "ogImage": "https://petsaathi.vercel.app/images/hero-care-handover-highres.webp",
-    "ogUrl": "https://petsaathi.vercel.app/journal",
-    "durationMs": 1218,
-    "imageCheck": {
-      "ok": false,
-      "status": 200,
-      "contentType": "text/html; charset=utf-8"
-    }
-  },
-  {
-    "url": "http://localhost:3000/contact",
-    "status": 200,
-    "redirectTarget": null,
-    "title": "Contact Care Concierge | PetSaathi | PetSaathi",
-    "description": "Get in touch with PetSaathi care specialists for booking assistance, society onboarding, or emergency support.",
-    "canonical": null,
-    "ogImage": "https://petsaathi.vercel.app/images/hero-care-handover-highres.webp",
-    "ogUrl": "https://petsaathi.in/contact",
-    "durationMs": 1557,
-    "imageCheck": {
-      "ok": false,
-      "status": 200,
-      "contentType": "text/html; charset=utf-8"
-    }
-  },
-  {
-    "url": "http://localhost:3000/book",
-    "status": 200,
-    "redirectTarget": null,
-    "title": "Book Doorstep Pet Care | PetSaathi | PetSaathi",
-    "description": "Schedule instant GPS-tracked dog walking, at-home pet sitting, grooming, or veterinary support in your society.",
-    "canonical": null,
-    "ogImage": "https://petsaathi.vercel.app/images/hero-care-handover-highres.webp",
-    "ogUrl": "https://petsaathi.in/book",
-    "durationMs": 1977,
-    "imageCheck": {
-      "ok": false,
-      "status": 200,
-      "contentType": "text/html; charset=utf-8"
-    }
-  },
-  {
-    "url": "http://localhost:3000/login",
-    "status": 200,
-    "redirectTarget": null,
-    "title": "Parent &amp; Saathi Sign In | PetSaathi | PetSaathi",
-    "description": "Access your PetSaathi customer dashboard, pet passports, live walk tracking, and caregiver assignments.",
-    "canonical": null,
-    "ogImage": "https://petsaathi.vercel.app/images/hero-care-handover-highres.webp",
-    "ogUrl": "https://petsaathi.in/login",
-    "durationMs": 2886,
-    "imageCheck": {
-      "ok": false,
-      "status": 200,
-      "contentType": "text/html; charset=utf-8"
-    }
-  },
-  {
-    "url": "http://localhost:3000/become-a-saathi",
-    "status": 200,
-    "redirectTarget": null,
-    "title": "Become a Certified Saathi Caregiver | PetSaathi | PetSaathi",
-    "description": "Join India&#x27;s leading managed pet care network. Earn competitive pay with reliable weekly payouts, emergency vet assistance coordination, and local society assignments.",
-    "canonical": null,
-    "ogImage": "https://petsaathi.vercel.app/images/hero-care-handover-highres.webp",
-    "ogUrl": "https://petsaathi.in/become-a-saathi",
-    "durationMs": 1546,
-    "imageCheck": {
-      "ok": false,
-      "status": 200,
-      "contentType": "text/html; charset=utf-8"
-    }
-  },
-  {
-    "url": "http://localhost:3000/book?service=DOG_WALK_30",
-    "status": 200,
-    "redirectTarget": null,
-    "title": "Book Doorstep Pet Care | PetSaathi | PetSaathi",
-    "description": "Schedule instant GPS-tracked dog walking, at-home pet sitting, grooming, or veterinary support in your society.",
-    "canonical": null,
-    "ogImage": "https://petsaathi.vercel.app/images/hero-care-handover-highres.webp",
-    "ogUrl": "https://petsaathi.in/book",
-    "durationMs": 395,
-    "imageCheck": {
-      "ok": false,
-      "status": 200,
-      "contentType": "text/html; charset=utf-8"
-    }
-  },
-  {
-    "url": "http://localhost:3000/book?service=HOME_VISIT",
-    "status": 200,
-    "redirectTarget": null,
-    "title": "Book Doorstep Pet Care | PetSaathi | PetSaathi",
-    "description": "Schedule instant GPS-tracked dog walking, at-home pet sitting, grooming, or veterinary support in your society.",
-    "canonical": null,
-    "ogImage": "https://petsaathi.vercel.app/images/hero-care-handover-highres.webp",
-    "ogUrl": "https://petsaathi.in/book",
-    "durationMs": 343,
-    "imageCheck": {
-      "ok": false,
-      "status": 200,
-      "contentType": "text/html; charset=utf-8"
-    }
-  },
-  {
-    "url": "http://localhost:3000/book?service=GROOMING_HOME",
-    "status": 200,
-    "redirectTarget": null,
-    "title": "Book Doorstep Pet Care | PetSaathi | PetSaathi",
-    "description": "Schedule instant GPS-tracked dog walking, at-home pet sitting, grooming, or veterinary support in your society.",
-    "canonical": null,
-    "ogImage": "https://petsaathi.vercel.app/images/hero-care-handover-highres.webp",
-    "ogUrl": "https://petsaathi.in/book",
-    "durationMs": 446,
-    "imageCheck": {
-      "ok": false,
-      "status": 200,
-      "contentType": "text/html; charset=utf-8"
-    }
-  },
-  {
-    "url": "http://localhost:3000/book?service=VET_SUPPORT",
-    "status": 200,
-    "redirectTarget": null,
-    "title": "Book Doorstep Pet Care | PetSaathi | PetSaathi",
-    "description": "Schedule instant GPS-tracked dog walking, at-home pet sitting, grooming, or veterinary support in your society.",
-    "canonical": null,
-    "ogImage": "https://petsaathi.vercel.app/images/hero-care-handover-highres.webp",
-    "ogUrl": "https://petsaathi.in/book",
-    "durationMs": 434,
-    "imageCheck": {
-      "ok": false,
-      "status": 200,
-      "contentType": "text/html; charset=utf-8"
-    }
-  },
-  {
-    "url": "http://localhost:3000/book?service=TRAINING_ASSESSMENT",
-    "status": 200,
-    "redirectTarget": null,
-    "title": "Book Doorstep Pet Care | PetSaathi | PetSaathi",
-    "description": "Schedule instant GPS-tracked dog walking, at-home pet sitting, grooming, or veterinary support in your society.",
-    "canonical": null,
-    "ogImage": "https://petsaathi.vercel.app/images/hero-care-handover-highres.webp",
-    "ogUrl": "https://petsaathi.in/book",
-    "durationMs": 354,
-    "imageCheck": {
-      "ok": false,
-      "status": 200,
-      "contentType": "text/html; charset=utf-8"
-    }
-  },
-  {
-    "url": "http://localhost:3000/privacy",
-    "status": 200,
-    "redirectTarget": null,
-    "title": "Privacy Notice &amp; Data Rights | PetSaathi",
-    "description": "Learn how PetSaathi protects your personal and pet information with bank-grade encryption, minimal data retention, and strict access controls.",
-    "canonical": null,
-    "ogImage": "https://petsaathi.vercel.app/images/hero-care-handover-highres.webp",
-    "ogUrl": "https://petsaathi.in",
-    "durationMs": 1173,
-    "imageCheck": {
-      "ok": false,
-      "status": 200,
-      "contentType": "text/html; charset=utf-8"
-    }
-  },
-  {
-    "url": "http://localhost:3000/services/dog-walking",
-    "status": 200,
-    "redirectTarget": null,
-    "title": "Dog Walking | PetSaathi | PetSaathi",
-    "description": "Assisted local matching with structured start, completion and care-report events. Live tracking appears only when the gated service is eligible and consented.",
-    "canonical": "https://petsaathi.vercel.app/services/dog-walking",
-    "ogImage": "https://petsaathi.vercel.app/images/service_dog_walking_v2.webp",
-    "ogUrl": "https://petsaathi.vercel.app/services/dog-walking",
-    "durationMs": 3017,
-    "imageCheck": {
-      "ok": false,
-      "status": 200,
-      "contentType": "text/html; charset=utf-8"
-    }
-  },
-  {
-    "url": "http://localhost:3000/services/home-pet-sitting",
-    "status": 200,
-    "redirectTarget": null,
-    "title": "Home Pet Sitting | PetSaathi | PetSaathi",
-    "description": "Nutritional feeding, fresh water, playful interaction, and home safety checks tailored to your pet&#x27;s routine.",
-    "canonical": "https://petsaathi.vercel.app/services/home-pet-sitting",
-    "ogImage": "https://petsaathi.vercel.app/images/service_pet_sitting_v2.webp",
-    "ogUrl": "https://petsaathi.vercel.app/services/home-pet-sitting",
-    "durationMs": 381,
-    "imageCheck": {
-      "ok": false,
-      "status": 200,
-      "contentType": "text/html; charset=utf-8"
-    }
-  },
-  {
-    "url": "http://localhost:3000/services/boarding-beta",
-    "status": 200,
-    "redirectTarget": null,
-    "title": "Boarding Beta | PetSaathi | PetSaathi",
-    "description": "Request-only boarding for property-assessed hosts and compatible pets, enabled only after the pilot gate and operating controls are approved.",
-    "canonical": "https://petsaathi.vercel.app/services/boarding-beta",
-    "ogImage": "https://petsaathi.vercel.app/images/service-pet-boarding.webp",
-    "ogUrl": "https://petsaathi.vercel.app/services/boarding-beta",
-    "durationMs": 379,
-    "imageCheck": {
-      "ok": false,
-      "status": 200,
-      "contentType": "text/html; charset=utf-8"
-    }
-  },
-  {
-    "url": "http://localhost:3000/services/grooming",
-    "status": 200,
-    "redirectTarget": null,
-    "title": "In-Home Grooming | PetSaathi | PetSaathi",
-    "description": "Partner-delivered grooming requested for the pet&#x27;s home, with exact service scope and provider availability confirmed before an order proceeds.",
-    "canonical": "https://petsaathi.vercel.app/services/grooming",
-    "ogImage": "https://petsaathi.vercel.app/images/service-pet-grooming.webp",
-    "ogUrl": "https://petsaathi.vercel.app/services/grooming",
-    "durationMs": 385,
-    "imageCheck": {
-      "ok": false,
-      "status": 200,
-      "contentType": "text/html; charset=utf-8"
-    }
-  },
-  {
-    "url": "http://localhost:3000/services/veterinary",
-    "status": 200,
-    "redirectTarget": null,
-    "title": "Veterinary Support | PetSaathi | PetSaathi",
-    "description": "Request-only coordination with approved veterinary partners. PetSaathi does not diagnose, promise clinic availability or replace emergency services.",
-    "canonical": "https://petsaathi.vercel.app/services/veterinary",
-    "ogImage": "https://petsaathi.vercel.app/images/service-vet-care.webp",
-    "ogUrl": "https://petsaathi.vercel.app/services/veterinary",
-    "durationMs": 378,
-    "imageCheck": {
-      "ok": false,
-      "status": 200,
-      "contentType": "text/html; charset=utf-8"
-    }
-  },
-  {
-    "url": "http://localhost:3000/services/training",
-    "status": 200,
-    "redirectTarget": null,
-    "title": "Training Assessment | PetSaathi | PetSaathi",
-    "description": "A request for reward-led behaviour and training intake with an approved specialist, subject to fit, scope and availability.",
-    "canonical": "https://petsaathi.vercel.app/services/training",
-    "ogImage": "https://petsaathi.vercel.app/images/service-dog-training.webp",
-    "ogUrl": "https://petsaathi.vercel.app/services/training",
-    "durationMs": 427,
-    "imageCheck": {
-      "ok": false,
-      "status": 200,
-      "contentType": "text/html; charset=utf-8"
-    }
-  },
-  {
-    "url": "http://localhost:3000/services/pet-taxi",
-    "status": 200,
-    "redirectTarget": null,
-    "title": "Pet Taxi | PetSaathi | PetSaathi",
-    "description": "Traceable doorstep-to-destination pet transit with vetted drivers, stress-free crates, and real-time status updates.",
-    "canonical": "https://petsaathi.vercel.app/services/pet-taxi",
-    "ogImage": "https://petsaathi.vercel.app/images/care-handover-courtyard.webp",
-    "ogUrl": "https://petsaathi.vercel.app/services/pet-taxi",
-    "durationMs": 440,
-    "imageCheck": {
-      "ok": false,
-      "status": 200,
-      "contentType": "text/html; charset=utf-8"
-    }
-  },
-  {
-    "url": "http://localhost:3000/cities",
-    "status": 200,
-    "redirectTarget": null,
-    "title": "Pet Care Locations &amp; Society Hubs | PetSaathi",
-    "description": "Explore PetSaathi operational cities: verified caregivers, structured service zones and locally reviewed pet care guides across India.",
-    "canonical": null,
-    "ogImage": "https://petsaathi.vercel.app/images/hero-care-handover-highres.webp",
-    "ogUrl": "https://petsaathi.in",
-    "durationMs": 1318,
-    "imageCheck": {
-      "ok": false,
-      "status": 200,
-      "contentType": "text/html; charset=utf-8"
-    }
-  },
-  {
-    "url": "http://localhost:3000/terms",
-    "status": 200,
-    "redirectTarget": null,
-    "title": "Terms of Service | PetSaathi",
-    "description": "Read PetSaathi&#x27;s Terms of Service outlining booking policies, caregiver verification, ₹50,000 Vet Medical Assistance Protocol, GPS tracking, grievance redressal, and cancellation terms.",
-    "canonical": null,
-    "ogImage": "https://petsaathi.vercel.app/images/hero-care-handover-highres.webp",
-    "ogUrl": "https://petsaathi.in",
-    "durationMs": 954,
-    "imageCheck": {
-      "ok": false,
-      "status": 200,
-      "contentType": "text/html; charset=utf-8"
-    }
-  },
-  {
-    "url": "http://localhost:3000/refund-policy",
-    "status": 200,
-    "redirectTarget": null,
-    "title": "Refund &amp; Cancellation Policy | PetSaathi",
-    "description": "PetSaathi transparent refund and cancellation policy. Full refunds for cancellations &gt;24 hours, 50% refund 4-24 hours, and 100% money-back guarantee if a sitter cancels.",
-    "canonical": null,
-    "ogImage": "https://petsaathi.vercel.app/images/hero-care-handover-highres.webp",
-    "ogUrl": "https://petsaathi.in",
-    "durationMs": 1041,
-    "imageCheck": {
-      "ok": false,
-      "status": 200,
-      "contentType": "text/html; charset=utf-8"
+      "error": "Missing og:image"
     }
   },
   {
@@ -486,7 +69,7 @@
     "canonical": null,
     "ogImage": null,
     "ogUrl": null,
-    "durationMs": 974,
+    "durationMs": 66,
     "imageCheck": {
       "ok": false,
       "error": "Missing og:image"
@@ -501,7 +84,7 @@
     "canonical": null,
     "ogImage": null,
     "ogUrl": null,
-    "durationMs": 8,
+    "durationMs": 27,
     "imageCheck": {
       "ok": false,
       "error": "Missing og:image"
@@ -516,7 +99,7 @@
     "canonical": null,
     "ogImage": null,
     "ogUrl": null,
-    "durationMs": 22,
+    "durationMs": 11,
     "imageCheck": {
       "ok": false,
       "error": "Missing og:image"
@@ -531,42 +114,474 @@
     "canonical": null,
     "ogImage": null,
     "ogUrl": null,
-    "durationMs": 10,
+    "durationMs": 27,
     "imageCheck": {
       "ok": false,
       "error": "Missing og:image"
     }
   },
   {
+    "url": "http://localhost:3000/services",
+    "status": 200,
+    "redirectTarget": null,
+    "title": "Doorstep Pet Care Services | PetSaathi",
+    "description": "Verified doorstep dog walking, at-home pet sitting, professional grooming, and non-emergency veterinary partner support across India.",
+    "canonical": null,
+    "ogImage": "http://localhost:3000/images/services-hero-luxury-banner.webp",
+    "ogUrl": "https://petsaathi.in/services",
+    "durationMs": 58,
+    "imageCheck": {
+      "ok": true,
+      "status": 200,
+      "contentType": "image/webp"
+    }
+  },
+  {
+    "url": "http://localhost:3000/caregivers",
+    "status": 200,
+    "redirectTarget": null,
+    "title": "Find a Trusted Saathi | PetSaathi",
+    "description": "Browse certified and background-verified pet sitters and dog walkers in your neighborhood society.",
+    "canonical": null,
+    "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
+    "ogUrl": "https://petsaathi.in",
+    "durationMs": 62,
+    "imageCheck": {
+      "ok": true,
+      "status": 200,
+      "contentType": "image/webp"
+    }
+  },
+  {
+    "url": "http://localhost:3000/safety",
+    "status": 200,
+    "redirectTarget": null,
+    "title": "Safety &amp; Trust Protocols | PetSaathi",
+    "description": "Explore PetSaathi&#x27;s multi-layered trust ecosystem: ₹50,000 Emergency Medical Assistance Protocol, background-verified Saathis, GPS-tracked sessions, and SOS protocols.",
+    "canonical": null,
+    "ogImage": "http://localhost:3000/images/safety-hero-luxury-banner.webp",
+    "ogUrl": "https://petsaathi.in/safety",
+    "durationMs": 90,
+    "imageCheck": {
+      "ok": true,
+      "status": 200,
+      "contentType": "image/webp"
+    }
+  },
+  {
+    "url": "http://localhost:3000/societies",
+    "status": 200,
+    "redirectTarget": null,
+    "title": "Society Pet Care Hubs | PetSaathi",
+    "description": "Bring certified pet care, GPS-tracked walks, and automated society gate visitor passes to your residential gated community.",
+    "canonical": null,
+    "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
+    "ogUrl": "https://petsaathi.in",
+    "durationMs": 55,
+    "imageCheck": {
+      "ok": true,
+      "status": 200,
+      "contentType": "image/webp"
+    }
+  },
+  {
+    "url": "http://localhost:3000/membership",
+    "status": 200,
+    "redirectTarget": null,
+    "title": "Membership &amp; Care Passes | PetSaathi",
+    "description": "Predictable routine care passes, priority Saathi assignment, ledger-backed credits, and dedicated supervisor support for your pets.",
+    "canonical": null,
+    "ogImage": "http://localhost:3000/images/membership-hero-luxury-banner.webp",
+    "ogUrl": "https://petsaathi.in/membership",
+    "durationMs": 715,
+    "imageCheck": {
+      "ok": true,
+      "status": 200,
+      "contentType": "image/webp"
+    }
+  },
+  {
+    "url": "http://localhost:3000/about",
+    "status": 200,
+    "redirectTarget": null,
+    "title": "About Us | PetSaathi",
+    "description": "Learn how PetSaathi is elevating pet parenting standards across India with verified caregivers, transparent handoffs, and neighborhood-first care.",
+    "canonical": null,
+    "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
+    "ogUrl": "https://petsaathi.in",
+    "durationMs": 42,
+    "imageCheck": {
+      "ok": true,
+      "status": 200,
+      "contentType": "image/webp"
+    }
+  },
+  {
+    "url": "http://localhost:3000/journal",
+    "status": 200,
+    "redirectTarget": null,
+    "title": "Pet Care Journal &amp; Expert Guides | PetSaathi",
+    "description": "Veterinarian-reviewed guides, training advice, and canine wellness handbooks for pet parents in India.",
+    "canonical": "http://localhost:3000/journal",
+    "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
+    "ogUrl": "http://localhost:3000/journal",
+    "durationMs": 53,
+    "imageCheck": {
+      "ok": true,
+      "status": 200,
+      "contentType": "image/webp"
+    }
+  },
+  {
+    "url": "http://localhost:3000/contact",
+    "status": 200,
+    "redirectTarget": null,
+    "title": "Contact Care Concierge | PetSaathi",
+    "description": "Get in touch with PetSaathi care specialists for booking assistance, society onboarding, or emergency support.",
+    "canonical": "http://localhost:3000/contact",
+    "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
+    "ogUrl": "https://petsaathi.in/contact",
+    "durationMs": 93,
+    "imageCheck": {
+      "ok": true,
+      "status": 200,
+      "contentType": "image/webp"
+    }
+  },
+  {
+    "url": "http://localhost:3000/book",
+    "status": 200,
+    "redirectTarget": null,
+    "title": "Book Doorstep Pet Care | PetSaathi",
+    "description": "Schedule instant GPS-tracked dog walking, at-home pet sitting, grooming, or veterinary support in your society.",
+    "canonical": "http://localhost:3000/book",
+    "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
+    "ogUrl": "https://petsaathi.in/book",
+    "durationMs": 118,
+    "imageCheck": {
+      "ok": true,
+      "status": 200,
+      "contentType": "image/webp"
+    }
+  },
+  {
+    "url": "http://localhost:3000/login",
+    "status": 200,
+    "redirectTarget": null,
+    "title": "Parent &amp; Saathi Sign In | PetSaathi",
+    "description": "Access your PetSaathi customer dashboard, pet passports, live walk tracking, and caregiver assignments.",
+    "canonical": null,
+    "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
+    "ogUrl": "https://petsaathi.in/login",
+    "durationMs": 92,
+    "imageCheck": {
+      "ok": true,
+      "status": 200,
+      "contentType": "image/webp"
+    }
+  },
+  {
+    "url": "http://localhost:3000/become-a-saathi",
+    "status": 200,
+    "redirectTarget": null,
+    "title": "Become a Certified Saathi Caregiver | PetSaathi",
+    "description": "Join India&#x27;s leading managed pet care network. Earn competitive pay with reliable weekly payouts, emergency vet assistance coordination, and local society assignments.",
+    "canonical": null,
+    "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
+    "ogUrl": "https://petsaathi.in/become-a-saathi",
+    "durationMs": 104,
+    "imageCheck": {
+      "ok": true,
+      "status": 200,
+      "contentType": "image/webp"
+    }
+  },
+  {
+    "url": "http://localhost:3000/book?service=DOG_WALK_30",
+    "status": 200,
+    "redirectTarget": null,
+    "title": "Book Doorstep Pet Care | PetSaathi",
+    "description": "Schedule instant GPS-tracked dog walking, at-home pet sitting, grooming, or veterinary support in your society.",
+    "canonical": "http://localhost:3000/book",
+    "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
+    "ogUrl": "https://petsaathi.in/book",
+    "durationMs": 119,
+    "imageCheck": {
+      "ok": true,
+      "status": 200,
+      "contentType": "image/webp"
+    }
+  },
+  {
+    "url": "http://localhost:3000/book?service=HOME_VISIT",
+    "status": 200,
+    "redirectTarget": null,
+    "title": "Book Doorstep Pet Care | PetSaathi",
+    "description": "Schedule instant GPS-tracked dog walking, at-home pet sitting, grooming, or veterinary support in your society.",
+    "canonical": "http://localhost:3000/book",
+    "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
+    "ogUrl": "https://petsaathi.in/book",
+    "durationMs": 82,
+    "imageCheck": {
+      "ok": true,
+      "status": 200,
+      "contentType": "image/webp"
+    }
+  },
+  {
+    "url": "http://localhost:3000/book?service=GROOMING_HOME",
+    "status": 200,
+    "redirectTarget": null,
+    "title": "Book Doorstep Pet Care | PetSaathi",
+    "description": "Schedule instant GPS-tracked dog walking, at-home pet sitting, grooming, or veterinary support in your society.",
+    "canonical": "http://localhost:3000/book",
+    "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
+    "ogUrl": "https://petsaathi.in/book",
+    "durationMs": 97,
+    "imageCheck": {
+      "ok": true,
+      "status": 200,
+      "contentType": "image/webp"
+    }
+  },
+  {
+    "url": "http://localhost:3000/book?service=VET_SUPPORT",
+    "status": 200,
+    "redirectTarget": null,
+    "title": "Book Doorstep Pet Care | PetSaathi",
+    "description": "Schedule instant GPS-tracked dog walking, at-home pet sitting, grooming, or veterinary support in your society.",
+    "canonical": "http://localhost:3000/book",
+    "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
+    "ogUrl": "https://petsaathi.in/book",
+    "durationMs": 90,
+    "imageCheck": {
+      "ok": true,
+      "status": 200,
+      "contentType": "image/webp"
+    }
+  },
+  {
+    "url": "http://localhost:3000/book?service=TRAINING_ASSESSMENT",
+    "status": 200,
+    "redirectTarget": null,
+    "title": "Book Doorstep Pet Care | PetSaathi",
+    "description": "Schedule instant GPS-tracked dog walking, at-home pet sitting, grooming, or veterinary support in your society.",
+    "canonical": "http://localhost:3000/book",
+    "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
+    "ogUrl": "https://petsaathi.in/book",
+    "durationMs": 92,
+    "imageCheck": {
+      "ok": true,
+      "status": 200,
+      "contentType": "image/webp"
+    }
+  },
+  {
+    "url": "http://localhost:3000/privacy",
+    "status": 200,
+    "redirectTarget": null,
+    "title": "Privacy Notice &amp; Data Rights | PetSaathi",
+    "description": "Learn how PetSaathi protects your personal and pet information with bank-grade encryption, minimal data retention, and strict access controls.",
+    "canonical": null,
+    "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
+    "ogUrl": "https://petsaathi.in",
+    "durationMs": 75,
+    "imageCheck": {
+      "ok": true,
+      "status": 200,
+      "contentType": "image/webp"
+    }
+  },
+  {
+    "url": "http://localhost:3000/services/dog-walking",
+    "status": 200,
+    "redirectTarget": null,
+    "title": "Dog Walking | PetSaathi | PetSaathi",
+    "description": "Assisted local matching with structured start, completion and care-report events. Live tracking appears only when the gated service is eligible and consented.",
+    "canonical": "http://localhost:3000/services/dog-walking",
+    "ogImage": "http://localhost:3000/images/service_dog_walking_v2.webp",
+    "ogUrl": "http://localhost:3000/services/dog-walking",
+    "durationMs": 61,
+    "imageCheck": {
+      "ok": true,
+      "status": 200,
+      "contentType": "image/webp"
+    }
+  },
+  {
+    "url": "http://localhost:3000/services/home-pet-sitting",
+    "status": 200,
+    "redirectTarget": null,
+    "title": "Home Pet Sitting | PetSaathi | PetSaathi",
+    "description": "Nutritional feeding, fresh water, playful interaction, and home safety checks tailored to your pet&#x27;s routine.",
+    "canonical": "http://localhost:3000/services/home-pet-sitting",
+    "ogImage": "http://localhost:3000/images/service_pet_sitting_v2.webp",
+    "ogUrl": "http://localhost:3000/services/home-pet-sitting",
+    "durationMs": 53,
+    "imageCheck": {
+      "ok": true,
+      "status": 200,
+      "contentType": "image/webp"
+    }
+  },
+  {
+    "url": "http://localhost:3000/services/boarding-beta",
+    "status": 200,
+    "redirectTarget": null,
+    "title": "Boarding Beta | PetSaathi | PetSaathi",
+    "description": "Request-only boarding for property-assessed hosts and compatible pets, enabled only after the pilot gate and operating controls are approved.",
+    "canonical": "http://localhost:3000/services/boarding-beta",
+    "ogImage": "http://localhost:3000/images/service-pet-boarding.webp",
+    "ogUrl": "http://localhost:3000/services/boarding-beta",
+    "durationMs": 41,
+    "imageCheck": {
+      "ok": true,
+      "status": 200,
+      "contentType": "image/webp"
+    }
+  },
+  {
+    "url": "http://localhost:3000/services/grooming",
+    "status": 200,
+    "redirectTarget": null,
+    "title": "In-Home Grooming | PetSaathi | PetSaathi",
+    "description": "Partner-delivered grooming requested for the pet&#x27;s home, with exact service scope and provider availability confirmed before an order proceeds.",
+    "canonical": "http://localhost:3000/services/grooming",
+    "ogImage": "http://localhost:3000/images/service-pet-grooming.webp",
+    "ogUrl": "http://localhost:3000/services/grooming",
+    "durationMs": 52,
+    "imageCheck": {
+      "ok": true,
+      "status": 200,
+      "contentType": "image/webp"
+    }
+  },
+  {
+    "url": "http://localhost:3000/services/veterinary",
+    "status": 200,
+    "redirectTarget": null,
+    "title": "Veterinary Support | PetSaathi | PetSaathi",
+    "description": "Request-only coordination with approved veterinary partners. PetSaathi does not diagnose, promise clinic availability or replace emergency services.",
+    "canonical": "http://localhost:3000/services/veterinary",
+    "ogImage": "http://localhost:3000/images/service-vet-care.webp",
+    "ogUrl": "http://localhost:3000/services/veterinary",
+    "durationMs": 46,
+    "imageCheck": {
+      "ok": true,
+      "status": 200,
+      "contentType": "image/webp"
+    }
+  },
+  {
+    "url": "http://localhost:3000/services/training",
+    "status": 200,
+    "redirectTarget": null,
+    "title": "Training Assessment | PetSaathi | PetSaathi",
+    "description": "A request for reward-led behaviour and training intake with an approved specialist, subject to fit, scope and availability.",
+    "canonical": "http://localhost:3000/services/training",
+    "ogImage": "http://localhost:3000/images/service-dog-training.webp",
+    "ogUrl": "http://localhost:3000/services/training",
+    "durationMs": 51,
+    "imageCheck": {
+      "ok": true,
+      "status": 200,
+      "contentType": "image/webp"
+    }
+  },
+  {
+    "url": "http://localhost:3000/services/pet-taxi",
+    "status": 200,
+    "redirectTarget": null,
+    "title": "Pet Taxi | PetSaathi | PetSaathi",
+    "description": "Traceable doorstep-to-destination pet transit with vetted drivers, stress-free crates, and real-time status updates.",
+    "canonical": "http://localhost:3000/services/pet-taxi",
+    "ogImage": "http://localhost:3000/images/care-handover-courtyard.webp",
+    "ogUrl": "http://localhost:3000/services/pet-taxi",
+    "durationMs": 52,
+    "imageCheck": {
+      "ok": true,
+      "status": 200,
+      "contentType": "image/webp"
+    }
+  },
+  {
+    "url": "http://localhost:3000/cities",
+    "status": 200,
+    "redirectTarget": null,
+    "title": "Pet Care Locations &amp; Society Hubs | PetSaathi",
+    "description": "Explore PetSaathi operational cities: verified caregivers, structured service zones and locally reviewed pet care guides across India.",
+    "canonical": null,
+    "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
+    "ogUrl": "https://petsaathi.in",
+    "durationMs": 100,
+    "imageCheck": {
+      "ok": true,
+      "status": 200,
+      "contentType": "image/webp"
+    }
+  },
+  {
+    "url": "http://localhost:3000/terms",
+    "status": 200,
+    "redirectTarget": null,
+    "title": "Terms of Service | PetSaathi",
+    "description": "Read PetSaathi&#x27;s Terms of Service outlining booking policies, caregiver verification, ₹50,000 Vet Medical Assistance Protocol, GPS tracking, grievance redressal, and cancellation terms.",
+    "canonical": null,
+    "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
+    "ogUrl": "https://petsaathi.in",
+    "durationMs": 42,
+    "imageCheck": {
+      "ok": true,
+      "status": 200,
+      "contentType": "image/webp"
+    }
+  },
+  {
+    "url": "http://localhost:3000/refund-policy",
+    "status": 200,
+    "redirectTarget": null,
+    "title": "Refund &amp; Cancellation Policy | PetSaathi",
+    "description": "PetSaathi transparent refund and cancellation policy. Full refunds for cancellations &gt;24 hours, 50% refund 4-24 hours, and 100% money-back guarantee if a sitter cancels.",
+    "canonical": null,
+    "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
+    "ogUrl": "https://petsaathi.in",
+    "durationMs": 50,
+    "imageCheck": {
+      "ok": true,
+      "status": 200,
+      "contentType": "image/webp"
+    }
+  },
+  {
     "url": "http://localhost:3000/contact?topic=SOCIETY",
     "status": 200,
     "redirectTarget": null,
-    "title": "Contact Care Concierge | PetSaathi | PetSaathi",
+    "title": "Contact Care Concierge | PetSaathi",
     "description": "Get in touch with PetSaathi care specialists for booking assistance, society onboarding, or emergency support.",
-    "canonical": null,
-    "ogImage": "https://petsaathi.vercel.app/images/hero-care-handover-highres.webp",
+    "canonical": "http://localhost:3000/contact",
+    "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
     "ogUrl": "https://petsaathi.in/contact",
-    "durationMs": 291,
+    "durationMs": 76,
     "imageCheck": {
-      "ok": false,
+      "ok": true,
       "status": 200,
-      "contentType": "text/html; charset=utf-8"
+      "contentType": "image/webp"
     }
   },
   {
     "url": "http://localhost:3000/contact?topic=SOCIETY_PARTNERSHIP",
     "status": 200,
     "redirectTarget": null,
-    "title": "Contact Care Concierge | PetSaathi | PetSaathi",
+    "title": "Contact Care Concierge | PetSaathi",
     "description": "Get in touch with PetSaathi care specialists for booking assistance, society onboarding, or emergency support.",
-    "canonical": null,
-    "ogImage": "https://petsaathi.vercel.app/images/hero-care-handover-highres.webp",
+    "canonical": "http://localhost:3000/contact",
+    "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
     "ogUrl": "https://petsaathi.in/contact",
-    "durationMs": 292,
+    "durationMs": 66,
     "imageCheck": {
-      "ok": false,
+      "ok": true,
       "status": 200,
-      "contentType": "text/html; charset=utf-8"
+      "contentType": "image/webp"
     }
   },
   {
@@ -575,14 +590,14 @@
     "redirectTarget": null,
     "title": "Preparing Your Home for Boarding: A Practical Guide | PetSaathi Journal | PetSaathi",
     "description": "From securing balconies to writing the perfect care sheet - how to set up a calm, safe boarding experience in your own home.",
-    "canonical": "https://petsaathi.vercel.app/journal/prepare-home-for-boarding",
-    "ogImage": "https://petsaathi.vercel.app/images/hero-care-handover-highres.webp",
-    "ogUrl": "https://petsaathi.vercel.app/journal/prepare-home-for-boarding",
-    "durationMs": 2353,
+    "canonical": "http://localhost:3000/journal/prepare-home-for-boarding",
+    "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
+    "ogUrl": "http://localhost:3000/journal/prepare-home-for-boarding",
+    "durationMs": 119,
     "imageCheck": {
-      "ok": false,
+      "ok": true,
       "status": 200,
-      "contentType": "text/html; charset=utf-8"
+      "contentType": "image/webp"
     }
   },
   {
@@ -591,14 +606,14 @@
     "redirectTarget": null,
     "title": "What Actually Happens During a PetSaathi Home Visit | PetSaathi Journal | PetSaathi",
     "description": "A transparent walkthrough of a standard visit: gate protocol, feeding and medication routines, live updates and how handover notes protect everyone.",
-    "canonical": "https://petsaathi.vercel.app/journal/what-to-expect-home-visit",
-    "ogImage": "https://petsaathi.vercel.app/images/hero-care-handover-highres.webp",
-    "ogUrl": "https://petsaathi.vercel.app/journal/what-to-expect-home-visit",
-    "durationMs": 368,
+    "canonical": "http://localhost:3000/journal/what-to-expect-home-visit",
+    "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
+    "ogUrl": "http://localhost:3000/journal/what-to-expect-home-visit",
+    "durationMs": 114,
     "imageCheck": {
-      "ok": false,
+      "ok": true,
       "status": 200,
-      "contentType": "text/html; charset=utf-8"
+      "contentType": "image/webp"
     }
   },
   {
@@ -607,14 +622,14 @@
     "redirectTarget": null,
     "title": "Summer Heat Safety: Walking Dogs Through Indian Summers | PetSaathi Journal | PetSaathi",
     "description": "Pavement temperature tests, hydration timing and breed-specific risk signs every pet parent should know before April temperatures arrive.",
-    "canonical": "https://petsaathi.vercel.app/journal/summer-heat-safety-dogs",
-    "ogImage": "https://petsaathi.vercel.app/images/hero-care-handover-highres.webp",
-    "ogUrl": "https://petsaathi.vercel.app/journal/summer-heat-safety-dogs",
-    "durationMs": 351,
+    "canonical": "http://localhost:3000/journal/summer-heat-safety-dogs",
+    "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
+    "ogUrl": "http://localhost:3000/journal/summer-heat-safety-dogs",
+    "durationMs": 104,
     "imageCheck": {
-      "ok": false,
+      "ok": true,
       "status": 200,
-      "contentType": "text/html; charset=utf-8"
+      "contentType": "image/webp"
     }
   },
   {
@@ -623,14 +638,14 @@
     "redirectTarget": null,
     "title": "Monsoon Paw and Skin Care Basics for City Dogs | PetSaathi Journal | PetSaathi",
     "description": "Fungal hotspots, post-walk drying routines and paw checks that prevent the most common monsoon season problems before they need a clinic visit.",
-    "canonical": "https://petsaathi.vercel.app/journal/monsoon-paw-skin-care",
-    "ogImage": "https://petsaathi.vercel.app/images/hero-care-handover-highres.webp",
-    "ogUrl": "https://petsaathi.vercel.app/journal/monsoon-paw-skin-care",
-    "durationMs": 424,
+    "canonical": "http://localhost:3000/journal/monsoon-paw-skin-care",
+    "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
+    "ogUrl": "http://localhost:3000/journal/monsoon-paw-skin-care",
+    "durationMs": 103,
     "imageCheck": {
-      "ok": false,
+      "ok": true,
       "status": 200,
-      "contentType": "text/html; charset=utf-8"
+      "contentType": "image/webp"
     }
   },
   {
@@ -639,14 +654,14 @@
     "redirectTarget": null,
     "title": "The First 30 Days With a New Puppy: An India Checklist | PetSaathi Journal | PetSaathi",
     "description": "Vaccination windows, heat-safe playtimes, socialisation milestones and paperwork - a week-by-week structure for the critical first month together.",
-    "canonical": "https://petsaathi.vercel.app/journal/new-puppy-first-30-days-india",
-    "ogImage": "https://petsaathi.vercel.app/images/hero-care-handover-highres.webp",
-    "ogUrl": "https://petsaathi.vercel.app/journal/new-puppy-first-30-days-india",
-    "durationMs": 375,
+    "canonical": "http://localhost:3000/journal/new-puppy-first-30-days-india",
+    "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
+    "ogUrl": "http://localhost:3000/journal/new-puppy-first-30-days-india",
+    "durationMs": 119,
     "imageCheck": {
-      "ok": false,
+      "ok": true,
       "status": 200,
-      "contentType": "text/html; charset=utf-8"
+      "contentType": "image/webp"
     }
   },
   {
@@ -655,20 +670,20 @@
     "redirectTarget": null,
     "title": "How to Choose a Safe Dog Walker in Your Neighbourhood | PetSaathi Journal | PetSaathi",
     "description": "A structured checklist for evaluating walkers: identity checks, leash handling, route planning and the handover details that keep your dog safe.",
-    "canonical": "https://petsaathi.vercel.app/journal/choosing-safe-dog-walker",
-    "ogImage": "https://petsaathi.vercel.app/images/hero-care-handover-highres.webp",
-    "ogUrl": "https://petsaathi.vercel.app/journal/choosing-safe-dog-walker",
-    "durationMs": 417,
+    "canonical": "http://localhost:3000/journal/choosing-safe-dog-walker",
+    "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
+    "ogUrl": "http://localhost:3000/journal/choosing-safe-dog-walker",
+    "durationMs": 133,
     "imageCheck": {
-      "ok": false,
+      "ok": true,
       "status": 200,
-      "contentType": "text/html; charset=utf-8"
+      "contentType": "image/webp"
     }
   },
   {
     "url": "http://localhost:3000/dashboard",
     "status": 307,
-    "redirectTarget": "http://localhost:3000/login?returnTo=%2Fdashboard",
+    "redirectTarget": "/login?returnTo=%2Fdashboard",
     "title": null,
     "description": null,
     "canonical": null,
@@ -678,7 +693,7 @@
     "imageStatus": null
   },
   {
-    "url": "http://localhost:3000/_next/static/chunks/src_components_motion_parallax-totem-background_module_0ad71a4f.css",
+    "url": "http://localhost:3000/_next/static/css/863c761755514562.css",
     "status": 200,
     "redirectTarget": null,
     "title": null,
@@ -686,7 +701,7 @@
     "canonical": null,
     "ogImage": null,
     "ogUrl": null,
-    "durationMs": 15,
+    "durationMs": 16,
     "imageCheck": {
       "ok": false,
       "error": "Missing og:image"
@@ -696,64 +711,64 @@
     "url": "http://localhost:3000/login?returnTo=/become-a-saathi",
     "status": 200,
     "redirectTarget": null,
-    "title": "Parent &amp; Saathi Sign In | PetSaathi | PetSaathi",
+    "title": "Parent &amp; Saathi Sign In | PetSaathi",
     "description": "Access your PetSaathi customer dashboard, pet passports, live walk tracking, and caregiver assignments.",
     "canonical": null,
-    "ogImage": "https://petsaathi.vercel.app/images/hero-care-handover-highres.webp",
+    "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
     "ogUrl": "https://petsaathi.in/login",
-    "durationMs": 329,
+    "durationMs": 74,
     "imageCheck": {
-      "ok": false,
+      "ok": true,
       "status": 200,
-      "contentType": "text/html; charset=utf-8"
+      "contentType": "image/webp"
     }
   },
   {
     "url": "http://localhost:3000/book?service=HOME_SITTING_60",
     "status": 200,
     "redirectTarget": null,
-    "title": "Book Doorstep Pet Care | PetSaathi | PetSaathi",
+    "title": "Book Doorstep Pet Care | PetSaathi",
     "description": "Schedule instant GPS-tracked dog walking, at-home pet sitting, grooming, or veterinary support in your society.",
-    "canonical": null,
-    "ogImage": "https://petsaathi.vercel.app/images/hero-care-handover-highres.webp",
+    "canonical": "http://localhost:3000/book",
+    "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
     "ogUrl": "https://petsaathi.in/book",
-    "durationMs": 384,
+    "durationMs": 65,
     "imageCheck": {
-      "ok": false,
+      "ok": true,
       "status": 200,
-      "contentType": "text/html; charset=utf-8"
+      "contentType": "image/webp"
     }
   },
   {
     "url": "http://localhost:3000/contact?topic=BOARDING_PILOT",
     "status": 200,
     "redirectTarget": null,
-    "title": "Contact Care Concierge | PetSaathi | PetSaathi",
+    "title": "Contact Care Concierge | PetSaathi",
     "description": "Get in touch with PetSaathi care specialists for booking assistance, society onboarding, or emergency support.",
-    "canonical": null,
-    "ogImage": "https://petsaathi.vercel.app/images/hero-care-handover-highres.webp",
+    "canonical": "http://localhost:3000/contact",
+    "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
     "ogUrl": "https://petsaathi.in/contact",
-    "durationMs": 416,
+    "durationMs": 70,
     "imageCheck": {
-      "ok": false,
+      "ok": true,
       "status": 200,
-      "contentType": "text/html; charset=utf-8"
+      "contentType": "image/webp"
     }
   },
   {
     "url": "http://localhost:3000/book?service=PET_TAXI",
     "status": 200,
     "redirectTarget": null,
-    "title": "Book Doorstep Pet Care | PetSaathi | PetSaathi",
+    "title": "Book Doorstep Pet Care | PetSaathi",
     "description": "Schedule instant GPS-tracked dog walking, at-home pet sitting, grooming, or veterinary support in your society.",
-    "canonical": null,
-    "ogImage": "https://petsaathi.vercel.app/images/hero-care-handover-highres.webp",
+    "canonical": "http://localhost:3000/book",
+    "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
     "ogUrl": "https://petsaathi.in/book",
-    "durationMs": 456,
+    "durationMs": 76,
     "imageCheck": {
-      "ok": false,
+      "ok": true,
       "status": 200,
-      "contentType": "text/html; charset=utf-8"
+      "contentType": "image/webp"
     }
   },
   {
@@ -762,10 +777,10 @@
     "redirectTarget": null,
     "title": "Pet Care in Ahmedabad — Dog Walking, Pet Sitting &amp; More | PetSaathi",
     "description": "Find trusted, verified pet care services in Ahmedabad, Gujarat. PetSaathi offers managed dog walking, home pet sitting, and boarding with structured updates.",
-    "canonical": "https://petsaathi.vercel.app/cities/ahmedabad",
+    "canonical": "http://localhost:3000/cities/ahmedabad",
     "ogImage": null,
     "ogUrl": null,
-    "durationMs": 3719,
+    "durationMs": 183,
     "imageCheck": {
       "ok": false,
       "error": "Missing og:image"
@@ -777,10 +792,10 @@
     "redirectTarget": null,
     "title": "Pet Care in Bangalore — Dog Walking, Pet Sitting &amp; More | PetSaathi",
     "description": "Find trusted, verified pet care services in Bangalore, Karnataka. PetSaathi offers managed dog walking, home pet sitting, and boarding with structured updates.",
-    "canonical": "https://petsaathi.vercel.app/cities/bangalore",
+    "canonical": "http://localhost:3000/cities/bangalore",
     "ogImage": null,
     "ogUrl": null,
-    "durationMs": 511,
+    "durationMs": 148,
     "imageCheck": {
       "ok": false,
       "error": "Missing og:image"
@@ -792,10 +807,10 @@
     "redirectTarget": null,
     "title": "Pet Care in Pune — Dog Walking, Pet Sitting &amp; More | PetSaathi",
     "description": "Find trusted, verified pet care services in Pune, Maharashtra. PetSaathi offers managed dog walking, home pet sitting, and boarding with structured updates.",
-    "canonical": "https://petsaathi.vercel.app/cities/pune",
+    "canonical": "http://localhost:3000/cities/pune",
     "ogImage": null,
     "ogUrl": null,
-    "durationMs": 661,
+    "durationMs": 156,
     "imageCheck": {
       "ok": false,
       "error": "Missing og:image"
@@ -805,16 +820,16 @@
     "url": "http://localhost:3000/login?returnTo=%2Fdashboard",
     "status": 200,
     "redirectTarget": null,
-    "title": "Parent &amp; Saathi Sign In | PetSaathi | PetSaathi",
+    "title": "Parent &amp; Saathi Sign In | PetSaathi",
     "description": "Access your PetSaathi customer dashboard, pet passports, live walk tracking, and caregiver assignments.",
     "canonical": null,
-    "ogImage": "https://petsaathi.vercel.app/images/hero-care-handover-highres.webp",
+    "ogImage": "http://localhost:3000/images/hero-care-handover-highres.webp",
     "ogUrl": "https://petsaathi.in/login",
-    "durationMs": 484,
+    "durationMs": 73,
     "imageCheck": {
-      "ok": false,
+      "ok": true,
       "status": 200,
-      "contentType": "text/html; charset=utf-8"
+      "contentType": "image/webp"
     }
   }
 ]
