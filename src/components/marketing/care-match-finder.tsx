@@ -81,10 +81,10 @@ export function CareMatchFinder() {
         </span>
       </div>
 
-      {/* Fields Grid - 1 column on mobile, 2 columns on tablet/desktop */}
-      <div className="relative mt-3.5 grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+      {/* Fields Grid - 2 columns */}
+      <div className="relative mt-3.5 grid grid-cols-2 gap-2.5">
         {/* Care Service Selection (Full Width) */}
-        <label htmlFor="hero-care-service-select" className="group relative col-span-1 sm:col-span-2 flex min-w-0 flex-col gap-0.5 rounded-xl border border-[#e8e2e9] bg-[#fbf9fa] px-3.5 py-2 transition focus-within:border-indigo/40 focus-within:bg-white focus-within:ring-2 focus-within:ring-indigo/10 hover:border-[#d9cfdc]">
+        <label htmlFor="hero-care-service-select" className="group relative col-span-2 flex min-w-0 flex-col gap-0.5 rounded-xl border border-[#e8e2e9] bg-[#fbf9fa] px-3.5 py-2 transition focus-within:border-indigo/40 focus-within:bg-white focus-within:ring-2 focus-within:ring-indigo/10 hover:border-[#d9cfdc]">
           <span className="flex items-center gap-1.5 text-[0.64rem] sm:text-[0.68rem] font-bold uppercase tracking-wider text-[#938290]">
             <PawPrint className="h-3.5 w-3.5 text-[#d45638]" />
             Care Service
