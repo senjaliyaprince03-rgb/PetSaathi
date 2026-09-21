@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "id": "RATE_LIMIT_NOT_ENFORCED",
+    "severity": "MEDIUM",
+    "title": "Rate limit not triggered after 25 rapid requests to /api/contact",
+    "target": "/api/contact"
+  },
+  {
+    "id": "RATE_LIMIT_NOT_ENFORCED",
+    "severity": "MEDIUM",
+    "title": "Rate limit not triggered after 25 rapid requests to /api/auth/otp/request",
+    "target": "/api/auth/otp/request"
+  }
+]

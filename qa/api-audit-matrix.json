@@ -1071,6 +1071,13 @@
     "suspectedIdor": false
   },
   {
+    "route": "/api/pricing/route.ts",
+    "methods": "GET",
+    "hasAuthCheck": false,
+    "hasZodValidation": false,
+    "suspectedIdor": false
+  },
+  {
     "route": "/api/privacy/consent/route.ts",
     "methods": "GET, POST",
     "hasAuthCheck": true,
