@@ -651,4 +651,5 @@ runPhase6Tests()
   })
   .finally(async () => {
     await prisma.$disconnect();
+    process.exit(0);
   });
