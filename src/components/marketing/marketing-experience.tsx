@@ -69,21 +69,23 @@ export function MarketingExperience({
   return (
     <main id="main-content" className="min-h-screen overflow-hidden bg-cream text-ink" data-motion-skip>
       
-      <header className="absolute inset-x-0 top-3 sm:top-4 z-50 px-3 sm:px-6 lg:px-8">
-        <div className="mx-auto flex min-h-[4rem] sm:min-h-[4.5rem] w-full max-w-container-max items-center justify-between rounded-full border border-white/70 bg-white/90 px-3.5 sm:px-6 shadow-[0_8px_30px_rgb(0,0,0,0.08)] backdrop-blur-2xl">
-          <PetSaathiLogo />
-          <nav aria-label="Primary navigation" className="hidden items-center gap-4 xl:gap-5 lg:flex">
-            <Link href={"/services" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink">Services</Link>
-            <Link href={"/caregivers" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink">Saathis</Link>
-            <Link href={"/safety" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink">Safety &amp; Trust</Link>
-            <Link href={"/societies" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink">Societies</Link>
-            <Link href={"/membership" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink">Membership</Link>
-            <Link href={"/about" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink">About</Link>
-            <Link href={"/journal" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink">Journal</Link>
-            <Link href={"/contact" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink">Contact Us</Link>
-          </nav>
-          <div className="flex items-center gap-3">
-            <AuthNav />
+      <header className="absolute inset-x-0 top-3 sm:top-4 z-50">
+        <div className="container-shell">
+          <div className="mx-auto flex min-h-[4rem] sm:min-h-[4.5rem] w-full max-w-container-max items-center justify-between rounded-full border border-white/70 bg-white/90 px-3.5 sm:px-6 shadow-[0_8px_30px_rgb(0,0,0,0.08)] backdrop-blur-2xl">
+            <PetSaathiLogo />
+            <nav aria-label="Primary navigation" className="hidden items-center gap-4 xl:gap-5 lg:flex">
+              <Link href={"/services" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink">Services</Link>
+              <Link href={"/caregivers" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink">Saathis</Link>
+              <Link href={"/safety" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink">Safety &amp; Trust</Link>
+              <Link href={"/societies" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink">Societies</Link>
+              <Link href={"/membership" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink">Membership</Link>
+              <Link href={"/about" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink">About</Link>
+              <Link href={"/journal" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink">Journal</Link>
+              <Link href={"/contact" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink">Contact Us</Link>
+            </nav>
+            <div className="flex items-center gap-3">
+              <AuthNav />
+            </div>
           </div>
         </div>
       </header>
@@ -177,7 +179,7 @@ export function MarketingExperience({
             </ScrollReveal>
           </div>
 
-          <div className="hero-match-position relative z-10 w-full lg:max-w-[560px] xl:max-w-[600px] 2xl:max-w-[640px] lg:ml-auto self-center lg:translate-y-10 xl:translate-x-6 xl:translate-y-[52px] [@media(min-width:1380px)]:translate-x-10">
+          <div className="hero-match-position relative z-10 w-full lg:max-w-[560px] xl:max-w-[600px] 2xl:max-w-[640px] lg:ml-auto self-center lg:translate-y-10 xl:translate-y-[52px]">
             <ScrollReveal direction="up" delay={0.24}>
               <CareMatchFinder />
             </ScrollReveal>
