@@ -88,62 +88,46 @@ export function MarketingExperience({
         </div>
       </header>
 
-      <section data-testid="marketing-hero" className="relative flex flex-col justify-center min-h-[90vh] lg:min-h-screen pt-24 pb-12 sm:pt-28 sm:pb-16 lg:pt-28 lg:pb-28 xl:pb-32 bg-[#1e1322] text-white overflow-hidden">
+      <section data-testid="marketing-hero" className="relative flex flex-col justify-center min-h-screen pt-28 pb-12 lg:pt-28 lg:pb-28 xl:pb-32 bg-[#1e1322] text-white overflow-hidden">
         <div className="absolute inset-0">
           <Image
             src="/images/hero-dog-woman.webp"
             alt="PetSaathi Hero Background"
             fill priority fetchPriority="high" sizes="100vw"
-            className="object-cover object-[58%_25%] md:object-[56%_20%] lg:object-[52%_center] xl:object-[50%_center] opacity-90 sm:opacity-95 lg:opacity-100"
+            className="object-cover object-[center_30%]"
             aria-hidden="true"
             data-testid="marketing-hero-background"
           />
-          {/* Subtle soft gradient scrim: on desktop, keeps text readable on left while letting center dog & pet parent shine; on mobile provides soft readable contrast */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#1e1322]/85 via-[#1e1322]/50 to-[#1e1322]/90 lg:bg-gradient-to-r lg:from-[#1e1322]/90 lg:via-[#1e1322]/30 lg:to-transparent lg:w-[48%]" />
+          {/* Subtle soft gradient scrim on left only for text readability while leaving the middle (dog & woman) and right completely bright, clear, and visible */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/20 to-transparent lg:w-[42%]" />
         </div>
         
         <div className="container-shell relative grid items-center gap-8 xl:gap-12 lg:grid-cols-[1fr_560px] xl:grid-cols-[1fr_600px] 2xl:grid-cols-[1.05fr_640px] lg:min-h-[60vh]">
           <div className="relative z-10 max-w-xl self-center">
             <ScrollReveal direction="up" immediate>
-              <div className="mb-6 sm:mb-8 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 sm:px-5 sm:py-2.5 text-xs font-bold text-white shadow-lg backdrop-blur-md">
+              <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2.5 text-xs font-bold text-white shadow-lg backdrop-blur-md">
                 <span className="status-dot bg-leaf" />Verified Local Caregivers, Managed With Love
               </div>
             </ScrollReveal>
             <ScrollReveal direction="up" delay={0.08} immediate>
               <h1 className="sr-only">Care That Feels Like Family.</h1>
+              {/* filter: drop-shadow follows the exact letter shapes — no box, just a soft white glow behind each character */}
               <div
-                className="mt-2 relative block"
+                className="mt-2 relative inline-block"
                 aria-hidden="true"
+                style={{
+                  filter:
+                    "drop-shadow(0 0 6px rgba(255,255,255,0.60)) drop-shadow(0 0 16px rgba(255,255,255,0.38)) drop-shadow(0 0 32px rgba(255,255,255,0.20))",
+                }}
               >
-                <TextReveal text="Care That Feels Like Family." className="font-display text-[2.75rem] font-semibold leading-[0.98] tracking-[-0.05em] text-white sm:text-[4.75rem] xl:text-[5.75rem] drop-shadow-[0_4px_24px_rgba(0,0,0,0.5)]" delay={0.08} immediate />
+                <TextReveal text="Care That Feels Like Family." className="max-w-[10ch] font-display text-[3.7rem] font-semibold leading-[0.91] tracking-[-0.065em] text-[#301F30] sm:text-[5.4rem] xl:text-[6.6rem]" delay={0.08} immediate />
               </div>
             </ScrollReveal>
             <ScrollReveal direction="up" delay={0.16} immediate>
-              <p className="mt-5 sm:mt-7 max-w-xl text-sm sm:text-base font-medium leading-relaxed text-white/95 drop-shadow break-words">
+              <p className="mt-7 max-w-xl text-base font-semibold leading-8 text-white drop-shadow-md sm:text-lg">
                 Plan local care with clear service context for walks, home visits, grooming and non-emergency veterinary support. Availability and permissions are checked before confirmation.
               </p>
             </ScrollReveal>
-
-            {/* Dedicated Mobile & Tablet Hero Image Showcase: Shows the golden retriever & caregiver full and sharp */}
-            <div className="relative my-6 w-full aspect-[16/10] sm:aspect-[16/9] overflow-hidden rounded-3xl border border-white/20 shadow-2xl xl:hidden">
-              <Image
-                src="/images/hero-dog-woman.webp"
-                alt="PetSaathi caregiver and smiling golden retriever in a sunlit home"
-                fill
-                priority
-                fetchPriority="high"
-                sizes="(max-width: 768px) 100vw, 80vw"
-                className="object-cover object-[58%_35%]"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between gap-2 rounded-2xl bg-black/50 backdrop-blur-md px-3.5 py-2 border border-white/20 text-white">
-                <div className="flex items-center gap-2">
-                  <span className="flex h-2.5 w-2.5 rounded-full bg-emerald-400 animate-pulse" />
-                  <span className="text-xs font-bold tracking-tight">Verified In-Home &amp; Walk Care</span>
-                </div>
-                <span className="text-[11px] font-bold text-amber-300">★ 4.95 Rating</span>
-              </div>
-            </div>
 
             <ScrollReveal direction="up" delay={0.24}>
               <Float3D className="mt-12 flex flex-col items-start gap-6 sm:flex-row sm:items-center">
