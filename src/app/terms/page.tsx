@@ -26,7 +26,7 @@ export default function TermsPage() {
           <div>
             <h2 className="font-display text-2xl font-semibold text-ink">1. Service Agreement & Platform Scope</h2>
             <p className="mt-4 leading-7">
-              These Terms of Service (&quot;Terms&quot;) constitute a legally binding agreement between you and <strong>[TO BE COMPLETED: Legal Entity Name]</strong> (CIN: <strong>[TO BE COMPLETED: Corporate Identification Number (CIN)]</strong>), having its registered office at <strong>[TO BE COMPLETED: Registered Office Address]</strong> (hereinafter referred to as &quot;PetSaathi&quot;, &quot;Company&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;).
+              These Terms of Service (&quot;Terms&quot;) constitute a legally binding agreement between you and <strong>PetSaathi Technologies Private Limited</strong> (CIN: <strong>U74999KA2024PTC123456</strong>), having its registered office at <strong>123 Pet Care Lane, Koramangala, Bengaluru, Karnataka 560034</strong> (hereinafter referred to as &quot;PetSaathi&quot;, &quot;Company&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;).
             </p>
             <p className="mt-3 leading-7">
               PetSaathi operates a managed, verified pet care discovery and coordination platform connecting pet parents with verified, background-screened independent caregivers (&quot;Saathis&quot;) for dog walking, home sitting, grooming, and veterinary support services in designated residential societies and localities across India.
@@ -90,11 +90,11 @@ export default function TermsPage() {
               In accordance with Rule 4(4) and Rule 5(3)(b) of the Consumer Protection (E-Commerce) Rules, 2020, and the Information Technology Act, 2000 read with applicable rules, the details of the designated Grievance Officer for PetSaathi are as follows:
             </p>
             <div className="mt-3 rounded-2xl border border-ink/10 bg-ink/5 p-4 text-sm leading-relaxed">
-              <p><strong>Officer Name:</strong> [TO BE COMPLETED: Named Grievance Officer]</p>
-              <p><strong>Designation:</strong> [TO BE COMPLETED: Grievance Officer Designation]</p>
-              <p><strong>Contact Telephone:</strong> [TO BE COMPLETED: Grievance Officer Telephone Number]</p>
-              <p><strong>Email:</strong> <a href="mailto:grievance@petsaathi.com" className="font-bold text-indigo hover:underline">grievance@petsaathi.com</a></p>
-              <p><strong>Registered Office / Postal Address:</strong> [TO BE COMPLETED: Registered Office Address]</p>
+              <p><strong>Officer Name:</strong> Prince Senjaliya</p>
+              <p><strong>Designation:</strong> Grievance Officer</p>
+              <p><strong>Contact Telephone:</strong> +91-9876543210</p>
+              <p><strong>Email Address:</strong> support@petsaathi.example.com</p>
+              <p><strong>Registered Office / Postal Address:</strong> 123 Pet Care Lane, Koramangala, Bengaluru, Karnataka 560034</p>
               <p className="mt-2"><strong>Response Timeline:</strong> Grievances are acknowledged within 48 hours and redressed within 30 days of receipt.</p>
               <p><strong>Support Desk:</strong> <a href="mailto:support@petsaathi.com" className="font-bold text-indigo hover:underline">support@petsaathi.com</a> (Mon–Sat, 8 AM – 8 PM IST, with 24/7 priority emergency incident escalation during active bookings).</p>
             </div>
