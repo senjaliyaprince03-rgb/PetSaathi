@@ -6,6 +6,7 @@ import { ArrowRight, ChevronRight, PawPrint } from "lucide-react";
 import { PublicShell } from "@/components/marketing/public-shell";
 import { buttonVariants } from "@/components/ui/button";
 import { services } from "@/modules/catalog/services";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = { 
   title: "Doorstep Pet Care Services",
@@ -77,7 +78,10 @@ export default function ServicesPage() {
                     alt={name}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-cover object-[center_30%] transition duration-700 group-hover:scale-110"
+                    className={cn(
+                      "object-cover transition duration-700 group-hover:scale-110",
+                      slug === "pet-taxi" ? "object-[center_15%]" : "object-[center_30%]"
+                    )}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent opacity-80" />
                   <div className="absolute left-4 top-4 flex items-center gap-2">
