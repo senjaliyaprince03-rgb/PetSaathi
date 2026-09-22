@@ -119,21 +119,26 @@ export function DiscoveryReviewRail() {
 
   return (
     <>
-      <div className="container-shell relative z-20 -mt-10 sm:-mt-12">
+      <div className="container-shell relative z-20 pt-10 sm:pt-12">
+        <div className="mb-4 text-center">
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-ink/50 font-outfit">
+            Ready to explore? Pick a service below
+          </p>
+        </div>
         <nav
           aria-label="Quick service shortcuts"
-          className="grid grid-cols-3 gap-2 rounded-[2rem] border border-indigo/10 bg-paper p-2.5 shadow-soft sm:grid-cols-6 sm:p-3"
+          className="grid grid-cols-3 gap-2 sm:gap-3 rounded-[2rem] border border-indigo/10 bg-white p-3 sm:p-4 shadow-[0_8px_30px_rgba(30,19,34,0.06)] sm:grid-cols-6"
         >
           {serviceShortcuts.map(({ label, href, icon: Icon, tone }) => (
             <Link
               key={label}
               href={href as Route}
-              className="group flex min-h-20 flex-col items-center justify-center gap-2 rounded-[1.35rem] px-2 text-center text-[0.65rem] font-bold text-ink/80 transition hover:bg-cream hover:text-indigo sm:min-h-24 sm:text-xs"
+              className="group flex min-h-20 flex-col items-center justify-center gap-2 rounded-[1.35rem] p-2 text-center text-xs font-bold text-ink/80 transition-all duration-200 hover:bg-[#FAF7F2] hover:text-coral hover:shadow-xs sm:min-h-24"
             >
-              <span className={cn("flex h-9 w-9 items-center justify-center rounded-2xl transition group-hover:scale-105", tone)}>
-                <Icon className="h-4 w-4" />
+              <span className={cn("flex h-10 w-10 items-center justify-center rounded-2xl transition-transform duration-200 group-hover:scale-110 group-hover:shadow-xs", tone)}>
+                <Icon className="h-5 w-5" />
               </span>
-              {label}
+              <span>{label}</span>
             </Link>
           ))}
         </nav>
@@ -151,24 +156,7 @@ export function DiscoveryReviewRail() {
                 <p className="max-w-md text-base leading-relaxed text-ink/80 md:pb-2 md:text-right">
                   We believe in absolute transparency. Explore real, verified care routines from local families—published securely with their explicit consent—to help you make the best choice for your pet&apos;s well-being.
                 </p>
-                <div className="flex items-center gap-2">
-                  <button
-                    type="button"
-                    onClick={showPrevious}
-                    aria-label="Previous care story"
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-indigo/20 bg-paper text-ink transition hover:bg-indigo hover:text-paper shadow-xs"
-                  >
-                    <ArrowLeft className="h-4 w-4" />
-                  </button>
-                  <button
-                    type="button"
-                    onClick={showNext}
-                    aria-label="Next care story"
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-indigo/20 bg-paper text-ink transition hover:bg-indigo hover:text-paper shadow-xs"
-                  >
-                    <ArrowRight className="h-4 w-4" />
-                  </button>
-                </div>
+
               </div>
             </div>
           </ScrollReveal>
@@ -184,7 +172,7 @@ export function DiscoveryReviewRail() {
                 className="grid gap-5 md:grid-cols-3"
               >
                 {visibleStories.map((story, index) => (
-                  <article key={`${story.id}-${index}`} className={cn("flex flex-col overflow-hidden rounded-[2.5rem] border border-indigo/10 bg-paper shadow-lifted", index > 0 && "hidden md:block")}>
+                  <article key={`${story.id}-${index}`} className={cn("flex flex-col overflow-hidden rounded-[2.5rem] border border-indigo/10 bg-paper", index > 0 && "hidden md:block")}>
                     <div className="relative shrink-0 aspect-[1.45/1] overflow-hidden">
                       <Image
                         src={story.image ?? storyImages[(activeIndex + index) % storyImages.length] ?? storyImages[0]}

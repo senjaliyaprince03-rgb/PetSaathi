@@ -79,7 +79,7 @@ export const services = [
     pricingNotes: "Base trip covers first 5 km; per-kilometer rate applies for inter-locality travel.",
     tone: "saffron",
     icon: Navigation,
-    image: "/images/care-handover-courtyard.webp"
+    image: "/images/pet_taxi.jpg"
   }
 ] as const;
 
