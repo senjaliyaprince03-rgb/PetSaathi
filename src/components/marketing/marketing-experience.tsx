@@ -76,6 +76,7 @@ export function MarketingExperience({
             <nav aria-label="Primary navigation" className="hidden items-center gap-4 xl:gap-5 lg:flex">
               <Link href={"/services" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink">Services</Link>
               <Link href={"/caregivers" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink">Saathis</Link>
+              <Link href={"/become-a-saathi" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink">Become a Saathi</Link>
               <Link href={"/safety" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink">Safety &amp; Trust</Link>
               <Link href={"/societies" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink">Societies</Link>
               <Link href={"/membership" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink">Membership</Link>
