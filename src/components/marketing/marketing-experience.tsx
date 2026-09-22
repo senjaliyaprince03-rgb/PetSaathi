@@ -358,15 +358,24 @@ export function MarketingExperience({
               <p className="text-[0.65rem] font-bold uppercase tracking-[0.22em] text-paper/80">Ready when their day needs you</p>
               <h2 className="mt-5 font-display text-3xl font-semibold leading-[0.98] tracking-[-0.055em] sm:text-5xl lg:text-7xl">Plan thoughtful care in one calm flow.</h2>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <MagneticButton strength={0.3}>
-                  <Link href="/book" className={cn(buttonVariants({ variant: "primary", size: "lg" }), "bg-paper text-ink hover:bg-ink hover:text-paper font-bold")}>Find Care &amp; Book <ArrowRight className="h-5 w-5" /></Link>
-                </MagneticButton>
-                <MagneticButton strength={0.2}>
-                  <Link href="/become-a-saathi" className="inline-flex min-h-14 items-center justify-center rounded-full border border-paper/30 px-7 text-sm font-bold text-paper transition hover:bg-paper/10">Become a Saathi</Link>
-                </MagneticButton>
-                <MagneticButton strength={0.2}>
-                  <Link href="/membership" className="inline-flex min-h-14 items-center justify-center rounded-full bg-paper/10 px-7 text-sm font-bold text-paper transition hover:bg-paper/20">Join Membership</Link>
-                </MagneticButton>
+                <Link
+                  href="/book"
+                  className="inline-flex min-h-14 items-center justify-center gap-2 rounded-full bg-[#301F30] px-8 text-base font-bold text-white shadow-soft transition-colors hover:bg-[#301F30]/90"
+                >
+                  Find Care &amp; Book <ArrowRight className="h-5 w-5" />
+                </Link>
+                <Link
+                  href="/become-a-saathi"
+                  className="inline-flex min-h-14 items-center justify-center rounded-full border border-paper/30 px-7 text-sm font-bold text-paper transition hover:bg-paper/10"
+                >
+                  Become a Saathi
+                </Link>
+                <Link
+                  href="/membership"
+                  className="inline-flex min-h-14 items-center justify-center rounded-full bg-paper/10 px-7 text-sm font-bold text-paper transition hover:bg-paper/20"
+                >
+                  Join Membership
+                </Link>
               </div>
             </ScrollReveal>
           </div>

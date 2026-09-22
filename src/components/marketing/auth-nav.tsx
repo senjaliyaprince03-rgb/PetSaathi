@@ -5,9 +5,6 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { Route } from "next";
 
-import { MagneticButton } from "@/components/effects/animos-motion";
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/cn";
 import { MobileNav } from "@/components/marketing/mobile-nav";
 
 type AppIdentity = {
@@ -73,24 +70,17 @@ export function AuthNav() {
           </Link>
         </div>
       ) : (
-        <MagneticButton strength={0.2}>
-          <Link href={"/login" as Route} className="hidden text-sm font-bold text-ink sm:block">Sign in</Link>
-        </MagneticButton>
-      )}
-      <MagneticButton strength={0.4}>
-        <Link
-          href={"/book" as Route}
-          className={cn(
-            buttonVariants({ variant: "primary", size: "sm" }),
-            "rounded-full font-bold bg-[#301F30] hover:bg-[#301F30]/90 text-white whitespace-nowrap text-xs sm:text-sm px-3 sm:px-4 py-1.5 sm:py-2"
-          )}
-        >
-          <span className="sm:hidden">Book</span>
-          <span className="hidden sm:inline-flex items-center">
-            Find Care &amp; Book <ArrowRight className="ml-1 h-3.5 w-3.5" />
-          </span>
+        <Link href={"/login" as Route} className="hidden text-sm font-bold text-ink transition-colors hover:text-ink/70 sm:block">
+          Sign in
         </Link>
-      </MagneticButton>
+      )}
+      <Link
+        href={"/book" as Route}
+        className="inline-flex items-center justify-center gap-1.5 rounded-full bg-[#301F30] px-3.5 py-2 text-xs font-bold text-white shadow-sm transition-colors hover:bg-[#301F30]/90 sm:px-5 sm:py-2.5 sm:text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#301F30] focus-visible:ring-offset-2"
+      >
+        <span>Find Care &amp; Book</span>
+        <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+      </Link>
       <MobileNav />
     </div>
   );

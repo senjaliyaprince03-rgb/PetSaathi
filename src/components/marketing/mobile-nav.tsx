@@ -69,7 +69,7 @@ export function MobileNav() {
           <div className="mt-8 flex flex-col gap-3 border-t border-ink/10 pt-6">
             <Link
               href={"/book" as Route}
-              className="w-full rounded-2xl bg-[#E16649] py-3.5 text-center text-sm font-bold text-white shadow-md hover:bg-[#d05538]"
+              className="w-full rounded-2xl bg-[#301F30] py-3.5 text-center text-sm font-bold text-white shadow-md transition-colors hover:bg-[#301F30]/90"
             >
               Find Care & Book
             </Link>
