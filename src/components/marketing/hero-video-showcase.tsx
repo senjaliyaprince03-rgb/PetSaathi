@@ -87,7 +87,7 @@ export function HeroVideoShowcase() {
   }, [activeIndex, selectFilm]);
 
   useEffect(() => {
-    const src = `/videos/${activeFilm.slug}.mp4?v=clean2026_v3`;
+    const src = `/videos/${activeFilm.slug}.mp4?v=clean2026_v4`;
     setHasVideo(videoAssetExists(src));
   }, [activeFilm.slug]);
 
@@ -200,7 +200,7 @@ export function HeroVideoShowcase() {
                 ref={videoRef}
                 id="hero-care-film"
                 className="block aspect-video h-auto w-full object-cover rounded-t-[2rem] sm:rounded-t-[2.5rem]"
-                poster={`/videos/${activeFilm.slug}.jpg?v=clean2026_v3`}
+                poster={`/videos/${activeFilm.slug}.jpg?v=clean2026_v4`}
                 preload={isVisible ? "metadata" : "none"}
                 autoPlay={isVisible}
                 muted={isMuted}
@@ -208,7 +208,7 @@ export function HeroVideoShowcase() {
                 onPlay={() => setIsPlaying(true)}
                 onPause={() => setIsPlaying(false)}
                 onEnded={handleEnded}
-                onError={handleEnded}
+                onError={() => setIsPlaying(false)}
                 onTimeUpdate={(event) => {
                   const video = event.currentTarget;
                   setProgress(video.duration ? (video.currentTime / video.duration) * 100 : 0);
@@ -217,7 +217,10 @@ export function HeroVideoShowcase() {
                 aria-describedby="hero-care-film-description"
                 aria-hidden="true"
               >
-                <source src={`/videos/${activeFilm.slug}.mp4?v=clean2026_v3`} type="video/mp4" />
+                <source src={`/videos/${activeFilm.slug}.mp4?v=clean2026_v4`} type="video/mp4" />
+                {activeFilm.slug === "premium-pet-taxi" ? (
+                  <source src="/videos/Golden_Retriever_riding_in_car_20260922135310_gwr_video_mvp.mp4?v=clean2026_v4" type="video/mp4" />
+                ) : null}
                 Your browser does not support embedded video.
               </video>
             ) : (
