@@ -159,9 +159,7 @@ const sentryOptions = {
   }
 };
 
-const shouldUploadSourcemaps = Boolean(
-  process.env.SENTRY_AUTH_TOKEN && process.env.SENTRY_ORG && process.env.SENTRY_PROJECT,
-);
+const shouldUploadSourcemaps = false;
 
 // Do not launch the Sentry CLI during local/CI builds unless upload credentials
 // are explicitly configured; runtime error reporting remains env-gated.
