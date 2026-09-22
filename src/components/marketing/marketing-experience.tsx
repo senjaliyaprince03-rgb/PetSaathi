@@ -179,7 +179,7 @@ export function MarketingExperience({
             </ScrollReveal>
           </div>
 
-          <div className="hero-match-position relative z-10 w-full lg:max-w-[560px] xl:max-w-[600px] 2xl:max-w-[640px] lg:ml-auto self-center lg:translate-y-10 xl:translate-y-[52px]">
+          <div className="hero-match-position relative z-10 w-full lg:max-w-[560px] xl:max-w-[600px] 2xl:max-w-[640px] lg:ml-auto self-center lg:translate-y-[84px] xl:translate-y-[100px] 2xl:translate-y-[108px]">
             <ScrollReveal direction="up" delay={0.24}>
               <CareMatchFinder />
             </ScrollReveal>
