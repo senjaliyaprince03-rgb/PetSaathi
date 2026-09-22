@@ -80,7 +80,7 @@ export default function ServicesPage() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className={cn(
                       "object-cover transition duration-700 group-hover:scale-110",
-                      slug === "pet-taxi" ? "object-top" : "object-[center_30%]"
+                      slug === "pet-taxi" ? "object-center" : "object-[center_30%]"
                     )}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent opacity-80" />
