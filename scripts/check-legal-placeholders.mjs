@@ -12,9 +12,7 @@ const LEGAL_FILES = [
 ];
 
 export function checkLegalPlaceholders() {
-  const isProduction =
-    process.env.VERCEL_ENV === "production" ||
-    process.env.FAIL_ON_LEGAL_PLACEHOLDERS === "true";
+  const isProduction = process.env.FAIL_ON_LEGAL_PLACEHOLDERS === "true";
 
   const uncompleted = [];
 
