@@ -1,29 +1,20 @@
-const CACHE = "petsaathi-public-v3";
-const PUBLIC_SHELL = ["/offline.html"];
-
-self.addEventListener("install", (event) => {
+// Purge all caches and self-unregister to ensure live site always reflects latest code
+self.addEventListener("install", () => {
   self.skipWaiting();
 });
 
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches.keys().then((keys) => Promise.all(keys.map((key) => caches.delete(key))))
+    caches.keys()
+      .then((keys) => Promise.all(keys.map((key) => caches.delete(key))))
+      .then(() => self.registration.unregister())
       .then(() => self.clients.claim())
   );
 });
 
 self.addEventListener("fetch", (event) => {
-  const request = event.request;
-  if (request.method !== "GET") return;
-  const url = new URL(request.url);
-  if (url.origin !== self.location.origin || isPrivatePath(url.pathname)) return;
-  if (request.mode === "navigate") {
-    event.respondWith(fetch(request).catch(() => caches.match(url.pathname).then((cached) => cached || caches.match("/offline.html"))));
-    return;
-  }
-  if (url.pathname.startsWith("/_next/static/") || url.pathname.startsWith("/icons/") || url.pathname.startsWith("/images/")) {
-    event.respondWith(caches.match(request).then((cached) => cached || fetch(request).then((response) => { if (response.ok) void caches.open(CACHE).then((cache) => cache.put(request, response.clone())); return response; })));
-  }
+  // Always fetch fresh from network
+  event.respondWith(fetch(event.request));
 });
 
 // Push notification handler

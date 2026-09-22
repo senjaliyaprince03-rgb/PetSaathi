@@ -6,7 +6,7 @@ import { ArrowRight, ChevronRight, PawPrint } from "lucide-react";
 import { PublicShell } from "@/components/marketing/public-shell";
 import { buttonVariants } from "@/components/ui/button";
 import { services } from "@/modules/catalog/services";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/cn";
 
 export const metadata: Metadata = { 
   title: "Doorstep Pet Care Services",

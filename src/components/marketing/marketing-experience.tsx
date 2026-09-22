@@ -90,10 +90,10 @@ export function MarketingExperience({
         </div>
       </header>
 
-      <section data-testid="marketing-hero" className="relative flex flex-col justify-center min-h-screen pt-28 pb-12 lg:pt-28 lg:pb-28 xl:pb-32 bg-[#1e1322] text-white overflow-hidden">
+      <section data-testid="marketing-hero" className="relative flex flex-col justify-center min-h-screen pt-28 pb-12 lg:pt-28 lg:pb-36 xl:pb-44 bg-[#1e1322] text-white overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="/images/hero-dog-woman.webp"
+            src="/images/hero-dog-woman-v2.webp"
             alt="PetSaathi Hero Background"
             fill priority fetchPriority="high" quality={90} sizes="100vw"
             className="object-cover object-[center_20%] lg:object-[22%_5%] xl:object-[18%_5%]"
@@ -179,7 +179,7 @@ export function MarketingExperience({
             </ScrollReveal>
           </div>
 
-          <div className="hero-match-position relative z-10 w-full lg:max-w-[560px] xl:max-w-[600px] 2xl:max-w-[640px] lg:ml-auto self-center lg:translate-y-[150px] xl:translate-y-[180px] 2xl:translate-y-[190px]">
+          <div className="hero-match-position relative z-10 w-full lg:max-w-[560px] xl:max-w-[600px] 2xl:max-w-[640px] lg:ml-auto self-center lg:translate-y-[180px] xl:translate-y-[210px] 2xl:translate-y-[225px]">
             <ScrollReveal direction="up" delay={0.16} immediate>
               <CareMatchFinder />
             </ScrollReveal>
