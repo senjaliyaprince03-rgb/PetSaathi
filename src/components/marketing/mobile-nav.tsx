@@ -9,6 +9,7 @@ export function MobileNav() {
   const links = [
     { href: "/services", label: "Services" },
     { href: "/caregivers", label: "Saathis" },
+    { href: "/become-a-saathi", label: "Become a Saathi" },
     { href: "/safety", label: "Safety & Trust" },
     { href: "/societies", label: "Societies" },
     { href: "/membership", label: "Membership" },
