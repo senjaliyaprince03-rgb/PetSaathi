@@ -60,9 +60,8 @@ jobs:
         id: check-creds
         run: |
           if [ -z "${{ secrets.VERCEL_TOKEN }}" ]; then
-            
-            echo "::error::VERCEL_TOKEN secret is required for production deployment."
-            exit 1
+            echo "VERCEL_TOKEN secret is not configured; skipping manual CLI deploy (Vercel Git Integration handles automatic deployment)."
+            echo "has_token=false" >> $GITHUB_OUTPUT
           else
             echo "has_token=true" >> $GITHUB_OUTPUT
           fi
