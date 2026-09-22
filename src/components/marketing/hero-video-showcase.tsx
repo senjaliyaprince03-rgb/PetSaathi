@@ -49,6 +49,12 @@ const careFilms = [
     title: "Premium boarding",
     eyebrow: "A considered stay",
     description: "A comfortable setting for approved stays when home care is not the right fit."
+  },
+  {
+    slug: "premium-pet-taxi",
+    title: "Premium pet taxi",
+    eyebrow: "Safe transit",
+    description: "Comfortable, climate-controlled rides for your pet with trained handlers."
   }
 ] as const;
 
@@ -69,6 +75,7 @@ export function HeroVideoShowcase() {
     setIsVisible(true);
     setProgress(0);
     setActiveIndex(index);
+    userPaused.current = false;
   }, []);
 
   const showNext = useCallback(() => {
@@ -268,7 +275,7 @@ export function HeroVideoShowcase() {
         </div>
       </ParallaxScroll>
 
-      <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3" role="tablist" aria-label="Choose a PetSaathi care film">
+      <div className="mt-3 flex flex-wrap justify-center gap-2" role="tablist" aria-label="Choose a PetSaathi care film">
         {careFilms.map((film, index) => {
           const selected = index === activeIndex;
           return (
