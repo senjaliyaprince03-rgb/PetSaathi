@@ -79,9 +79,6 @@ export function MarketingExperience({
               <Link href={"/safety" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink">Safety &amp; Trust</Link>
               <Link href={"/societies" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink">Societies</Link>
               <Link href={"/membership" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink">Membership</Link>
-              <Link href={"/about" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink">About</Link>
-              <Link href={"/journal" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink">Journal</Link>
-              <Link href={"/contact" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink">Contact Us</Link>
             </nav>
             <div className="flex items-center gap-3">
               <AuthNav />

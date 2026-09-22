@@ -52,7 +52,7 @@ import { GlobalChatWidget } from "@/components/ai/GlobalChatWidget";
 import { PetSaathiChatWidget } from "@/components/customer/PetSaathiChatWidget";
 import { CustomerSidebar } from "@/components/portal/customer-sidebar";
 
-type PortalMode = "customer" | "saathi" | "admin" | "society" | "operator";
+type PortalMode = "customer" | "saathi" | "admin" | "society" | "operator" | "partner";
 
 const portalCopy: Record<
   PortalMode,
@@ -114,6 +114,16 @@ const portalCopy: Record<
       "Monitor city economic performance, match velocity, safety SLAs, and caregiver capacity utilization in your zones.",
     primary: "City Operations",
     href: "/operator" as Route,
+  },
+  partner: {
+    eyebrow: "Corporate Benefit Network",
+    badge: "B2B Partner",
+    title: "Empower your teams with pet wellness.",
+    description:
+      "Manage employee pet stipends, approve benefit wallets, and monitor wellness engagement across your corporate accounts.",
+    primary: "Manage Wallets",
+    href: "/partners/wallets" as Route,
+    secondary: { label: "Employees", href: "/partners/employees" as Route },
   },
 };
 
@@ -192,6 +202,14 @@ const portalNavigation: Record<
     { icon: Activity, label: "City Health", href: "/operator/city-health" as Route },
     { icon: DollarSign, label: "Economics", href: "/operator/economics" as Route },
     { icon: Settings2, label: "Settings", href: "/settings/notifications" as Route },
+  ],
+  partner: [
+    { icon: Home, label: "Overview", href: "/partners" as Route, section: "Corporate Hub" },
+    { icon: Users, label: "Employee Directory", href: "/partners/employees" as Route, section: "Corporate Hub" },
+    { icon: WalletCards, label: "Benefit Wallets", href: "/partners/wallets" as Route, section: "Finance" },
+    { icon: FileLock2, label: "Invoices & Billing", href: "/partners/billing" as Route, section: "Finance" },
+    { icon: Settings2, label: "Corporate Settings", href: "/partners/settings" as Route, section: "Account" },
+    { icon: Headphones, label: "Account Manager", href: "/support", section: "Account" }
   ],
 };
 

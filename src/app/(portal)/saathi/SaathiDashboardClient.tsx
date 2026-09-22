@@ -58,6 +58,32 @@ export default function SaathiDashboardClient({
           </div>
         )}
 
+        {/* Onboarding Pipeline Tracker */}
+        <div className="bg-white border border-indigo/10 rounded-2xl p-5 shadow-2xs">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="font-display text-base font-bold text-ink">Onboarding Pipeline</h3>
+            <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200/60">Active Status</span>
+          </div>
+          <div className="flex items-center justify-between relative">
+            <div className="absolute left-4 right-4 top-1/2 -translate-y-1/2 h-1 bg-ink/10 rounded-full z-0"></div>
+            <div className="absolute left-4 right-1/4 top-1/2 -translate-y-1/2 h-1 bg-emerald-500 rounded-full z-0"></div>
+            
+            {[
+              { step: "APPLICANT", active: true },
+              { step: "UNDER REVIEW", active: true },
+              { step: "TRAINING", active: true },
+              { step: "APPROVED", active: false }
+            ].map((s, idx) => (
+              <div key={idx} className="relative z-10 flex flex-col items-center gap-2">
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center border-2 ${s.active ? (s.step === "TRAINING" ? "bg-white border-indigo text-indigo" : "bg-emerald-500 border-emerald-500 text-white") : "bg-white border-ink/20 text-ink/30"} shadow-sm`}>
+                  {s.active && s.step !== "TRAINING" ? <CheckCircle2 className="w-4 h-4" /> : <span className="text-xs font-bold">{idx + 1}</span>}
+                </div>
+                <span className={`text-[9px] font-bold uppercase tracking-wider ${s.active ? (s.step === "TRAINING" ? "text-indigo" : "text-emerald-700") : "text-ink/40"}`}>{s.step}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Top Header & Mission Control Status Banner */}
         <div className="space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">

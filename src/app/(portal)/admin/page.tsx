@@ -81,6 +81,34 @@ export default async function AdminDashboardPage() {
           </div>
         </div>
 
+        {/* Role-Restricted Administration Scopes */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className={`p-4 rounded-2xl border ${identity.roles.includes('OPERATIONS_ADMIN') || identity.roles.includes('SUPER_ADMIN') ? 'border-indigo/30 bg-indigo/5' : 'border-ink/5 bg-surface opacity-60'} relative overflow-hidden group`}>
+            <Layers className={`w-5 h-5 mb-2 ${identity.roles.includes('OPERATIONS_ADMIN') || identity.roles.includes('SUPER_ADMIN') ? 'text-indigo' : 'text-ink/40'}`} />
+            <h3 className="font-bold text-sm text-ink">Operations</h3>
+            <p className="text-[10px] text-ink/70 mt-1">Network capacity & telemetry</p>
+            {(identity.roles.includes('OPERATIONS_ADMIN') || identity.roles.includes('SUPER_ADMIN')) && <ArrowUpRight className="absolute top-4 right-4 w-4 h-4 text-indigo opacity-0 group-hover:opacity-100 transition-opacity" />}
+          </div>
+          <div className={`p-4 rounded-2xl border ${identity.roles.includes('VERIFICATION_ADMIN') || identity.roles.includes('SUPER_ADMIN') ? 'border-leaf/30 bg-leaf/5' : 'border-ink/5 bg-surface opacity-60'} relative overflow-hidden group`}>
+            <CheckCircle2 className={`w-5 h-5 mb-2 ${identity.roles.includes('VERIFICATION_ADMIN') || identity.roles.includes('SUPER_ADMIN') ? 'text-leaf' : 'text-ink/40'}`} />
+            <h3 className="font-bold text-sm text-ink">Verification</h3>
+            <p className="text-[10px] text-ink/70 mt-1">Provider KYC & society approval</p>
+            {(identity.roles.includes('VERIFICATION_ADMIN') || identity.roles.includes('SUPER_ADMIN')) && <ArrowUpRight className="absolute top-4 right-4 w-4 h-4 text-leaf opacity-0 group-hover:opacity-100 transition-opacity" />}
+          </div>
+          <div className={`p-4 rounded-2xl border ${identity.roles.includes('SAFETY_ADMIN') || identity.roles.includes('SUPER_ADMIN') ? 'border-coral/30 bg-coral/5' : 'border-ink/5 bg-surface opacity-60'} relative overflow-hidden group`}>
+            <ShieldCheck className={`w-5 h-5 mb-2 ${identity.roles.includes('SAFETY_ADMIN') || identity.roles.includes('SUPER_ADMIN') ? 'text-coral' : 'text-ink/40'}`} />
+            <h3 className="font-bold text-sm text-ink">Safety & Trust</h3>
+            <p className="text-[10px] text-ink/70 mt-1">SOS, incident response & policy</p>
+            {(identity.roles.includes('SAFETY_ADMIN') || identity.roles.includes('SUPER_ADMIN')) && <ArrowUpRight className="absolute top-4 right-4 w-4 h-4 text-coral opacity-0 group-hover:opacity-100 transition-opacity" />}
+          </div>
+          <div className={`p-4 rounded-2xl border ${identity.roles.includes('FINANCE_ADMIN') || identity.roles.includes('SUPER_ADMIN') ? 'border-emerald-500/30 bg-emerald-50' : 'border-ink/5 bg-surface opacity-60'} relative overflow-hidden group`}>
+            <IndianRupee className={`w-5 h-5 mb-2 ${identity.roles.includes('FINANCE_ADMIN') || identity.roles.includes('SUPER_ADMIN') ? 'text-emerald-700' : 'text-ink/40'}`} />
+            <h3 className="font-bold text-sm text-ink">Finance</h3>
+            <p className="text-[10px] text-ink/70 mt-1">Payouts, rev-share & settlements</p>
+            {(identity.roles.includes('FINANCE_ADMIN') || identity.roles.includes('SUPER_ADMIN')) && <ArrowUpRight className="absolute top-4 right-4 w-4 h-4 text-emerald-700 opacity-0 group-hover:opacity-100 transition-opacity" />}
+          </div>
+        </div>
+
         {/* Top 5 KPI Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
           {/* KPI 1: Active Bookings */}

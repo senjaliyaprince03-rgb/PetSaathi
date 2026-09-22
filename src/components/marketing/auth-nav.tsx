@@ -76,7 +76,7 @@ export function AuthNav() {
         <>
           <Link
             href={"/become-a-saathi" as Route}
-            className="hidden text-xs font-bold uppercase tracking-wider text-ink/70 transition hover:text-coral xl:inline-block"
+            className="hidden items-center justify-center rounded-full border border-ink/20 px-3 py-1.5 text-xs font-bold text-ink transition hover:bg-ink/5 xl:inline-flex"
           >
             Become a Saathi
           </Link>

@@ -180,6 +180,88 @@ export default async function OperatorDashboard() {
           </section>
         )}
 
+        {/* Territory Heatmaps & Fulfillment Monitoring */}
+        <section className="grid lg:grid-cols-2 gap-6 mt-12">
+          {/* Heatmaps */}
+          <div className="rounded-4xl border border-indigo/10 bg-white p-6 shadow-lifted">
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <p className="eyebrow">Capacity Planning</p>
+                <h3 className="font-display text-2xl font-semibold text-ink mt-1">Territory Heatmaps</h3>
+              </div>
+              <span className="text-[10px] font-bold uppercase bg-indigo/5 text-indigo px-2 py-1 rounded-md">Live Clusters</span>
+            </div>
+            <div className="space-y-4">
+              {[
+                { city: "Bangalore", zone: "Koramangala", demand: 92, supply: 45, status: "Critical Shortage" },
+                { city: "Pune", zone: "Kalyani Nagar", demand: 65, supply: 60, status: "Balanced" },
+                { city: "Ahmedabad", zone: "Vastrapur", demand: 40, supply: 85, status: "Over-supplied" }
+              ].map((h, i) => (
+                <div key={i} className="p-4 border border-ink/5 rounded-2xl bg-surface/50">
+                  <div className="flex justify-between items-center mb-3">
+                    <div>
+                      <h4 className="font-bold text-sm text-ink">{h.zone}</h4>
+                      <p className="text-[10px] text-ink/60">{h.city}</p>
+                    </div>
+                    <span className={`text-[10px] font-bold px-2 py-1 rounded-md ${
+                      h.status === 'Critical Shortage' ? 'bg-coral/10 text-coral' : 
+                      h.status === 'Balanced' ? 'bg-emerald-50 text-emerald-700' : 'bg-amber-50 text-amber-700'
+                    }`}>{h.status}</span>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2">
+                      <span className="text-[10px] w-12 text-ink/60">Demand</span>
+                      <div className="flex-1 h-1.5 bg-ink/5 rounded-full overflow-hidden">
+                        <div className="h-full bg-coral rounded-full" style={{ width: `${h.demand}%` }} />
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-[10px] w-12 text-ink/60">Supply</span>
+                      <div className="flex-1 h-1.5 bg-ink/5 rounded-full overflow-hidden">
+                        <div className="h-full bg-indigo rounded-full" style={{ width: `${h.supply}%` }} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Fulfillment Queue */}
+          <div className="rounded-4xl border border-indigo/10 bg-white p-6 shadow-lifted">
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <p className="eyebrow">Active Routing</p>
+                <h3 className="font-display text-2xl font-semibold text-ink mt-1">Fulfillment Monitoring</h3>
+              </div>
+              <span className="text-[10px] font-bold uppercase bg-coral/10 text-coral animate-pulse px-2 py-1 rounded-md">3 Unassigned</span>
+            </div>
+            
+            <div className="space-y-3">
+              {[
+                { time: "In 45 mins", type: "60-min Walk", loc: "HSR Layout", pet: "Leo (Golden Ret.)" },
+                { time: "In 2 hours", type: "Home Sitting", loc: "Indiranagar", pet: "Bella (Indie)" },
+                { time: "Tomorrow", type: "Grooming", loc: "Koramangala", pet: "Max (Beagle)" }
+              ].map((q, i) => (
+                <div key={i} className="flex items-center justify-between p-3 border border-coral/20 rounded-2xl bg-coral/5">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 rounded-full bg-coral mt-1.5 animate-pulse" />
+                    <div>
+                      <p className="text-xs font-bold text-ink">{q.type} • {q.pet}</p>
+                      <p className="text-[10px] text-ink/70 mt-0.5">{q.loc}</p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-[10px] font-bold text-coral">{q.time}</p>
+                    <button className="text-[10px] font-bold text-indigo mt-1 hover:underline">Force Route</button>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <button className="w-full mt-4 py-2 border-2 border-dashed border-ink/10 text-xs font-bold text-ink/60 rounded-xl hover:bg-surface">View All Queues</button>
+          </div>
+        </section>
+
         {/* City Economics Grid */}
         <section>
           <div className="flex items-center gap-3 border-b border-indigo/5 pb-4">
