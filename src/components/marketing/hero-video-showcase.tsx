@@ -124,15 +124,26 @@ export function HeroVideoShowcase() {
       return;
     }
 
+    let isActive = true;
     try {
       video.load();
       const playPromise = video.play();
       if (playPromise !== undefined) {
-        playPromise.then(() => setIsPlaying(true)).catch(() => setIsPlaying(false));
+        playPromise
+          .then(() => {
+            if (isActive) setIsPlaying(true);
+          })
+          .catch(() => {
+            if (isActive) setIsPlaying(false);
+          });
       }
     } catch {
-      setIsPlaying(false);
+      if (isActive) setIsPlaying(false);
     }
+    
+    return () => {
+      isActive = false;
+    };
   }, [activeIndex, reduceMotion, isVisible]);
 
   // Handle muting dynamically without reloading the video
@@ -197,6 +208,7 @@ export function HeroVideoShowcase() {
                 onPlay={() => setIsPlaying(true)}
                 onPause={() => setIsPlaying(false)}
                 onEnded={handleEnded}
+                onError={handleEnded}
                 onTimeUpdate={(event) => {
                   const video = event.currentTarget;
                   setProgress(video.duration ? (video.currentTime / video.duration) * 100 : 0);
