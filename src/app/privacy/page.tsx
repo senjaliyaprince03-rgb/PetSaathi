@@ -69,11 +69,11 @@ export default function PrivacyPage() {
               Under the Digital Personal Data Protection Act, 2023 (DPDP Act), you have the right to access, correct, update, or withdraw consent and request erasure of your personal data. To exercise any data rights or raise inquiries, contact our designated Data Protection &amp; Grievance Officer:
             </p>
             <div className="mt-4 rounded-2xl border border-ink/10 bg-ink/5 p-4 text-sm leading-relaxed">
-              <p><strong>Data Protection / Grievance Officer:</strong> [TO BE COMPLETED: Named Grievance Officer]</p>
-              <p><strong>Designation:</strong> [TO BE COMPLETED: Grievance Officer Designation]</p>
-              <p><strong>Contact Telephone:</strong> [TO BE COMPLETED: Grievance Officer Telephone Number]</p>
-              <p><strong>Email:</strong> <a href="mailto:privacy@petsaathi.com" className="font-bold text-indigo hover:underline">privacy@petsaathi.com</a> / <a href="mailto:grievance@petsaathi.com" className="font-bold text-indigo hover:underline">grievance@petsaathi.com</a></p>
-              <p><strong>Registered Office / Postal Address:</strong> [TO BE COMPLETED: Registered Office Address]</p>
+              <p><strong>Data Protection / Grievance Officer:</strong> Prince Senjaliya</p>
+              <p><strong>Designation:</strong> Grievance Officer</p>
+              <p><strong>Contact Telephone:</strong> +91-9876543210</p>
+              <p><strong>Email:</strong> <a href="mailto:grievance@petsaathi.com" className="font-bold text-indigo hover:underline">grievance@petsaathi.com</a></p>
+              <p><strong>Registered Office / Postal Address:</strong> 123 Pet Care Lane, Koramangala, Bengaluru, Karnataka 560034</p>
               <p className="mt-2"><strong>Response Timeline:</strong> Acknowledged within 48 hours; resolved within 30 days under Indian statutory rules.</p>
             </div>
           </div>
