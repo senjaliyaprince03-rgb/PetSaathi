@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 };
 
 export default async function BecomeASaathiPage() {
-  const identity = await getCurrentIdentity();
+  const identity = await getCurrentIdentity().catch(() => null);
   const steps = [
     ["01", "Tell your story", "Experience, locality and the kind of care you can responsibly offer."],
     ["02", "Complete checks", "Identity, training and practical assessment are reviewed independently."],

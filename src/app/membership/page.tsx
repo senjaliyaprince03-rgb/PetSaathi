@@ -26,45 +26,62 @@ export const metadata: Metadata = {
 };
 export const dynamic = "force-dynamic";
 
+const membershipBenefits = [
+  {
+    icon: Users,
+    title: "Priority assignment",
+    copy: "Member requests are matched with extra care and local context.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Controlled access",
+    copy: "The system keeps membership rules narrow so approvals stay trustworthy.",
+  },
+  {
+    icon: Clock3,
+    title: "Stable routine care",
+    copy: "Regular visits and repeat bookings are easier to plan and follow.",
+  },
+  {
+    icon: BadgeCheck,
+    title: "Supervisor support",
+    copy: "A verified process helps keep updates clear and accountable.",
+  },
+] as const;
+
+const membershipSteps = [
+  ["01", "Choose care", "Start with the service and frequency that fits your routine."],
+  ["02", "Check eligibility", "Local capacity and service rules are reviewed on the server."],
+  ["03", "Approve the proposal", "You confirm the plan only after the offer is matched."],
+  ["04", "Keep it steady", "Once active, the routine can be managed with less effort."],
+] as const;
+
 export default async function MembershipPage() {
-  const enabled = await isFeatureEnabled("subscriptions");
-  const identity = await getCurrentIdentity();
-  const membershipBenefits = [
-    {
-      icon: Users,
-      title: "Priority assignment",
-      copy: "Member requests are matched with extra care and local context.",
-    },
-    {
-      icon: ShieldCheck,
-      title: "Controlled access",
-      copy: "The system keeps membership rules narrow so approvals stay trustworthy.",
-    },
-    {
-      icon: Clock3,
-      title: "Stable routine care",
-      copy: "Regular visits and repeat bookings are easier to plan and follow.",
-    },
-    {
-      icon: BadgeCheck,
-      title: "Supervisor support",
-      copy: "A verified process helps keep updates clear and accountable.",
-    },
-  ] as const;
-  const membershipSteps = [
-    ["01", "Choose care", "Start with the service and frequency that fits your routine."],
-    ["02", "Check eligibility", "Local capacity and service rules are reviewed on the server."],
-    ["03", "Approve the proposal", "You confirm the plan only after the offer is matched."],
-    ["04", "Keep it steady", "Once active, the routine can be managed with less effort."],
-  ] as const;
-  const plans = (enabled && isDatabaseConfigured())
-    ? await prisma.planVersion.findMany({
+  let enabled = false;
+  let identity = null;
+  let plans: Array<{
+    id: string;
+    name: string;
+    audience: string;
+    pricePaise: number;
+    billingInterval: string;
+    entitlements: any;
+  }> = [];
+
+  try {
+    enabled = await isFeatureEnabled("subscriptions").catch(() => false);
+    identity = await getCurrentIdentity().catch(() => null);
+    if (enabled && isDatabaseConfigured()) {
+      plans = await prisma.planVersion.findMany({
         where: { active: true, providerPlanId: { not: null } },
         orderBy: { pricePaise: "asc" },
         take: 50,
         select: { id: true, name: true, audience: true, pricePaise: true, billingInterval: true, entitlements: true }
-      })
-    : [];
+      }).catch(() => []);
+    }
+  } catch {
+    // Non-blocking fallback for unconfigured environments
+  }
 
   return (
     <PublicShell>

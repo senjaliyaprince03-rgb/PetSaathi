@@ -24,8 +24,9 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true }
 };
 
-export default async function ContactPage({ searchParams }: { searchParams: Promise<{ topic?: string }> }) {
-  const { topic } = await searchParams;
+export default async function ContactPage({ searchParams }: { searchParams?: Promise<{ topic?: string }> }) {
+  const resolved = searchParams ? await searchParams.catch(() => undefined) : undefined;
+  const topic = resolved?.topic;
   return (
     <PublicShell>
       <PageIntro 
