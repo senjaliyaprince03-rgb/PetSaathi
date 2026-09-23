@@ -132,38 +132,13 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: "/Membership",
-        destination: "/membership",
-        permanent: true,
-      },
-      {
         source: "/memberships",
-        destination: "/membership",
-        permanent: true,
-      },
-      {
-        source: "/Memberships",
         destination: "/membership",
         permanent: true,
       },
       {
         source: "/saathis",
         destination: "/caregivers",
-        permanent: true,
-      },
-      {
-        source: "/Saathis",
-        destination: "/caregivers",
-        permanent: true,
-      },
-      {
-        source: "/Become-a-saathi",
-        destination: "/become-a-saathi",
-        permanent: true,
-      },
-      {
-        source: "/Become-A-Saathi",
-        destination: "/become-a-saathi",
         permanent: true,
       },
       {
@@ -177,11 +152,6 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: "/Safety",
-        destination: "/safety",
-        permanent: true,
-      },
-      {
         source: "/safety-and-trust",
         destination: "/safety",
         permanent: true,
@@ -192,32 +162,7 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: "/Contact-us",
-        destination: "/contact",
-        permanent: true,
-      },
-      {
-        source: "/Contact-Us",
-        destination: "/contact",
-        permanent: true,
-      },
-      {
-        source: "/Contact",
-        destination: "/contact",
-        permanent: true,
-      },
-      {
-        source: "/Book",
-        destination: "/book",
-        permanent: true,
-      },
-      {
         source: "/booking",
-        destination: "/book",
-        permanent: true,
-      },
-      {
-        source: "/Booking",
         destination: "/book",
         permanent: true,
       },
@@ -227,17 +172,7 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: "/SignIn",
-        destination: "/login",
-        permanent: true,
-      },
-      {
         source: "/sign-in",
-        destination: "/login",
-        permanent: true,
-      },
-      {
-        source: "/Login",
         destination: "/login",
         permanent: true,
       },

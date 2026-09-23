@@ -34,6 +34,7 @@ export function AuthSlidingPanel({ returnTo }: { returnTo?: string }) {
   const [role, setRole] = useState<"CUSTOMER" | "SITTER">("CUSTOMER");
   const [error, setError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
+  const [gsiActive, setGsiActive] = useState(false);
   const googleButtonSignUpRef = useRef<HTMLDivElement>(null);
   const googleButtonSignInRef = useRef<HTMLDivElement>(null);
   const googleClientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
@@ -109,6 +110,14 @@ export function AuthSlidingPanel({ returnTo }: { returnTo?: string }) {
     if (googleButtonSignInRef.current && googleButtonSignInRef.current.children.length === 0) {
       google.accounts.id.renderButton(googleButtonSignInRef.current, options);
     }
+
+    setTimeout(() => {
+      const hasIframe = Boolean(
+        googleButtonSignInRef.current?.querySelector("iframe") ||
+        googleButtonSignUpRef.current?.querySelector("iframe")
+      );
+      if (hasIframe) setGsiActive(true);
+    }, 600);
   }
 
   useEffect(() => {
@@ -352,7 +361,7 @@ export function AuthSlidingPanel({ returnTo }: { returnTo?: string }) {
                   <div className="flex-grow border-t border-ink/10"></div>
                 </div>
                 <div ref={googleButtonSignUpRef} className="flex justify-center w-full empty:hidden"></div>
-                <GoogleOAuthButton role={role} returnTo={returnTo} label="Sign up with Google" />
+                {!gsiActive && <GoogleOAuthButton role={role} returnTo={returnTo} label="Sign up with Google" />}
               </div>
             )}
           </form>
@@ -449,7 +458,7 @@ export function AuthSlidingPanel({ returnTo }: { returnTo?: string }) {
                 <div className="flex-grow border-t border-ink/10"></div>
               </div>
               <div ref={googleButtonSignInRef} className="flex justify-center w-full empty:hidden"></div>
-              <GoogleOAuthButton role={role} returnTo={returnTo} label="Sign in with Google" />
+              {!gsiActive && <GoogleOAuthButton role={role} returnTo={returnTo} label="Sign in with Google" />}
             </div>
           )}
           </form>
