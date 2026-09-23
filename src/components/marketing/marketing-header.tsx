@@ -17,7 +17,7 @@ export function MarketingHeader() {
             <Link href={"/services" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink whitespace-nowrap">Services</Link>
             <Link href={"/caregivers" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink whitespace-nowrap">Saathis</Link>
             <Link href={"/become-a-saathi" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink whitespace-nowrap">Become a Saathi</Link>
-            <Link href={"/safety" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink whitespace-nowrap">Safety &amp; Trust</Link>
+            <Link href={"/safety" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink whitespace-nowrap">{"Safety & Trust"}</Link>
             <Link href={"/societies" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink whitespace-nowrap">Societies</Link>
             <Link href={"/membership" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink whitespace-nowrap">Membership</Link>
             <Link href={"/about" as Route} className="text-[0.82rem] font-semibold text-ink/80 transition hover:text-ink whitespace-nowrap">About</Link>
