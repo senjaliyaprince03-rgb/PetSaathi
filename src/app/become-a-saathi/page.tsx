@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { ArrowRight, BadgeCheck, CalendarDays, CheckCircle2, Clock3, MapPin, ShieldCheck, Sparkles, Users } from "lucide-react";
 
 import { SitterApplication } from "@/components/forms/sitter-application";
@@ -72,15 +71,6 @@ export default function BecomeASaathiPage() {
 
         <div className="container-shell relative flex h-full flex-col justify-center pb-10 pt-28 sm:pt-32">
           <div className="max-w-xl md:max-w-2xl text-left items-start flex flex-col">
-            {/* Dual Pathway Switcher: Find a Saathi vs Become a Saathi */}
-            <div className="inline-flex items-center gap-1.5 p-1 rounded-full bg-paper/20 backdrop-blur-md border border-white/20 mb-5">
-              <Link href="/caregivers" className="px-3.5 py-1 rounded-full text-paper/80 hover:text-white font-medium text-xs transition">
-                Find a Saathi
-              </Link>
-              <span className="px-3.5 py-1 rounded-full bg-paper text-ink font-bold text-xs shadow-sm">
-                Become a Saathi
-              </span>
-            </div>
 
             <span className="inline-flex items-center gap-2 rounded-full border border-saffron/40 bg-saffron/20 px-4 py-1.5 text-[0.68rem] font-bold uppercase tracking-[0.2em] text-saffron backdrop-blur-md font-outfit">
               <BadgeCheck className="h-3.5 w-3.5" /> Certified Caregiver Network
