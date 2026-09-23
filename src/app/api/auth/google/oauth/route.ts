@@ -27,9 +27,10 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: "Google OAuth is not configured with a valid client ID" }, { status: 500 });
   }
 
-  // Derive origin from request URL or configured app URL
+  // Derive origin: in development use current request origin (e.g. 127.0.0.1:3110); in production prefer configured base URL
   const requestUrl = new URL(request.url);
-  const baseUrl = getAppBaseUrl() || requestUrl.origin;
+  const configuredUrl = getAppBaseUrl();
+  const baseUrl = process.env.NODE_ENV === "development" ? requestUrl.origin : (configuredUrl || requestUrl.origin);
   const redirectUri = `${baseUrl}/api/auth/google/callback`;
 
   // State encodes destination and role

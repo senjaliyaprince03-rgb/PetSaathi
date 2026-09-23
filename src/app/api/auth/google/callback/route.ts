@@ -26,7 +26,8 @@ export async function GET(request: Request) {
   const error = requestUrl.searchParams.get("error");
   const stateRaw = requestUrl.searchParams.get("state");
 
-  const baseUrl = getAppBaseUrl() || requestUrl.origin;
+  const configuredUrl = getAppBaseUrl();
+  const baseUrl = process.env.NODE_ENV === "development" ? requestUrl.origin : (configuredUrl || requestUrl.origin);
 
   if (error || !code) {
     logger.warn("[GOOGLE_OAUTH_CALLBACK] OAuth error or missing code", { error });
