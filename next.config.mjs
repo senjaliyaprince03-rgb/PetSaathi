@@ -186,6 +186,61 @@ const nextConfig = {
         destination: "/safety",
         permanent: true,
       },
+      {
+        source: "/contact-us",
+        destination: "/contact",
+        permanent: true,
+      },
+      {
+        source: "/Contact-us",
+        destination: "/contact",
+        permanent: true,
+      },
+      {
+        source: "/Contact-Us",
+        destination: "/contact",
+        permanent: true,
+      },
+      {
+        source: "/Contact",
+        destination: "/contact",
+        permanent: true,
+      },
+      {
+        source: "/Book",
+        destination: "/book",
+        permanent: true,
+      },
+      {
+        source: "/booking",
+        destination: "/book",
+        permanent: true,
+      },
+      {
+        source: "/Booking",
+        destination: "/book",
+        permanent: true,
+      },
+      {
+        source: "/signin",
+        destination: "/login",
+        permanent: true,
+      },
+      {
+        source: "/SignIn",
+        destination: "/login",
+        permanent: true,
+      },
+      {
+        source: "/sign-in",
+        destination: "/login",
+        permanent: true,
+      },
+      {
+        source: "/Login",
+        destination: "/login",
+        permanent: true,
+      },
     ];
   },
 };

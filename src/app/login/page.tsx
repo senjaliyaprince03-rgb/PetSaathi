@@ -22,16 +22,30 @@ export const metadata: Metadata = {
 
 type LoginSearchParams = Promise<Record<string, string | string[] | undefined>>;
 
+import { PetSaathiLogo } from "@/components/brand/logo";
+
 export default async function LoginPage({ searchParams }: { searchParams?: LoginSearchParams }) {
-  const query = (await searchParams) ?? {};
+  let query: Record<string, string | string[] | undefined> = {};
+  try {
+    query = (await searchParams) ?? {};
+  } catch {
+    // Graceful fallback for searchParams resolution
+  }
+
   const rawReturnTo = Array.isArray(query.returnTo) ? query.returnTo[0] : query.returnTo;
   const returnTo = sanitizeReturnTo(rawReturnTo);
 
-  const identity = await getCurrentIdentity().catch(() => null);
+  let identity: any = null;
+  try {
+    identity = await getCurrentIdentity().catch(() => null);
+  } catch {
+    identity = null;
+  }
+
   const defaultDashboardUrl = identity
-    ? identity.roles.includes("SUPER_ADMIN") || identity.roles.includes("OPERATIONS_ADMIN")
+    ? identity.roles?.includes("SUPER_ADMIN") || identity.roles?.includes("OPERATIONS_ADMIN")
       ? "/admin"
-      : identity.roles.includes("SITTER")
+      : identity.roles?.includes("SITTER")
       ? "/saathi"
       : "/dashboard"
     : "/dashboard";
@@ -43,10 +57,14 @@ export default async function LoginPage({ searchParams }: { searchParams?: Login
       <ParallaxTotemBackground />
 
       <div className="relative z-10 w-full max-w-[900px]">
+        <div className="mb-6 flex justify-center">
+          <PetSaathiLogo />
+        </div>
+
         {identity && (
           <div className="mb-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-indigo/20 bg-paper/95 px-5 py-3 shadow-sm backdrop-blur">
             <p className="text-xs text-ink/80">
-              Currently signed in as <strong className="text-ink">{identity.displayName}</strong> ({identity.roles.includes("SUPER_ADMIN") ? "Admin" : identity.roles.includes("SITTER") ? "Saathi" : "Pet Parent"})
+              Currently signed in as <strong className="text-ink">{identity.displayName}</strong> ({identity.roles?.includes("SUPER_ADMIN") ? "Admin" : identity.roles?.includes("SITTER") ? "Saathi" : "Pet Parent"})
             </p>
             <div className="flex items-center gap-3 text-xs font-bold">
               <Link href={continueUrl as any} className="text-indigo hover:underline">

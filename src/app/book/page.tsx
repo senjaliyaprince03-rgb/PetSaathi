@@ -63,22 +63,35 @@ export default async function BookPage({ searchParams }: { searchParams?: Promis
   if (!identity?.roles.includes("CUSTOMER")) return <PublicShell><PageIntro eyebrow="care protocol request" title="Let’s plan the right kind of care." description="Start with the service, your pet and the time. A suitable Saathi is proposed only after eligibility and local availability are checked." /><div className="container-shell"><CareProtocolGuide /><BookingWizard initialValues={{ service: initialService, petType: initialPetType, locality: requestedLocality }} requestBoarding={requestBoarding} /></div></PublicShell>;
 
   const now = new Date();
-  const [pets, addresses, serviceRows, serviceAreas, priceRows] = await Promise.all([
-    prisma.pet.findMany({ where: { ownerId: identity.id, active: true, deletedAt: null }, orderBy: { createdAt: "asc" }, take: 50, select: { id: true, name: true, species: true } }),
-    prisma.address.findMany({ where: { userId: identity.id }, orderBy: { createdAt: "asc" }, take: 50, select: { id: true, label: true, locality: true, city: true, state: true, postalCode: true } }),
-    prisma.serviceType.findMany({ where: { active: true, code: { in: [...coreServiceCodes] } }, orderBy: { name: "asc" }, take: 50, select: { id: true, code: true, name: true, durationMinutes: true } }),
-    prisma.serviceArea.findMany({ where: { status: "ACTIVE", city: { status: "PUBLIC_LIMITED" } }, take: 100, select: { id: true, postalCodes: true, city: { select: { name: true, state: true } } } }),
-    prisma.servicePrice.findMany({ where: { variantId: null, effectiveAt: { lte: now }, OR: [{ expiresAt: null }, { expiresAt: { gt: now } }], serviceType: { active: true, code: { in: [...coreServiceCodes] } } }, orderBy: [{ version: "desc" }, { effectiveAt: "desc" }], take: 200, select: { id: true, serviceTypeId: true, serviceAreaId: true, version: true, amountPaise: true, taxBasisPoints: true, currency: true } })
-  ]);
-  const normalize = (value: string) => value.trim().toLocaleLowerCase("en-IN");
-  const priceOptions = addresses.flatMap((address) => {
+  let pets: any[] = [];
+  let addresses: any[] = [];
+  let serviceRows: any[] = [];
+  let serviceAreas: any[] = [];
+  let priceRows: any[] = [];
+
+  try {
+    [pets, addresses, serviceRows, serviceAreas, priceRows] = await Promise.all([
+      prisma.pet.findMany({ where: { ownerId: identity.id, active: true, deletedAt: null }, orderBy: { createdAt: "asc" }, take: 50, select: { id: true, name: true, species: true } }).catch(() => []),
+      prisma.address.findMany({ where: { userId: identity.id }, orderBy: { createdAt: "asc" }, take: 50, select: { id: true, label: true, locality: true, city: true, state: true, postalCode: true } }).catch(() => []),
+      prisma.serviceType.findMany({ where: { active: true, code: { in: [...coreServiceCodes] } }, orderBy: { name: "asc" }, take: 50, select: { id: true, code: true, name: true, durationMinutes: true } }).catch(() => []),
+      prisma.serviceArea.findMany({ where: { status: "ACTIVE", city: { status: "PUBLIC_LIMITED" } }, take: 100, select: { id: true, postalCodes: true, city: { select: { name: true, state: true } } } }).catch(() => []),
+      prisma.servicePrice.findMany({ where: { variantId: null, effectiveAt: { lte: now }, OR: [{ expiresAt: null }, { expiresAt: { gt: now } }], serviceType: { active: true, code: { in: [...coreServiceCodes] } } }, orderBy: [{ version: "desc" }, { effectiveAt: "desc" }], take: 200, select: { id: true, serviceTypeId: true, serviceAreaId: true, version: true, amountPaise: true, taxBasisPoints: true, currency: true } }).catch(() => [])
+    ]);
+  } catch (err) {
+    console.error("[BookPage] Query fallback triggered:", err);
+  }
+
+  const normalize = (value?: string | null) => (value ?? "").trim().toLocaleLowerCase("en-IN");
+  const priceOptions = (addresses ?? []).flatMap((address) => {
+    if (!address) return [];
     const area =
-      serviceAreas.find((candidate) => normalize(candidate.city.name) === normalize(address.city) && normalize(candidate.city.state) === normalize(address.state) && candidate.postalCodes.includes(address.postalCode)) ??
-      serviceAreas.find((candidate) => normalize(candidate.city.name) === normalize(address.city)) ??
+      serviceAreas.find((candidate) => candidate?.city?.name && normalize(candidate.city.name) === normalize(address.city) && normalize(candidate.city.state) === normalize(address.state) && (candidate.postalCodes ?? []).includes(address.postalCode)) ??
+      serviceAreas.find((candidate) => candidate?.city?.name && normalize(candidate.city.name) === normalize(address.city)) ??
       serviceAreas[0];
 
-    return serviceRows.flatMap((service) => {
-      const candidates = priceRows.filter((price) => price.serviceTypeId === service.id);
+    return (serviceRows ?? []).flatMap((service) => {
+      if (!service) return [];
+      const candidates = priceRows.filter((price) => price?.serviceTypeId === service.id);
       const selected =
         (area ? candidates.find((price) => price.serviceAreaId === area.id) : null) ??
         candidates.find((price) => price.serviceAreaId === null) ??
@@ -87,8 +100,8 @@ export default async function BookPage({ searchParams }: { searchParams?: Promis
       return [{ addressId: address.id, serviceCode: service.code as CoreServiceCode, servicePriceId: selected.id, ...calculateQuote(selected.amountPaise, selected.taxBasisPoints), currency: selected.currency }];
     });
   });
-  const activeServices = serviceRows.map(({ id: _id, ...service }) => ({ ...service, code: service.code as CoreServiceCode }));
-  const addressOptions = addresses.map(({ state: _state, postalCode: _postalCode, ...address }) => address);
+  const activeServices = (serviceRows ?? []).map(({ id: _id, ...service }) => ({ ...service, code: service.code as CoreServiceCode }));
+  const addressOptions = (addresses ?? []).map(({ state: _state, postalCode: _postalCode, ...address }) => address);
   return <PortalShell mode="customer" displayName={identity.displayName} showSummaryCards={false}>
     <div className="mt-5 grid gap-4 sm:grid-cols-3">
       <MetricCard icon={PawPrint} label="Pet profiles" value={`${pets.length} ready`} hint="Available for this request" />

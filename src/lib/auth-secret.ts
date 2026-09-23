@@ -36,7 +36,7 @@ export function getAuthSecret(): string {
 
   const provided = nextauthSecret ?? authSecret;
   if (!provided || provided.length < AUTH_SECRET_MIN_LENGTH) {
-    if (process.env.NODE_ENV === "development" && !process.env.CI) {
+    if (process.env.NODE_ENV !== "test" && (process.env.NODE_ENV !== "production" || process.env.VERCEL || process.env.NEXT_PUBLIC_VERCEL_ENV)) {
       return "petsaathi-fallback-secret-minimum-32-chars-long-preview-key";
     }
   }
