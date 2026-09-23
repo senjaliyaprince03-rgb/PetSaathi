@@ -42,7 +42,7 @@ export function MarketingFooter() {
         {([
           ["Explore", [
             ["Services", "/services", PawPrint],
-            ["Saathis", "/caregivers", UserRoundCheck],
+            ["Saathis", "/saathis", UserRoundCheck],
             ["Membership", "/membership", BadgeCheck],
             ["Locations", "/cities", MapPin]
           ]],

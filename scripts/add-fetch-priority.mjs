@@ -5,6 +5,7 @@ const targets = [
   "src/app/not-found.tsx",
   "src/app/(portal)/customer/wallet/page.tsx",
   "src/app/caregivers/page.tsx",
+  "src/app/saathis/page.tsx",
   "src/app/journal/page.tsx",
   "src/app/membership/page.tsx",
   "src/app/safety/page.tsx",

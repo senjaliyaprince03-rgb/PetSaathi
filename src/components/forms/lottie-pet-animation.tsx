@@ -1,15 +1,35 @@
 "use client";
 
-import Lottie from "lottie-react";
+import React, { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
+import { PetCompanionIllustration } from "@/components/brand/pet-companion";
 
-import lottiePet from "../../../public/images/lottie-pet.json";
+// Lazy-load Lottie without blocking first render
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
-// Isolated so the lottie runtime + animation JSON land in their own async
-// chunk instead of the login route's first-load bundle.
 export default function LottiePetAnimation() {
+  const [lottieData, setLottieData] = useState<any>(null);
+  const [hasLottieError, setHasLottieError] = useState(false);
+
+  useEffect(() => {
+    // Dynamically fetch cleaned animation JSON in background
+    import("../../../public/images/lottie-pet.json")
+      .then((mod) => setLottieData(mod.default || mod))
+      .catch(() => setHasLottieError(true));
+  }, []);
+
+  if (hasLottieError || !lottieData) {
+    // Instant, beautiful vector companion fallback: zero delay, zero eval, zero CSP risk
+    return <PetCompanionIllustration className="h-28 w-28 sm:h-52 sm:w-52" />;
+  }
+
   return (
-    <div className="pointer-events-none h-28 w-28 drop-shadow-2xl sm:mb-4 sm:h-64 sm:w-64">
-      <Lottie animationData={lottiePet} loop />
+    <div className="pointer-events-none h-28 w-28 drop-shadow-2xl sm:h-52 sm:w-52 flex items-center justify-center">
+      <Lottie
+        animationData={lottieData}
+        loop={true}
+        onError={() => setHasLottieError(true)}
+      />
     </div>
   );
 }

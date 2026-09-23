@@ -7,7 +7,7 @@ import { PublicShell } from "@/components/marketing/public-shell";
 import { buttonVariants } from "@/components/ui/button";
 
 export const metadata: Metadata = { 
-  title: "About Us | PetSaathi",
+  title: "About Us",
   description: "Learn how PetSaathi is elevating pet care standards across India with background-vetted caregivers, transparent handoffs, and neighborhood-first community care.",
   openGraph: {
     title: "About Us | PetSaathi",

@@ -76,7 +76,7 @@ export function MarketplaceAssurance() {
                   PetSaathi adapts marketplace comparison into a quieter assisted flow. Profiles appear as relevant proposals after locality,
                   schedule, service permission and pet context are checked.
                 </p>
-                <Link href={"/caregivers" as Route} className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-indigo hover:text-coral">
+                <Link href={"/saathis" as Route} className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-indigo hover:text-coral">
                   See how Saathi proposals work <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>

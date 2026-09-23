@@ -10,7 +10,7 @@ import { MobileNav } from "@/components/marketing/mobile-nav";
 
 const NAV_LINKS = [
   { href: "/services", label: "Services" },
-  { href: "/caregivers", label: "Saathis" },
+  { href: "/saathis", label: "Saathis" },
   { href: "/become-a-saathi", label: "Become a Saathi" },
   { href: "/safety", label: "Safety & Trust" },
   { href: "/societies", label: "Societies" },
@@ -30,7 +30,7 @@ export function MarketingHeader() {
           <PetSaathiLogo />
           <nav aria-label="Primary navigation" className="hidden items-center gap-3 xl:gap-4 lg:flex">
             {NAV_LINKS.map((link) => {
-              const isActive = pathname === link.href || (link.href !== "/" && pathname?.startsWith(`${link.href}/`));
+              const isActive = pathname === link.href || (link.href !== "/" && pathname?.startsWith(`${link.href}/`)) || (link.href === "/saathis" && pathname === "/caregivers");
               return (
                 <Link
                   key={link.href}

@@ -54,7 +54,6 @@ function TotemColumn({ cards, side, delay }: { cards: TotemCard[]; side: "left" 
                     aria-hidden="true"
                     className={styles.image}
                     fill
-                    priority
                     sizes="(max-width: 768px) 52vw, 28vw"
                     src={card.src}
                   />

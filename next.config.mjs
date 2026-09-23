@@ -59,7 +59,7 @@ const nextConfig = {
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://accounts.google.com",
               "img-src 'self' data: https: blob:",
               "font-src 'self' data: https://fonts.gstatic.com",
-              "connect-src 'self' https://api.razorpay.com https://lumberjack.razorpay.com https://integrate.api.nvidia.com wss: https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://connect.facebook.net https://www.clarity.ms https://*.clarity.ms https://accounts.google.com",
+              "connect-src 'self' https://api.razorpay.com https://lumberjack.razorpay.com https://integrate.api.nvidia.com wss: https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://connect.facebook.net https://www.clarity.ms https://*.clarity.ms https://accounts.google.com https://*.ingest.us.sentry.io https://*.ingest.sentry.io https://*.sentry.io",
               "frame-src https://api.razorpay.com https://checkout.razorpay.com https://accounts.google.com",
               "object-src 'none'",
               "base-uri 'self'",
@@ -147,8 +147,13 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: "/saathis",
-        destination: "/caregivers",
+        source: "/caregivers",
+        destination: "/saathis",
+        permanent: true,
+      },
+      {
+        source: "/caregiver",
+        destination: "/saathis",
         permanent: true,
       },
       {

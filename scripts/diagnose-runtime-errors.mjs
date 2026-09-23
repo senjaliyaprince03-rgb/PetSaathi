@@ -19,6 +19,7 @@ const routes = [
   "/book",
   "/login",
   "/become-a-saathi",
+  "/saathis",
   "/caregivers",
   "/corporate/pet-care-benefits",
   "/resources/new-pet-checklist",

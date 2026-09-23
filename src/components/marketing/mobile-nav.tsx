@@ -58,7 +58,7 @@ export function MobileNav() {
 
   const links = [
     { href: "/services", label: "Services" },
-    { href: "/caregivers", label: "Saathis" },
+    { href: "/saathis", label: "Saathis" },
     { href: "/become-a-saathi", label: "Become a Saathi" },
     { href: "/safety", label: "Safety & Trust" },
     { href: "/societies", label: "Societies" },
@@ -100,7 +100,7 @@ export function MobileNav() {
           <nav className="flex flex-1 flex-col justify-between overflow-y-auto bg-[#FAF6F1] px-6 py-6">
             <ul className="flex flex-col gap-4">
               {links.map((link) => {
-                const isActive = pathname === link.href || (link.href !== "/" && pathname?.startsWith(`${link.href}/`));
+                const isActive = pathname === link.href || (link.href !== "/" && pathname?.startsWith(`${link.href}/`)) || (link.href === "/saathis" && pathname === "/caregivers");
                 return (
                   <li key={link.href}>
                     <Link

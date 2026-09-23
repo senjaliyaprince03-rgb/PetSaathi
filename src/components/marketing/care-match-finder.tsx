@@ -229,7 +229,7 @@ export function CareMatchFinder() {
 
       {/* Integrated Trust Links within Card Container */}
       <div className="relative mt-3 pt-2.5 border-t border-[#f0eaf1] flex items-center justify-between gap-2 text-[0.68rem] sm:text-[0.72rem] font-medium text-[#655567]">
-        <Link href={"/caregivers" as Route} className="inline-flex items-center gap-1 font-bold text-[#231526] hover:text-[#d45638] transition">
+        <Link href={"/saathis" as Route} className="inline-flex items-center gap-1 font-bold text-[#231526] hover:text-[#d45638] transition">
           <span>How matching works</span>
           <ArrowRight className="h-3 w-3" />
         </Link>

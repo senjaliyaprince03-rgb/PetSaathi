@@ -3,6 +3,7 @@ import fetch from "node-fetch";
 const routes = [
   "/",
   "/services",
+  "/saathis",
   "/caregivers",
   "/become-a-saathi",
   "/safety",
