@@ -86,8 +86,8 @@ export function MarketingExperience({
           <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/20 to-transparent lg:w-[42%]" />
         </div>
         
-        <div className="container-shell relative grid items-center gap-8 xl:gap-12 lg:grid-cols-[1fr_560px] xl:grid-cols-[1fr_600px] 2xl:grid-cols-[1.05fr_640px] lg:min-h-[60vh]">
-          <div className="relative z-10 max-w-xl self-center">
+        <div className="container-shell relative grid grid-cols-1 items-center gap-8 xl:gap-12 lg:grid-cols-[1fr_560px] xl:grid-cols-[1fr_600px] 2xl:grid-cols-[1.05fr_640px] lg:min-h-[60vh]">
+          <div className="relative z-10 w-full min-w-0 max-w-xl self-center">
             <ScrollReveal direction="up" immediate>
               <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2.5 text-xs font-bold text-white shadow-lg backdrop-blur-md">
                 <span className="status-dot bg-leaf" />Verified Local Caregivers, Managed With Love
@@ -97,18 +97,18 @@ export function MarketingExperience({
               <h1 className="sr-only">Care That Feels Like Family.</h1>
               {/* filter: drop-shadow follows the exact letter shapes — no box, just a soft white glow behind each character */}
               <div
-                className="mt-2 relative inline-block"
+                className="mt-2 relative inline-block w-full min-w-0"
                 aria-hidden="true"
                 style={{
                   filter:
                     "drop-shadow(0 0 6px rgba(255,255,255,0.60)) drop-shadow(0 0 16px rgba(255,255,255,0.38)) drop-shadow(0 0 32px rgba(255,255,255,0.20))",
                 }}
               >
-                <TextReveal text="Care That Feels Like Family." className="max-w-[10ch] font-display text-[3.7rem] font-semibold leading-[0.91] tracking-[-0.065em] text-[#301F30] sm:text-[5.4rem] xl:text-[6.6rem]" delay={0.08} immediate />
+                <TextReveal text="Care That Feels Like Family." className="max-w-[10ch] font-display text-[3.1rem] min-[390px]:text-[3.5rem] font-semibold leading-[0.91] tracking-[-0.065em] text-[#301F30] sm:text-[5.4rem] xl:text-[6.6rem]" delay={0.08} immediate />
               </div>
             </ScrollReveal>
             <ScrollReveal direction="up" delay={0.16} immediate>
-              <p className="mt-7 max-w-xl text-base font-semibold leading-8 text-white drop-shadow-md sm:text-lg">
+              <p className="mt-7 w-full min-w-0 max-w-xl text-base font-semibold leading-8 text-white drop-shadow-md sm:text-lg">
                 Plan local care with clear service context for walks, home visits, grooming and non-emergency veterinary support. Availability and permissions are checked before confirmation.
               </p>
             </ScrollReveal>
@@ -161,7 +161,7 @@ export function MarketingExperience({
             </ScrollReveal>
           </div>
 
-          <div className="hero-match-position relative z-10 w-full lg:max-w-[560px] xl:max-w-[600px] 2xl:max-w-[640px] lg:ml-auto self-center lg:translate-y-[180px] xl:translate-y-[210px] 2xl:translate-y-[225px]">
+          <div className="hero-match-position relative z-10 w-full min-w-0 lg:max-w-[560px] xl:max-w-[600px] 2xl:max-w-[640px] lg:ml-auto self-center lg:translate-y-[180px] xl:translate-y-[210px] 2xl:translate-y-[225px]">
             <ScrollReveal direction="up" delay={0.16} immediate>
               <CareMatchFinder />
             </ScrollReveal>

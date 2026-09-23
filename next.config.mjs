@@ -137,6 +137,16 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: "/how-it-works",
+        destination: "/#how-it-works",
+        permanent: true,
+      },
+      {
+        source: "/howitworks",
+        destination: "/#how-it-works",
+        permanent: true,
+      },
+      {
         source: "/saathis",
         destination: "/caregivers",
         permanent: true,

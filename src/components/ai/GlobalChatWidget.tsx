@@ -14,7 +14,7 @@ export function GlobalChatWidget() {
         aria-label={isOpen ? "Close AI Assistant" : "Open AI Assistant"}
         aria-expanded={isOpen}
         aria-controls="global-chat-panel"
-        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-coral text-paper shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-transform hover:-translate-y-1 hover:shadow-[0_8px_30px_rgb(0,0,0,0.2)] focus:outline-none focus:ring-2 focus:ring-indigo focus:ring-offset-2"
+        className="fixed bottom-22 right-4 sm:bottom-6 sm:right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-coral text-paper shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-transform hover:-translate-y-1 hover:shadow-[0_8px_30px_rgb(0,0,0,0.2)] focus:outline-none focus:ring-2 focus:ring-indigo focus:ring-offset-2"
       >
         {isOpen ? <X className="h-6 w-6" /> : <Bot className="h-6 w-6" />}
       </button>
@@ -22,7 +22,7 @@ export function GlobalChatWidget() {
       {isOpen && (
         <div 
           id="global-chat-panel"
-          className="fixed bottom-24 right-4 left-4 sm:left-auto sm:right-6 z-50 flex h-[600px] max-h-[calc(100vh-8rem)] w-[calc(100vw-2rem)] sm:w-[400px] max-w-[420px] flex-col overflow-hidden rounded-2xl bg-paper shadow-2xl border border-indigo/10"
+          className="fixed bottom-28 sm:bottom-24 right-4 left-4 sm:left-auto sm:right-6 z-50 flex h-[600px] max-h-[calc(100vh-8rem)] w-[calc(100vw-2rem)] sm:w-[400px] max-w-[420px] flex-col overflow-hidden rounded-2xl bg-paper shadow-2xl border border-indigo/10"
         >
           <div className="flex items-center justify-between border-b border-indigo/10 bg-indigo/5 p-4">
             <div className="flex items-center gap-2">

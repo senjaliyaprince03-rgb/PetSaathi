@@ -95,14 +95,14 @@ export function PetSaathiChatWidget() {
         onClick={() => setIsOpen(!isOpen)}
         aria-label={isOpen ? "Close Pet Care Assistant" : "Open Pet Care Assistant"}
         aria-expanded={isOpen}
-        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-600 text-white shadow-xl hover:bg-emerald-700 hover:scale-105 active:scale-95 transition-all focus:outline-none focus:ring-4 focus:ring-emerald-200"
+        className="fixed bottom-22 right-4 sm:bottom-6 sm:right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-600 text-white shadow-xl hover:bg-emerald-700 hover:scale-105 active:scale-95 transition-all focus:outline-none focus:ring-4 focus:ring-emerald-200"
       >
         {isOpen ? <X className="h-6 w-6" /> : <Bot className="h-6 w-6" />}
       </button>
 
       {/* Chat Modal Window */}
       {isOpen && (
-        <div className="fixed bottom-24 right-4 left-4 sm:left-auto sm:right-6 z-50 flex h-[620px] max-h-[85vh] w-[calc(100vw-2rem)] sm:w-[400px] max-w-[420px] flex-col overflow-hidden rounded-3xl bg-white shadow-2xl border border-ink/10">
+        <div className="fixed bottom-28 sm:bottom-24 right-4 left-4 sm:left-auto sm:right-6 z-50 flex h-[620px] max-h-[80vh] w-[calc(100vw-2rem)] sm:w-[400px] max-w-[420px] flex-col overflow-hidden rounded-3xl bg-white shadow-2xl border border-ink/10">
           
           {/* Header */}
           <div className="flex items-center justify-between border-b border-ink/10 bg-emerald-700 text-white px-5 py-4">
