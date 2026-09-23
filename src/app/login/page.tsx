@@ -22,8 +22,6 @@ export const metadata: Metadata = {
 
 type LoginSearchParams = Promise<Record<string, string | string[] | undefined>>;
 
-import { PetSaathiLogo } from "@/components/brand/logo";
-
 export default async function LoginPage({ searchParams }: { searchParams?: LoginSearchParams }) {
   let query: Record<string, string | string[] | undefined> = {};
   try {
@@ -57,9 +55,6 @@ export default async function LoginPage({ searchParams }: { searchParams?: Login
       <ParallaxTotemBackground />
 
       <div className="relative z-10 w-full max-w-[900px]">
-        <div className="mb-6 flex justify-center">
-          <PetSaathiLogo />
-        </div>
 
         {identity && (
           <div className="mb-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-indigo/20 bg-paper/95 px-5 py-3 shadow-sm backdrop-blur">

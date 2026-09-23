@@ -283,9 +283,9 @@ export function AuthSlidingPanel({ returnTo }: { returnTo?: string }) {
   return (
     <>
     {hasGoogleAuth && <Script src="https://accounts.google.com/gsi/client" onReady={renderGoogleButtons} />}
-    <div className="relative flex min-h-[720px] w-full max-w-[900px] overflow-hidden rounded-3xl bg-white shadow-2xl shadow-black/30 sm:min-h-[600px]">
+    <div className="relative flex min-h-[820px] w-full max-w-[900px] overflow-hidden rounded-3xl bg-white shadow-2xl shadow-black/30 sm:min-h-[600px]">
       <div
-        className={`absolute left-0 top-[40%] z-10 flex h-[60%] w-full flex-col justify-center px-6 pt-4 transition-all duration-700 ease-in-out sm:top-0 sm:h-full sm:w-1/2 sm:px-14 sm:pt-0 ${
+        className={`absolute left-0 top-[36%] z-10 flex h-[64%] w-full flex-col justify-center px-6 pt-2 transition-all duration-700 ease-in-out sm:top-0 sm:h-full sm:w-1/2 sm:px-14 sm:pt-0 ${
           isSignUp ? "translate-x-0 opacity-100 pointer-events-auto" : "translate-x-0 opacity-0 invisible pointer-events-none sm:translate-x-[100%]"
         }`}
       >
@@ -344,19 +344,24 @@ export function AuthSlidingPanel({ returnTo }: { returnTo?: string }) {
             <Field aria-label="Email address" autoComplete="email" icon={<Mail />} maxLength={254} name="email" onChange={setEmail} placeholder="Email Address" type="email" value={email} />
             <Field aria-label="Create password" autoComplete="new-password" icon={<Lock />} maxLength={128} minLength={10} name="newPassword" onChange={setPassword} placeholder="Strong Password" type="password" value={password} />
             <SubmitButton pending={pending} label="SIGN UP" color="bg-indigo hover:bg-indigo/90" />
-            {hasGoogleAuth && <div className="relative my-2 flex items-center py-2">
-              <div className="flex-grow border-t border-ink/10"></div>
-              <span className="mx-4 flex-shrink-0 text-xs font-semibold text-ink/80 uppercase">Or continue with</span>
-              <div className="flex-grow border-t border-ink/10"></div>
-            </div>}
-            {hasGoogleAuth && <div ref={googleButtonSignUpRef} className="flex justify-center w-full min-h-[40px]"></div>}
+            {hasGoogleAuth && (
+              <div className="flex flex-col gap-2 mt-2">
+                <div className="relative my-1 flex items-center py-1">
+                  <div className="flex-grow border-t border-ink/10"></div>
+                  <span className="mx-4 flex-shrink-0 text-xs font-semibold text-ink/80 uppercase">Or continue with</span>
+                  <div className="flex-grow border-t border-ink/10"></div>
+                </div>
+                <div ref={googleButtonSignUpRef} className="flex justify-center w-full empty:hidden"></div>
+                <GoogleOAuthButton role={role} returnTo={returnTo} label="Sign up with Google" />
+              </div>
+            )}
           </form>
         )}
         {isSignUp && <Feedback error={error} message={message} />}
       </div>
 
       <div
-        className={`absolute right-0 top-[40%] z-10 flex h-[60%] w-full flex-col justify-center px-6 pt-4 transition-all duration-700 ease-in-out sm:top-0 sm:h-full sm:w-1/2 sm:px-14 sm:pt-0 ${
+        className={`absolute right-0 top-[36%] z-10 flex h-[64%] w-full flex-col justify-center px-6 pt-2 transition-all duration-700 ease-in-out sm:top-0 sm:h-full sm:w-1/2 sm:px-14 sm:pt-0 ${
           isSignUp ? "translate-x-0 opacity-0 invisible pointer-events-none sm:-translate-x-[100%]" : "translate-x-0 opacity-100 pointer-events-auto"
         }`}
       >
@@ -436,19 +441,24 @@ export function AuthSlidingPanel({ returnTo }: { returnTo?: string }) {
           <button type="button" onClick={startEmailCodeLogin} className="text-center text-xs font-bold text-indigo transition hover:text-coral">
             Forgot password? Log in with an email code
           </button>
-          {hasGoogleAuth && <div className="relative my-2 flex items-center py-2">
-            <div className="flex-grow border-t border-ink/10"></div>
-            <span className="mx-4 flex-shrink-0 text-xs font-semibold text-ink/80 uppercase">Or continue with</span>
-            <div className="flex-grow border-t border-ink/10"></div>
-          </div>}
-          {hasGoogleAuth && <div ref={googleButtonSignInRef} className="flex justify-center w-full min-h-[40px]"></div>}
+          {hasGoogleAuth && (
+            <div className="flex flex-col gap-2 mt-2">
+              <div className="relative my-1 flex items-center py-1">
+                <div className="flex-grow border-t border-ink/10"></div>
+                <span className="mx-4 flex-shrink-0 text-xs font-semibold text-ink/80 uppercase">Or continue with</span>
+                <div className="flex-grow border-t border-ink/10"></div>
+              </div>
+              <div ref={googleButtonSignInRef} className="flex justify-center w-full empty:hidden"></div>
+              <GoogleOAuthButton role={role} returnTo={returnTo} label="Sign in with Google" />
+            </div>
+          )}
           </form>
         )}
         {!isSignUp && <Feedback error={error} message={message} />}
       </div>
 
       <div
-        className={`absolute left-0 top-0 z-50 flex h-[40%] w-full flex-col items-center justify-center rounded-b-3xl bg-gradient-to-br from-[#5B3D7A] to-[#301F30] px-6 text-center text-white shadow-[0_0_40px_rgba(91,61,122,0.5)] transition-all duration-700 ease-in-out sm:h-full sm:w-1/2 sm:px-10 ${
+        className={`absolute left-0 top-0 z-50 flex h-[36%] w-full flex-col items-center justify-center rounded-b-3xl bg-gradient-to-br from-[#5B3D7A] to-[#301F30] px-6 text-center text-white shadow-[0_0_40px_rgba(91,61,122,0.5)] transition-all duration-700 ease-in-out sm:h-full sm:w-1/2 sm:px-10 ${
           isSignUp
             ? "sm:translate-x-full sm:rounded-[30%_0_0_30%]"
             : "sm:translate-x-0 sm:rounded-[0_30%_30%_0]"
@@ -536,5 +546,48 @@ function Feedback({ error, message }: { error: string | null; message: string | 
       {error && <p className="mt-4 rounded-xl bg-coral/10 p-3 text-sm font-semibold text-coral" role="alert">{error}</p>}
       {message && <p className="mt-4 rounded-xl bg-leaf/10 p-3 text-sm font-semibold text-leaf" role="status">{message}</p>}
     </>
+  );
+}
+
+function GoogleOAuthButton({ role, returnTo, label }: { role: string; returnTo?: string; label?: string }) {
+  const [targetUrl, setTargetUrl] = useState("/api/auth/google/oauth");
+
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (role) params.set("role", role);
+    let dest = returnTo;
+    if (!dest && typeof window !== "undefined") {
+      const sp = new URLSearchParams(window.location.search).get("returnTo");
+      if (sp) dest = sp;
+    }
+    if (dest) params.set("returnTo", dest);
+    setTargetUrl(`/api/auth/google/oauth?${params.toString()}`);
+  }, [role, returnTo]);
+
+  return (
+    <a
+      href={targetUrl}
+      className="inline-flex w-full items-center justify-center gap-2.5 rounded-xl border border-ink/15 bg-white py-2.5 px-4 text-xs font-bold text-ink shadow-2xs transition-all hover:bg-surface hover:border-ink/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo/40"
+    >
+      <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          fill="#4285F4"
+          d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.65v3.03h3.88c2.27-2.09 3.665-5.17 3.665-9.12z"
+        />
+        <path
+          fill="#34A853"
+          d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.03c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.13C3.26 21.36 7.33 24 12 24z"
+        />
+        <path
+          fill="#FBBC05"
+          d="M5.28 14.29c-.25-.72-.38-1.49-.38-2.29s.13-1.57.38-2.29V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.13z"
+        />
+        <path
+          fill="#EA4335"
+          d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.13c.95-2.83 3.6-4.96 6.72-4.96z"
+        />
+      </svg>
+      <span>{label || "Sign in with Google"}</span>
+    </a>
   );
 }

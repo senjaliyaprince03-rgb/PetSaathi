@@ -2,10 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, User } from "lucide-react";
 import type { Route } from "next";
-
-import { MobileNav } from "@/components/marketing/mobile-nav";
 
 type AppIdentity = {
   displayName: string;
@@ -14,24 +12,19 @@ type AppIdentity = {
 
 export function AuthNav() {
   const [currentUser, setCurrentUser] = useState<AppIdentity | null>(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/auth/session")
+    fetch("/api/auth/me")
       .then(res => res.json())
-      .then(session => {
-        if (session && session.user) {
-          // Approximate the roles since NextAuth session might not have all of them unless configured,
-          // but we can just use a simple check or fetch a specific endpoint.
-          // For now, if we have a session, we show a generic Dashboard link.
+      .then(data => {
+        if (data && data.authenticated && data.user) {
           setCurrentUser({
-            displayName: session.user.name || "User",
-            roles: session.user.roles || []
+            displayName: data.user.displayName || "User",
+            roles: data.user.roles || []
           });
         }
-        setLoading(false);
       })
-      .catch(() => setLoading(false));
+      .catch(() => {});
   }, []);
 
   const dashboardUrl = currentUser
@@ -42,20 +35,20 @@ export function AuthNav() {
       : "/dashboard"
     : "/dashboard";
 
-
   return (
     <div className="flex items-center gap-3">
       {currentUser ? (
-        <div className="flex items-center gap-3">
+        <div className="hidden sm:flex items-center gap-3">
           <Link
             href={dashboardUrl as Route}
-            className="hidden text-sm font-bold text-indigo transition hover:underline sm:block"
+            className="inline-flex items-center gap-1.5 text-sm font-bold text-indigo transition hover:underline"
           >
-            Dashboard ({currentUser.displayName.split(" ")[0]})
+            <User className="h-3.5 w-3.5" />
+            <span>Dashboard ({currentUser.displayName.split(" ")[0]})</span>
           </Link>
           <Link
             href={"/api/auth/signout" as Route}
-            className="hidden text-xs font-semibold text-ink/60 transition hover:text-coral sm:block"
+            className="text-xs font-semibold text-ink/60 transition hover:text-coral"
           >
             Sign out
           </Link>
@@ -72,7 +65,6 @@ export function AuthNav() {
         <span>Find Care &amp; Book</span>
         <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
       </Link>
-      <MobileNav />
     </div>
   );
 }
