@@ -3,12 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, BadgeCheck, Clock3, LockKeyhole, Repeat2, ShieldCheck, Users } from "lucide-react";
 
-import { CustomerSubscriptionActions } from "@/components/portal/customer-subscription-actions";
 import { PublicShell } from "@/components/marketing/public-shell";
 import { buttonVariants } from "@/components/ui/button";
-import { isDatabaseConfigured, prisma } from "@/lib/db";
-import { getCurrentIdentity } from "@/modules/auth/session";
-import { isFeatureEnabled } from "@/modules/features/server";
 
 export const metadata: Metadata = { 
   title: "Membership & Care Passes", 
@@ -24,7 +20,6 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true } 
 };
-export const dynamic = "force-dynamic";
 
 const membershipBenefits = [
   {
@@ -56,33 +51,7 @@ const membershipSteps = [
   ["04", "Keep it steady", "Once active, the routine can be managed with less effort."],
 ] as const;
 
-export default async function MembershipPage() {
-  let enabled = false;
-  let identity = null;
-  let plans: Array<{
-    id: string;
-    name: string;
-    audience: string;
-    pricePaise: number;
-    billingInterval: string;
-    entitlements: any;
-  }> = [];
-
-  try {
-    enabled = await isFeatureEnabled("subscriptions").catch(() => false);
-    identity = await getCurrentIdentity().catch(() => null);
-    if (enabled && isDatabaseConfigured()) {
-      plans = await prisma.planVersion.findMany({
-        where: { active: true, providerPlanId: { not: null } },
-        orderBy: { pricePaise: "asc" },
-        take: 50,
-        select: { id: true, name: true, audience: true, pricePaise: true, billingInterval: true, entitlements: true }
-      }).catch(() => []);
-    }
-  } catch {
-    // Non-blocking fallback for unconfigured environments
-  }
-
+export default function MembershipPage() {
   return (
     <PublicShell>
       {/* 1. FULL-BLEED HERO BANNER (LEFT ALIGNED) */}
@@ -200,112 +169,86 @@ export default async function MembershipPage() {
             </div>
           </div>
 
-          {plans.length > 0 ? (
-            <div className="mt-10 grid gap-8 lg:grid-cols-3">
-              {plans.map((plan) => (
-                <article key={plan.id} className="rounded-[2.5rem] border border-ink/10 bg-paper p-8 shadow-lifted">
-                  <Repeat2 className="h-7 w-7 text-indigo" />
-                  <p className="mt-8 text-xs font-bold uppercase tracking-[0.17em] text-ink/80">{plan.audience}</p>
-                  <h2 className="mt-2 font-display text-4xl font-semibold">{plan.name}</h2>
-                  <p className="mt-5 font-display text-2xl font-semibold text-ink">
-                    Pricing coming soon
-                  </p>
-                  <div className="mt-5 flex items-start gap-2 text-sm text-ink/80">
-                    <BadgeCheck className="mt-0.5 h-4 w-4 shrink-0 text-leaf" />
-                    Entitlements are ledger-backed and activate only after a verified provider webhook.
+          <div className="mt-12">
+            <div className="text-center">
+              <span className="text-xs font-bold uppercase tracking-widest text-indigo font-outfit">Upcoming Pass Tiers</span>
+              <h3 className="mt-2 font-display text-3xl font-bold text-ink">Preview Membership Plans</h3>
+              <p className="mt-2 text-sm text-ink/70 max-w-xl mx-auto">
+                Fixed predictable monthly rates for recurring care routines in launched society clusters.
+              </p>
+            </div>
+            <div className="mt-8 grid gap-6 md:grid-cols-3">
+              {[
+                {
+                  name: "Care Pass Starter",
+                  audience: "Working Pet Parents",
+                  price: "Pricing coming soon",
+                  badge: "Most Popular",
+                  features: [
+                    "8 Scheduled Routine Walks / Visits",
+                    "Dedicated Primary Saathi + Vetted Backup",
+                    "Zero Booking or Peak Surcharge Fees",
+                    "Real-Time Milestone Photos & GPS Route"
+                  ]
+                },
+                {
+                  name: "Daily Routine Pass",
+                  audience: "Active Canine Routines",
+                  price: "Pricing coming soon",
+                  badge: "Best Value",
+                  features: [
+                    "24 Monthly Care Outings or Sitting Sessions",
+                    "Dedicated Primary Saathi Pairing",
+                    "Free Rollover of Unused Sessions (Up to 4)",
+                    "Priority Clinical & Vet Dispatch Access"
+                  ]
+                },
+                {
+                  name: "Society VIP Concierge",
+                  audience: "Multi-Pet Households",
+                  price: "Pricing coming soon",
+                  badge: "All-Inclusive",
+                  features: [
+                    "Unlimited Priority Dispatch Scheduling",
+                    "Multi-Pet Household Coverage (Up to 3 Pets)",
+                    "Priority Holiday Boarding Host Allocation",
+                    "Direct Senior Ops Supervisor Support"
+                  ]
+                }
+              ].map((tier) => (
+                <article key={tier.name} className="flex flex-col justify-between rounded-[2.5rem] border border-ink/10 bg-paper p-8 shadow-lifted transition hover:-translate-y-1 hover:border-indigo/30">
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-[0.68rem] font-bold uppercase tracking-wider text-indigo bg-indigo/10 px-3 py-1 rounded-full">
+                        {tier.badge}
+                      </span>
+                      <Repeat2 className="h-5 w-5 text-ink/40" />
+                    </div>
+                    <h4 className="mt-4 font-display text-2xl font-bold text-ink">{tier.name}</h4>
+                    <p className="text-xs text-ink/60 font-medium mt-1">{tier.audience}</p>
+                    <div className="mt-4 flex items-baseline gap-1">
+                      <span className="font-display text-xl font-bold text-ink">{tier.price}</span>
+                      <span className="text-xs font-medium text-ink/60">(society launch)</span>
+                    </div>
+                    <ul className="mt-6 space-y-2.5 text-xs text-ink/80 border-t border-ink/10 pt-6">
+                      {tier.features.map((feat) => (
+                        <li key={feat} className="flex items-start gap-2">
+                          <BadgeCheck className="h-4 w-4 shrink-0 text-leaf mt-0.5" />
+                          <span>{feat}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  {identity ? (
-                    <CustomerSubscriptionActions planVersionId={plan.id} />
-                  ) : (
-                    <Link href={`/login?returnTo=/membership`} className={`${buttonVariants({ variant: "accent" })} mt-7 block text-center w-full rounded-2xl`}>
-                      Sign in to continue
-                    </Link>
-                  )}
+                  <Link
+                    href={"/contact?topic=SOCIETY_PARTNERSHIP" as Route}
+                    className="mt-8 block text-center w-full rounded-full bg-ink py-3 text-xs font-bold text-paper transition hover:bg-ink/90 shadow-sm"
+                  >
+                    Request Early Access
+                  </Link>
                 </article>
               ))}
             </div>
-          ) : (
-            <div className="mt-12">
-              <div className="text-center">
-                <span className="text-xs font-bold uppercase tracking-widest text-indigo font-outfit">Upcoming Pass Tiers</span>
-                <h3 className="mt-2 font-display text-3xl font-bold text-ink">Preview Membership Plans</h3>
-                <p className="mt-2 text-sm text-ink/70 max-w-xl mx-auto">
-                  Fixed predictable monthly rates for recurring care routines in launched society clusters.
-                </p>
-              </div>
-              <div className="mt-8 grid gap-6 md:grid-cols-3">
-                {[
-                  {
-                    name: "Care Pass Starter",
-                    audience: "Working Pet Parents",
-                    price: "Pricing coming soon",
-                    badge: "Most Popular",
-                    features: [
-                      "8 Scheduled Routine Walks / Visits",
-                      "Dedicated Primary Saathi + Vetted Backup",
-                      "Zero Booking or Peak Surcharge Fees",
-                      "Real-Time Milestone Photos & GPS Route"
-                    ]
-                  },
-                  {
-                    name: "Daily Routine Pass",
-                    audience: "Active Canine Routines",
-                    price: "Pricing coming soon",
-                    badge: "Best Value",
-                    features: [
-                      "24 Monthly Care Outings or Sitting Sessions",
-                      "Dedicated Primary Saathi Pairing",
-                      "Free Rollover of Unused Sessions (Up to 4)",
-                      "Priority Clinical & Vet Dispatch Access"
-                    ]
-                  },
-                  {
-                    name: "Society VIP Concierge",
-                    audience: "Multi-Pet Households",
-                    price: "Pricing coming soon",
-                    badge: "All-Inclusive",
-                    features: [
-                      "Unlimited Priority Dispatch Scheduling",
-                      "Multi-Pet Household Coverage (Up to 3 Pets)",
-                      "Priority Holiday Boarding Host Allocation",
-                      "Direct Senior Ops Supervisor Support"
-                    ]
-                  }
-                ].map((tier) => (
-                  <article key={tier.name} className="flex flex-col justify-between rounded-[2.5rem] border border-ink/10 bg-paper p-8 shadow-lifted transition hover:-translate-y-1 hover:border-indigo/30">
-                    <div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-[0.68rem] font-bold uppercase tracking-wider text-indigo bg-indigo/10 px-3 py-1 rounded-full">
-                          {tier.badge}
-                        </span>
-                        <Repeat2 className="h-5 w-5 text-ink/40" />
-                      </div>
-                      <h4 className="mt-4 font-display text-2xl font-bold text-ink">{tier.name}</h4>
-                      <p className="text-xs text-ink/60 font-medium mt-1">{tier.audience}</p>
-                      <div className="mt-4 flex items-baseline gap-1">
-                        <span className="font-display text-xl font-bold text-ink">{tier.price}</span>
-                        <span className="text-xs font-medium text-ink/60">(society launch)</span>
-                      </div>
-                      <ul className="mt-6 space-y-2.5 text-xs text-ink/80 border-t border-ink/10 pt-6">
-                        {tier.features.map((feat) => (
-                          <li key={feat} className="flex items-start gap-2">
-                            <BadgeCheck className="h-4 w-4 shrink-0 text-leaf mt-0.5" />
-                            <span>{feat}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <Link
-                      href={"/contact?topic=SOCIETY_PARTNERSHIP" as Route}
-                      className="mt-8 block text-center w-full rounded-full bg-ink py-3 text-xs font-bold text-paper transition hover:bg-ink/90 shadow-sm"
-                    >
-                      Request Early Access
-                    </Link>
-                  </article>
-                ))}
-              </div>
-            </div>
-          )}
+          </div>
 
           <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             {membershipBenefits.map(({ icon: Icon, title, copy }) => (

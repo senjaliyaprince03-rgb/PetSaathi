@@ -27,7 +27,7 @@ export default async function LoginPage({ searchParams }: { searchParams?: Login
   const rawReturnTo = Array.isArray(query.returnTo) ? query.returnTo[0] : query.returnTo;
   const returnTo = sanitizeReturnTo(rawReturnTo);
 
-  const identity = await getCurrentIdentity();
+  const identity = await getCurrentIdentity().catch(() => null);
   const defaultDashboardUrl = identity
     ? identity.roles.includes("SUPER_ADMIN") || identity.roles.includes("OPERATIONS_ADMIN")
       ? "/admin"

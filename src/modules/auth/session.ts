@@ -1,9 +1,10 @@
 import type { AccountStatus, Role } from "@prisma/client";
-import { getServerSession } from "next-auth";
+import { decode } from "next-auth/jwt";
+import { cookies, headers } from "next/headers";
 
 import { isDatabaseConfigured, prisma } from "@/lib/db";
 import { currentSessionUserId } from "@/modules/auth/mongodb-auth";
-import { authOptions } from "@/lib/auth";
+import { getAuthSecret } from "@/lib/auth-secret";
 
 export type AppIdentity = {
   id: string;
@@ -25,7 +26,6 @@ export async function getCurrentIdentity(request?: Request): Promise<AppIdentity
       }
       if (!userId) {
         try {
-          const { headers } = await import("next/headers");
           const headerStore = await headers();
           const testUser = headerStore.get("x-test-user-id");
           if (testUser) userId = testUser;
@@ -35,22 +35,32 @@ export async function getCurrentIdentity(request?: Request): Promise<AppIdentity
       }
     }
 
-    if (!userId) {
-      try {
-        const nextAuthSession = await getServerSession(authOptions);
-        if (nextAuthSession?.user && (nextAuthSession.user as any).id) {
-          userId = (nextAuthSession.user as any).id;
-        }
-      } catch {
-        // NextAuth session resolution skipped or not present
-      }
-    }
-
+    // 1. Check native MongoDB session cookie
     if (!userId) {
       try {
         userId = await currentSessionUserId();
       } catch {
         // cookies() unavailable outside request scope
+      }
+    }
+
+    // 2. Check NextAuth JWT token safely via decode()
+    if (!userId) {
+      try {
+        const cookieStore = await cookies();
+        const cookieToken =
+          cookieStore.get(process.env.NODE_ENV === "production" ? "__Secure-next-auth.session-token" : "next-auth.session-token")?.value ??
+          cookieStore.get("next-auth.session-token")?.value;
+
+        if (cookieToken) {
+          const secret = getAuthSecret();
+          const decoded = await decode({ token: cookieToken, secret });
+          if (decoded && (decoded.id || decoded.sub)) {
+            userId = (decoded.id as string) || (decoded.sub as string);
+          }
+        }
+      } catch {
+        // NextAuth token decode fallback
       }
     }
 

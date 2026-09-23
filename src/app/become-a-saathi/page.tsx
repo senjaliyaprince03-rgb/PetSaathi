@@ -3,7 +3,6 @@ import { BadgeCheck, CalendarDays, Clock3, MapPin, ShieldCheck, Users } from "lu
 
 import { SitterApplication } from "@/components/forms/sitter-application";
 import { PageIntro, PublicShell } from "@/components/marketing/public-shell";
-import { getCurrentIdentity } from "@/modules/auth/session";
 
 export const metadata: Metadata = { 
   title: "Become a Certified Saathi Caregiver",
@@ -20,8 +19,7 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true }
 };
 
-export default async function BecomeASaathiPage() {
-  const identity = await getCurrentIdentity().catch(() => null);
+export default function BecomeASaathiPage() {
   const steps = [
     ["01", "Tell your story", "Experience, locality and the kind of care you can responsibly offer."],
     ["02", "Complete checks", "Identity, training and practical assessment are reviewed independently."],
@@ -124,7 +122,7 @@ export default async function BecomeASaathiPage() {
         </section>
 
         <div className="mt-8">
-          <SitterApplication authenticated={Boolean(identity)} />
+          <SitterApplication />
         </div>
 
         <section className="mt-8 grid gap-4 md:grid-cols-3">

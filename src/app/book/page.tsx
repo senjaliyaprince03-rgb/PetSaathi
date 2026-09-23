@@ -59,7 +59,7 @@ export default async function BookPage({ searchParams }: { searchParams: BookSea
   const initialPetType = validPetTypes.includes(requestedPetType as (typeof validPetTypes)[number])
     ? (requestedPetType as (typeof validPetTypes)[number])
     : undefined;
-  const identity = await getCurrentIdentity();
+  const identity = await getCurrentIdentity().catch(() => null);
   if (!identity?.roles.includes("CUSTOMER")) return <PublicShell><PageIntro eyebrow="care protocol request" title="Let’s plan the right kind of care." description="Start with the service, your pet and the time. A suitable Saathi is proposed only after eligibility and local availability are checked." /><div className="container-shell"><CareProtocolGuide /><BookingWizard initialValues={{ service: initialService, petType: initialPetType, locality: requestedLocality }} requestBoarding={requestBoarding} /></div></PublicShell>;
 
   const now = new Date();

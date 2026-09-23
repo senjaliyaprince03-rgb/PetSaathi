@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowRight, Check, HeartHandshake, LoaderCircle, LockKeyhole } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import type { z } from "zod";
 
@@ -13,12 +13,27 @@ import { sitterApplicationSchema } from "@/modules/sitters/application-input";
 type ApplicationInput = z.infer<typeof sitterApplicationSchema>;
 const serviceOptions = [["DOG_WALK_30", "30-minute walks"], ["DOG_WALK_60", "60-minute walks"], ["HOME_VISIT", "Home visits"], ["HOME_SITTING_60", "Pet sitting"], ["BOARDING_BETA", "Boarding beta interest"], ["GROOMING_HOME", "Grooming-at-Home"], ["VET_SUPPORT", "Veterinary Support"], ["TRAINING_ASSESSMENT", "Dog Training"]] as const;
 
-export function SitterApplication({ authenticated }: { authenticated: boolean }) {
+export function SitterApplication({ authenticated = false }: { authenticated?: boolean }) {
   const [sent, setSent] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
+  const [isAuth, setIsAuth] = useState(authenticated);
+
+  useEffect(() => {
+    if (!authenticated) {
+      fetch("/api/auth/session")
+        .then((res) => res.json())
+        .then((session) => {
+          if (session?.user) {
+            setIsAuth(true);
+          }
+        })
+        .catch(() => {});
+    }
+  }, [authenticated]);
+
   const form = useForm<ApplicationInput>({ resolver: zodResolver(sitterApplicationSchema), defaultValues: { locality: "Bopal", yearsExperience: 0, services: [], motivation: "" } });
 
-  if (!authenticated) return <div className="glass-panel mx-auto max-w-2xl rounded-5xl p-9 text-center"><LockKeyhole className="mx-auto h-10 w-10 text-indigo" /><h2 className="mt-5 font-display text-4xl font-semibold">Sign in before applying.</h2><p className="mt-4 leading-7 text-ink/80">One verified identity can hold both pet-parent and caregiver roles, while each workspace keeps separate permissions.</p><Link href="/login?returnTo=/become-a-saathi" className={`${buttonVariants({ variant: "accent" })} mt-7`}>Sign in securely</Link></div>;
+  if (!isAuth) return <div className="glass-panel mx-auto max-w-2xl rounded-5xl p-9 text-center"><LockKeyhole className="mx-auto h-10 w-10 text-indigo" /><h2 className="mt-5 font-display text-4xl font-semibold">Sign in before applying.</h2><p className="mt-4 leading-7 text-ink/80">One verified identity can hold both pet-parent and caregiver roles, while each workspace keeps separate permissions.</p><Link href="/login?returnTo=/become-a-saathi" className={`${buttonVariants({ variant: "accent" })} mt-7`}>Sign in securely</Link></div>;
   if (sent) return <div className="glass-panel mx-auto max-w-2xl rounded-5xl p-10 text-center"><Check className="mx-auto h-12 w-12 text-leaf" /><h2 className="mt-5 font-display text-4xl font-semibold">Application received.</h2><p className="mt-4 leading-7 text-ink/80">Identity, interview, training and service permissions are reviewed separately. Nothing has been published publicly.</p><Link href="/saathi" className={`${buttonVariants({ variant: "accent" })} mt-7`}>Open Saathi workspace</Link></div>;
 
   async function submit(values: ApplicationInput) {
