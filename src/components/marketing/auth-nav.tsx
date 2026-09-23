@@ -42,15 +42,6 @@ export function AuthNav() {
       : "/dashboard"
     : "/dashboard";
 
-  if (loading) {
-    return (
-      <div className="flex items-center gap-3">
-        <div className="h-9 w-20 animate-pulse rounded-full bg-indigo/10" />
-        <div className="h-10 w-28 animate-pulse rounded-full bg-indigo/20" />
-        <MobileNav />
-      </div>
-    );
-  }
 
   return (
     <div className="flex items-center gap-3">

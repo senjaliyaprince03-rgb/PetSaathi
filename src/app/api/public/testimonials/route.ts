@@ -21,7 +21,7 @@ export async function GET(request: Request) {
   if (!isDatabaseConfigured()) {
     return NextResponse.json(
       { stories: [], enabled: false },
-      { headers: { "Cache-Control": "no-store" } },
+      { headers: { "Cache-Control": "public, s-maxage=600, stale-while-revalidate=3600" } },
     );
   }
 
@@ -53,7 +53,7 @@ export async function GET(request: Request) {
     if (!flag?.enabled) {
       return NextResponse.json(
         { stories: [], enabled: false },
-        { headers: { "Cache-Control": "no-store" } },
+        { headers: { "Cache-Control": "public, s-maxage=600, stale-while-revalidate=3600" } },
       );
     }
 
@@ -117,7 +117,7 @@ export async function GET(request: Request) {
 
     return NextResponse.json(
       { stories, enabled: true },
-      { headers: { "Cache-Control": "no-store" } },
+      { headers: { "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400" } },
     );
   } catch (error) {
     logger.exception("testimonial.public_feed_failed", error);

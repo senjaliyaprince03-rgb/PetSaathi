@@ -83,6 +83,32 @@ export async function middleware(request: NextRequest) {
     }
   }
 
+  // Fast-path for public static marketing pages (sub-millisecond edge bypass)
+  const pathname = request.nextUrl.pathname;
+  const isPublicMarketingRoute =
+    pathname === "/" ||
+    pathname === "/services" ||
+    pathname.startsWith("/services/") ||
+    pathname === "/caregivers" ||
+    pathname === "/saathis" ||
+    pathname === "/become-a-saathi" ||
+    pathname === "/safety" ||
+    pathname === "/societies" ||
+    pathname === "/membership" ||
+    pathname === "/about" ||
+    pathname === "/journal" ||
+    pathname.startsWith("/journal/") ||
+    pathname === "/contact" ||
+    pathname === "/privacy" ||
+    pathname === "/privacy-policy" ||
+    pathname === "/refund-policy" ||
+    pathname === "/terms" ||
+    pathname === "/offline";
+
+  if (isPublicMarketingRoute && (!subdomain || subdomain === "www" || !hostname.includes(rootDomain))) {
+    return NextResponse.next();
+  }
+
   const nonce = crypto.randomUUID();
   const cspHeader = `
     default-src 'self';
