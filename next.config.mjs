@@ -156,6 +156,36 @@ const nextConfig = {
         destination: "/caregivers",
         permanent: true,
       },
+      {
+        source: "/Become-a-saathi",
+        destination: "/become-a-saathi",
+        permanent: true,
+      },
+      {
+        source: "/Become-A-Saathi",
+        destination: "/become-a-saathi",
+        permanent: true,
+      },
+      {
+        source: "/become-saathi",
+        destination: "/become-a-saathi",
+        permanent: true,
+      },
+      {
+        source: "/careers",
+        destination: "/become-a-saathi",
+        permanent: true,
+      },
+      {
+        source: "/Safety",
+        destination: "/safety",
+        permanent: true,
+      },
+      {
+        source: "/safety-and-trust",
+        destination: "/safety",
+        permanent: true,
+      },
     ];
   },
 };

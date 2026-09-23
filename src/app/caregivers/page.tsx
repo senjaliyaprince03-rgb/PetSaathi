@@ -33,6 +33,16 @@ export default function CaregiversPage() {
 
         <div className="container-shell relative flex h-full flex-col justify-center pb-10 pt-28 sm:pt-32">
           <div className="max-w-xl md:max-w-2xl text-left items-start flex flex-col">
+            {/* Dual Pathway Switcher: Find a Saathi vs Become a Saathi */}
+            <div className="inline-flex items-center gap-1.5 p-1 rounded-full bg-paper/20 backdrop-blur-md border border-white/20 mb-5">
+              <span className="px-3.5 py-1 rounded-full bg-paper text-ink font-bold text-xs shadow-sm">
+                Find a Saathi
+              </span>
+              <Link href="/become-a-saathi" className="px-3.5 py-1 rounded-full text-paper/80 hover:text-white font-medium text-xs transition">
+                Become a Saathi →
+              </Link>
+            </div>
+
             <span className="inline-flex items-center gap-2 rounded-full border border-saffron/40 bg-saffron/20 px-4 py-1.5 text-[0.68rem] font-bold uppercase tracking-[0.2em] text-saffron backdrop-blur-md font-outfit">
               <BadgeCheck className="h-3.5 w-3.5" /> Assisted Caregiver Discovery
             </span>
@@ -103,6 +113,59 @@ export default function CaregiversPage() {
             <Link href="/book" className={`${buttonVariants({ variant: "accent", size: "lg" })} mt-7 font-outfit rounded-full px-8 shadow-lifted`}>
               Start a care request <ArrowRight className="h-4 w-4 ml-1" />
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. BECOME A SAATHI MERGED PATHWAY */}
+      <section className="bg-paper pb-28 pt-4">
+        <div className="container-shell">
+          <div className="relative overflow-hidden rounded-[2.5rem] bg-[#281d2b] p-8 text-paper shadow-lifted sm:p-12 lg:p-14">
+            <div className="pointer-events-none absolute -right-20 -top-20 h-80 w-80 rounded-full bg-saffron/20 blur-3xl" />
+            <div className="pointer-events-none absolute -left-20 -bottom-20 h-80 w-80 rounded-full bg-coral/20 blur-3xl" />
+
+            <div className="relative z-10 grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+              <div>
+                <span className="inline-flex items-center gap-2 rounded-full border border-saffron/40 bg-saffron/15 px-4 py-1.5 text-[0.68rem] font-bold uppercase tracking-[0.2em] text-saffron">
+                  <BadgeCheck className="h-3.5 w-3.5" /> Caregiver Partnership
+                </span>
+                <h2 className="mt-5 font-display text-3xl font-bold tracking-[-0.04em] sm:text-5xl">
+                  Passionate about pets? Become a certified Saathi.
+                </h2>
+                <p className="mt-4 max-w-xl text-sm sm:text-base leading-7 text-paper/80">
+                  Join India’s premier managed pet care collective. Enjoy flexible routines, weekly direct bank transfers, full ₹50,000 emergency veterinary assistance coordination, and verified local society bookings.
+                </p>
+
+                <div className="mt-8 flex flex-wrap gap-4">
+                  <Link
+                    href="/become-a-saathi"
+                    className={buttonVariants({ variant: "accent", size: "lg", className: "rounded-full px-8 font-outfit shadow-lifted" })}
+                  >
+                    Apply as a Saathi <ArrowRight className="h-4 w-4 ml-1" />
+                  </Link>
+                  <Link
+                    href={"/contact?topic=BECOME_A_PARTNER" as any}
+                    className="inline-flex items-center gap-2 rounded-full border border-paper/20 bg-paper/10 px-6 py-3 text-sm font-semibold text-paper backdrop-blur-sm transition hover:bg-paper/20"
+                  >
+                    Partner Inquiries
+                  </Link>
+                </div>
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                {[
+                  ["Flexible Schedule", "You choose the hours, societies, and service types you prefer."],
+                  ["Weekly Payouts", "Reliable direct bank deposits every week with zero surprise deductions."],
+                  ["Safety Protection", "Dedicated ops leads and emergency veterinary escalation support."],
+                  ["Verified Societies", "Safe, gated residential communities with verified pet parents."]
+                ].map(([title, desc]) => (
+                  <div key={title} className="rounded-3xl border border-paper/10 bg-paper/[0.05] p-5">
+                    <p className="font-display text-lg font-bold text-saffron">{title}</p>
+                    <p className="mt-2 text-xs leading-5 text-paper/80">{desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>

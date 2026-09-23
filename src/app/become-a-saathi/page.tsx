@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
-import { BadgeCheck, CalendarDays, Clock3, MapPin, ShieldCheck, Users } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, BadgeCheck, CalendarDays, CheckCircle2, Clock3, MapPin, ShieldCheck, Sparkles, Users } from "lucide-react";
 
 import { SitterApplication } from "@/components/forms/sitter-application";
-import { PageIntro, PublicShell } from "@/components/marketing/public-shell";
+import { PublicShell } from "@/components/marketing/public-shell";
+import { buttonVariants } from "@/components/ui/button";
 
 export const metadata: Metadata = { 
   title: "Become a Certified Saathi Caregiver",
@@ -18,6 +21,8 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true }
 };
+
+export const revalidate = 86400;
 
 export default function BecomeASaathiPage() {
   const steps = [
@@ -51,102 +56,153 @@ export default function BecomeASaathiPage() {
 
   return (
     <PublicShell>
-      <PageIntro
-        eyebrow="Saathi onboarding"
-        title="Earn trust one service at a time."
-        description="A considered path for people who treat pet care as a responsibility, not a gig."
-      />
+      {/* 1. FULL-BLEED LUXURY HERO BANNER */}
+      <section className="relative h-[480px] sm:h-[560px] lg:h-[620px] w-full overflow-hidden bg-ink text-paper">
+        <Image
+          src="/images/hero-care-handover-highres.webp"
+          alt="Certified PetSaathi caregiver enjoying playtime with a happy Golden Retriever"
+          fill
+          priority
+          fetchPriority="high"
+          sizes="100vw"
+          className="object-cover object-[65%_center] sm:object-[60%_center] lg:object-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/65 to-transparent md:w-3/4" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent" />
 
-      <div className="container-shell">
-        <section className="mb-8 grid gap-3 rounded-5xl border border-indigo/10 bg-gradient-to-br from-[#f3eafa] via-paper to-[#fff0e8] p-5 shadow-soft md:grid-cols-2 xl:grid-cols-4">
-          {steps.map(([number, title, copy]) => (
-            <article key={number} className="rounded-3xl bg-paper/80 p-5">
-              <p className="font-display text-3xl font-semibold text-coral">{number}</p>
-              <h2 className="mt-4 font-display text-2xl font-semibold">{title}</h2>
-              <p className="mt-2 text-sm leading-6 text-ink/80">{copy}</p>
-            </article>
-          ))}
-        </section>
+        <div className="container-shell relative flex h-full flex-col justify-center pb-10 pt-28 sm:pt-32">
+          <div className="max-w-xl md:max-w-2xl text-left items-start flex flex-col">
+            {/* Dual Pathway Switcher: Find a Saathi vs Become a Saathi */}
+            <div className="inline-flex items-center gap-1.5 p-1 rounded-full bg-paper/20 backdrop-blur-md border border-white/20 mb-5">
+              <Link href="/caregivers" className="px-3.5 py-1 rounded-full text-paper/80 hover:text-white font-medium text-xs transition">
+                Find a Saathi
+              </Link>
+              <span className="px-3.5 py-1 rounded-full bg-paper text-ink font-bold text-xs shadow-sm">
+                Become a Saathi
+              </span>
+            </div>
 
-        <section className="grid gap-5 lg:grid-cols-[1.05fr_0.95fr]">
-          <article className="rounded-5xl bg-[#281d2b] p-8 text-paper shadow-lifted">
-            <span className="inline-flex items-center gap-2 rounded-full border border-saffron/40 bg-saffron/15 px-4 py-1.5 text-[0.68rem] font-bold uppercase tracking-[0.2em] text-saffron">
-              <BadgeCheck className="h-3.5 w-3.5" />
-              What we look for
+            <span className="inline-flex items-center gap-2 rounded-full border border-saffron/40 bg-saffron/20 px-4 py-1.5 text-[0.68rem] font-bold uppercase tracking-[0.2em] text-saffron backdrop-blur-md font-outfit">
+              <BadgeCheck className="h-3.5 w-3.5" /> Certified Caregiver Network
             </span>
-            <h2 className="mt-5 font-display text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">
-              A Saathi is chosen carefully, not quickly.
-            </h2>
-            <p className="mt-4 max-w-xl text-sm leading-7 text-paper/80">
-              The application is meant to collect only the details needed to judge
-              whether someone is ready for real pet care work.
+            <h1 className="mt-5 font-display text-4xl font-bold tracking-tight text-paper sm:text-6xl sm:leading-[1.1]">
+              BECOME A CERTIFIED SAATHI
+            </h1>
+            <p className="mt-4 max-w-xl text-sm sm:text-base font-medium leading-7 text-paper/85">
+              Turn your genuine love for pets into a respected, high-earning profession. Earn competitive pay with weekly payouts, verified gated society bookings, and emergency vet assistance.
             </p>
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              {reviewPoints.map(({ icon: Icon, title, copy }) => (
-                <div key={title} className="rounded-3xl border border-paper/10 bg-paper/[0.05] p-5">
-                  <Icon className="h-6 w-6 text-saffron" />
-                  <h3 className="mt-4 font-display text-xl font-semibold">{title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-paper/80">{copy}</p>
-                </div>
-              ))}
-            </div>
-          </article>
 
-          <article className="rounded-5xl border border-indigo/10 bg-paper p-8 shadow-lifted">
-            <span className="inline-flex items-center gap-2 rounded-full border border-coral/20 bg-coral/10 px-4 py-1.5 text-[0.68rem] font-bold uppercase tracking-[0.2em] text-coral-text">
-              <CalendarDays className="h-3.5 w-3.5" />
-              Prerequisites & Standards
-            </span>
-            <h2 className="mt-5 font-display text-3xl font-semibold tracking-[-0.04em]">
-              What you need before applying.
-            </h2>
-            <div className="mt-7 grid gap-4">
-              {[
-                ["Aadhaar / Photo ID", "Valid government ID with permanent and local address verification."],
-                ["Handling Experience", "Demonstrated hands-on experience handling dogs, cats, or both breeds."],
-                ["Character References", "Two verifiable professional or personal references vetted by ops."],
-                ["Conduct Pledge", "Adherence to zero phone distractions, punctuality, and live session updates."]
-              ].map(([title, copy], idx) => (
-                <div key={title} className="flex gap-4 rounded-3xl border border-ink/10 bg-cream/40 p-5">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-indigo/10 font-display text-sm font-bold text-indigo">
-                    0{idx + 1}
-                  </div>
-                  <div>
-                    <h3 className="font-display text-lg font-semibold">{title}</h3>
-                    <p className="mt-1 text-xs leading-5 text-ink/80">{copy}</p>
-                  </div>
-                </div>
-              ))}
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <a
+                href="#apply-form"
+                className={buttonVariants({ variant: "accent", size: "lg", className: "rounded-full px-8 font-outfit shadow-lifted" })}
+              >
+                Start Application <ArrowRight className="h-4 w-4 ml-1" />
+              </a>
+              <a
+                href="#standards"
+                className="inline-flex items-center gap-2 rounded-full border border-paper/30 bg-paper/10 px-6 py-3 text-sm font-semibold text-paper backdrop-blur-sm transition hover:bg-paper/20"
+              >
+                Review Prerequisites
+              </a>
             </div>
-          </article>
-        </section>
-
-        <div className="mt-8">
-          <SitterApplication />
+          </div>
         </div>
+      </section>
 
-        <section className="mt-8 grid gap-4 md:grid-cols-3">
-          {[
-            {
-              title: "Real responsibility",
-              copy: "Only people who can handle pet care carefully should move ahead.",
-            },
-            {
-              title: "Safer matching",
-              copy: "The system keeps permissions narrow so the right jobs reach the right person.",
-            },
-            {
-              title: "Clear next step",
-              copy: "After submission, the process stays simple and easy to review.",
-            },
-          ].map((card) => (
-            <article key={card.title} className="rounded-4xl border border-indigo/10 bg-paper p-6 shadow-soft">
-              <h3 className="font-display text-2xl font-semibold">{card.title}</h3>
-              <p className="mt-3 text-sm leading-7 text-ink/80">{card.copy}</p>
+      {/* 2. ONBOARDING STEPS */}
+      <section className="bg-paper pb-16 pt-16" id="standards">
+        <div className="container-shell">
+          <div className="mb-8 grid gap-3 rounded-5xl border border-indigo/10 bg-gradient-to-br from-[#f3eafa] via-paper to-[#fff0e8] p-5 shadow-soft md:grid-cols-2 xl:grid-cols-4">
+            {steps.map(([number, title, copy]) => (
+              <article key={number} className="rounded-3xl bg-paper/80 p-5">
+                <p className="font-display text-3xl font-semibold text-coral">{number}</p>
+                <h2 className="mt-4 font-display text-2xl font-semibold">{title}</h2>
+                <p className="mt-2 text-sm leading-6 text-ink/80">{copy}</p>
+              </article>
+            ))}
+          </div>
+
+          <div className="grid gap-5 lg:grid-cols-[1.05fr_0.95fr]">
+            <article className="rounded-5xl bg-[#281d2b] p-8 text-paper shadow-lifted">
+              <span className="inline-flex items-center gap-2 rounded-full border border-saffron/40 bg-saffron/15 px-4 py-1.5 text-[0.68rem] font-bold uppercase tracking-[0.2em] text-saffron">
+                <BadgeCheck className="h-3.5 w-3.5" />
+                What we look for
+              </span>
+              <h2 className="mt-5 font-display text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">
+                A Saathi is chosen carefully, not quickly.
+              </h2>
+              <p className="mt-4 max-w-xl text-sm leading-7 text-paper/80">
+                The application is meant to collect only the details needed to judge
+                whether someone is ready for real pet care work.
+              </p>
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                {reviewPoints.map(({ icon: Icon, title, copy }) => (
+                  <div key={title} className="rounded-3xl border border-paper/10 bg-paper/[0.05] p-5">
+                    <Icon className="h-6 w-6 text-saffron" />
+                    <h3 className="mt-4 font-display text-xl font-semibold">{title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-paper/80">{copy}</p>
+                  </div>
+                ))}
+              </div>
             </article>
-          ))}
-        </section>
-      </div>
+
+            <article className="rounded-5xl border border-indigo/10 bg-paper p-8 shadow-lifted">
+              <span className="inline-flex items-center gap-2 rounded-full border border-coral/20 bg-coral/10 px-4 py-1.5 text-[0.68rem] font-bold uppercase tracking-[0.2em] text-coral-text">
+                <CalendarDays className="h-3.5 w-3.5" />
+                Prerequisites & Standards
+              </span>
+              <h2 className="mt-5 font-display text-3xl font-semibold tracking-[-0.04em]">
+                What you need before applying.
+              </h2>
+              <div className="mt-7 grid gap-4">
+                {[
+                  ["Aadhaar / Photo ID", "Valid government ID with permanent and local address verification."],
+                  ["Handling Experience", "Demonstrated hands-on experience handling dogs, cats, or both breeds."],
+                  ["Character References", "Two verifiable professional or personal references vetted by ops."],
+                  ["Conduct Pledge", "Adherence to zero phone distractions, punctuality, and live session updates."]
+                ].map(([title, copy], idx) => (
+                  <div key={title} className="flex gap-4 rounded-3xl border border-ink/10 bg-cream/40 p-5">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-indigo/10 font-display text-sm font-bold text-indigo">
+                      0{idx + 1}
+                    </div>
+                    <div>
+                      <h3 className="font-display text-lg font-semibold">{title}</h3>
+                      <p className="mt-1 text-xs leading-5 text-ink/80">{copy}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </article>
+          </div>
+
+          <div className="mt-12 scroll-mt-28" id="apply-form">
+            <SitterApplication />
+          </div>
+
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {[
+              {
+                title: "Real responsibility",
+                copy: "Only people who can handle pet care carefully should move ahead.",
+              },
+              {
+                title: "Safer matching",
+                copy: "The system keeps permissions narrow so the right jobs reach the right person.",
+              },
+              {
+                title: "Clear next step",
+                copy: "After submission, the process stays simple and easy to review.",
+              },
+            ].map((card) => (
+              <article key={card.title} className="rounded-4xl border border-indigo/10 bg-paper p-6 shadow-soft">
+                <h3 className="font-display text-2xl font-semibold">{card.title}</h3>
+                <p className="mt-3 text-sm leading-7 text-ink/80">{card.copy}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
     </PublicShell>
   );
 }

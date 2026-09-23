@@ -47,7 +47,7 @@ export function MarketingFooter() {
             ["Locations", "/cities", MapPin]
           ]],
           ["Trust", [
-            ["Safety", "/safety", ShieldCheck],
+            ["Safety & Trust", "/safety", ShieldCheck],
             ["Privacy", "/privacy", Lock],
             ["Terms", "/terms", FileText],
             ["Refund Policy", "/refund-policy", RefreshCw],

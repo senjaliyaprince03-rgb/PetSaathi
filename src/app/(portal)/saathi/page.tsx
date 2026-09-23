@@ -15,15 +15,20 @@ export default async function SaathiDashboardPage() {
   const firstName = identity.displayName.split(" ")[0] || "there";
   const initialChar = identity.displayName[0] || "S";
 
-  // Fetch real assignment data
-  const assignments = await prisma.bookingAssignment.findMany({
-    where: { sitterId: identity.id },
-    take: 100,
-    include: { booking: true }
-  });
+  // Fetch real assignment data safely
+  let assignments: any[] = [];
+  try {
+    assignments = await prisma.bookingAssignment.findMany({
+      where: { sitterId: identity.id },
+      take: 100,
+      include: { booking: true }
+    }).catch(() => []);
+  } catch (error) {
+    console.error("[SaathiDashboardPage] Failed to fetch assignments:", error);
+  }
 
-  const completedCount = assignments.filter(a => a.booking.status === "COMPLETED").length;
-  const upcomingCount = assignments.filter(a => a.booking.status === "CONFIRMED" || a.booking.status === "REQUESTED").length;
+  const completedCount = assignments.filter((a: any) => a?.booking?.status === "COMPLETED").length;
+  const upcomingCount = assignments.filter((a: any) => a?.booking?.status === "CONFIRMED" || a?.booking?.status === "REQUESTED").length;
 
   return (
     <SaathiDashboardClient 
