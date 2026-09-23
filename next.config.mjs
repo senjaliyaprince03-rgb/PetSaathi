@@ -129,6 +129,35 @@ const nextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: "/Membership",
+        destination: "/membership",
+        permanent: true,
+      },
+      {
+        source: "/memberships",
+        destination: "/membership",
+        permanent: true,
+      },
+      {
+        source: "/Memberships",
+        destination: "/membership",
+        permanent: true,
+      },
+      {
+        source: "/saathis",
+        destination: "/caregivers",
+        permanent: true,
+      },
+      {
+        source: "/Saathis",
+        destination: "/caregivers",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 const sentryOptions = {

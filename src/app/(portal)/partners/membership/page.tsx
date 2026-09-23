@@ -11,21 +11,28 @@ export default async function PartnerMembershipPage() {
   const identity = await getCurrentIdentity();
   if (!identity?.roles.includes("SITTER")) redirect("/login?returnTo=/partners/membership");
 
-  // Fetch available SITTER plans
-  const availablePlans = await prisma.planVersion.findMany({
-    where: { active: true, audience: "SITTER" },
-    orderBy: { pricePaise: "asc" },
-    take: 50,
-  });
+  // Fetch available SITTER plans safely
+  let availablePlans: any[] = [];
+  let userSubscriptions: any[] = [];
 
-  // Fetch user's active subscriptions
-  const userSubscriptions = await prisma.subscription.findMany({
-    where: { userId: identity.id, status: { in: ["ACTIVE", "INCOMPLETE"] } },
-    select: { planVersionId: true },
-    take: 50,
-  });
+  try {
+    availablePlans = await prisma.planVersion.findMany({
+      where: { active: true, audience: "SITTER" },
+      orderBy: { pricePaise: "asc" },
+      take: 50,
+    }).catch(() => []);
 
-  const activePlanIds = new Set(userSubscriptions.map((sub) => sub.planVersionId));
+    // Fetch user's active subscriptions
+    userSubscriptions = await prisma.subscription.findMany({
+      where: { userId: identity.id, status: { in: ["ACTIVE", "INCOMPLETE"] } },
+      select: { planVersionId: true },
+      take: 50,
+    }).catch(() => []);
+  } catch (error) {
+    console.error("[PartnerMembershipPage] Database query fallback:", error);
+  }
+
+  const activePlanIds = new Set(userSubscriptions.map((sub: any) => sub.planVersionId));
 
   return (
     <PortalShell mode="saathi" displayName={identity.displayName}>

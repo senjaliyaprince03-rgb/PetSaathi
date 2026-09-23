@@ -5,7 +5,7 @@ import {
   HeartHandshake,
   Radio,
   SlidersHorizontal,
-  Sparkles,
+  Cpu,
   ChevronRight,
   ShieldCheck,
   CheckCircle2
@@ -29,14 +29,14 @@ const steps = [
   {
     number: "02",
     badge: "Step 02",
-    icon: Sparkles,
+    icon: Cpu,
     title: "Care Match Engine",
     description: "Our algorithm evaluates caregiver certifications, pet temperament fit, distance, and verified schedule capacity.",
     highlight: "100% Vetted Saathis",
-    color: "indigo",
-    gradient: "from-indigo-500/10 via-indigo-500/5 to-transparent",
-    iconBg: "bg-indigo-50 text-indigo-600 border-indigo-200/80 group-hover:bg-indigo-600 group-hover:text-white",
-    tagBg: "bg-indigo-50 text-indigo-700 border-indigo-200/60"
+    color: "violet",
+    gradient: "from-violet-500/10 via-violet-500/5 to-transparent",
+    iconBg: "bg-violet-50 text-violet-600 border-violet-200/80 group-hover:bg-violet-600 group-hover:text-white",
+    tagBg: "bg-violet-50 text-violet-700 border-violet-200/60"
   },
   {
     number: "03",
@@ -105,7 +105,7 @@ export function HowItWorksSection() {
         {/* 5-Step Connected Timeline */}
         <div className="mt-16 relative">
           {/* Subtle connected track behind cards on desktop */}
-          <div className="hidden lg:block absolute top-10 left-[8%] right-[8%] h-0.5 bg-gradient-to-r from-amber-200 via-indigo-200 to-purple-200 z-0 opacity-60" />
+          <div className="hidden lg:block absolute top-10 left-[8%] right-[8%] h-0.5 bg-gradient-to-r from-amber-200 via-violet-200 to-purple-200 z-0 opacity-60" />
 
           <div className="grid gap-4 sm:gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 relative z-10">
             {steps.map((step, idx) => (
