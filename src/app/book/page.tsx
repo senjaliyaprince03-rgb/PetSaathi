@@ -38,8 +38,8 @@ function firstParam(value: string | string[] | undefined) {
   return Array.isArray(value) ? value[0] : value;
 }
 
-export default async function BookPage({ searchParams }: { searchParams: BookSearchParams }) {
-  const query = await searchParams;
+export default async function BookPage({ searchParams }: { searchParams?: Promise<Record<string, string | string[] | undefined>> }) {
+  const query = (await searchParams) ?? {};
   const requestedService = firstParam(query.service);
   const requestedPetType = firstParam(query.petType);
   const requestedLocality = firstParam(query.locality)?.trim().slice(0, 120);

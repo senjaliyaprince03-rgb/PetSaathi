@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 type LoginSearchParams = Promise<Record<string, string | string[] | undefined>>;
 
 export default async function LoginPage({ searchParams }: { searchParams?: LoginSearchParams }) {
-  const query = searchParams ? await searchParams : {};
+  const query = (await searchParams) ?? {};
   const rawReturnTo = Array.isArray(query.returnTo) ? query.returnTo[0] : query.returnTo;
   const returnTo = sanitizeReturnTo(rawReturnTo);
 

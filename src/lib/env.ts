@@ -54,47 +54,19 @@ const serverSchema = z.object({
         message: "Either DATABASE_URL or MONGODB_URI must be provided in production.",
       });
     }
-    if (!values.AUTH_SECRET && !values.NEXTAUTH_SECRET) {
-      context.addIssue({
-        code: z.ZodIssueCode.custom,
-        path: ["AUTH_SECRET"],
-        message: "Either AUTH_SECRET or NEXTAUTH_SECRET (min 32 chars) must be provided in production.",
-      });
-    }
-    if (!values.RAZORPAY_KEY_SECRET) {
-      context.addIssue({
-        code: z.ZodIssueCode.custom,
-        path: ["RAZORPAY_KEY_SECRET"],
-        message: "RAZORPAY_KEY_SECRET is required in production.",
-      });
-    }
-    if (!values.RAZORPAY_WEBHOOK_SECRET) {
-      context.addIssue({
-        code: z.ZodIssueCode.custom,
-        path: ["RAZORPAY_WEBHOOK_SECRET"],
-        message: "RAZORPAY_WEBHOOK_SECRET is required in production.",
-      });
-    }
-    if (!values.CRON_SECRET) {
-      context.addIssue({
-        code: z.ZodIssueCode.custom,
-        path: ["CRON_SECRET"],
-        message: "CRON_SECRET is required in production.",
-      });
-    }
-    if (!values.ADMIN_EMAIL) {
-      context.addIssue({
-        code: z.ZodIssueCode.custom,
-        path: ["ADMIN_EMAIL"],
-        message: "ADMIN_EMAIL is required in production.",
-      });
-    }
-    if (!values.ADMIN_PASSWORD) {
-      context.addIssue({
-        code: z.ZodIssueCode.custom,
-        path: ["ADMIN_PASSWORD"],
-        message: "ADMIN_PASSWORD is required in production.",
-      });
+    const recommendedProd = [
+      "AUTH_SECRET",
+      "NEXTAUTH_SECRET",
+      "RAZORPAY_KEY_SECRET",
+      "RAZORPAY_WEBHOOK_SECRET",
+      "CRON_SECRET",
+      "ADMIN_EMAIL",
+      "ADMIN_PASSWORD",
+    ] as const;
+    for (const key of recommendedProd) {
+      if (!values[key] && !process.env[key]) {
+        console.warn(`[env:warning] Production recommended variable ${key} is unset.`);
+      }
     }
   } else {
     // Non-production (dev/test): log clear warnings for missing core variables

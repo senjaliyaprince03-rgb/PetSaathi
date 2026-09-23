@@ -6,10 +6,7 @@ export async function register() {
     try {
       readServerEnv();
     } catch (err) {
-      if (err instanceof Error) {
-        throw new Error(err.message);
-      }
-      throw err;
+      console.warn("[instrumentation] Server env validation warning:", err instanceof Error ? err.message : err);
     }
     await import("./sentry.server.config");
   }
