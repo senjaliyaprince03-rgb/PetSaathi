@@ -72,6 +72,10 @@ const adminAccessRules = [
     roles: ["PARTNER_MANAGER", "SUPER_ADMIN"],
   },
   {
+    prefix: "/admin/rbac",
+    roles: ["SUPER_ADMIN"],
+  },
+  {
     prefix: "/admin/privacy",
     roles: ["SUPER_ADMIN"],
   },

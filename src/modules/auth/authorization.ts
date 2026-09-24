@@ -50,3 +50,16 @@ export async function authorizeApi(
 
   return { authorized: true, identity, actorRole };
 }
+
+// Re-export modern granular permission-based authorization from RBAC module
+export {
+  authorizePermission,
+  canUser,
+  resolveUserPermissions,
+  assignUserRole,
+  revokeUserRole,
+  grantCustomPermission,
+  revokeCustomPermission,
+  type PermissionAuthorization,
+  type ScopeContext,
+} from "@/modules/rbac/authorize";
