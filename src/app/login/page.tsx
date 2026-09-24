@@ -32,7 +32,6 @@ export default async function LoginPage({ searchParams }: { searchParams?: Login
 
   const rawReturnTo = Array.isArray(query.returnTo) ? query.returnTo[0] : query.returnTo;
   const returnTo = sanitizeReturnTo(rawReturnTo);
-  const rawError = Array.isArray(query.error) ? query.error[0] : query.error;
 
   let identity: any = null;
   try {
@@ -52,7 +51,7 @@ export default async function LoginPage({ searchParams }: { searchParams?: Login
   const continueUrl = returnTo ?? defaultDashboardUrl;
 
   return (
-    <main className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-x-hidden overflow-y-auto px-4 py-8 sm:p-8 sm:py-12">
+    <main className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-x-hidden overflow-y-auto p-4 sm:p-8">
       <ParallaxTotemBackground />
 
       <div className="relative z-10 w-full max-w-[900px]">
@@ -74,7 +73,7 @@ export default async function LoginPage({ searchParams }: { searchParams?: Login
           </div>
         )}
 
-        <AuthSlidingPanel returnTo={returnTo ?? undefined} initialError={rawError} />
+        <AuthSlidingPanel returnTo={returnTo ?? undefined} />
       </div>
     </main>
   );

@@ -124,6 +124,11 @@ const config: Config = {
           "title-lg": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
           "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
           "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+      },
+      "minHeight": {
+          "820": "820px",
+          "620": "620px",
+          "600": "600px"
       }
     },
   },
