@@ -31,7 +31,7 @@ export function AuthSlidingPanel({ returnTo }: { returnTo?: string }) {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [otp, setOtp] = useState("");
-  const [role, setRole] = useState<"CUSTOMER" | "SITTER">("CUSTOMER");
+  const role = "CUSTOMER";
   const [error, setError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
   const [gsiActive, setGsiActive] = useState(false);
@@ -49,7 +49,7 @@ export function AuthSlidingPanel({ returnTo }: { returnTo?: string }) {
 
   function redirectForRoles(roles?: string[]) {
     if (roles?.includes("SUPER_ADMIN") || roles?.includes("OPERATIONS_ADMIN") || roles?.includes("ADMIN")) return "/admin";
-    if (role === "SITTER" && roles?.includes("SITTER")) return "/saathi";
+    if (roles?.includes("SITTER")) return "/saathi";
     return "/dashboard";
   }
 
@@ -318,37 +318,6 @@ export function AuthSlidingPanel({ returnTo }: { returnTo?: string }) {
           </form>
         ) : (
           <form onSubmit={handleSignUp} className="flex flex-col gap-3 sm:gap-4">
-            <div className="flex flex-col gap-2 px-1">
-              <span className="text-sm font-semibold text-ink/80"><span className="text-coral">*</span>Role</span>
-              <div className="flex items-center gap-4 sm:gap-6">
-                <label htmlFor="signup-role-customer" className="flex items-center gap-2 cursor-pointer text-sm font-medium text-ink/80">
-                  <input
-                    id="signup-role-customer"
-                    aria-label="Customer role"
-                    type="radio"
-                    name="role"
-                    value="CUSTOMER"
-                    checked={role === "CUSTOMER"}
-                    onChange={() => setRole("CUSTOMER")}
-                    className="h-4 w-4 text-indigo focus:ring-indigo accent-indigo"
-                  />
-                  Customer
-                </label>
-                <label htmlFor="signup-role-sitter" className="flex items-center gap-2 cursor-pointer text-sm font-medium text-ink/80">
-                  <input
-                    id="signup-role-sitter"
-                    aria-label="Saathi role"
-                    type="radio"
-                    name="role"
-                    value="SITTER"
-                    checked={role === "SITTER"}
-                    onChange={() => setRole("SITTER")}
-                    className="h-4 w-4 text-indigo focus:ring-indigo accent-indigo"
-                  />
-                  Saathi
-                </label>
-              </div>
-            </div>
             <Field aria-label="Full name" autoComplete="name" icon={<User />} maxLength={80} minLength={2} name="displayName" onChange={setDisplayName} placeholder="Full Name" type="text" value={displayName} />
             <Field aria-label="Email address" autoComplete="email" icon={<Mail />} maxLength={254} name="email" onChange={setEmail} placeholder="Email Address" type="email" value={email} />
             <Field aria-label="Create password" autoComplete="new-password" icon={<Lock />} maxLength={128} minLength={10} name="newPassword" onChange={setPassword} placeholder="Strong Password" type="password" value={password} />
@@ -413,38 +382,7 @@ export function AuthSlidingPanel({ returnTo }: { returnTo?: string }) {
           </form>
         ) : (
           <form onSubmit={handleSignIn} className="flex flex-col gap-3 sm:gap-4">
-          <div className="flex flex-col gap-2 px-1">
-            <span className="text-sm font-semibold text-ink/80"><span className="text-coral">*</span>Role</span>
-            <div className="flex items-center gap-4 sm:gap-6">
-              <label htmlFor="signin-role-customer" className="flex items-center gap-2 cursor-pointer text-sm font-medium text-ink/80">
-                <input
-                  id="signin-role-customer"
-                  aria-label="Customer signin role"
-                  type="radio"
-                  name="signinRole"
-                  value="CUSTOMER"
-                  checked={role === "CUSTOMER"}
-                  onChange={() => setRole("CUSTOMER")}
-                  className="h-4 w-4 text-indigo focus:ring-indigo accent-indigo"
-                />
-                Customer
-              </label>
-              <label htmlFor="signin-role-sitter" className="flex items-center gap-2 cursor-pointer text-sm font-medium text-ink/80">
-                <input
-                  id="signin-role-sitter"
-                  aria-label="Saathi signin role"
-                  type="radio"
-                  name="signinRole"
-                  value="SITTER"
-                  checked={role === "SITTER"}
-                  onChange={() => setRole("SITTER")}
-                  className="h-4 w-4 text-indigo focus:ring-indigo accent-indigo"
-                />
-                Saathi
-              </label>
-            </div>
-          </div>
-          <Field aria-label="Email address" autoComplete="email" icon={<Mail />} maxLength={254} name="email" onChange={setEmail} placeholder="Email Address" type="email" value={email} />
+            <Field aria-label="Email address" autoComplete="email" icon={<Mail />} maxLength={254} name="email" onChange={setEmail} placeholder="Email Address" type="email" value={email} />
           <Field aria-label="Password" autoComplete="current-password" icon={<Lock />} maxLength={128} name="password" onChange={setPassword} placeholder="Password" type="password" value={password} />
           <SubmitButton pending={pending} label="SIGN IN" color="bg-[#301F30] hover:bg-[#301F30]/90" />
           <button type="button" onClick={startEmailCodeLogin} className="text-center text-xs font-bold text-indigo transition hover:text-coral">
