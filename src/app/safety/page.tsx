@@ -40,8 +40,8 @@ export default function SafetyPage() {
           fill priority fetchPriority="high" sizes="100vw"
           className="object-cover object-[78%_center] sm:object-[70%_center] lg:object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/60 to-transparent md:w-3/4" />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/60 via-ink/25 to-transparent w-full sm:w-[48%] lg:w-[40%]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink/25 via-transparent to-transparent" />
 
         <div className="container-shell relative flex h-full flex-col justify-center pb-10 pt-28 sm:pt-32">
           <div className="max-w-xl md:max-w-2xl text-left items-start flex flex-col">

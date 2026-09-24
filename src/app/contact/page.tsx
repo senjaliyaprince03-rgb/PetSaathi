@@ -67,7 +67,7 @@ export default async function ContactPage({ searchParams }: { searchParams?: Pro
   return (
     <PublicShell>
       {/* 1. FULL-BLEED LUXURY HERO BANNER */}
-      <section className="relative min-h-[440px] sm:min-h-[500px] lg:min-h-[540px] w-full overflow-hidden bg-ink text-paper" suppressHydrationWarning>
+      <section className="relative h-[480px] sm:h-[560px] lg:h-[620px] w-full overflow-hidden bg-ink text-paper" suppressHydrationWarning>
         <Image
           src="/images/contact-concierge-hero.webp"
           alt="PetSaathi Care Concierge & Pet Parent consultation"
@@ -75,12 +75,12 @@ export default async function ContactPage({ searchParams }: { searchParams?: Pro
           priority
           fetchPriority="high"
           sizes="100vw"
-          className="object-cover object-[center_30%] opacity-65"
+          className="object-cover object-[center_28%]"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink/95 via-ink/80 to-ink/25 lg:w-3/5" />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/65 via-ink/25 to-transparent w-full sm:w-[50%] lg:w-[42%]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink/25 via-transparent to-transparent" />
 
-        <div className="container-shell relative flex h-full flex-col justify-center pb-20 pt-28 sm:pt-36">
+        <div className="container-shell relative flex h-full flex-col justify-center pb-10 pt-28 sm:pt-32">
           <div className="max-w-2xl text-left items-start flex flex-col">
             <span className="inline-flex items-center gap-2 rounded-full border border-saffron/40 bg-saffron/20 px-4 py-1.5 text-[0.68rem] font-bold uppercase tracking-[0.2em] text-saffron backdrop-blur-md">
               <Sparkles className="h-3.5 w-3.5" /> Care Concierge &amp; Support
@@ -112,8 +112,9 @@ export default async function ContactPage({ searchParams }: { searchParams?: Pro
       </section>
 
       {/* 2. MAIN INTERACTIVE CONTENT GRID */}
-      <section className="container-shell -mt-10 sm:-mt-14 relative z-20 pb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+      <section className="bg-paper pb-20 pt-12 sm:pt-16 relative z-10">
+        <div className="container-shell">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
           
           {/* LEFT COLUMN: DIRECT CHANNELS & OPERATIONS (5 COLS) */}
           <div className="lg:col-span-5 flex flex-col gap-5">
@@ -243,14 +244,15 @@ export default async function ContactPage({ searchParams }: { searchParams?: Pro
             </div>
 
           </div>
-
+          
           {/* RIGHT COLUMN: LUXURY INTERACTIVE CONTACT FORM (7 COLS) */}
           <div className="lg:col-span-7">
             <ContactForm defaultTopic={topic} />
           </div>
 
         </div>
-      </section>
+      </div>
+    </section>
 
       {/* 3. FREQUENTLY ASKED QUESTIONS SECTION */}
       <section className="border-t border-ink/10 bg-surface/40 py-16 sm:py-24">
