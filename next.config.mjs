@@ -238,5 +238,4 @@ const shouldUploadSourcemaps = false;
 // Do not launch the Sentry CLI during local/CI builds unless upload credentials
 // are explicitly configured; runtime error reporting remains env-gated.
 export default process.env.NODE_ENV === "development" || !shouldUploadSourcemaps
-  ? bundleAnalyzer(nextConfig)
-  : withSentryConfig(bundleAnalyzer(nextConfig), sentryOptions);
+  ? bundleAnalyzer(nextConfig);
