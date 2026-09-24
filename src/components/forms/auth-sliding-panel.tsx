@@ -9,7 +9,6 @@ import { hasUsableGoogleClientId } from "@/lib/public-config";
 import { PetSaathiLogo } from "@/components/brand/logo";
 import { sanitizeReturnTo } from "@/lib/sanitize-url";
 import { PetCompanionIllustration } from "@/components/brand/pet-companion";
-import LottiePetAnimation from "./lottie-pet-animation";
 
 type ApiResponse = { error?: string; message?: string; developmentOtp?: string; role?: string; roles?: string[] };
 type PanelMode = "signin" | "signup" | "emailCode" | "setPassword";
@@ -645,7 +644,7 @@ export function AuthSlidingPanel({ returnTo, initialError }: { returnTo?: string
           }`}
         >
           <div className="pointer-events-none mb-3 drop-shadow-2xl">
-            <LottiePetAnimation />
+            <PetCompanionIllustration className="h-28 w-28 sm:h-52 sm:w-52" />
           </div>
           <div
             key={isSignUp ? "signup" : "signin"}
