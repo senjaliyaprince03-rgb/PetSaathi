@@ -15,7 +15,7 @@ import { sanitizeReturnTo } from "@/lib/sanitize-url";
 // stay out of the login route's first-load JS.
 const LottiePetAnimation = dynamic(() => import("./lottie-pet-animation"), {
   ssr: false,
-  loading: () => <div className="h-28 w-28 sm:h-64 sm:w-64" aria-hidden="true" />,
+  loading: () => <div className="h-full w-full" aria-hidden="true" />,
 });
 
 type ApiResponse = { error?: string; message?: string; developmentOtp?: string; role?: string; roles?: string[] };
@@ -329,8 +329,10 @@ export function AuthSlidingPanel({ returnTo }: { returnTo?: string }) {
                   <span className="mx-4 flex-shrink-0 text-xs font-semibold text-ink/80 uppercase">Or continue with</span>
                   <div className="flex-grow border-t border-ink/10"></div>
                 </div>
-                <div ref={googleButtonSignUpRef} className="flex justify-center w-full empty:hidden"></div>
-                {!gsiActive && <GoogleOAuthButton role={role} returnTo={returnTo} label="Sign up with Google" />}
+                <div className="flex min-h-[44px] w-full items-center justify-center">
+                  <div ref={googleButtonSignUpRef} className="flex justify-center w-full empty:hidden"></div>
+                  {!gsiActive && <GoogleOAuthButton role={role} returnTo={returnTo} label="Sign up with Google" />}
+                </div>
               </div>
             )}
           </form>
@@ -395,8 +397,10 @@ export function AuthSlidingPanel({ returnTo }: { returnTo?: string }) {
                 <span className="mx-4 flex-shrink-0 text-xs font-semibold text-ink/80 uppercase">Or continue with</span>
                 <div className="flex-grow border-t border-ink/10"></div>
               </div>
-              <div ref={googleButtonSignInRef} className="flex justify-center w-full empty:hidden"></div>
-              {!gsiActive && <GoogleOAuthButton role={role} returnTo={returnTo} label="Sign in with Google" />}
+              <div className="flex min-h-[44px] w-full items-center justify-center">
+                <div ref={googleButtonSignInRef} className="flex justify-center w-full empty:hidden"></div>
+                {!gsiActive && <GoogleOAuthButton role={role} returnTo={returnTo} label="Sign in with Google" />}
+              </div>
             </div>
           )}
           </form>
@@ -411,12 +415,12 @@ export function AuthSlidingPanel({ returnTo }: { returnTo?: string }) {
             : "sm:translate-x-0 sm:rounded-[0_30%_30%_0]"
         }`}
       >
-        <div className="pointer-events-none h-24 w-24 drop-shadow-2xl sm:mb-4 sm:h-64 sm:w-64">
+        <div className="pointer-events-none flex items-center justify-center h-24 w-24 drop-shadow-2xl sm:mb-4 sm:h-64 sm:w-64">
           <LottiePetAnimation />
         </div>
         <div
           key={isSignUp ? "signup" : "signin"}
-          className="flex flex-col items-center opacity-0 animate-[auth-panel-fade-up_0.5s_ease_0.2s_forwards]"
+          className="flex flex-col items-center animate-[auth-panel-fade-up_0.4s_ease-out_forwards]"
         >
           <h2 className="mb-2 font-display text-2xl font-bold tracking-tight sm:mb-4 sm:text-4xl">
             {isSignUp ? "Welcome Back!" : "Hello, Friend!"}
