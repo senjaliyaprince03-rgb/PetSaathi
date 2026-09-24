@@ -353,6 +353,10 @@ export async function grantCustomPermission(params: {
     throw new Error("Only SUPER_ADMIN can grant explicit custom permissions");
   }
 
+  if (!allPermissionsList.includes(permission as Permission)) {
+    throw new Error(`Invalid permission: ${permission}`);
+  }
+
   if (!isDatabaseConfigured()) {
     throw new Error("Database not configured");
   }
