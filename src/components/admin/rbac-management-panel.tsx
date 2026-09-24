@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import {
   Shield,
   ShieldAlert,
@@ -71,7 +71,7 @@ export function RbacManagementPanel({ currentUserId }: { currentUserId: string }
   const [loadingAudit, setLoadingAudit] = useState(false);
 
   // Fetch Users
-  const fetchUsers = async () => {
+  const fetchUsers = useCallback(async () => {
     setLoadingUsers(true);
     setActionError(null);
     try {
@@ -92,10 +92,10 @@ export function RbacManagementPanel({ currentUserId }: { currentUserId: string }
     } finally {
       setLoadingUsers(false);
     }
-  };
+  }, [searchQuery, selectedRoleFilter]);
 
   // Fetch Audit Logs
-  const fetchAuditLogs = async () => {
+  const fetchAuditLogs = useCallback(async () => {
     setLoadingAudit(true);
     try {
       const res = await fetch("/api/admin/rbac/audit-logs?limit=40");
@@ -108,7 +108,7 @@ export function RbacManagementPanel({ currentUserId }: { currentUserId: string }
     } finally {
       setLoadingAudit(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     if (activeTab === "users") {
@@ -116,7 +116,7 @@ export function RbacManagementPanel({ currentUserId }: { currentUserId: string }
     } else if (activeTab === "audit") {
       fetchAuditLogs();
     }
-  }, [activeTab]);
+  }, [activeTab, fetchUsers, fetchAuditLogs]);
 
   const handleRoleAction = async (targetUserId: string, targetRole: Role, action: "ASSIGN" | "REVOKE") => {
     setIsSubmitting(true);

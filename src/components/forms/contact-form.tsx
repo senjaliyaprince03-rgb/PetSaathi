@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { 
   CheckCircle2, 
@@ -134,12 +135,12 @@ export function ContactForm({ defaultTopic = "GENERAL" }: { defaultTopic?: strin
           >
             Submit Another Message
           </button>
-          <a
+          <Link
             href="/"
             className="rounded-xl bg-indigo px-5 py-2.5 text-xs font-bold text-white shadow-sm transition hover:bg-indigo/90"
           >
             Return to Homepage
-          </a>
+          </Link>
         </div>
       </div>
     );
