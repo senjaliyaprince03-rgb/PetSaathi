@@ -48,7 +48,10 @@ export default function SafetyPage() {
             <span className="inline-flex items-center gap-2 rounded-full border border-saffron/40 bg-saffron/20 px-4 py-1.5 text-[0.68rem] font-bold uppercase tracking-[0.2em] text-saffron backdrop-blur-md font-outfit">
               <FileClock className="h-3.5 w-3.5" /> Proof Over Promises
             </span>
-            <h1 className="mt-5 font-display text-4xl font-bold tracking-tight text-paper sm:text-6xl sm:leading-[1.1]">
+            <h1
+              style={{ filter: "drop-shadow(0 0 6px rgba(255,255,255,0.85)) drop-shadow(0 0 18px rgba(255,255,255,0.65)) drop-shadow(0 0 32px rgba(255,255,255,0.40))" }}
+              className="mt-5 font-display text-4xl font-bold tracking-tight text-[#301F30] sm:text-6xl sm:leading-[1.1]"
+            >
               TRUST IS BUILT IN LAYERS
             </h1>
             <p className="mt-4 max-w-xl text-sm sm:text-base font-medium leading-7 text-paper/85">
