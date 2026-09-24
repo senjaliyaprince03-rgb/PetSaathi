@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     description: "Get in touch with PetSaathi care specialists for booking assistance, society onboarding, or emergency support.",
     url: "https://petsaathi.in/contact",
     siteName: "PetSaathi",
-    images: [{ url: "/images/hero-care-handover-highres.webp", width: 1200, height: 630, alt: "Contact PetSaathi Care Concierge" }],
+    images: [{ url: "/images/contact-concierge-hero.webp", width: 1200, height: 630, alt: "Contact PetSaathi Care Concierge" }],
     locale: "en_IN",
     type: "website",
   },
@@ -69,15 +69,15 @@ export default async function ContactPage({ searchParams }: { searchParams?: Pro
       {/* 1. FULL-BLEED LUXURY HERO BANNER */}
       <section className="relative min-h-[440px] sm:min-h-[500px] lg:min-h-[540px] w-full overflow-hidden bg-ink text-paper" suppressHydrationWarning>
         <Image
-          src="/images/hero-care-handover-highres.webp"
+          src="/images/contact-concierge-hero.webp"
           alt="PetSaathi Care Concierge & Pet Parent consultation"
           fill
           priority
           fetchPriority="high"
           sizes="100vw"
-          className="object-cover object-[center_35%] opacity-55"
+          className="object-cover object-[center_30%] opacity-65"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink/95 via-ink/85 to-ink/40 md:w-4/5" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/95 via-ink/80 to-ink/25 lg:w-3/5" />
         <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-transparent to-transparent" />
 
         <div className="container-shell relative flex h-full flex-col justify-center pb-20 pt-28 sm:pt-36">
