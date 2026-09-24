@@ -6,9 +6,9 @@
     "node": ">=20.18.0"
   },
   "scripts": {
-    "dev": "node scripts/dev-server.js",
-    "build": "node scripts/build.mjs",
-    "start": "next start",
+    "dev": "node init && node scripts/dev-server.js",
+    "build": "node init && node scripts/build.mjs",
+    "start": "node init && next start",
     "lint": "eslint . --max-warnings=0",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
