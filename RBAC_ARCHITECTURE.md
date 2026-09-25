@@ -30,7 +30,7 @@ flowchart TD
     subgraph GovernanceAuthority["Platform Governance & Security Controls"]
         PC["Platform Config & Feature Flags<br/><code>system:feature_flags</code>"]
         RA["Role & Permission Management<br/><code>roles:assign</code> / <code>roles:revoke</code>"]
-        AL["Immutable Audit Trail<br/><code>system:audit_logs</code>"]:::audit
+        AL["Application-Level Append-Only Audit Trail<br/><code>system:audit_logs</code>"]:::audit
         PE["Privilege Escalation Guard<br/>Rank Invariant Enforcement"]
     end
 
@@ -151,8 +151,8 @@ PetSaathi implements four strict guardrails against privilege escalation:
    - `OPERATIONS_ADMIN` (Rank 70) cannot grant `OPERATIONS_ADMIN`, `SAFETY_ADMIN`, or `SUPER_ADMIN`.
 2. **Dedicated Role Management Permissions**:
    Role modification requires `roles:assign` or `roles:revoke`. General operational admins cannot alter user security profiles.
-3. **Audit Immutability**:
-   Every role grant, role revocation, and custom permission assignment writes an immutable log record into `audit_logs` containing `actorId`, `actorRole`, `action`, `before`, `after`, `reason`, and `requestId`.
+3. **Application-Level Append-Only Audit Logging**:
+   Every role grant, role revocation, and custom permission assignment writes an append-only log record into `audit_logs` containing `actorId`, `actorRole`, `action`, `before`, `after`, `reason`, and `requestId`.
 4. **Custom Permission Gate**:
    Explicit user-level overrides via `AdminPermission` records can only be provisioned by a `SUPER_ADMIN` with a documented business reason and optional expiration date.
 
