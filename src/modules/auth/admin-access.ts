@@ -11,6 +11,8 @@ const dashboardRoles = [
   "SAFETY_ADMIN",
   "FINANCE_ADMIN",
   "CONTENT_ADMIN",
+  "PARTNER_MANAGER",
+  "CITY_MANAGER",
   "SUPER_ADMIN",
 ] as const satisfies readonly Role[];
 
@@ -117,13 +119,29 @@ const adminAccessRules = [
   },
   {
     prefix: "/admin/cities",
-    roles: ["OPERATIONS_ADMIN", "SUPER_ADMIN"],
+    roles: ["CITY_MANAGER", "OPERATIONS_ADMIN", "SUPER_ADMIN"],
   },
   {
     prefix: "/admin/leads",
     roles: ["OPERATIONS_ADMIN", "SUPER_ADMIN"],
   },
 ] as const satisfies readonly AdminAccessRule[];
+
+export function getDefaultDashboardForRoles(roles: readonly Role[]): string {
+  if (roles.includes("SUPER_ADMIN")) return "/admin";
+  if (roles.includes("OPERATIONS_ADMIN")) return "/admin";
+  if (roles.includes("SAFETY_ADMIN")) return "/admin/safety";
+  if (roles.includes("FINANCE_ADMIN")) return "/admin/finance";
+  if (roles.includes("VERIFICATION_ADMIN")) return "/admin/verification";
+  if (roles.includes("CONTENT_ADMIN")) return "/admin/content";
+  if (roles.includes("PARTNER_MANAGER")) return "/admin/b2b";
+  if (roles.includes("CITY_MANAGER")) return "/admin/cities";
+  if (roles.includes("OPERATOR")) return "/operator";
+  if (roles.includes("SOCIETY_MANAGER")) return "/society";
+  if (roles.includes("SITTER")) return "/saathi";
+  if (roles.includes("CUSTOMER")) return "/dashboard";
+  return "/login";
+}
 
 function matchesPrefix(pathname: string, prefix: string) {
   return pathname === prefix || pathname.startsWith(`${prefix}/`);

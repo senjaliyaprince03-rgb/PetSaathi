@@ -6,6 +6,8 @@ import type { Route } from "next";
 import type { ReactNode } from "react";
 import type { LucideIcon } from "lucide-react";
 import { PetSaathiLogo } from "@/components/brand/logo";
+import type { Role } from "@prisma/client";
+import { getFilteredAdminLinks } from "./portal-navigation";
 import {
   Activity,
   ArrowUpRight,
@@ -218,11 +220,13 @@ const portalNavigation: Record<
 export function PortalShell({
   mode,
   displayName,
+  roles,
   showGreeting = false,
   children,
 }: {
   mode: PortalMode;
   displayName: string;
+  roles?: readonly Role[];
   metrics?: readonly [string, string, string];
   showSummaryCards?: boolean;
   showGreeting?: boolean;
@@ -239,7 +243,7 @@ export function PortalShell({
     .substring(0, 2)
     .toUpperCase();
 
-  const links = portalNavigation[mode];
+  const links = mode === "admin" ? getFilteredAdminLinks(roles) : portalNavigation[mode];
 
   // Group links by section
   const sections: Record<string, typeof links> = {};
@@ -437,7 +441,31 @@ export function PortalShell({
                   {firstName}
                 </span>
                 <span className="text-[10px] font-semibold text-emerald-800 block mt-0.5 leading-none">
-                  {mode === "customer" ? "Pet Parent" : mode === "saathi" ? "Certified Saathi" : mode === "admin" ? "Super Admin" : "Community"}
+                  {mode === "customer"
+                    ? "Pet Parent"
+                    : mode === "saathi"
+                    ? "Certified Saathi"
+                    : roles?.includes("SUPER_ADMIN")
+                    ? "Super Admin"
+                    : roles?.includes("OPERATIONS_ADMIN")
+                    ? "Operations Admin"
+                    : roles?.includes("SAFETY_ADMIN")
+                    ? "Safety Admin"
+                    : roles?.includes("FINANCE_ADMIN")
+                    ? "Finance Admin"
+                    : roles?.includes("VERIFICATION_ADMIN")
+                    ? "Verification Admin"
+                    : roles?.includes("CONTENT_ADMIN")
+                    ? "Content Admin"
+                    : roles?.includes("PARTNER_MANAGER")
+                    ? "Partner Manager"
+                    : roles?.includes("CITY_MANAGER")
+                    ? "City Manager"
+                    : roles?.includes("OPERATOR")
+                    ? "Territory Operator"
+                    : roles?.includes("SOCIETY_MANAGER")
+                    ? "Society Manager"
+                    : "Administrator"}
                 </span>
               </div>
               <ChevronDown className="w-3.5 h-3.5 text-ink/40 group-hover:text-indigo hidden md:inline transition-colors" />

@@ -4,6 +4,7 @@ import { AuthSlidingPanel } from "@/components/forms/auth-sliding-panel";
 import { ParallaxTotemBackground } from "@/components/motion/parallax-totem-background";
 import { getCurrentIdentity } from "@/modules/auth/session";
 import { sanitizeReturnTo } from "@/lib/sanitize-url";
+import { getDefaultDashboardForRoles } from "@/modules/auth/admin-access";
 
 export const metadata: Metadata = { 
   title: "Parent & Saathi Sign In", 
@@ -41,11 +42,7 @@ export default async function LoginPage({ searchParams }: { searchParams?: Login
   }
 
   const defaultDashboardUrl = identity
-    ? identity.roles?.includes("SUPER_ADMIN") || identity.roles?.includes("OPERATIONS_ADMIN")
-      ? "/admin"
-      : identity.roles?.includes("SITTER")
-      ? "/saathi"
-      : "/dashboard"
+    ? getDefaultDashboardForRoles(identity.roles || [])
     : "/dashboard";
 
   const continueUrl = returnTo ?? defaultDashboardUrl;

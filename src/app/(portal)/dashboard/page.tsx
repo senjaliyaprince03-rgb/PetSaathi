@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import type { Route } from 'next';
 import { redirect } from 'next/navigation';
 import { 
   ArrowRight, 
@@ -29,6 +30,7 @@ import {
 import { getCurrentIdentity } from '@/modules/auth/session';
 import { prisma } from '@/lib/db';
 import { PortalShell } from '@/components/portal/portal-shell';
+import { getDefaultDashboardForRoles } from '@/modules/auth/admin-access';
 
 export const dynamic = "force-dynamic";
 
@@ -36,9 +38,7 @@ export default async function CustomerDashboardPage() {
   const identity = await getCurrentIdentity();
   if (!identity) redirect('/login?returnTo=/dashboard');
   if (!identity.roles.includes('CUSTOMER')) {
-    if (identity.roles.includes('SITTER')) redirect('/saathi');
-    if (identity.roles.includes('SUPER_ADMIN') || identity.roles.includes('OPERATIONS_ADMIN')) redirect('/admin');
-    redirect('/login');
+    redirect(getDefaultDashboardForRoles(identity.roles) as Route);
   }
 
   const firstName = identity.displayName.split(' ')[0] || 'there';

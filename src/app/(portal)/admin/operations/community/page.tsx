@@ -2,6 +2,7 @@ import { Users, Globe, Link2 } from "lucide-react";
 import { redirect } from "next/navigation";
 
 import { MembershipActions } from "@/components/portal/membership-actions";
+import { AdminSocietyProvisionForm } from "@/components/portal/admin-society-provision-form";
 import { PortalShell } from "@/components/portal/portal-shell";
 import { prisma } from "@/lib/db";
 import { getCurrentIdentity, hasAnyRole } from "@/modules/auth/session";
@@ -26,13 +27,17 @@ export default async function AdminCommunityPage() {
   });
 
   return (
-    <PortalShell mode="admin" displayName={identity.displayName}>
+    <PortalShell mode="admin" displayName={identity.displayName} roles={identity.roles}>
       <div className="max-w-7xl pb-12">
         <p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-ink/80">community operations</p>
-        <h1 className="mt-2 font-display text-4xl font-semibold tracking-[-0.04em]">Community Groups</h1>
+        <h1 className="mt-2 font-display text-4xl font-semibold tracking-[-0.04em]">Community Groups &amp; Society Hub</h1>
         <p className="mt-3 max-w-3xl text-sm leading-6 text-ink/80 mb-10">
-          Manage local pet-parent communities and process membership requests.
+          Manage local pet-parent communities, onboard residential societies, and process membership requests.
         </p>
+
+        <div className="mb-10">
+          <AdminSocietyProvisionForm />
+        </div>
 
         <div className="mt-10 space-y-8">
           {groups.length === 0 ? (

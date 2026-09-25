@@ -11,7 +11,7 @@ export const dynamic = "force-dynamic";
 
 export default async function AdminPartnersPage() {
   const identity = await getCurrentIdentity();
-  if (!identity || !hasAnyRole(identity, ["OPERATIONS_ADMIN", "SUPER_ADMIN"])) {
+  if (!identity || !hasAnyRole(identity, ["PARTNER_MANAGER", "OPERATIONS_ADMIN", "SUPER_ADMIN"])) {
     redirect("/login?returnTo=/admin/partners");
   }
 

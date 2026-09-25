@@ -1,15 +1,15 @@
+import type { Route } from "next";
 import { redirect } from "next/navigation";
 import { getCurrentIdentity } from "@/modules/auth/session";
 import { prisma } from "@/lib/db";
+import { getDefaultDashboardForRoles } from "@/modules/auth/admin-access";
 import SaathiDashboardClient from "./SaathiDashboardClient";
 
 export default async function SaathiDashboardPage() {
   const identity = await getCurrentIdentity();
   if (!identity) redirect("/login?returnTo=/saathi");
   if (!identity.roles.includes("SITTER")) {
-    if (identity.roles.includes("CUSTOMER")) redirect("/dashboard");
-    if (identity.roles.includes("SUPER_ADMIN") || identity.roles.includes("OPERATIONS_ADMIN")) redirect("/admin");
-    redirect("/login");
+    redirect(getDefaultDashboardForRoles(identity.roles) as Route);
   }
 
   const firstName = identity.displayName.split(" ")[0] || "there";
