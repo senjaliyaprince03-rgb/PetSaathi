@@ -151,6 +151,23 @@ describe("RBAC API Endpoints Authorization & Security", () => {
       expect(body.message).toContain("permission");
     });
 
+    it("returns 403 when non-SuperAdmin attempts self-role promotion", async () => {
+      mockGetCurrentIdentity.mockResolvedValueOnce({
+        id: "ops-1",
+        roles: ["OPERATIONS_ADMIN"],
+        displayName: "Ops Admin",
+        status: "ACTIVE",
+      });
+      const req = new NextRequest("http://localhost:3000/api/admin/rbac/assign-role", {
+        method: "POST",
+        body: JSON.stringify({ targetUserId: "ops-1", role: "CUSTOMER", action: "ASSIGN" }),
+      });
+      const res = await assignRoleRoute(req);
+      expect(res.status).toBe(403);
+      const body = await res.json();
+      expect(body.message).toContain("Self-role assignment is not permitted");
+    });
+
     it("returns 400 when missing required fields", async () => {
       mockGetCurrentIdentity.mockResolvedValueOnce({
         id: "super-1",

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { logger } from "@/lib/logger";
 import { getCurrentIdentity } from "@/modules/auth/session";
+import { resolveTerritoryScope } from "@/modules/rbac/territory-scope";
 
 export async function GET(
   request: Request,
@@ -9,11 +10,23 @@ export async function GET(
 ) {
   try {
     const user = await getCurrentIdentity();
-    if (!user || (!user.roles.includes("SUPER_ADMIN") && !user.roles.includes("OPERATIONS_ADMIN") && !user.roles.includes("SOCIETY_MANAGER"))) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    if (!user) {
+      return NextResponse.json({ error: "unauthorized", message: "Authentication required" }, { status: 401 });
+    }
+    const hasRole = user.roles.some((r) => ["SUPER_ADMIN", "OPERATIONS_ADMIN", "SOCIETY_MANAGER"].includes(r));
+    if (!hasRole) {
+      return NextResponse.json({ error: "forbidden", message: "Society management privileges required" }, { status: 403 });
     }
 
     const { id } = await params;
+
+    // Multi-tenant territory check for SOCIETY_MANAGER
+    if (user.roles.includes("SOCIETY_MANAGER") && !user.roles.includes("SUPER_ADMIN") && !user.roles.includes("OPERATIONS_ADMIN")) {
+      const scope = await resolveTerritoryScope(user.id, user.roles);
+      if (!scope.unrestricted && !scope.societyIds.includes(id)) {
+        return NextResponse.json({ error: "forbidden", message: "Access to this society is restricted" }, { status: 403 });
+      }
+    }
 
     const society = await prisma.society.findUnique({
       where: { id },
@@ -55,13 +68,25 @@ export async function PATCH(
 ) {
   try {
     const user = await getCurrentIdentity();
-    if (!user || (!user.roles.includes("SUPER_ADMIN") && !user.roles.includes("SOCIETY_MANAGER"))) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    if (!user) {
+      return NextResponse.json({ error: "unauthorized", message: "Authentication required" }, { status: 401 });
+    }
+    const hasRole = user.roles.some((r) => ["SUPER_ADMIN", "OPERATIONS_ADMIN", "SOCIETY_MANAGER"].includes(r));
+    if (!hasRole) {
+      return NextResponse.json({ error: "forbidden", message: "Society management privileges required" }, { status: 403 });
     }
 
     const { id } = await params;
-    const data = await request.json();
 
+    // Multi-tenant territory check for SOCIETY_MANAGER
+    if (user.roles.includes("SOCIETY_MANAGER") && !user.roles.includes("SUPER_ADMIN") && !user.roles.includes("OPERATIONS_ADMIN")) {
+      const scope = await resolveTerritoryScope(user.id, user.roles);
+      if (!scope.unrestricted && !scope.societyIds.includes(id)) {
+        return NextResponse.json({ error: "forbidden", message: "Access to this society is restricted" }, { status: 403 });
+      }
+    }
+
+    const data = await request.json();
     const { accessRule, ...societyData } = data;
 
     const updated = await prisma.$transaction(async (tx) => {

@@ -17,6 +17,7 @@ export interface ScopeContext {
   ownerId?: string;
   cityId?: string;
   serviceZoneId?: string;
+  societyId?: string;
 }
 
 export type PermissionAuthorization =
@@ -110,14 +111,22 @@ export async function canUser(
     }
   }
 
-  // Multi-tenancy Territory scoping for City Managers & Operators
-  if ((scope?.cityId || scope?.serviceZoneId) && (identity.roles.includes("OPERATOR") || identity.roles.includes("CITY_MANAGER"))) {
+  // Multi-tenancy Territory scoping for City Managers, Operators & Society Managers
+  if (
+    (scope?.cityId || scope?.serviceZoneId || scope?.societyId) &&
+    (identity.roles.includes("OPERATOR") ||
+      identity.roles.includes("CITY_MANAGER") ||
+      identity.roles.includes("SOCIETY_MANAGER"))
+  ) {
     const territoryScope = await resolveTerritoryScope(identity.id, identity.roles);
     if (!territoryScope.unrestricted) {
       if (scope.cityId && !territoryScope.cityIds.includes(scope.cityId)) {
         return false;
       }
       if (scope.serviceZoneId && territoryScope.serviceZoneIds.length > 0 && !territoryScope.serviceZoneIds.includes(scope.serviceZoneId)) {
+        return false;
+      }
+      if (scope.societyId && !territoryScope.societyIds.includes(scope.societyId)) {
         return false;
       }
     }
@@ -185,6 +194,11 @@ export async function assignUserRole(params: {
   ipHash?: string;
 }) {
   const { actorIdentity, targetUserId, role, reason, requestId, ipHash } = params;
+
+  // Prevent self-role modification for non-Super Admin
+  if (actorIdentity.id === targetUserId && !actorIdentity.roles.includes("SUPER_ADMIN")) {
+    throw new Error("Privilege escalation prevented: Self-role assignment is not permitted");
+  }
 
   // Verify actor authority
   const hasAssignPerm =
@@ -273,6 +287,11 @@ export async function revokeUserRole(params: {
   ipHash?: string;
 }) {
   const { actorIdentity, targetUserId, role, reason, requestId, ipHash } = params;
+
+  // Prevent self-role modification for non-Super Admin
+  if (actorIdentity.id === targetUserId && !actorIdentity.roles.includes("SUPER_ADMIN")) {
+    throw new Error("Privilege escalation prevented: Self-role revocation is not permitted");
+  }
 
   const hasRevokePerm =
     actorIdentity.roles.includes("SUPER_ADMIN") ||

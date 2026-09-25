@@ -1,9 +1,9 @@
 /**
  * Territory-scoped RBAC utility.
  *
- * For OPERATOR-role users, this module resolves which cities and service zones
- * they are authorized to access, and provides Prisma-compatible where-clause
- * fragments to enforce data isolation at the query layer.
+ * For OPERATOR, CITY_MANAGER, and SOCIETY_MANAGER users, this module resolves which cities,
+ * service zones, and societies they are authorized to access, and provides Prisma-compatible
+ * where-clause fragments to enforce data isolation at the query layer.
  *
  * Central admins (SUPER_ADMIN, OPERATIONS_ADMIN) bypass territory scoping.
  */
@@ -20,6 +20,8 @@ export interface TerritoryScope {
   cityIds: string[];
   /** Allowed service zone IDs (empty = city-level only). */
   serviceZoneIds: string[];
+  /** Allowed society IDs for society managers. */
+  societyIds: string[];
   /** Operator partner ID, if applicable. */
   operatingPartnerId: string | null;
 }
@@ -39,6 +41,7 @@ const CENTRAL_ROLES: Role[] = [
  * - Central admin roles → unrestricted.
  * - CITY_MANAGER role → scoped to cities they manage.
  * - OPERATOR role → scoped to territories assigned to their OperatingPartner.
+ * - SOCIETY_MANAGER role → scoped to societies they are active managers of.
  */
 export async function resolveTerritoryScope(
   userId: string,
@@ -50,12 +53,14 @@ export async function resolveTerritoryScope(
       unrestricted: true,
       cityIds: [],
       serviceZoneIds: [],
+      societyIds: [],
       operatingPartnerId: null,
     };
   }
 
   const cityIds = new Set<string>();
   const serviceZoneIds = new Set<string>();
+  const societyIds = new Set<string>();
   let operatingPartnerId: string | null = null;
 
   // City Manager scoping
@@ -67,6 +72,18 @@ export async function resolveTerritoryScope(
     });
     for (const a of assignments) {
       cityIds.add(a.cityId);
+    }
+  }
+
+  // Society Manager scoping
+  if (roles.includes("SOCIETY_MANAGER")) {
+    const memberships = await prisma.societyMember.findMany({
+      where: { userId, status: "ACTIVE" },
+      take: 50,
+      select: { societyId: true },
+    });
+    for (const m of memberships) {
+      societyIds.add(m.societyId);
     }
   }
 
@@ -99,6 +116,7 @@ export async function resolveTerritoryScope(
     unrestricted: false,
     cityIds: Array.from(cityIds),
     serviceZoneIds: Array.from(serviceZoneIds),
+    societyIds: Array.from(societyIds),
     operatingPartnerId,
   };
 }
@@ -126,4 +144,13 @@ export function zoneWhereFilter(scope: TerritoryScope): Record<string, unknown> 
   }
   // Fallback: zone-level isolation not configured, restrict by city
   return { cityId: { in: scope.cityIds } };
+}
+
+/**
+ * Returns a filter for models with a `societyId` field.
+ */
+export function societyWhereFilter(scope: TerritoryScope): Record<string, unknown> {
+  if (scope.unrestricted) return {};
+  if (scope.societyIds.length === 0) return { societyId: "__NO_ACCESS__" };
+  return { societyId: { in: scope.societyIds } };
 }
