@@ -11,6 +11,14 @@ vi.mock("@/modules/auth/server", () => ({
   handleAuthError: vi.fn().mockReturnValue(null),
 }));
 
+vi.mock("@/modules/payments/razorpay", () => ({
+  createRazorpayClient: vi.fn(() => ({
+    plans: {
+      create: vi.fn().mockResolvedValue({ id: "plan_mock12345678" }),
+    },
+  })),
+}));
+
 describe("Phase 9: Subscriptions and Entitlements Integration", () => {
   let customerId: string;
 
