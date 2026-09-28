@@ -92,7 +92,7 @@ export function CareMatchFinder() {
           <div className="relative flex items-center">
             <select
               id="hero-care-service-select"
-              aria-label="Care Service"
+              aria-label="Care service"
               name="service"
               value={service}
               onChange={(event) => setService(event.target.value as typeof service)}
@@ -117,7 +117,7 @@ export function CareMatchFinder() {
           <div className="relative flex items-center">
             <select
               id="hero-pet-type-select"
-              aria-label="Pet Type"
+              aria-label="Pet type"
               name="petType"
               value={petType}
               onChange={(event) => setPetType(event.target.value as PetType)}
@@ -144,7 +144,7 @@ export function CareMatchFinder() {
           </span>
           <input
             id="hero-locality-search-input"
-            aria-label="Search city or neighborhood"
+            aria-label="City or locality"
             value={locality}
             name="locality"
             onChange={(event) => {
