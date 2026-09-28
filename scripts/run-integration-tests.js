@@ -1,5 +1,6 @@
-// eslint-disable-next-line @typescript-eslint/no-require-imports
+/* eslint-disable @typescript-eslint/no-require-imports */
 const { spawnSync } = require("node:child_process");
+const path = require("node:path");
 
 const DEFAULT_MONGODB_URI =
   "mongodb://127.0.0.1:47017/petsaathi_test?replicaSet=rs0&directConnection=true";
@@ -15,7 +16,6 @@ function assertDisposableDatabase(rawUrl) {
 }
 try {
   assertDisposableDatabase(databaseUrl);
-  const path = require("node:path");
   const vitestCli = path.join(path.dirname(require.resolve("vitest/package.json")), "vitest.mjs");
   const result = spawnSync(process.execPath, [vitestCli, "run", "--config", "vitest.integration.config.ts"], {
     cwd: process.cwd(),
