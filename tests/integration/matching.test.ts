@@ -158,6 +158,32 @@ describe("Phase 11: Assisted Matching Integration", () => {
       }
     });
     bookingId = booking.id;
+
+    const price = await prisma.servicePrice.create({
+      data: {
+        serviceTypeId,
+        version: 1,
+        amountPaise: 20000,
+        sitterPaise: 14000,
+        taxBasisPoints: 0,
+        effectiveAt: new Date(Date.now() - 60_000),
+        approvedBy: adminId,
+      },
+    });
+
+    await prisma.priceQuote.create({
+      data: {
+        bookingId,
+        servicePriceId: price.id,
+        subtotalPaise: 20000,
+        taxPaise: 0,
+        totalPaise: 20000,
+        currency: "INR",
+        breakdown: {},
+        expiresAt: new Date(Date.now() + 60 * 60 * 1000),
+        acceptedAt: new Date(),
+      },
+    });
   });
 
   afterEach(async () => {
@@ -167,9 +193,11 @@ describe("Phase 11: Assisted Matching Integration", () => {
     await prisma.bookingAssignment.deleteMany({ where: { bookingId } });
     if (bookingId) {
       await prisma.payment.deleteMany({ where: { bookingId } });
+      await prisma.priceQuote.deleteMany({ where: { bookingId } });
       await prisma.bookingStatusHistory.deleteMany({ where: { bookingId } });
       await prisma.booking.deleteMany({ where: { id: bookingId } });
     }
+    await prisma.servicePrice.deleteMany({ where: { serviceTypeId } });
     await prisma.availabilityException.deleteMany({ where: { sitterId } });
     await prisma.sitterServicePermission.deleteMany({ where: { sitterId } });
     await prisma.sitterProfile.deleteMany({ where: { id: sitterId } });

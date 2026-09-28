@@ -8,6 +8,7 @@ import { SubscriptionStatus } from "@prisma/client";
 
 vi.mock("@/modules/auth/server", () => ({
   getAdminSession: vi.fn().mockResolvedValue("admin-123"),
+  handleAuthError: vi.fn().mockReturnValue(null),
 }));
 
 describe("Phase 9: Subscriptions and Entitlements Integration", () => {

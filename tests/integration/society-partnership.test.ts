@@ -6,6 +6,7 @@ import { PATCH as SocietyPATCH, GET as SocietyGET } from "@/app/api/admin/societ
 
 vi.mock("@/modules/auth/server", () => ({
   getAdminSession: vi.fn().mockResolvedValue("admin-123"),
+  handleAuthError: vi.fn().mockReturnValue(null),
 }));
 vi.mock("@/modules/auth/session", () => ({
   getCurrentIdentity: vi.fn().mockResolvedValue({ id: "admin-123", roles: ["SUPER_ADMIN"] }),

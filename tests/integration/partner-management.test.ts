@@ -12,6 +12,7 @@ import { GateStatus } from "@prisma/client";
 
 vi.mock("@/modules/auth/server", () => ({
   getAdminSession: vi.fn().mockResolvedValue("admin-123"),
+  handleAuthError: vi.fn().mockReturnValue(null),
 }));
 vi.mock("@/modules/auth/session", () => ({
   getCurrentIdentity: vi.fn().mockResolvedValue({ id: "admin-123", roles: ["SUPER_ADMIN", "PARTNER_MANAGER"] }),
