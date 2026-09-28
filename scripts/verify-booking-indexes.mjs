@@ -1,5 +1,8 @@
+import dns from "node:dns";
 import dotenv from "dotenv";
 import { MongoClient } from "mongodb";
+
+try { dns.setServers(["8.8.8.8", "1.1.1.1"]); } catch {}
 
 dotenv.config({ path: ".env.local", quiet: true });
 dotenv.config({ path: ".env", quiet: true });

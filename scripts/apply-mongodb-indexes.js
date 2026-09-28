@@ -25,6 +25,7 @@ const partialUniqueIndexes = [
   ["contacts", "contacts_email_key", { email: 1 }, { email: { $type: "string" } }],
   ["contacts", "contacts_phone_e164_key", { phone_e164: 1 }, { phone_e164: { $type: "string" } }],
   ["benefit_ledger_entries", "benefit_ledger_entries_idempotency_key_key", { idempotency_key: 1 }, { idempotency_key: { $type: "string" } }],
+  ["bookings", "bookings_idempotency_key_key", { idempotency_key: 1 }, { idempotency_key: { $type: "string" } }],
   [
     "booking_assignments",
     "booking_assignments_one_active_per_booking",
