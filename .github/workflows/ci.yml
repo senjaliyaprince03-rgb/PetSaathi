@@ -19,7 +19,6 @@ jobs:
       NEXTAUTH_SECRET: ci_only_auth_secret_123456789012345678901234567890
       UPLOAD_SIGNING_SECRET: ci_only_upload_secret_123456789012345678901234567890
       AUTH_DEV_FIXED_OTP: '123456'
-      PLAYWRIGHT_TEST: '1'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -40,6 +39,8 @@ jobs:
       - run: npm run build
       - run: npx playwright install --with-deps chromium
       - run: npx playwright test --project=chromium --project=mobile
+        env:
+          PLAYWRIGHT_TEST: '1'
       - uses: actions/upload-artifact@v4
         if: always()
         with:
