@@ -23,7 +23,7 @@ jobs:
         with:
           node-version: '22'
           cache: npm
-      - run: npm ci
+      - run: npm install --legacy-peer-deps
       - name: Validate deployment configuration
         run: |
           test -n "$VERCEL_TOKEN"
