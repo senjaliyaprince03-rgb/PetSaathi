@@ -114,6 +114,7 @@ export async function promoteGridFsObject(input: {
   destinationPath: string;
   contentType: string;
 }) {
+  if (await findStoredObject(input.uploadId, input.toBucket)) return true;
   const bytes = await readGridFsObject(input.uploadId, input.fromBucket);
   if (!bytes) return false;
   await storeGridFsObject({
@@ -123,6 +124,6 @@ export async function promoteGridFsObject(input: {
     contentType: input.contentType,
     bytes,
   });
-  await deleteGridFsObject(input.uploadId, input.fromBucket);
+  // The caller deletes quarantine only after committing promotion metadata.
   return true;
 }

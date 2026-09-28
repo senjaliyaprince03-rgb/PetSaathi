@@ -28,14 +28,13 @@ export interface QueryAuditLogsParams {
  * Record an immutable audit log entry for any sensitive governance, security,
  * or operational state change.
  */
-export async function recordRbacAuditLog(params: CreateAuditLogParams) {
+export async function recordRbacAuditLog(params: CreateAuditLogParams, client: Pick<Prisma.TransactionClient, "auditLog"> = prisma) {
   if (!isDatabaseConfigured()) {
-    console.info("[RBAC-AUDIT] (DB unconfigured)", JSON.stringify(params));
-    return null;
+    throw new Error("Audit database not configured");
   }
 
   try {
-    return await prisma.auditLog.create({
+    return await client.auditLog.create({
       data: {
         actorId: params.actorId ?? null,
         actorRole: params.actorRole ?? null,
@@ -51,7 +50,7 @@ export async function recordRbacAuditLog(params: CreateAuditLogParams) {
     });
   } catch (error) {
     console.error("[RBAC-AUDIT-ERROR] Failed to record audit log:", error);
-    return null;
+    throw new Error("Security audit persistence failed", { cause: error });
   }
 }
 

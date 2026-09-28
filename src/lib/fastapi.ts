@@ -8,6 +8,7 @@ export async function fetchFastAPI(endpoint: string, options: RequestInit = {}) 
   try {
     const response = await fetch(`${FASTAPI_URL}${endpoint}`, {
       ...options,
+      signal: options.signal ?? AbortSignal.timeout(5_000),
       headers: {
         'Content-Type': 'application/json',
         ...options.headers,

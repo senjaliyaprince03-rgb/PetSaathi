@@ -12,6 +12,7 @@ vi.mock("@/modules/auth/session", () => ({
 vi.mock("@/lib/db", () => ({
   isDatabaseConfigured: vi.fn(() => true),
   prisma: {
+    $transaction: vi.fn(async function (this: any, cb: any) { return cb(this); }),
     user: {
       findMany: vi.fn().mockResolvedValue([
         {
@@ -36,6 +37,7 @@ vi.mock("@/lib/db", () => ({
       deleteMany: vi.fn().mockResolvedValue({ count: 1 }),
     },
     adminPermission: {
+      findFirst: vi.fn().mockResolvedValue(null),
       upsert: vi.fn().mockResolvedValue({ id: "ap-1" }),
       updateMany: vi.fn().mockResolvedValue({ count: 1 }),
       findMany: vi.fn().mockResolvedValue([]),

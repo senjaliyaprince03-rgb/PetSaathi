@@ -9,9 +9,20 @@ export class B2BError extends Error {
   }
 }
 
-export async function getSocietyDashboard(societyId: string) {
-  const society = await prisma.society.findUnique({
-    where: { id: societyId }
+export async function getSocietyDashboard(
+  societyId: string,
+  authorizedScope?: { societyIds?: string[] } | null
+) {
+  const whereClause: { id: string | { in: string[] } } = { id: societyId };
+  if (authorizedScope?.societyIds) {
+    if (!authorizedScope.societyIds.includes(societyId)) {
+      throw new B2BError("society_not_found", "Society does not exist or access denied");
+    }
+    whereClause.id = { in: authorizedScope.societyIds };
+  }
+
+  const society = await prisma.society.findFirst({
+    where: whereClause
   });
 
   if (!society) {

@@ -1064,6 +1064,8 @@ model PaymentEvent {
   receivedAt      DateTime  @default(now()) @map("received_at")
   processedAt     DateTime? @map("processed_at")
   processingError String?   @map("processing_error")
+  processingToken String?   @map("processing_token")
+  processingStartedAt DateTime? @map("processing_started_at")
   attempts        Int       @default(0)
 
   @@index([processedAt, receivedAt])

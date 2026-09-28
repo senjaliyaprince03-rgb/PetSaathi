@@ -95,21 +95,24 @@ export async function canUser(
     return true;
   }
 
-  const effectivePermissions = await resolveUserPermissions(
-    identity.id,
-    identity.roles,
-  );
-
-  if (!effectivePermissions.has(permission)) {
-    return false;
+  const roleAllows = identity.roles.some(role => rolePermissions[role]?.includes(permission));
+  if (!roleAllows) {
+    if (!isDatabaseConfigured()) return false;
+    try {
+      const grant = await prisma.adminPermission.findFirst({
+        where: { userId: identity.id, permission, status: "ACTIVE", OR: [{ expiresAt: null }, { expiresAt: { isSet: false } }, { expiresAt: { gt: new Date() } }] },
+        select: { scope: true },
+      });
+      if (!grant) return false;
+      if (grant.scope !== null && grant.scope !== undefined) {
+        if (typeof grant.scope !== "object" || Array.isArray(grant.scope)) return false;
+        for (const [key, value] of Object.entries(grant.scope)) {
+          if (!["ownerId", "cityId", "serviceZoneId", "societyId"].includes(key) || typeof value !== "string" || !value || scope?.[key as keyof ScopeContext] !== value) return false;
+        }
+      }
+    } catch { return false; } // A failed scope lookup must never widen a grant.
   }
-
-  // IDOR / BOLA Resource ownership checks
-  if (scope?.ownerId && permission.endsWith(":own")) {
-    if (identity.id !== scope.ownerId) {
-      return false;
-    }
-  }
+  if (permission.endsWith(":own") && (!scope?.ownerId || scope.ownerId !== identity.id)) return false;
 
   // Multi-tenancy Territory scoping for City Managers, Operators & Society Managers
   if (
@@ -218,9 +221,11 @@ export async function assignUserRole(params: {
   if (!isDatabaseConfigured()) {
     throw new Error("Database not configured");
   }
+  return prisma.$transaction(async (tx) => {
+
 
   // Get current roles before
-  const user = await prisma.user.findUnique({
+  const user = await tx.user.findUnique({
     where: { id: targetUserId },
     include: { roles: true },
   });
@@ -235,7 +240,7 @@ export async function assignUserRole(params: {
   }
 
   // Upsert user role
-  await prisma.userRole.upsert({
+  await tx.userRole.upsert({
     where: {
       userId_role: {
         userId: targetUserId,
@@ -269,15 +274,12 @@ export async function assignUserRole(params: {
     reason: reason ?? "Admin role assignment",
     requestId,
     ipHash,
-  });
+  }, tx);
 
   return { success: true, message: `Role ${role} assigned successfully` };
+  });
 }
 
-/**
- * Safely revoke a role from a user.
- * Prevents unauthorized revocation or privilege escalation.
- */
 export async function revokeUserRole(params: {
   actorIdentity: AppIdentity;
   targetUserId: string;
@@ -310,8 +312,10 @@ export async function revokeUserRole(params: {
   if (!isDatabaseConfigured()) {
     throw new Error("Database not configured");
   }
+  return prisma.$transaction(async (tx) => {
 
-  const user = await prisma.user.findUnique({
+
+  const user = await tx.user.findUnique({
     where: { id: targetUserId },
     include: { roles: true },
   });
@@ -325,7 +329,12 @@ export async function revokeUserRole(params: {
     return { success: true, message: "User does not have this role" };
   }
 
-  await prisma.userRole.deleteMany({
+  if (role === "SUPER_ADMIN") {
+    // Writing the common administrator set serializes concurrent last-admin revocations.
+    await tx.user.updateMany({ where: { roles: { some: { role: "SUPER_ADMIN" } } }, data: { updatedAt: new Date() } });
+    if (await tx.userRole.count({ where: { role: "SUPER_ADMIN" } }) <= 1) throw new Error("Cannot revoke the last SUPER_ADMIN");
+  }
+  await tx.userRole.deleteMany({
     where: {
       userId: targetUserId,
       role,
@@ -347,15 +356,12 @@ export async function revokeUserRole(params: {
     reason: reason ?? "Admin role revocation",
     requestId,
     ipHash,
-  });
+  }, tx);
 
   return { success: true, message: `Role ${role} revoked successfully` };
+  });
 }
 
-/**
- * Grant a custom permission override via AdminPermission.
- * Strictly limited to SUPER_ADMIN.
- */
 export async function grantCustomPermission(params: {
   actorIdentity: AppIdentity;
   targetUserId: string;
@@ -379,8 +385,10 @@ export async function grantCustomPermission(params: {
   if (!isDatabaseConfigured()) {
     throw new Error("Database not configured");
   }
+  return prisma.$transaction(async (tx) => {
 
-  const record = await prisma.adminPermission.upsert({
+
+  const record = await tx.adminPermission.upsert({
     where: {
       userId_permission: {
         userId: targetUserId,
@@ -417,15 +425,12 @@ export async function grantCustomPermission(params: {
     reason,
     requestId,
     ipHash,
-  });
+  }, tx);
 
   return { success: true, record };
+  });
 }
 
-/**
- * Revoke a custom permission override.
- * Strictly limited to SUPER_ADMIN.
- */
 export async function revokeCustomPermission(params: {
   actorIdentity: AppIdentity;
   targetUserId: string;
@@ -443,8 +448,10 @@ export async function revokeCustomPermission(params: {
   if (!isDatabaseConfigured()) {
     throw new Error("Database not configured");
   }
+  return prisma.$transaction(async (tx) => {
 
-  await prisma.adminPermission.updateMany({
+
+  await tx.adminPermission.updateMany({
     where: {
       userId: targetUserId,
       permission,
@@ -467,7 +474,8 @@ export async function revokeCustomPermission(params: {
     reason,
     requestId,
     ipHash,
-  });
+  }, tx);
 
   return { success: true };
+  });
 }

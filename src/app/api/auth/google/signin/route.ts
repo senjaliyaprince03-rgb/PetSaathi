@@ -28,7 +28,7 @@ export async function POST(request: Request) {
     });
     
     const payload = ticket.getPayload();
-    if (!payload || !payload.email) {
+    if (!payload || !payload.email || payload.email_verified !== true || !payload.sub) {
       return NextResponse.json({ error: "invalid_credential" }, { status: 401 });
     }
 

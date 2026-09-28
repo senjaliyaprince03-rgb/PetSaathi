@@ -42,6 +42,15 @@ const { mockDb, mockTx } = vi.hoisted(() => {
       },
     },
     paymentEvent: {
+      updateMany: async ({ where, data }: any) => {
+        for (const [key, ev] of db.paymentEvents) {
+          if (ev.id === where.id && (!where.processingToken || ev.processingToken === where.processingToken)) {
+            db.paymentEvents.set(key, { ...ev, ...data });
+            return { count: 1 };
+          }
+        }
+        return { count: 0 };
+      },
       update: async ({ where, data }: { where: { id: string }; data: any }) => {
         for (const [key, ev] of db.paymentEvents.entries()) {
           if (ev.id === where.id) {

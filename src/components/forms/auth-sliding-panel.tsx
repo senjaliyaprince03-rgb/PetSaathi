@@ -48,9 +48,7 @@ export function AuthSlidingPanel({ returnTo }: { returnTo?: string }) {
   }
 
   function redirectForRoles(roles?: string[]) {
-    if (roles?.includes("SUPER_ADMIN") || roles?.includes("OPERATIONS_ADMIN") || roles?.includes("ADMIN")) return "/admin";
-    if (roles?.includes("SITTER")) return "/saathi";
-    return "/dashboard";
+    return getDefaultDashboardForRoles((roles ?? []) as Role[]);
   }
 
   function getSafeDestination(roles?: string[]) {
@@ -542,3 +540,5 @@ function GoogleOAuthButton({ role, returnTo, label }: { role: string; returnTo?:
     </a>
   );
 }
+import { getDefaultDashboardForRoles } from "@/modules/auth/admin-access";
+import type { Role } from "@prisma/client";

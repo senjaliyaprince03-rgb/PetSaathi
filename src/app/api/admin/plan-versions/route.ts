@@ -18,7 +18,7 @@ const planVersionSchema = z.object({
 
 export async function POST(req: NextRequest) {
   try {
-    const adminId = await getAdminSession();
+    const adminId = await getAdminSession(["FINANCE_ADMIN", "SUPER_ADMIN"]);
     if (!adminId) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -43,7 +43,7 @@ export async function POST(req: NextRequest) {
 
 export async function GET(req: NextRequest) {
   try {
-    const adminId = await getAdminSession();
+    const adminId = await getAdminSession(["FINANCE_ADMIN", "SUPER_ADMIN"]);
     if (!adminId) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }

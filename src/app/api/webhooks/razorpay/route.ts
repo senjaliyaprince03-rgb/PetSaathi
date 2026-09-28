@@ -1,4 +1,4 @@
-import { createHash } from "node:crypto";
+import { createHash, randomUUID } from "node:crypto";
 
 import { Prisma } from "@prisma/client";
 import { NextResponse } from "next/server";
@@ -7,6 +7,7 @@ import { isDatabaseConfigured, prisma } from "@/lib/db";
 import { canTransitionBooking } from "@/modules/bookings/state-machine";
 import { validRazorpaySignature } from "@/modules/payments/signature";
 import { canTransitionPayment } from "@/modules/payments/state-machine";
+import { reconcileRefund } from "@/modules/payments/refunds";
 import { canTransitionSubscription } from "@/modules/subscriptions/state-machine";
 
 export const dynamic = "force-dynamic";
@@ -34,75 +35,82 @@ export async function POST(request: Request) {
     }
   }
   if (!event) return NextResponse.json({ error: "event_storage_failed" }, { status: 500 });
+  if (event.payloadHash !== createHash("sha256").update(rawBody).digest("hex")) return NextResponse.json({ error: "event_payload_mismatch" }, { status: 409 });
   if (event.processedAt) return NextResponse.json({ accepted: true, duplicate: true });
 
-  // Atomically claim processing execution to serialize concurrent replays
+  const processingToken = randomUUID();
+  const now = new Date();
   const claim = await prisma.paymentEvent.updateMany({
-    where: { id: event.id, attempts: 0 },
-    data: { attempts: 1 }
+    where: {
+      id: event.id,
+      AND: [
+        { OR: [{ processedAt: null }, { processedAt: { isSet: false } }] },
+        { OR: [{ processingStartedAt: null }, { processingStartedAt: { isSet: false } }, { processingStartedAt: { lt: new Date(now.getTime() - 120_000) } }] },
+      ],
+    },
+    data: { processingToken, processingStartedAt: now, processingError: null, attempts: { increment: 1 } },
   });
-
-  if (claim.count === 0) {
-    // Another concurrent request claimed or already finished this event
-    return NextResponse.json({ accepted: true, duplicate: true });
+  if (claim.count !== 1) {
+    const current = await prisma.paymentEvent.findUnique({ where: { id: event.id } });
+    if (current?.processedAt) return NextResponse.json({ accepted: true, duplicate: true });
+    return NextResponse.json({ error: "event_processing" }, { status: 503, headers: { "Retry-After": "5" } });
   }
-
   try {
-    await processEvent(event.id, eventType, payload);
+    await prisma.$transaction(async (tx) => {
+      // Fence stale workers inside the same transaction as every business write.
+      const fenced = await tx.paymentEvent.updateMany({ where: { id: event.id, processingToken }, data: { processingStartedAt: new Date() } });
+      if (fenced.count !== 1) throw new Error("event_lease_lost");
+      await processEvent(tx, event.id, eventType, payload);
+      await tx.paymentEvent.update({ where: { id: event.id }, data: { processingToken: null, processingStartedAt: null } });
+    }, { maxWait: 5_000, timeout: 30_000 });
     return NextResponse.json({ accepted: true }, { status: 202 });
-  } catch (error) {
-    console.error("[Razorpay Webhook Error]:", error);
-    await prisma.paymentEvent.update({ where: { id: event.id }, data: { attempts: { increment: 1 }, processingError: error instanceof Error ? error.message.slice(0, 500) : "Unknown processing error" } });
-    return NextResponse.json({ error: "processing_failed" }, { status: 500 });
+  } catch {
+    await prisma.paymentEvent.updateMany({ where: { id: event.id, processingToken }, data: { processingToken: null, processingStartedAt: null, processingError: "processing_failed_retryable" } });
+    return NextResponse.json({ error: "processing_failed" }, { status: 503, headers: { "Retry-After": "5" } });
   }
 }
 
-async function processEvent(eventRecordId: string, eventType: string, payload: unknown) {
+async function processEvent(tx: Prisma.TransactionClient, eventRecordId: string, eventType: string, payload: unknown) {
   const subscriptionEntity = readSubscriptionEntity(payload);
   if (subscriptionEntity && eventType.startsWith("subscription.")) {
-    await prisma.$transaction(async (tx) => {
+    {
       const subscription = await tx.subscription.findUnique({ where: { providerSubscriptionId: subscriptionEntity.id }, include: { planVersion: { select: { entitlements: true } } } });
       if (!subscription) throw new Error("Subscription is unknown");
       const toState = mapSubscriptionStatus(subscriptionEntity.status);
-      if (!canTransitionSubscription(subscription.status, toState)) {
-        await tx.paymentEvent.update({ where: { id: eventRecordId }, data: { processedAt: new Date(), attempts: { increment: 1 }, processingError: `Ignored out-of-order subscription transition ${subscription.status} to ${toState}` } });
+      if (subscription.status !== toState && !canTransitionSubscription(subscription.status, toState)) {
+        await tx.paymentEvent.update({ where: { id: eventRecordId }, data: { processedAt: new Date(), processingError: `Ignored out-of-order subscription transition ${subscription.status} to ${toState}` } });
         return;
       }
       await tx.subscription.update({ where: { id: subscription.id }, data: { status: toState, currentPeriodStart: unixDate(subscriptionEntity.currentStart), currentPeriodEnd: unixDate(subscriptionEntity.currentEnd) } });
       if (eventType === "subscription.charged") await grantSubscriptionEntitlements(tx, subscription.id, subscription.planVersion.entitlements, eventRecordId);
-      await tx.paymentEvent.update({ where: { id: eventRecordId }, data: { processedAt: new Date(), attempts: { increment: 1 }, processingError: null } });
-    });
+      await tx.paymentEvent.update({ where: { id: eventRecordId }, data: { processedAt: new Date(), processingError: null } });
+    }
     return;
   }
 
   const refundEntity = readRefundEntity(payload);
   if (refundEntity && ["refund.created", "refund.processed", "refund.failed"].includes(eventType)) {
-    await prisma.$transaction(async (tx) => {
-      const refund = await tx.refund.findUnique({ where: { providerRefundId: refundEntity.id }, include: { payment: { select: { id: true, providerPaymentId: true, amountPaise: true } } } });
+    {
+      const refund = await tx.refund.findFirst({ where: { OR: [ { providerRefundId: refundEntity.id }, ...(refundEntity.requestId ? [{ id: refundEntity.requestId }] : []) ] } });
       if (!refund) throw new Error("Refund is unknown");
-      if (refund.amountPaise !== refundEntity.amount || refund.payment.providerPaymentId !== refundEntity.paymentId) throw new Error("Provider refund does not match the approved request");
-      const status = eventType === "refund.processed" ? "COMPLETED" : eventType === "refund.failed" ? "FAILED" : "PROCESSING";
-      await tx.refund.update({ where: { id: refund.id }, data: { status, completedAt: status === "COMPLETED" ? new Date() : null } });
-      if (status === "COMPLETED") {
-        const completed = await tx.refund.aggregate({ where: { paymentId: refund.payment.id, status: "COMPLETED" }, _sum: { amountPaise: true } });
-        const refundedPaise = completed._sum.amountPaise ?? 0;
-        await tx.payment.update({ where: { id: refund.payment.id }, data: { status: refundedPaise >= refund.payment.amountPaise ? "REFUNDED" : "PARTIALLY_REFUNDED" } });
-      }
-      await tx.paymentEvent.update({ where: { id: eventRecordId }, data: { processedAt: new Date(), attempts: { increment: 1 }, processingError: null } });
-    });
+      await reconcileRefund(tx, refund.id, { id: refundEntity.id, payment_id: refundEntity.paymentId, amount: refundEntity.amount,
+        status: eventType === "refund.processed" ? "processed" : eventType === "refund.failed" ? "failed" : "pending" });
+      await tx.paymentEvent.update({ where: { id: eventRecordId }, data: { processedAt: new Date(), processingError: null } });
+    }
     return;
   }
 
   const entity = readPaymentEntity(payload);
   if (!entity || !["payment.captured", "payment.authorized", "order.paid", "payment.failed"].includes(eventType)) {
-    await prisma.paymentEvent.update({ where: { id: eventRecordId }, data: { processedAt: new Date(), attempts: { increment: 1 }, processingError: null } });
+    await tx.paymentEvent.update({ where: { id: eventRecordId }, data: { processedAt: new Date(), processingError: null } });
     return;
   }
 
-  await prisma.$transaction(async (tx) => {
+  {
     const payment = await tx.payment.findUnique({ where: { providerOrderId: entity.orderId }, include: { booking: { select: { id: true, reference: true, customerId: true, status: true } } } });
     if (!payment) throw new Error("Payment order is unknown");
     if (payment.amountPaise !== entity.amount || payment.currency !== entity.currency) throw new Error("Provider amount or currency does not match the server quote");
+    if (payment.providerPaymentId && payment.providerPaymentId !== entity.id) throw new Error("Provider payment ID mismatch");
 
     if (eventType === "payment.captured" || eventType === "order.paid") {
       if (canTransitionPayment(payment.status, "CAPTURED")) {
@@ -110,7 +118,7 @@ async function processEvent(eventRecordId: string, eventType: string, payload: u
       } else if (payment.status === "CAPTURED") {
         await tx.payment.update({ where: { id: payment.id }, data: { providerPaymentId: entity.id, signatureVerified: true, capturedAt: payment.capturedAt ?? new Date() } });
       }
-      if (canTransitionBooking(payment.booking.status, "CONFIRMED")) {
+      if (["CREATED", "PENDING", "AUTHORIZED", "CAPTURED"].includes(payment.status) && canTransitionBooking(payment.booking.status, "CONFIRMED")) {
         await tx.booking.update({ where: { id: payment.booking.id }, data: { status: "CONFIRMED", statusHistory: { create: { fromState: payment.booking.status, toState: "CONFIRMED", reason: "Verified Razorpay capture webhook" } } } });
       }
       await tx.notificationOutbox.upsert({
@@ -134,8 +142,8 @@ async function processEvent(eventRecordId: string, eventType: string, payload: u
         await tx.payment.update({ where: { id: payment.id }, data: { providerPaymentId: entity.id, status: "FAILED", failureCode: entity.errorCode, failureReason: entity.errorDescription } });
       }
     }
-    await tx.paymentEvent.update({ where: { id: eventRecordId }, data: { processedAt: new Date(), attempts: { increment: 1 }, processingError: null } });
-  });
+    await tx.paymentEvent.update({ where: { id: eventRecordId }, data: { processedAt: new Date(), processingError: null } });
+  }
 }
 
 async function grantSubscriptionEntitlements(tx: Prisma.TransactionClient, subscriptionId: string, value: Prisma.JsonValue, eventRecordId: string) {
@@ -183,7 +191,9 @@ function readRefundEntity(payload: unknown) {
   if (typeof entity !== "object" || !entity) return null;
   const value = entity as Record<string, unknown>;
   if (typeof value.id !== "string" || typeof value.payment_id !== "string" || typeof value.amount !== "number") return null;
-  return { id: value.id, paymentId: value.payment_id, amount: value.amount };
+  const notes = value.notes as Record<string, unknown> | undefined;
+  const requestId = typeof notes?.refund_request_id === "string" ? notes.refund_request_id : typeof notes?.refundRecordId === "string" ? notes.refundRecordId : undefined;
+  return { id: value.id, paymentId: value.payment_id, amount: value.amount, requestId };
 }
 
 function readEventType(payload: unknown) {

@@ -1,5 +1,7 @@
-import { timingSafeEqual } from "node:crypto";
+import { createHash, randomUUID, timingSafeEqual } from "node:crypto";
 import { writeFile, unlink } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 
 import type { Prisma } from "@prisma/client";
 import { NextResponse } from "next/server";
@@ -44,7 +46,9 @@ async function scanFileWithClamAV(filePath: string): Promise<{ isInfected: boole
   const result = await clamscan.isInfected(filePath);
   // clamscan.isInfected returns { file, isInfected: boolean|null, viruses: string[] }
   // isInfected can be true, false, or null (timeout/error)
-  return { isInfected: result.isInfected === true, viruses: result.viruses ?? [] };
+  // Null/missing results are errors, never evidence that a file is clean.
+  if (result?.isInfected !== true && result?.isInfected !== false) throw new Error("scanner_indeterminate");
+  return { isInfected: result.isInfected, viruses: result.viruses ?? [] };
 }
 
 export async function POST(request: Request) {
@@ -56,6 +60,13 @@ export async function POST(request: Request) {
   const upload = await prisma.uploadObject.findUnique({ where: { id: parsed.data.uploadId } });
   if (!upload) return NextResponse.json({ error: "not_found" }, { status: 404 });
   if (upload.status === "PROMOTED" || upload.status === "REJECTED" || upload.status === "DELETED") return NextResponse.json({ accepted: true, duplicate: true, status: upload.status });
+  if (parsed.data.verdict === "UNSCANNABLE") return NextResponse.json({ error: "scan_indeterminate", status: "QUARANTINED" }, { status: 503 });
+  const bytes = await readGridFsObject(upload.id, "upload-quarantine");
+  if (!bytes) return NextResponse.json({ error: "quarantine_object_unavailable" }, { status: 409 });
+  const hash = createHash("sha256").update(bytes).digest("hex");
+  if (parsed.data.verdict === "CLEAN" && (parsed.data.sha256 !== hash || detectMime(bytes) !== upload.mimeType || bytes.length !== upload.sizeBytes)) {
+    return NextResponse.json({ error: "scan_content_mismatch" }, { status: 409 });
+  }
   const clean = parsed.data.verdict === "CLEAN" && parsed.data.detectedMime === upload.mimeType;
   const scanResult = { verdict: parsed.data.verdict, detectedMime: parsed.data.detectedMime, details: parsed.data.details } as Prisma.InputJsonValue;
   if (!clean) {
@@ -69,13 +80,15 @@ export async function POST(request: Request) {
   const promoted = await promoteGridFsObject({ uploadId: upload.id, fromBucket: "upload-quarantine", toBucket: destinationBucket, destinationPath, contentType: upload.mimeType });
   if (!promoted) return NextResponse.json({ error: "quarantine_object_unavailable" }, { status: 409 });
   await prisma.$transaction(async (tx) => {
-    await tx.uploadObject.update({ where: { id: upload.id }, data: { status: "PROMOTED", destinationBucket, destinationPath, scannerProvider: parsed.data.provider, scanResult, sha256: parsed.data.sha256, scannedAt: new Date(), promotedAt: new Date() } });
+    const claim = await tx.uploadObject.updateMany({ where: { id: upload.id, status: { in: ["QUARANTINED", "CLEAN"] } }, data: { status: "PROMOTED", destinationBucket, destinationPath, scannerProvider: parsed.data.provider, scanResult, sha256: parsed.data.sha256, scannedAt: new Date(), promotedAt: new Date() } });
+    if (claim.count !== 1) throw new Error("promotion_changed_concurrently");
     if (upload.purpose === "INCIDENT_EVIDENCE") {
       await tx.incidentEvidence.create({ data: { incidentId: upload.resourceId, uploadId: upload.id, evidenceType: "FILE_UPLOAD", status: "PROMOTED", collectedBy: upload.ownerId } });
       await tx.incidentEvent.create({ data: { incidentId: upload.resourceId, actorId: upload.ownerId, type: "EVIDENCE_PROMOTED", details: { uploadId: upload.id, mimeType: upload.mimeType, sha256: parsed.data.sha256 } } });
     }
     await tx.auditLog.create({ data: { actorId: upload.ownerId, action: "upload.scan_promoted", resourceType: upload.purpose.toLowerCase(), resourceId: upload.resourceId, after: { uploadId: upload.id, destinationBucket, destinationPath, sha256: parsed.data.sha256 } } });
   });
+  await deleteGridFsObject(upload.id, "upload-quarantine");
   return NextResponse.json({ accepted: true, status: "PROMOTED", destination: { bucket: destinationBucket, path: destinationPath } });
 }
 
@@ -85,15 +98,16 @@ export async function PUT(request: Request) {
   const token = request.headers.get("authorization")?.replace(/^Bearer\s+/i, "");
   if (!secret || !token || !sameSecret(secret, token)) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
 
-  const { uploadId } = await request.json().catch(() => null);
-  if (!uploadId) return NextResponse.json({ error: "missing_uploadId" }, { status: 400 });
+  const input = z.object({ uploadId: z.string().uuid() }).safeParse(await request.json().catch(() => null));
+  if (!input.success) return NextResponse.json({ error: "invalid_uploadId" }, { status: 400 });
+  const { uploadId } = input.data;
 
   const upload = await prisma.uploadObject.findUnique({ where: { id: uploadId } });
   if (!upload) return NextResponse.json({ error: "not_found" }, { status: 404 });
   if (upload.status !== "QUARANTINED") return NextResponse.json({ error: "invalid_status", status: upload.status }, { status: 409 });
 
   // Download file from quarantine to temp path for scanning
-  const tempPath = `/tmp/${upload.id}`;
+  const tempPath = join(tmpdir(), `upload-${upload.id}-${randomUUID()}`);
   const buffer = await readGridFsObject(upload.id, "upload-quarantine");
   if (!buffer) return NextResponse.json({ error: "quarantine_object_unavailable" }, { status: 404 });
 
@@ -115,23 +129,16 @@ export async function PUT(request: Request) {
       console.error(`[ClamAV] VIRUS DETECTED in upload ${uploadId}: ${viruses.join(", ")}`);
       return NextResponse.json({ scanned: true, isInfected: true, viruses });
     } else {
-      // Mark upload as clean — safe to promote
-      await prisma.uploadObject.update({
-        where: { id: uploadId },
-        data: {
-          status: "CLEAN",
-          scanResult: "No threats detected",
-          scannedAt: new Date(),
-        },
-      });
-      return NextResponse.json({ scanned: true, isInfected: false });
+      const callbackSecret = process.env.SCANNER_CALLBACK_SECRET;
+      if (!callbackSecret) throw new Error("scanner_callback_not_configured");
+      return POST(new Request(request.url, { method: "POST", headers: { authorization: `Bearer ${callbackSecret}`, "Content-Type": "application/json" }, body: JSON.stringify({ uploadId, verdict: "CLEAN", detectedMime: detectMime(buffer), sha256: createHash("sha256").update(buffer).digest("hex"), provider: "clamav" }) }));
     }
   } catch (error) {
     console.error(`[ClamAV] Scan failed for upload ${uploadId}:`, error);
     await prisma.uploadObject.update({
       where: { id: uploadId },
       data: {
-        status: "REJECTED",
+        status: "QUARANTINED",
         scanResult: `Scan error: ${error instanceof Error ? error.message : "Unknown error"}`,
         scannedAt: new Date(),
       },
@@ -144,3 +151,11 @@ export async function PUT(request: Request) {
 }
 
 function sameSecret(expected: string, received: string) { const expectedBytes = Buffer.from(expected); const receivedBytes = Buffer.from(received); return expectedBytes.length === receivedBytes.length && timingSafeEqual(expectedBytes, receivedBytes); }
+
+function detectMime(bytes: Buffer) {
+  if (bytes.subarray(0, 3).equals(Buffer.from([0xff, 0xd8, 0xff]))) return "image/jpeg";
+  if (bytes.subarray(0, 8).equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]))) return "image/png";
+  if (bytes.subarray(0, 4).toString() === "RIFF" && bytes.subarray(8, 12).toString() === "WEBP") return "image/webp";
+  if (bytes.subarray(0, 5).toString() === "%PDF-") return "application/pdf";
+  return null;
+}

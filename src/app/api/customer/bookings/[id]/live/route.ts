@@ -17,11 +17,12 @@ export async function GET(request: Request, context: { params: Promise<{ id: str
   if (!booking) return NextResponse.json({ error: "not_found" }, { status: 404 });
 
   const session = await prisma.trackingSession.findFirst({
-    where: { bookingId: booking.id, status: { in: ["ACTIVE", "ENDED"] } },
+    where: { bookingId: booking.id, status: { in: ["ACTIVE", "ENDED"] }, expiresAt: { gt: new Date() } },
     orderBy: { startedAt: "desc" },
     include: {
       points: {
-        orderBy: { recordedAt: "asc" },
+        orderBy: { recordedAt: "desc" },
+        take: 500,
         select: { latitude: true, longitude: true, recordedAt: true },
       },
     },
@@ -37,7 +38,7 @@ export async function GET(request: Request, context: { params: Promise<{ id: str
       startedAt: session.startedAt,
       endedAt: session.endedAt,
       distanceM: session.distanceM,
-      points: session.points.map((p) => ({
+      points: session.points.reverse().map((p) => ({
         lat: Number(p.latitude),
         lng: Number(p.longitude),
         time: p.recordedAt,

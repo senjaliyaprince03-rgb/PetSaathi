@@ -18,8 +18,10 @@ export default async function SaathiDashboardPage() {
   // Fetch real assignment data safely
   let assignments: any[] = [];
   try {
+    const sitter = await prisma.sitterProfile.findUnique({ where: { userId: identity.id }, select: { id: true } });
+    if (!sitter) return <SaathiDashboardClient displayName={identity.displayName} firstName={firstName} initialChar={initialChar} completedCount={0} upcomingCount={0} />;
     assignments = await prisma.bookingAssignment.findMany({
-      where: { sitterId: identity.id },
+      where: { sitterId: sitter.id },
       take: 100,
       include: { booking: true }
     }).catch(() => []);

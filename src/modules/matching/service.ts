@@ -2,6 +2,7 @@ import { BookingStatus, RiskLevel, PermissionStatus, SitterStatus, AssignmentSta
 
 import { prisma } from "@/lib/db";
 import { logger } from "@/lib/logger";
+import { offerRankedAssignment, AssignmentOfferError } from "./offer-assignment";
 
 export class MatchingError extends Error {
   constructor(public code: string, message: string) {
@@ -96,49 +97,46 @@ export async function findEligibleSitters(bookingId: string) {
 }
 
 export async function proposeSitter(bookingId: string, sitterId: string, adminId: string) {
-  return await prisma.$transaction(async (tx) => {
-    const booking = await tx.booking.findUnique({
-      where: { id: bookingId }
-    });
-
-    if (!booking || (booking.status !== BookingStatus.REQUESTED && booking.status !== BookingStatus.MATCHING)) {
-      throw new MatchingError("invalid_booking", "Booking not ready for sitter proposal");
-    }
-
-    const sitter = await tx.sitterProfile.findUnique({
-      where: { id: sitterId, status: SitterStatus.APPROVED }
-    });
-
-    if (!sitter) {
-      throw new MatchingError("invalid_sitter", "Sitter is invalid or inactive");
-    }
-
-    await tx.bookingAssignment.create({
-      data: {
-        bookingId,
-        sitterId,
-        status: AssignmentStatus.OFFERED,
-        payoutPaise: 15000
-      }
-    });
-
-    const updatedBooking = await tx.booking.update({
-      where: { id: bookingId },
-      data: { status: BookingStatus.SITTER_PROPOSED }
-    });
-
-    // Audit log
-    await tx.auditLog.create({
-      data: {
-        actorId: adminId,
-        actorRole: "OPERATIONS_ADMIN",
-        action: "PROPOSE_SITTER",
-        resourceType: "BOOKING",
-        resourceId: bookingId,
-        after: { sitterId }
-      }
-    });
-
-    return updatedBooking;
+  const booking = await prisma.booking.findUnique({
+    where: { id: bookingId },
+    select: { id: true, status: true }
   });
+
+  if (!booking) {
+    throw new MatchingError("invalid_booking", "Booking not found");
+  }
+
+  if (booking.status === BookingStatus.REQUESTED) {
+    await prisma.booking.update({
+      where: { id: bookingId },
+      data: {
+        status: BookingStatus.MATCHING,
+        statusHistory: {
+          create: {
+            fromState: BookingStatus.REQUESTED,
+            toState: BookingStatus.MATCHING,
+            actorId: adminId,
+            reason: "Advanced to MATCHING for assignment offer",
+          },
+        },
+      },
+    });
+  }
+
+  try {
+    await offerRankedAssignment({
+      bookingId,
+      sitterId,
+      actor: { id: adminId, roles: ["OPERATIONS_ADMIN"] },
+    });
+
+    return await prisma.booking.findUnique({
+      where: { id: bookingId },
+    });
+  } catch (error) {
+    if (error instanceof AssignmentOfferError) {
+      throw new MatchingError(error.code, error.message);
+    }
+    throw error;
+  }
 }

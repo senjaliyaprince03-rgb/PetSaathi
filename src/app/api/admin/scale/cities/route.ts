@@ -1,7 +1,10 @@
+import { authorizeApi } from "@/modules/auth/authorization";
 import { NextResponse } from "next/server";
 import { assignCityManager, recordCityHealthScore, ScaleError } from "@/modules/scale/city-ops.service";
 
 export async function POST(req: Request) {
+  const auth = await authorizeApi(["OPERATIONS_ADMIN", "SUPER_ADMIN"]);
+  if (!auth.authorized) return auth.response;
   try {
     const body = await req.json();
     const { action, cityId, userId, periodDate, overallScore, safetyScore, supplyScore, demandScore, operationsScore } = body;

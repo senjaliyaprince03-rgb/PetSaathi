@@ -132,6 +132,7 @@ export async function middleware(request: NextRequest) {
   const isProtectedApiMutation =
     request.nextUrl.pathname.startsWith("/api/") &&
     !request.nextUrl.pathname.startsWith("/api/webhooks/") &&
+    request.nextUrl.pathname !== "/api/payments/webhook" &&
     !request.nextUrl.pathname.startsWith("/api/jobs/");
 
   if (request.nextUrl.pathname.startsWith("/api/") && process.env.PLAYWRIGHT_TEST !== "1") {
@@ -246,89 +247,8 @@ export async function middleware(request: NextRequest) {
     return createProtectedRedirect(loginUrl);
   }
 
-  // RBAC checks
-  if (isProtectedPage || isAdminApi) {
-    try {
-      const secret = getAuthSecret();
-      let userRole: string | null = null;
-      const token = await getToken({ req: request as any, secret });
-      
-      if (token && typeof token.role === "string") {
-        userRole = token.role;
-      } else if (isLegacySession) {
-        const legacyCookie = request.cookies.get("petsaathi_session")?.value;
-        if (legacyCookie) {
-          userRole = await verifyNativeSessionRole(legacyCookie, secret);
-        }
-      }
-
-      if (userRole) {
-        const path = request.nextUrl.pathname;
-
-        const isAdminRole = [
-          "SUPER_ADMIN",
-          "OPERATIONS_ADMIN",
-          "VERIFICATION_ADMIN",
-          "SAFETY_ADMIN",
-          "FINANCE_ADMIN",
-          "CONTENT_ADMIN",
-        ].includes(userRole);
-
-        if (isAdminApi && !isAdminRole) {
-          const rejected = NextResponse.json(
-            { error: "forbidden", message: "Admin privileges required" },
-            { status: 403, headers: { "Cache-Control": "no-store" } }
-          );
-          applySecurityHeaders(rejected, cspHeader, requestId);
-          return rejected;
-        }
-
-        if (path.startsWith("/admin") && !isAdminRole) {
-          const url = request.nextUrl.clone();
-          url.pathname = userRole === "SITTER" ? "/saathi" : "/dashboard";
-          return createProtectedRedirect(url);
-        }
-
-        if (path.startsWith("/operator") && userRole !== "OPERATOR" && userRole !== "CITY_MANAGER" && userRole !== "SUPER_ADMIN" && userRole !== "OPERATIONS_ADMIN") {
-          const url = request.nextUrl.clone();
-          url.pathname = "/dashboard";
-          return createProtectedRedirect(url);
-        }
-
-        if (path.startsWith("/partners") && userRole !== "PARTNER_MANAGER" && userRole !== "SUPER_ADMIN") {
-          const url = request.nextUrl.clone();
-          url.pathname = "/dashboard";
-          return createProtectedRedirect(url);
-        }
-
-        if ((path.startsWith("/dashboard") || path.startsWith("/customer")) && userRole !== "CUSTOMER" && userRole !== "SUPER_ADMIN") {
-           const url = request.nextUrl.clone();
-           url.pathname = "/saathi";
-           return createProtectedRedirect(url);
-        }
-
-        if (path.startsWith("/saathi") && userRole !== "SITTER" && userRole !== "SUPER_ADMIN") {
-           const url = request.nextUrl.clone();
-           url.pathname = "/dashboard";
-           return createProtectedRedirect(url);
-        }
-      } else if (isAdminApi) {
-        const rejected = NextResponse.json(
-          { error: "forbidden", message: "Admin privileges required" },
-          { status: 403, headers: { "Cache-Control": "no-store" } }
-        );
-        applySecurityHeaders(rejected, cspHeader, requestId);
-        return rejected;
-      } else if (request.nextUrl.pathname.startsWith("/admin") || request.nextUrl.pathname.startsWith("/operator") || request.nextUrl.pathname.startsWith("/partners")) {
-        const url = request.nextUrl.clone();
-        url.pathname = "/dashboard";
-        return createProtectedRedirect(url);
-      }
-    } catch (e) {
-      // Degrade gracefully if token decoding or edge secret fails
-      console.warn("[middleware] RBAC evaluation skipped due to token error:", e);
-    }
-  }
+  // Role authorization is enforced with current DB identity in server layouts and API handlers.
+  // Cookie role hints must not block newly granted roles or create redirect loops.
 
   const response = NextResponse.next({ request: { headers } });
 

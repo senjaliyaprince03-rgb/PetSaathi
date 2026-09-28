@@ -1,3 +1,4 @@
+import { createSubscription, SubscriptionError } from "@/modules/subscriptions/service";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
@@ -24,13 +25,10 @@ export async function POST(request: Request) {
   if (!parsed.success) return NextResponse.json({ error: "invalid_request" }, { status: 422 });
   const rate = await consumeRateLimit("subscription-create-user", identity.id, 3, 24 * 60 * 60_000);
   if (!rate.allowed) return NextResponse.json({ error: "too_many_requests" }, { status: 429, headers: { "Retry-After": String(rate.retryAfterSeconds) } });
-  const plan = await prisma.planVersion.findFirst({ where: { id: parsed.data.planVersionId, active: true }, select: { id: true, providerPlanId: true, totalBillingCycles: true } });
-  if (!plan?.providerPlanId) return NextResponse.json({ error: "plan_provider_not_configured" }, { status: 503 });
-  const existing = await prisma.subscription.findFirst({ where: { userId: identity.id, planVersionId: plan.id, status: { in: ["INCOMPLETE", "ACTIVE", "PAUSED", "GRACE", "PAST_DUE"] } } });
-  if (existing) return NextResponse.json({ error: "subscription_already_exists", subscriptionId: existing.id }, { status: 409 });
-  const razorpay = createRazorpayClient();
-  if (!razorpay) return NextResponse.json({ error: "payment_provider_not_configured" }, { status: 503 });
-  const provider = await razorpay.subscriptions.create({ plan_id: plan.providerPlanId, total_count: plan.totalBillingCycles, quantity: 1, customer_notify: 1, notes: { user_id: identity.id, plan_version_id: plan.id } });
-  const subscription = await prisma.subscription.create({ data: { userId: identity.id, planVersionId: plan.id, providerSubscriptionId: provider.id, status: "INCOMPLETE" } });
-  return NextResponse.json({ subscription: { id: subscription.id, status: subscription.status, providerSubscriptionId: provider.id, checkoutUrl: provider.short_url } }, { status: 201 });
+  try {
+    const subscription = await createSubscription(identity.id, parsed.data.planVersionId);
+    return NextResponse.json({ subscription }, { status: 201 });
+  } catch (error) {
+    return NextResponse.json({ error: error instanceof SubscriptionError ? error.code : "subscription_reconciliation_required" }, { status: 503 });
+  }
 }

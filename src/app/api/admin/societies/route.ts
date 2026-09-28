@@ -66,12 +66,12 @@ export async function POST(request: Request) {
             data: { userId: managerUser.id, role: "SOCIETY_MANAGER" }
           });
         }
-        // Link them to the society
+        // Link them to the society as MANAGER
         await tx.societyMember.create({
           data: {
             societyId: society.id,
             userId: managerUser.id,
-            status: "ACTIVE",
+            status: "MANAGER",
           },
         });
       }

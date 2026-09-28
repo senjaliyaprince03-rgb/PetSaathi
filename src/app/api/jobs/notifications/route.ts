@@ -28,6 +28,7 @@ async function processNotifications(request: Request) {
   const now = new Date();
   const candidates = await prisma.notificationOutbox.findMany({
     where: {
+      templateKey: { not: "push_subscription" },
       scheduledAt: { lte: now },
       status: { in: ["QUEUED", "SENDING"] },
     },

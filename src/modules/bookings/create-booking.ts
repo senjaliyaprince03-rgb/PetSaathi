@@ -20,9 +20,28 @@ export async function createBookingWithQuote(customerId: string, input: CreateBo
   if (input.idempotencyKey) {
     const existing = await prisma.booking.findUnique({
       where: { idempotencyKey: input.idempotencyKey },
-      select: { id: true, reference: true, status: true, scheduledStart: true, scheduledEnd: true, quoteAmountPaise: true, currency: true }
+      select: {
+        id: true,
+        customerId: true,
+        reference: true,
+        status: true,
+        scheduledStart: true,
+        scheduledEnd: true,
+        quoteAmountPaise: true,
+        currency: true,
+      },
     });
-    if (existing) return existing;
+    if (existing) {
+      if (existing.customerId !== customerId) {
+        throw new BookingGateError(
+          409,
+          "booking_conflict",
+          "Idempotency key collision across customers"
+        );
+      }
+      const { customerId: _, ...safeBooking } = existing;
+      return safeBooking;
+    }
   }
 
   for (let attempt = 0; attempt < 5; attempt += 1) {
@@ -92,13 +111,16 @@ export async function createBookingWithQuote(customerId: string, input: CreateBo
         if (price.id !== input.servicePriceId) throw new BookingGateError(409, "pricing_changed", "The approved price changed while you were booking. Review the new total and submit again.");
 
         const scheduledStart = new Date(input.scheduledStart);
+        const durationMinutes = service.durationMinutes ?? 60;
+        const scheduledEnd = new Date(scheduledStart.getTime() + durationMinutes * 60_000);
 
-        // Check if an active booking already exists for this pet at this exact time slot
+        // Check if an active booking already exists for this pet that overlaps with this time slot
         const conflictingBooking = await tx.booking.findFirst({
           where: {
             petId: pet.id,
-            scheduledStart,
-            status: { notIn: ["CUSTOMER_CANCELLED", "SITTER_CANCELLED", "DECLINED"] }
+            status: { notIn: ["CUSTOMER_CANCELLED", "SITTER_CANCELLED", "DECLINED"] },
+            scheduledStart: { lt: scheduledEnd },
+            scheduledEnd: { gt: scheduledStart },
           },
           select: { id: true, reference: true }
         });
@@ -107,7 +129,7 @@ export async function createBookingWithQuote(customerId: string, input: CreateBo
           throw new BookingGateError(
             409,
             "booking_conflict",
-            "A booking for this pet and scheduled time slot already exists or is being confirmed."
+            "A booking for this pet and scheduled time slot already exists or overlaps with an existing booking."
           );
         }
 
@@ -125,7 +147,6 @@ export async function createBookingWithQuote(customerId: string, input: CreateBo
         if (reserved.count !== 1) throw new BookingGateError(409, "daily_capacity_reached", "This service day has reached its approved capacity. Choose another day.");
 
         const quote = calculateQuote(price.amountPaise, price.taxBasisPoints);
-        const scheduledEnd = new Date(scheduledStart.getTime() + (service.durationMinutes ?? 60) * 60_000);
         const reference = `PS-${scheduledStart.toISOString().slice(2, 10).replaceAll("-", "")}-${randomUUID().slice(0, 8).toUpperCase()}`;
         const quoteExpiresAt = new Date(now.getTime() + 15 * 60_000);
 
@@ -164,7 +185,8 @@ export async function createBookingWithQuote(customerId: string, input: CreateBo
           }
         }
 
-        const bookingStatus = entitlementClaimed ? "CONFIRMED" : "REQUESTED";
+        // Entitlement pays for care; it never replaces matching and customer approval.
+        const bookingStatus = "REQUESTED";
 
         const booking = await tx.booking.create({
           data: {

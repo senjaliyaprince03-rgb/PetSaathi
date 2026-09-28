@@ -2,6 +2,7 @@ import "server-only";
 
 import type { NotificationChannel } from "@prisma/client";
 import nodemailer from "nodemailer";
+import { sendPushToUser } from "@/lib/push-notification";
 
 type ProviderMessage = {
   channel: NotificationChannel;
@@ -156,19 +157,15 @@ async function sendSMS(message: ProviderMessage) {
  * Uses web-push for Web Push, Firebase for mobile
  */
 async function sendPush(message: ProviderMessage) {
-  // Web Push using VAPID (requires subscription management)
-  const vapidPublicKey = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY;
-  const vapidPrivateKey = process.env.VAPID_PRIVATE_KEY;
-
-  if (!vapidPublicKey || !vapidPrivateKey) {
-    throw new Error("Push notification provider is not configured");
-  }
-
-  // In production, implement web-push library integration
-  // For now, return placeholder
+  const payload = readRecord(message.payload);
+  await sendPushToUser(message.destination, {
+    title: String(payload?.title ?? "PetSaathi update"),
+    body: String(payload?.body ?? "Open your dashboard for the latest update."),
+    url: typeof payload?.url === "string" && payload.url.startsWith("/") && !payload.url.startsWith("//") ? payload.url : "/dashboard",
+  });
   return {
     providerMessageId: `push:${message.idempotencyKey}`,
-    providerPayload: { accepted: true, note: "Push notification implementation pending" }
+    providerPayload: { accepted: true }
   };
 }
 

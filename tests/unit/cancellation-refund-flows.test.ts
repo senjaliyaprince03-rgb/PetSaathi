@@ -66,7 +66,8 @@ describe("Cancellation & Refund Flows (Task 7.1)", () => {
       },
       capacityLimit: { updateMany: vi.fn().mockResolvedValue({ count: 1 }) },
       capacityReservation: { update: vi.fn().mockResolvedValue({}) },
-      refund: { create: vi.fn().mockResolvedValue({ id: "ref_100_percent" }) },
+      bookingAssignment: { updateMany: vi.fn().mockResolvedValue({ count: 1 }) },
+      refund: { findFirst: vi.fn().mockResolvedValue(null), create: vi.fn().mockResolvedValue({ id: "ref_100_percent" }) },
       auditLog: { create: vi.fn().mockResolvedValue({}) }
     };
 
@@ -106,7 +107,8 @@ describe("Cancellation & Refund Flows (Task 7.1)", () => {
       },
       capacityLimit: { updateMany: vi.fn().mockResolvedValue({ count: 1 }) },
       capacityReservation: { update: vi.fn().mockResolvedValue({}) },
-      refund: { create: vi.fn().mockResolvedValue({ id: "ref_50_percent" }) },
+      bookingAssignment: { updateMany: vi.fn().mockResolvedValue({ count: 1 }) },
+      refund: { findFirst: vi.fn().mockResolvedValue(null), create: vi.fn().mockResolvedValue({ id: "ref_50_percent" }) },
       auditLog: { create: vi.fn().mockResolvedValue({}) }
     };
 
@@ -140,7 +142,8 @@ describe("Cancellation & Refund Flows (Task 7.1)", () => {
       },
       capacityLimit: { updateMany: vi.fn().mockResolvedValue({ count: 1 }) },
       capacityReservation: { update: vi.fn().mockResolvedValue({}) },
-      refund: { create: vi.fn() },
+      bookingAssignment: { updateMany: vi.fn().mockResolvedValue({ count: 1 }) },
+      refund: { findFirst: vi.fn().mockResolvedValue(null), create: vi.fn() },
       auditLog: { create: vi.fn().mockResolvedValue({}) }
     };
 

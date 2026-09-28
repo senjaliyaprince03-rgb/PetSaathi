@@ -1,9 +1,13 @@
+import { providerDeadline } from "@/modules/payments/provider-deadline";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
 import { prisma } from "@/lib/db";
 import { getCurrentIdentity } from "@/modules/auth/session";
 import { validRazorpayCheckoutSignature } from "@/modules/payments/signature";
+import { canTransitionBooking } from "@/modules/bookings/state-machine";
+import { canTransitionPayment } from "@/modules/payments/state-machine";
+import { createRazorpayClient } from "@/modules/payments/razorpay";
 
 const verifySchema = z.object({ orderId: z.string().min(8).max(100), paymentId: z.string().min(8).max(100), signature: z.string().regex(/^[a-f0-9]{64}$/i) });
 
@@ -19,37 +23,75 @@ export async function POST(request: Request) {
 
   const payment = await prisma.payment.findFirst({
     where: { providerOrderId: orderId, booking: { customerId: identity.id } },
-    select: { id: true, status: true, bookingId: true, booking: { select: { id: true, status: true } } }
+    include: { booking: true }
   });
   if (!payment) return NextResponse.json({ error: "not_found" }, { status: 404 });
   if (!validRazorpayCheckoutSignature(orderId, paymentId, signature, secret)) return NextResponse.json({ error: "invalid_signature" }, { status: 400 });
 
-  if (payment.status !== "CAPTURED") {
-    await prisma.$transaction([
-      prisma.payment.update({
-        where: { id: payment.id },
-        data: { providerPaymentId: paymentId, signatureVerified: true, status: "CAPTURED", capturedAt: new Date() }
-      }),
-      prisma.booking.update({
-        where: { id: payment.bookingId },
-        data: {
-          status: "CONFIRMED",
-          statusHistory: {
-            create: {
-              fromState: payment.booking.status,
-              toState: "CONFIRMED",
-              actorId: identity.id,
-              reason: "Verified Razorpay client payment signature"
-            }
-          }
-        }
-      }),
-      prisma.bookingAssignment.updateMany({
-        where: { bookingId: payment.bookingId, status: "CUSTOMER_APPROVED" },
-        data: { status: "ACTIVE" }
-      })
-    ]);
+  const terminalBookingStatuses = [
+    "CUSTOMER_CANCELLED",
+    "SITTER_CANCELLED",
+    "DECLINED",
+    "COMPLETED",
+    "CLOSED",
+  ];
+  if (terminalBookingStatuses.includes(payment.booking.status)) {
+    return NextResponse.json(
+      {
+        error: "terminal_state",
+        message: `Cannot verify payment for a booking in terminal state '${payment.booking.status}'`,
+      },
+      { status: 409 }
+    );
+  }
 
+  const terminalPaymentStatuses = ["REFUNDED", "FAILED"];
+  if (terminalPaymentStatuses.includes(payment.status)) {
+    return NextResponse.json(
+      {
+        error: "terminal_state",
+        message: `Cannot verify payment with terminal payment status '${payment.status}'`,
+      },
+      { status: 409 }
+    );
+  }
+
+  const provider = createRazorpayClient();
+  if (!provider) return NextResponse.json({ error: "payments_not_configured" }, { status: 503 });
+  let captured;
+  try { captured = await providerDeadline(provider.payments.fetch(paymentId)); }
+  catch { return NextResponse.json({ error: "provider_verification_unavailable" }, { status: 503 }); }
+  if (captured.id !== paymentId || captured.order_id !== orderId || captured.status !== "captured" ||
+      Number(captured.amount) !== payment.amountPaise || captured.currency !== payment.currency ||
+      payment.amountPaise !== payment.booking.quoteAmountPaise || payment.currency !== payment.booking.currency ||
+      (payment.providerPaymentId && payment.providerPaymentId !== paymentId)) {
+    return NextResponse.json({ error: "provider_payment_mismatch" }, { status: 409 });
+  }
+  let changed = false;
+  try {
+    changed = await prisma.$transaction(async tx => {
+      const current = await tx.payment.findFirst({ where: { id: payment.id, providerOrderId: orderId, booking: { customerId: identity.id } }, include: { booking: true } });
+      if (!current || current.amountPaise !== Number(captured.amount) || current.currency !== captured.currency ||
+          current.amountPaise !== current.booking.quoteAmountPaise || current.currency !== current.booking.currency ||
+          (current.providerPaymentId && current.providerPaymentId !== paymentId)) throw new Error("payment_changed");
+      if (current.status === "CAPTURED" && current.providerPaymentId === paymentId) return false;
+      if (!canTransitionPayment(current.status, "CAPTURED") || !canTransitionBooking(current.booking.status, "CONFIRMED")) throw new Error("invalid_transition");
+      const assigned = await tx.bookingAssignment.updateMany({ where: { bookingId: current.bookingId, status: "CUSTOMER_APPROVED" }, data: { status: "ACTIVE", activatedAt: new Date() } });
+      if (assigned.count !== 1) throw new Error("approved_assignment_required");
+      await tx.payment.update({ where: { id: current.id, status: current.status }, data: { providerPaymentId: paymentId, signatureVerified: true, status: "CAPTURED", capturedAt: new Date() } });
+      await tx.booking.update({ where: { id: current.bookingId, status: current.booking.status }, data: { status: "CONFIRMED", statusHistory: { create: { fromState: current.booking.status, toState: "CONFIRMED", actorId: identity.id, reason: "Provider capture reconciled after checkout signature" } } } });
+      for (const channel of ["IN_APP", ...(current.booking.customerId ? ["EMAIL"] : [])] as const) {
+        const customer = channel === "EMAIL" ? await tx.user.findUnique({ where: { id: identity.id }, select: { email: true } }) : null;
+        if (channel === "EMAIL" && !customer?.email) continue;
+        const key = "booking-confirmed:" + current.bookingId + ":" + current.id + ":" + channel;
+        await tx.notificationOutbox.upsert({ where: { idempotencyKey: key }, create: { userId: identity.id, channel: channel as "EMAIL" | "IN_APP", templateKey: "booking.confirmed", destination: customer?.email ?? identity.id, payload: { bookingId: current.bookingId, reference: current.booking.reference }, idempotencyKey: key }, update: {} });
+      }
+      return true;
+    });
+  } catch {
+    return NextResponse.json({ error: "payment_state_conflict", message: "Payment must be reconciled before confirmation." }, { status: 409 });
+  }
+  if (changed) {
     // Optional MyGate visitor registration if society gate integration is active
     try {
       const confirmedBooking = await prisma.booking.findUnique({
@@ -81,65 +123,6 @@ export async function POST(request: Request) {
       console.error("[MyGate] Pre-approval registration notice:", mygateErr);
     }
 
-    // Dispatch Booking Confirmation & Payment Receipt emails (fire-and-forget)
-    void (async () => {
-      try {
-        const fullBooking = await prisma.booking.findUnique({
-          where: { id: payment.bookingId },
-          include: {
-            customer: true,
-            pet: true,
-            serviceType: true,
-            payments: { where: { id: payment.id } },
-          },
-        });
-
-        if (fullBooking?.customer?.email) {
-          const { dispatchTransactionalEmail } = await import("@/lib/email/dispatcher");
-          const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://petsaathi.in";
-          const formattedDate = fullBooking.scheduledStart.toLocaleDateString("en-IN", {
-            weekday: "long",
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-          });
-          const formattedTime = `${fullBooking.scheduledStart.toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit" })} – ${fullBooking.scheduledEnd.toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit" })}`;
-
-          // 1. Booking Confirmation Email
-          await dispatchTransactionalEmail(
-            fullBooking.customerId,
-            fullBooking.customer.email,
-            "BOOKING_CONFIRMED",
-            {
-              customerName: fullBooking.customer.displayName || "Pet Parent",
-              petName: fullBooking.pet.name,
-              serviceName: fullBooking.serviceType.name,
-              bookingId: fullBooking.reference,
-              bookingDate: formattedDate,
-              bookingTime: formattedTime,
-              amount: `₹${(fullBooking.quoteAmountPaise / 100).toFixed(0)}`,
-              dashboardUrl: `${appUrl}/bookings/${fullBooking.id}`,
-            }
-          );
-
-          // 2. Payment Receipt Email
-          await dispatchTransactionalEmail(
-            fullBooking.customerId,
-            fullBooking.customer.email,
-            "PAYMENT_RECEIPT",
-            {
-              customerName: fullBooking.customer.displayName || "Pet Parent",
-              amount: `₹${((fullBooking.payments[0]?.amountPaise ?? fullBooking.quoteAmountPaise) / 100).toFixed(0)}`,
-              bookingId: fullBooking.reference,
-              paymentId: paymentId,
-              dashboardUrl: `${appUrl}/bookings/${fullBooking.id}`,
-            }
-          );
-        }
-      } catch (emailErr) {
-        console.error("[EMAIL] Transactional confirmation failed:", emailErr);
-      }
-    })();
   }
   return NextResponse.json({ verified: true, settlement: "captured" });
 }

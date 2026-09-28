@@ -77,13 +77,53 @@ export async function resolveTerritoryScope(
 
   // Society Manager scoping
   if (roles.includes("SOCIETY_MANAGER")) {
-    const memberships = await prisma.societyMember.findMany({
-      where: { userId, status: "ACTIVE" },
-      take: 50,
-      select: { societyId: true },
-    });
-    for (const m of memberships) {
-      societyIds.add(m.societyId);
+    try {
+      // 1. Explicit AdminPermission grants with scope { societyId }
+      if (prisma.adminPermission?.findMany) {
+        const adminPerms = await prisma.adminPermission.findMany({
+          where: {
+            userId,
+            status: "ACTIVE",
+            permission: { in: ["society:manage", "society:operate", "society:read"] },
+            OR: [
+              { expiresAt: null },
+              { expiresAt: { gt: new Date() } },
+            ],
+          },
+          select: { scope: true },
+        });
+
+        for (const ap of adminPerms) {
+          if (ap.scope && typeof ap.scope === "object") {
+            const sc = ap.scope as { societyId?: string; societyIds?: string[] };
+            if (sc.societyId) societyIds.add(sc.societyId);
+            if (Array.isArray(sc.societyIds)) {
+              sc.societyIds.forEach((id) => societyIds.add(id));
+            }
+          }
+        }
+      }
+
+      // 2. Verified management assignments (exclude ordinary flat resident memberships)
+      if (prisma.societyMember?.findMany) {
+        const managerMemberships = await prisma.societyMember.findMany({
+          where: {
+            userId,
+            OR: [
+              { status: "MANAGER" },
+              { status: "MANAGEMENT" },
+            ],
+          },
+          take: 50,
+          select: { societyId: true },
+        });
+
+        for (const m of managerMemberships) {
+          societyIds.add(m.societyId);
+        }
+      }
+    } catch {
+      // DB not configured or offline
     }
   }
 

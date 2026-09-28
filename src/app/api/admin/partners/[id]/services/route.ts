@@ -16,7 +16,7 @@ export async function POST(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const adminId = await getAdminSession();
+    const adminId = await getAdminSession(["PARTNER_MANAGER", "SUPER_ADMIN"]);
     if (!adminId) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -45,7 +45,7 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const adminId = await getAdminSession();
+    const adminId = await getAdminSession(["PARTNER_MANAGER", "SUPER_ADMIN"]);
     if (!adminId) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }

@@ -10,7 +10,7 @@ const assignManagerSchema = z.object({
 
 export async function POST(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
-    const adminId = await getAdminSession();
+    const adminId = await getAdminSession(["OPERATIONS_ADMIN", "SUPER_ADMIN"]);
     if (!adminId) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }

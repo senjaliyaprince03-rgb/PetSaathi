@@ -10,3 +10,4 @@ fix_*.js
 test-*.js
 
 android
+output/

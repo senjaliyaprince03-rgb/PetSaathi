@@ -542,6 +542,12 @@ export async function signInAdmin(emailInput: string, passwordInput: string) {
   };
 }
 
+export function checkAccountStatusAllowed(status?: string | null) {
+  if (status !== "ACTIVE" && status !== "PENDING") {
+    throw new Error(`ACCOUNT_${status}`);
+  }
+}
+
 async function ensureUser(channel: AuthChannel, subject: string, displayName?: string, requestedRole?: string) {
   const selector = channel === "email" ? { email: subject } : { phoneE164: subject };
   const existing = await prisma.user.findFirst({ where: selector, select: { id: true, status: true, displayName: true, roles: { select: { role: true } } } });
@@ -550,6 +556,7 @@ async function ensureUser(channel: AuthChannel, subject: string, displayName?: s
   const roleToRequest = isAdmin ? "SUPER_ADMIN" : requestedRole === "SITTER" ? "SITTER" : "CUSTOMER";
   
   if (existing) {
+    checkAccountStatusAllowed(existing.status);
     if (!isAdmin && roleToRequest) {
       const hasRole = existing.roles.some(r => r.role === roleToRequest);
       if (!hasRole) {
@@ -738,7 +745,10 @@ export async function registerWithPassword(input: {
   }
 }
 
-async function ensureDemoAccount(email: string, role: "CUSTOMER" | "SITTER") {
+export async function ensureDemoAccount(email: string, role: "CUSTOMER" | "SITTER") {
+  if (process.env.NODE_ENV === "production") {
+    throw new Error("Demo account provisioning is prohibited in production mode.");
+  }
   const database = await getMongoDatabase();
   const usersCol = database.collection("users");
   const rolesCol = database.collection("user_roles");
@@ -870,12 +880,7 @@ export async function signInWithPassword(emailInput: string, password: string) {
     return signInAdmin(email, password);
   }
 
-  if (email === "customer.live@petsaathi.com") {
-    await ensureDemoAccount(email, "CUSTOMER");
-  } else if (email === "saathi.live@petsaathi.com") {
-    await ensureDemoAccount(email, "SITTER");
-  }
-
+  // NOTE (AUTH-01): Demo provisioning is isolated to explicit dev scripts and never executed on login.
   const database = await getMongoDatabase();
   const credential = await database.collection<any>("auth_credentials").findOne({
     $or: [{ _id: email }, { email }]
@@ -936,7 +941,7 @@ export async function issueSession(userId: string) {
     where: { id: userId },
     select: { roles: { select: { role: true } } },
   });
-  const role = user?.roles[0]?.role ?? "CUSTOMER";
+  const role = getPrimaryRole(user?.roles.map(item => item.role) ?? []);
   const sig = createHmac("sha256", authSecret()).update(`${token}:${role}`).digest("base64url");
   const signedCookieValue = `${token}.${role}.${sig}`;
 
@@ -1006,3 +1011,4 @@ export async function signInWithGoogle(emailInput: string, name: string, avatarU
   await issueSession(userId);
   return { success: true, userId, roles: user?.roles.map(r => r.role) || [] };
 }
+import { getPrimaryRole } from "./admin-access";

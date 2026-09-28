@@ -46,6 +46,7 @@ export async function cancelBookingBeforePayment(bookingId: string, customerId: 
     if (released.count !== 1) throw new CancellationError(409, "capacity_release_failed", "Capacity could not be released consistently. No booking status was changed.");
 
     const now = new Date();
+    await tx.bookingAssignment.updateMany({ where: { bookingId, status: { in: ["OFFERED", "ACCEPTED", "CUSTOMER_APPROVED", "ACTIVE"] } }, data: { status: "CANCELLED" } });
     await tx.capacityReservation.update({
       where: { id: current.capacityReservation.id },
       data: { status: "RELEASED", releaseReason: reason, releasedAt: now }
@@ -110,14 +111,15 @@ export async function cancelConfirmedBookingWithRefund(
   bookingId: string,
   customerId: string,
   reason: string,
-  now: Date = new Date()
+  now: Date = new Date(),
+  autoApprove = false,
 ) {
   return prisma.$transaction(async (tx) => {
     const booking = await tx.booking.findFirst({
       where: { id: bookingId, customerId },
       include: {
         payments: {
-          where: { status: "CAPTURED" },
+          where: { status: { in: ["CAPTURED", "PARTIALLY_REFUNDED", "REFUNDED"] } },
           orderBy: { createdAt: "desc" },
           take: 1
         },
@@ -126,7 +128,12 @@ export async function cancelConfirmedBookingWithRefund(
     });
 
     if (!booking) throw new CancellationError(404, "booking_not_found", "The booking is unavailable.");
-    if (booking.status !== "CONFIRMED") {
+    const previousRefund = await tx.refund.findFirst({ where: { paymentId: booking.payments[0]?.id ?? "__none__", status: { not: "REJECTED" } }, orderBy: { createdAt: "desc" } });
+    if (previousRefund && ["CUSTOMER_CANCELLED", "SITTER_CANCELLED"].includes(booking.status)) {
+      return { booking, refundAmountPaise: previousRefund.amountPaise, policyTier: "EXISTING", refundId: previousRefund.id };
+    }
+    if (previousRefund) throw new CancellationError(409, "existing_refund_requires_review", "An existing refund must be reconciled before another cancellation.");
+    if (!["CONFIRMED", "CUSTOMER_CANCELLED", "SITTER_CANCELLED"].includes(booking.status)) {
       throw new CancellationError(409, "cancellation_not_allowed", `Booking status '${booking.status}' cannot be cancelled via confirmed refund flow.`);
     }
 
@@ -138,35 +145,48 @@ export async function cancelConfirmedBookingWithRefund(
     const calculation = calculateRefundTier({
       scheduledStart: booking.scheduledStart,
       scheduledEnd: booking.scheduledEnd,
-      cancelledBy: "CUSTOMER",
+      cancelledBy: booking.status === "SITTER_CANCELLED" ? "SITTER" : "CUSTOMER",
       amountPaise: payment.amountPaise,
       now,
     });
 
     const refundAmountPaise = calculation.refundAmountPaise;
     const policyTier = calculation.tier;
+    const cancelledStatus = booking.status === "SITTER_CANCELLED" ? "SITTER_CANCELLED" : "CUSTOMER_CANCELLED";
+    if (calculation.apologyCreditPaise > 0) {
+      const idempotencyKey = `caregiver-cancellation:${booking.id}`;
+      if (!await tx.loyaltyLedger.findUnique({ where: { idempotencyKey } })) {
+        // Serialize balance reads against other cancellation credits for this customer.
+        await tx.user.update({ where: { id: customerId }, data: { updatedAt: now } });
+        const last = await tx.loyaltyLedger.findFirst({ where: { userId: customerId }, orderBy: { createdAt: "desc" }, select: { balanceAfter: true } });
+        await tx.loyaltyLedger.create({ data: { userId: customerId, delta: calculation.apologyCreditPaise, balanceAfter: (last?.balanceAfter ?? 0) + calculation.apologyCreditPaise, reason: "Caregiver cancellation apology credit", referenceType: "booking", referenceId: booking.id, idempotencyKey } });
+      }
+    }
 
     // Release capacity if held
     if (booking.capacityReservation && ["HELD", "CONFIRMED"].includes(booking.capacityReservation.status)) {
-      await tx.capacityLimit.updateMany({
+      const released = await tx.capacityLimit.updateMany({
         where: { id: booking.capacityReservation.capacityLimitId, reserved: { gte: booking.capacityReservation.quantity } },
         data: { reserved: { decrement: booking.capacityReservation.quantity } }
       });
+      if (released.count !== 1) throw new CancellationError(409, "capacity_release_failed", "Capacity release failed; cancellation was rolled back.");
       await tx.capacityReservation.update({
         where: { id: booking.capacityReservation.id },
         data: { status: "RELEASED", releaseReason: reason, releasedAt: now }
       });
     }
 
+    await tx.bookingAssignment.updateMany({ where: { bookingId, status: { in: ["OFFERED", "ACCEPTED", "CUSTOMER_APPROVED", "ACTIVE"] } }, data: { status: "CANCELLED" } });
+
     // Update booking state
     const updatedBooking = await tx.booking.update({
       where: { id: booking.id },
       data: {
-        status: "CUSTOMER_CANCELLED",
+        status: cancelledStatus,
         statusHistory: {
           create: {
             fromState: booking.status,
-            toState: "CUSTOMER_CANCELLED",
+            toState: cancelledStatus,
             actorId: customerId,
             reason: `${reason} [Refund policy: ${policyTier}, ${refundAmountPaise / 100} INR]`
           }
@@ -182,7 +202,7 @@ export async function cancelConfirmedBookingWithRefund(
           paymentId: payment.id,
           amountPaise: refundAmountPaise,
           reason: `Customer cancellation (${policyTier}): ${reason}`,
-          status: "REQUESTED",
+          status: autoApprove ? "APPROVED" : "REQUESTED",
           requestedBy: customerId
         }
       });

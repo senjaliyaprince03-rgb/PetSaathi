@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getCurrentIdentity } from "./session";
+import type { Role } from "@prisma/client";
 
 export class UnauthorizedError extends Error {
   readonly status = 401;
@@ -39,7 +40,7 @@ export function handleAuthError(error: unknown): NextResponse | null {
   return null;
 }
 
-export async function getAdminSession(): Promise<string> {
+export async function getAdminSession(allowed: readonly Role[] = ["SUPER_ADMIN", "OPERATIONS_ADMIN"]): Promise<string> {
   const identity = await getCurrentIdentity();
   if (!identity) {
     throw new UnauthorizedError("Unauthorized");
@@ -47,7 +48,7 @@ export async function getAdminSession(): Promise<string> {
   
   // Basic check for admin role
   const isAdmin = identity.roles.some(role => 
-    ["OPERATIONS_ADMIN", "VERIFICATION_ADMIN", "SAFETY_ADMIN", "FINANCE_ADMIN", "CONTENT_ADMIN", "SUPER_ADMIN", "CITY_MANAGER"].includes(role)
+    allowed.includes(role)
   );
 
   if (!isAdmin) {

@@ -1,7 +1,5 @@
 import { NextResponse } from "next/server";
-import bcrypt from "bcryptjs";
-import { prisma } from "@/lib/db";
-import { getMongoDatabase } from "@/lib/mongodb";
+import { registerWithPassword } from "@/modules/auth/mongodb-auth";
 import { registerSchema } from "@/lib/validators/auth";
 import { errorResponseForCaughtError, jsonError } from "@/lib/api-error";
 import { logger } from "@/lib/logger";
@@ -18,70 +16,29 @@ export async function POST(request: Request) {
     }
 
     const { email, password, name, role } = parsed.data;
-    const normalizedEmail = email.toLowerCase().trim();
 
-    // Check duplicate email
-    const existingUser = await prisma.user.findUnique({
-      where: { email: normalizedEmail }
+    // Delegate to canonical registration service (AUTH-04: Single registration lifecycle)
+    const result = await registerWithPassword({
+      email,
+      password,
+      displayName: name,
+      role: role === "SITTER" ? "SITTER" : "CUSTOMER",
     });
 
-    if (existingUser) {
+    if (!result.created) {
+      if (result.reason === "unauthorized_role") {
+        return jsonError("unauthorized_role", "Admin registration is restricted to authorized administrator accounts.", 403);
+      }
       return jsonError("account_exists", "An account with this email already exists.", 409);
     }
 
-    // Hash password
-    const salt = await bcrypt.genSalt(12);
-    const passwordHash = await bcrypt.hash(password, salt);
-
-    // Create User (avoid nested creates for local MongoDB standalone support)
-    const user = await prisma.user.create({
-      data: {
-        email: normalizedEmail,
-        displayName: name,
-        status: "ACTIVE", 
-      }
-    });
-
-    await prisma.userRole.create({
-      data: {
-        userId: user.id,
-        role: role === "SITTER" ? "SITTER" : "CUSTOMER"
-      }
-    });
-
-    if (role === "SITTER") {
-      await prisma.sitterProfile.create({ data: { userId: user.id, status: "APPLICANT" } });
-      
-      // Trigger Admin Email Notification for new Employee Request (mocked for now)
-      logger.info("New Employee (Sitter) Request Pending Approval", {
-        name,
-        email: normalizedEmail,
-      });
-    } else {
-      await prisma.customerProfile.create({ data: { userId: user.id } });
-    }
-
-    // Save credentials in the native mongo collection for NextAuth compatibility
-    const db = await getMongoDatabase();
-    await db.collection<any>("auth_credentials").updateOne(
-      { $or: [{ _id: normalizedEmail }, { email: normalizedEmail }] },
-      {
-        $set: {
-          _id: normalizedEmail,
-          email: normalizedEmail,
-          userId: user.id,
-          passwordHash: passwordHash,
-          updatedAt: new Date(),
-        },
-        $setOnInsert: {
-          createdAt: new Date(),
-        },
-      },
-      { upsert: true }
-    );
-
     return NextResponse.json(
-      { message: "User registered successfully", userId: user.id },
+      {
+        message: "User registered successfully",
+        created: true,
+        requiresVerification: true,
+        ...(result.verification.mode === "development" ? { developmentOtp: result.verification.code } : {}),
+      },
       { status: 201 }
     );
   } catch (error: unknown) {

@@ -36,6 +36,7 @@ export async function POST(request: NextRequest) {
       idempotencyKey: `push_sub:${subscription.endpoint}`,
     },
     update: {
+      userId: identity.id,
       payload: JSON.stringify(subscription),
       status: "QUEUED",
     },

@@ -143,6 +143,12 @@ export function getDefaultDashboardForRoles(roles: readonly Role[]): string {
   return "/login";
 }
 
+/** Stable priority shared by both session issuers and portal landing decisions. */
+export function getPrimaryRole(roles: readonly Role[]): Role {
+  const priority: Role[] = ["SUPER_ADMIN", "OPERATIONS_ADMIN", "SAFETY_ADMIN", "FINANCE_ADMIN", "VERIFICATION_ADMIN", "CONTENT_ADMIN", "PARTNER_MANAGER", "CITY_MANAGER", "OPERATOR", "SOCIETY_MANAGER", "SITTER", "CUSTOMER"];
+  return priority.find(role => roles.includes(role)) ?? "CUSTOMER";
+}
+
 function matchesPrefix(pathname: string, prefix: string) {
   return pathname === prefix || pathname.startsWith(`${prefix}/`);
 }

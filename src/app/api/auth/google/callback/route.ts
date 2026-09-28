@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
+import { cookies } from "next/headers";
 import { signInWithGoogle } from "@/modules/auth/mongodb-auth";
+import { verifyOAuthState, sanitizeReturnUrl } from "@/modules/auth/oauth-state";
 import { logger } from "@/lib/logger";
+import { getDefaultDashboardForRoles } from "@/modules/auth/admin-access";
 
 function getAppBaseUrl(): string {
   const envUrl = process.env.NEXT_PUBLIC_APP_URL || process.env.NEXT_PUBLIC_SITE_URL;
@@ -34,14 +37,18 @@ export async function GET(request: Request) {
     return NextResponse.redirect(new URL(`/login?error=${encodeURIComponent(error || "cancelled")}`, baseUrl));
   }
 
-  let state: { role?: string; returnTo?: string } = {};
-  if (stateRaw) {
-    try {
-      state = JSON.parse(Buffer.from(stateRaw, "base64url").toString("utf-8"));
-    } catch {
-      // Ignored
-    }
+  const cookieStore = await cookies();
+  const expectedNonce = cookieStore.get("google_oauth_nonce")?.value;
+  const verifiedState = verifyOAuthState(stateRaw || "", expectedNonce);
+
+  if (!verifiedState) {
+    logger.warn("[GOOGLE_OAUTH_CALLBACK] Invalid, expired or forged OAuth state token");
+    const errorRes = NextResponse.redirect(new URL("/login?error=invalid_oauth_state", baseUrl));
+    errorRes.cookies.delete("google_oauth_nonce");
+    return errorRes;
   }
+
+  const state = verifiedState;
 
   const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
   const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
@@ -55,6 +62,7 @@ export async function GET(request: Request) {
   try {
     // 1. Exchange code for access token
     const tokenResponse = await fetch("https://oauth2.googleapis.com/token", {
+      signal: AbortSignal.timeout(10_000),
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams({
@@ -77,6 +85,7 @@ export async function GET(request: Request) {
 
     // 2. Fetch user profile from Google
     const userinfoResponse = await fetch("https://www.googleapis.com/oauth2/v3/userinfo", {
+      signal: AbortSignal.timeout(10_000),
       headers: { Authorization: `Bearer ${accessToken}` },
     });
 
@@ -86,7 +95,7 @@ export async function GET(request: Request) {
     }
 
     const profile = await userinfoResponse.json();
-    if (!profile.email) {
+    if (!profile.email || profile.email_verified !== true || typeof profile.sub !== "string") {
       return NextResponse.redirect(new URL("/login?error=missing_email", baseUrl));
     }
 
@@ -99,20 +108,16 @@ export async function GET(request: Request) {
     );
 
     // 4. Resolve destination
-    let destination = state.returnTo || "/dashboard";
-    if (!state.returnTo) {
-      if (result.roles?.includes("SUPER_ADMIN") || result.roles?.includes("OPERATIONS_ADMIN")) {
-        destination = "/admin";
-      } else if (result.roles?.includes("SITTER")) {
-        destination = "/saathi";
-      } else {
-        destination = "/dashboard";
-      }
-    }
+    const destination = state.returnTo && state.returnTo !== "/dashboard" ? state.returnTo : getDefaultDashboardForRoles(result.roles);
 
-    return NextResponse.redirect(new URL(destination, baseUrl));
+    const safeDestination = sanitizeReturnUrl(destination);
+    const successRes = NextResponse.redirect(new URL(safeDestination, baseUrl));
+    successRes.cookies.delete("google_oauth_nonce");
+    return successRes;
   } catch (err: any) {
     logger.error("[GOOGLE_OAUTH_CALLBACK] Unexpected authentication error", { error: err.message });
-    return NextResponse.redirect(new URL(`/login?error=${encodeURIComponent(err.message || "auth_failed")}`, baseUrl));
+    const errRes = NextResponse.redirect(new URL(`/login?error=${encodeURIComponent(err.message || "auth_failed")}`, baseUrl));
+    errRes.cookies.delete("google_oauth_nonce");
+    return errRes;
   }
 }

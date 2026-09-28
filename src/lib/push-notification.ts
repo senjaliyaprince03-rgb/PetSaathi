@@ -1,13 +1,6 @@
 import webpush from "web-push";
 import { prisma } from "@/lib/db";
 
-// Configure VAPID credentials once
-webpush.setVapidDetails(
-  process.env.VAPID_SUBJECT!,
-  process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY!,
-  process.env.VAPID_PRIVATE_KEY!
-);
-
 interface PushPayload {
   title: string;
   body: string;
@@ -16,6 +9,9 @@ interface PushPayload {
 }
 
 export async function sendPushToUser(userId: string, payload: PushPayload): Promise<void> {
+  const { VAPID_SUBJECT, NEXT_PUBLIC_VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY } = process.env;
+  if (!VAPID_SUBJECT || !NEXT_PUBLIC_VAPID_PUBLIC_KEY || !VAPID_PRIVATE_KEY) throw new Error("Push provider is not configured");
+  webpush.setVapidDetails(VAPID_SUBJECT, NEXT_PUBLIC_VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY);
   // Find all active push subscriptions for this user
   const subscriptions = await prisma.notificationOutbox.findMany({
     where: {
@@ -27,15 +23,19 @@ export async function sendPushToUser(userId: string, payload: PushPayload): Prom
     take: 20,
   });
 
+  if (!subscriptions.length) throw new Error("No active push subscription");
+  let accepted = 0;
   for (const sub of subscriptions) {
     const pushSubscription = JSON.parse(sub.payload as string);
     try {
       await webpush.sendNotification(
         pushSubscription,
-        JSON.stringify(payload)
+        JSON.stringify(payload),
+        { timeout: 10_000, TTL: 300 }
       );
+      accepted++;
     } catch (error: any) {
-      if (error.statusCode === 410) {
+      if (error.statusCode === 410 || error.statusCode === 404) {
         // 410 = subscription expired — mark as failed
         await prisma.notificationOutbox.update({
           where: { id: sub.id },
@@ -44,4 +44,5 @@ export async function sendPushToUser(userId: string, payload: PushPayload): Prom
       }
     }
   }
+  if (!accepted) throw new Error("Push delivery was not accepted");
 }

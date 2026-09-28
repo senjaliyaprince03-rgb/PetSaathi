@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { createOAuthState } from "@/modules/auth/oauth-state";
 function getAppBaseUrl(): string {
   const envUrl = process.env.NEXT_PUBLIC_APP_URL || process.env.NEXT_PUBLIC_SITE_URL;
   if (envUrl && envUrl.trim().length > 0) {
@@ -33,8 +34,8 @@ export async function GET(request: Request) {
   const baseUrl = process.env.NODE_ENV === "development" ? requestUrl.origin : (configuredUrl || requestUrl.origin);
   const redirectUri = `${baseUrl}/api/auth/google/callback`;
 
-  // State encodes destination and role
-  const statePayload = Buffer.from(JSON.stringify({ role, returnTo, ts: Date.now() })).toString("base64url");
+  // Cryptographically signed and browser-bound state lifecycle (AUTH-03)
+  const { stateToken, nonce } = createOAuthState(role, returnTo);
 
   const googleAuthUrl = new URL("https://accounts.google.com/o/oauth2/v2/auth");
   googleAuthUrl.searchParams.set("client_id", clientId);
@@ -43,7 +44,16 @@ export async function GET(request: Request) {
   googleAuthUrl.searchParams.set("scope", "openid email profile");
   googleAuthUrl.searchParams.set("access_type", "offline");
   googleAuthUrl.searchParams.set("prompt", "select_account");
-  googleAuthUrl.searchParams.set("state", statePayload);
+  googleAuthUrl.searchParams.set("state", stateToken);
 
-  return NextResponse.redirect(googleAuthUrl.toString(), 302);
+  const response = NextResponse.redirect(googleAuthUrl.toString(), 302);
+  response.cookies.set("google_oauth_nonce", nonce, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    path: "/",
+    maxAge: 600, // 10 minutes
+  });
+
+  return response;
 }

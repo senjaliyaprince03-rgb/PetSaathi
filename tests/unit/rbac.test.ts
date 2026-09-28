@@ -24,7 +24,9 @@ import { recordRbacAuditLog, getRecentAuditLogs } from "@/modules/rbac/audit-log
 vi.mock("@/lib/db", () => ({
   isDatabaseConfigured: vi.fn(() => true),
   prisma: {
+    $transaction: vi.fn(async function (this: any, cb: any) { return cb(this); }),
     adminPermission: {
+      findFirst: vi.fn().mockResolvedValue(null),
       findMany: vi.fn().mockResolvedValue([]),
       upsert: vi.fn().mockResolvedValue({ id: "custom-perm-1" }),
       updateMany: vi.fn().mockResolvedValue({ count: 1 }),
@@ -215,9 +217,7 @@ describe("assignUserRole and revokeUserRole Guard Rails", () => {
 
   it("rejects role assignment if actor attempts privilege escalation even with roles:assign grant", async () => {
     const { prisma } = await import("@/lib/db");
-    vi.mocked(prisma.adminPermission.findMany).mockResolvedValueOnce([
-      { permission: "roles:assign" } as any,
-    ]);
+    vi.mocked(prisma.adminPermission.findFirst).mockResolvedValueOnce({ scope: null } as any);
 
     const actorIdentity = {
       id: "ops-elevated",

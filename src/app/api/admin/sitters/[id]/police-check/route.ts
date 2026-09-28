@@ -7,7 +7,7 @@ export async function POST(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    await getAdminSession(); // Only admin can call this
+    await getAdminSession(["VERIFICATION_ADMIN", "SUPER_ADMIN"]); // Only admin can call this
     const { id } = await params;
 
     const { status, referenceNumber, notes } = await request.json();

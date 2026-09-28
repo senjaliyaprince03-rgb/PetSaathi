@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/db";
 import { getMongoDatabase } from "@/lib/mongodb";
 import { getAuthSecret } from "@/lib/auth-secret";
+import { getPrimaryRole } from "@/modules/auth/admin-access";
 
 import { scrypt as nodeScrypt, timingSafeEqual } from "node:crypto";
 import { promisify } from "node:util";
@@ -28,7 +29,7 @@ export const authOptions: NextAuthOptions = {
           include: { roles: true },
         });
 
-        if (!user) return null;
+        if (!user || user.status !== "ACTIVE") return null;
 
         const db = await getMongoDatabase();
         const cred = await db.collection<any>("auth_credentials").findOne({ $or: [{ _id: email }, { email }] });
@@ -49,7 +50,7 @@ export const authOptions: NextAuthOptions = {
 
         if (!isValid) return null;
 
-        const role = (user.roles && user.roles.length > 0) ? (user.roles[0]?.role ?? "CUSTOMER") : "CUSTOMER";
+        const role = getPrimaryRole(user.roles.map(item => item.role));
 
         return {
           id: user.id,
