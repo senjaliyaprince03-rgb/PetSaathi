@@ -1,8 +1,13 @@
-import { describe, it, expect, beforeAll, afterAll } from "vitest";
+import { describe, it, expect, beforeAll, afterAll, vi } from "vitest";
 import { PrismaClient } from "@prisma/client";
 import { randomUUID } from "crypto";
 import { addHealthEvent, getHealthTimeline } from "../../src/modules/health/service";
 import { GET as HealthGET, POST as HealthPOST } from "../../src/app/api/customer/pets/[id]/health/route";
+
+const mockIdentity: { id: string; roles: string[] } = { id: "", roles: ["CUSTOMER"] };
+vi.mock("@/modules/auth/session", () => ({
+  getCurrentIdentity: vi.fn(async () => mockIdentity),
+}));
 
 const prisma = new PrismaClient();
 
@@ -21,6 +26,7 @@ describe("Phase 11: Pet Health Timeline Integration", () => {
       }
     });
     userId = user.id;
+    mockIdentity.id = userId;
 
     const profile = await prisma.customerProfile.create({
       data: { userId }

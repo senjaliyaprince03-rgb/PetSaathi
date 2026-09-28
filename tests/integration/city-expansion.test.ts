@@ -10,6 +10,7 @@ import { CityLaunchStage, ServiceStatus } from "@prisma/client";
 
 vi.mock("@/modules/auth/server", () => ({
   getAdminSession: vi.fn().mockResolvedValue("admin-123"),
+  handleAuthError: vi.fn().mockReturnValue(null),
 }));
 
 describe("Phase 10: Multi-City Expansion Integration", () => {
@@ -43,7 +44,8 @@ describe("Phase 10: Multi-City Expansion Integration", () => {
     await prisma.cityManager.deleteMany();
     await prisma.cityServiceConfiguration.deleteMany();
     await prisma.cityPage.deleteMany();
-  await prisma.city.deleteMany();
+    await prisma.serviceArea.deleteMany();
+    await prisma.city.deleteMany();
     await prisma.user.delete({ where: { id: managerId } });
   });
 

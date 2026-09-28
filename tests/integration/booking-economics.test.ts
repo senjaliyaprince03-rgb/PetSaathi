@@ -9,19 +9,20 @@ import { indiaServiceDate } from "@/modules/pricing/economics";
 
 describe("booking price and capacity transaction", () => {
   const suffix = randomUUID().slice(0, 8);
-  const ids = { customer: "", pet: "", address: "", city: "", area: "", service: "", price: "", capacity: "", booking: "" };
+  const ids = { customer: "", pet: "", secondPet: "", address: "", city: "", area: "", service: "", price: "", capacity: "", booking: "" };
   const scheduledStart = new Date(Date.now() + 48 * 60 * 60_000);
 
   beforeAll(async () => {
     const customer = await prisma.user.create({ data: { email: `booking-${suffix}@example.test`, displayName: "Booking Integration", status: "ACTIVE" } });
     const pet = await prisma.pet.create({ data: { ownerId: customer.id, name: "Milo", species: "DOG", active: true } });
+    const secondPet = await prisma.pet.create({ data: { ownerId: customer.id, name: "Bella", species: "DOG", active: true } });
     const address = await prisma.address.create({ data: { userId: customer.id, label: "Home", line1: "12 Test Avenue", locality: `Locality ${suffix}`, city: `City ${suffix}`, state: "Gujarat", postalCode: "999000" } });
     const city = await prisma.city.create({ data: { slug: `city-${suffix}`, name: `City ${suffix}`, state: "Gujarat", status: "PUBLIC_LIMITED", launchedAt: new Date() } });
     const area = await prisma.serviceArea.create({ data: { cityId: city.id, slug: `area-${suffix}`, name: `Area ${suffix}`, postalCodes: ["999000"], status: "ACTIVE" } });
     const service = await prisma.serviceType.findUniqueOrThrow({ where: { code: "DOG_WALK_30" } });
     const price = await prisma.servicePrice.create({ data: { serviceTypeId: service.id, serviceAreaId: area.id, version: 1, amountPaise: 10_000, sitterPaise: 7_000, taxBasisPoints: 1_800, effectiveAt: new Date(Date.now() - 60_000), approvedBy: customer.id } });
     const capacity = await prisma.capacityLimit.create({ data: { serviceAreaId: area.id, serviceCode: service.code, serviceDate: indiaServiceDate(scheduledStart), maximum: 1, reason: "Integration test roster" } });
-    Object.assign(ids, { customer: customer.id, pet: pet.id, address: address.id, city: city.id, area: area.id, service: service.id, price: price.id, capacity: capacity.id });
+    Object.assign(ids, { customer: customer.id, pet: pet.id, secondPet: secondPet.id, address: address.id, city: city.id, area: area.id, service: service.id, price: price.id, capacity: capacity.id });
   });
 
   afterAll(async () => {
@@ -36,7 +37,7 @@ describe("booking price and capacity transaction", () => {
       await prisma.servicePrice.deleteMany({ where: { serviceAreaId: ids.area } });
       await prisma.serviceArea.deleteMany({ where: { id: ids.area } });
       await prisma.city.deleteMany({ where: { id: ids.city } });
-      await prisma.pet.deleteMany({ where: { id: ids.pet } });
+      await prisma.pet.deleteMany({ where: { id: { in: [ids.pet, ids.secondPet].filter(Boolean) } } });
       await prisma.address.deleteMany({ where: { id: ids.address } });
       await prisma.user.deleteMany({ where: { id: ids.customer } });
     }
@@ -59,7 +60,8 @@ describe("booking price and capacity transaction", () => {
     const request = { petId: ids.pet, addressId: ids.address, serviceCode: "DOG_WALK_30" as const, scheduledStart: scheduledStart.toISOString() };
     await expect(createBookingWithQuote(ids.customer, { ...request, servicePriceId: ids.price })).rejects.toMatchObject({ code: "pricing_changed" });
     expect((await prisma.capacityLimit.findUniqueOrThrow({ where: { id: ids.capacity } })).reserved).toBe(1);
-    await expect(createBookingWithQuote(ids.customer, { ...request, servicePriceId: secondPrice.id })).rejects.toMatchObject({ code: "daily_capacity_reached" });
+    const secondRequest = { petId: ids.secondPet, addressId: ids.address, serviceCode: "DOG_WALK_30" as const, scheduledStart: new Date(scheduledStart.getTime() + 2 * 60 * 60_000).toISOString() };
+    await expect(createBookingWithQuote(ids.customer, { ...secondRequest, servicePriceId: secondPrice.id })).rejects.toMatchObject({ code: "daily_capacity_reached" });
     expect((await prisma.capacityLimit.findUniqueOrThrow({ where: { id: ids.capacity } })).reserved).toBe(1);
   });
 

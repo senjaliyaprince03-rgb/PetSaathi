@@ -1,8 +1,13 @@
-import { describe, it, expect, beforeAll, afterAll } from "vitest";
+import { describe, it, expect, beforeAll, afterAll, vi } from "vitest";
 import { PrismaClient } from "@prisma/client";
 import { randomUUID } from "crypto";
 import { awardLoyaltyPoints, redeemLoyaltyPoints, getLoyaltyBalance } from "../../src/modules/loyalty/service";
 import { GET as LoyaltyGET } from "../../src/app/api/customer/loyalty/route";
+
+const mockIdentity: { id: string; roles: string[] } = { id: "", roles: ["CUSTOMER"] };
+vi.mock("@/modules/auth/session", () => ({
+  getCurrentIdentity: vi.fn(async () => mockIdentity),
+}));
 
 const prisma = new PrismaClient();
 
@@ -19,6 +24,7 @@ describe("Phase 11: Loyalty Ledger Integration", () => {
       }
     });
     userId = user.id;
+    mockIdentity.id = userId;
   });
 
   afterAll(async () => {

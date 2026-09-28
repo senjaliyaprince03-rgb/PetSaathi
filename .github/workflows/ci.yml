@@ -19,6 +19,10 @@ jobs:
       NEXTAUTH_SECRET: ci_only_auth_secret_123456789012345678901234567890
       UPLOAD_SIGNING_SECRET: ci_only_upload_secret_123456789012345678901234567890
       AUTH_DEV_FIXED_OTP: '123456'
+      NEXT_PUBLIC_RAZORPAY_KEY_ID: 'rzp_test_mockkeyid12345678'
+      RAZORPAY_KEY_ID: 'rzp_test_mockkeyid12345678'
+      RAZORPAY_KEY_SECRET: 'mock_razorpay_secret_12345678'
+      RAZORPAY_WEBHOOK_SECRET: 'mock_webhook_secret_12345678'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

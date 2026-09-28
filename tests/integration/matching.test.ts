@@ -113,7 +113,8 @@ describe("Phase 11: Assisted Matching Integration", () => {
         userId: sitterUser.id,
         status: SitterStatus.APPROVED,
         yearsExperience: 2,
-        reliabilityScore: 98.5
+        reliabilityScore: 98.5,
+        serviceLocality: "Downtown"
       }
     });
     sitterId = sitter.id;
@@ -128,6 +129,20 @@ describe("Phase 11: Assisted Matching Integration", () => {
       }
     });
 
+    const now = new Date();
+    const scheduledStart = new Date(now.getTime() + 60 * 60 * 1000);
+    const scheduledEnd = new Date(scheduledStart.getTime() + 30 * 60 * 1000);
+
+    await prisma.availabilityException.create({
+      data: {
+        sitterId,
+        startsAt: new Date(scheduledStart.getTime() - 60 * 60 * 1000),
+        endsAt: new Date(scheduledEnd.getTime() + 60 * 60 * 1000),
+        available: true,
+        reason: "Integration test availability",
+      },
+    });
+
     // Booking
     const booking = await prisma.booking.create({
       data: {
@@ -137,8 +152,8 @@ describe("Phase 11: Assisted Matching Integration", () => {
         serviceTypeId,
         addressId,
         status: BookingStatus.REQUESTED,
-        scheduledStart: new Date(),
-        scheduledEnd: new Date(Date.now() + 30 * 60 * 1000),
+        scheduledStart,
+        scheduledEnd,
         quoteAmountPaise: 20000,
       }
     });
@@ -155,6 +170,7 @@ describe("Phase 11: Assisted Matching Integration", () => {
       await prisma.bookingStatusHistory.deleteMany({ where: { bookingId } });
       await prisma.booking.deleteMany({ where: { id: bookingId } });
     }
+    await prisma.availabilityException.deleteMany({ where: { sitterId } });
     await prisma.sitterServicePermission.deleteMany({ where: { sitterId } });
     await prisma.sitterProfile.deleteMany({ where: { id: sitterId } });
     await prisma.address.deleteMany({ where: { id: addressId } });

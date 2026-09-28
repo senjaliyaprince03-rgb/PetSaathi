@@ -137,6 +137,7 @@ export const bookingTransitions: Record<BookingStatus, readonly BookingStatus[]>
 
   // Safety incident occurred, booking on hold
   INCIDENT_HOLD: [
+    "CONFIRMED",
     "REPLACEMENT_REQUIRED",
     "COMPLETED", // Incident resolved, service completed
     "CUSTOMER_CANCELLED",
