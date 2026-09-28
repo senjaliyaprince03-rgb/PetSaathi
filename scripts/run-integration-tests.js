@@ -13,10 +13,10 @@ function assertDisposableDatabase(rawUrl) {
     throw new Error("Refusing integration tests: MONGODB_URI must target a local disposable petsaathi_test or petsaathi_ci database.");
   }
 }
-
 try {
   assertDisposableDatabase(databaseUrl);
-  const vitestCli = require.resolve("vitest/vitest.mjs");
+  const path = require("node:path");
+  const vitestCli = path.join(path.dirname(require.resolve("vitest/package.json")), "vitest.mjs");
   const result = spawnSync(process.execPath, [vitestCli, "run", "--config", "vitest.integration.config.ts"], {
     cwd: process.cwd(),
     env: { ...process.env, MONGODB_URI: databaseUrl, MONGODB_DATABASE: new URL(databaseUrl).pathname.slice(1) },
