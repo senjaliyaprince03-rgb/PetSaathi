@@ -71,7 +71,16 @@ describe("Concurrency: Double-Spend Subscription Entitlement", () => {
     if (!city) {
       city = await prisma.city.findFirst({ where: { status: "VALIDATED" } });
     }
-    if (!city) throw new Error("No active city found");
+    if (!city) {
+      city = await prisma.city.create({
+        data: {
+          name: address.city,
+          slug: `city-${Date.now()}`,
+          state: address.state,
+          status: "VALIDATED"
+        }
+      });
+    }
 
     // Make sure city status is VALIDATED and state matches
     await prisma.city.update({

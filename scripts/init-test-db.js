@@ -108,6 +108,8 @@ async function main() {
   run(process.execPath, ["scripts/apply-mongodb-indexes.js"], env);
   console.log("Seeding non-commercial reference data...");
   run(process.execPath, [prismaCli, "db", "seed"], env);
+  console.log("Seeding rich demo data for integration & concurrency suites...");
+  run(process.execPath, ["scripts/seed-rich-demo.mjs"], env);
   console.log("Verifying MongoDB connectivity, replica set, and indexes...");
   run(process.execPath, ["scripts/verify-test-db.js"], env);
   console.log("Disposable MongoDB test database is ready.");

@@ -19,11 +19,42 @@ describe("Concurrency: Webhook Replay Idempotency", () => {
 
   beforeAll(async () => {
     // 1. Seed customer, pet, address, service
-    const customer = await prisma.user.findFirst({
+    let customer = await prisma.user.findFirst({
       where: { roles: { some: { role: "CUSTOMER" } }, pets: { some: {} }, addresses: { some: {} } },
       include: { pets: true, addresses: true }
     });
-    if (!customer) throw new Error("Customer missing");
+    if (!customer) {
+      customer = await prisma.user.create({
+        data: {
+          email: `concur-wh-${Date.now()}@example.test`,
+          displayName: "Concurrency Webhook Customer",
+          status: "ACTIVE",
+          roles: { create: { role: "CUSTOMER" } },
+          pets: {
+            create: {
+              name: "ConcurWhPet",
+              species: "DOG",
+              breed: "Indie",
+              active: true,
+              deletedAt: null
+            }
+          },
+          addresses: {
+            create: {
+              label: "Home",
+              line1: "100 Webhook Way",
+              locality: "Indiranagar",
+              city: "Bangalore",
+              state: "Karnataka",
+              postalCode: "560038",
+              latitude: 12.9716,
+              longitude: 77.6412
+            }
+          }
+        },
+        include: { pets: true, addresses: true }
+      });
+    }
 
     const serviceType = await prisma.serviceType.findFirst({ where: { active: true } });
     if (!serviceType) throw new Error("ServiceType missing");

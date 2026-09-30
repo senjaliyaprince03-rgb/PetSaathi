@@ -11,11 +11,42 @@ describe("Concurrency: Double-Accept Assignment", () => {
   const createdBookingIds: string[] = [];
 
   beforeAll(async () => {
-    const customer = await prisma.user.findFirst({
+    let customer = await prisma.user.findFirst({
       where: { roles: { some: { role: "CUSTOMER" } }, pets: { some: {} }, addresses: { some: {} } },
       include: { pets: true, addresses: true }
     });
-    if (!customer) throw new Error("No customer with pet and address found");
+    if (!customer) {
+      customer = await prisma.user.create({
+        data: {
+          email: `concur-accept-${Date.now()}@example.test`,
+          displayName: "Concurrency Accept Customer",
+          status: "ACTIVE",
+          roles: { create: { role: "CUSTOMER" } },
+          pets: {
+            create: {
+              name: "ConcurAcceptPet",
+              species: "DOG",
+              breed: "Indie",
+              active: true,
+              deletedAt: null
+            }
+          },
+          addresses: {
+            create: {
+              label: "Home",
+              line1: "200 Accept Ave",
+              locality: "HSR Layout",
+              city: "Bangalore",
+              state: "Karnataka",
+              postalCode: "560102",
+              latitude: 12.9121,
+              longitude: 77.6446
+            }
+          }
+        },
+        include: { pets: true, addresses: true }
+      });
+    }
 
     const serviceType = await prisma.serviceType.findFirst({ where: { active: true } });
     if (!serviceType) throw new Error("No active service type found");
@@ -28,7 +59,29 @@ describe("Concurrency: Double-Accept Assignment", () => {
       include: { user: true },
       take: 10
     });
-    if (sitters.length < 2) throw new Error("Need at least 2 approved Saathis for concurrency test");
+    while (sitters.length < 2) {
+      const idx = sitters.length + 1;
+      const sitterUser = await prisma.user.create({
+        data: {
+          email: `concur-sitter-${idx}-${Date.now()}@example.test`,
+          displayName: `Concurrency Sitter ${idx}`,
+          status: "ACTIVE",
+          roles: { create: { role: "SITTER" } },
+          sitter: {
+            create: {
+              status: "APPROVED",
+              bio: `Verified Concurrency Sitter ${idx}`,
+              yearsExperience: 3,
+              serviceLocality: "HSR Layout"
+            }
+          }
+        },
+        include: { sitter: true }
+      });
+      if (sitterUser.sitter) {
+        sitters.push({ ...sitterUser.sitter, user: sitterUser });
+      }
+    }
 
     const scheduledStart = new Date(Date.now() + 2 * 3600 * 1000);
     const scheduledEnd = new Date(scheduledStart.getTime() + 30 * 60 * 1000);
