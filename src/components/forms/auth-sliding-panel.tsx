@@ -10,6 +10,8 @@ import { useEffect } from "react";
 import { hasUsableGoogleClientId } from "@/lib/public-config";
 import { PetSaathiLogo } from "@/components/brand/logo";
 import { sanitizeReturnTo } from "@/lib/sanitize-url";
+import { getDefaultDashboardForRoles } from "@/modules/auth/admin-access";
+import type { Role } from "@prisma/client";
 
 // Decorative animation: loaded lazily so lottie-react + the animation JSON
 // stay out of the login route's first-load JS.
@@ -54,6 +56,8 @@ export function AuthSlidingPanel({ returnTo }: { returnTo?: string }) {
           setError("Sign in session expired. Please try again.");
         } else if (urlError === "oauth_configuration_error") {
           setError("Google sign in configuration error.");
+        } else if (urlError === "origin_mismatch" || urlError === "redirect_uri_mismatch") {
+          setError("Google Sign-In is awaiting domain authorization in Google Cloud Console. Please sign in with your email or passwordless code in the meantime.");
         } else if (urlError === "token_exchange_failed" || urlError === "userinfo_failed") {
           setError("Unable to authenticate with Google. Please try again.");
         } else {
@@ -116,6 +120,21 @@ export function AuthSlidingPanel({ returnTo }: { returnTo?: string }) {
     google.accounts.id.initialize({
       client_id: googleClientId!,
       callback: handleGoogleCredentialResponse,
+      error_callback: (err: any) => {
+        console.warn("[GSI_ERROR]", err);
+        if (err?.type === "popup_closed") {
+          return;
+        }
+        if (err?.type === "popup_blocked") {
+          setError("Google sign-in popup was blocked by your browser. Please allow popups or use email sign in.");
+          return;
+        }
+        if (err?.type === "origin_mismatch" || err?.type === "unregistered_origin" || err?.message?.includes("origin")) {
+          setError("Google Sign-In is awaiting domain authorization in Google Cloud Console. Please sign in with your email or request an email code.");
+          return;
+        }
+        setError("Google sign in could not be completed. Please sign in with your email or request an email code.");
+      },
       auto_select: false,
     });
 
@@ -144,7 +163,8 @@ export function AuthSlidingPanel({ returnTo }: { returnTo?: string }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [hasGoogleAuth]);
 
-  function startEmailCodeLogin() {
+  function startEmailCodeLogin(intent: "login" | "reset" = "login") {
+    setEmailCodeIntent(intent);
     setMode("emailCode");
     setVerificationPending(false);
     setOtp("");
@@ -405,9 +425,14 @@ export function AuthSlidingPanel({ returnTo }: { returnTo?: string }) {
             <Field aria-label="Email address" autoComplete="email" icon={<Mail />} maxLength={254} name="email" onChange={setEmail} placeholder="Email Address" type="email" value={email} />
           <Field aria-label="Password" autoComplete="current-password" icon={<Lock />} maxLength={128} name="password" onChange={setPassword} placeholder="Password" type="password" value={password} />
           <SubmitButton pending={pending} label="SIGN IN" color="bg-[#301F30] hover:bg-[#301F30]/90" />
-          <button type="button" onClick={startEmailCodeLogin} className="text-center text-xs font-bold text-indigo transition hover:text-coral">
-            Forgot password? Log in with an email code
-          </button>
+          <div className="flex flex-col gap-1.5 text-center">
+            <button type="button" onClick={() => startEmailCodeLogin("reset")} className="text-xs font-bold text-indigo transition hover:text-coral">
+              Forgot password? Reset with email code
+            </button>
+            <button type="button" onClick={() => startEmailCodeLogin("login")} className="text-xs font-medium text-ink/60 transition hover:text-ink">
+              Prefer passwordless? Log in with email code
+            </button>
+          </div>
           {hasGoogleAuth && (
             <div className="flex flex-col gap-2 mt-2">
               <div className="relative my-1 flex items-center py-1">
@@ -560,5 +585,3 @@ function GoogleOAuthButton({ role, returnTo, label }: { role: string; returnTo?:
     </a>
   );
 }
-import { getDefaultDashboardForRoles } from "@/modules/auth/admin-access";
-import type { Role } from "@prisma/client";
