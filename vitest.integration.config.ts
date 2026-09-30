@@ -3,7 +3,12 @@ import { defineConfig } from "vitest/config";
 
 export default defineConfig({
   esbuild: {
-    jsx: "automatic"
+    jsx: "automatic",
+    tsconfigRaw: {
+      compilerOptions: {
+        jsx: "react-jsx"
+      }
+    }
   },
   resolve: {
     alias: {
