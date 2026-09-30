@@ -17,7 +17,16 @@ const keyId = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
 const keySecret = process.env.RAZORPAY_KEY_SECRET;
 const webhookSecret = process.env.RAZORPAY_WEBHOOK_SECRET;
 
-describe("Phase 13: Razorpay Security Manipulation & Authorization Tests", () => {
+const hasLiveKeys = Boolean(
+  keyId &&
+    keySecret &&
+    webhookSecret &&
+    keyId.startsWith("rzp_test_") &&
+    !keyId.includes("mock") &&
+    !keySecret.includes("mock")
+);
+
+describe.skipIf(!hasLiveKeys)("Phase 13: Razorpay Security Manipulation & Authorization Tests", () => {
   let razorpay: Razorpay;
   let victimUser: any;
   let attackerUser: any;
@@ -26,6 +35,7 @@ describe("Phase 13: Razorpay Security Manipulation & Authorization Tests", () =>
   let address: any;
 
   beforeAll(async () => {
+    if (!hasLiveKeys) return;
     razorpay = new Razorpay({ key_id: keyId!, key_secret: keySecret! });
 
     victimUser = await prisma.user.create({

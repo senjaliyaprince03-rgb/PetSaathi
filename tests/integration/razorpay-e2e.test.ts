@@ -15,7 +15,16 @@ const keyId = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
 const keySecret = process.env.RAZORPAY_KEY_SECRET;
 const webhookSecret = process.env.RAZORPAY_WEBHOOK_SECRET;
 
-describe("Razorpay Test-Mode End-to-End Payment Lifecycle", () => {
+const hasLiveKeys = Boolean(
+  keyId &&
+    keySecret &&
+    webhookSecret &&
+    keyId.startsWith("rzp_test_") &&
+    !keyId.includes("mock") &&
+    !keySecret.includes("mock")
+);
+
+describe.skipIf(!hasLiveKeys)("Razorpay Test-Mode End-to-End Payment Lifecycle", () => {
   let razorpay: Razorpay;
   let testUser: any;
   let testPet: any;
@@ -23,6 +32,7 @@ describe("Razorpay Test-Mode End-to-End Payment Lifecycle", () => {
   let address: any;
 
   beforeAll(async () => {
+    if (!hasLiveKeys) return;
     expect(keyId).toBeDefined();
     expect(keyId?.startsWith("rzp_test_")).toBe(true);
     expect(keySecret).toBeDefined();
