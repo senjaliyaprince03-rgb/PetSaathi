@@ -154,8 +154,21 @@ describe("Concurrency: Double-Spend Subscription Entitlement", () => {
     }
 
     // 3. Plan version & active subscription
-    const plan = await prisma.planVersion.findFirst({ where: { active: true } });
-    if (!plan) throw new Error("Active plan version missing");
+    let plan = await prisma.planVersion.findFirst({ where: { active: true } });
+    if (!plan) {
+      plan = await prisma.planVersion.create({
+        data: {
+          planKey: "CARE_PLUS",
+          version: 1,
+          name: "PetSaathi Care+",
+          audience: "CUSTOMER",
+          pricePaise: 99900,
+          billingInterval: "monthly",
+          entitlements: { DOG_WALK_30: 10 },
+          active: true
+        }
+      });
+    }
 
     let sub = await prisma.subscription.findFirst({
       where: { userId: customer.id, status: "ACTIVE" }

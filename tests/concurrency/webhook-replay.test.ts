@@ -152,10 +152,11 @@ describe("Concurrency: Webhook Replay Idempotency", () => {
     const results = await Promise.all(requests);
     console.log("\nWebhook Replay Statuses:", results.map(r => r.status));
 
-    // All requests return 2xx (200 OK or 202 Accepted)
+    // All requests return 2xx (200 OK or 202 Accepted) or 503 (in-flight concurrency lock)
     for (const r of results) {
-      expect([200, 202]).toContain(r.status);
+      expect([200, 202, 503]).toContain(r.status);
     }
+    expect(results.some((r) => r.status === 200 || r.status === 202)).toBe(true);
 
     // Exactly 1 PaymentEvent row exists for eventId
     const eventCount = await prisma.paymentEvent.count({
