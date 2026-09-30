@@ -43,6 +43,26 @@ export function AuthSlidingPanel({ returnTo }: { returnTo?: string }) {
 
   const [emailCodeIntent, setEmailCodeIntent] = useState<"login" | "reset">("login");
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const sp = new URLSearchParams(window.location.search);
+      const urlError = sp.get("error");
+      if (urlError) {
+        if (urlError === "access_denied" || urlError === "cancelled") {
+          setError("Google sign in was cancelled.");
+        } else if (urlError === "invalid_oauth_state") {
+          setError("Sign in session expired. Please try again.");
+        } else if (urlError === "oauth_configuration_error") {
+          setError("Google sign in configuration error.");
+        } else if (urlError === "token_exchange_failed" || urlError === "userinfo_failed") {
+          setError("Unable to authenticate with Google. Please try again.");
+        } else {
+          setError(urlError.replaceAll("_", " "));
+        }
+      }
+    }
+  }, []);
+
   function errorMessage(payload: ApiResponse | null, fallback: string) {
     return payload?.message ?? payload?.error?.replaceAll("_", " ") ?? fallback;
   }
@@ -96,11 +116,11 @@ export function AuthSlidingPanel({ returnTo }: { returnTo?: string }) {
     google.accounts.id.initialize({
       client_id: googleClientId!,
       callback: handleGoogleCredentialResponse,
-      use_fedcm_for_prompt: false,
       auto_select: false,
     });
 
-    const options = { theme: "outline", size: "large", shape: "rectangular", width: 320, logo_alignment: "left" };
+    const buttonWidth = typeof window !== "undefined" ? Math.min(320, Math.max(240, window.innerWidth - 64)) : 320;
+    const options = { theme: "outline", size: "large", shape: "rectangular", width: buttonWidth, logo_alignment: "left" };
 
     if (googleButtonSignUpRef.current && googleButtonSignUpRef.current.children.length === 0) {
       google.accounts.id.renderButton(googleButtonSignUpRef.current, options);
