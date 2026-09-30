@@ -63,9 +63,9 @@ export default async function LoginPage({ searchParams }: { searchParams?: Login
                 {returnTo ? "Continue to your page →" : "Go to Dashboard →"}
               </Link>
               <span className="text-ink/30">|</span>
-              <a href="/api/auth/signout" className="text-coral hover:underline">
+              <Link href="/api/auth/signout?returnTo=/login" className="text-coral hover:underline">
                 Sign out
-              </a>
+              </Link>
             </div>
           </div>
         )}

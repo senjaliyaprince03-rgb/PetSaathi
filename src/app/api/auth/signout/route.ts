@@ -21,18 +21,15 @@ function clearSessionCookies(response: NextResponse) {
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
     });
-    try {
-      response.cookies.delete(name);
-    } catch {
-      // ignore
-    }
   }
 }
 
-// GET: browser-friendly logout link (redirects home after revoking the session).
+// GET: browser-friendly logout link (redirects to returnTo or /login after revoking the session).
 export async function GET(request: Request) {
   await revokeCurrentSession();
-  const response = NextResponse.redirect(new URL("/", request.url), { status: 303 });
+  const { searchParams } = new URL(request.url);
+  const returnTo = searchParams.get("returnTo") || "/";
+  const response = NextResponse.redirect(new URL(returnTo, request.url), { status: 303 });
   clearSessionCookies(response);
   return response;
 }

@@ -60,6 +60,7 @@ describe("Pet Records Page Security", () => {
         name: "TestPet",
         species: "DOG",
         active: true,
+        deletedAt: null,
       }
     });
     ids.petId = pet.id;
