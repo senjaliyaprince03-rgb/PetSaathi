@@ -6,7 +6,7 @@
   "crons": [
     {
       "path": "/api/jobs/notifications",
-      "schedule": "* * * * *"
+      "schedule": "0 4 * * *"
     },
     {
       "path": "/api/jobs/tracking-retention",
