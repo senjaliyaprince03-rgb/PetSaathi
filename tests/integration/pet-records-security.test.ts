@@ -20,6 +20,12 @@ vi.mock("next/navigation", () => {
   };
 });
 
+vi.mock("@/app/(portal)/pets/[id]/records/records-view", () => {
+  return {
+    PetHealthRecordsView: vi.fn(() => null),
+  };
+});
+
 import { getCurrentIdentity, hasAnyRole } from "@/modules/auth/session";
 
 describe("Pet Records Page Security", () => {
