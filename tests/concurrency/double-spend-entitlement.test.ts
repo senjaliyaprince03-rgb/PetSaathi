@@ -16,6 +16,8 @@ describe("Concurrency: Double-Spend Subscription Entitlement", () => {
   let servicePriceId: string;
   const entitlementKey = "service_DOG_WALK_30";
   const createdBookingIds: string[] = [];
+  let scheduledStart1: Date;
+  let scheduledStart2: Date;
 
   let createdTestUserId: string | undefined;
 
@@ -128,8 +130,15 @@ describe("Concurrency: Double-Spend Subscription Entitlement", () => {
     servicePriceId = price.id;
 
     // Capacity limit
-    const scheduledStart1 = new Date(Date.now() + 3 * 3600 * 1000);
-    const scheduledStart2 = new Date(Date.now() + 5 * 3600 * 1000);
+    const tomorrow = new Date();
+    tomorrow.setUTCDate(tomorrow.getUTCDate() + 1);
+
+    scheduledStart1 = new Date(tomorrow);
+    scheduledStart1.setUTCHours(4, 30, 0, 0); // 10:00 AM IST (within active service hours 06:00-21:00)
+
+    scheduledStart2 = new Date(tomorrow);
+    scheduledStart2.setUTCHours(5, 30, 0, 0); // 11:00 AM IST (within active service hours 06:00-21:00)
+
     const serviceDate1 = indiaServiceDate(scheduledStart1);
     const serviceDate2 = indiaServiceDate(scheduledStart2);
 
@@ -222,9 +231,6 @@ describe("Concurrency: Double-Spend Subscription Entitlement", () => {
   }, 30000);
 
   it("prevents double-spending of the last entitlement credit", async () => {
-    const scheduledStart1 = new Date(Date.now() + 3 * 3600 * 1000);
-    const scheduledStart2 = new Date(Date.now() + 5 * 3600 * 1000);
-
     let releaseBarrier: () => void;
     const barrier = new Promise<void>((resolve) => {
       releaseBarrier = resolve;
@@ -265,19 +271,18 @@ describe("Concurrency: Double-Spend Subscription Entitlement", () => {
     if (res2.data?.booking?.id) createdBookingIds.push(res2.data.booking.id);
 
     // Verify concurrency outcome:
-    // Both booking requests succeed (201 Created), but ONLY ONE receives CONFIRMED status via the entitlement credit.
-    // The second request transitions to REQUESTED (awaiting payment) because the entitlement credit was already consumed.
+    // Both booking requests succeed (201 Created) in REQUESTED status.
     expect(res1.status).toBe(201);
     expect(res2.status).toBe(201);
 
-    const booking1Status = res1.data?.booking?.status;
-    const booking2Status = res2.data?.booking?.status;
+    expect(res1.data?.booking?.status).toBe("REQUESTED");
+    expect(res2.data?.booking?.status).toBe("REQUESTED");
 
-    const confirmedCount = [booking1Status, booking2Status].filter(s => s === "CONFIRMED").length;
-    const requestedCount = [booking1Status, booking2Status].filter(s => s === "REQUESTED").length;
-
-    expect(confirmedCount).toBe(1);
-    expect(requestedCount).toBe(1);
+    // Exactly 1 entitlement consumption record was created (no double-spend)
+    const consumptions = await prisma.entitlementConsumption.findMany({
+      where: { bookingId: { in: createdBookingIds } }
+    });
+    expect(consumptions).toHaveLength(1);
 
     // After both complete, verify ledger balance is exactly 0 (NOT -1)
     const latest = await prisma.entitlementLedger.findFirst({
@@ -286,10 +291,10 @@ describe("Concurrency: Double-Spend Subscription Entitlement", () => {
     });
     expect(latest?.balanceAfter).toBe(0);
 
-    // Check confirmed bookings count in DB
-    const confirmedBookings = await prisma.booking.findMany({
-      where: { id: { in: createdBookingIds }, status: "CONFIRMED" }
+    // Verify exactly one booking was tagged as covered by membership entitlement in its status history
+    const histories = await prisma.bookingStatusHistory.findMany({
+      where: { bookingId: { in: createdBookingIds }, reason: "Covered by membership entitlement" }
     });
-    expect(confirmedBookings).toHaveLength(1);
+    expect(histories).toHaveLength(1);
   }, 30000);
 });

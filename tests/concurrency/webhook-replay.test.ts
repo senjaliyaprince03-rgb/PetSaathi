@@ -5,8 +5,8 @@ dns.setServers(["8.8.8.8", "1.1.1.1"]);
 import crypto from "node:crypto";
 import { prisma } from "@/lib/db";
 import { POST } from "@/app/api/webhooks/razorpay/route";
-
-const webhookSecret = process.env.RAZORPAY_WEBHOOK_SECRET || "sim_webhook_secret_test_mode";
+process.env.RAZORPAY_WEBHOOK_SECRET = process.env.RAZORPAY_WEBHOOK_SECRET || "sim_webhook_secret_test_mode";
+const webhookSecret = process.env.RAZORPAY_WEBHOOK_SECRET;
 
 describe("Concurrency: Webhook Replay Idempotency", () => {
   let bookingId: string;
