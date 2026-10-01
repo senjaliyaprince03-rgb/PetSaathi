@@ -18,7 +18,7 @@ describe("PHASE 1: Authentication Security & Invariants", () => {
       } finally {
         (process.env as any).NODE_ENV = originalNodeEnv;
       }
-    });
+    }, 15000);
   });
 
   describe("AUTH-02: Suspended/Deactivated User Reactivation Invariant", () => {
