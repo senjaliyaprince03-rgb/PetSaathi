@@ -9,12 +9,8 @@ import { analyzeTask } from "./analyzer.mjs";
 import { backoffDelay, isTerminalError, withTimeout, sleep, TIMEOUTS } from "./timeouts.mjs";
 import { retrieveRelevantChunks } from "../src/lib/ai/retriever.ts";
 
-if (!process.env.NVIDIA_API_KEY) {
-  throw new Error("[NVIDIA Router] Configuration Error: NVIDIA_API_KEY is missing from environment variables.");
-}
-
 export const client = new OpenAI({
-  apiKey: process.env.NVIDIA_API_KEY,
+  apiKey: process.env.NVIDIA_API_KEY || "missing_key_build_placeholder",
   baseURL: process.env.NVIDIA_BASE_URL || "https://integrate.api.nvidia.com/v1",
 });
 
@@ -31,6 +27,9 @@ const CACHE_TTL_MS = process.env.NVIDIA_MODEL_CACHE_TTL_MS
  * Discovers available models from NVIDIA API
  */
 export async function getAvailableModels() {
+  if (!process.env.NVIDIA_API_KEY) {
+    return new Set();
+  }
   const now = Date.now();
   if (availableModelsCache && (now - lastDiscoveryTime < CACHE_TTL_MS)) {
     return availableModelsCache;
@@ -201,6 +200,9 @@ export function prepareMessages(prompt, options) {
  * Main routing function
  */
 export async function askNvidia(options, prompt) {
+  if (!process.env.NVIDIA_API_KEY) {
+    throw new Error("[NVIDIA Router] Configuration Error: NVIDIA_API_KEY is missing from environment variables.");
+  }
   const startTime = Date.now();
   
   // Normalize options

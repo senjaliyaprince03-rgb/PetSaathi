@@ -19,6 +19,7 @@ jobs:
       NEXTAUTH_SECRET: ci_only_auth_secret_123456789012345678901234567890
       UPLOAD_SIGNING_SECRET: ci_only_upload_secret_123456789012345678901234567890
       AUTH_DEV_FIXED_OTP: '123456'
+      NVIDIA_API_KEY: nvapi-ci-build-placeholder
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
