@@ -104,28 +104,34 @@ export async function POST(request: NextRequest) {
       }
 
       // 4. Send Reply back to the customer on WhatsApp via OpenWA Gateway
+      let replied = false;
+      let dispatchWarning: string | undefined = undefined;
+
       try {
         await openwa.sendTextMessage({
           chatId: sender,
           text: replyText,
           sessionId: payload.sessionId,
         });
-
+        replied = true;
         logger.info("[OPENWA_WEBHOOK] Reply sent successfully to WhatsApp", {
           recipient: sender,
         });
-
-        return NextResponse.json({ success: true, replied: true, recipient: sender });
       } catch (sendError: any) {
-        logger.error("[OPENWA_WEBHOOK] Failed to send reply via OpenWA", {
+        dispatchWarning = sendError.message;
+        logger.warn("[OPENWA_WEBHOOK] WhatsApp dispatch note (OpenWA gateway unreachable)", {
           error: sendError.message,
           recipient: sender,
         });
-        return NextResponse.json(
-          { success: false, error: "Failed to dispatch WhatsApp reply", details: sendError.message },
-          { status: 502 }
-        );
       }
+
+      return NextResponse.json({
+        success: true,
+        replied,
+        recipient: sender,
+        reply: replyText,
+        ...(dispatchWarning ? { dispatchWarning } : {})
+      });
     }
 
     // Acknowledge other events (session.status, session.qr, etc.)

@@ -8,6 +8,7 @@ import "./globals.css";
 import { CookieConsentBanner } from "@/components/marketing/cookie-consent-banner";
 import { ServiceWorkerRegistration } from "@/components/pwa/service-worker-registration";
 import { WhatsAppButton } from "@/components/ui/whatsapp-button";
+import { PetSaathiChatWidget } from "@/components/customer/PetSaathiChatWidget";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SkipToContent } from "@/components/layout/skip-to-content";
@@ -176,6 +177,7 @@ export default async function RootLayout({
         <ServiceWorkerRegistration />
         {children}
         <WhatsAppButton />
+        <PetSaathiChatWidget />
         <CookieConsentBanner analyticsId={analyticsId} />
         {Boolean(process.env.VERCEL || process.env.NEXT_PUBLIC_VERCEL_ENV) && (
           <>

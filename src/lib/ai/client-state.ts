@@ -50,11 +50,32 @@ export function useAIChat(initialConversationId?: string) {
         throw new Error(errStr);
       }
 
+      const contentType = response.headers.get('content-type') || '';
+      const assistantId = crypto.randomUUID();
+
+      // If the endpoint returned standard JSON, parse and populate immediately
+      if (contentType.includes('application/json')) {
+        const data = await response.json();
+        const content = data.message || data.content || '';
+        const assistantMessage: ChatMessage = {
+          id: data.requestId || assistantId,
+          role: 'assistant',
+          content,
+          toolActivity: [],
+          timestamp: Date.now(),
+          isStreaming: false
+        };
+        setMessages(prev => [...prev, assistantMessage]);
+        if (!conversationId && data.conversationId) {
+          setConversationId(data.conversationId);
+        }
+        return;
+      }
+
       const reader = response.body?.getReader();
       if (!reader) throw new Error("Stream not supported");
       
       const decoder = new TextDecoder();
-      const assistantId = crypto.randomUUID();
       
       const assistantMessage: ChatMessage = {
         id: assistantId,
@@ -71,8 +92,8 @@ export function useAIChat(initialConversationId?: string) {
         const { done, value } = await reader.read();
         if (done) break;
 
-        const chunk = decoder.decode(value);
-        const lines = chunk.split('\\n');
+        const chunk = decoder.decode(value, { stream: true });
+        const lines = chunk.split(/\r?\n/);
         
         let currentEvent: string | null = null;
         for (const line of lines) {

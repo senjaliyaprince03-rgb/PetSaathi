@@ -95,7 +95,7 @@ export function PetSaathiChatWidget() {
         onClick={() => setIsOpen(!isOpen)}
         aria-label={isOpen ? "Close Pet Care Assistant" : "Open Pet Care Assistant"}
         aria-expanded={isOpen}
-        className="fixed bottom-22 right-4 sm:bottom-6 sm:right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-600 text-white shadow-xl hover:bg-emerald-700 hover:scale-105 active:scale-95 transition-all focus:outline-none focus:ring-4 focus:ring-emerald-200"
+        className="fixed bottom-6 right-4 sm:bottom-6 sm:right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-600 text-white shadow-xl hover:bg-emerald-700 hover:scale-105 active:scale-95 transition-all focus:outline-none focus:ring-4 focus:ring-emerald-200"
       >
         {isOpen ? <X className="h-6 w-6" /> : <Bot className="h-6 w-6" />}
       </button>

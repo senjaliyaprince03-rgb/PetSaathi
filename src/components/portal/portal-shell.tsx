@@ -51,8 +51,6 @@ import {
 } from "lucide-react";
 
 import { cn } from "@/lib/cn";
-import { GlobalChatWidget } from "@/components/ai/GlobalChatWidget";
-import { PetSaathiChatWidget } from "@/components/customer/PetSaathiChatWidget";
 import { CustomerSidebar } from "@/components/portal/customer-sidebar";
 
 type PortalMode = "customer" | "saathi" | "admin" | "society" | "operator" | "partner";
@@ -518,8 +516,6 @@ export function PortalShell({
           })}
         </nav>
       )}
-
-      {mode === "customer" ? <PetSaathiChatWidget /> : <GlobalChatWidget />}
     </div>
   );
 }

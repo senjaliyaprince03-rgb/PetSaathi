@@ -20,23 +20,24 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Message is required and must be a non-empty string' }, { status: 400 });
     }
 
-    // 1. Authentication & Role Check
+    // 1. Identity & Role Resolution
+    // Supports both logged-in users (all portal roles) and public website visitors (guests)
     const identity = await getCurrentIdentity(req);
-    if (!identity) {
-      return NextResponse.json({ error: 'Unauthorized. Please log in.' }, { status: 401 });
-    }
+    const clientIp = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 
+                     req.headers.get('x-real-ip') || 
+                     'guest_user';
+    const userId = identity?.id || clientIp;
+    const isGuest = !identity;
 
-    const hasCustomerRole = identity.roles.includes('CUSTOMER') || identity.roles.includes('SUPER_ADMIN') || identity.roles.includes('OPERATIONS_ADMIN');
-    if (!hasCustomerRole) {
-      return NextResponse.json({ error: 'Forbidden. Pet care chat is only available for customer accounts.' }, { status: 403 });
-    }
+    // 2. Rate Limiting (20 req/min for authenticated accounts, 10 req/min for guests)
+    const maxLimit = isGuest ? 10 : 20;
+    const rateLimitKey = isGuest ? `ai_chat_guest:${clientIp}` : `ai_chat:${userId}`;
+    const rateLimit = await consumeRateLimit(rateLimitKey, userId, maxLimit, 60 * 1000);
 
-    // 2. Rate Limiting (20 requests per minute per user)
-    const rateLimit = await consumeRateLimit('ai_chat', identity.id, 20, 60 * 1000);
     if (!rateLimit.allowed) {
       return NextResponse.json(
         { 
-          error: 'Too many requests. You have reached your 20 requests/min limit.',
+          error: `Too many requests. You have reached your ${maxLimit} requests/min limit.`,
           retryAfterSeconds: rateLimit.retryAfterSeconds
         }, 
         { 
@@ -58,8 +59,44 @@ export async function POST(req: NextRequest) {
       isCustomerChat: true,
       portal: 'customer',
       returnMetadata: true,
-      telemetryContext: { requestId, userId: identity.id, conversationId }
+      telemetryContext: { requestId, userId, conversationId }
     }, body.message);
+
+    // 4. Return streaming SSE if client requested streaming, otherwise JSON
+    if (body.stream) {
+      const encoder = new TextEncoder();
+      const content = result.content || '';
+      const readableStream = new ReadableStream({
+        start(controller) {
+          try {
+            const chunkSize = 24;
+            for (let i = 0; i < content.length; i += chunkSize) {
+              const slice = content.slice(i, i + chunkSize);
+              controller.enqueue(encoder.encode(`event: text\ndata: ${JSON.stringify({ content: slice })}\n\n`));
+            }
+            controller.enqueue(encoder.encode(`event: done\ndata: ${JSON.stringify({ 
+              conversationId, 
+              requestId, 
+              sources: result.sources || [], 
+              executionModel: result.executionModel,
+              fallbackUsed: result.fallbackUsed 
+            })}\n\n`));
+            controller.close();
+          } catch (err: any) {
+            controller.enqueue(encoder.encode(`event: error\ndata: ${JSON.stringify({ error: err.message })}\n\n`));
+            controller.close();
+          }
+        }
+      });
+
+      return new Response(readableStream, {
+        headers: {
+          'Content-Type': 'text/event-stream',
+          'Cache-Control': 'no-cache, no-transform',
+          'Connection': 'keep-alive',
+        }
+      });
+    }
 
     return NextResponse.json({
       conversationId,

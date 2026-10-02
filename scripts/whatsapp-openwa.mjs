@@ -325,8 +325,9 @@ async function simulateChatbot(question) {
         { task: "fast", difficulty: "normal", isCustomerChat: true, portal: "customer" },
         userPrompt
       );
+      const replyText = typeof reply === "object" && reply !== null && "content" in reply ? reply.content : reply;
       console.log(`\n💬 PetSaathi AI WhatsApp Response:\n----------------------------------`);
-      console.log(reply);
+      console.log(replyText);
       console.log(`----------------------------------\n`);
     } catch (aiErr) {
       console.error(`❌ Direct AI test failed:`, aiErr.message);

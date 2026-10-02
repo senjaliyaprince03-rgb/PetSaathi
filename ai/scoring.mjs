@@ -38,14 +38,16 @@ export function scoreModels(models, taskOptions) {
     score += model.reliabilityScore * 2;
     score += model.reasoningLevel;
     score += model.codingLevel;
-    score += model.visionLevel;
+    if (requiresVision) {
+      score += model.visionLevel * 2;
+    }
     
     // Speed vs Difficulty tradeoff
     if (difficulty === "hard") {
       score += (model.reasoningLevel * 2);
     } else if (difficulty === "easy" || task === "fast") {
-      score += (model.speedLevel * 2);
-      // Penalize high cost for easy tasks
+      score += (model.speedLevel * 4);
+      // Penalize high cost for easy/fast tasks
       score -= (model.costTier * 5); 
     }
 

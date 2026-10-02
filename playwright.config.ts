@@ -13,15 +13,15 @@ const baseURL = process.env.BASE_URL || `http://127.0.0.1:${playwrightPort}`;
 export default defineConfig({
   testDir: "./tests/e2e",
   fullyParallel: false,
-  timeout: 300_000,
+  timeout: 60_000,
   forbidOnly: Boolean(process.env.CI),
-  retries: process.env.CI ? 2 : 0,
+  retries: process.env.CI ? 1 : 0,
   workers: 1,
   reporter: [["list"], ["html", { open: "never" }]],
   outputDir: "test-results",
   use: {
     baseURL,
-    navigationTimeout: 90_000,
+    navigationTimeout: 30_000,
     trace: "on-first-retry",
     screenshot: "only-on-failure",
     video: "retain-on-failure"
