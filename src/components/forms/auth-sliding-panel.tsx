@@ -337,7 +337,7 @@ export function AuthSlidingPanel({ returnTo }: { returnTo?: string }) {
         }`}
       >
         <div className="flex justify-center mb-2">
-          <PetSaathiLogo compact={true} />
+          <PetSaathiLogo size="large" />
         </div>
         <h2 className="mb-2 text-center font-display text-2xl font-bold text-ink sm:mb-3 sm:text-3xl">
           {verificationPending ? "Verify your email" : "Create Account"}
@@ -384,7 +384,7 @@ export function AuthSlidingPanel({ returnTo }: { returnTo?: string }) {
         }`}
       >
         <div className="flex justify-center mb-2">
-          <PetSaathiLogo compact={true} />
+          <PetSaathiLogo size="large" />
         </div>
         <h2 className="mb-2 text-center font-display text-2xl font-bold text-ink sm:mb-3 sm:text-3xl">
           {mode === "emailCode" ? (verificationPending ? "Enter your email code" : "Log in with an email code") : mode === "setPassword" ? "Choose a new password" : "Sign In"}
