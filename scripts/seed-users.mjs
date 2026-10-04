@@ -7,17 +7,41 @@ const { PrismaClient, Role, AccountStatus } = pkg;
 import { MongoClient } from "mongodb";
 import bcrypt from "bcryptjs";
 
+if (process.env.NODE_ENV === "production") {
+  throw new Error("Refusing to seed test users in production environment.");
+}
+
+if (process.env.ALLOW_TEST_SEED !== "true") {
+  throw new Error("ALLOW_TEST_SEED=true is required to run test user seeding.");
+}
+
+const mongoUri = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/petsaathi_test";
+const parsedUrl = new URL(mongoUri);
+const isLocalHost = ["127.0.0.1", "localhost"].includes(parsedUrl.hostname);
+const dbName = process.env.MONGODB_DATABASE || decodeURIComponent(parsedUrl.pathname.slice(1));
+const isAllowedDb = ["petsaathi_test", "petsaathi_ci", "petsaathi_dev"].includes(dbName);
+
+if (!isLocalHost || !isAllowedDb) {
+  throw new Error(
+    `Refusing to seed users on non-local or production database (${parsedUrl.hostname}/${dbName}). Only local disposable test databases are permitted.`
+  );
+}
+
+const seedPassword = process.env.TEST_SEED_PASSWORD;
+if (!seedPassword || seedPassword.length < 12) {
+  throw new Error("TEST_SEED_PASSWORD (minimum 12 characters) must be provided via environment variable.");
+}
+
 const prisma = new PrismaClient();
-const mongoUri = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/petsaathi";
 const client = new MongoClient(mongoUri);
 
 async function main() {
   await client.connect();
-  const db = client.db();
-  const passwordHash = await bcrypt.hash("Password123!", 10);
+  const db = client.db(dbName);
+  const passwordHash = await bcrypt.hash(seedPassword, 10);
 
   // 1. Create or update Sitter / Saathi
-  const sitterEmail = "sitter@petsaathi.com";
+  const sitterEmail = "sitter@petsaathi.test";
   let sitterUser = await prisma.user.findUnique({
     where: { email: sitterEmail },
     include: { roles: true, sitter: true },
@@ -42,7 +66,6 @@ async function main() {
       include: { roles: true, sitter: true }
     });
   } else {
-    // Ensure role is SITTER
     const hasRole = sitterUser.roles.some(r => r.role === Role.SITTER);
     if (!hasRole) {
       await prisma.userRole.create({
@@ -79,7 +102,7 @@ async function main() {
   );
 
   // 3. Ensure Admin has credentials too
-  const adminEmail = "admin@petsaathi.com";
+  const adminEmail = "admin@petsaathi.test";
   let adminUser = await prisma.user.findUnique({
     where: { email: adminEmail },
     include: { roles: true },
@@ -122,7 +145,10 @@ async function main() {
   console.log("ACCOUNTS_CONFIGURED_SUCCESSFULLY");
 }
 
-main().catch(console.error).finally(async () => {
+main().catch((err) => {
+  console.error(err);
+  process.exitCode = 1;
+}).finally(async () => {
   await prisma.$disconnect();
   await client.close();
 });

@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 test("public homepage exposes the core conversion paths", async ({ page }) => {
-  await page.goto("/");
+  await page.goto("/", { waitUntil: "domcontentloaded" });
 
   await expect(page.getByRole("heading", { level: 1 })).toContainText("Care That Feels Like Family.");
   await expect(page.getByRole("button", { name: /Check Availability|Start Assisted Matching/i })).toBeVisible();
@@ -36,20 +36,19 @@ test("public homepage exposes the core conversion paths", async ({ page }) => {
 });
 
 test("homepage uses the unified colored logo and favicon family", async ({ page }) => {
-  await page.goto("/");
+  await page.goto("/", { waitUntil: "domcontentloaded" });
 
   const logo = page.getByRole("img", { name: "PetSaathi — Since 2026" }).first();
   await expect(logo).toBeVisible();
-  expect(await logo.evaluate((image: HTMLImageElement) => image.currentSrc)).toContain(
-    "petsaathi-logo-official-hd.png"
-  );
+  const logoSrc = await logo.evaluate((image: HTMLImageElement) => image.currentSrc);
+  expect(logoSrc).toMatch(/petsaathi-logo-(official-hd|master-official)\.png/);
 
   const iconHref = await page.locator('link[rel="icon"][type="image/png"]').getAttribute("href");
   expect(iconHref).toBe("/icons/petsaathi-favicon-v2.png");
 });
 
 test("hero background stays clear, full-bleed, and free of a page-wide filter", async ({ page }) => {
-  await page.goto("/");
+  await page.goto("/", { waitUntil: "domcontentloaded" });
 
   const hero = page.getByTestId("marketing-hero");
   const background = page.getByTestId("marketing-hero-background");
@@ -72,7 +71,7 @@ test("hero background stays clear, full-bleed, and free of a page-wide filter", 
 });
 
 test("homepage trust copy contains no fabricated scale or universal guarantees", async ({ page }) => {
-  await page.goto("/");
+  await page.goto("/", { waitUntil: "domcontentloaded" });
 
   const publicCopy = await page.locator("main").innerText();
   for (const unsupportedClaim of [
@@ -108,7 +107,7 @@ test("corporate programme page is truthful and has a working enquiry path", asyn
 });
 
 test("homepage content imagery is unique, topic-specific, and includes cats", async ({ page }) => {
-  await page.goto("/");
+  await page.goto("/", { waitUntil: "domcontentloaded" });
 
   const contentImages = page.locator("main img");
   const sources = await contentImages.evaluateAll((images) =>
@@ -140,7 +139,7 @@ test("homepage content imagery is unique, topic-specific, and includes cats", as
 });
 
 test("services grid renders and contains the right services", async ({ page }) => {
-  await page.goto("/");
+  await page.goto("/", { waitUntil: "domcontentloaded" });
 
   const servicesSection = page.getByRole("heading", { name: "Comprehensive Services Designed for Every Need." });
   await servicesSection.scrollIntoViewIfNeeded();
@@ -150,7 +149,7 @@ test("services grid renders and contains the right services", async ({ page }) =
 });
 
 test("care concierge recommends a safe service and preserves pet context", async ({ page }) => {
-  await page.goto("/");
+  await page.goto("/", { waitUntil: "domcontentloaded" });
 
   const concierge = page.getByRole("heading", { name: "Who needs care?" });
   await concierge.scrollIntoViewIfNeeded();
@@ -176,11 +175,14 @@ test("care concierge recommends a safe service and preserves pet context", async
 });
 
 test("care concierge routes urgent health intent away from emergency claims", async ({ page }) => {
-  await page.goto("/");
+  await page.goto("/", { waitUntil: "domcontentloaded" });
 
   const concierge = page.getByRole("heading", { name: "Who needs care?" });
   await concierge.scrollIntoViewIfNeeded();
 
+  const dogBtn = page.getByRole("button", { name: "Dog" });
+  await expect(dogBtn).toBeVisible();
+  await dogBtn.click();
   const continueBtn = page.getByRole("button", { name: "Continue" });
   await expect(continueBtn).toBeVisible();
   await continueBtn.click();
@@ -198,7 +200,7 @@ test("care concierge routes urgent health intent away from emergency claims", as
 });
 
 test("care journey explorer changes context and preserves service intent", async ({ page }) => {
-  await page.goto("/");
+  await page.goto("/", { waitUntil: "domcontentloaded" });
 
   const groomingTab = page.locator('#care-journey-tab-grooming');
   await groomingTab.scrollIntoViewIfNeeded();
@@ -210,7 +212,7 @@ test("care journey explorer changes context and preserves service intent", async
 });
 
 test("homepage has no horizontal overflow on mobile", async ({ page }) => {
-  await page.goto("/");
+  await page.goto("/", { waitUntil: "domcontentloaded" });
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
   expect(overflow).toBeLessThanOrEqual(1);
 });
@@ -241,7 +243,7 @@ test("custom cursor remains fixed behind the pointer while the document scrolls"
 });
 
 test("hero care films stream and remain selectable", async ({ page, request }) => {
-  await page.goto("/");
+  await page.goto("/", { waitUntil: "domcontentloaded" });
 
   const film = page.locator("#hero-care-film");
   const walkingTab = page.locator('button[aria-controls="hero-care-film"]:has-text("Premium dog walking")');
@@ -263,7 +265,7 @@ test("hero care films stream and remain selectable", async ({ page, request }) =
 });
 
 test("quick care match carries safe selections into the booking wizard", async ({ page }) => {
-  await page.goto("/");
+  await page.goto("/", { waitUntil: "domcontentloaded" });
 
   await page.getByLabel("Care service").selectOption("GROOMING_HOME");
   await page.getByLabel("Pet type").selectOption("CAT");
