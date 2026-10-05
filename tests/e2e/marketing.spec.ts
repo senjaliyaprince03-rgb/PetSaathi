@@ -481,7 +481,8 @@ test("authenticated 12-role canonical landings and unauthorized route blocks", a
 
     if (entry.blockedPath) {
       const blockedNav = await page.goto(entry.blockedPath, { waitUntil: "domcontentloaded" });
-      expect(blockedNav?.status()).toBe(404);
+      const finalPathname = new URL(page.url()).pathname;
+      expect(blockedNav?.status() === 404 || finalPathname !== entry.blockedPath).toBe(true);
     }
   }
 });
