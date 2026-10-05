@@ -40,18 +40,18 @@ const prisma = new PrismaClient();
 const client = new MongoClient(mongoUri);
 
 const ROLE_ACCOUNTS = [
-  { email: "customer@petsaathi.test", displayName: "Pooja Sharma (Customer)", phoneE164: "+919876543201", role: Role.CUSTOMER },
-  { email: "sitter@petsaathi.test", displayName: "Aarav Sharma (Saathi)", phoneE164: "+919876543202", role: Role.SITTER },
-  { email: "ops.deep@petsaathi.com", displayName: "Operations Admin", phoneE164: "+919876543203", role: Role.OPERATIONS_ADMIN },
-  { email: "verification.admin@petsaathi.test", displayName: "Verification Admin", phoneE164: "+919876543204", role: Role.VERIFICATION_ADMIN },
-  { email: "safety.admin@petsaathi.test", displayName: "Safety Admin", phoneE164: "+919876543205", role: Role.SAFETY_ADMIN },
-  { email: "finance.admin@petsaathi.test", displayName: "Finance Admin", phoneE164: "+919876543206", role: Role.FINANCE_ADMIN },
-  { email: "content.admin@petsaathi.test", displayName: "Content Admin", phoneE164: "+919876543207", role: Role.CONTENT_ADMIN },
-  { email: "society.manager@petsaathi.test", displayName: "Society Manager", phoneE164: "+919876543208", role: Role.SOCIETY_MANAGER },
-  { email: "partner.manager@petsaathi.test", displayName: "Partner Manager", phoneE164: "+919876543209", role: Role.PARTNER_MANAGER },
-  { email: "city.manager@petsaathi.test", displayName: "City Manager", phoneE164: "+919876543210", role: Role.CITY_MANAGER },
-  { email: "operator@petsaathi.test", displayName: "Territory Operator", phoneE164: "+919876543211", role: Role.OPERATOR },
-  { email: "super.deep@petsaathi.com", displayName: "Super Admin", phoneE164: "+919876543212", role: Role.SUPER_ADMIN },
+  { email: "customer@petsaathi.test", displayName: "Pooja Sharma (Customer)", phoneE164: "+919999000101", role: Role.CUSTOMER },
+  { email: "sitter@petsaathi.test", displayName: "Aarav Sharma (Saathi)", phoneE164: "+919999000102", role: Role.SITTER },
+  { email: "ops.deep@petsaathi.com", displayName: "Operations Admin", phoneE164: "+919999000103", role: Role.OPERATIONS_ADMIN },
+  { email: "verification.admin@petsaathi.test", displayName: "Verification Admin", phoneE164: "+919999000104", role: Role.VERIFICATION_ADMIN },
+  { email: "safety.admin@petsaathi.test", displayName: "Safety Admin", phoneE164: "+919999000105", role: Role.SAFETY_ADMIN },
+  { email: "finance.admin@petsaathi.test", displayName: "Finance Admin", phoneE164: "+919999000106", role: Role.FINANCE_ADMIN },
+  { email: "content.admin@petsaathi.test", displayName: "Content Admin", phoneE164: "+919999000107", role: Role.CONTENT_ADMIN },
+  { email: "society.manager@petsaathi.test", displayName: "Society Manager", phoneE164: "+919999000108", role: Role.SOCIETY_MANAGER },
+  { email: "partner.manager@petsaathi.test", displayName: "Partner Manager", phoneE164: "+919999000109", role: Role.PARTNER_MANAGER },
+  { email: "city.manager@petsaathi.test", displayName: "City Manager", phoneE164: "+919999000110", role: Role.CITY_MANAGER },
+  { email: "operator@petsaathi.test", displayName: "Territory Operator", phoneE164: "+919999000111", role: Role.OPERATOR },
+  { email: "super.deep@petsaathi.com", displayName: "Super Admin", phoneE164: "+919999000112", role: Role.SUPER_ADMIN },
 ];
 
 async function main() {
@@ -60,8 +60,10 @@ async function main() {
   const passwordHash = await bcrypt.hash(seedPassword, 10);
 
   for (const account of ROLE_ACCOUNTS) {
-    let user = await prisma.user.findUnique({
-      where: { email: account.email },
+    let user = await prisma.user.findFirst({
+      where: {
+        OR: [{ email: account.email }, { phoneE164: account.phoneE164 }],
+      },
       include: { roles: true },
     });
 
@@ -77,9 +79,15 @@ async function main() {
         include: { roles: true },
       });
     } else {
-      await prisma.user.update({
+      user = await prisma.user.update({
         where: { id: user.id },
-        data: { status: AccountStatus.ACTIVE },
+        data: {
+          email: account.email,
+          displayName: account.displayName,
+          phoneE164: account.phoneE164,
+          status: AccountStatus.ACTIVE,
+        },
+        include: { roles: true },
       });
       await prisma.userRole.deleteMany({ where: { userId: user.id } });
       await prisma.userRole.create({
