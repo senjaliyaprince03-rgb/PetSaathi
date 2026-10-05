@@ -449,11 +449,10 @@ test("authenticated 12-role canonical landings and unauthorized route blocks", a
     { role: "SUPER_ADMIN", email: "super.deep@petsaathi.com", landing: "/admin" },
   ];
 
-  await page.goto("/login", { waitUntil: "domcontentloaded" });
-
   for (let idx = 0; idx < roleCases.length; idx++) {
     const entry = roleCases[idx]!;
     await page.context().clearCookies();
+    await page.goto("/login", { waitUntil: "load" });
 
     const signInRes = await page.evaluate(
       async ({ email, password, ip }) => {
@@ -475,16 +474,27 @@ test("authenticated 12-role canonical landings and unauthorized route blocks", a
     expect(signInRes.body.authenticated).toBe(true);
     expect(signInRes.body.roles).toContain(entry.role);
 
-    const nav = await page.goto(entry.landing, { waitUntil: "domcontentloaded" });
+    const nav = await page.goto(entry.landing, { waitUntil: "load" });
     expect(nav?.status()).toBe(200);
     expect(new URL(page.url()).pathname).toBe(entry.landing);
     await expect(page.getByText("ERROR 404")).toHaveCount(0);
 
     if (entry.blockedPath) {
-      const blockedNav = await page.goto(entry.blockedPath, { waitUntil: "domcontentloaded" });
-      const finalPathname = new URL(page.url()).pathname;
-      const renderedNotFound = (await page.getByText("ERROR 404").count()) > 0;
-      expect(blockedNav?.status() === 404 || finalPathname !== entry.blockedPath || renderedNotFound).toBe(true);
+      const blockedNav = await page.goto(entry.blockedPath, { waitUntil: "load" });
+      await expect
+        .poll(
+          async () => {
+            const finalPathname = new URL(page.url()).pathname;
+            const renderedNotFound = (await page.getByText("ERROR 404").count()) > 0;
+            return (
+              blockedNav?.status() === 404 ||
+              finalPathname !== entry.blockedPath ||
+              renderedNotFound
+            );
+          },
+          { timeout: 10_000 }
+        )
+        .toBe(true);
     }
   }
 });
