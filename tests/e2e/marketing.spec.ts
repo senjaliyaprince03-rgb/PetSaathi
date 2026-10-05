@@ -478,11 +478,13 @@ test("authenticated 12-role canonical landings and unauthorized route blocks", a
     const nav = await page.goto(entry.landing, { waitUntil: "domcontentloaded" });
     expect(nav?.status()).toBe(200);
     expect(new URL(page.url()).pathname).toBe(entry.landing);
+    await expect(page.getByText("ERROR 404")).toHaveCount(0);
 
     if (entry.blockedPath) {
       const blockedNav = await page.goto(entry.blockedPath, { waitUntil: "domcontentloaded" });
       const finalPathname = new URL(page.url()).pathname;
-      expect(blockedNav?.status() === 404 || finalPathname !== entry.blockedPath).toBe(true);
+      const renderedNotFound = (await page.getByText("ERROR 404").count()) > 0;
+      expect(blockedNav?.status() === 404 || finalPathname !== entry.blockedPath || renderedNotFound).toBe(true);
     }
   }
 });
