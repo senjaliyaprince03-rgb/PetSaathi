@@ -180,7 +180,7 @@ test("care concierge routes urgent health intent away from emergency claims", as
   const concierge = page.getByRole("heading", { name: "Who needs care?" });
   await concierge.scrollIntoViewIfNeeded();
 
-  const dogBtn = page.getByRole("button", { name: "Dog" });
+  const dogBtn = page.getByRole("button", { name: "Dog", exact: true });
   await expect(dogBtn).toBeVisible();
   await dogBtn.click();
   const continueBtn = page.getByRole("button", { name: "Continue" });
@@ -218,13 +218,15 @@ test("homepage has no horizontal overflow on mobile", async ({ page }) => {
 });
 
 test("custom cursor remains fixed behind the pointer while the document scrolls", async ({ page, isMobile }) => {
-  test.skip(isMobile, "Touch devices intentionally do not render a custom cursor.");
-
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.goto("/", { waitUntil: "domcontentloaded" });
 
   const supportsFinePointer = await page.evaluate(() => matchMedia("(pointer: fine)").matches);
-  test.skip(!supportsFinePointer, "The browser project does not expose a fine pointer.");
+  if (isMobile || !supportsFinePointer) {
+    expect(supportsFinePointer).toBe(false);
+    await expect(page.getByTestId("luxury-cursor-halo")).toHaveCount(0);
+    return;
+  }
 
   const halo = page.getByTestId("luxury-cursor-halo");
   await expect(halo).toHaveAttribute("data-ready", "true");
