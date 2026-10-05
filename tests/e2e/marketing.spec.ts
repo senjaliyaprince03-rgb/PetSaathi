@@ -418,3 +418,71 @@ test("incident, no-show and Safety controls remain authenticated and role-bound"
   }, id);
   expect(statuses.every((status) => [401, 403].includes(status))).toBe(true);
 });
+
+test("authenticated 12-role canonical landings and unauthorized route blocks", async ({ page }, testInfo) => {
+  test.setTimeout(120_000);
+  const seedPassword = process.env.TEST_SEED_PASSWORD;
+  if (!seedPassword) {
+    await page.goto("/login", { waitUntil: "domcontentloaded" });
+    await expect(page.getByRole("heading", { name: "Sign In" })).toBeVisible();
+    return;
+  }
+
+  const projectOffset = testInfo.project.name === "mobile" ? 2 : 1;
+  const roleCases: Array<{
+    role: string;
+    email: string;
+    landing: string;
+    blockedPath?: string;
+  }> = [
+    { role: "CUSTOMER", email: "customer@petsaathi.test", landing: "/dashboard", blockedPath: "/admin" },
+    { role: "SITTER", email: "sitter@petsaathi.test", landing: "/saathi", blockedPath: "/admin/finance" },
+    { role: "OPERATIONS_ADMIN", email: "ops.deep@petsaathi.com", landing: "/admin" },
+    { role: "VERIFICATION_ADMIN", email: "verification.admin@petsaathi.test", landing: "/admin/verification", blockedPath: "/admin/safety" },
+    { role: "SAFETY_ADMIN", email: "safety.admin@petsaathi.test", landing: "/admin/safety" },
+    { role: "FINANCE_ADMIN", email: "finance.admin@petsaathi.test", landing: "/admin/finance" },
+    { role: "CONTENT_ADMIN", email: "content.admin@petsaathi.test", landing: "/admin/content", blockedPath: "/admin/finance" },
+    { role: "SOCIETY_MANAGER", email: "society.manager@petsaathi.test", landing: "/society" },
+    { role: "PARTNER_MANAGER", email: "partner.manager@petsaathi.test", landing: "/admin/b2b" },
+    { role: "CITY_MANAGER", email: "city.manager@petsaathi.test", landing: "/admin/cities" },
+    { role: "OPERATOR", email: "operator@petsaathi.test", landing: "/operator" },
+    { role: "SUPER_ADMIN", email: "super.deep@petsaathi.com", landing: "/admin" },
+  ];
+
+  await page.goto("/login", { waitUntil: "domcontentloaded" });
+
+  for (let idx = 0; idx < roleCases.length; idx++) {
+    const entry = roleCases[idx]!;
+    await page.context().clearCookies();
+
+    const signInRes = await page.evaluate(
+      async ({ email, password, ip }) => {
+        const res = await fetch("/api/auth/password/signin", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-forwarded-for": ip,
+          },
+          body: JSON.stringify({ email, password }),
+        });
+        const body = await res.json();
+        return { status: res.status, body };
+      },
+      { email: entry.email, password: seedPassword, ip: `10.20.${projectOffset}.${idx + 1}` }
+    );
+
+    expect(signInRes.status).toBe(200);
+    expect(signInRes.body.authenticated).toBe(true);
+    expect(signInRes.body.roles).toContain(entry.role);
+
+    const nav = await page.goto(entry.landing, { waitUntil: "domcontentloaded" });
+    expect(nav?.status()).toBe(200);
+    expect(new URL(page.url()).pathname).toBe(entry.landing);
+
+    if (entry.blockedPath) {
+      const blockedNav = await page.goto(entry.blockedPath, { waitUntil: "domcontentloaded" });
+      expect(blockedNav?.status()).toBe(404);
+    }
+  }
+});
+

@@ -1,32 +1,27 @@
-import { createHmac, randomUUID } from "node:crypto";
-import { describe, it, expect, beforeAll, afterAll } from "vitest";
-import { PrismaClient } from "@prisma/client";
+import { randomUUID } from "node:crypto";
+import { describe, it, expect, beforeAll } from "vitest";
 import Razorpay from "razorpay";
 
+import { prisma } from "@/lib/db";
 import { POST as webhookPost } from "@/app/api/webhooks/razorpay/route";
-import { POST as refundPost } from "@/app/api/payments/refund/route";
-import { POST as verifyPost } from "@/app/api/payments/verify/route";
 import {
   validRazorpayCheckoutSignature,
-  validRazorpaySignature,
 } from "@/modules/payments/signature";
 
-const prisma = new PrismaClient();
-
-const keyId = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
-const keySecret = process.env.RAZORPAY_KEY_SECRET;
-const webhookSecret = process.env.RAZORPAY_WEBHOOK_SECRET;
+const keyId = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "rzp_test_ci_fallback_key";
+const keySecret = process.env.RAZORPAY_KEY_SECRET || "ci_only_razorpay_key_secret_1234567890";
+const webhookSecret = process.env.RAZORPAY_WEBHOOK_SECRET || "ci_only_razorpay_webhook_secret_1234567890";
 
 const hasLiveKeys = Boolean(
-  keyId &&
-    keySecret &&
-    webhookSecret &&
-    keyId.startsWith("rzp_test_") &&
-    !keyId.includes("mock") &&
-    !keySecret.includes("mock")
+  process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID &&
+    process.env.RAZORPAY_KEY_SECRET &&
+    process.env.RAZORPAY_WEBHOOK_SECRET &&
+    process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID.startsWith("rzp_test_") &&
+    !process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID.includes("mock") &&
+    !process.env.RAZORPAY_KEY_SECRET.includes("mock")
 );
 
-describe.skipIf(!hasLiveKeys)("Phase 13: Razorpay Security Manipulation & Authorization Tests", () => {
+describe("Phase 13: Razorpay Security Manipulation & Authorization Tests", () => {
   let razorpay: Razorpay;
   let victimUser: any;
   let attackerUser: any;
@@ -35,12 +30,23 @@ describe.skipIf(!hasLiveKeys)("Phase 13: Razorpay Security Manipulation & Author
   let address: any;
 
   beforeAll(async () => {
-    if (!hasLiveKeys) return;
-    razorpay = new Razorpay({ key_id: keyId!, key_secret: keySecret! });
+    process.env.RAZORPAY_WEBHOOK_SECRET = webhookSecret;
+    razorpay = hasLiveKeys
+      ? new Razorpay({ key_id: keyId, key_secret: keySecret })
+      : ({
+          orders: {
+            create: async (params: { amount: number; currency: string; receipt?: string }) => ({
+              id: `order_${randomUUID().replace(/-/g, "").slice(0, 14)}`,
+              amount: params.amount,
+              currency: params.currency,
+              receipt: params.receipt ?? "",
+            }),
+          },
+        } as unknown as Razorpay);
 
     victimUser = await prisma.user.create({
       data: {
-        email: `victim-${Date.now()}@petsaathi.test`,
+        email: `victim-${Date.now()}-${randomUUID().slice(0, 6)}@petsaathi.test`,
         displayName: "Victim Customer",
         roles: { create: [{ role: "CUSTOMER" }] },
         status: "ACTIVE",
@@ -49,7 +55,7 @@ describe.skipIf(!hasLiveKeys)("Phase 13: Razorpay Security Manipulation & Author
 
     attackerUser = await prisma.user.create({
       data: {
-        email: `attacker-${Date.now()}@petsaathi.test`,
+        email: `attacker-${Date.now()}-${randomUUID().slice(0, 6)}@petsaathi.test`,
         displayName: "Attacker Customer",
         roles: { create: [{ role: "CUSTOMER" }] },
         status: "ACTIVE",
@@ -92,14 +98,10 @@ describe.skipIf(!hasLiveKeys)("Phase 13: Razorpay Security Manipulation & Author
     });
   });
 
-  afterAll(async () => {
-    await prisma.$disconnect();
-  });
-
   it("Security 1: Server enforces database price lock; client cannot override quoteAmountPaise", async () => {
     const booking = await prisma.booking.create({
       data: {
-        reference: `BK-SEC-PRICE-${Date.now()}`,
+        reference: `BK-SEC-PRICE-${Date.now()}-${randomUUID().slice(0, 6)}`,
         customerId: victimUser.id,
         petId: victimPet.id,
         serviceTypeId: serviceType.id,
@@ -112,8 +114,6 @@ describe.skipIf(!hasLiveKeys)("Phase 13: Razorpay Security Manipulation & Author
       },
     });
 
-    // An attacker attempts to create an order requesting ₹10 instead of ₹1180
-    // The server always reads quoteAmountPaise directly from DB
     const serverQuote = booking.quoteAmountPaise;
     expect(serverQuote).toBe(118000);
 
@@ -130,7 +130,7 @@ describe.skipIf(!hasLiveKeys)("Phase 13: Razorpay Security Manipulation & Author
   it("Security 2: Attacker cannot verify payment or claim ownership of another customer's booking", async () => {
     const victimBooking = await prisma.booking.create({
       data: {
-        reference: `BK-SEC-OWN-${Date.now()}`,
+        reference: `BK-SEC-OWN-${Date.now()}-${randomUUID().slice(0, 6)}`,
         customerId: victimUser.id,
         petId: victimPet.id,
         serviceTypeId: serviceType.id,
@@ -160,14 +160,13 @@ describe.skipIf(!hasLiveKeys)("Phase 13: Razorpay Security Manipulation & Author
       },
     });
 
-    // Attacker queries for payment record by attacker's customerId
     const attackerQuery = await prisma.payment.findFirst({
       where: {
         providerOrderId: rpOrder.id,
-        booking: { customerId: attackerUser.id }, // attacker ID
+        booking: { customerId: attackerUser.id },
       },
     });
-    expect(attackerQuery).toBeNull(); // Attacker cannot access victim's payment record!
+    expect(attackerQuery).toBeNull();
   });
 
   it("Security 3: Rejects forged checkout signatures and arbitrary payment IDs", () => {
@@ -175,7 +174,7 @@ describe.skipIf(!hasLiveKeys)("Phase 13: Razorpay Security Manipulation & Author
     const paymentId = "pay_fake_99999";
     const fakeSignature = "bad_signature_string_that_is_not_a_valid_hmac_hash_0000000000000";
 
-    const verified = validRazorpayCheckoutSignature(orderId, paymentId, fakeSignature, keySecret!);
+    const verified = validRazorpayCheckoutSignature(orderId, paymentId, fakeSignature, keySecret);
     expect(verified).toBe(false);
   });
 
@@ -212,7 +211,7 @@ describe.skipIf(!hasLiveKeys)("Phase 13: Razorpay Security Manipulation & Author
   it("Security 5: Duplicate refund attempts are blocked to prevent double-refund vulnerability", async () => {
     const booking = await prisma.booking.create({
       data: {
-        reference: `BK-SEC-DUPREF-${Date.now()}`,
+        reference: `BK-SEC-DUPREF-${Date.now()}-${randomUUID().slice(0, 6)}`,
         customerId: victimUser.id,
         petId: victimPet.id,
         serviceTypeId: serviceType.id,
@@ -239,7 +238,6 @@ describe.skipIf(!hasLiveKeys)("Phase 13: Razorpay Security Manipulation & Author
       },
     });
 
-    // First refund
     const refund1 = await prisma.refund.create({
       data: {
         paymentId: payment.id,
@@ -252,7 +250,6 @@ describe.skipIf(!hasLiveKeys)("Phase 13: Razorpay Security Manipulation & Author
     });
     expect(refund1.id).toBeDefined();
 
-    // Second refund attempt for the same payment is detected
     const activeRefund = await prisma.refund.findFirst({
       where: {
         paymentId: payment.id,

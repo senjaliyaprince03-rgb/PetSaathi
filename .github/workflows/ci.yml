@@ -38,10 +38,15 @@ jobs:
       - run: npm run test:integration
       - run: npm run test:concurrency
       - run: npm run build
+      - run: node scripts/seed-all-credentials.mjs
+        env:
+          ALLOW_TEST_SEED: 'true'
+          TEST_SEED_PASSWORD: 'CiOnlyStrongSeedPassword2026!'
       - run: npx playwright install --with-deps chromium
       - run: npx playwright test tests/e2e/marketing.spec.ts --project=chromium --project=mobile
         env:
           PLAYWRIGHT_TEST: '1'
+          TEST_SEED_PASSWORD: 'CiOnlyStrongSeedPassword2026!'
       - uses: actions/upload-artifact@v4
         if: always()
         with:

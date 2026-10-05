@@ -1,30 +1,27 @@
 import { createHmac, randomUUID } from "node:crypto";
-import { describe, it, expect, beforeAll, afterAll } from "vitest";
-import { PrismaClient } from "@prisma/client";
+import { describe, it, expect, beforeAll } from "vitest";
 import Razorpay from "razorpay";
 
+import { prisma } from "@/lib/db";
 import { POST as webhookPost } from "@/app/api/webhooks/razorpay/route";
 import {
   validRazorpayCheckoutSignature,
-  validRazorpaySignature,
 } from "@/modules/payments/signature";
 
-const prisma = new PrismaClient();
-
-const keyId = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
-const keySecret = process.env.RAZORPAY_KEY_SECRET;
-const webhookSecret = process.env.RAZORPAY_WEBHOOK_SECRET;
+const keyId = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "rzp_test_ci_fallback_key";
+const keySecret = process.env.RAZORPAY_KEY_SECRET || "ci_only_razorpay_key_secret_1234567890";
+const webhookSecret = process.env.RAZORPAY_WEBHOOK_SECRET || "ci_only_razorpay_webhook_secret_1234567890";
 
 const hasLiveKeys = Boolean(
-  keyId &&
-    keySecret &&
-    webhookSecret &&
-    keyId.startsWith("rzp_test_") &&
-    !keyId.includes("mock") &&
-    !keySecret.includes("mock")
+  process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID &&
+    process.env.RAZORPAY_KEY_SECRET &&
+    process.env.RAZORPAY_WEBHOOK_SECRET &&
+    process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID.startsWith("rzp_test_") &&
+    !process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID.includes("mock") &&
+    !process.env.RAZORPAY_KEY_SECRET.includes("mock")
 );
 
-describe.skipIf(!hasLiveKeys)("Razorpay Test-Mode End-to-End Payment Lifecycle", () => {
+describe("Razorpay Test-Mode End-to-End Payment Lifecycle", () => {
   let razorpay: Razorpay;
   let testUser: any;
   let testPet: any;
@@ -32,15 +29,26 @@ describe.skipIf(!hasLiveKeys)("Razorpay Test-Mode End-to-End Payment Lifecycle",
   let address: any;
 
   beforeAll(async () => {
-    if (!hasLiveKeys) return;
+    process.env.RAZORPAY_WEBHOOK_SECRET = webhookSecret;
     expect(keyId).toBeDefined();
-    expect(keyId?.startsWith("rzp_test_")).toBe(true);
+    expect(keyId.startsWith("rzp_test_")).toBe(true);
     expect(keySecret).toBeDefined();
     expect(webhookSecret).toBeDefined();
 
-    razorpay = new Razorpay({ key_id: keyId!, key_secret: keySecret! });
+    razorpay = hasLiveKeys
+      ? new Razorpay({ key_id: keyId, key_secret: keySecret })
+      : ({
+          orders: {
+            create: async (params: { amount: number; currency: string; receipt?: string }) => ({
+              id: `order_${randomUUID().replace(/-/g, "").slice(0, 14)}`,
+              amount: params.amount,
+              currency: params.currency,
+              receipt: params.receipt ?? "",
+            }),
+          },
+        } as unknown as Razorpay);
 
-    const email = `test-customer-${Date.now()}@petsaathi.test`;
+    const email = `test-customer-${Date.now()}-${randomUUID().slice(0, 6)}@petsaathi.test`;
     testUser = await prisma.user.create({
       data: {
         email,
@@ -86,13 +94,9 @@ describe.skipIf(!hasLiveKeys)("Razorpay Test-Mode End-to-End Payment Lifecycle",
     });
   });
 
-  afterAll(async () => {
-    await prisma.$disconnect();
-  });
-
   it("Phase 3: Creates booking with server-calculated price lock and Razorpay test order", async () => {
     const quoteAmountPaise = 118000; // ₹1,180
-    const reference = `BK-TEST-${Date.now()}`;
+    const reference = `BK-TEST-${Date.now()}-${randomUUID().slice(0, 6)}`;
 
     const booking = await prisma.booking.create({
       data: {
@@ -114,7 +118,6 @@ describe.skipIf(!hasLiveKeys)("Razorpay Test-Mode End-to-End Payment Lifecycle",
     expect(booking.currency).toBe("INR");
     expect(booking.status).toBe("PAYMENT_PENDING");
 
-    // Real Razorpay Test API call
     const rpOrder = await razorpay.orders.create({
       amount: booking.quoteAmountPaise,
       currency: booking.currency,
@@ -149,30 +152,21 @@ describe.skipIf(!hasLiveKeys)("Razorpay Test-Mode End-to-End Payment Lifecycle",
     const orderId = "order_test_" + randomUUID().replace(/-/g, "").slice(0, 10);
     const paymentId = "pay_test_" + randomUUID().replace(/-/g, "").slice(0, 10);
 
-    const validSig = createHmac("sha256", keySecret!)
+    const validSig = createHmac("sha256", keySecret)
       .update(`${orderId}|${paymentId}`)
       .digest("hex");
 
-    // Valid
-    expect(validRazorpayCheckoutSignature(orderId, paymentId, validSig, keySecret!)).toBe(true);
-
-    // Tampered payment ID
-    expect(validRazorpayCheckoutSignature(orderId, "pay_tampered", validSig, keySecret!)).toBe(false);
-
-    // Tampered order ID
-    expect(validRazorpayCheckoutSignature("order_tampered", paymentId, validSig, keySecret!)).toBe(false);
-
-    // Tampered signature hex
-    expect(validRazorpayCheckoutSignature(orderId, paymentId, "0".repeat(64), keySecret!)).toBe(false);
-
-    // Tampered secret
+    expect(validRazorpayCheckoutSignature(orderId, paymentId, validSig, keySecret)).toBe(true);
+    expect(validRazorpayCheckoutSignature(orderId, "pay_tampered", validSig, keySecret)).toBe(false);
+    expect(validRazorpayCheckoutSignature("order_tampered", paymentId, validSig, keySecret)).toBe(false);
+    expect(validRazorpayCheckoutSignature(orderId, paymentId, "0".repeat(64), keySecret)).toBe(false);
     expect(validRazorpayCheckoutSignature(orderId, paymentId, validSig, "wrong_secret")).toBe(false);
   });
 
   it("Phase 6, 7 & 8: Delivers payment.captured webhook, updates DB to CAPTURED/CONFIRMED, and guarantees idempotency", async () => {
     const booking = await prisma.booking.create({
       data: {
-        reference: `BK-HOOK-${Date.now()}`,
+        reference: `BK-HOOK-${Date.now()}-${randomUUID().slice(0, 6)}`,
         customerId: testUser.id,
         petId: testPet.id,
         serviceTypeId: serviceType.id,
@@ -226,9 +220,8 @@ describe.skipIf(!hasLiveKeys)("Razorpay Test-Mode End-to-End Payment Lifecycle",
     };
 
     const rawBody = JSON.stringify(payloadObj);
-    const validSignature = createHmac("sha256", webhookSecret!).update(rawBody).digest("hex");
+    const validSignature = createHmac("sha256", webhookSecret).update(rawBody).digest("hex");
 
-    // Rejection of invalid signature
     const badReq = new Request("http://localhost:3000/api/webhooks/razorpay", {
       method: "POST",
       headers: {
@@ -240,7 +233,6 @@ describe.skipIf(!hasLiveKeys)("Razorpay Test-Mode End-to-End Payment Lifecycle",
     const badRes = await webhookPost(badReq);
     expect(badRes.status).toBe(401);
 
-    // Initial successful webhook delivery
     const req1 = new Request("http://localhost:3000/api/webhooks/razorpay", {
       method: "POST",
       headers: {
@@ -254,7 +246,6 @@ describe.skipIf(!hasLiveKeys)("Razorpay Test-Mode End-to-End Payment Lifecycle",
     const json1 = await res1.json();
     expect(json1.accepted).toBe(true);
 
-    // Verify DB states
     const updatedPayment = await prisma.payment.findUnique({ where: { id: payment.id } });
     const updatedBooking = await prisma.booking.findUnique({ where: { id: booking.id } });
     expect(updatedPayment?.status).toBe("CAPTURED");
@@ -263,7 +254,6 @@ describe.skipIf(!hasLiveKeys)("Razorpay Test-Mode End-to-End Payment Lifecycle",
     expect(updatedPayment?.capturedAt).toBeDefined();
     expect(updatedBooking?.status).toBe("CONFIRMED");
 
-    // Idempotency: Replaying exact same event
     const req2 = new Request("http://localhost:3000/api/webhooks/razorpay", {
       method: "POST",
       headers: {
@@ -278,7 +268,6 @@ describe.skipIf(!hasLiveKeys)("Razorpay Test-Mode End-to-End Payment Lifecycle",
     expect(json2.accepted).toBe(true);
     expect(json2.duplicate).toBe(true);
 
-    // Out of order: late payment.failed does not regress CAPTURED payment
     const oooEventId = "evt_ooo_" + randomUUID().replace(/-/g, "").slice(0, 12);
     const oooPayload = JSON.stringify({
       entity: "event",
@@ -296,7 +285,7 @@ describe.skipIf(!hasLiveKeys)("Razorpay Test-Mode End-to-End Payment Lifecycle",
         },
       },
     });
-    const oooSig = createHmac("sha256", webhookSecret!).update(oooPayload).digest("hex");
+    const oooSig = createHmac("sha256", webhookSecret).update(oooPayload).digest("hex");
     const oooReq = new Request("http://localhost:3000/api/webhooks/razorpay", {
       method: "POST",
       headers: {
@@ -315,7 +304,7 @@ describe.skipIf(!hasLiveKeys)("Razorpay Test-Mode End-to-End Payment Lifecycle",
   it("Phase 9: Handles payment.failed without confirming booking (leaving booking pending for retry)", async () => {
     const booking = await prisma.booking.create({
       data: {
-        reference: `BK-FAIL-${Date.now()}`,
+        reference: `BK-FAIL-${Date.now()}-${randomUUID().slice(0, 6)}`,
         customerId: testUser.id,
         petId: testPet.id,
         serviceTypeId: serviceType.id,
@@ -363,7 +352,7 @@ describe.skipIf(!hasLiveKeys)("Razorpay Test-Mode End-to-End Payment Lifecycle",
         },
       },
     });
-    const failSig = createHmac("sha256", webhookSecret!).update(failPayload).digest("hex");
+    const failSig = createHmac("sha256", webhookSecret).update(failPayload).digest("hex");
 
     const failReq = new Request("http://localhost:3000/api/webhooks/razorpay", {
       method: "POST",
@@ -381,14 +370,13 @@ describe.skipIf(!hasLiveKeys)("Razorpay Test-Mode End-to-End Payment Lifecycle",
 
     expect(failedPayment?.status).toBe("FAILED");
     expect(failedPayment?.failureCode).toBe("BAD_REQUEST_ERROR");
-    expect(bookingAfterFail?.status).toBe("PAYMENT_PENDING"); // Booking is not confirmed and remains retryable!
+    expect(bookingAfterFail?.status).toBe("PAYMENT_PENDING");
   });
 
   it("Phase 11: Completes refund lifecycle and reconciles payment to REFUNDED", async () => {
-    // 1. Create confirmed booking with captured payment
     const booking = await prisma.booking.create({
       data: {
-        reference: `BK-RFND-${Date.now()}`,
+        reference: `BK-RFND-${Date.now()}-${randomUUID().slice(0, 6)}`,
         customerId: testUser.id,
         petId: testPet.id,
         serviceTypeId: serviceType.id,
@@ -428,7 +416,6 @@ describe.skipIf(!hasLiveKeys)("Razorpay Test-Mode End-to-End Payment Lifecycle",
       },
     });
 
-    // 2. Deliver refund.processed webhook
     const refundEventId = "evt_rfnd_" + randomUUID().replace(/-/g, "").slice(0, 12);
     const refundPayload = JSON.stringify({
       entity: "event",
@@ -444,7 +431,7 @@ describe.skipIf(!hasLiveKeys)("Razorpay Test-Mode End-to-End Payment Lifecycle",
         },
       },
     });
-    const refundSig = createHmac("sha256", webhookSecret!).update(refundPayload).digest("hex");
+    const refundSig = createHmac("sha256", webhookSecret).update(refundPayload).digest("hex");
 
     const refundReq = new Request("http://localhost:3000/api/webhooks/razorpay", {
       method: "POST",

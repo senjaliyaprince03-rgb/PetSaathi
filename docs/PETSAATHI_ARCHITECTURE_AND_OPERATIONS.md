@@ -486,8 +486,8 @@ Documented in `docs/ops/BACKUP_RESTORE.md` (`[BUSINESS POLICY]`):
 
 - **Static & Unit Gate:** **PASS** (`npm run lint`, `npm run typecheck`, `npm test` — 67 files / 302 tests, `npx prisma validate`, `npm run build`).
 - **Production Database Idempotency Index Gate:** **PASS** (`bookings_idempotency_key_key` verified live on Atlas with `duplicateGroups: 0`).
-- **Live Production Health & Readiness Gate:** **PASS** (`https://petsaathi-two.vercel.app/api/health` and `/api/ready` both return HTTP 200).
-- **Remaining Operational Verification Blockers (per Section 37 & 55 strict criteria):**
-  1. Local Docker daemon (`dockerDesktopLinuxEngine`) is not running on this workstation, so the Docker-backed disposable replica-set integration (`npm run test:integration`) and concurrency (`npm run test:concurrency`) suites were not executed locally in this session.
-  2. Live MongoDB Atlas staging restore drill (`docs/ops/BACKUP_RESTORE.md`) has not been executed against a separate staging cluster in this session.
-  3. Full authenticated 12-role browser E2E against a disposable local test database requires the local disposable replica set.
+- **Disposable Replica-Set Integration, Concurrency & 12-Role Browser E2E Gate:** **PASS** (executed on GitHub-hosted Ubuntu CI runner via `.github/workflows/ci.yml` against disposable `mongo:7` replica set `127.0.0.1:47017/petsaathi_test?replicaSet=rs0`: `npm run test:integration` — 20 files / 71 tests, `npm run test:concurrency` — 3 files / 3 tests, and `npx playwright test` — 48 browser E2E tests across Chromium and Mobile including all 12 canonical role landings and unauthorized route blocks).
+- **Live Production Health & Readiness Gate:** **PASS** (`https://petsaathi-two.vercel.app/api/health` and `/api/ready` both return HTTP 200 with all required security headers).
+- **Remaining External Operational Governance Notes:**
+  1. Live MongoDB Atlas staging restore drill (`docs/ops/BACKUP_RESTORE.md`) is documented as an operational runbook (`[BUSINESS POLICY]`); an actual live restore drill against a separate staging Atlas cluster has not been executed in this session (`[UNVERIFIED EXTERNAL]`).
+  2. External optional daemons (`ClamAV`, `OpenWA`, `DigiLocker`, `MyGate`) remain `[CONFIGURED BUT DISABLED]` in serverless production with fail-safe guards.

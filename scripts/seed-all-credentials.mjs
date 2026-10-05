@@ -39,73 +39,72 @@ if (!seedPassword || seedPassword.length < 12) {
 const prisma = new PrismaClient();
 const client = new MongoClient(mongoUri);
 
+const ROLE_ACCOUNTS = [
+  { email: "customer@petsaathi.test", displayName: "Pooja Sharma (Customer)", phoneE164: "+919876543201", role: Role.CUSTOMER },
+  { email: "sitter@petsaathi.test", displayName: "Aarav Sharma (Saathi)", phoneE164: "+919876543202", role: Role.SITTER },
+  { email: "ops.deep@petsaathi.com", displayName: "Operations Admin", phoneE164: "+919876543203", role: Role.OPERATIONS_ADMIN },
+  { email: "verification.admin@petsaathi.test", displayName: "Verification Admin", phoneE164: "+919876543204", role: Role.VERIFICATION_ADMIN },
+  { email: "safety.admin@petsaathi.test", displayName: "Safety Admin", phoneE164: "+919876543205", role: Role.SAFETY_ADMIN },
+  { email: "finance.admin@petsaathi.test", displayName: "Finance Admin", phoneE164: "+919876543206", role: Role.FINANCE_ADMIN },
+  { email: "content.admin@petsaathi.test", displayName: "Content Admin", phoneE164: "+919876543207", role: Role.CONTENT_ADMIN },
+  { email: "society.manager@petsaathi.test", displayName: "Society Manager", phoneE164: "+919876543208", role: Role.SOCIETY_MANAGER },
+  { email: "partner.manager@petsaathi.test", displayName: "Partner Manager", phoneE164: "+919876543209", role: Role.PARTNER_MANAGER },
+  { email: "city.manager@petsaathi.test", displayName: "City Manager", phoneE164: "+919876543210", role: Role.CITY_MANAGER },
+  { email: "operator@petsaathi.test", displayName: "Territory Operator", phoneE164: "+919876543211", role: Role.OPERATOR },
+  { email: "super.deep@petsaathi.com", displayName: "Super Admin", phoneE164: "+919876543212", role: Role.SUPER_ADMIN },
+];
+
 async function main() {
   await client.connect();
   const db = client.db(dbName);
   const passwordHash = await bcrypt.hash(seedPassword, 10);
 
-  // 1. Ensure Customer Account
-  const custEmail = "customer@petsaathi.test";
-  let custUser = await prisma.user.findUnique({ where: { email: custEmail } });
-  if (!custUser) {
-    custUser = await prisma.user.create({
-      data: {
-        email: custEmail,
-        displayName: "Pooja Sharma (Customer)",
-        phoneE164: "+919876543299",
-        status: AccountStatus.ACTIVE,
-        roles: { create: [{ role: Role.CUSTOMER }] }
-      }
+  for (const account of ROLE_ACCOUNTS) {
+    let user = await prisma.user.findUnique({
+      where: { email: account.email },
+      include: { roles: true },
     });
-  }
-  await db.collection("auth_credentials").updateOne(
-    { userId: custUser.id },
-    { $set: { userId: custUser.id, email: custEmail, passwordHash, updatedAt: new Date() }, $setOnInsert: { createdAt: new Date() } },
-    { upsert: true }
-  );
 
-  // 2. Ensure Admin Account
-  const adminEmail = "admin@petsaathi.test";
-  let adminUser = await prisma.user.findUnique({ where: { email: adminEmail } });
-  if (!adminUser) {
-    adminUser = await prisma.user.create({
-      data: {
-        email: adminEmail,
-        displayName: "Operations Admin",
-        phoneE164: "+919876543200",
-        status: AccountStatus.ACTIVE,
-        roles: { create: [{ role: Role.SUPER_ADMIN }, { role: Role.OPERATIONS_ADMIN }] }
-      }
-    });
-  }
-  await db.collection("auth_credentials").updateOne(
-    { userId: adminUser.id },
-    { $set: { userId: adminUser.id, email: adminEmail, passwordHash, updatedAt: new Date() }, $setOnInsert: { createdAt: new Date() } },
-    { upsert: true }
-  );
+    if (!user) {
+      user = await prisma.user.create({
+        data: {
+          email: account.email,
+          displayName: account.displayName,
+          phoneE164: account.phoneE164,
+          status: AccountStatus.ACTIVE,
+          roles: { create: [{ role: account.role }] },
+        },
+        include: { roles: true },
+      });
+    } else {
+      await prisma.user.update({
+        where: { id: user.id },
+        data: { status: AccountStatus.ACTIVE },
+      });
+      await prisma.userRole.deleteMany({ where: { userId: user.id } });
+      await prisma.userRole.create({
+        data: { userId: user.id, role: account.role },
+      });
+    }
 
-  // 3. Ensure Sitter Account
-  const sitterEmail = "sitter@petsaathi.test";
-  let sitterUser = await prisma.user.findUnique({ where: { email: sitterEmail }, include: { sitter: true } });
-  if (!sitterUser) {
-    sitterUser = await prisma.user.create({
-      data: {
-        email: sitterEmail,
-        displayName: "Aarav Sharma (Saathi)",
-        phoneE164: "+919876543211",
-        status: AccountStatus.ACTIVE,
-        roles: { create: [{ role: Role.SITTER }] }
+    await db.collection("auth_credentials").updateOne(
+      { _id: account.email },
+      {
+        $set: {
+          userId: user.id,
+          email: account.email,
+          passwordHash,
+          updatedAt: new Date(),
+        },
+        $setOnInsert: {
+          createdAt: new Date(),
+        },
       },
-      include: { sitter: true }
-    });
+      { upsert: true }
+    );
   }
-  await db.collection("auth_credentials").updateOne(
-    { userId: sitterUser.id },
-    { $set: { userId: sitterUser.id, email: sitterEmail, passwordHash, updatedAt: new Date() }, $setOnInsert: { createdAt: new Date() } },
-    { upsert: true }
-  );
 
-  console.log("ALL_3_ROLES_SEEDED_SUCCESSFULLY");
+  console.log("ALL_12_ROLES_SEEDED_SUCCESSFULLY");
 }
 
 main().catch((err) => {
