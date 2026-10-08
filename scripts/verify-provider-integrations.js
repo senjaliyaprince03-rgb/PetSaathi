@@ -9,13 +9,8 @@ dotenv.config({ path: path.resolve(process.cwd(), ".env.local"), override: true,
 const checks = [];
 const timeoutMs = Number(process.env.PROVIDER_DOCTOR_TIMEOUT_MS ?? 10_000);
 
-// Providers listed here are provisioned with credentials but NOT wired into
-// application code yet. Transactional/auth email actually goes through Gmail
-// SMTP (nodemailer) — see src/modules/auth/mongodb-auth.ts and
-// src/modules/notifications/providers.ts. The src/lib/email/* files are
-// logging stubs with "In a real implementation" comments referencing Resend.
-// Invalid credentials for an unwired provider must not block the doctor, but
-// they are surfaced loudly so nobody mistakes them for healthy.
+// Resend is optional when SMTP_USER/SMTP_PASS is configured and verified as the
+// active fallback transport in src/lib/email/client.ts and src/modules/notifications/providers.ts.
 const OPTIONAL_UNWIRED_PROVIDERS = new Set(["resend"]);
 
 function isPlaceholder(value) {
@@ -55,16 +50,29 @@ async function safeResponseDetail(response) {
 async function checkResend() {
   const apiKey = process.env.RESEND_API_KEY?.trim();
   const fromEmail = process.env.RESEND_FROM_EMAIL?.trim();
-  const optional = OPTIONAL_UNWIRED_PROVIDERS.has("resend");
-  const note = optional
-    ? " Resend is not imported by application code (email uses SMTP_USER/SMTP_PASS via nodemailer), so this is reported as a warning, not a blocker."
+  const disabled = process.env.RESEND_DISABLED === "true";
+  const hasSmtpFallback = !isPlaceholder(process.env.SMTP_USER?.trim()) && !isPlaceholder(process.env.SMTP_PASS?.trim());
+  const optional = OPTIONAL_UNWIRED_PROVIDERS.has("resend") && hasSmtpFallback;
+  const note = hasSmtpFallback
+    ? " Active fallback transport (SMTP_USER/SMTP_PASS) is configured in src/lib/email/client.ts."
     : "";
+
+  if (disabled) {
+    push("resend", "skipped", `RESEND: DISABLED — RESEND_DISABLED=true.${note}`, {
+      classification: "DISABLED",
+    });
+    return;
+  }
   if (isPlaceholder(apiKey) || isPlaceholder(fromEmail)) {
-    push("resend", optional ? "skipped" : "failed", `RESEND_API_KEY and RESEND_FROM_EMAIL must be real production or sandbox values.${note}`);
+    push("resend", optional ? "skipped" : "failed", `RESEND: UNCONFIGURED — RESEND_API_KEY or RESEND_FROM_EMAIL not set.${note}`, {
+      classification: "UNCONFIGURED",
+    });
     return;
   }
   if (fromEmail.toLowerCase().endsWith("@resend.dev")) {
-    push("resend", optional ? "warning" : "failed", `RESEND_FROM_EMAIL uses Resend's shared test sender; configure a verified custom sender domain.${note}`);
+    push("resend", optional ? "warning" : "failed", `RESEND: CONFIGURED_INVALID — RESEND_FROM_EMAIL uses Resend's shared test sender; configure a verified custom sender domain.${note}`, {
+      classification: "CONFIGURED_INVALID",
+    });
     return;
   }
 
@@ -73,7 +81,12 @@ async function checkResend() {
       headers: { Authorization: `Bearer ${apiKey}` },
     });
     if (!response.ok) {
-      push("resend", optional ? "warning" : "failed", `Resend domain check returned ${await safeResponseDetail(response)}.${note}`);
+      push(
+        "resend",
+        optional ? "warning" : "failed",
+        `RESEND: CONFIGURED_INVALID — Resend domain check returned ${await safeResponseDetail(response)}.${note}`,
+        { classification: "CONFIGURED_INVALID" },
+      );
       return;
     }
     const body = await response.json();
@@ -81,31 +94,72 @@ async function checkResend() {
     const senderDomain = fromEmail.split("@").pop()?.toLowerCase();
     const matchingDomain = domains.find((domain) => String(domain.name).toLowerCase() === senderDomain);
     if (!matchingDomain) {
-      push("resend", optional ? "warning" : "failed", `No Resend domain matches RESEND_FROM_EMAIL domain ${senderDomain}.${note}`);
+      push(
+        "resend",
+        optional ? "warning" : "failed",
+        `RESEND: CONFIGURED_INVALID — No Resend domain matches RESEND_FROM_EMAIL domain ${senderDomain}.${note}`,
+        { classification: "CONFIGURED_INVALID" },
+      );
       return;
     }
     const status = String(matchingDomain.status ?? "").toLowerCase();
     if (status && status !== "verified") {
-      push("resend", optional ? "warning" : "failed", `Resend domain ${senderDomain} is not verified; current status is ${status}.${note}`);
+      push(
+        "resend",
+        optional ? "warning" : "failed",
+        `RESEND: CONFIGURED_INVALID — Resend domain ${senderDomain} is not verified (status: ${status}).${note}`,
+        { classification: "CONFIGURED_INVALID" },
+      );
       return;
     }
-    push("resend", "passed", `Verified sender domain ${senderDomain} is visible to the API key.`);
+    push("resend", "passed", `RESEND: CONFIGURED_VALID — Verified sender domain ${senderDomain} is visible to the API key.`, {
+      classification: "CONFIGURED_VALID",
+    });
   } catch (error) {
-    push("resend", optional ? "warning" : "failed", `Resend verification failed: ${redactError(error)}${note}`);
+    push("resend", optional ? "warning" : "failed", `RESEND: CONFIGURED_INVALID — Resend verification failed: ${redactError(error)}${note}`, {
+      classification: "CONFIGURED_INVALID",
+    });
   }
 }
 
 async function checkSmtpEmail() {
-  // This is the delivery path actually used by auth OTP emails and
-  // notification messages. Presence-only check: real delivery can only be
-  // exercised by the live OTP flow.
   const user = process.env.SMTP_USER?.trim();
   const pass = process.env.SMTP_PASS?.trim();
   if (isPlaceholder(user) || isPlaceholder(pass)) {
-    push("smtp-email", "failed", "SMTP_USER and SMTP_PASS must be configured — auth OTP and notification emails are delivered through this provider.");
+    push(
+      "smtp-email",
+      "failed",
+      "SMTP: UNCONFIGURED — SMTP_USER and SMTP_PASS must be configured for transactional and OTP email delivery.",
+      { classification: "UNCONFIGURED" },
+    );
     return;
   }
-  push("smtp-email", "passed", `SMTP credentials configured for sender identity ${user.replace(/^(.).*(@.*)$/, "$1***$2")} (delivery exercised by the live OTP flow).`);
+
+  const maskedSender = user.replace(/^(.).*(@.*)$/, "$1***$2");
+  try {
+    const nodemailer = require("nodemailer");
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: { user, pass },
+    });
+    await Promise.race([
+      transporter.verify(),
+      new Promise((_, reject) => setTimeout(() => reject(new Error("SMTP verify timeout")), timeoutMs)),
+    ]);
+    push(
+      "smtp-email",
+      "passed",
+      `SMTP: VERIFIED — Authenticated SMTP transport verified for sender ${maskedSender}.`,
+      { classification: "VERIFIED" },
+    );
+  } catch (error) {
+    push(
+      "smtp-email",
+      "failed",
+      `SMTP: FAILED — SMTP transport verification failed for ${maskedSender}: ${redactError(error)}`,
+      { classification: "FAILED" },
+    );
+  }
 }
 
 async function checkSentry() {

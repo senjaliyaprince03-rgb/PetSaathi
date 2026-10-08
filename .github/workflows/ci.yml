@@ -35,6 +35,7 @@ jobs:
       - run: npm audit --audit-level=critical
       - run: npm run test:integration:setup
       - run: node scripts/verify-booking-indexes.mjs --apply-test
+      - run: npm run dr:rehearsal:local
       - run: npm run test:integration
       - run: npm run test:concurrency
       - run: npm run build

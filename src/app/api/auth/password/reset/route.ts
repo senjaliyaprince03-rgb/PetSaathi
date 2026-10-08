@@ -28,7 +28,12 @@ export async function POST(request: Request) {
   }
 
   const result = await setPasswordForUser(identity.id, parsed.data.password);
-  if (!result.success) return jsonError("user_not_found", "Account not found.", 404);
+  if (!result.success) {
+    if (result.reason === "account_suspended") {
+      return jsonError("account_suspended", "This account has been suspended or deactivated.", 403);
+    }
+    return jsonError("user_not_found", "Account not found.", 404);
+  }
 
   return NextResponse.json({ updated: true });
 }

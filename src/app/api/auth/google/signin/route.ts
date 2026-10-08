@@ -32,13 +32,21 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "invalid_credential" }, { status: 401 });
     }
 
-    const result = await signInWithGoogle(payload.email, payload.name || "Pet Parent", payload.picture, selectedRole);
+    const safeRole = selectedRole === "SITTER" ? "SITTER" : "CUSTOMER";
+    const result = await signInWithGoogle(payload.email, payload.name || "Pet Parent", payload.picture, safeRole);
     
     // Set Sentry user context for error tracking
     Sentry.setUser({ id: result.userId, email: payload.email });
     
     return NextResponse.json({ authenticated: true, roles: result.roles });
   } catch (error) {
+    const message = error instanceof Error ? error.message : "";
+    if (message.startsWith("ACCOUNT_")) {
+      return NextResponse.json({ error: "account_suspended" }, { status: 403 });
+    }
+    if (message.includes("Admin accounts")) {
+      return NextResponse.json({ error: "admin_restricted" }, { status: 403 });
+    }
     console.error("Google sign in error:", error);
     return NextResponse.json({ error: "invalid_credential" }, { status: 401 });
   }

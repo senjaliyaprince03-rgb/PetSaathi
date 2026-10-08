@@ -19,7 +19,12 @@ export async function POST(request: Request) {
   ]);
   if (!ipLimit.allowed || !emailLimit.allowed) return NextResponse.json({ error: "too_many_attempts" }, { status: 429, headers: { "Retry-After": String(Math.max(ipLimit.retryAfterSeconds, emailLimit.retryAfterSeconds)) } });
   const result = await verifyOtpAndCreateSession("email", parsed.data.email, parsed.data.otp);
-  if (!result.success) return NextResponse.json({ error: "invalid_or_expired_otp" }, { status: 401 });
+  if (!result.success) {
+    if (result.reason === "account_suspended") {
+      return NextResponse.json({ error: "account_suspended" }, { status: 403 });
+    }
+    return NextResponse.json({ error: "invalid_or_expired_otp" }, { status: 401 });
+  }
   // Set Sentry user context for error tracking
   Sentry.setUser({ id: result.userId, email: parsed.data.email });
   return NextResponse.json({ verified: true, roles: result.roles });

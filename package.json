@@ -32,6 +32,7 @@
     "doctor": "node scripts/verify-runtime-setup.js",
     "doctor:production": "node scripts/verify-runtime-setup.js --production",
     "doctor:providers": "node scripts/verify-provider-integrations.js",
+    "dr:rehearsal:local": "node scripts/verify-local-backup-restore.mjs",
     "db:migrate-to-atlas": "node scripts/migrate-postgres-to-mongodb.js",
     "check": "npm run lint && npm run typecheck && npm run test && npm run build",
     "cap:doctor": "npx cap doctor",

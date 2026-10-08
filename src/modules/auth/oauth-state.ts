@@ -14,13 +14,13 @@ export function sanitizeReturnUrl(url?: string | null): string {
   if (!url || typeof url !== "string") {
     return "/dashboard";
   }
+  // Disallow CRLF or control characters anywhere in the raw URL string
+  if (/[\r\n\0]/.test(url)) {
+    return "/dashboard";
+  }
   const trimmed = url.trim();
   // Must start with a single slash and not followed by another slash or backslash
   if (!trimmed.startsWith("/") || trimmed.startsWith("//") || trimmed.startsWith("/\\")) {
-    return "/dashboard";
-  }
-  // Disallow CRLF or control characters
-  if (/[\r\n\0]/.test(trimmed)) {
     return "/dashboard";
   }
   return trimmed;

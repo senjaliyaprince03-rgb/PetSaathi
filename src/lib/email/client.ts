@@ -1,24 +1,23 @@
 /**
  * PetSaathi Email Client
- * Singleton wrapper around Resend API with graceful fallback.
- * 
- * Dev mode (no API key or test key): logs to console, does NOT fail.
- * Production mode (real API key): sends via Resend.
+ * Primary: Resend API (when RESEND_API_KEY is configured and RESEND_DISABLED !== "true").
+ * Secondary Fallback: Gmail SMTP (when SMTP_USER and SMTP_PASS are configured).
+ * Fails closed ({ success: false }) when no provider is configured or all configured providers fail.
  */
 
 import { Resend } from "resend";
+import nodemailer from "nodemailer";
 
-const RESEND_API_KEY = process.env.RESEND_API_KEY;
-const FROM_EMAIL = process.env.RESEND_FROM_EMAIL ?? "onboarding@resend.dev";
-const FROM_NAME = process.env.RESEND_FROM_NAME ?? "PetSaathi";
-
-// Singleton client
 let resendClient: Resend | null = null;
+let cachedApiKey: string | null = null;
 
-function getResendClient(): Resend | null {
-  if (!RESEND_API_KEY) return null;
-  if (!resendClient) {
-    resendClient = new Resend(RESEND_API_KEY);
+export function getResendClient(): Resend | null {
+  if (process.env.RESEND_DISABLED === "true") return null;
+  const apiKey = process.env.RESEND_API_KEY?.trim();
+  if (!apiKey) return null;
+  if (!resendClient || cachedApiKey !== apiKey) {
+    resendClient = new Resend(apiKey);
+    cachedApiKey = apiKey;
   }
   return resendClient;
 }
@@ -34,49 +33,104 @@ export interface SendEmailOptions {
 export interface SendEmailResult {
   success: boolean;
   messageId?: string;
+  provider?: "resend" | "smtp";
   error?: string;
 }
 
 /**
- * Send a transactional email.
- * NEVER throws — always returns { success, error? }.
- * Always logs to console in development.
+ * Send a transactional email via Resend (primary) or Gmail SMTP (fallback).
+ * NEVER throws — always returns { success, messageId?, provider?, error? }.
  */
 export async function sendEmail(options: SendEmailOptions): Promise<SendEmailResult> {
   const { to, subject, html, text, replyTo } = options;
-  const isDev = process.env.NODE_ENV !== "production";
+
+  if (/[\r\n\0]/.test(to) || /[\r\n\0]/.test(subject)) {
+    return {
+      success: false,
+      error: "Invalid email header characters detected",
+    };
+  }
+
+  const fromEmail = process.env.RESEND_FROM_EMAIL ?? "onboarding@resend.dev";
+  const fromName = process.env.RESEND_FROM_NAME ?? "PetSaathi";
+  let lastError: string | undefined;
+
+  // 1. Primary Provider: Resend
   const client = getResendClient();
+  if (client) {
+    try {
+      const result = await client.emails.send({
+        from: `${fromName} <${fromEmail}>`,
+        to,
+        subject,
+        html,
+        ...(text && { text }),
+        ...(replyTo && { reply_to: replyTo }),
+      });
 
-  if (isDev) {
-    console.log(`[EMAIL] To: ${to} | Subject: ${subject}`);
+      if (!result.error && result.data?.id) {
+        return {
+          success: true,
+          messageId: result.data.id,
+          provider: "resend",
+        };
+      }
+
+      lastError = result.error?.message || "Resend provider rejected the message";
+      console.warn(`[EMAIL] Resend delivery failed (${lastError}); checking SMTP fallback.`);
+    } catch (err) {
+      lastError = err instanceof Error ? err.message : "Unknown Resend error";
+      console.warn(`[EMAIL] Resend exception (${lastError}); checking SMTP fallback.`);
+    }
   }
 
-  // No client configured -> dev fallback, return success so OTP flow isn't blocked
-  if (!client) {
-    console.warn(`[EMAIL] No RESEND_API_KEY configured. Email NOT sent to ${to}. Subject: "${subject}"`);
-    return { success: true, messageId: "dev-no-send" };
-  }
+  // 2. Secondary Provider: Gmail SMTP Fallback
+  const smtpUser = process.env.SMTP_USER?.trim();
+  const smtpPass = process.env.SMTP_PASS?.trim();
 
-  try {
-    const result = await client.emails.send({
-      from: `${FROM_NAME} <${FROM_EMAIL}>`,
-      to,
-      subject,
-      html,
-      ...(text && { text }),
-      ...(replyTo && { reply_to: replyTo }),
+  if (smtpUser && smtpPass && process.env.SMTP_DISABLED !== "true") {
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: { user: smtpUser, pass: smtpPass },
     });
 
-    if (result.error) {
-      console.error(`[EMAIL] Resend error for ${to}:`, result.error);
-      return { success: false, error: result.error.message };
-    }
+    try {
+      const info = await new Promise<{ messageId?: string }>((resolve, reject) => {
+        const timeout = setTimeout(() => reject(new Error("SMTP send timeout")), 15_000);
+        transporter
+          .sendMail({
+            from: `"${fromName}" <${smtpUser}>`,
+            to: to.trim().toLowerCase(),
+            ...(replyTo && { replyTo }),
+            subject,
+            text,
+            html,
+          })
+          .then((res) => {
+            clearTimeout(timeout);
+            resolve(res);
+          })
+          .catch((err) => {
+            clearTimeout(timeout);
+            reject(err);
+          });
+      });
 
-    console.log(`[EMAIL] Sent to ${to} | ID: ${result.data?.id}`);
-    return { success: true, messageId: result.data?.id };
-  } catch (err) {
-    const message = err instanceof Error ? err.message : "Unknown email error";
-    console.error(`[EMAIL] Exception sending to ${to}:`, message);
-    return { success: false, error: message };
+      return {
+        success: true,
+        messageId: info.messageId,
+        provider: "smtp",
+      };
+    } catch (smtpErr) {
+      const smtpMessage = smtpErr instanceof Error ? smtpErr.message : "Unknown SMTP error";
+      lastError = lastError ? `Resend: ${lastError}; SMTP: ${smtpMessage}` : smtpMessage;
+      console.error(`[EMAIL] SMTP fallback failed:`, smtpMessage);
+    }
   }
+
+  return {
+    success: false,
+    error: lastError || "No email provider configured (RESEND_API_KEY or SMTP_USER/SMTP_PASS required)",
+  };
 }
+

@@ -1,15 +1,66 @@
-# MongoDB Atlas Backup & Emergency Recovery Runbook
+# MongoDB Backup, Restore & Disaster Recovery Runbook
 
 > **Target Audience**: SRE / DevOps / On-Call Engineers  
-> **Classification**: Operations Runbook (Task 3.2 & Task 8.2)  
-> **RPO Target**: < 1 hour (Continuous Cloud Backups)  
-> **RTO Target**: < 30 minutes to hot standby cluster
+> **Classification**: Operations Runbook  
+> **Local Logical Rehearsal Status**: `IMPLEMENTED_AND_VERIFIED` (`scripts/verify-local-backup-restore.mjs`)  
+> **Atlas Cloud Snapshot / PITR Status**: `DEFERRED CLOUD OWNER ACTION` (requires paid Atlas M10+ / Cloud Backup tier)
 
 ---
 
-## 1. Backup Policy & Architecture
+## A. Current Local / Synthetic Logical Backup & Restore Rehearsal (`VERIFIED`)
 
-PetSaathi utilizes **MongoDB Atlas Continuous Cloud Backups** configured across multi-AZ replica sets.
+Because the current MongoDB Atlas cluster runs on a tier without paid Continuous Cloud Backups, PetSaathi provides a reproducible, non-destructive logical backup and restore verification harness in `scripts/verify-local-backup-restore.mjs` (`npm run dr:rehearsal:local`).
+
+### 1. Safety Guarantees
+- **Never** mutates, drops, or writes to the production `petsaathi` database (`FORBIDDEN_DB_NAMES` hard-blocks `petsaathi`, `admin`, `local`, and `config`).
+- Uses isolated disposable databases (`petsaathi_backup_source` and `petsaathi_restore_test`) and an OS temporary directory that are automatically dropped and removed in a `finally` block.
+
+### 2. Rehearsal Execution Command
+```bash
+npm run dr:rehearsal:local
+# or directly:
+node scripts/verify-local-backup-restore.mjs
+```
+
+### 3. Rehearsal Workflow & Verified Invariants
+1. **Seed Synthetic Source Dataset (`petsaathi_backup_source`)**:
+   Populates all 17 launch-critical collections (`users`, `user_roles`, `customer_profiles`, `sitter_profiles`, `pets`, `bookings`, `booking_assignments`, `payments`, `refunds`, `payouts`, `audit_logs`, `auth_sessions`, `auth_challenges`, `notification_outbox`, `societies`, `service_types`, `service_prices`) plus `auth_credentials`, `oauth_states`, and `addresses`.
+2. **Logical Backup Export**:
+   Serializes all collection documents (preserving BSON `ObjectId` and `Date` types) and non-default index specifications to a temporary backup artifact (`logical-backup.json`).
+3. **Simulated Data Loss**:
+   Drops `petsaathi_backup_source` and verifies zero collections remain.
+4. **Restore Into Isolated Target (`petsaathi_restore_test`)**:
+   Restores all documents and recreates all collection indexes into `petsaathi_restore_test`.
+5. **Post-Restore Verification**:
+   - Verifies 100% document count parity across all 17 launch-critical collections.
+   - Verifies all 5 critical unique and TTL indexes:
+     - `bookings.bookings_idempotency_key_key` (unique)
+     - `auth_sessions.auth_sessions_ttl` (TTL)
+     - `auth_challenges.auth_challenges_ttl` (TTL)
+     - `auth_credentials.auth_credentials_user` (unique)
+     - `oauth_states.oauth_states_expiry` (TTL)
+   - Verifies `0` duplicate booking `idempotency_key` groups.
+   - Executes read-only Prisma Client queries (`user.count()`, `booking.count()`, `payment.count()`, `auditLog.count()`, `serviceType.count()`) against `petsaathi_restore_test`.
+   - Measured local rehearsal metrics: `rtoSeconds: 7.75`, `rpoSeconds: 0`, `collectionsVerified: 17`, `duplicateIdempotencyGroups: 0`.
+
+### 4. Ad-Hoc Pre-Migration Logical Backup (`mongodump` / `mongorestore`)
+When `mongodb-database-tools` (`mongodump` / `mongorestore`) are installed on an operator workstation, run a manual archive before schema or index changes:
+
+```bash
+# Export compressed archive
+mongodump --uri="$MONGODB_URI" --archive="backup_$(date +%Y%m%d_%H%M%S).gz" --gzip
+
+# Restore into an isolated staging/restore target database
+mongorestore --uri="$MONGODB_RESTORE_URI" --archive="backup_20261007_000000.gz" --gzip --drop
+```
+
+---
+
+## B. Future / Production Atlas Cloud Backup & PITR Plan (`DEFERRED CLOUD OWNER ACTION`)
+
+> **Note**: The following procedures require upgrading the MongoDB Atlas cluster to a paid tier with **Atlas Cloud Backups / Continuous Cloud Backup (PITR)** enabled. Until that billing/tier upgrade is completed by the cloud owner, treat this section as the target production runbook.
+
+### 1. Target Atlas Backup Policy (Post-Upgrade)
 
 | Backup Tier | Frequency | Retention Window | Storage Location | Encryption |
 |-------------|-----------|------------------|------------------|------------|
@@ -19,101 +70,34 @@ PetSaathi utilizes **MongoDB Atlas Continuous Cloud Backups** configured across 
 | **Weekly Snapshots** | Sunday 03:00 IST | 90 days | Cold Archive Bucket | KMS Managed Key |
 | **Monthly Snapshots** | 1st of month | 365 days (1 year) | Cold Compliance Archive | Immutable Object Lock |
 
----
+### 2. Emergency Point-in-Time Restore (Atlas M10+ Only)
 
-## 2. Emergency Restore Scenarios
-
-### Scenario A: Accidental Data Deletion / Corrupted Deployment
-*Example: Malformed migration dropped or overwrote documents.*
-
-#### Step 1: Declare Incident & Stop Traffic
-1. Route ingress to maintenance page via Cloudflare or ALB listener rules.
-2. In AWS ALB / NGINX:
-   ```bash
-   # Temporarily disable traffic upstream to prevent writing dirty data
-   systemctl stop nginx
-   ```
+#### Step 1: Declare Incident & Pause Writes
+Place the deployment into maintenance mode or pause webhook/mutation ingestion to prevent new writes during recovery cutover.
 
 #### Step 2: Determine Exact Point-in-Time
-Inspect Sentry / MongoDB Atlas Audit Logs to identify exact timestamp of corruption (e.g. `2026-09-05T01:14:22Z`). Subtract 2 minutes for safety margin (e.g. `2026-09-05T01:12:00Z`).
+Inspect Sentry and MongoDB `audit_logs` to identify the exact UTC timestamp prior to corruption (subtracting a 2-minute safety margin).
 
-#### Step 3: Trigger Point-in-Time Restore via Atlas CLI / API
+#### Step 3: Trigger Restore to Staging Cluster via Atlas CLI
 ```bash
-# Using Atlas CLI (mongocli / atlas)
 atlas backups restores start \
   --clusterName PetSaathi-Prod \
   --deliveryType pointInTime \
-  --pointInTimeUTC 2026-09-05T01:12:00Z \
+  --pointInTimeUTC 2026-10-07T09:00:00Z \
   --targetClusterName PetSaathi-Restored-Staging \
   --targetProjectId <PROJECT_ID>
 ```
 
-#### Step 4: Verify Restored Data Integrity
-Connect to `PetSaathi-Restored-Staging` and run verification queries:
+#### Step 4: Verify Restored Data & Indexes
+Run read-only index and collection verification against the restored staging cluster:
 ```bash
-# Verify record counts match pre-incident metrics
-node -e '
-const { MongoClient } = require("mongodb");
-async function check() {
-  const client = new MongoClient(process.env.STAGING_RESTORE_URI);
-  await client.connect();
-  const db = client.db("petsaathi");
-  const users = await db.collection("users").countDocuments();
-  const bookings = await db.collection("bookings").countDocuments();
-  console.log({ users, bookings });
-  await client.close();
-}
-check();
-'
+MONGODB_URI="$STAGING_RESTORE_URI" node scripts/verify-booking-indexes.mjs
 ```
 
-#### Step 5: Switch App Connection Strings
-Update environment variables in Doppler / AWS Secrets Manager:
+#### Step 5: Cut Over Application Connection Strings
+Update `MONGODB_URI` and `MONGODB_PRISMA_URI` in the cloud deployment environment and run:
 ```bash
-DATABASE_URL="mongodb+srv://app_user:secret@petsaathi-restored-prod.mongodb.net/petsaathi?retryWrites=true&w=majority"
-```
-Redeploy application or trigger zero-downtime rolling restart.
-
----
-
-### Scenario B: Full Cluster Disaster Recovery (Cloud Region Outage)
-*Example: AWS ap-south-1 (Mumbai) complete regional failure.*
-
-1. **Restore Snapshot to Secondary Region**:
-   ```bash
-   atlas backups restores start \
-     --clusterName PetSaathi-Prod \
-     --deliveryType automated \
-     --snapshotId <LATEST_HEALTHY_SNAPSHOT_ID> \
-     --targetClusterName PetSaathi-DR-Hyd \
-     --targetProjectId <PROJECT_ID>
-   ```
-2. **Update DNS / Route53**:
-   Switch `api.petsaathi.com` CNAME to failover ALB in Hyderabad / secondary region.
-3. **Run Sanity Checks**:
-   ```bash
-   npm run doctor:production
-   npm run test:concurrency
-   ```
-
----
-
-## 3. Automated Local Snapshot Tool (Ad-hoc Pre-migration)
-
-Before running critical schema changes or data transformations, create a manual snapshot:
-
-```bash
-# Export compressed archive with oplog
-mongodump --uri="$MONGODB_URI" --archive="backup_$(date +%Y%m%d_%H%M%S).gz" --gzip --oplog
-
-# Emergency Restore Command (from archive)
-mongorestore --uri="$MONGODB_TARGET_URI" --archive="backup_20260905_000000.gz" --gzip --oplogReplay --drop
+npm run doctor:production
+npm run test:concurrency
 ```
 
----
-
-## 4. Verification & Testing Cadence
-
-1. **Automated Drill**: Every 1st Tuesday of the month, a scheduled GitHub Action executes an automated restore of yesterday's daily snapshot to an isolated staging sandbox cluster.
-2. **Integrity Validation**: Runs `scripts/db/verify-indexes-explain.ts` and `npm run test:simulate` against the restored sandbox.
-3. **Audit Log**: Results published to `#ops-alerts` Slack channel.

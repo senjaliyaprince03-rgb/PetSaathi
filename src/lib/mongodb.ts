@@ -16,6 +16,7 @@ export function configureMongoDns() {
     : ["8.8.8.8", "8.8.4.4"];
   try {
     dns.setServers(servers);
+    dns.promises?.setServers?.(servers);
   } catch {
     // Ignore if the runtime does not permit changing DNS servers.
   }
@@ -82,6 +83,7 @@ function databaseName(uri: string) {
 
 export function getMongoClient() {
   if (!cache.clientPromise) {
+    configureMongoDns();
     const uri = mongoUri();
     cache.clientPromise = new MongoClient(uri, {
       appName: "PetSaathi",

@@ -37,7 +37,7 @@ export default function OtpVerificationEmail({
 
       {/* Prominent OTP Code Box */}
       <Section style={otpBoxStyle}>
-        <Text style={otpTextStyle}>{otp.split("").join(" ")}</Text>
+        <Text style={otpTextStyle}>{otp}</Text>
       </Section>
 
       {/* Expiry Warning */}

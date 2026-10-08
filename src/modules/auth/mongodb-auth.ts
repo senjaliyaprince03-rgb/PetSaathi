@@ -62,8 +62,11 @@ type AuthCredential = {
 let indexesPromise: Promise<void> | undefined;
 
 function normalizedEmail(email: string) {
+  if (/[\r\n\0]/.test(email)) {
+    throw new Error("Invalid email format");
+  }
   const cleaned = email.trim().toLowerCase();
-  if (/[\r\n\0]/.test(cleaned)) {
+  if (!cleaned || /[\r\n\0]/.test(cleaned)) {
     throw new Error("Invalid email format");
   }
   return cleaned;
@@ -163,7 +166,7 @@ export async function requestEmailOtp(rawEmail: string, purpose: "registration" 
   const challenge = await saveChallenge("email", email);
 
   // DEV ONLY: Log OTP to console for testing (never exposes in production logs)
-  if (process.env.NODE_ENV !== "production") {
+  if (process.env.NODE_ENV !== "production" && process.env.SUPPRESS_DEV_OTP_LOG !== "1") {
     console.log(`[DEV] OTP for ${email}: ${challenge.code} | Purpose: ${purpose} | Expires in ${CHALLENGE_MINUTES}min`);
   }
   logger.info("Auth OTP generated", { email, purpose, expiresMinutes: CHALLENGE_MINUTES });
@@ -172,98 +175,74 @@ export async function requestEmailOtp(rawEmail: string, purpose: "registration" 
     return { mode: "development", code: challenge.code } satisfies OtpDelivery;
   }
 
-  // 1. Primary Email Provider: Resend with React Email
+  let subjectLine = "Your PetSaathi verification code";
+  let emailHtml = `<p>Your PetSaathi verification code is <strong>${challenge.code}</strong>.</p><p>It expires in ${CHALLENGE_MINUTES} minutes.</p>`;
+  let emailText = `Your PetSaathi verification code is ${challenge.code}. It expires in ${CHALLENGE_MINUTES} minutes.`;
+
   try {
-    const { sendEmail } = await import("@/lib/email/client");
     const { renderEmailToHtml, renderEmailToText } = await import("@/lib/email/render");
     const { getOtpSubject } = await import("@/lib/email/subjects");
     const OtpVerificationEmail = (await import("@/lib/email/templates/otp-verification")).default;
     const React = await import("react");
 
-    const emailHtml = await renderEmailToHtml(
+    subjectLine = getOtpSubject(purpose);
+    emailHtml = await renderEmailToHtml(
       React.createElement(OtpVerificationEmail, {
         otp: challenge.code,
         purpose,
         expiryMinutes: CHALLENGE_MINUTES,
       })
     );
-
-    const emailText = await renderEmailToText(
+    emailText = await renderEmailToText(
       React.createElement(OtpVerificationEmail, {
         otp: challenge.code,
         purpose,
         expiryMinutes: CHALLENGE_MINUTES,
       })
     );
-
-    const emailResult = await sendEmail({
-      to: email,
-      subject: getOtpSubject(purpose),
-      html: emailHtml,
-      text: emailText,
-    });
-
-    // Write audit record to NotificationOutbox
-    try {
-      const idempotencyKey = `otp:email:${email}:${Date.now()}`;
-      await prisma.notificationOutbox.create({
-        data: {
-          channel: "EMAIL",
-          templateKey: "otp_verification",
-          destination: email,
-          payload: { purpose, messageId: emailResult.messageId },
-          status: emailResult.success ? "SENT" : "FAILED",
-          idempotencyKey,
-          sentAt: emailResult.success ? new Date() : undefined,
-          lastError: emailResult.error || undefined,
-        },
-      });
-    } catch (outboxErr) {
-      console.error("[OTP] Outbox recording failed:", outboxErr);
-    }
-
-    if (emailResult.success) {
-      return { mode: "email" } satisfies OtpDelivery;
-    }
-  } catch (resendError) {
-    console.warn("[OTP] Resend delivery encountered an error, trying secondary transport:", resendError);
+  } catch (renderErr) {
+    console.warn("[OTP] Template rendering fallback to basic HTML/text:", renderErr);
   }
 
-  // 2. Secondary Provider: Gmail SMTP fallback
-  const user = process.env.SMTP_USER;
-  const pass = process.env.SMTP_PASS;
+  const { sendEmail } = await import("@/lib/email/client");
+  const emailResult = await sendEmail({
+    to: email,
+    subject: subjectLine,
+    html: emailHtml,
+    text: emailText,
+  });
 
-  if (user && pass) {
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: { user, pass },
+  // Write single authoritative audit record to NotificationOutbox
+  try {
+    const idempotencyKey = `otp:email:${email}:${Date.now()}`;
+    await prisma.notificationOutbox.create({
+      data: {
+        channel: "EMAIL",
+        templateKey: "otp_verification",
+        destination: email,
+        payload: {
+          purpose,
+          provider: emailResult.provider ?? null,
+          messageId: emailResult.messageId ?? null,
+        },
+        status: emailResult.success ? "SENT" : "FAILED",
+        idempotencyKey,
+        sentAt: emailResult.success ? new Date() : undefined,
+        lastError: emailResult.error || undefined,
+      },
     });
+  } catch (outboxErr) {
+    console.error("[OTP] Outbox recording failed:", outboxErr);
+  }
 
-    try {
-      await new Promise((resolve, reject) => {
-        const timeout = setTimeout(() => reject(new Error("Timeout")), 15_000);
-        transporter.sendMail({
-          from: `"PetSaathi" <${user}>`,
-          to: email,
-          subject: "Your PetSaathi verification code",
-          text: `Your PetSaathi verification code is ${challenge.code}. It expires in ${CHALLENGE_MINUTES} minutes.`,
-          html: `<p>Your PetSaathi verification code is <strong>${challenge.code}</strong>.</p><p>It expires in ${CHALLENGE_MINUTES} minutes.</p>`,
-        }).then((info) => {
-          clearTimeout(timeout);
-          resolve(info);
-        }).catch((err) => {
-          clearTimeout(timeout);
-          reject(err);
-        });
-      });
-      return { mode: "email" } satisfies OtpDelivery;
-    } catch (error) {
-      console.warn(`[DEV] Email failed to send via SMTP. OTP is ${challenge.code}`);
-    }
+  if (emailResult.success) {
+    return { mode: "email" } satisfies OtpDelivery;
   }
 
   if (process.env.NODE_ENV === "development" || challenge.development || process.env.PLAYWRIGHT_TEST === "1") {
-    console.warn(`[DEV] Fallback active. OTP is ${challenge.code}`);
+    if (process.env.SUPPRESS_DEV_OTP_LOG !== "1") {
+      console.warn(`[DEV] Fallback active. OTP is ${challenge.code}`);
+    }
     return { mode: "development", code: challenge.code } satisfies OtpDelivery;
   }
 
@@ -327,6 +306,9 @@ async function consumeChallenge(channel: AuthChannel, subject: string, code: str
 }
 
 async function sendWelcomeEmail(email: string, displayName: string, role?: string) {
+  if (process.env.PLAYWRIGHT_TEST === "1" || process.env.NODE_ENV === "test") {
+    return;
+  }
   try {
     const { dispatchTransactionalEmail } = await import("@/lib/email/dispatcher");
     await dispatchTransactionalEmail(null, email, "WELCOME", {
@@ -548,49 +530,54 @@ export function checkAccountStatusAllowed(status?: string | null) {
   }
 }
 
+export function sanitizeSelfServiceRole(requestedRole?: string | null): "CUSTOMER" | "SITTER" {
+  return requestedRole === "SITTER" ? "SITTER" : "CUSTOMER";
+}
+
 async function ensureUser(channel: AuthChannel, subject: string, displayName?: string, requestedRole?: string) {
+  if (channel === "email" && isAuthorizedAdminEmail(subject)) {
+    throw new Error("Admin accounts must sign in with email and password.");
+  }
+
   const selector = channel === "email" ? { email: subject } : { phoneE164: subject };
-  const existing = await prisma.user.findFirst({ where: selector, select: { id: true, status: true, displayName: true, roles: { select: { role: true } } } });
-  
-  const isAdmin = channel === "email" && isAuthorizedAdminEmail(subject);
-  const roleToRequest = isAdmin ? "SUPER_ADMIN" : requestedRole === "SITTER" ? "SITTER" : "CUSTOMER";
-  
+  const existing = await prisma.user.findFirst({
+    where: selector,
+    select: { id: true, status: true, displayName: true, roles: { select: { role: true } } },
+  });
+
+  const roleToRequest = sanitizeSelfServiceRole(requestedRole);
+
   if (existing) {
     checkAccountStatusAllowed(existing.status);
-    if (!isAdmin && roleToRequest) {
-      const hasRole = existing.roles.some(r => r.role === roleToRequest);
-      if (!hasRole) {
-        await prisma.user.update({
-          where: { id: existing.id },
-          data: {
-            roles: { create: { role: roleToRequest } },
-            ...(roleToRequest === "SITTER" ? { sitter: { create: {} } } : roleToRequest === "CUSTOMER" ? { customer: { create: {} } } : {})
-          }
-        });
-      }
-    } else if (isAdmin) {
-      const hasAdmin = existing.roles.some(r => r.role === "SUPER_ADMIN");
-      if (!hasAdmin) {
-        await prisma.user.update({
-          where: { id: existing.id },
-          data: {
-            roles: { create: [{ role: "SUPER_ADMIN" }, { role: "OPERATIONS_ADMIN" }] }
-          }
-        });
-      }
+    const hasRole = existing.roles.some((r) => r.role === roleToRequest);
+    if (!hasRole) {
+      await prisma.user.update({
+        where: { id: existing.id },
+        data: {
+          roles: { create: { role: roleToRequest } },
+          ...(roleToRequest === "SITTER"
+            ? { sitter: { create: {} } }
+            : roleToRequest === "CUSTOMER"
+              ? { customer: { create: {} } }
+              : {}),
+        },
+      });
     }
-    
+
     const wasPending = existing.status === "PENDING";
-    await prisma.user.update({ where: { id: existing.id }, data: { status: "ACTIVE", lastLoginAt: new Date() } });
-    
+    await prisma.user.update({
+      where: { id: existing.id },
+      data: { status: "ACTIVE", lastLoginAt: new Date() },
+    });
+
     if (wasPending && channel === "email") {
       sendWelcomeEmail(subject, existing.displayName || "Pet Parent");
     }
-    
+
     return existing.id;
   }
 
-  const defaultRole = roleToRequest || "CUSTOMER";
+  const defaultRole = roleToRequest;
   const user = await prisma.user.create({
     data: {
       ...selector,
@@ -599,13 +586,11 @@ async function ensureUser(channel: AuthChannel, subject: string, displayName?: s
         (channel === "email" ? (subject.split("@")[0] ?? "Pet Parent") : "Pet Parent"),
       status: "ACTIVE",
       lastLoginAt: new Date(),
-      roles: { 
-        create: isAdmin 
-          ? [{ role: "SUPER_ADMIN" }, { role: "OPERATIONS_ADMIN" }] 
-          : [{ role: defaultRole }] 
+      roles: {
+        create: [{ role: defaultRole }],
       },
-      ...(!isAdmin && defaultRole === "CUSTOMER" ? { customer: { create: {} } } : {}),
-      ...(!isAdmin && defaultRole === "SITTER" ? { sitter: { create: {} } } : {})
+      ...(defaultRole === "CUSTOMER" ? { customer: { create: {} } } : {}),
+      ...(defaultRole === "SITTER" ? { sitter: { create: {} } } : {}),
     },
     select: { id: true, displayName: true },
   });
@@ -626,14 +611,34 @@ export async function verifyOtpAndCreateSession(
 
   // Admin can only sign in via password — never via OTP code
   if (channel === "email" && isAuthorizedAdminEmail(subject)) {
-    return { success: false };
+    return { success: false as const, reason: "admin_restricted" as const };
   }
 
-  if (!(await consumeChallenge(channel, subject, code))) return { success: false };
-  const userId = await ensureUser(channel, subject);
-  const user = await prisma.user.findUnique({ where: { id: userId }, select: { roles: { select: { role: true } } } });
-  await issueSession(userId);
-  return { success: true, userId, roles: user?.roles.map(r => r.role) || [] };
+  // Reject suspended or deactivated users before or during challenge consumption
+  const selector = channel === "email" ? { email: subject } : { phoneE164: subject };
+  const existingPrecheck = await prisma.user.findFirst({
+    where: selector,
+    select: { status: true },
+  });
+  if (existingPrecheck && existingPrecheck.status !== "ACTIVE" && existingPrecheck.status !== "PENDING") {
+    return { success: false as const, reason: "account_suspended" as const };
+  }
+
+  if (!(await consumeChallenge(channel, subject, code))) {
+    return { success: false as const, reason: "invalid_otp" as const };
+  }
+
+  try {
+    const userId = await ensureUser(channel, subject);
+    const user = await prisma.user.findUnique({ where: { id: userId }, select: { roles: { select: { role: true } } } });
+    await issueSession(userId);
+    return { success: true as const, userId, roles: user?.roles.map((r) => r.role) || [] };
+  } catch (err) {
+    if (err instanceof Error && err.message.startsWith("ACCOUNT_")) {
+      return { success: false as const, reason: "account_suspended" as const };
+    }
+    throw err;
+  }
 }
 
 async function passwordHash(password: string) {
@@ -649,13 +654,15 @@ async function passwordHash(password: string) {
  */
 export async function setPasswordForUser(userId: string, newPassword: string) {
   await ensureAuthIndexes();
-  const user = await prisma.user.findUnique({ where: { id: userId }, select: { email: true } });
-  if (!user) return { success: false as const, reason: "user_not_found" as const };
+  const user = await prisma.user.findUnique({ where: { id: userId }, select: { email: true, status: true } });
+  if (!user || !user.email) return { success: false as const, reason: "user_not_found" as const };
+  if (user.status !== "ACTIVE" && user.status !== "PENDING") {
+    return { success: false as const, reason: "account_suspended" as const };
+  }
 
   const database = await getMongoDatabase();
   const credentials = database.collection<AuthCredential>("auth_credentials");
   const now = new Date();
-  if (!user.email) return { success: false as const, reason: "user_not_found" as const };
   await credentials.updateOne(
     { $or: [{ _id: user.email }, { email: user.email }] },
     {
@@ -1001,7 +1008,8 @@ export async function signInWithGoogle(emailInput: string, name: string, avatarU
     throw new Error("Admin accounts cannot sign in with Google. Use email and password.");
   }
 
-  const userId = await ensureUser("email", email, name, requestedRole);
+  const sanitizedRole = sanitizeSelfServiceRole(requestedRole);
+  const userId = await ensureUser("email", email, name, sanitizedRole);
   const user = await prisma.user.findUnique({ where: { id: userId }, select: { roles: { select: { role: true } } } });
   
   if (avatarUrl) {
@@ -1009,6 +1017,9 @@ export async function signInWithGoogle(emailInput: string, name: string, avatarU
   }
 
   await issueSession(userId);
-  return { success: true, userId, roles: user?.roles.map(r => r.role) || [] };
+  const roles = (user?.roles.map((r) => r.role) || []).filter(
+    (r) => r !== "SUPER_ADMIN" && r !== "OPERATIONS_ADMIN",
+  );
+  return { success: true, userId, roles };
 }
 import { getPrimaryRole } from "./admin-access";
