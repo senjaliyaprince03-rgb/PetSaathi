@@ -21,8 +21,6 @@ __pycache__/
 /build/
 
 # local-only secrets
-.env
-.env.*
 !.env.schema
 !.env.example
 
@@ -73,6 +71,9 @@ test_*.pdf
 
 # Sentry Config File
 .env.sentry-build-plugin
-.env.local
 
 .vercel
+branch_structure.json
+temp_auto_push.bat
+temp_interactive_push.bat
+config.bat
